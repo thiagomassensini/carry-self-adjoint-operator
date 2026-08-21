@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "theorems": [
+    {"qualified": "CarrySelfAdjointOperator.nativeLogGenerator_isSelfAdjoint"},
+    {"qualified": "CarrySelfAdjointOperator.nativeLogBasisVector_mem_domain"},
+    {"qualified": "CarrySelfAdjointOperator.nativeLogGenerator_basisVector"},
+    {"qualified": "CarrySelfAdjointOperator.logarithmicMoment_eq"},
+    {"qualified": "CarrySelfAdjointOperator.hankelGram_isSymm"},
+    {"qualified": "CarrySelfAdjointOperator.shiftedHankel_isSymm"},
+    {"qualified": "CarrySelfAdjointOperator.hankelGram_succ_principal"},
+    {"qualified": "CarrySelfAdjointOperator.shiftedHankel_succ_principal"}
+  ]
+}

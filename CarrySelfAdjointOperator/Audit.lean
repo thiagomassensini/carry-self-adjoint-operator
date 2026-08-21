@@ -1,0 +1,10 @@
+import CarrySelfAdjointOperator
+
+#print axioms CarrySelfAdjointOperator.nativeLogGenerator_isSelfAdjoint
+#print axioms CarrySelfAdjointOperator.nativeLogBasisVector_mem_domain
+#print axioms CarrySelfAdjointOperator.nativeLogGenerator_basisVector
+#print axioms CarrySelfAdjointOperator.logarithmicMoment_eq
+#print axioms CarrySelfAdjointOperator.hankelGram_isSymm
+#print axioms CarrySelfAdjointOperator.shiftedHankel_isSymm
+#print axioms CarrySelfAdjointOperator.hankelGram_succ_principal
+#print axioms CarrySelfAdjointOperator.shiftedHankel_succ_principal
