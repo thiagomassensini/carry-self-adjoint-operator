@@ -62,7 +62,7 @@ theorem canonicalCompletedNativeGreenState_of_gammaCauchyScalarization
   unfold completedGammaCauchySkew
   rw [NativeCarryC3Crosswalk.carryGammaSource_cauchy_skew_energy]
   change _ = (z - (starRingEnd ℂ) z) *
-    (‖totalCarryGammaState source z‖ ^ 2 : ℂ)
+    (((‖totalCarryGammaState source z‖ ^ 2 : ℝ)) : ℂ)
   rw [totalCarryGammaState_of_im_ne_zero source hz]
   rw [WithLp.prod_norm_sq_eq_of_L2]
   apply Complex.ext <;> simp <;> ring
