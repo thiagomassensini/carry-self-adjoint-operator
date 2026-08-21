@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.GreenWronskianHankelBridge
 import CarrySelfAdjointOperator.CompletedNativeC3LedgerState
+import CPFormal.Analytic.CpGenuineRealAxisPositivity
 import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
 import Mathlib.Analysis.InnerProductSpace.Basic
 import Mathlib.Tactic
@@ -143,6 +144,22 @@ def completedNativeHeightDomain : Set ℂ :=
   change operatorHeightParameter 0 ∈ genuineCriticalStrip
   constructor <;> norm_num [operatorHeightParameter]
 
+/-- The completed native characteristic is nonzero at the Taylor center.  This
+is not a numerical premise: the xi completion factor is nonzero in the strip,
+and the already-proved real-axis positivity gives
+`genuineContinuation (1/2) ≠ 0`. -/
+theorem completedNativeOperatorCharacteristic_zero_ne_zero :
+    completedNativeOperatorCharacteristic 0 ≠ 0 := by
+  have hstrip : operatorHeightParameter 0 ∈ genuineCriticalStrip := by
+    constructor <;> norm_num [operatorHeightParameter]
+  unfold completedNativeOperatorCharacteristic
+  apply mul_ne_zero
+  · exact nativeXiCompletionFactor_ne_zero hstrip
+  · rw [nativeScalar_eq_genuineContinuation hstrip]
+    simpa [operatorHeightParameter] using
+      (genuineContinuation_ofReal_ne_zero
+        (σ := (1 : ℝ) / 2) (by norm_num) (by norm_num))
+
 /-- The two full factor Green representations combine into a local
 representation of the actual completed native characteristic and its concrete
 C3 provenance ledger.  The canonical derivative companion agrees with the
@@ -198,7 +215,7 @@ def HasCanonicalCompletedNativeGreenMomentJets
 
 /-- Once the factor Green identities and the exact coefficient extraction are
 available, the concrete completed native chain supplies the full moment-jet
-certificate. -/
+certificate.  Center nonvanishing is discharged internally. -/
 theorem hasCanonicalCompletedNativeGreenMomentJets_of_factors
     {Hxi : Type*}
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
@@ -208,7 +225,6 @@ theorem hasCanonicalCompletedNativeGreenMomentJets_of_factors
     (hnative : HasDivisionFreeGreenRepresentation
       nativeHeightScalar nativeHeightScalarBoundaryCompanion
         canonicalCompletedOperatorC3HilbertState)
-    (hcenter : completedNativeOperatorCharacteristic 0 ≠ 0)
     (hcoefficients :
       IsComplexGreenWronskianMomentKernelGramRepresentation moments
         (completedGreenParityJet
@@ -218,16 +234,39 @@ theorem hasCanonicalCompletedNativeGreenMomentJets_of_factors
     HasCanonicalCompletedNativeGreenMomentJets xiState moments := by
   exact
     { zero_mem_domain := zero_mem_completedNativeHeightDomain
-      center_ne_zero := hcenter
+      center_ne_zero := completedNativeOperatorCharacteristic_zero_ne_zero
       greenRepresentationOn :=
         completedNativeC3ProductLedger_greenRepresentationOn_of_factors
           xiState hxi hnative
       momentKernel := hcoefficients }
 
 /-- End-to-end finite positivity theorem for the concrete completed native
-state.  The only inputs not already structural are the two factor Green
-representations, center nonvanishing, and the exact Taylor coefficient
-identity. -/
+state.  The only analytic inputs left are the two factor Green representations
+and the exact Taylor coefficient identity. -/
+theorem hankelPair_posSemidef_of_completedNativeGreenFactors
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    (xiState : ℂ → Hxi) (moments : ℕ → ℝ)
+    (hxi : HasDivisionFreeGreenRepresentation
+      nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion xiState)
+    (hnative : HasDivisionFreeGreenRepresentation
+      nativeHeightScalar nativeHeightScalarBoundaryCompanion
+        canonicalCompletedOperatorC3HilbertState)
+    (hcoefficients :
+      IsComplexGreenWronskianMomentKernelGramRepresentation moments
+        (completedGreenParityJet
+          (normalizedCompletedGreenState
+            completedNativeOperatorCharacteristic
+            (completedNativeC3ProductLedgerState xiState))))
+    (N : ℕ) :
+    (hankelGram moments N).PosSemidef ∧
+      (shiftedHankel moments N).PosSemidef :=
+  hankelPair_posSemidef_of_completedGreenMomentJets
+    (hasCanonicalCompletedNativeGreenMomentJets_of_factors
+      xiState moments hxi hnative hcoefficients) N
+
+/-- Certificate-consuming form retained for downstream modules which package
+the completed moment jets once and reuse them at several orders. -/
 theorem hankelPair_posSemidef_of_canonicalCompletedNativeGreenMomentJets
     {Hxi : Type*}
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
