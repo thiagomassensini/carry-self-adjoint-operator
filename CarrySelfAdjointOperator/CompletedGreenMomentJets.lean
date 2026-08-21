@@ -158,6 +158,8 @@ theorem completedNativeC3ProductLedger_greenRepresentationOn_of_factors
       completedNativeOperatorBoundaryCompanion
       (completedNativeC3ProductLedgerState xiState) := by
   intro z hz w hw
+  change operatorHeightParameter z ∈ genuineCriticalStrip at hz
+  change operatorHeightParameter w ∈ genuineCriticalStrip at hw
   have hproduct := (hxi.mul hnative) z w
   rw [completedNativeOperatorBoundaryCompanion_eq_product hz,
     completedNativeOperatorBoundaryCompanion_eq_product hw]
