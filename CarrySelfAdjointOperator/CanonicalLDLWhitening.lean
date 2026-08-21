@@ -25,19 +25,19 @@ definite matrix is strictly positive. -/
 theorem LDL_diagEntries_pos
     {N : ℕ} {gram : Matrix (Fin N) (Fin N) ℝ}
     (hgram : gram.PosDef) (i : Fin N) :
-    0 < Matrix.LDL.diagEntries hgram i := by
-  have hdiag : (Matrix.LDL.diag hgram).PosDef := by
-    rw [Matrix.LDL.diag_eq_lowerInv_conj hgram]
+    0 < LDL.diagEntries hgram i := by
+  have hdiag : (LDL.diag hgram).PosDef := by
+    rw [LDL.diag_eq_lowerInv_conj hgram]
     exact hgram.mul_mul_conjTranspose_same
       (Matrix.vecMul_injective_of_invertible
-        (Matrix.LDL.lowerInv hgram))
-  simpa [Matrix.LDL.diag] using hdiag.diag_pos (i := i)
+        (LDL.lowerInv hgram))
+  simpa [LDL.diag] using hdiag.diag_pos (i := i)
 
 /-- Positive diagonal rescaling which normalizes the LDL diagonal. -/
 def canonicalLDLScale
     {N : ℕ} {gram : Matrix (Fin N) (Fin N) ℝ}
     (hgram : gram.PosDef) (i : Fin N) : ℝ :=
-  (Real.sqrt (Matrix.LDL.diagEntries hgram i))⁻¹
+  (Real.sqrt (LDL.diagEntries hgram i))⁻¹
 
 theorem canonicalLDLScale_pos
     {N : ℕ} {gram : Matrix (Fin N) (Fin N) ℝ}
@@ -51,7 +51,7 @@ def canonicalLDLInverseFactor
     {N : ℕ} {gram : Matrix (Fin N) (Fin N) ℝ}
     (hgram : gram.PosDef) : Matrix (Fin N) (Fin N) ℝ :=
   Matrix.diagonal (canonicalLDLScale hgram) *
-    Matrix.LDL.lowerInv hgram
+    LDL.lowerInv hgram
 
 /-- The canonical inverse factor remains lower triangular. -/
 theorem canonicalLDLInverseFactor_triangular
@@ -59,23 +59,23 @@ theorem canonicalLDLInverseFactor_triangular
     (hgram : gram.PosDef) {i j : Fin N} (hij : i < j) :
     canonicalLDLInverseFactor hgram i j = 0 := by
   simp [canonicalLDLInverseFactor,
-    Matrix.LDL.lowerInv_triangular hgram hij]
+    LDL.lowerInv_triangular hgram hij]
 
 /-- The positive LDL diagonal is normalized exactly to the identity. -/
 theorem canonicalLDL_diagonal_normalization
     {N : ℕ} {gram : Matrix (Fin N) (Fin N) ℝ}
     (hgram : gram.PosDef) :
     Matrix.diagonal (canonicalLDLScale hgram) *
-        Matrix.LDL.diag hgram *
+        LDL.diag hgram *
         Matrix.diagonal (canonicalLDLScale hgram) = 1 := by
-  rw [Matrix.LDL.diag]
+  rw [LDL.diag]
   rw [Matrix.diagonal_mul_diagonal, Matrix.diagonal_mul_diagonal]
   ext i j
   by_cases hij : i = j
   · subst j
     simp only [Matrix.diagonal_apply_eq, Matrix.one_apply, if_pos]
     have hd := LDL_diagEntries_pos hgram i
-    have hsqrt : Real.sqrt (Matrix.LDL.diagEntries hgram i) ≠ 0 :=
+    have hsqrt : Real.sqrt (LDL.diagEntries hgram i) ≠ 0 :=
       ne_of_gt (Real.sqrt_pos.2 hd)
     rw [canonicalLDLScale, ← Real.sq_sqrt hd.le, pow_two]
     field_simp
@@ -87,21 +87,21 @@ theorem canonicalLDLInverseFactor_whitens
     (hgram : gram.PosDef) :
     finiteJacobiTransport (canonicalLDLInverseFactor hgram) gram = 1 := by
   have hldl :
-      Matrix.LDL.diag hgram =
-        Matrix.LDL.lowerInv hgram * gram *
-          (Matrix.LDL.lowerInv hgram).transpose := by
+      LDL.diag hgram =
+        LDL.lowerInv hgram * gram *
+          (LDL.lowerInv hgram).transpose := by
     simpa [Matrix.conjTranspose_eq_transpose_of_trivial] using
-      Matrix.LDL.diag_eq_lowerInv_conj hgram
+      LDL.diag_eq_lowerInv_conj hgram
   calc
     finiteJacobiTransport (canonicalLDLInverseFactor hgram) gram =
         Matrix.diagonal (canonicalLDLScale hgram) *
-          (Matrix.LDL.lowerInv hgram * gram *
-            (Matrix.LDL.lowerInv hgram).transpose) *
+          (LDL.lowerInv hgram * gram *
+            (LDL.lowerInv hgram).transpose) *
           Matrix.diagonal (canonicalLDLScale hgram) := by
       simp [finiteJacobiTransport, canonicalLDLInverseFactor,
         Matrix.transpose_mul, Matrix.mul_assoc]
     _ = Matrix.diagonal (canonicalLDLScale hgram) *
-          Matrix.LDL.diag hgram *
+          LDL.diag hgram *
           Matrix.diagonal (canonicalLDLScale hgram) := by
       rw [hldl]
     _ = 1 := canonicalLDL_diagonal_normalization hgram
