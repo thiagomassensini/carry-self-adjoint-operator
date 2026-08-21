@@ -48,7 +48,7 @@ jobs:
           build: false
           test: false
           lint: false
-          use-github-cache: true
+          use-github-cache: false
           use-mathlib-cache: true
 
       - name: Run complete kernel audit
