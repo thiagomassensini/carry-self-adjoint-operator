@@ -65,6 +65,10 @@ The construction does not take a zero list or target heights as input.
 - fixes the scalar boundary companion canonically to `-F'`, totalizes the
   existing carry gamma state, and transfers source nonvanishing to state
   nonvanishing by the already proved gamma injectivity;
+- proves the exact normalization bridge from the existing realified gamma
+  identity to the completed complex Green identity: the completed Wronskian
+  must equal `-2i` times the concrete all-bases Cauchy skew; from that literal
+  scalarization equation Lean derives the canonical gamma-state energy law;
 - proves exact product and additive recomposition laws for the Green
   Wronskian, retaining every off-diagonal synthesis channel, and proves that
   at a zero of the scalar factor the completion-jet channel vanishes rather

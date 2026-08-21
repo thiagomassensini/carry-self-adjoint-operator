@@ -56,6 +56,8 @@
     {"qualified": "CarrySelfAdjointOperator.totalCarryGammaState_ne_zero_of_source_ne_zero"},
     {"qualified": "CarrySelfAdjointOperator.totalCarryGammaState_norm_sq_ne_zero_of_source_ne_zero"},
     {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_totalCarryGammaState"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeGreenState_of_gammaCauchyScalarization"},
+    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_gammaCauchyScalarization"},
     {"qualified": "CarrySelfAdjointOperator.completedGreenWronskian_mul"},
     {"qualified": "CarrySelfAdjointOperator.completedGreenWronskian_mul_at_right_zero"},
     {"qualified": "CarrySelfAdjointOperator.completedGreenWronskian_mul_eq_zero_at_right_zero"},
