@@ -41,7 +41,8 @@ theorem bracketCharacteristic_three_eq_bracketedDirichletChart
     rw [bracketCharacteristic_eq_factor_mul_riemannZeta
       (by omega : 2 ≤ 3) hz]
     rw [← genuineDirichlet_eq_riemannZeta hz]
-    simp [factor, oddFactor]
+    rw [factor_of_odd (by norm_num : 3 ≠ 2) (by norm_num : Odd 3)]
+    rfl
   exact bracketedDirichletChart_unique_analytic_continuation
     3 (by norm_num) (by norm_num) (bracketCharacteristic 3)
     hanalytic hagree hs
@@ -54,9 +55,12 @@ theorem nativeScalar_eq_genuineContinuation
   have hhalf : s ∈ bracketHalfPlane := by
     change -1 < s.re
     linarith [hs.1]
+  have hfactor : factor 3 s = cpChartFactor 3 s := by
+    rw [factor_of_odd (by norm_num : 3 ≠ 2) (by norm_num : Odd 3)]
+    rfl
   rw [nativeScalar, genuineContinuation, cpGenuineQuotient,
     bracketCharacteristic_three_eq_bracketedDirichletChart hhalf]
-  simp [factor, oddFactor, cpChartFactor]
+  rw [hfactor]
 
 /-- Consequently, the native scalar is literally Mathlib's Riemann zeta on
 the open critical strip. -/
