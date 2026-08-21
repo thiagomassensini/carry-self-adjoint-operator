@@ -31,7 +31,7 @@ def IsLogDerivativeMomentSequence
     (phi moments : ℕ → ℝ) : Prop :=
   ∀ n : ℕ,
     phi 0 * moments n +
-        ∑ k in Finset.range n, moments k * phi (n - k) =
+        ∑ k ∈ Finset.range n, moments k * phi (n - k) =
       -(((n + 1 : ℕ) : ℝ) * phi (n + 1))
 
 /-- Solving the division-free coefficient identity reproduces exactly the
@@ -43,13 +43,13 @@ theorem logarithmicMoment_eq
     (n : ℕ) :
     moments n =
       (-(((n + 1 : ℕ) : ℝ) * phi (n + 1)) -
-          ∑ k in Finset.range n, moments k * phi (n - k)) /
+          ∑ k ∈ Finset.range n, moments k * phi (n - k)) /
         phi 0 := by
   apply (eq_div_iff hphi).2
   calc
     moments n * phi 0 = phi 0 * moments n := mul_comm _ _
     _ = -(((n + 1 : ℕ) : ℝ) * phi (n + 1)) -
-          ∑ k in Finset.range n, moments k * phi (n - k) := by
+          ∑ k ∈ Finset.range n, moments k * phi (n - k) := by
       linarith [hrel n]
 
 /-- Order-`N` Hankel Gram matrix `G_N = (h_(i+j))`. -/
