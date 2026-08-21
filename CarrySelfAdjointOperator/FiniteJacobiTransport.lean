@@ -22,14 +22,16 @@ noncomputable section
 def finiteJacobiTransport {N : ℕ}
     (inverseGramFactor shifted : Matrix (Fin N) (Fin N) ℝ) :
     Matrix (Fin N) (Fin N) ℝ :=
-  inverseGramFactor * shifted * inverseGramFactorᵀ
+  inverseGramFactor * shifted * inverseGramFactor.transpose
 
 /-- Positive semidefiniteness survives the exact Jacobi congruence. -/
 theorem finiteJacobiTransport_posSemidef
     {N : ℕ} {inverseGramFactor shifted : Matrix (Fin N) (Fin N) ℝ}
     (hshifted : shifted.PosSemidef) :
     (finiteJacobiTransport inverseGramFactor shifted).PosSemidef := by
-  simpa [finiteJacobiTransport, Matrix.conjTranspose] using
+  rw [finiteJacobiTransport,
+    ← Matrix.conjTranspose_eq_transpose_of_trivial inverseGramFactor]
+  exact
     hshifted.mul_mul_conjTranspose_same inverseGramFactor
 
 /-- Hence every transported finite Jacobi matrix is symmetric. -/
@@ -47,7 +49,9 @@ theorem finiteJacobiTransport_posDef
     (hshifted : shifted.PosDef)
     (hinjective : Function.Injective inverseGramFactor.vecMul) :
     (finiteJacobiTransport inverseGramFactor shifted).PosDef := by
-  simpa [finiteJacobiTransport, Matrix.conjTranspose] using
+  rw [finiteJacobiTransport,
+    ← Matrix.conjTranspose_eq_transpose_of_trivial inverseGramFactor]
+  exact
     hshifted.mul_mul_conjTranspose_same hinjective
 
 /-- Finite whitening data.  In the reference implementation
