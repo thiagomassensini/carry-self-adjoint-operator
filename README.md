@@ -67,13 +67,20 @@ The construction does not take a zero list or target heights as input.
   nonvanishing by the already proved gamma injectivity;
 - proves exact product and additive recomposition laws for the Green
   Wronskian, retaining every off-diagonal synthesis channel.
+- specializes the complete provenance-preserving C3 port to the actual
+  operator coordinate, proves that this enriched state is nonzero everywhere
+  in the open critical strip, and proves that its tail-completed scalar
+  readout is the camera-3 factor times `riemannZeta`;
+- therefore reduces the direct critical-line capstone for this concrete state
+  to one remaining assertion: its canonical off-axis Green identity with the
+  completed operator characteristic and companion `-F'`.
 
 The direct critical-line capstone is now kernel-reduced to one concrete
-construction: an enriched carry source whose totalized gamma state satisfies
-the canonical off-axis diagonal Green identity for the actual completed
-characteristic and is nonzero whenever that source is nonzero.  The remaining
-work is to build that source while preserving diagonal TFVD, provenance,
-off-diagonal synthesis, log-jet, defect, and completion channels.  The
+identity: the canonical enriched C3 state must realize the off-axis diagonal
+Green Wronskian of the actual completed characteristic.  Its scalar readout
+and nonvanishing are already closed.  The remaining construction must preserve
+diagonal TFVD, provenance, off-diagonal synthesis, log-jet, defect, and
+completion channels while proving that identity.  The
 infinite Jacobi realization and passage from finite functional calculus remain
 a separate operator-completion route.  No unconditional global confinement
 theorem is claimed at this stage.
