@@ -36,6 +36,11 @@ The construction does not take a zero list or target heights as input.
   the open critical strip and identifies the operator characteristic with the
   standard completed zeta expression there;
 - records the division-free coefficient identity `q Phi = -Phi'`;
+- proves that continuity removes the apparent real-axis Green diagonal
+  ambiguity: the normalized state norm is forced to equal the derivative of
+  the scalar response at the collision point;
+- proves continuity of the literal finite C3 Hilbert coordinate and derives
+  the same center-diagonal law for the concrete two-channel product ledger;
 - derives the exact logarithmic-moment recurrence used by the reference code;
 - defines the finite Hankel Gram and shifted matrices;
 - proves symmetry and exact principal-section compatibility.

@@ -183,16 +183,47 @@ scalar convergence of the canonical forward-difference Grams.
 
 For unequal real sample points, the normalized polarized Green identity
 rewrites the point-state kernel entirely in terms of the scalar response.  At
-a collision `w = z` on the real axis, however, its multiplier is
-`z - conj(w) = 0`; the identity reduces to `0 = 0` and does not determine the
-diagonal norm.  Forward-difference Grams contain precisely such collision
-terms.
+a collision `w = z` on the real axis its multiplier is
+`z - conj(w) = 0`, so the cross-multiplied identity by itself reduces to
+`0 = 0`.  Forward-difference Grams contain precisely such collision terms.
+
+`CompletedGreenDiagonalClosure.lean` now proves that this degeneracy does not
+leave a free diagonal once the normalized state is continuous.  Off the
+diagonal, the kernel with one variable fixed at a real point is exactly the
+slope of the scalar response.  The derivative theorem sends that slope to
+the response derivative, while continuity of the state sends the same kernel
+to its diagonal norm.  Uniqueness of limits gives the exact identity
+
+```text
+inner(normalizedState(x), normalizedState(x)) = response'(x).
+```
+
+At the centered origin the response is proved to vanish from the already
+formalized even reflection of the completed characteristic; this is not a
+new parity assumption.  The completed characteristic is also proved
+holomorphic at the center, so local nonvanishing and continuity of the
+normalization are discharged internally.  Therefore continuity of the
+unnormalized concrete Green state is sufficient to force the center
+diagonal.
+
+The canonical enriched C3 Hilbert coordinate is now proved continuous at the
+center directly from its literal finite Dirichlet coordinates.  Consequently
+the full two-channel product ledger is continuous whenever its first factor
+state is continuous.  Combining this with the two factor Green
+representations gives the concrete theorem
+
+```text
+completedNativeC3ProductLedger_inner_self_zero_eq_responseDerivative.
+```
+
+Thus the product ledger's center diagonal is derived from the same factor
+relations and continuity; it is not supplied independently.
 
 Therefore the remaining proof has two scalar parts:
 
 ```text
 off-diagonal Green response + exact binomial cancellation
-diagonal regularity/minimality + collision limit
+continuous-state removable singularity + collision limit
   -> unique parity-split coefficient kernel.
 ```
 
@@ -205,21 +236,27 @@ needs to be postulated.  What remains is the scalar statement
 
 ```text
 finite differences of the polarized Green response
-  + control of the real-axis diagonal
+  + all-order scalar control of the removable diagonal extension
   -> unique parity-split coefficient kernel.
 ```
 
-The causal bracket theorem is a plausible source of the missing minimality,
-but it does not apply automatically: it proves uniqueness of the depth state
-from its seeds and brackets, while the present ambiguity is the norm diagonal
-of a parameter-indexed Green-state family.  A formal bridge identifying that
-family with the canonical causal reconstruction (or an independent exact
-diagonal energy identity) is still required.
+The former pointwise diagonal ambiguity is therefore closed under the natural
+continuity condition; no independent diagonal energy axiom or selected
+minimal representative is needed.  The causal bracket theorem remains the
+geometric uniqueness statement for the depth-indexed state, but it is not
+needed merely to fill this scalar collision value.
 
-This is a strictly smaller seam than the former external `hcoeff` premise,
-but it is still an explicit hypothesis in the newest positivity theorem and
-the PR must remain draft until it is discharged for the concrete normalized
-Green state.
+What remains is genuinely all-order rather than pointwise: identify the
+mixed normalized finite differences of the now continuously extended scalar
+kernel with the coefficient kernel fixed by the recurrence.  For the concrete
+product ledger one must also supply continuity of the factor-state
+realization used by its first Hilbert channel.
+
+This is a strictly smaller seam than the former external `hcoeff` premise.
+The diagonal value itself is no longer an explicit hypothesis, but the
+all-order scalar finite-difference limit is still an explicit hypothesis in
+the newest positivity theorem, so the PR remains draft until that limit is
+discharged for the concrete normalized Green state.
 
 ## Acceptance criteria
 

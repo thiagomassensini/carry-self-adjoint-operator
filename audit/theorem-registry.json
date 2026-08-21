@@ -147,6 +147,13 @@
     {"qualified": "CarrySelfAdjointOperator.inner_completedGreenForwardDifferenceJet_eq_kernelForwardDifference"},
     {"qualified": "CarrySelfAdjointOperator.matrixPosSemidef_of_tendsto_entrywise"},
     {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_gramLimits"},
-    {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_completedGreenForwardDifferenceGramLimit"}
+    {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_completedGreenForwardDifferenceGramLimit"},
+    {"qualified": "CarrySelfAdjointOperator.continuousAt_normalizedCompletedGreenState"},
+    {"qualified": "CarrySelfAdjointOperator.deriv_zero_of_eventually_even"},
+    {"qualified": "CarrySelfAdjointOperator.normalizedCompletedGreenState_inner_self_eq_responseDerivative"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeGreenNormalizedResponse_zero"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeGreenState_inner_self_zero_eq_responseDerivative_of_continuous"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedOperatorC3HilbertState_continuousAt_zero"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeC3ProductLedger_inner_self_zero_eq_responseDerivative"}
   ]
 }
