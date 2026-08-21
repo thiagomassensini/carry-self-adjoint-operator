@@ -69,6 +69,10 @@ The construction does not take a zero list or target heights as input.
   Wronskian, retaining every off-diagonal synthesis channel, and proves that
   at a zero of the scalar factor the completion-jet channel vanishes rather
   than cancelling an independently retained provenance term.
+- specializes that product ledger to the actual xi-completed native
+  characteristic, proves holomorphy of both factors on the open strip, and
+  identifies its canonical companion `-F'` with the exact product companion,
+  including the specialization stated directly at every `riemannZeta` zero;
 - specializes the complete provenance-preserving C3 port to the actual
   operator coordinate, proves that this enriched state is nonzero everywhere
   in the open critical strip, and proves that its tail-completed scalar
@@ -88,7 +92,9 @@ intertwiner identity: the diagonal Wronskian of the actual completed
 characteristic must equal the already-factorized direct/reflected Green form
 of the canonical enriched C3 port.  The scalar readout, complete port,
 nonvanishing, radial factorization, and zero locus of that Green form are
-already closed.  The remaining construction must preserve diagonal TFVD,
+already closed.  The kernel also proves that imposing this scalar equality
+only at zeta zeros is equivalent to the desired confinement statement itself;
+therefore a noncircular construction must preserve diagonal TFVD,
 provenance, off-diagonal synthesis, log-jet, defect, and completion channels
 while proving that equality.  The
 infinite Jacobi realization and passage from finite functional calculus remain
