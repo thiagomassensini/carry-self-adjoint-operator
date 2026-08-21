@@ -1,0 +1,11 @@
+name = "CarrySelfAdjointOperator"
+version = "0.1.0"
+defaultTargets = ["CarrySelfAdjointOperator"]
+
+[[lean_lib]]
+name = "CarrySelfAdjointOperator"
+
+[[require]]
+name = "NativeCarryC3Crosswalk"
+git = "https://github.com/thiagomassensini/native-carry-c3-crosswalk.git"
+rev = "dff0ae29b492cb1ae14387957e7ecaf980d13d75"
