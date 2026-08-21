@@ -77,9 +77,17 @@ theorem canonicalLDL_diagonal_normalization
     have hd := LDL_diagEntries_pos hgram i
     have hsqrt : Real.sqrt (LDL.diagEntries hgram i) ≠ 0 :=
       ne_of_gt (Real.sqrt_pos.2 hd)
-    rw [canonicalLDLScale, ← Real.sq_sqrt hd.le, pow_two]
-    field_simp
-  · simp [Matrix.diagonal_apply_ne _ hij, Matrix.one_apply, hij]
+    rw [canonicalLDLScale]
+    calc
+      (Real.sqrt (LDL.diagEntries hgram i))⁻¹ *
+            LDL.diagEntries hgram i *
+            (Real.sqrt (LDL.diagEntries hgram i))⁻¹ =
+          (Real.sqrt (LDL.diagEntries hgram i))⁻¹ *
+            (Real.sqrt (LDL.diagEntries hgram i)) ^ 2 *
+            (Real.sqrt (LDL.diagEntries hgram i))⁻¹ := by
+              rw [Real.sq_sqrt hd.le]
+      _ = 1 := by field_simp [hsqrt]
+  · simp [Matrix.one_apply, hij]
 
 /-- The canonical LDL factor whitens the positive definite matrix exactly. -/
 theorem canonicalLDLInverseFactor_whitens
