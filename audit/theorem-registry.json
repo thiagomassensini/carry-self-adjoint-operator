@@ -7,6 +7,10 @@
     {"qualified": "CarrySelfAdjointOperator.completedNativeCharacteristic_eq_factor_mul_nativeScalar"},
     {"qualified": "CarrySelfAdjointOperator.completedNativeCharacteristic_cutoff_independent"},
     {"qualified": "CarrySelfAdjointOperator.nativeXiCompletionFactor_mul_completedNativeCharacteristic"},
+    {"qualified": "CarrySelfAdjointOperator.bracketCharacteristic_three_eq_bracketedDirichletChart"},
+    {"qualified": "CarrySelfAdjointOperator.nativeScalar_eq_genuineContinuation"},
+    {"qualified": "CarrySelfAdjointOperator.nativeScalar_eq_riemannZeta"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeOperatorCharacteristic_eq_completedRiemannZeta"},
     {"qualified": "CarrySelfAdjointOperator.logarithmicMoment_eq"},
     {"qualified": "CarrySelfAdjointOperator.hankelGram_isSymm"},
     {"qualified": "CarrySelfAdjointOperator.shiftedHankel_isSymm"},
@@ -40,6 +44,8 @@
     {"qualified": "CarrySelfAdjointOperator.nativeFiniteHeightOperator_charpoly"},
     {"qualified": "CarrySelfAdjointOperator.zero_fixedByConjugation_of_divisionFreeGreen"},
     {"qualified": "CarrySelfAdjointOperator.zero_im_eq_zero_of_divisionFreeGreen"},
-    {"qualified": "CarrySelfAdjointOperator.completedNativeOperator_zero_im_eq_zero"}
+    {"qualified": "CarrySelfAdjointOperator.completedNativeOperator_zero_im_eq_zero"},
+    {"qualified": "CarrySelfAdjointOperator.operatorHeightParameter_centeredHeightParameter"},
+    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_completedNativeOperatorGreen"}
   ]
 }
