@@ -93,12 +93,16 @@ theorem hankelPair_posSemidef_of_complexGreenWronskianMomentKernel
       (shiftedHankel moments N).PosSemidef := by
   letI : InnerProductSpace ℝ E :=
     InnerProductSpace.rclikeToReal ℂ E
-  apply hankelPair_posSemidef_of_greenWronskianMomentKernel ?_ N
-  intro i j
-  change greenWronskianMomentKernel moments i j =
-    (inner ℂ (jet i) (jet j)).re
-  have h := congrArg Complex.re (hrep i j)
-  simpa using h
+  have hreal :
+      IsGreenWronskianMomentKernelGramRepresentation
+        (E := E) moments jet := by
+    intro i j
+    change greenWronskianMomentKernel moments i j =
+      (inner ℂ (jet i) (jet j)).re
+    have h := congrArg Complex.re (hrep i j)
+    simpa using h
+  exact hankelPair_posSemidef_of_greenWronskianMomentKernel
+    (E := E) hreal N
 
 /-- Exact certificate expected from the completed two-variable Green state.
 It retains the state-level Green identity and makes the sole remaining Taylor
@@ -161,10 +165,23 @@ theorem completedNativeC3ProductLedger_greenRepresentationOn_of_factors
   change operatorHeightParameter z ∈ genuineCriticalStrip at hz
   change operatorHeightParameter w ∈ genuineCriticalStrip at hw
   have hproduct := (hxi.mul hnative) z w
-  rw [completedNativeOperatorBoundaryCompanion_eq_product hz,
-    completedNativeOperatorBoundaryCompanion_eq_product hw]
-  simpa [completedNativeOperatorCharacteristic, nativeHeightScalar,
-    completedNativeC3ProductLedgerState] using hproduct
+  change completedGreenWronskian
+      (fun u ↦ nativeXiCompletionFactor u * nativeHeightScalar u)
+      completedNativeOperatorBoundaryCompanion z w = _
+  calc
+    completedGreenWronskian
+        (fun u ↦ nativeXiCompletionFactor u * nativeHeightScalar u)
+        completedNativeOperatorBoundaryCompanion z w =
+      completedGreenWronskian
+        (fun u ↦ nativeXiCompletionFactor u * nativeHeightScalar u)
+        (productBoundaryCompanion
+          nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion
+          nativeHeightScalar nativeHeightScalarBoundaryCompanion) z w := by
+            unfold completedGreenWronskian
+            rw [completedNativeOperatorBoundaryCompanion_eq_product hz,
+              completedNativeOperatorBoundaryCompanion_eq_product hw]
+    _ = _ := by
+      simpa [completedNativeC3ProductLedgerState] using hproduct
 
 /-- Concrete certificate name for the actual xi-completed native scalar and
 its provenance-preserving C3 product ledger. -/
