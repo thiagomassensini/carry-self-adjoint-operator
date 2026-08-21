@@ -70,6 +70,70 @@ This ledger records a proof frontier.  It does not assert that the remaining
 coefficient identity or any stronger spectral conclusion has already been
 proved.
 
+## Progress on this branch
+
+`CompletedGreenJetCoefficientRecurrence.lean` now proves the algebraic core
+in all orders.
+
+First, the state normalization is derived without dividing the Wronskian:
+
+```text
+(2 * conj(F(w)) * F(z)) *
+  inner(normalizedState(w), normalizedState(z))
+= inner(state(w), state(z)).
+```
+
+Combining this with the local Green representation and cancelling only where
+`F(z)` and `F(w)` are nonzero gives the exact polarized response identity
+
+```text
+(z - conj(w)) * inner(normalizedState(w), normalizedState(z))
+= response(z) - conj(response(w)),
+
+response(z) = Psi(z) / (2 * F(z)).
+```
+
+For the canonical companion `Psi = -F'`, this is one half of the negative
+logarithmic derivative.  The existing division-free logarithmic-moment
+recurrence has also been rewritten as the full convolution coefficient of
+`q * Phi = -Phi'`; after `u = z^2`, its response coefficients are zero in
+even degree and `moments(n)` in degree `2n+1`.
+
+At the two-variable coefficient level, Lean now proves that
+
+```text
+(z - b) * K(z,b) = response(z) - response(b)
+```
+
+has a unique coefficient kernel.  Diagonal transport sends every coefficient
+to the boundary coefficient of the same total degree.  Consequently, for all
+`i,j`, not only for a fixed truncation,
+
+```text
+c(2i,   2j)   = moments(i+j)
+c(2i+1, 2j+1) = moments(i+j+1)
+c(2i,   2j+1) = 0
+c(2i+1, 2j)   = 0.
+```
+
+Thus the parity blocks and both Hankel matrices are consequences of the
+division-free coefficient transport; they are not independent positivity
+assumptions.
+
+## Exact remaining analytic seam
+
+The end-to-end theorem no longer assumes an already assembled parity-split
+Gram kernel.  Its remaining hypothesis is the narrower statement that the
+ordinary Taylor-jet Gram coefficients of the concrete normalized Green state
+satisfy the coefficient equation above.
+
+To remove that last hypothesis, the concrete state realization must be shown
+to admit the required local two-variable Taylor expansion (holomorphic in the
+second variable and holomorphic after conjugating the first variable).  The
+pointwise Green identity alone does not provide this regularity for an
+arbitrary state map.  Once that analytic realization theorem is present,
+coefficient uniqueness already closes every order simultaneously.
+
 ## Acceptance criteria
 
 The continuation is ready to freeze only when:

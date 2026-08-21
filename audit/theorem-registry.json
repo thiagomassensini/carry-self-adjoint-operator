@@ -119,6 +119,22 @@
     {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_offAxisDiagonalGreenEnergy"},
     {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_canonicalGreenEnergy"},
     {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_canonicalGreenState"},
-    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_canonicalGreenState_of_offAxis_nonzero"}
+    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_canonicalGreenState_of_offAxis_nonzero"},
+    {"qualified": "CarrySelfAdjointOperator.normalizedCompletedGreenState_inner_cross_mul"},
+    {"qualified": "CarrySelfAdjointOperator.normalizedCompletedGreenState_green_cross_mul"},
+    {"qualified": "CarrySelfAdjointOperator.normalizedCompletedGreenState_polarizedResponse"},
+    {"qualified": "CarrySelfAdjointOperator.oddMomentResponseCoefficient_even"},
+    {"qualified": "CarrySelfAdjointOperator.oddMomentResponseCoefficient_odd"},
+    {"qualified": "CarrySelfAdjointOperator.logarithmicMoment_fullConvolution"},
+    {"qualified": "CarrySelfAdjointOperator.polarizedGreenCoefficient_boundary"},
+    {"qualified": "CarrySelfAdjointOperator.polarizedGreenCoefficient_transport"},
+    {"qualified": "CarrySelfAdjointOperator.polarizedGreenCoefficient_eq_oddResponse"},
+    {"qualified": "CarrySelfAdjointOperator.polarizedGreenCoefficient_unique"},
+    {"qualified": "CarrySelfAdjointOperator.polarizedGreenMomentCoefficient_even_even"},
+    {"qualified": "CarrySelfAdjointOperator.polarizedGreenMomentCoefficient_odd_odd"},
+    {"qualified": "CarrySelfAdjointOperator.polarizedGreenMomentCoefficient_even_odd"},
+    {"qualified": "CarrySelfAdjointOperator.polarizedGreenMomentCoefficient_odd_even"},
+    {"qualified": "CarrySelfAdjointOperator.complexGreenWronskianMomentKernel_of_coefficientEquation"},
+    {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_completedNativeGreenCoefficientEquation"}
   ]
 }
