@@ -71,16 +71,24 @@ The construction does not take a zero list or target heights as input.
   operator coordinate, proves that this enriched state is nonzero everywhere
   in the open critical strip, and proves that its tail-completed scalar
   readout is the camera-3 factor times `riemannZeta`;
-- therefore reduces the direct critical-line capstone for this concrete state
-  to one remaining assertion: its canonical off-axis Green identity with the
-  completed operator characteristic and companion `-F'`.
+- keeps its native direct/reflected Green pairing explicit instead of assuming
+  a complex inner-product structure that this C3 carrier does not possess;
+- proves that this enriched source is literally the existing complete C3
+  Genuine Green boundary pair, and that its direct/reflected Green bulk has
+  the exact radial factorization and vanishes in the open strip exactly at
+  `re s = 1/2`;
+- restates the final capstone with no abstract state or extra nonvanishing
+  premise: the sole input is the concrete equality between the completed
+  diagonal Wronskian and that exact C3 direct/reflected Green bulk.
 
-The direct critical-line capstone is now kernel-reduced to one concrete
-identity: the canonical enriched C3 state must realize the off-axis diagonal
-Green Wronskian of the actual completed characteristic.  Its scalar readout
-and nonvanishing are already closed.  The remaining construction must preserve
-diagonal TFVD, provenance, off-diagonal synthesis, log-jet, defect, and
-completion channels while proving that identity.  The
+The direct critical-line capstone is now kernel-reduced to one literal
+intertwiner identity: the diagonal Wronskian of the actual completed
+characteristic must equal the already-factorized direct/reflected Green form
+of the canonical enriched C3 port.  The scalar readout, complete port,
+nonvanishing, radial factorization, and zero locus of that Green form are
+already closed.  The remaining construction must preserve diagonal TFVD,
+provenance, off-diagonal synthesis, log-jet, defect, and completion channels
+while proving that equality.  The
 infinite Jacobi realization and passage from finite functional calculus remain
 a separate operator-completion route.  No unconditional global confinement
 theorem is claimed at this stage.

@@ -88,20 +88,6 @@ theorem canonicalCompletedOperatorC3State_ne_zero
     canonicalCompletedOperatorC3State (centeredHeightParameter s) ≠ 0 := by
   simpa using canonicalEnrichedC3SourcePort_ne_zero hs
 
-/-- Concrete one-obligation capstone.  Nonvanishing is discharged by the
-enriched C3 construction; the sole remaining hypothesis is the canonical
-off-axis Green identity for that exact state. -/
-theorem riemannZeta_zero_re_eq_half_of_canonicalEnrichedC3Port
-    (hgreen :
-      HasCompletedNativeOperatorOffAxisDiagonalGreenRepresentation
-        completedNativeOperatorBoundaryCompanion
-        canonicalCompletedOperatorC3State)
-    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
-    (hzero : riemannZeta s = 0) :
-    s.re = 1 / 2 := by
-  exact riemannZeta_zero_re_eq_half_of_offAxisDiagonalGreen
-    hgreen hs hzero (canonicalCompletedOperatorC3State_ne_zero hs)
-
 end
 
 end CarrySelfAdjointOperator
