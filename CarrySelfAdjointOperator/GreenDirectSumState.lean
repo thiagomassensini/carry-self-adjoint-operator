@@ -1,5 +1,5 @@
 import CarrySelfAdjointOperator.GreenWronskianRecomposition
-import Mathlib.Analysis.InnerProductSpace.PiL2
+import Mathlib.Analysis.InnerProductSpace.ProdL2
 import Mathlib.Tactic
 
 /-!
@@ -19,13 +19,12 @@ namespace CarrySelfAdjointOperator
 
 noncomputable section
 
-/-- Binary Hilbert direct sum, represented as an `L²` dependent product over
-two singleton summands. -/
+/-- Binary Hilbert direct sum, represented by the `L²` norm on a product. -/
 abbrev BinaryHilbertSum
     (H_A H_G : Type*)
     [NormedAddCommGroup H_A] [InnerProductSpace ℂ H_A]
     [NormedAddCommGroup H_G] [InnerProductSpace ℂ H_G] :=
-  PiLp 2 (Sum.elim (fun _ : Unit ↦ H_A) (fun _ : Unit ↦ H_G))
+  WithLp 2 (H_A × H_G)
 
 /-- Weighted direct-sum state dictated by the exact Green product rule. -/
 def weightedProductGreenState
@@ -34,28 +33,25 @@ def weightedProductGreenState
     [NormedAddCommGroup H_G] [InnerProductSpace ℂ H_G]
     (A G : ℂ → ℂ) (stateA : ℂ → H_A) (stateG : ℂ → H_G)
     (z : ℂ) : BinaryHilbertSum H_A H_G :=
-  WithLp.toLp 2 fun i ↦
-    match i with
-    | Sum.inl _ => G z • stateA z
-    | Sum.inr _ => A z • stateG z
+  WithLp.toLp 2 (G z • stateA z, A z • stateG z)
 
-@[simp] theorem weightedProductGreenState_inl
+@[simp] theorem weightedProductGreenState_fst
     {H_A H_G : Type*}
     [NormedAddCommGroup H_A] [InnerProductSpace ℂ H_A]
     [NormedAddCommGroup H_G] [InnerProductSpace ℂ H_G]
     (A G : ℂ → ℂ) (stateA : ℂ → H_A) (stateG : ℂ → H_G)
-    (z : ℂ) (u : Unit) :
-    weightedProductGreenState A G stateA stateG z (Sum.inl u) =
+    (z : ℂ) :
+    (WithLp.ofLp (weightedProductGreenState A G stateA stateG z)).1 =
       G z • stateA z :=
   rfl
 
-@[simp] theorem weightedProductGreenState_inr
+@[simp] theorem weightedProductGreenState_snd
     {H_A H_G : Type*}
     [NormedAddCommGroup H_A] [InnerProductSpace ℂ H_A]
     [NormedAddCommGroup H_G] [InnerProductSpace ℂ H_G]
     (A G : ℂ → ℂ) (stateA : ℂ → H_A) (stateG : ℂ → H_G)
-    (z : ℂ) (u : Unit) :
-    weightedProductGreenState A G stateA stateG z (Sum.inr u) =
+    (z : ℂ) :
+    (WithLp.ofLp (weightedProductGreenState A G stateA stateG z)).2 =
       A z • stateG z :=
   rfl
 
@@ -72,9 +68,10 @@ theorem inner_weightedProductGreenState
         (weightedProductGreenState A G stateA stateG z) =
       (starRingEnd ℂ) (G w) * G z * inner ℂ (stateA w) (stateA z) +
         (starRingEnd ℂ) (A w) * A z * inner ℂ (stateG w) (stateG z) := by
-  rw [PiLp.inner_apply]
-  simp [weightedProductGreenState, inner_smul_left, inner_smul_right] <;>
-    ring
+  rw [WithLp.prod_inner_apply]
+  simp only [weightedProductGreenState, WithLp.ofLp_toLp,
+    inner_smul_left, inner_smul_right]
+  ring
 
 /-- A nonzero second-factor state survives multiplicative completion whenever
 the completion factor is nonzero.  In particular, at a zero of `G` only the
@@ -88,10 +85,13 @@ theorem weightedProductGreenState_ne_zero_of_right
     {z : ℂ} (hA : A z ≠ 0) (hstateG : stateG z ≠ 0) :
     weightedProductGreenState A G stateA stateG z ≠ 0 := by
   intro hzero
-  have hcoordinate := congrArg
-    (fun x : BinaryHilbertSum H_A H_G ↦ x (Sum.inr ())) hzero
-  simp only [weightedProductGreenState_inr, PiLp.zero_apply] at hcoordinate
-  exact (smul_ne_zero hA hstateG) hcoordinate
+  have hpair : (G z • stateA z, A z • stateG z) = 0 := by
+    exact (WithLp.toLp_eq_zero 2).mp hzero
+  have hright : A z • stateG z = 0 :=
+    congrArg Prod.snd hpair
+  rcases smul_eq_zero.mp hright with hscalar | hstate
+  · exact hA hscalar
+  · exact hstateG hstate
 
 /-- Two division-free Green representations combine canonically into a
 division-free Green representation of their product, with no mixed-channel

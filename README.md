@@ -72,6 +72,13 @@ The construction does not take a zero list or target heights as input.
 - realizes the product rule before scalar projection by the canonical
   weighted Hilbert direct sum `G(z) a_z ⊕ A(z) g_z`, and proves that its
   nonzero second-factor provenance survives completion whenever `A(z) ≠ 0`;
+- specializes that state ledger to the actual xi factor, native scalar, and
+  canonical enriched C3 port, proving that at every open-strip zeta zero the
+  completed scalar characteristic is zero while the full product ledger is
+  still nonzero;
+- states the remaining off-axis Green identity directly on that concrete
+  two-channel ledger and proves that this single identity closes critical-line
+  confinement without a separate state-nonvanishing hypothesis;
 - specializes that product ledger to the actual xi-completed native
   characteristic, proves holomorphy of both factors on the open strip, and
   identifies its canonical companion `-F'` with the exact product companion,
