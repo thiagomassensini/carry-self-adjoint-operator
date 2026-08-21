@@ -66,7 +66,9 @@ The construction does not take a zero list or target heights as input.
   existing carry gamma state, and transfers source nonvanishing to state
   nonvanishing by the already proved gamma injectivity;
 - proves exact product and additive recomposition laws for the Green
-  Wronskian, retaining every off-diagonal synthesis channel.
+  Wronskian, retaining every off-diagonal synthesis channel, and proves that
+  at a zero of the scalar factor the completion-jet channel vanishes rather
+  than cancelling an independently retained provenance term.
 - specializes the complete provenance-preserving C3 port to the actual
   operator coordinate, proves that this enriched state is nonzero everywhere
   in the open critical strip, and proves that its tail-completed scalar

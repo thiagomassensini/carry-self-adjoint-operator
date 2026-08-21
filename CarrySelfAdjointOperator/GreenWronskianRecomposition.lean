@@ -53,6 +53,34 @@ theorem completedGreenWronskian_mul
     map_mul, map_add]
   ring
 
+/-- At a zero of the second factor, the Green channel coming from the first
+factor (for example the archimedean completion jet) vanishes identically.
+Only the second-factor channel survives in the product decomposition.  This
+records algebraically that multiplying a scalar characteristic by a
+completion factor cannot use the completion jet to cancel an independent
+provenance term at a zero of the scalar factor. -/
+theorem completedGreenWronskian_mul_at_right_zero
+    (A PsiA G PsiG : ℂ → ℂ) {z : ℂ} (hG : G z = 0) :
+    completedGreenWronskian
+        (fun u ↦ A u * G u)
+        (productBoundaryCompanion A PsiA G PsiG) z z =
+      A z * (starRingEnd ℂ) (A z) *
+        completedGreenWronskian G PsiG z z := by
+  rw [completedGreenWronskian_mul]
+  simp [hG]
+
+/-- If the second factor itself vanishes, its diagonal scalar Wronskian also
+vanishes.  Thus the completed scalar Wronskian is zero, independently of the
+first-factor jet; any surviving Green/provenance information must live before
+scalar projection. -/
+theorem completedGreenWronskian_mul_eq_zero_at_right_zero
+    (A PsiA G PsiG : ℂ → ℂ) {z : ℂ} (hG : G z = 0) :
+    completedGreenWronskian
+        (fun u ↦ A u * G u)
+        (productBoundaryCompanion A PsiA G PsiG) z z = 0 := by
+  rw [completedGreenWronskian_mul_at_right_zero A PsiA G PsiG hG]
+  simp [completedGreenWronskian, hG]
+
 /-- Exact binary synthesis rule.  Besides the two diagonal Wronskians it
 retains both off-diagonal channels. -/
 theorem completedGreenWronskian_add
