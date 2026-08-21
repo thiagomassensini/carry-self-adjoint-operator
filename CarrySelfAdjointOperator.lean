@@ -6,3 +6,4 @@ import CarrySelfAdjointOperator.FiniteJacobiTransport
 import CarrySelfAdjointOperator.CanonicalLDLWhitening
 import CarrySelfAdjointOperator.ProjectiveJacobiTower
 import CarrySelfAdjointOperator.FiniteHeightOperator
+import CarrySelfAdjointOperator.CanonicalFiniteHeight

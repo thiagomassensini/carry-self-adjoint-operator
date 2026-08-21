@@ -42,6 +42,17 @@ def finiteHeightOperator
     (hjacobi : jacobi.PosDef) : Matrix (Fin N) (Fin N) ℝ :=
   hjacobi.isHermitian.cfc (fun y : ℝ ↦ (Real.sqrt y)⁻¹)
 
+/-- The finite height operator is exactly symmetric, hence self-adjoint in
+finite dimension. No numerical symmetrization step is required. -/
+theorem finiteHeightOperator_isSymm
+    {N : ℕ} {jacobi : Matrix (Fin N) (Fin N) ℝ}
+    (hjacobi : jacobi.PosDef) :
+    (finiteHeightOperator hjacobi).IsSymm := by
+  rw [finiteHeightOperator,
+    ← Matrix.IsHermitian.cfc_eq hjacobi.isHermitian]
+  exact Matrix.isHermitian_iff_isSymm.mp
+    (cfc_predicate (fun y : ℝ ↦ (Real.sqrt y)⁻¹) jacobi)
+
 /-- The spectrum is transformed exactly: the characteristic polynomial of
 `T_N` has roots `1 / sqrt(lambda_i(J_N))`. -/
 theorem finiteHeightOperator_charpoly

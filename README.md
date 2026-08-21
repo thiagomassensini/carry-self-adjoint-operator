@@ -34,9 +34,13 @@ The construction does not take a zero list or target heights as input.
   injectively, so injectivity is not a separate numerical input;
 - constructs a canonical exact whitening from Mathlib's LDL/Gram--Schmidt
   decomposition, proves its diagonal normalization and lower-triangularity;
+- defines the resulting canonical finite `J_N` and `T_N = J_N^(-1/2)` with
+  neither a supplied whitening matrix nor target spectral heights;
 - proves the transported finite Jacobi section symmetric and positive, with
   strict positivity under the corresponding injectivity hypotheses.
 - defines `T_N = J_N^(-1/2)` by the Hermitian functional calculus;
+- proves `T_N` exactly symmetric, so the script's numerical symmetrization is
+  unnecessary in the formal construction;
 - proves its characteristic polynomial has roots exactly
   `1 / sqrt(lambda_i(J_N))`, so the height spectrum is derived rather than
   supplied as input.

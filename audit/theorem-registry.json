@@ -25,12 +25,16 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalLDLInverseFactor_triangular"},
     {"qualified": "CarrySelfAdjointOperator.canonicalLDL_diagonal_normalization"},
     {"qualified": "CarrySelfAdjointOperator.canonicalLDLInverseFactor_whitens"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalFiniteJacobiSection_posDef_of_shiftedGram"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalFiniteHeightOperator_isSymm"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalFiniteHeightOperator_charpoly"},
     {"qualified": "CarrySelfAdjointOperator.finiteJacobiSection_posSemidef_of_shiftedGram"},
     {"qualified": "CarrySelfAdjointOperator.finiteJacobiSection_posDef_of_shiftedGram"},
     {"qualified": "CarrySelfAdjointOperator.finiteJacobiSection_isSymm_of_shiftedGram"},
     {"qualified": "CarrySelfAdjointOperator.jacobiCongruence_toBlocks₁₁_of_lowerBlockExtension"},
     {"qualified": "CarrySelfAdjointOperator.jacobiCongruence_fromBlocks_toBlocks₁₁"},
     {"qualified": "CarrySelfAdjointOperator.finiteHeightEigenvalue_pos"},
+    {"qualified": "CarrySelfAdjointOperator.finiteHeightOperator_isSymm"},
     {"qualified": "CarrySelfAdjointOperator.finiteHeightOperator_charpoly"},
     {"qualified": "CarrySelfAdjointOperator.nativeFiniteHeightOperator_charpoly"}
   ]
