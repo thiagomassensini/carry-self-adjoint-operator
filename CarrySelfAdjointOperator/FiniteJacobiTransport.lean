@@ -67,6 +67,29 @@ theorem finiteJacobiTransport_posDef
   exact
     hshifted.mul_mul_conjTranspose_same hinjective
 
+/-- Exact whitening already forces the whitening factor to act injectively.
+Thus injectivity is not an independent numerical assumption once the Gram
+identity has been proved. -/
+theorem inverseFactor_vecMul_injective_of_whitening
+    {N : ℕ} {inverseGramFactor gram : Matrix (Fin N) (Fin N) ℝ}
+    (hwhite : finiteJacobiTransport inverseGramFactor gram = 1) :
+    Function.Injective inverseGramFactor.vecMul := by
+  intro x y hxy
+  have htransport := congrArg
+    (fun z => (z ᵥ* gram) ᵥ* inverseGramFactor.transpose) hxy
+  calc
+    x = x ᵥ* (1 : Matrix (Fin N) (Fin N) ℝ) := by simp
+    _ = x ᵥ* finiteJacobiTransport inverseGramFactor gram := by rw [hwhite]
+    _ = ((x ᵥ* inverseGramFactor) ᵥ* gram) ᵥ*
+        inverseGramFactor.transpose := by
+      simp [finiteJacobiTransport, Matrix.vecMul_vecMul]
+    _ = ((y ᵥ* inverseGramFactor) ᵥ* gram) ᵥ*
+        inverseGramFactor.transpose := htransport
+    _ = y ᵥ* finiteJacobiTransport inverseGramFactor gram := by
+      simp [finiteJacobiTransport, Matrix.vecMul_vecMul]
+    _ = y ᵥ* (1 : Matrix (Fin N) (Fin N) ℝ) := by rw [hwhite]
+    _ = y := by simp
+
 /-- Finite whitening data.  In the reference implementation
 `inverseFactor = (cholesky G_N)⁻¹`; the defining property below is the exact
 property of that choice used by the Jacobi step. -/
@@ -75,6 +98,18 @@ structure FiniteGramWhitening (moments : ℕ → ℝ) (N : ℕ) where
   gram_identity :
     finiteJacobiTransport inverseFactor (hankelGram moments N) = 1
   inverseFactor_vecMul_injective : Function.Injective inverseFactor.vecMul
+
+/-- Build the finite whitening package from its defining exact identity. -/
+def FiniteGramWhitening.ofIdentity
+    (moments : ℕ → ℝ) (N : ℕ)
+    (inverseFactor : Matrix (Fin N) (Fin N) ℝ)
+    (hwhite :
+      finiteJacobiTransport inverseFactor (hankelGram moments N) = 1) :
+    FiniteGramWhitening moments N where
+  inverseFactor := inverseFactor
+  gram_identity := hwhite
+  inverseFactor_vecMul_injective :=
+    inverseFactor_vecMul_injective_of_whitening hwhite
 
 /-- The finite Jacobi matrix constructed from one moment sequence. -/
 def finiteJacobiSection

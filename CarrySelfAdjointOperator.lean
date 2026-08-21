@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.NativeLogEvolution
+import CarrySelfAdjointOperator.CompletedNativeCharacteristic
 import CarrySelfAdjointOperator.LogarithmicMomentHankel
 import CarrySelfAdjointOperator.MomentGramPositivity
 import CarrySelfAdjointOperator.FiniteJacobiTransport
