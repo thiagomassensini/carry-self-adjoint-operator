@@ -76,18 +76,23 @@ theorem inverseFactor_vecMul_injective_of_whitening
     Function.Injective inverseGramFactor.vecMul := by
   intro x y hxy
   have htransport := congrArg
-    (fun z => (z ᵥ* gram) ᵥ* inverseGramFactor.transpose) hxy
+    (fun z => Matrix.vecMul (Matrix.vecMul z gram)
+      inverseGramFactor.transpose) hxy
   calc
-    x = x ᵥ* (1 : Matrix (Fin N) (Fin N) ℝ) := by simp
-    _ = x ᵥ* finiteJacobiTransport inverseGramFactor gram := by rw [hwhite]
-    _ = ((x ᵥ* inverseGramFactor) ᵥ* gram) ᵥ*
+    x = Matrix.vecMul x (1 : Matrix (Fin N) (Fin N) ℝ) := by simp
+    _ = Matrix.vecMul x
+        (finiteJacobiTransport inverseGramFactor gram) := by rw [hwhite]
+    _ = Matrix.vecMul
+        (Matrix.vecMul (Matrix.vecMul x inverseGramFactor) gram)
         inverseGramFactor.transpose := by
       simp [finiteJacobiTransport, Matrix.vecMul_vecMul]
-    _ = ((y ᵥ* inverseGramFactor) ᵥ* gram) ᵥ*
+    _ = Matrix.vecMul
+        (Matrix.vecMul (Matrix.vecMul y inverseGramFactor) gram)
         inverseGramFactor.transpose := htransport
-    _ = y ᵥ* finiteJacobiTransport inverseGramFactor gram := by
+    _ = Matrix.vecMul y
+        (finiteJacobiTransport inverseGramFactor gram) := by
       simp [finiteJacobiTransport, Matrix.vecMul_vecMul]
-    _ = y ᵥ* (1 : Matrix (Fin N) (Fin N) ℝ) := by rw [hwhite]
+    _ = Matrix.vecMul y (1 : Matrix (Fin N) (Fin N) ℝ) := by rw [hwhite]
     _ = y := by simp
 
 /-- Finite whitening data.  In the reference implementation
