@@ -6,6 +6,7 @@
     {"qualified": "CarrySelfAdjointOperator.nativeLogGenerator_basisVector"},
     {"qualified": "CarrySelfAdjointOperator.completedNativeCharacteristic_eq_factor_mul_nativeScalar"},
     {"qualified": "CarrySelfAdjointOperator.completedNativeCharacteristic_cutoff_independent"},
+    {"qualified": "CarrySelfAdjointOperator.nativeXiCompletionFactor_mul_completedNativeCharacteristic"},
     {"qualified": "CarrySelfAdjointOperator.logarithmicMoment_eq"},
     {"qualified": "CarrySelfAdjointOperator.hankelGram_isSymm"},
     {"qualified": "CarrySelfAdjointOperator.shiftedHankel_isSymm"},
@@ -38,6 +39,7 @@
     {"qualified": "CarrySelfAdjointOperator.finiteHeightOperator_charpoly"},
     {"qualified": "CarrySelfAdjointOperator.nativeFiniteHeightOperator_charpoly"},
     {"qualified": "CarrySelfAdjointOperator.zero_fixedByConjugation_of_divisionFreeGreen"},
-    {"qualified": "CarrySelfAdjointOperator.zero_im_eq_zero_of_divisionFreeGreen"}
+    {"qualified": "CarrySelfAdjointOperator.zero_im_eq_zero_of_divisionFreeGreen"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeOperator_zero_im_eq_zero"}
   ]
 }

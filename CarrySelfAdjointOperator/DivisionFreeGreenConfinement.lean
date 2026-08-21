@@ -1,3 +1,4 @@
+import CarrySelfAdjointOperator.CompletedOperatorCharacteristic
 import Mathlib.Analysis.InnerProductSpace.Basic
 import Mathlib.Tactic
 
@@ -71,6 +72,26 @@ theorem zero_im_eq_zero_of_divisionFreeGreen
   have him := congrArg Complex.im hfixed
   simp only [Complex.conj_im] at him
   linarith
+
+/-- Completed Green representation specialized to the actual scalar used by
+the native Jacobi/height operator. -/
+def HasCompletedNativeOperatorGreenRepresentation
+    {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+    (Psi : ℂ → ℂ) (state : ℂ → H) : Prop :=
+  HasDivisionFreeGreenRepresentation
+    completedNativeOperatorCharacteristic Psi state
+
+/-- Final closure theorem specialized to the native completed operator
+characteristic. Its only hypotheses are now the concrete completed Green
+identity and nonvanishing of the associated state at the selected zero. -/
+theorem completedNativeOperator_zero_im_eq_zero
+    {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+    {Psi : ℂ → ℂ} {state : ℂ → H} {z : ℂ}
+    (hgreen : HasCompletedNativeOperatorGreenRepresentation Psi state)
+    (hzero : completedNativeOperatorCharacteristic z = 0)
+    (hstate : state z ≠ 0) :
+    z.im = 0 :=
+  zero_im_eq_zero_of_divisionFreeGreen hgreen hzero hstate
 
 end
 
