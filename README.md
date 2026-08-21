@@ -32,6 +32,8 @@ The construction does not take a zero list or target heights as input.
   reference script (`B_N = L_N⁻¹` for Cholesky whitening);
 - proves that the exact whitening identity itself forces `B_N` to act
   injectively, so injectivity is not a separate numerical input;
+- constructs a canonical exact whitening from Mathlib's LDL/Gram--Schmidt
+  decomposition, proves its diagonal normalization and lower-triangularity;
 - proves the transported finite Jacobi section symmetric and positive, with
   strict positivity under the corresponding injectivity hypotheses.
 - defines `T_N = J_N^(-1/2)` by the Hermitian functional calculus;
