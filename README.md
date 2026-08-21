@@ -18,6 +18,13 @@ The construction does not take a zero list or target heights as input.
 
 - imports the existing maximal self-adjoint `log(n+1)` generator;
 - proves its native-coordinate eigenvalue law;
+- proves that the unit centered bracket is an exact causal recurrence, gives
+  its double-telescoping all-order reconstruction, and establishes uniqueness
+  of the compatible state before any positivity or admissibility condition is
+  imposed;
+- identifies every causal unit cell from depth two onward inside the natural
+  all-bases camera atlas, so four low coordinates and the first unit bracket
+  of each natural camera determine the complete state;
 - names the exact finite-head-plus-whole-center-tail characteristic and proves
   it equals the common dressed native scalar independently of cutoff;
 - defines the actual camera-independent operator characteristic by removing
@@ -129,3 +136,6 @@ a separate operator-completion route.  No unconditional global confinement
 theorem is claimed at this stage.
 
 Lean is validated exclusively by the exact-checkout GitHub Actions workflow.
+
+The structural derivation of the causal reconstruction theorem is recorded in
+[`docs/causal-bracket-state-uniqueness.md`](docs/causal-bracket-state-uniqueness.md).
