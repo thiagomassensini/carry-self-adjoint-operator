@@ -28,17 +28,37 @@ open CPFormal.Analytic.Cp
 
 noncomputable section
 
+/-- The enriched C3 port is a pair of complex Euclidean spaces.  Its native
+product norm is not the norm induced by the sum of the two component inner
+products, so we place that pair in the canonical `L²` wrapper before using it
+as a Hilbert-space channel.  No C3 coordinate is changed or projected. -/
+abbrev CanonicalCompletedC3HilbertCarrier :=
+  WithLp 2 (NativeCarryC3Crosswalk.FiniteC3GreenPortCarrier 3)
+
+/-- Canonical Hilbert realization of the complete enriched C3 port. -/
+def canonicalCompletedOperatorC3HilbertState (z : ℂ) :
+    CanonicalCompletedC3HilbertCarrier :=
+  WithLp.toLp 2 (canonicalCompletedOperatorC3State z)
+
+/-- The `L²` wrapper is faithful: the completed C3 Hilbert state is nonzero
+throughout the operator image of the open critical strip. -/
+theorem canonicalCompletedOperatorC3HilbertState_ne_zero
+    {z : ℂ} (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    canonicalCompletedOperatorC3HilbertState z ≠ 0 := by
+  intro hzero
+  apply canonicalEnrichedC3SourcePort_ne_zero hs
+  exact (WithLp.toLp_eq_zero 2).mp hzero
+
 /-- Product-completion ledger with the canonical enriched C3 state in its
 native-scalar coordinate.  No zero data enter this definition. -/
 def completedNativeC3ProductLedgerState
     {Hxi : Type*}
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     (xiState : ℂ → Hxi) (z : ℂ) :
-    BinaryHilbertSum Hxi
-      (NativeCarryC3Crosswalk.FiniteC3GreenPortCarrier 3) :=
+    BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier :=
   weightedProductGreenState
     nativeXiCompletionFactor nativeHeightScalar
-    xiState canonicalCompletedOperatorC3State z
+    xiState canonicalCompletedOperatorC3HilbertState z
 
 /-- The native scalar in centered-height coordinates is exactly zeta on the
 open strip. -/
@@ -65,7 +85,8 @@ canonical enriched port. -/
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     (xiState : ℂ → Hxi) (z : ℂ) :
     (WithLp.ofLp (completedNativeC3ProductLedgerState xiState z)).2 =
-      nativeXiCompletionFactor z • canonicalCompletedOperatorC3State z :=
+      nativeXiCompletionFactor z •
+        canonicalCompletedOperatorC3HilbertState z :=
   rfl
 
 /-- The concrete C3 coordinate is nonzero at every centered parameter whose
@@ -77,11 +98,10 @@ theorem completedNativeC3ProductLedgerState_snd_ne_zero
     (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
     (WithLp.ofLp (completedNativeC3ProductLedgerState xiState z)).2 ≠ 0 := by
   rw [completedNativeC3ProductLedgerState_snd]
-  exact smul_ne_zero
-    (nativeXiCompletionFactor_ne_zero hs)
-    (by
-      unfold canonicalCompletedOperatorC3State
-      exact canonicalEnrichedC3SourcePort_ne_zero hs)
+  intro hzero
+  rcases smul_eq_zero.mp hzero with hfactor | hstate
+  · exact (nativeXiCompletionFactor_ne_zero hs) hfactor
+  · exact (canonicalCompletedOperatorC3HilbertState_ne_zero hs) hstate
 
 /-- Therefore the full product ledger is nonzero throughout the open strip,
 independently of the still-unconstructed archimedean factor state. -/
@@ -93,8 +113,7 @@ theorem completedNativeC3ProductLedgerState_ne_zero
     completedNativeC3ProductLedgerState xiState z ≠ 0 := by
   apply weightedProductGreenState_ne_zero_of_right
   · exact nativeXiCompletionFactor_ne_zero hs
-  · unfold canonicalCompletedOperatorC3State
-    exact canonicalEnrichedC3SourcePort_ne_zero hs
+  · exact canonicalCompletedOperatorC3HilbertState_ne_zero hs
 
 /-- At a zeta zero the first product coordinate vanishes exactly.  The C3
 coordinate remains the nonzero xi-weighted enriched port. -/
@@ -156,7 +175,7 @@ theorem completedNativeC3ProductLedgerOffAxisGreenIdentity_of_factors
       nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion xiState)
     (hnative : HasDivisionFreeGreenRepresentation
       nativeHeightScalar nativeHeightScalarBoundaryCompanion
-        canonicalCompletedOperatorC3State) :
+        canonicalCompletedOperatorC3HilbertState) :
     HasCompletedNativeC3ProductLedgerOffAxisGreenIdentity xiState := by
   intro z hs _hz
   change completedGreenWronskian
@@ -166,10 +185,10 @@ theorem completedNativeC3ProductLedgerOffAxisGreenIdentity_of_factors
       inner ℂ
         (weightedProductGreenState
           nativeXiCompletionFactor nativeHeightScalar
-          xiState canonicalCompletedOperatorC3State z)
+          xiState canonicalCompletedOperatorC3HilbertState z)
         (weightedProductGreenState
           nativeXiCompletionFactor nativeHeightScalar
-          xiState canonicalCompletedOperatorC3State z)
+          xiState canonicalCompletedOperatorC3HilbertState z)
   calc
     completedGreenWronskian
         (fun u ↦ nativeXiCompletionFactor u * nativeHeightScalar u)

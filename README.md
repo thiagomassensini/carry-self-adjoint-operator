@@ -72,6 +72,9 @@ The construction does not take a zero list or target heights as input.
 - realizes the product rule before scalar projection by the canonical
   weighted Hilbert direct sum `G(z) a_z ⊕ A(z) g_z`, and proves that its
   nonzero second-factor provenance survives completion whenever `A(z) ≠ 0`;
+- equips the two-leg complex C3 port with its canonical `L²` product wrapper,
+  preserving every cell and both legs while supplying the Hilbert norm
+  required by the completed direct-sum ledger;
 - specializes that state ledger to the actual xi factor, native scalar, and
   canonical enriched C3 port, proving that at every open-strip zeta zero the
   completed scalar characteristic is zero while the full product ledger is

@@ -76,6 +76,7 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalEnrichedC3TailReadout_eq_factor_mul_riemannZeta"},
     {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_tailReadout_zero_and_enrichedPort_ne_zero"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedOperatorC3State_ne_zero"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedOperatorC3HilbertState_ne_zero"},
     {"qualified": "CarrySelfAdjointOperator.nativeHeightScalar_centeredHeightParameter_eq_riemannZeta"},
     {"qualified": "CarrySelfAdjointOperator.completedNativeC3ProductLedgerState_fst_eq_zero_at_riemannZeta_zero"},
     {"qualified": "CarrySelfAdjointOperator.completedNativeC3ProductLedgerState_snd_ne_zero"},
