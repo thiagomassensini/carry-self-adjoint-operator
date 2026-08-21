@@ -262,6 +262,29 @@ dois, mas o passo dos centros alinhados é quatro; como o único raio é um,
 suas duas pernas são ímpares e, em particular, também não são divisíveis
 por dois.
 
+Mais precisamente, a geometria determina as classes residuais completas:
+
+\[
+\boxed{
+c_i\equiv0\pmod d,
+\qquad c_i-r\equiv d-r\pmod d,
+\qquad c_i+r\equiv r\pmod d.
+}
+\]
+
+As duas classes de pernas coincidem se, e somente se,
+
+\[
+d-r=r
+\quad\Longleftrightarrow\quad
+2r=d.
+\]
+
+Portanto, uma câmera de passo ímpar sempre separa centro, esquerda e direita
+em três classes distintas. Uma câmera de passo par possui uma única colisão
+possível entre as pernas: o raio antipodal `r=d/2`. Mesmo nesse caso, a classe
+das pernas continua separada da classe zero dos centros.
+
 Essa separação é uma identidade da geometria dos índices. Ela preserva a
 proveniência centro/perna usada pela telescopia causal. Não deve ser
 confundida, porém, com a colisão analítica de dois parâmetros de amostragem no
@@ -300,6 +323,8 @@ Os arquivos Lean correspondentes são
 - a não divisibilidade das duas pernas por esse passo;
 - a impossibilidade de uma perna coincidir com qualquer centro da mesma
   câmera;
+- as classes residuais exatas do centro e das duas pernas;
+- a caracterização exata da colisão antipodal entre as classes das pernas;
 - as especializações para bases naturais e para a C2 alinhada.
 
 O arquivo foi compilado sem `sorry` e sem dependência de `sorryAx`.

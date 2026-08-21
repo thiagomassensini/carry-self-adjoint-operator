@@ -28,6 +28,9 @@ The construction does not take a zero list or target heights as input.
 - proves exact center/leg lattice separation: aligned centers are multiples of
   the camera slope, while neither emitted leg is; for natural cameras this is
   nondivisibility by the base itself, and the exceptional C2 legs are odd;
+- computes the complete residue ledger `(center,left,right) = (0,d-r,r)`
+  modulo the camera slope `d`, and proves that the two leg classes coincide
+  exactly for the antipodal radius `2r=d`;
 - names the exact finite-head-plus-whole-center-tail characteristic and proves
   it equals the common dressed native scalar independently of cutoff;
 - defines the actual camera-independent operator characteristic by removing

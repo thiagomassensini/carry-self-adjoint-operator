@@ -15,6 +15,8 @@
     {"qualified": "CarrySelfAdjointOperator.bracketLegs_off_centerLattice"},
     {"qualified": "CarrySelfAdjointOperator.bracketCenter_on_lattice_and_legs_off_lattice"},
     {"qualified": "CarrySelfAdjointOperator.bracketLegs_ne_any_alignedCenter"},
+    {"qualified": "CarrySelfAdjointOperator.bracketCenter_left_right_exactResidues"},
+    {"qualified": "CarrySelfAdjointOperator.leftLeg_residue_eq_rightLeg_residue_iff_antipodal"},
     {"qualified": "CarrySelfAdjointOperator.naturalBracketLegs_not_dvd_camera"},
     {"qualified": "CarrySelfAdjointOperator.c2BracketLegs_not_even"},
     {"qualified": "CarrySelfAdjointOperator.completedNativeCharacteristic_eq_factor_mul_nativeScalar"},

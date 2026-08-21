@@ -120,6 +120,80 @@ theorem bracketLegs_ne_any_alignedCenter
     rw [h]
     exact cameraSlope_dvd_alignedCenter camera otherIndex
 
+/-! ## Exact residue classes -/
+
+/-- The left leg has the exact block-plus-residue decomposition
+`d * index + (d - radius)`, where `d` is the camera slope. -/
+theorem leftBracketLeg_eq_cameraBlock_add_residue
+    {camera index radius : ℕ} (hcamera : 2 ≤ camera)
+    (hradius : radius ∈ radiusSet camera) :
+    alignedCenter camera index - radius =
+      cameraSlope camera * index + (cameraSlope camera - radius) := by
+  have hradiusLt :=
+    (emittedRadius_pos_and_lt_cameraSlope hcamera hradius).2
+  rw [alignedCenter_eq_cameraSlope_mul]
+  rw [show index + 1 = Nat.succ index by omega, Nat.mul_succ]
+  exact Nat.add_sub_assoc (by omega) _
+
+/-- Every aligned center has residue zero modulo the camera slope. -/
+theorem alignedCenter_mod_cameraSlope (camera index : ℕ) :
+    alignedCenter camera index % cameraSlope camera = 0 := by
+  rw [alignedCenter_eq_cameraSlope_mul]
+  exact Nat.mul_mod_right _ _
+
+/-- The right bracket leg has residue exactly `radius` modulo the camera
+slope. -/
+theorem rightBracketLeg_mod_cameraSlope_eq_radius
+    {camera index radius : ℕ} (hcamera : 2 ≤ camera)
+    (hradius : radius ∈ radiusSet camera) :
+    (alignedCenter camera index + radius) % cameraSlope camera = radius := by
+  have hradiusLt :=
+    (emittedRadius_pos_and_lt_cameraSlope hcamera hradius).2
+  rw [Nat.add_mod, alignedCenter_mod_cameraSlope]
+  simp [Nat.mod_eq_of_lt hradiusLt]
+
+/-- The left bracket leg has residue exactly `slope - radius` modulo the
+camera slope. -/
+theorem leftBracketLeg_mod_cameraSlope_eq_slope_sub_radius
+    {camera index radius : ℕ} (hcamera : 2 ≤ camera)
+    (hradius : radius ∈ radiusSet camera) :
+    (alignedCenter camera index - radius) % cameraSlope camera =
+      cameraSlope camera - radius := by
+  have hradiusBounds :=
+    emittedRadius_pos_and_lt_cameraSlope hcamera hradius
+  have hresidueLt : cameraSlope camera - radius < cameraSlope camera := by
+    omega
+  rw [leftBracketLeg_eq_cameraBlock_add_residue hcamera hradius,
+    Nat.add_mod]
+  simp [Nat.mod_eq_of_lt hresidueLt]
+
+/-- Exact three-position residue ledger of every supported bracket: the center
+has residue zero, the left leg residue `d-r`, and the right leg residue `r`. -/
+theorem bracketCenter_left_right_exactResidues
+    {camera index radius : ℕ} (hcamera : 2 ≤ camera)
+    (hradius : radius ∈ radiusSet camera) :
+    alignedCenter camera index % cameraSlope camera = 0 ∧
+      (alignedCenter camera index - radius) % cameraSlope camera =
+        cameraSlope camera - radius ∧
+      (alignedCenter camera index + radius) % cameraSlope camera = radius := by
+  exact ⟨alignedCenter_mod_cameraSlope camera index,
+    leftBracketLeg_mod_cameraSlope_eq_slope_sub_radius hcamera hradius,
+    rightBracketLeg_mod_cameraSlope_eq_radius hcamera hradius⟩
+
+/-- The two leg classes collide exactly in the antipodal case `2r = d`.
+They never collide with the center class by the separation theorem above. -/
+theorem leftLeg_residue_eq_rightLeg_residue_iff_antipodal
+    {camera index radius : ℕ} (hcamera : 2 ≤ camera)
+    (hradius : radius ∈ radiusSet camera) :
+    (alignedCenter camera index - radius) % cameraSlope camera =
+        (alignedCenter camera index + radius) % cameraSlope camera ↔
+      2 * radius = cameraSlope camera := by
+  rw [leftBracketLeg_mod_cameraSlope_eq_slope_sub_radius hcamera hradius,
+    rightBracketLeg_mod_cameraSlope_eq_radius hcamera hradius]
+  have hradiusLt :=
+    (emittedRadius_pos_and_lt_cameraSlope hcamera hradius).2
+  omega
+
 /-- In every natural camera, whose slope is its label, neither bracket leg is
 divisible by the camera base. -/
 theorem naturalBracketLegs_not_dvd_camera
