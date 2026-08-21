@@ -44,11 +44,15 @@ jobs:
       - name: Set up pinned Lean and Mathlib cache
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
         with:
+          auto-config: false
           build: false
           test: false
           lint: false
           use-github-cache: true
           use-mathlib-cache: true
+
+      - name: Resolve pinned Lake dependencies
+        run: lake update
 
       - name: Run complete kernel audit
         run: bash scripts/audit.sh
