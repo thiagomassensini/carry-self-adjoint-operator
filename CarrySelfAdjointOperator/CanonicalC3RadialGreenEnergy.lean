@@ -110,7 +110,7 @@ theorem not_hasCanonicalEnrichedC3DiagonalGreenIntertwiner :
   have hoff : s.re ≠ (1 : ℝ) / 2 := by
     norm_num [s]
   have hz : z.im ≠ 0 := by
-    simp [z, s]
+    norm_num [z, s]
   have hne :=
     completedDiagonalWronskian_ne_canonicalEnrichedC3ReflectedGreenBulk
       completedNativeOperatorCharacteristic
@@ -142,7 +142,6 @@ negative imaginary part of the operator parameter. -/
 @[simp] theorem criticalDisplacement_operatorHeightParameter (z : ℂ) :
     criticalDisplacement (operatorHeightParameter z).re = -z.im := by
   simp [criticalDisplacement, operatorHeightParameter, Complex.mul_re]
-  ring
 
 /-- Real normalization identity: multiplying the positive C3 radial energy
 by `im(z)` recovers minus the real part of the raw C3 bulk. -/
