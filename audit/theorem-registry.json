@@ -12,6 +12,13 @@
     {"qualified": "CarrySelfAdjointOperator.hankelGram_posSemidef_of_gramRepresentation"},
     {"qualified": "CarrySelfAdjointOperator.hankelGram_posDef_of_gramRepresentation"},
     {"qualified": "CarrySelfAdjointOperator.shiftedHankel_posSemidef_of_gramRepresentation"},
-    {"qualified": "CarrySelfAdjointOperator.shiftedHankel_posDef_of_gramRepresentation"}
+    {"qualified": "CarrySelfAdjointOperator.shiftedHankel_posDef_of_gramRepresentation"},
+    {"qualified": "CarrySelfAdjointOperator.finiteJacobiTransport_posSemidef"},
+    {"qualified": "CarrySelfAdjointOperator.finiteJacobiTransport_isSymm"},
+    {"qualified": "CarrySelfAdjointOperator.finiteJacobiTransport_posDef"},
+    {"qualified": "CarrySelfAdjointOperator.finiteGramWhitening_identity"},
+    {"qualified": "CarrySelfAdjointOperator.finiteJacobiSection_posSemidef_of_shiftedGram"},
+    {"qualified": "CarrySelfAdjointOperator.finiteJacobiSection_posDef_of_shiftedGram"},
+    {"qualified": "CarrySelfAdjointOperator.finiteJacobiSection_isSymm_of_shiftedGram"}
   ]
 }
