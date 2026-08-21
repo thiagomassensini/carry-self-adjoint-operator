@@ -23,6 +23,11 @@ The construction does not take a zero list or target heights as input.
 - defines the actual camera-independent operator characteristic by removing
   the camera factor and applying the exact xi completion, with a
   cross-multiplied head-tail bridge requiring no division;
+- identifies the independently constructed camera-3 bracket characteristic
+  with the canonical Cp bracketed chart by analytic-continuation uniqueness;
+- consequently proves `nativeScalar = genuineContinuation = riemannZeta` on
+  the open critical strip and identifies the operator characteristic with the
+  standard completed zeta expression there;
 - records the division-free coefficient identity `q Phi = -Phi'`;
 - derives the exact logarithmic-moment recurrence used by the reference code;
 - defines the finite Hankel Gram and shifted matrices;
@@ -53,12 +58,24 @@ The construction does not take a zero list or target heights as input.
 - proves the division-free final implication: a zero satisfying the genuine
   polarized Green identity and carrying a nonzero state is fixed by complex
   conjugation (real in the centered height variable).
+- reduces that implication to the natural domain of the existing realified
+  carry gamma field: only the off-axis diagonal identity with real energy
+  `‖state(z)‖²` is needed, and nonvanishing is required only under the
+  hypothetical off-axis condition;
+- fixes the scalar boundary companion canonically to `-F'`, totalizes the
+  existing carry gamma state, and transfers source nonvanishing to state
+  nonvanishing by the already proved gamma injectivity;
+- proves exact product and additive recomposition laws for the Green
+  Wronskian, retaining every off-diagonal synthesis channel.
 
-Constructing those two Gram representations from the completed native-carry
-Green/gamma identity, constructing the compatible lower-triangular Cholesky
-whitening tower, the infinite Jacobi realization,
-passage from the finite functional calculus to the infinite operator, and
-characteristic/Weyl identification are the next formal layers.  No global
-confinement theorem is claimed at this stage.
+The direct critical-line capstone is now kernel-reduced to one concrete
+construction: an enriched carry source whose totalized gamma state satisfies
+the canonical off-axis diagonal Green identity for the actual completed
+characteristic and is nonzero whenever that source is nonzero.  The remaining
+work is to build that source while preserving diagonal TFVD, provenance,
+off-diagonal synthesis, log-jet, defect, and completion channels.  The
+infinite Jacobi realization and passage from finite functional calculus remain
+a separate operator-completion route.  No unconditional global confinement
+theorem is claimed at this stage.
 
 Lean is validated exclusively by the exact-checkout GitHub Actions workflow.

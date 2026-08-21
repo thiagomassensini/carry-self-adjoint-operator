@@ -68,6 +68,142 @@ theorem riemannZeta_zero_re_eq_half_of_completedNativeOperatorGreen
   rw [centeredHeightParameter_im] at him
   linarith
 
+/-- Stronger interface reduction: the same critical-line conclusion follows
+when the completed Green identity is available only on nonreal diagonal
+parameters, exactly the natural domain of the existing carry gamma field. -/
+theorem riemannZeta_zero_re_eq_half_of_offAxisDiagonalGreen
+    {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+    {Psi : ℂ → ℂ} {state : ℂ → H}
+    (hgreen :
+      HasCompletedNativeOperatorOffAxisDiagonalGreenRepresentation Psi state)
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hzero : riemannZeta s = 0)
+    (hstate : state (centeredHeightParameter s) ≠ 0) :
+    s.re = 1 / 2 := by
+  have hstrip :
+      operatorHeightParameter (centeredHeightParameter s) ∈
+        genuineCriticalStrip := by
+    simpa using hs
+  have hcharacteristic :
+      completedNativeOperatorCharacteristic
+          (centeredHeightParameter s) = 0 := by
+    rw [completedNativeOperatorCharacteristic_eq_completedRiemannZeta
+      hstrip]
+    simp [hzero]
+  have him : (centeredHeightParameter s).im = 0 :=
+    completedNativeOperator_zero_im_eq_zero_of_offAxisDiagonal
+      hgreen hcharacteristic hstate
+  rw [centeredHeightParameter_im] at him
+  linarith
+
+/-- Critical-line confinement in the interface native to the realified carry
+gamma field: a nonzero real diagonal Green energy suffices. -/
+theorem riemannZeta_zero_re_eq_half_of_offAxisDiagonalGreenEnergy
+    {Psi : ℂ → ℂ} {energy : ℂ → ℝ}
+    (hgreen :
+      HasCompletedNativeOperatorOffAxisDiagonalGreenEnergy Psi energy)
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hzero : riemannZeta s = 0)
+    (henergy : energy (centeredHeightParameter s) ≠ 0) :
+    s.re = 1 / 2 := by
+  have hstrip :
+      operatorHeightParameter (centeredHeightParameter s) ∈
+        genuineCriticalStrip := by
+    simpa using hs
+  have hcharacteristic :
+      completedNativeOperatorCharacteristic
+          (centeredHeightParameter s) = 0 := by
+    rw [completedNativeOperatorCharacteristic_eq_completedRiemannZeta
+      hstrip]
+    simp [hzero]
+  have him : (centeredHeightParameter s).im = 0 :=
+    completedNativeOperator_zero_im_eq_zero_of_offAxisDiagonalEnergy
+      hgreen hcharacteristic henergy
+  rw [centeredHeightParameter_im] at him
+  linarith
+
+/-- Canonical final interface: the scalar companion is `-F'`, so the only
+remaining datum is the real Green energy constructed from the enriched carry
+state. -/
+theorem riemannZeta_zero_re_eq_half_of_canonicalGreenEnergy
+    {energy : ℂ → ℝ}
+    (hgreen :
+      HasCanonicalCompletedNativeOperatorOffAxisDiagonalGreenEnergy energy)
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hzero : riemannZeta s = 0)
+    (henergy : energy (centeredHeightParameter s) ≠ 0) :
+    s.re = 1 / 2 := by
+  have hstrip :
+      operatorHeightParameter (centeredHeightParameter s) ∈
+        genuineCriticalStrip := by
+    simpa using hs
+  have hcharacteristic :
+      completedNativeOperatorCharacteristic
+          (centeredHeightParameter s) = 0 := by
+    rw [completedNativeOperatorCharacteristic_eq_completedRiemannZeta
+      hstrip]
+    simp [hzero]
+  have him : (centeredHeightParameter s).im = 0 :=
+    completedNativeOperator_zero_im_eq_zero_of_canonicalGreenEnergy
+      hgreen hcharacteristic henergy
+  rw [centeredHeightParameter_im] at him
+  linarith
+
+/-- Final real-state form aligned with the existing carry gamma field. -/
+theorem riemannZeta_zero_re_eq_half_of_canonicalGreenState
+    {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
+    {state : ℂ → H}
+    (hgreen :
+      HasCanonicalCompletedNativeOperatorOffAxisDiagonalGreenState state)
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hzero : riemannZeta s = 0)
+    (hstate : state (centeredHeightParameter s) ≠ 0) :
+    s.re = 1 / 2 := by
+  have hstrip :
+      operatorHeightParameter (centeredHeightParameter s) ∈
+        genuineCriticalStrip := by
+    simpa using hs
+  have hcharacteristic :
+      completedNativeOperatorCharacteristic
+          (centeredHeightParameter s) = 0 := by
+    rw [completedNativeOperatorCharacteristic_eq_completedRiemannZeta
+      hstrip]
+    simp [hzero]
+  have him : (centeredHeightParameter s).im = 0 :=
+    completedNativeOperator_zero_im_eq_zero_of_canonicalGreenState
+      hgreen hcharacteristic hstate
+  rw [centeredHeightParameter_im] at him
+  linarith
+
+/-- Natural gamma-domain form: nonvanishing is needed only if the centered
+height is off the real axis. -/
+theorem riemannZeta_zero_re_eq_half_of_canonicalGreenState_of_offAxis_nonzero
+    {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
+    {state : ℂ → H}
+    (hgreen :
+      HasCanonicalCompletedNativeOperatorOffAxisDiagonalGreenState state)
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hzero : riemannZeta s = 0)
+    (hstate :
+      (centeredHeightParameter s).im ≠ 0 →
+        state (centeredHeightParameter s) ≠ 0) :
+    s.re = 1 / 2 := by
+  have hstrip :
+      operatorHeightParameter (centeredHeightParameter s) ∈
+        genuineCriticalStrip := by
+    simpa using hs
+  have hcharacteristic :
+      completedNativeOperatorCharacteristic
+          (centeredHeightParameter s) = 0 := by
+    rw [completedNativeOperatorCharacteristic_eq_completedRiemannZeta
+      hstrip]
+    simp [hzero]
+  have him : (centeredHeightParameter s).im = 0 :=
+    completedNativeOperator_zero_im_eq_zero_of_canonicalGreenState_of_offAxis_nonzero
+      hgreen hcharacteristic hstate
+  rw [centeredHeightParameter_im] at him
+  linarith
+
 end
 
 end CarrySelfAdjointOperator

@@ -44,8 +44,26 @@
     {"qualified": "CarrySelfAdjointOperator.nativeFiniteHeightOperator_charpoly"},
     {"qualified": "CarrySelfAdjointOperator.zero_fixedByConjugation_of_divisionFreeGreen"},
     {"qualified": "CarrySelfAdjointOperator.zero_im_eq_zero_of_divisionFreeGreen"},
+    {"qualified": "CarrySelfAdjointOperator.zero_im_eq_zero_of_offAxisDiagonalGreen"},
+    {"qualified": "CarrySelfAdjointOperator.zero_im_eq_zero_of_offAxisDiagonalGreenEnergy"},
+    {"qualified": "CarrySelfAdjointOperator.zero_im_eq_zero_of_offAxisDiagonalGreenEnergy_of_offAxis_nonzero"},
     {"qualified": "CarrySelfAdjointOperator.completedNativeOperator_zero_im_eq_zero"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeOperator_zero_im_eq_zero_of_offAxisDiagonal"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeOperator_zero_im_eq_zero_of_offAxisDiagonalEnergy"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeOperator_zero_im_eq_zero_of_canonicalGreenEnergy"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeOperator_zero_im_eq_zero_of_canonicalGreenState"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeOperator_zero_im_eq_zero_of_canonicalGreenState_of_offAxis_nonzero"},
+    {"qualified": "CarrySelfAdjointOperator.totalCarryGammaState_ne_zero_of_source_ne_zero"},
+    {"qualified": "CarrySelfAdjointOperator.totalCarryGammaState_norm_sq_ne_zero_of_source_ne_zero"},
+    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_totalCarryGammaState"},
+    {"qualified": "CarrySelfAdjointOperator.completedGreenWronskian_mul"},
+    {"qualified": "CarrySelfAdjointOperator.completedGreenWronskian_add"},
     {"qualified": "CarrySelfAdjointOperator.operatorHeightParameter_centeredHeightParameter"},
-    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_completedNativeOperatorGreen"}
+    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_completedNativeOperatorGreen"},
+    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_offAxisDiagonalGreen"},
+    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_offAxisDiagonalGreenEnergy"},
+    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_canonicalGreenEnergy"},
+    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_canonicalGreenState"},
+    {"qualified": "CarrySelfAdjointOperator.riemannZeta_zero_re_eq_half_of_canonicalGreenState_of_offAxis_nonzero"}
   ]
 }
