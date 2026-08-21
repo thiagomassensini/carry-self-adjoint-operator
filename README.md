@@ -25,6 +25,9 @@ The construction does not take a zero list or target heights as input.
 - identifies every causal unit cell from depth two onward inside the natural
   all-bases camera atlas, so four low coordinates and the first unit bracket
   of each natural camera determine the complete state;
+- proves exact center/leg lattice separation: aligned centers are multiples of
+  the camera slope, while neither emitted leg is; for natural cameras this is
+  nondivisibility by the base itself, and the exceptional C2 legs are odd;
 - names the exact finite-head-plus-whole-center-tail characteristic and proves
   it equals the common dressed native scalar independently of cutoff;
 - defines the actual camera-independent operator characteristic by removing

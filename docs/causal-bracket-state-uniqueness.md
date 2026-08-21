@@ -218,7 +218,57 @@ a partir de `n=2`. A cauda inteira já é determinada apenas por `x₂`, `x₃` 
 essas células; `x₀` e `x₁` completam o setor inferior que não é atravessado
 por essa família natural de câmeras.
 
-## 5. Relação estrutural com telescopia e cutoff
+## 5. Separação exata entre centros e pernas
+
+A malha de centros de uma câmera tem passo
+
+\[
+d=\operatorname{cameraSlope}(b),
+\qquad c_i=d(i+1).
+\]
+
+Todo raio emitido satisfaz
+
+\[
+0<r\le \left\lfloor\frac b2\right\rfloor<d.
+\]
+
+Como `d` divide `cᵢ` mas não divide `r`, as duas identidades elementares
+
+\[
+d\mid(c_i+r)\Longleftrightarrow d\mid r,
+\qquad
+d\mid(c_i-r)\Longleftrightarrow d\mid r
+\]
+
+(a segunda usa `r ≤ cᵢ`) fornecem
+
+\[
+\boxed{
+d\mid c_i,
+\qquad d\nmid(c_i-r),
+\qquad d\nmid(c_i+r).
+}
+\]
+
+Logo nenhuma perna pode coincidir com qualquer centro alinhado da mesma
+câmera. Isso elimina exatamente uma forma de aliasing interno: o papel
+geométrico de centro ou de perna não se perde quando a célula é realizada na
+malha discreta.
+
+Nas câmeras naturais `b ≥ 3`, temos `d=b`, portanto as pernas nunca são
+divisíveis pela própria base. A C2 é a convenção excepcional: seu rótulo é
+dois, mas o passo dos centros alinhados é quatro; como o único raio é um,
+suas duas pernas são ímpares e, em particular, também não são divisíveis
+por dois.
+
+Essa separação é uma identidade da geometria dos índices. Ela preserva a
+proveniência centro/perna usada pela telescopia causal. Não deve ser
+confundida, porém, com a colisão analítica de dois parâmetros de amostragem no
+kernel de Green; aquela colisão vive no espaço dos parâmetros e exige seu
+próprio argumento de continuidade e diferenças finitas.
+
+## 6. Relação estrutural com telescopia e cutoff
 
 A mesma relação aparece em duas escalas:
 
@@ -232,10 +282,11 @@ A mesma relação aparece em duas escalas:
 Portanto, a recorrência, a telescopia e o fechamento geométrico do cutoff são
 três apresentações da mesma relação de compatibilidade.
 
-## 6. Estatuto formal
+## 7. Estatuto formal
 
-O arquivo Lean correspondente é
-`CausalBracketPositiveStateUniqueness.lean`. Nele foram formalizados:
+Os arquivos Lean correspondentes são
+`CausalBracketStateUniqueness.lean` e
+`BracketLegLatticeSeparation.lean`. Neles foram formalizados:
 
 - a identidade exata da perna direita;
 - a reconstrução por indução em dois passos;
@@ -244,11 +295,16 @@ O arquivo Lean correspondente é
 - a existência e unicidade global;
 - o corolário para qualquer predicado de admissibilidade;
 - a presença das células causais no atlas de todas as bases;
-- a unicidade da cauda e a unicidade global multibase.
+- a unicidade da cauda e a unicidade global multibase;
+- a divisibilidade de todo centro pelo passo exato da câmera;
+- a não divisibilidade das duas pernas por esse passo;
+- a impossibilidade de uma perna coincidir com qualquer centro da mesma
+  câmera;
+- as especializações para bases naturais e para a C2 alinhada.
 
 O arquivo foi compilado sem `sorry` e sem dependência de `sorryAx`.
 
-## 7. Forma condensada
+## 8. Forma condensada
 
 \[
 \boxed{
@@ -271,4 +327,3 @@ e, quando uma identidade de energia certifica admissibilidade,
 \text{único estado admissível compatível com a geometria}.
 }
 \]
-
