@@ -72,19 +72,19 @@ theorem HasDivisionFreeGreenRepresentation.toOffAxisDiagonal
   intro z _hz
   exact hgreen z z
 
-/-- A zero carrying a nonzero Gren state is forced onto the real axis of the
+/-- A zero carrying a nonzero Green state is forced onto the real axis of the
 centered height variable. This is the division-free final implication. -/
 theorem zero_fixedByConjugation_of_divisionFreeGreen
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     {F Psi : ℂ → ℂ} {state : ℂ → H} {z : ℂ}
     (hgreen : HasDivisionFreeGreenRepresentation F Psi state)
-    (hzero : F z = 0) (hstate : state z ≀ 0) :
+    (hzero : F z = 0) (hstate : state z ≠ 0) :
     z = (starRingEnd ℂ) z := by
   have hwronskian : completedGreenWronskian F Psi z z = 0 := by
     simp [completedGreenWronskian, hzero]
   have hproduct :
       (z - (starRingEnd ℂ) z) * inner ℂ (state z) (state z) = 0 := by
-    rw [₆� hgreen z z, hwronskian]
+    rw [← hgreen z z, hwronskian]
   have hinner : inner ℂ (state z) (state z) ≠ 0 :=
     inner_self_ne_zero.mpr hstate
   exact sub_eq_zero.mp ((mul_eq_zero.mp hproduct).resolve_right hinner)
@@ -110,7 +110,7 @@ theorem zero_im_eq_zero_of_offAxisDiagonalGreen
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
     {F Psi : ℂ → ℂ} {state : ℂ → H} {z : ℂ}
     (hgreen : HasOffAxisDiagonalGreenRepresentation F Psi state)
-    (hzero : F z = 0) (hstate : state z ≀ 0) :
+    (hzero : F z = 0) (hstate : state z ≠ 0) :
     z.im = 0 := by
   by_contra him
   have hwronskian : completedGreenWronskian F Psi z z = 0 := by
@@ -200,7 +200,7 @@ def HasCanonicalCompletedNativeOperatorOffAxisDiagonalGreenState
     {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℝ H]
     (state : ℂ → H) : Prop :=
   HasCanonicalCompletedNativeOperatorOffAxisDiagonalGreenEnergy
-    (fun z ↯ ‖state z‖ ^ 2)
+    (fun z ↦ ‖state z‖ ^ 2)
 
 /-- Final closure theorem specialized to the native completed operator
 characteristic. Its only hypotheses are now the concrete completed Green
@@ -222,7 +222,7 @@ theorem completedNativeOperator_zero_im_eq_zero_of_offAxisDiagonal
     (hgreen :
       HasCompletedNativeOperatorOffAxisDiagonalGreenRepresentation Psi state)
     (hzero : completedNativeOperatorCharacteristic z = 0)
-    (hstate : state z ≀ 0) :
+    (hstate : state z ≠ 0) :
     z.im = 0 :=
   zero_im_eq_zero_of_offAxisDiagonalGreen hgreen hzero hstate
 
@@ -243,7 +243,7 @@ theorem completedNativeOperator_zero_im_eq_zero_of_canonicalGreenEnergy
     (hgreen :
       HasCanonicalCompletedNativeOperatorOffAxisDiagonalGreenEnergy energy)
     (hzero : completedNativeOperatorCharacteristic z = 0)
-    (henergy : energy z ≀ 0) :
+    (henergy : energy z ≠ 0) :
     z.im = 0 :=
   completedNativeOperator_zero_im_eq_zero_of_offAxisDiagonalEnergy
     hgreen hzero henergy
