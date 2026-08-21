@@ -36,6 +36,8 @@
     {"qualified": "CarrySelfAdjointOperator.finiteHeightEigenvalue_pos"},
     {"qualified": "CarrySelfAdjointOperator.finiteHeightOperator_isSymm"},
     {"qualified": "CarrySelfAdjointOperator.finiteHeightOperator_charpoly"},
-    {"qualified": "CarrySelfAdjointOperator.nativeFiniteHeightOperator_charpoly"}
+    {"qualified": "CarrySelfAdjointOperator.nativeFiniteHeightOperator_charpoly"},
+    {"qualified": "CarrySelfAdjointOperator.zero_fixedByConjugation_of_divisionFreeGreen"},
+    {"qualified": "CarrySelfAdjointOperator.zero_im_eq_zero_of_divisionFreeGreen"}
   ]
 }

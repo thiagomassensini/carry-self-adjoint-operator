@@ -7,3 +7,4 @@ import CarrySelfAdjointOperator.CanonicalLDLWhitening
 import CarrySelfAdjointOperator.ProjectiveJacobiTower
 import CarrySelfAdjointOperator.FiniteHeightOperator
 import CarrySelfAdjointOperator.CanonicalFiniteHeight
+import CarrySelfAdjointOperator.DivisionFreeGreenConfinement

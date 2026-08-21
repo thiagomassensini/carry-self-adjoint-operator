@@ -36,3 +36,5 @@ import CarrySelfAdjointOperator
 #print axioms CarrySelfAdjointOperator.finiteHeightOperator_isSymm
 #print axioms CarrySelfAdjointOperator.finiteHeightOperator_charpoly
 #print axioms CarrySelfAdjointOperator.nativeFiniteHeightOperator_charpoly
+#print axioms CarrySelfAdjointOperator.zero_fixedByConjugation_of_divisionFreeGreen
+#print axioms CarrySelfAdjointOperator.zero_im_eq_zero_of_divisionFreeGreen

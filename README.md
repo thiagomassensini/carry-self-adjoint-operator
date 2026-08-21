@@ -47,6 +47,9 @@ The construction does not take a zero list or target heights as input.
 - proves the exact projective block law: a lower-block-triangular extension of
   the inverse whitening factor forces the old Jacobi matrix to be literally
   the upper-left block of the new one.
+- proves the division-free final implication: a zero satisfying the genuine
+  polarized Green identity and carrying a nonzero state is fixed by complex
+  conjugation (real in the centered height variable).
 
 Constructing those two Gram representations from the completed native-carry
 Green/gamma identity, constructing the compatible lower-triangular Cholesky
