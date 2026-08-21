@@ -87,7 +87,7 @@ theorem canonicalLDL_diagonal_normalization
             (Real.sqrt (LDL.diagEntries hgram i))⁻¹ := by
               rw [Real.sq_sqrt hd.le]
       _ = 1 := by field_simp [hsqrt]
-  · simp [Matrix.one_apply, hij]
+  · simp [hij]
 
 /-- The canonical LDL factor whitens the positive definite matrix exactly. -/
 theorem canonicalLDLInverseFactor_whitens
