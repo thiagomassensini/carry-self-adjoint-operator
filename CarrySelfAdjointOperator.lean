@@ -2,4 +2,5 @@ import CarrySelfAdjointOperator.NativeLogEvolution
 import CarrySelfAdjointOperator.LogarithmicMomentHankel
 import CarrySelfAdjointOperator.MomentGramPositivity
 import CarrySelfAdjointOperator.FiniteJacobiTransport
+import CarrySelfAdjointOperator.ProjectiveJacobiTower
 import CarrySelfAdjointOperator.FiniteHeightOperator

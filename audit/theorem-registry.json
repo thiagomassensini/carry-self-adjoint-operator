@@ -20,6 +20,8 @@
     {"qualified": "CarrySelfAdjointOperator.finiteJacobiSection_posSemidef_of_shiftedGram"},
     {"qualified": "CarrySelfAdjointOperator.finiteJacobiSection_posDef_of_shiftedGram"},
     {"qualified": "CarrySelfAdjointOperator.finiteJacobiSection_isSymm_of_shiftedGram"},
+    {"qualified": "CarrySelfAdjointOperator.jacobiCongruence_toBlocks₁₁_of_lowerBlockExtension"},
+    {"qualified": "CarrySelfAdjointOperator.jacobiCongruence_fromBlocks_toBlocks₁₁"},
     {"qualified": "CarrySelfAdjointOperator.finiteHeightEigenvalue_pos"},
     {"qualified": "CarrySelfAdjointOperator.finiteHeightOperator_charpoly"},
     {"qualified": "CarrySelfAdjointOperator.nativeFiniteHeightOperator_charpoly"}

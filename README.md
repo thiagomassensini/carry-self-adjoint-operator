@@ -34,10 +34,13 @@ The construction does not take a zero list or target heights as input.
 - proves its characteristic polynomial has roots exactly
   `1 / sqrt(lambda_i(J_N))`, so the height spectrum is derived rather than
   supplied as input.
+- proves the exact projective block law: a lower-block-triangular extension of
+  the inverse whitening factor forces the old Jacobi matrix to be literally
+  the upper-left block of the new one.
 
 Constructing those two Gram representations from the completed native-carry
-Green/gamma identity, constructing compatible Cholesky whitenings at all
-orders, the infinite Jacobi realization,
+Green/gamma identity, constructing the compatible lower-triangular Cholesky
+whitening tower, the infinite Jacobi realization,
 passage from the finite functional calculus to the infinite operator, and
 characteristic/Weyl identification are the next formal layers.  No global
 confinement theorem is claimed at this stage.

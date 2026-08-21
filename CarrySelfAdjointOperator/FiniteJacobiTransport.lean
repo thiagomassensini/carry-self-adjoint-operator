@@ -18,11 +18,24 @@ namespace CarrySelfAdjointOperator
 
 noncomputable section
 
+/-- Congruence transport on an arbitrary finite coordinate type.  This is the
+coordinate-free finite algebra behind every native Jacobi section. -/
+def jacobiCongruence {ι : Type*} [Fintype ι]
+    (inverseGramFactor shifted : Matrix ι ι ℝ) :
+    Matrix ι ι ℝ :=
+  inverseGramFactor * shifted * inverseGramFactor.transpose
+
 /-- Congruence transport used by the finite Jacobi construction. -/
 def finiteJacobiTransport {N : ℕ}
     (inverseGramFactor shifted : Matrix (Fin N) (Fin N) ℝ) :
     Matrix (Fin N) (Fin N) ℝ :=
   inverseGramFactor * shifted * inverseGramFactor.transpose
+
+@[simp] theorem finiteJacobiTransport_eq_jacobiCongruence
+    {N : ℕ} (inverseGramFactor shifted : Matrix (Fin N) (Fin N) ℝ) :
+    finiteJacobiTransport inverseGramFactor shifted =
+      jacobiCongruence inverseGramFactor shifted :=
+  rfl
 
 /-- Positive semidefiniteness survives the exact Jacobi congruence. -/
 theorem finiteJacobiTransport_posSemidef
