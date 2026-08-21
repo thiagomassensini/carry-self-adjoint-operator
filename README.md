@@ -105,20 +105,25 @@ The construction does not take a zero list or target heights as input.
   Genuine Green boundary pair, and that its direct/reflected Green bulk has
   the exact radial factorization and vanishes in the open strip exactly at
   `re s = 1/2`;
+- proves that the raw complex C3 bulk cannot itself equal a scalar diagonal
+  Wronskian off the critical line: the Wronskian is purely imaginary while
+  the bulk has nonzero real part;
+- extracts the correctly typed positive radial C3 energy using the exact
+  continuous cofactor of the tilt, and proves
+  `(z - conj z) * energy = -2i * re(C3 bulk)` in centered coordinates;
 - restates the final capstone with no abstract state or extra nonvanishing
-  premise: the sole input is the concrete equality between the completed
-  diagonal Wronskian and that exact C3 direct/reflected Green bulk.
+  premise using this positive radial energy.
 
-The direct critical-line capstone is now kernel-reduced to one literal
+The direct critical-line capstone is now kernel-reduced to one correctly typed
 intertwiner identity: the diagonal Wronskian of the actual completed
-characteristic must equal the already-factorized direct/reflected Green form
-of the canonical enriched C3 port.  The scalar readout, complete port,
-nonvanishing, radial factorization, and zero locus of that Green form are
-already closed.  The kernel also proves that imposing this scalar equality
-only at zeta zeros is equivalent to the desired confinement statement itself;
-therefore a noncircular construction must preserve diagonal TFVD,
-provenance, off-diagonal synthesis, log-jet, defect, and completion channels
-while proving that equality.  The
+characteristic must equal `(z - conj z)` times the positive radial C3 energy,
+equivalently `-2i` times the real part of the factorized C3 bulk.  The raw
+complex bulk itself is formally ruled out as a diagonal scalarization; this
+no-go does not touch the two-channel gamma/Cauchy route.  The scalar readout,
+complete port, nonvanishing, radial factorization, positive energy, and its
+zero detector are already closed.  A noncircular construction must preserve
+diagonal TFVD, provenance, off-diagonal synthesis, log-jet, defect, and
+completion channels while proving the corrected identity.  The
 infinite Jacobi realization and passage from finite functional calculus remain
 a separate operator-completion route.  No unconditional global confinement
 theorem is claimed at this stage.
