@@ -30,12 +30,16 @@ The construction does not take a zero list or target heights as input.
   reference script (`B_N = L_N⁻¹` for Cholesky whitening);
 - proves the transported finite Jacobi section symmetric and positive, with
   strict positivity under the corresponding injectivity hypotheses.
+- defines `T_N = J_N^(-1/2)` by the Hermitian functional calculus;
+- proves its characteristic polynomial has roots exactly
+  `1 / sqrt(lambda_i(J_N))`, so the height spectrum is derived rather than
+  supplied as input.
 
 Constructing those two Gram representations from the completed native-carry
 Green/gamma identity, constructing compatible Cholesky whitenings at all
 orders, the infinite Jacobi realization,
-functional calculus for `J^(-1/2)`, and characteristic/Weyl identification are
-the next formal layers.  No global confinement theorem is claimed at this
-stage.
+passage from the finite functional calculus to the infinite operator, and
+characteristic/Weyl identification are the next formal layers.  No global
+confinement theorem is claimed at this stage.
 
 Lean is validated exclusively by the exact-checkout GitHub Actions workflow.
