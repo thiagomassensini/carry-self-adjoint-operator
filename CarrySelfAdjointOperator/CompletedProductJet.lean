@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.GreenWronskianRecomposition
 import CarrySelfAdjointOperator.NativeScalarZetaIdentification
+import Mathlib.Analysis.SpecialFunctions.Gamma.Beta
 import Mathlib.Analysis.SpecialFunctions.Gamma.Deriv
 import Mathlib.Tactic
 
@@ -49,6 +50,8 @@ theorem productBoundaryCompanion_negDeriv
         G (fun u ↦ -deriv G u) z =
       -deriv (fun u ↦ A u * G u) z := by
   have hmul := (hA.hasDerivAt.mul hG.hasDerivAt).deriv
+  change deriv (fun u ↦ A u * G u) z =
+      deriv A z * G z + A z * deriv G z at hmul
   unfold productBoundaryCompanion
   rw [hmul]
   ring
@@ -94,6 +97,35 @@ theorem nativeXiCompletionFactor_differentiableAt
   · fun_prop
   · exact hgamma
 
+/-- The archimedean completion factor has no zero when the corresponding
+spectral parameter lies in the open critical strip. -/
+theorem nativeXiCompletionFactor_ne_zero
+    {z : ℂ} (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    nativeXiCompletionFactor z ≠ 0 := by
+  have hsZero : operatorHeightParameter z ≠ 0 := by
+    intro hzero
+    have hre := congrArg Complex.re hzero
+    simp at hre
+    linarith [hs.1]
+  have hsOne : operatorHeightParameter z - 1 ≠ 0 := by
+    intro hone
+    have hre := congrArg Complex.re hone
+    simp at hre
+    linarith [hs.2]
+  have hargRe : 0 < (operatorHeightParameter z / 2).re := by
+    simpa using (div_pos hs.1 (by norm_num : (0 : ℝ) < 2))
+  have hgamma : Complex.Gamma (operatorHeightParameter z / 2) ≠ 0 :=
+    Complex.Gamma_ne_zero_of_re_pos hargRe
+  unfold nativeXiCompletionFactor
+  dsimp only
+  exact mul_ne_zero
+    (mul_ne_zero
+      (mul_ne_zero
+        (mul_ne_zero (by norm_num) hsZero)
+        hsOne)
+      (Complex.exp_ne_zero _))
+    hgamma
+
 /-- The actual canonical boundary companion is the product companion of the
 xi factor and the centered native scalar. -/
 theorem completedNativeOperatorBoundaryCompanion_eq_product
@@ -130,10 +162,20 @@ theorem completedNativeOperatorGreenWronskian_at_nativeScalar_zero
   change completedGreenWronskian
       (fun u ↦ nativeXiCompletionFactor u * nativeHeightScalar u)
       completedNativeOperatorBoundaryCompanion z z = _
-  rw [completedNativeOperatorBoundaryCompanion_eq_product hs]
-  exact completedGreenWronskian_mul_at_right_zero
-    nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion
-    nativeHeightScalar nativeHeightScalarBoundaryCompanion hzero
+  calc
+    completedGreenWronskian
+        (fun u ↦ nativeXiCompletionFactor u * nativeHeightScalar u)
+        completedNativeOperatorBoundaryCompanion z z =
+      completedGreenWronskian
+        (fun u ↦ nativeXiCompletionFactor u * nativeHeightScalar u)
+        (productBoundaryCompanion
+          nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion
+          nativeHeightScalar nativeHeightScalarBoundaryCompanion) z z := by
+            unfold completedGreenWronskian
+            rw [completedNativeOperatorBoundaryCompanion_eq_product hs]
+    _ = _ := completedGreenWronskian_mul_at_right_zero
+      nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion
+      nativeHeightScalar nativeHeightScalarBoundaryCompanion hzero
 
 /-- Both sides of the preceding decomposition vanish at the scalar zero;
 the theorem is retained to make explicit which product channel disappeared. -/

@@ -69,10 +69,14 @@ The construction does not take a zero list or target heights as input.
   Wronskian, retaining every off-diagonal synthesis channel, and proves that
   at a zero of the scalar factor the completion-jet channel vanishes rather
   than cancelling an independently retained provenance term.
+- realizes the product rule before scalar projection by the canonical
+  weighted Hilbert direct sum `G(z) a_z ⊕ A(z) g_z`, and proves that its
+  nonzero second-factor provenance survives completion whenever `A(z) ≠ 0`;
 - specializes that product ledger to the actual xi-completed native
   characteristic, proves holomorphy of both factors on the open strip, and
   identifies its canonical companion `-F'` with the exact product companion,
-  including the specialization stated directly at every `riemannZeta` zero;
+  proves the xi factor is nonzero there, and includes the specialization
+  stated directly at every `riemannZeta` zero;
 - specializes the complete provenance-preserving C3 port to the actual
   operator coordinate, proves that this enriched state is nonzero everywhere
   in the open critical strip, and proves that its tail-completed scalar
