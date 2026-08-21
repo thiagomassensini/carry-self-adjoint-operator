@@ -69,6 +69,10 @@ The construction does not take a zero list or target heights as input.
   identity to the completed complex Green identity: the completed Wronskian
   must equal `-2i` times the concrete all-bases Cauchy skew; from that literal
   scalarization equation Lean derives the canonical gamma-state energy law;
+- packs every coordinate of the two-leg, three-cell complex C3 port into the
+  literal six-camera family `2, ..., 7`, using separate real and imaginary
+  Hilbert channels, and proves that this all-bases camera source is injective
+  and therefore nonzero throughout the open strip;
 - proves exact product and additive recomposition laws for the Green
   Wronskian, retaining every off-diagonal synthesis channel, and proves that
   at a zero of the scalar factor the completion-jet channel vanishes rather
