@@ -32,8 +32,7 @@ inverses. -/
 @[simp] theorem operatorHeightParameter_centeredHeightParameter (s : ℂ) :
     operatorHeightParameter (centeredHeightParameter s) = s := by
   apply Complex.ext <;>
-    simp [operatorHeightParameter, centeredHeightParameter] <;>
-    ring
+    simp [operatorHeightParameter, centeredHeightParameter]
 
 /-- The imaginary part of the centered height is precisely the horizontal
 displacement from the critical line. -/
