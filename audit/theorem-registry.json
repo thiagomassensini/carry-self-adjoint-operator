@@ -138,6 +138,15 @@
     {"qualified": "CarrySelfAdjointOperator.polarizedGreenMomentCoefficient_even_odd"},
     {"qualified": "CarrySelfAdjointOperator.polarizedGreenMomentCoefficient_odd_even"},
     {"qualified": "CarrySelfAdjointOperator.complexGreenWronskianMomentKernel_of_coefficientEquation"},
-    {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_completedNativeGreenCoefficientEquation"}
+    {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_completedNativeGreenCoefficientEquation"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalGreenJetStep_tendsto_zero"},
+    {"qualified": "CarrySelfAdjointOperator.completedGreenForwardDifference_iter_eq_sum_shift"},
+    {"qualified": "CarrySelfAdjointOperator.completedGreenForwardDifference_iter_inner_right"},
+    {"qualified": "CarrySelfAdjointOperator.completedGreenForwardDifference_iter_inner_left"},
+    {"qualified": "CarrySelfAdjointOperator.completedGreenKernel_mixedForwardDifference_eq_inner"},
+    {"qualified": "CarrySelfAdjointOperator.inner_completedGreenForwardDifferenceJet_eq_kernelForwardDifference"},
+    {"qualified": "CarrySelfAdjointOperator.matrixPosSemidef_of_tendsto_entrywise"},
+    {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_gramLimits"},
+    {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_completedGreenForwardDifferenceGramLimit"}
   ]
 }

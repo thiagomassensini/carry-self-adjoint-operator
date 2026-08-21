@@ -134,26 +134,100 @@ Thus the parity blocks and both Hankel matrices are consequences of the
 division-free coefficient transport; they are not independent positivity
 assumptions.
 
+## State-free coefficient closure
+
+The first formulation tried to identify the coefficients with iterated
+derivatives of the given Hilbert-valued state.  That asks for more than the
+Green representation actually supplies: the ambient inner-product space is
+not assumed complete, and the state map is not independently assumed
+analytic.
+
+`GreenKernelCoefficientClosure.lean` now removes that artificial demand.  At
+the canonical nonzero steps
+
+```text
+h_k = 1 / (k + 1) -> 0
+```
+
+it forms normalized forward differences
+
+```text
+Delta_(h_k)^n state(0) / (n! h_k^n).
+```
+
+Every such vector is an explicit finite linear combination of point-state
+values; Lean proves the exact alternating binomial formula.  Therefore each
+finite even or odd section is an honest Gram matrix before any limit is
+taken.  Lean further proves the exact scalarization
+
+```text
+inner(forwardDifferenceJet(p), forwardDifferenceJet(q))
+  = normalizedMixedForwardDifference(pointStateKernel, p, q).
+```
+
+Thus all subsequent coefficient work can be performed directly on the scalar
+Green kernel.  Lean also proves that an entrywise limit of real positive
+semidefinite matrices remains positive semidefinite.  Consequently, scalar
+convergence of the forward-difference Gram entries to the parity-split moment
+kernel implies both Hankel positivity towers at every finite order.
+
+This is the RKHS/completion idea in a form that does not require constructing
+or differentiating an auxiliary Hilbert space: finite point-state Grams are
+used first, and only their scalar entries are passed to the limit.
+
 ## Exact remaining analytic seam
 
-The end-to-end theorem no longer assumes an already assembled parity-split
-Gram kernel.  Its remaining hypothesis is the narrower statement that the
-ordinary Taylor-jet Gram coefficients of the concrete normalized Green state
-satisfy the coefficient equation above.
+There are now two formal interfaces.  The earlier one asks directly for the
+Taylor-jet coefficient equation.  The sharper one asks only for entrywise
+scalar convergence of the canonical forward-difference Grams.
 
-To remove that last hypothesis, the concrete state realization must be shown
-to admit the required local two-variable Taylor expansion (holomorphic in the
-second variable and holomorphic after conjugating the first variable).  The
-pointwise Green identity alone does not provide this regularity for an
-arbitrary state map.  Once that analytic realization theorem is present,
-coefficient uniqueness already closes every order simultaneously.
+For unequal real sample points, the normalized polarized Green identity
+rewrites the point-state kernel entirely in terms of the scalar response.  At
+a collision `w = z` on the real axis, however, its multiplier is
+`z - conj(w) = 0`; the identity reduces to `0 = 0` and does not determine the
+diagonal norm.  Forward-difference Grams contain precisely such collision
+terms.
+
+Therefore the remaining proof has two scalar parts:
+
+```text
+off-diagonal Green response + exact binomial cancellation
+diagonal regularity/minimality + collision limit
+  -> unique parity-split coefficient kernel.
+```
+
+The all-order coefficient recurrence already handles the last arrow once
+those scalar coefficients exist: it identifies the even/even and odd/odd
+moment blocks and kills the mixed blocks.
+
+Thus no Hilbert-valued analytic regularity of an arbitrary state realization
+needs to be postulated.  What remains is the scalar statement
+
+```text
+finite differences of the polarized Green response
+  + control of the real-axis diagonal
+  -> unique parity-split coefficient kernel.
+```
+
+The causal bracket theorem is a plausible source of the missing minimality,
+but it does not apply automatically: it proves uniqueness of the depth state
+from its seeds and brackets, while the present ambiguity is the norm diagonal
+of a parameter-indexed Green-state family.  A formal bridge identifying that
+family with the canonical causal reconstruction (or an independent exact
+diagonal energy identity) is still required.
+
+This is a strictly smaller seam than the former external `hcoeff` premise,
+but it is still an explicit hypothesis in the newest positivity theorem and
+the PR must remain draft until it is discharged for the concrete normalized
+Green state.
 
 ## Acceptance criteria
 
 The continuation is ready to freeze only when:
 
-1. the concrete coefficient identity no longer enters the end-to-end finite
-   Hankel theorem as an external hypothesis;
+1. neither the concrete coefficient identity nor the forward-difference Gram
+   limit enters the concrete end-to-end finite Hankel theorem as an external
+   hypothesis;
 2. every new declaration is imported by the root module and listed in the
    theorem registry when appropriate;
 3. `scripts/audit.sh` passes with the committed toolchain and dependency
