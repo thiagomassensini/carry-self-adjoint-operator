@@ -50,7 +50,9 @@ theorem finiteHeightOperator_charpoly
     (finiteHeightOperator hjacobi).charpoly =
       ∏ i : Fin N,
         (Polynomial.X - Polynomial.C (finiteHeightEigenvalue hjacobi i)) := by
-  simpa [finiteHeightOperator, finiteHeightEigenvalue] using
+  rw [finiteHeightOperator,
+    ← Matrix.IsHermitian.cfc_eq hjacobi.isHermitian]
+  simpa [finiteHeightEigenvalue] using
     (Matrix.IsHermitian.charpoly_cfc_eq hjacobi.isHermitian
       (fun y : ℝ ↦ (Real.sqrt y)⁻¹))
 
