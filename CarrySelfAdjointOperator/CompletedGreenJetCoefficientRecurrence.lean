@@ -28,6 +28,8 @@ state satisfy the division-free coefficient equation.
 
 namespace CarrySelfAdjointOperator
 
+open CPFormal.Analytic.Cp
+
 noncomputable section
 
 /-- The `sqrt 2 * F` normalization removes exactly the two scalar factors
@@ -121,6 +123,76 @@ theorem normalizedCompletedGreenState_polarizedResponse
   unfold completedGreenNormalizedResponse completedGreenWronskian
   simp only [map_div₀, map_mul, map_ofNat]
   field_simp [hz, hw, hstar]
+
+/-- Negating centered height reflects the corresponding spectral parameter
+through the center. -/
+theorem operatorHeightParameter_neg (z : ℂ) :
+    operatorHeightParameter (-z) = 1 - operatorHeightParameter z := by
+  unfold operatorHeightParameter
+  ring
+
+/-- On the open strip, the scalar used by the operator is the polynomially
+regularized completed scalar.  This form makes the centered reflection
+transparent. -/
+theorem nativeXiCompletionFactor_mul_riemannZeta_eq_regularizedCompleted
+    {z : ℂ} (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    nativeXiCompletionFactor z *
+        riemannZeta (operatorHeightParameter z) =
+      (1 / 2 : ℂ) * operatorHeightParameter z *
+        (operatorHeightParameter z - 1) *
+          completedRiemannZeta (operatorHeightParameter z) := by
+  let s := operatorHeightParameter z
+  have hs0 : s ≠ 0 := by
+    intro hzero
+    have hre := congrArg Complex.re hzero
+    simp [s] at hre
+    linarith [hs.1]
+  have hgamma : Complex.Gammaℝ s ≠ 0 := by
+    rw [ne_eq, Complex.Gammaℝ_eq_zero_iff]
+    push Not
+    intro n hn
+    have hre := congrArg Complex.re hn
+    simp at hre
+    linarith [hs.1]
+  have hpow :
+      Complex.exp (-(s / 2) * (Real.log Real.pi : ℂ)) =
+        (Real.pi : ℂ) ^ (-s / 2) := by
+    rw [Complex.cpow_def_of_ne_zero
+      (Complex.ofReal_ne_zero.mpr (ne_of_gt Real.pi_pos))]
+    apply congrArg Complex.exp
+    rw [← Complex.ofReal_log Real.pi_pos.le]
+    ring
+  change
+    ((1 / 2 : ℂ) * s * (s - 1) *
+        Complex.exp (-(s / 2) * (Real.log Real.pi : ℂ)) *
+          Complex.Gamma (s / 2)) * riemannZeta s =
+      (1 / 2 : ℂ) * s * (s - 1) * completedRiemannZeta s
+  rw [hpow, riemannZeta_def_of_ne_zero hs0]
+  unfold Complex.Gammaℝ at hgamma ⊢
+  have hGamma : Complex.Gamma (s / 2) ≠ 0 :=
+    (mul_ne_zero_iff.mp hgamma).2
+  field_simp [hgamma, hGamma]
+
+/-- The completed native operator characteristic is even in centered height
+on its natural strip.  This is the scalar parity relation behind the odd
+normalized response. -/
+theorem completedNativeOperatorCharacteristic_neg
+    {z : ℂ} (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    completedNativeOperatorCharacteristic (-z) =
+      completedNativeOperatorCharacteristic z := by
+  have hnegstrip :
+      operatorHeightParameter (-z) ∈ genuineCriticalStrip := by
+    rw [operatorHeightParameter_neg]
+    constructor <;> simp only [Complex.sub_re, Complex.one_re] <;>
+      linarith [hs.1, hs.2]
+  unfold completedNativeOperatorCharacteristic
+  rw [nativeScalar_eq_riemannZeta hnegstrip,
+    nativeScalar_eq_riemannZeta hs,
+    nativeXiCompletionFactor_mul_riemannZeta_eq_regularizedCompleted hnegstrip,
+    nativeXiCompletionFactor_mul_riemannZeta_eq_regularizedCompleted hs,
+    operatorHeightParameter_neg,
+    completedRiemannZeta_one_sub]
+  ring
 
 /-- Coefficient on a fixed total-degree diagonal.  Only even total degrees
 occur in the quotient of an odd response by `z - b`. -/

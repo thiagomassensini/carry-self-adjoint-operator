@@ -99,6 +99,20 @@ recurrence has also been rewritten as the full convolution coefficient of
 `q * Phi = -Phi'`; after `u = z^2`, its response coefficients are zero in
 even degree and `moments(n)` in degree `2n+1`.
 
+The centered reflection that makes this response odd is now a theorem rather
+than a comment:
+
+```text
+operatorHeightParameter(-z) = 1 - operatorHeightParameter(z)
+completedNativeOperatorCharacteristic(-z)
+  = completedNativeOperatorCharacteristic(z).
+```
+
+The proof first identifies the operator scalar with the polynomially
+regularized completed scalar on the open strip, then applies its exact
+reflection relation.  No camera, cutoff, target height, or fitted coefficient
+enters this parity theorem.
+
 At the two-variable coefficient level, Lean now proves that
 
 ```text
