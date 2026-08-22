@@ -32,35 +32,30 @@ theorem ldlLowerInv_diagonal_eq_one
     LDL.lowerInv hgram i i = 1 := by
   letI := gram.transpose.toNormedAddCommGroup hgram.transpose
   letI := gram.transpose.toInnerProductSpace hgram.transpose.posSemidef
-  let gs : Fin N → (Fin N → ℝ) :=
-    InnerProductSpace.gramSchmidt ℝ (Pi.basisFun ℝ (Fin N))
   have hdef :=
     InnerProductSpace.gramSchmidt_def'' ℝ
       (Pi.basisFun ℝ (Fin N)) i
-  change
-    (Pi.basisFun ℝ (Fin N)) i =
-      gs i +
-        ∑ k ∈ Finset.Iio i,
-          (inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i) /
-              (‖gs k‖ : ℝ) ^ 2) • gs k at hdef
-  have hzero : ∀ k : Fin N, k < i → gs k i = 0 := by
+  have hzero : ∀ k : Fin N, k < i →
+      (InnerProductSpace.gramSchmidt ℝ
+        (Pi.basisFun ℝ (Fin N)) k) i = 0 := by
     intro k hki
-    simpa [gs, LDL.lowerInv] using
+    simpa [LDL.lowerInv] using
       (LDL.lowerInv_triangular hgram hki)
   have hcoord := congrArg (fun v : Fin N → ℝ => v i) hdef
   simp only [Pi.add_apply, Finset.sum_apply, Pi.smul_apply, smul_eq_mul] at hcoord
-  have hsum :
+  have hsumzero (c : Fin N → ℝ) :
       (∑ k ∈ Finset.Iio i,
-        (inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i) /
-            (‖gs k‖ : ℝ) ^ 2) * gs k i) = 0 := by
+        c k *
+          (InnerProductSpace.gramSchmidt ℝ
+            (Pi.basisFun ℝ (Fin N)) k) i) = 0 := by
     apply Finset.sum_eq_zero
     intro k hk
     have hki : k < i := Finset.mem_Iio.mp hk
     rw [hzero k hki, mul_zero]
-  rw [hsum, add_zero] at hcoord
+  rw [hsumzero, add_zero] at hcoord
   have hbasis : (Pi.basisFun ℝ (Fin N) i) i = 1 := by simp
   rw [hbasis] at hcoord
-  simpa [gs, LDL.lowerInv] using hcoord.symm
+  simpa [LDL.lowerInv] using hcoord.symm
 
 /-- Earlier Gram columns are annihilated by each row of `LDL.lowerInv`. -/
 theorem ldlLowerInv_mul_eq_zero_of_lt
@@ -72,10 +67,14 @@ theorem ldlLowerInv_mul_eq_zero_of_lt
   have horth :=
     InnerProductSpace.gramSchmidt_inv_triangular ℝ
       (Pi.basisFun ℝ (Fin N)) hji
+  change
+    dotProduct
+      (Matrix.mulVec gram.transpose (Pi.basisFun ℝ (Fin N) j))
+      (star (LDL.lowerInv hgram i)) = 0 at horth
   have hsymm : ∀ a b : Fin N, gram a b = gram b a := by
     intro a b
     simpa using hgram.isHermitian.apply b a
-  simpa [LDL.lowerInv, Matrix.mul_apply, Matrix.mulVec, dotProduct,
+  simpa [Matrix.mul_apply, Matrix.mulVec, dotProduct,
     hsymm, mul_comm] using horth
 
 /-- Intrinsic row certificate used by the prefix argument. -/
@@ -112,11 +111,12 @@ theorem unitLowerOrthogonalRow_unique
   have hsymm : ∀ a b : Fin N, gram a b = gram b a := by
     intro a b
     simpa using hgram.isHermitian.apply b a
-  have hmul : ∀ j : Fin N, j < pivot → (gram *ᵥ d) j = 0 := by
+  have hmul : ∀ j : Fin N, j < pivot →
+      Matrix.mulVec gram d j = 0 := by
     intro j hj
     simpa [Matrix.mulVec, dotProduct, hsymm, mul_comm] using
       hd_orth j hj
-  have hquad : d ⬝ᵥ (gram *ᵥ d) = 0 := by
+  have hquad : dotProduct d (Matrix.mulVec gram d) = 0 := by
     rw [dotProduct]
     apply Finset.sum_eq_zero
     intro j hj
@@ -127,7 +127,8 @@ theorem unitLowerOrthogonalRow_unique
   have hd_zero : d = 0 := by
     by_contra hd_ne
     have hpos := hgram.dotProduct_mulVec_pos hd_ne
-    have : 0 < d ⬝ᵥ (gram *ᵥ d) := by simpa using hpos
+    have : 0 < dotProduct d (Matrix.mulVec gram d) := by
+      simpa using hpos
     linarith
   apply funext
   intro k
