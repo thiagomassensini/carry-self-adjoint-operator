@@ -69,12 +69,24 @@ def br2CameraBracketIncidence
       alignedCenter camera i - radius ≠ alignedCenter camera j := hlegs.1
   have hright :
       alignedCenter camera i + radius ≠ alignedCenter camera j := hlegs.2
+  have hleft' :
+      alignedCenter camera j ≠ alignedCenter camera i - radius := hleft.symm
+  have hright' :
+      alignedCenter camera j ≠ alignedCenter camera i + radius := hright.symm
   by_cases hij : i = j
   · subst j
-    simp [br2CameraBracketIncidence, hleft, hright]
+    rw [br2CameraBracketIncidence, Finsupp.add_apply, Finsupp.add_apply,
+      Finsupp.single_eq_of_ne hleft', Finsupp.single_eq_same,
+      Finsupp.single_eq_of_ne hright']
+    simp
   · have hcenter : alignedCenter camera i ≠ alignedCenter camera j :=
       fun h => hij (br2AlignedCenter_injective hcamera h)
-    simp [br2CameraBracketIncidence, hleft, hright, hcenter, hij]
+    have hcenter' : alignedCenter camera j ≠ alignedCenter camera i :=
+      hcenter.symm
+    rw [br2CameraBracketIncidence, Finsupp.add_apply, Finsupp.add_apply,
+      Finsupp.single_eq_of_ne hleft', Finsupp.single_eq_of_ne hcenter',
+      Finsupp.single_eq_of_ne hright']
+    simp [hij]
 
 /-- Every injectively indexed finite family of bracket incidences is linearly
 independent. -/

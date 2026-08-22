@@ -51,13 +51,25 @@ Hilbert state. -/
       alignedCenter camera i - radius ≠ alignedCenter camera j := hlegs.1
   have hright :
       alignedCenter camera i + radius ≠ alignedCenter camera j := hlegs.2
+  have hleft' :
+      alignedCenter camera j ≠ alignedCenter camera i - radius := hleft.symm
+  have hright' :
+      alignedCenter camera j ≠ alignedCenter camera i + radius := hright.symm
   by_cases hij : i = j
   · subst j
-    simp [br2CameraBracketVerticalState, lp.single_apply, hleft, hright]
+    simp only [br2CameraBracketVerticalState, lp.coeFn_add, Pi.add_apply]
+    rw [lp.single_apply_ne 2 _ _ hleft', lp.single_apply_self,
+      lp.single_apply_ne 2 _ _ hright']
+    simp
   · have hcenter : alignedCenter camera i ≠ alignedCenter camera j :=
       fun h => hij (br2AlignedCenter_injective hcamera h)
-    simp [br2CameraBracketVerticalState, lp.single_apply,
-      hleft, hright, hcenter, hij]
+    have hcenter' : alignedCenter camera j ≠ alignedCenter camera i :=
+      hcenter.symm
+    simp only [br2CameraBracketVerticalState, lp.coeFn_add, Pi.add_apply]
+    rw [lp.single_apply_ne 2 _ _ hleft',
+      lp.single_apply_ne 2 _ _ hcenter',
+      lp.single_apply_ne 2 _ _ hright']
+    simp [hij]
 
 /-- Every injectively indexed finite bracket family is linearly independent
 in the actual complex vertical Hilbert space. -/
@@ -87,8 +99,10 @@ theorem br2CameraBracketVerticalState_linearIndependent_of_injective
         coeff j *
           br2CameraBracketVerticalState camera radius (index j)
             (alignedCenter camera (index i))) = 0 := by
-    simpa using congrArg
+    have heval' := congrArg
       (fun v : CarryVerticalL2 => v (alignedCenter camera (index i))) hsum
+    simpa only [lp.coeFn_sum, Finset.sum_apply, lp.coeFn_smul,
+      lp.coeFn_zero, Pi.smul_apply, Pi.zero_apply, smul_eq_mul] using heval'
   simp_rw [hdiag] at heval
   have hscaled : coeff i * (-2 : ℂ) = 0 := by
     simpa using heval
@@ -121,14 +135,14 @@ theorem br2OddCameraBracketVerticalState_linearIndependent
 /-- An injective linear analysis preserves every linearly independent family. -/
 theorem linearIndependent_map_of_injective
     {ι E F : Type*}
-    [AddCommMonoid E] [Module ℂ E]
-    [AddCommMonoid F] [Module ℂ F]
+    [AddCommGroup E] [Module ℂ E]
+    [AddCommGroup F] [Module ℂ F]
     {v : ι → E} (hv : LinearIndependent ℂ v)
     (analysis : E →ₗ[ℂ] F)
     (hanalysis : Function.Injective analysis) :
-    LinearIndependent ℂ (fun i => analysis (v i)) := by
+    LinearIndependent ℂ (analysis ∘ v) := by
   have hker : LinearMap.ker analysis = ⊥ :=
-    LinearMap.ker_eq_bot.mpr hanalysis
+    LinearMap.ker_eq_bot_of_injective hanalysis
   exact hv.map' analysis hker
 
 /-- The actual enriched TFVD analysis preserves bracket-family independence
