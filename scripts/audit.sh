@@ -5,7 +5,10 @@ cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
 
-# Fail fast on the new ORDER layer before rebuilding the full import surface.
+# Fail fast on the canonical LDL compatibility layer.
+lake build --wfail CarrySelfAdjointOperator.PositiveLowerWhiteningUniqueness
+
+# Keep the existing focused audits before rebuilding the full import surface.
 lake build --wfail CarrySelfAdjointOperator.JacobiOrderPolynomial
 lake build --wfail CarrySelfAdjointOperator.ExactProjectiveMatrixTower
 lake build --wfail CarrySelfAdjointOperator.CanonicalProjectiveJacobiTower
