@@ -1,15 +1,17 @@
 {
   "schema_version": 1,
   "theorems": [
-    {"qualified": "CarrySelfAdjointOperator.LDL_lowerInv_diag_eq_one"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalLDLInverseFactor_diag_pos"},
-    {"qualified": "CarrySelfAdjointOperator.positiveLowerFactor_unique_of_transpose_mul_self_eq"},
-    {"qualified": "CarrySelfAdjointOperator.transpose_mul_self_eq_invOf_of_whitening"},
-    {"qualified": "CarrySelfAdjointOperator.positiveLowerWhitening_unique"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalLDLInverseFactor_succ_principal_isPositiveLowerWhitening"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalLDLInverseFactor_succ_principal"},
+    {"qualified": "CarrySelfAdjointOperator.ldlLowerInv_diagonal_eq_one"},
+    {"qualified": "CarrySelfAdjointOperator.ldlLowerInv_mul_eq_zero_of_lt"},
+    {"qualified": "CarrySelfAdjointOperator.unitLowerOrthogonalRow_unique"},
+    {"qualified": "CarrySelfAdjointOperator.ldlLowerInv_hankel_succ_principal"},
+    {"qualified": "CarrySelfAdjointOperator.ldlLowerInvPrincipalCompatible"},
+    {"qualified": "CarrySelfAdjointOperator.ldlDiag_succ_principal_of_lowerInv"},
+    {"qualified": "CarrySelfAdjointOperator.ldlDiagEntries_castSucc_of_lowerInv"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalLDLScale_castSucc_of_lowerInv"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalLDLInverseFactor_succ_principal_of_lowerInv"},
     {"qualified": "CarrySelfAdjointOperator.canonicalLDLPrincipalCompatible"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalFiniteJacobiSection_isExactPrincipalTower_canonical"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalJacobiTowerLimitMatrix_submatrix_canonical"}
+    {"qualified": "CarrySelfAdjointOperator.canonicalFiniteJacobiSection_isExactPrincipalTower_unconditional"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalJacobiTowerLimitMatrix_submatrix_unconditional"}
   ]
 }
