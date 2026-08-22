@@ -9,11 +9,12 @@ bash scripts/static_audit.sh
 lake build --wfail CarrySelfAdjointOperator.PositiveLowerWhiteningUniqueness
 lake build --wfail CarrySelfAdjointOperator.PositiveLowerFactorUniqueness
 lake build --wfail CarrySelfAdjointOperator.PositiveLowerWhiteningRigidity
+lake build --wfail CarrySelfAdjointOperator.CanonicalProjectiveJacobiTower
+lake build --wfail CarrySelfAdjointOperator.LDLCompatibilityAudit
 
 # Keep the existing focused audits before rebuilding the full import surface.
 lake build --wfail CarrySelfAdjointOperator.JacobiOrderPolynomial
 lake build --wfail CarrySelfAdjointOperator.ExactProjectiveMatrixTower
-lake build --wfail CarrySelfAdjointOperator.CanonicalProjectiveJacobiTower
 
 lake build --wfail CarrySelfAdjointOperator
 lake build --wfail CarrySelfAdjointOperator.Audit
