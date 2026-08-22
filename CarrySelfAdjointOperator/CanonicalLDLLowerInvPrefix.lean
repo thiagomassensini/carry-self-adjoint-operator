@@ -16,7 +16,7 @@ characterized by three pieces of data:
 * strict lower triangular support;
 * orthogonality to every earlier Gram column.
 
-Positive definiteness makes that row unique.  Since an old row of the
+Positive definiteness makes that row unique. Since an old row of the
 order-`N+1` factor satisfies the same finite system as the corresponding
 order-`N` row, the old principal block is forced to agree exactly.
 -/
@@ -69,13 +69,14 @@ theorem ldlLowerInv_mul_eq_zero_of_lt
       (Pi.basisFun ℝ (Fin N)) hji
   change
     dotProduct
-      (Matrix.mulVec gram.transpose (Pi.single j 1))
-      (star (LDL.lowerInv hgram i)) = 0 at horth
-  rw [Matrix.mulVec_single_one] at horth
+      (Matrix.mulVec gram.transpose ((Pi.basisFun ℝ (Fin N)) j))
+      (star (InnerProductSpace.gramSchmidt ℝ
+        (Pi.basisFun ℝ (Fin N)) i)) = 0 at horth
   have hsymm : ∀ a b : Fin N, gram a b = gram b a := by
     intro a b
     simpa using hgram.isHermitian.apply b a
-  simpa [Matrix.mul_apply, dotProduct, hsymm, mul_comm] using horth
+  simpa [LDL.lowerInv, Matrix.mulVec_single_one,
+    Matrix.mul_apply, dotProduct, hsymm, mul_comm] using horth
 
 /-- Intrinsic row certificate used by the prefix argument. -/
 def IsUnitLowerOrthogonalRow
