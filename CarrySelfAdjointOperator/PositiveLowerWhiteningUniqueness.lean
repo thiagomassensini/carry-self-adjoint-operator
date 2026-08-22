@@ -32,10 +32,10 @@ theorem LDL_lowerInv_diag_eq_one
     LDL.lowerInv hgram i i = 1 := by
   letI := gram.transpose.toNormedAddCommGroup hgram.transpose
   letI := gram.transpose.toInnerProductSpace hgram.transpose.posSemidef
-  letI : CompleteSpace (Fin N → ℝ) :=
-    FiniteDimensional.complete ℝ (Fin N → ℝ)
   let gs : Fin N → (Fin N → ℝ) :=
     InnerProductSpace.gramSchmidt ℝ (Pi.basisFun ℝ (Fin N))
+  letI (k : Fin N) : CompleteSpace (ℝ ∙ gs k) :=
+    FiniteDimensional.complete ℝ (ℝ ∙ gs k)
   have hdef :=
     InnerProductSpace.gramSchmidt_def ℝ
       (Pi.basisFun ℝ (Fin N)) i
