@@ -84,6 +84,13 @@ The construction does not take a zero list or target heights as input.
   `B_N = U_N diag(B_N^G, T_N B_N^G)`: it simultaneously whitens the full
   parity Gram `diag(G_N,K_N)` and converts the Green even/odd grading into
   the signed-sector reflection, in both analysis and adjoint forms;
+- promotes the compatible finite signed tower to the closed Hilbert span of
+  the Green jets, proves that the closed odd sector is exactly the orthogonal
+  complement of the closed even sector, and constructs the resulting global
+  bounded self-adjoint parity reflection `R = 2 P_even - I`;
+- proves the exact finite/global law `R V_N = V_N S_N` at every order and its
+  compatibility with every cutoff inclusion, so this reflection is one
+  cutoff-independent Hilbert operator rather than a family of fitted maps;
 - proves the exact projective block law: a lower-block-triangular extension of
   the inverse whitening factor forces the old Jacobi matrix to be literally
   the upper-left block of the new one.
@@ -173,3 +180,6 @@ carriers are recorded in
 The closed-span Hilbert promotion and its dense compatible finite tower are
 recorded separately in
 [`docs/green-jet-signed-height-hilbert-space.md`](docs/green-jet-signed-height-hilbert-space.md).
+The global closed-sector decomposition, self-adjoint parity reflection, and
+its exact finite/cutoff restrictions are recorded in
+[`docs/green-jet-parity-reflection.md`](docs/green-jet-parity-reflection.md).

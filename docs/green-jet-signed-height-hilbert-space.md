@@ -119,12 +119,10 @@ Thus the compatible finite signed tower is dense in the canonical carrier.
 Together with completeness of the automatically completed carrier, this is
 the Hilbert completion statement supplied by the geometry.
 
-## 6. Formal boundary after this step
+## 6. Next operator layer
 
 The Hilbert space, finite linear isometries, exact cutoff commutation, nested
-ranges, inverse synthesis, and density are now formalized.  The next layer is
-operator-theoretic: construct the compatible dense-domain operator on this
-carrier, prove the required symmetry/self-adjointness or closure statement,
-and identify that operator realization with the concrete completed state.
-
-The present module does not assert those later operator facts.
+ranges, inverse synthesis, and density are formalized here.  The canonical
+bounded parity reflection on this carrier has since been constructed and is
+recorded in [`green-jet-parity-reflection.md`](green-jet-parity-reflection.md).
+The unbounded height-operator closure remains a separate layer.
