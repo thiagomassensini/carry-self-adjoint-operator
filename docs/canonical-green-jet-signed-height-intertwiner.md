@@ -158,13 +158,25 @@ literally equal in the inductive limit.
 No asymptotic estimate enters this construction: cutoff compatibility is an
 exact cocycle identity.
 
-## Remaining operator-theoretic layer
+## Hilbert promotion
 
-The exact metric completion and its finite isometric charts are now
-constructed.  What is not yet claimed is a completed Hilbert-space operator:
-the metric quotient must still be promoted to a compatible real linear inner
-product structure, the finite signed reflections and finite height operators
-must be shown to descend or close there, and the resulting realization must be
-identified with the actual completed Green/camera state.  Once that ambient
-state realization is available, the existing Naimark adjoint fixes its camera
-readout canonically.
+`GreenJetSignedHeightHilbertSpace.lean` now supplies the compatible linear
+inner-product structure without adding an unrelated carrier.  It takes the
+closed real span of the Green jets, realizes the order-`N` signed vectors as
+the rows of `A_N` synthesized against the raw prefix, and proves that they are
+orthonormal.  Hence every finite signed-coordinate space enters by a linear
+isometry.  These isometries commute exactly with every `C_NM^T`, their ranges
+are nested, and the closure of the supremum of all finite ranges is the whole
+closed Green span.
+
+If the original ambient inner-product space is not assumed complete, the
+module first embeds it canonically in its uniform completion.  The exact Gram
+representation and the two global independence hypotheses survive that
+embedding, so the resulting closed span is a genuine complete real Hilbert
+space.
+
+The remaining operator-theoretic layer is narrower: the finite signed
+reflections and finite height operators must be shown to descend or close on
+this Hilbert carrier, and the resulting realization must be identified with
+the concrete completed Green/camera state.  The repository does not yet claim
+those operator closures or that final state identification.

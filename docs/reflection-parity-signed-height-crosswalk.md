@@ -192,20 +192,21 @@ reflection.  Hence `C_NM^T` gives the canonical isometric inclusion.  The
 metric inductive limit of these inclusions and its complete metric completion
 are constructed in `CompletedGreenJetSignedHeightIntertwiner.lean`.
 
-The remaining object is the compatible bounded Hilbert realization from the
-actual completed Green/camera state into that all-order completion.  It must
-promote the completed metric carrier to the required linear inner-product
-structure, recover the finite `B_N`, and preserve
+The compatible Hilbert realization of the abstract Green-jet tower is now
+constructed in `GreenJetSignedHeightHilbertSpace.lean`.  Its carrier is the
+closed real span of the jets; its finite charts recover the finite `B_N`, and
+they preserve
 
 ```text
 B R = S B
 ```
 
-together with the Green kernel, logarithmic jets, completion channel, and
-projective cutoff maps.  The Naimark adjoint already fixes the camera readout
-once that ambient state realization is supplied.  What remains is therefore
-the Hilbert/operator realization and its identification with the completed
-state, not a new choice of finite intertwiner or cutoff map.
+together with the projective cutoff maps.  Their ranges are nested and dense,
+and the carrier is complete after the canonical ambient completion.  What
+remains is to close/descend the operator family and identify this abstract
+closed-span realization with the concrete completed state and its additional
+channels, not a new choice of finite intertwiner, Hilbert carrier, or cutoff
+map.
 
 The resulting exact chain is therefore
 

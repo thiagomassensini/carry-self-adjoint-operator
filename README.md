@@ -167,5 +167,9 @@ The structural derivation of the causal reconstruction theorem is recorded in
 The cyclic center/leg channel decomposition is recorded in
 [`docs/bracket-residue-reflection-orbit.md`](docs/bracket-residue-reflection-orbit.md).
 The finite reflection-to-signed-height construction, its exact transported
-cutoff cocycle, and the resulting complete metric carrier are recorded in
+cutoff cocycle, and the resulting complete metric and canonical Hilbert
+carriers are recorded in
 [`docs/canonical-green-jet-signed-height-intertwiner.md`](docs/canonical-green-jet-signed-height-intertwiner.md).
+The closed-span Hilbert promotion and its dense compatible finite tower are
+recorded separately in
+[`docs/green-jet-signed-height-hilbert-space.md`](docs/green-jet-signed-height-hilbert-space.md).
