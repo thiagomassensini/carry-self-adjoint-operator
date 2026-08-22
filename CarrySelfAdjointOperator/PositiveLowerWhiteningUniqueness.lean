@@ -33,32 +33,33 @@ theorem LDL_lowerInv_diag_eq_one
   letI := gram.transpose.toInnerProductSpace hgram.transpose.posSemidef
   let gs : Fin N → (Fin N → ℝ) :=
     InnerProductSpace.gramSchmidt ℝ (Pi.basisFun ℝ (Fin N))
-  let coeff : Fin N → ℝ := fun k =>
-    inner ℝ (gs k) (Pi.basisFun ℝ (Fin N) i) /
-      (‖gs k‖ : ℝ) ^ 2
-  have hdecomp :
-      Pi.basisFun ℝ (Fin N) i =
-        gs i + ∑ k ∈ Finset.Iio i, coeff k • gs k := by
-    simpa [gs, coeff] using
-      (InnerProductSpace.gramSchmidt_def'' ℝ
-        (Pi.basisFun ℝ (Fin N)) i)
+  have hdef :=
+    InnerProductSpace.gramSchmidt_def ℝ
+      (Pi.basisFun ℝ (Fin N)) i
   have hzero : ∀ k : Fin N, k < i → gs k i = 0 := by
     intro k hki
     simpa [gs, LDL.lowerInv] using
       (LDL.lowerInv_triangular hgram hki)
   have hsum :
-      (∑ k ∈ Finset.Iio i, coeff k • gs k) i = 0 := by
-    rw [Finset.sum_apply]
+      (∑ k ∈ Finset.Iio i,
+        ((ℝ ∙ gs k).starProjection
+          (Pi.basisFun ℝ (Fin N) i)) i) = 0 := by
     apply Finset.sum_eq_zero
     intro k hk
     have hki : k < i := Finset.mem_Iio.mp hk
+    rw [Submodule.starProjection_singleton]
     simp [hzero k hki]
-  have hcoord := congrArg (fun v : Fin N → ℝ => v i) hdecomp
-  simp only [Pi.add_apply] at hcoord
-  rw [hsum, add_zero] at hcoord
+  have hcoord := congrArg (fun v : Fin N → ℝ => v i) hdef
+  simp only [Pi.sub_apply, Finset.sum_apply] at hcoord
+  change gs i i =
+    (Pi.basisFun ℝ (Fin N) i) i -
+      (∑ k ∈ Finset.Iio i,
+        ((ℝ ∙ gs k).starProjection
+          (Pi.basisFun ℝ (Fin N) i)) i) at hcoord
+  rw [hsum, sub_zero] at hcoord
   have hbasis : (Pi.basisFun ℝ (Fin N) i) i = 1 := by simp
   rw [hbasis] at hcoord
-  simpa [gs, LDL.lowerInv] using hcoord.symm
+  simpa [gs, LDL.lowerInv] using hcoord
 
 /-- Pointwise diagonal formula for the normalized inverse LDL factor. -/
 theorem canonicalLDLInverseFactor_diag
@@ -66,8 +67,10 @@ theorem canonicalLDLInverseFactor_diag
     (hgram : gram.PosDef) (i : Fin N) :
     canonicalLDLInverseFactor hgram i i =
       canonicalLDLScale hgram i := by
-  simp [canonicalLDLInverseFactor, Matrix.mul_apply,
-    LDL_lowerInv_diag_eq_one hgram i]
+  change
+    (Matrix.diagonal (canonicalLDLScale hgram) *
+      LDL.lowerInv hgram) i i = canonicalLDLScale hgram i
+  rw [Matrix.diagonal_mul, LDL_lowerInv_diag_eq_one hgram i, mul_one]
 
 /-- The canonical normalized inverse LDL factor has strictly positive
 entries on its diagonal. -/
