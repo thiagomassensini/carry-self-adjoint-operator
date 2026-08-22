@@ -1,15 +1,20 @@
 import CarrySelfAdjointOperator.ExactProjectiveMatrixTower
 import CarrySelfAdjointOperator.CanonicalFiniteHeight
+import CarrySelfAdjointOperator.PositiveLowerWhiteningRigidity
 import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.Tactic
 
 /-!
 # Canonical LDL compatibility as the exact projective Jacobi gate
 
-This module reduces the canonical projective-tower problem to one concrete
-prefix identity for the normalized inverse LDL factors.  Once that identity
-is supplied, lower triangularity removes the new boundary coordinate from
-old rows and the Jacobi congruence restricts exactly.
+The normalized inverse LDL factor is lower triangular, has strictly positive
+diagonal, and whitens the positive Hankel Gram matrix exactly.  The principal
+block of the next-order factor has the same three properties for the old
+Hankel section.  Positive lower-whitening rigidity therefore forces equality
+with the old canonical factor.
+
+Consequently the canonical finite Jacobi sections form an exact principal
+tower and determine one infinite coefficient matrix entry by entry.
 -/
 
 namespace CarrySelfAdjointOperator
@@ -56,8 +61,7 @@ theorem finiteJacobiTransport_succ_principal_of_lowerTriangular
   simp [hupperRight i, hfactorApply, hshiftedApply]
 
 /-- Exact prefix compatibility demanded from the canonical normalized inverse
-LDL factors.  This is the remaining algebraic gate in the Cholesky/LDL route
-from the research note. -/
+LDL factors. -/
 def IsCanonicalLDLPrincipalCompatible
     (moments : ℕ → ℝ)
     (hgram : ∀ N : ℕ, (hankelGram moments N).PosDef) : Prop :=
@@ -65,6 +69,68 @@ def IsCanonicalLDLPrincipalCompatible
     (canonicalLDLInverseFactor (hgram (N + 1))).submatrix
         Fin.castSucc Fin.castSucc =
       canonicalLDLInverseFactor (hgram N)
+
+/-- The old principal block of the next-order canonical LDL factor is itself
+a positive lower triangular whitening of the old Hankel Gram matrix. -/
+theorem canonicalLDLInverseFactor_succ_principal_isPositiveLowerWhitening
+    (moments : ℕ → ℝ)
+    (hgram : ∀ N : ℕ, (hankelGram moments N).PosDef)
+    (N : ℕ) :
+    IsPositiveLowerWhitening
+      (hankelGram moments N)
+      ((canonicalLDLInverseFactor (hgram (N + 1))).submatrix
+        Fin.castSucc Fin.castSucc) := by
+  let largeFactor := canonicalLDLInverseFactor (hgram (N + 1))
+  let smallFactor : Matrix (Fin N) (Fin N) ℝ :=
+    largeFactor.submatrix Fin.castSucc Fin.castSucc
+  have hupperRight : ∀ i : Fin N,
+      largeFactor (Fin.castSucc i) (Fin.last N) = 0 := by
+    intro i
+    exact canonicalLDLInverseFactor_triangular
+      (hgram (N + 1)) (Fin.castSucc_lt_last i)
+  have hproject :=
+    finiteJacobiTransport_succ_principal_of_lowerTriangular
+      (smallFactor := smallFactor)
+      (smallShifted := hankelGram moments N)
+      (largeFactor := largeFactor)
+      (largeShifted := hankelGram moments (N + 1))
+      rfl (hankelGram_succ_principal moments N) hupperRight
+  have hwhite :
+      finiteJacobiTransport smallFactor (hankelGram moments N) = 1 := by
+    rw [canonicalLDLInverseFactor_whitens (hgram (N + 1))] at hproject
+    simpa using hproject.symm
+  refine ⟨?_, ?_, hwhite⟩
+  · intro i j hij
+    exact canonicalLDLInverseFactor_triangular
+      (hgram (N + 1)) (by simpa using hij)
+  · intro i
+    exact canonicalLDLInverseFactor_diag_pos
+      (hgram (N + 1)) (Fin.castSucc i)
+
+/-- The normalized inverse LDL factors are canonically compatible under
+principal restriction.  This closes the Cholesky/LDL gate from the exact
+projective-tower argument. -/
+theorem canonicalLDLInverseFactor_succ_principal
+    (moments : ℕ → ℝ)
+    (hgram : ∀ N : ℕ, (hankelGram moments N).PosDef)
+    (N : ℕ) :
+    (canonicalLDLInverseFactor (hgram (N + 1))).submatrix
+        Fin.castSucc Fin.castSucc =
+      canonicalLDLInverseFactor (hgram N) := by
+  exact positiveLowerWhitening_unique
+    (hgram N)
+    (canonicalLDLInverseFactor_succ_principal_isPositiveLowerWhitening
+      moments hgram N)
+    (canonicalLDLInverseFactor_isPositiveLowerWhitening (hgram N))
+
+/-- Canonical LDL compatibility in the interface consumed by the projective
+Jacobi tower. -/
+theorem canonicalLDLPrincipalCompatible
+    (moments : ℕ → ℝ)
+    (hgram : ∀ N : ℕ, (hankelGram moments N).PosDef) :
+    IsCanonicalLDLPrincipalCompatible moments hgram := by
+  intro N
+  exact canonicalLDLInverseFactor_succ_principal moments hgram N
 
 /-- Principal compatibility of the canonical LDL factors implies exact
 projectivity of the canonical finite Jacobi sections. -/
@@ -90,8 +156,18 @@ theorem canonicalFiniteJacobiSection_isExactPrincipalTower
     exact canonicalLDLInverseFactor_triangular
       (hgram (N + 1)) (Fin.castSucc_lt_last i)
 
-/-- Infinite coefficient matrix selected by the compatible canonical LDL
-Jacobi sections. -/
+/-- The canonical finite Jacobi sections form an exact principal tower with
+no external compatibility hypothesis. -/
+theorem canonicalFiniteJacobiSection_isExactPrincipalTower_canonical
+    (moments : ℕ → ℝ)
+    (hgram : ∀ N : ℕ, (hankelGram moments N).PosDef) :
+    IsExactPrincipalTower
+      (fun N => canonicalFiniteJacobiSection moments N (hgram N)) :=
+  canonicalFiniteJacobiSection_isExactPrincipalTower
+    moments hgram (canonicalLDLPrincipalCompatible moments hgram)
+
+/-- Infinite coefficient matrix selected by the canonical LDL Jacobi
+sections. -/
 def canonicalJacobiTowerLimitMatrix
     (moments : ℕ → ℝ)
     (hgram : ∀ N : ℕ, (hankelGram moments N).PosDef) :
@@ -100,7 +176,7 @@ def canonicalJacobiTowerLimitMatrix
     (fun N => canonicalFiniteJacobiSection moments N (hgram N))
 
 /-- Every canonical finite Jacobi section is exactly recovered from the
-infinite coefficient matrix once LDL prefix compatibility is proved. -/
+infinite coefficient matrix once LDL prefix compatibility is supplied. -/
 theorem canonicalJacobiTowerLimitMatrix_submatrix
     (moments : ℕ → ℝ)
     (hgram : ∀ N : ℕ, (hankelGram moments N).PosDef)
@@ -113,6 +189,20 @@ theorem canonicalJacobiTowerLimitMatrix_submatrix
   exactPrincipalTowerLimit_submatrix
     (canonicalFiniteJacobiSection_isExactPrincipalTower
       moments hgram hcompat) N
+
+/-- Unconditional exact recovery of every canonical finite Jacobi section
+from the single infinite coefficient matrix, assuming only strict positivity
+of the Hankel Gram sections. -/
+theorem canonicalJacobiTowerLimitMatrix_submatrix_canonical
+    (moments : ℕ → ℝ)
+    (hgram : ∀ N : ℕ, (hankelGram moments N).PosDef)
+    (N : ℕ) :
+    (canonicalJacobiTowerLimitMatrix moments hgram).submatrix
+        (fun i : Fin N => (i : ℕ))
+        (fun i : Fin N => (i : ℕ)) =
+      canonicalFiniteJacobiSection moments N (hgram N) :=
+  canonicalJacobiTowerLimitMatrix_submatrix
+    moments hgram (canonicalLDLPrincipalCompatible moments hgram) N
 
 end
 
