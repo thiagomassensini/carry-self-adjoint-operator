@@ -124,10 +124,11 @@ theorem dotProduct_limitSection_mulVec
     (tower : ExactProjectiveJacobiTower)
     (N : ℕ) (x y : Fin N → ℝ) :
     dotProduct x
-        ((tower.limitMatrix.submatrix
-          (fun i : Fin N => (i : ℕ))
-          (fun i : Fin N => (i : ℕ))) *ᵥ y) =
-      dotProduct x (tower.matrix N *ᵥ y) := by
+        (Matrix.mulVec
+          (tower.limitMatrix.submatrix
+            (fun i : Fin N => (i : ℕ))
+            (fun i : Fin N => (i : ℕ))) y) =
+      dotProduct x (Matrix.mulVec (tower.matrix N) y) := by
   rw [tower.limitMatrix_submatrix N]
 
 end ExactProjectiveJacobiTower
