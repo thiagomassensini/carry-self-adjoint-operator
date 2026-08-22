@@ -80,6 +80,10 @@ The construction does not take a zero list or target heights as input.
 - constructs the canonical signed realization `H_N = T_N ⊕ (-T_N)`, proves
   exact symmetry and sector-factorization of its characteristic polynomial,
   and proves that the symmetric sector swap satisfies `S H_N S = -H_N`;
+- constructs the canonical finite Green-jet/signed-height intertwiner
+  `B_N = U_N diag(B_N^G, T_N B_N^G)`: it simultaneously whitens the full
+  parity Gram `diag(G_N,K_N)` and converts the Green even/odd grading into
+  the signed-sector reflection, in both analysis and adjoint forms;
 - proves the exact projective block law: a lower-block-triangular extension of
   the inverse whitening factor forces the old Jacobi matrix to be literally
   the upper-left block of the new one.
@@ -162,3 +166,5 @@ The structural derivation of the causal reconstruction theorem is recorded in
 [`docs/causal-bracket-state-uniqueness.md`](docs/causal-bracket-state-uniqueness.md).
 The cyclic center/leg channel decomposition is recorded in
 [`docs/bracket-residue-reflection-orbit.md`](docs/bracket-residue-reflection-orbit.md).
+The finite reflection-to-signed-height construction is recorded in
+[`docs/canonical-green-jet-signed-height-intertwiner.md`](docs/canonical-green-jet-signed-height-intertwiner.md).

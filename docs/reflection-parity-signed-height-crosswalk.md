@@ -117,26 +117,82 @@ charpoly(H_N) = charpoly(T_N) charpoly(-T_N).
 
 These statements are now formalized in `SignedFiniteHeightOperator.lean`.
 
-## What is proved and what remains the bridge
+## The finite bridge now constructed
+
+For an order `N`, let `G_N` and `K_N` be the even and odd Green-jet Gram
+sections.  Let `B_N^G` be the canonical LDL whitening of `G_N`, so that
+
+```text
+B_N^G G_N (B_N^G)^T = I,
+J_N = B_N^G K_N (B_N^G)^T.
+```
+
+The functional-calculus height is exactly the positive inverse square root,
+and therefore
+
+```text
+T_N J_N T_N = I.
+```
+
+It follows that the block matrix
+
+```text
+W_N = diag(B_N^G, T_N B_N^G)
+```
+
+whitens `diag(G_N,K_N)`.  Let
+
+```text
+U_N = (1/sqrt(2)) [ I  I]
+                    [ I -I]
+```
+
+be the canonical Hadamard rotation.  It satisfies
+
+```text
+U_N^T = U_N,
+U_N^2 = I,
+U_N Gamma = S U_N.
+```
+
+Hence the finite map
+
+```text
+B_N = U_N W_N
+```
+
+is forced and obeys the two exact identities
+
+```text
+B_N Gamma = S B_N,
+B_N diag(G_N,K_N) B_N^T = I.
+```
+
+The transpose identity `Gamma B_N^T = B_N^T S` is also proved.  This closes
+the finite coefficient-level intertwiner without a supplied spectrum or an
+order-specific fitted matrix.  The construction is formalized in
+`GreenJetSignedHeightIntertwiner.lean`.
+
+## What remains beyond the finite bridge
 
 The residue reflection `R_res`, the reflected Green-state involution, and the
 signed-sector swap `S` have the same abstract signature: symmetric
 involutions with an even/odd decomposition.  They do not yet have the same
 type, so similarity of formulas is not an identification.
 
-The next canonical object is a concrete bounded readout/intertwiner `B` from
-the completed Green/camera state into the height realization satisfying an
-equation of the form
+The remaining object is the compatible bounded realization from the actual
+completed Green/camera state into the all-order jet completion.  Its finite
+sections must recover the `B_N` above and preserve
 
 ```text
-B R_res = S B
+B R = S B
 ```
 
-together with preservation of the Green kernel, the logarithmic jets, and the
-completion channel.  Only after constructing such a `B` can residue parity
-be transported into signed-height parity.  The source notes identify this as
-the missing state-readout problem; the present formalization isolates both
-sides of that equation without assuming the bridge.
+together with the Green kernel, logarithmic jets, completion channel, and
+projective cutoff maps.  The Naimark adjoint already fixes the camera readout
+once that ambient state realization is supplied.  What remains is therefore
+the state realization and its compatibility with the projective tower, not a
+new choice of finite intertwiner.
 
 The resulting exact chain is therefore
 
