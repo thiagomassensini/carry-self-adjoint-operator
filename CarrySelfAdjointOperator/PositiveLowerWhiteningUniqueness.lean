@@ -49,7 +49,7 @@ theorem LDL_lowerInv_diag_eq_one
   have hsum :
       (∑ k ∈ Finset.Iio i,
         ((‖gs k‖ : ℝ)⁻¹ ^ 2 *
-            inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i)) * gs k i) = 0 := by
+            inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i)) • gs k i) = 0 := by
     apply Finset.sum_eq_zero
     intro k hk
     have hki : k < i := Finset.mem_Iio.mp hk
@@ -60,10 +60,11 @@ theorem LDL_lowerInv_diag_eq_one
       gs i i +
         ∑ k ∈ Finset.Iio i,
           ((‖gs k‖ : ℝ)⁻¹ ^ 2 *
-              inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i)) * gs k i at hcoord
+              inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i)) • gs k i at hcoord
   have hbasis : (Pi.basisFun ℝ (Fin N) i) i = 1 := by simp
   rw [hbasis, hsum, add_zero] at hcoord
-  simpa [gs, LDL.lowerInv] using hcoord.symm
+  change gs i i = 1
+  exact hcoord.symm
 
 /-- Pointwise diagonal formula for the normalized inverse LDL factor. -/
 theorem canonicalLDLInverseFactor_diag
