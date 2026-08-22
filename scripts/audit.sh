@@ -7,6 +7,7 @@ bash scripts/static_audit.sh
 
 # Fail first on the exact rowwise LDL prefix proof requested by the project.
 lake build --wfail CarrySelfAdjointOperator.CanonicalLDLLowerInvPrefix
+lake build --wfail CarrySelfAdjointOperator.CanonicalLDLPrefixReduction
 
 # Legacy positive-lower-whitening route remains below until the exact
 # rowwise proof has replaced it completely.
