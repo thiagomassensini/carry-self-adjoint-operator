@@ -92,7 +92,9 @@ theorem inner_greenJetEvenSectorJet_succ_eq_inner_greenJetOddSectorJet
     ⟪jet (Sum.inl (i + 1)), jet (Sum.inl j)⟫_ℝ =
         moments ((i + 1) + j) := by
       simpa [greenWronskianMomentKernel, Matrix.gram] using heven.symm
-    _ = moments (i + j + 1) := by congr 1 <;> omega
+    _ = moments (i + j + 1) := by
+      congr 1
+      omega
     _ = ⟪jet (Sum.inr i), jet (Sum.inr j)⟫_ℝ := by
       simpa [greenWronskianMomentKernel, Matrix.gram] using hodd
 
@@ -114,7 +116,9 @@ theorem inner_greenJetEvenSectorJet_succ_eq_inner_succ_right
     ⟪jet (Sum.inl (i + 1)), jet (Sum.inl j)⟫_ℝ =
         moments ((i + 1) + j) := by
       simpa [greenWronskianMomentKernel, Matrix.gram] using hleft.symm
-    _ = moments (i + (j + 1)) := by congr 1 <;> omega
+    _ = moments (i + (j + 1)) := by
+      congr 1
+      omega
     _ = ⟪jet (Sum.inl i), jet (Sum.inl (j + 1))⟫_ℝ := by
       simpa [greenWronskianMomentKernel, Matrix.gram] using hright
 
@@ -130,18 +134,24 @@ theorem greenJetJacobiCore_energyIdentity
           (y : greenJetEvenHilbertSubspace jet)⟫_ℝ =
         ⟪greenJetEnergyFactorCore heven x,
           greenJetEnergyFactorCore heven y⟫_ℝ := by
-  apply linearMaps_formalAdjoint_of_basis
+  have hcore := linearMaps_formalAdjoint_of_basis
+    (I := ℕ) (J := ℕ)
+    (E₀ := greenJetEvenOperatorCore jet)
+    (F₀ := greenJetEvenOperatorCore jet)
+    (E₁ := greenJetOddHilbertSubspace jet)
+    (F₁ := greenJetEvenHilbertSubspace jet)
     (greenJetEvenOperatorCoreBasis heven)
     (greenJetEvenOperatorCoreBasis heven)
     (greenJetJacobiCoreMap heven)
     (greenJetEvenOperatorCore jet).subtype
     (greenJetEnergyFactorCore heven).toFun
     (greenJetEnergyFactorCore heven).toFun
-  intro i j
-  simpa only [greenJetEvenOperatorCoreBasis_apply,
-    greenJetJacobiCoreMap_jet, greenJetEnergyFactorCore_jet] using
-      inner_greenJetEvenSectorJet_succ_eq_inner_greenJetOddSectorJet
-        hrep i j
+    (fun i j => by
+      simpa only [greenJetEvenOperatorCoreBasis_apply,
+        greenJetJacobiCoreMap_jet, greenJetEnergyFactorCore_jet] using
+          inner_greenJetEvenSectorJet_succ_eq_inner_greenJetOddSectorJet
+            hrep i j)
+  exact hcore
 
 /-- The minimal Green-jet Jacobi operator is symmetric on its algebraic core. -/
 theorem greenJetJacobiCore_formalSelfAdjoint
@@ -154,17 +164,23 @@ theorem greenJetJacobiCore_formalSelfAdjoint
           (y : greenJetEvenHilbertSubspace jet)⟫_ℝ =
         ⟪(x : greenJetEvenHilbertSubspace jet),
           greenJetJacobiCoreMap heven y⟫_ℝ := by
-  apply linearMaps_formalAdjoint_of_basis
+  have hcore := linearMaps_formalAdjoint_of_basis
+    (I := ℕ) (J := ℕ)
+    (E₀ := greenJetEvenOperatorCore jet)
+    (F₀ := greenJetEvenOperatorCore jet)
+    (E₁ := greenJetEvenHilbertSubspace jet)
+    (F₁ := greenJetEvenHilbertSubspace jet)
     (greenJetEvenOperatorCoreBasis heven)
     (greenJetEvenOperatorCoreBasis heven)
     (greenJetJacobiCoreMap heven)
     (greenJetEvenOperatorCore jet).subtype
     (greenJetEvenOperatorCore jet).subtype
     (greenJetJacobiCoreMap heven)
-  intro i j
-  simpa only [greenJetEvenOperatorCoreBasis_apply,
-    greenJetJacobiCoreMap_jet] using
-      inner_greenJetEvenSectorJet_succ_eq_inner_succ_right hrep i j
+    (fun i j => by
+      simpa only [greenJetEvenOperatorCoreBasis_apply,
+        greenJetJacobiCoreMap_jet] using
+          inner_greenJetEvenSectorJet_succ_eq_inner_succ_right hrep i j)
+  exact hcore
 
 /-- Positivity of the Jacobi quadratic form is the squared norm of the Green
 energy factor. -/
@@ -176,8 +192,9 @@ theorem greenJetJacobiCore_inner_nonneg
     (x : greenJetEvenOperatorCore jet) :
     0 ≤ ⟪greenJetJacobiCoreMap heven x,
       (x : greenJetEvenHilbertSubspace jet)⟫_ℝ := by
-  rw [greenJetJacobiCore_energyIdentity hrep heven x x]
-  exact inner_self_nonneg
+  rw [greenJetJacobiCore_energyIdentity hrep heven x x,
+    real_inner_self_eq_norm_sq]
+  positivity
 
 /-- The Jacobi core has dense domain in the closed even Green sector. -/
 theorem greenJetJacobiCore_dense_domain
@@ -195,11 +212,17 @@ theorem greenJetJacobiCore_isClosable
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
     (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n))) :
     (greenJetJacobiCore heven).IsClosable := by
-  apply linearPMap_isClosable_of_dense_formalAdjoint
-    (greenJetJacobiCore heven) (greenJetJacobiCore heven)
-    (greenJetJacobiCore_dense_domain heven)
-  intro x y
-  exact greenJetJacobiCore_formalSelfAdjoint hrep heven x y
+  let J : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetEvenHilbertSubspace jet := greenJetJacobiCore heven
+  have hdense : Dense (J.domain : Set (greenJetEvenHilbertSubspace jet)) := by
+    simpa [J] using greenJetJacobiCore_dense_domain heven
+  have hformal : ∀ (x : J.domain) (y : J.domain),
+      ⟪J x, (y : greenJetEvenHilbertSubspace jet)⟫_ℝ =
+        ⟪(x : greenJetEvenHilbertSubspace jet), J y⟫_ℝ := by
+    intro x y
+    simpa [J] using greenJetJacobiCore_formalSelfAdjoint hrep heven x y
+  simpa [J] using
+    linearPMap_isClosable_of_dense_formalAdjoint J J hdense hformal
 
 /-- Canonical graph closure of the positive symmetric Jacobi core. -/
 def closedGreenJetJacobiOperator
