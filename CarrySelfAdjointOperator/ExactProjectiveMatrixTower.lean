@@ -6,11 +6,11 @@ import Mathlib.Tactic
 
 A family of finite matrices whose order-`N` member is the leading principal
 section of order `N + 1` already determines one infinite matrix entry by
-entry.  No analytic limit is required for this algebraic construction.
+entry. No analytic limit is required for this algebraic construction.
 
 This module packages that statement independently of positivity,
-tridiagonality, or a choice of self-adjoint realization.  Those are later
-operator-theoretic obligations.  The result here is the exact cylindrical
+tridiagonality, or a choice of self-adjoint realization. Those are later
+operator-theoretic obligations. The result here is the exact cylindrical
 consistency used by the Jacobi-order route.
 -/
 
@@ -55,7 +55,7 @@ theorem submatrix_of_le
 
 end IsExactPrincipalTower
 
-/-- Infinite matrix selected by any exact principal tower.  The entry `(i,j)`
+/-- Infinite matrix selected by any exact principal tower. The entry `(i,j)`
 is read at the first order containing both coordinates. -/
 def exactPrincipalTowerLimit
     (matrix : (N : ℕ) → Matrix (Fin N) (Fin N) ℝ) :
@@ -92,7 +92,7 @@ theorem exactPrincipalTowerLimit_submatrix
     (htower.submatrix_of_le hMN)
   simpa [exactPrincipalTowerLimit, Matrix.submatrix_apply, M] using hsub.symm
 
-/-- An exact projective tower of finite Jacobi matrices.  Positivity and
+/-- An exact projective tower of finite Jacobi matrices. Positivity and
 tridiagonality are deliberately separate fields: projectivity alone already
 constructs the infinite coefficient matrix. -/
 structure ExactProjectiveJacobiTower where
@@ -118,22 +118,22 @@ theorem limitMatrix_submatrix
   exactPrincipalTowerLimit_submatrix tower.projective N
 
 /-- Finite bilinear data computed in the limit matrix agree exactly with the
-order-`N` matrix.  This is cylindrical consistency without a numerical
+order-`N` matrix. This is cylindrical consistency without a numerical
 limit. -/
 theorem dotProduct_limitSection_mulVec
     (tower : ExactProjectiveJacobiTower)
     (N : ℕ) (x y : Fin N → ℝ) :
-    Matrix.dotProduct x
+    dotProduct x
         ((tower.limitMatrix.submatrix
           (fun i : Fin N => (i : ℕ))
           (fun i : Fin N => (i : ℕ))) *ᵥ y) =
-      Matrix.dotProduct x (tower.matrix N *ᵥ y) := by
+      dotProduct x (tower.matrix N *ᵥ y) := by
   rw [tower.limitMatrix_submatrix N]
 
 end ExactProjectiveJacobiTower
 
 /-- Exact projectivity predicate for a chosen family of finite Gram
-whitenings.  The current canonical LDL construction supplies each order; the
+whitenings. The current canonical LDL construction supplies each order; the
 remaining Cholesky/LDL compatibility theorem must inhabit this predicate. -/
 def IsExactJacobiWhiteningTower
     (moments : ℕ → ℝ)
