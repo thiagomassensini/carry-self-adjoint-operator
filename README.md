@@ -25,6 +25,19 @@ The construction does not take a zero list or target heights as input.
 - identifies every causal unit cell from depth two onward inside the natural
   all-bases camera atlas, so four low coordinates and the first unit bracket
   of each natural camera determine the complete state;
+- proves exact center/leg lattice separation: aligned centers are multiples of
+  the camera slope, while neither emitted leg is; for natural cameras this is
+  nondivisibility by the base itself, and the exceptional C2 legs are odd;
+- computes the complete residue ledger `(center,left,right) = (0,d-r,r)`
+  modulo the camera slope `d`, and proves that the two leg classes coincide
+  exactly for the antipodal radius `2r=d`;
+- packages those channels in `ZMod d`, proves that cyclic reflection fixes the
+  center and swaps the literal legs, separates the center singleton from every
+  leg orbit, and computes that orbit's exact one-or-two cardinality;
+- lifts cyclic reflection to an isometric symmetric involution on the full
+  Euclidean residue-signal space, constructs its complementary orthogonal
+  even/odd projections, and proves that the centered bracket is even while
+  the oriented leg difference is odd;
 - names the exact finite-head-plus-whole-center-tail characteristic and proves
   it equals the common dressed native scalar independently of cutoff;
 - defines the actual camera-independent operator characteristic by removing
@@ -36,6 +49,11 @@ The construction does not take a zero list or target heights as input.
   the open critical strip and identifies the operator characteristic with the
   standard completed zeta expression there;
 - records the division-free coefficient identity `q Phi = -Phi'`;
+- proves that continuity removes the apparent real-axis Green diagonal
+  ambiguity: the normalized state norm is forced to equal the derivative of
+  the scalar response at the collision point;
+- proves continuity of the literal finite C3 Hilbert coordinate and derives
+  the same center-diagonal law for the concrete two-channel product ledger;
 - derives the exact logarithmic-moment recurrence used by the reference code;
 - defines the finite Hankel Gram and shifted matrices;
 - proves symmetry and exact principal-section compatibility.
@@ -59,6 +77,26 @@ The construction does not take a zero list or target heights as input.
 - proves its characteristic polynomial has roots exactly
   `1 / sqrt(lambda_i(J_N))`, so the height spectrum is derived rather than
   supplied as input.
+- constructs the canonical signed realization `H_N = T_N ⊕ (-T_N)`, proves
+  exact symmetry and sector-factorization of its characteristic polynomial,
+  and proves that the symmetric sector swap satisfies `S H_N S = -H_N`;
+- constructs the canonical finite Green-jet/signed-height intertwiner
+  `B_N = U_N diag(B_N^G, T_N B_N^G)`: it simultaneously whitens the full
+  parity Gram `diag(G_N,K_N)` and converts the Green even/odd grading into
+  the signed-sector reflection, in both analysis and adjoint forms;
+- promotes the compatible finite signed tower to the closed Hilbert span of
+  the Green jets, proves that the closed odd sector is exactly the orthogonal
+  complement of the closed even sector, and constructs the resulting global
+  bounded self-adjoint parity reflection `R = 2 P_even - I`;
+- proves the exact finite/global law `R V_N = V_N S_N` at every order and its
+  compatibility with every cutoff inclusion, so this reflection is one
+  cutoff-independent Hilbert operator rather than a family of fitted maps;
+- constructs the algebraic Green energy factor `B₀ e_n = o_n` and reverse
+  shift `C₀ o_n = e_(n+1)`, derives their formal-adjoint law from the exact
+  shifted moment relation, and proves that the dense reverse-shift domain
+  forces `B₀` to be closable;
+- defines the canonical graph closure of `B₀`, proves it closed, contains the
+  algebraic factor, and retains the original algebraic domain as a core;
 - proves the exact projective block law: a lower-block-triangular extension of
   the inverse whitening factor forces the old Jacobi matrix to be literally
   the upper-left block of the new one.
@@ -139,3 +177,18 @@ Lean is validated exclusively by the exact-checkout GitHub Actions workflow.
 
 The structural derivation of the causal reconstruction theorem is recorded in
 [`docs/causal-bracket-state-uniqueness.md`](docs/causal-bracket-state-uniqueness.md).
+The cyclic center/leg channel decomposition is recorded in
+[`docs/bracket-residue-reflection-orbit.md`](docs/bracket-residue-reflection-orbit.md).
+The finite reflection-to-signed-height construction, its exact transported
+cutoff cocycle, and the resulting complete metric and canonical Hilbert
+carriers are recorded in
+[`docs/canonical-green-jet-signed-height-intertwiner.md`](docs/canonical-green-jet-signed-height-intertwiner.md).
+The closed-span Hilbert promotion and its dense compatible finite tower are
+recorded separately in
+[`docs/green-jet-signed-height-hilbert-space.md`](docs/green-jet-signed-height-hilbert-space.md).
+The global closed-sector decomposition, self-adjoint parity reflection, and
+its exact finite/cutoff restrictions are recorded in
+[`docs/green-jet-parity-reflection.md`](docs/green-jet-parity-reflection.md).
+The exact shifted-moment adjoint law, closability proof, and the distinction
+between graph closure and circular provenance are recorded in
+[`docs/green-jet-energy-factor-closability.md`](docs/green-jet-energy-factor-closability.md).
