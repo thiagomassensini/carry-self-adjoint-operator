@@ -31,6 +31,9 @@ The construction does not take a zero list or target heights as input.
 - computes the complete residue ledger `(center,left,right) = (0,d-r,r)`
   modulo the camera slope `d`, and proves that the two leg classes coincide
   exactly for the antipodal radius `2r=d`;
+- packages those channels in `ZMod d`, proves that cyclic reflection fixes the
+  center and swaps the literal legs, separates the center singleton from every
+  leg orbit, and computes that orbit's exact one-or-two cardinality;
 - names the exact finite-head-plus-whole-center-tail characteristic and proves
   it equals the common dressed native scalar independently of cutoff;
 - defines the actual camera-independent operator characteristic by removing
@@ -150,3 +153,5 @@ Lean is validated exclusively by the exact-checkout GitHub Actions workflow.
 
 The structural derivation of the causal reconstruction theorem is recorded in
 [`docs/causal-bracket-state-uniqueness.md`](docs/causal-bracket-state-uniqueness.md).
+The cyclic center/leg channel decomposition is recorded in
+[`docs/bracket-residue-reflection-orbit.md`](docs/bracket-residue-reflection-orbit.md).
