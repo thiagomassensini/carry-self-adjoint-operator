@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "theorems": [
+    {"qualified": "CarrySelfAdjointOperator.cameraBase_dvd_alignedCenter"},
+    {"qualified": "CarrySelfAdjointOperator.cameraRadius_lt_base"},
+    {"qualified": "CarrySelfAdjointOperator.cameraBase_not_dvd_radius"},
+    {"qualified": "CarrySelfAdjointOperator.cameraBase_not_dvd_leftLeg"},
+    {"qualified": "CarrySelfAdjointOperator.cameraBase_not_dvd_rightLeg"},
+    {"qualified": "CarrySelfAdjointOperator.alignedCenter_ne_cameraLeftLeg"},
+    {"qualified": "CarrySelfAdjointOperator.alignedCenter_ne_cameraRightLeg"},
+    {"qualified": "CarrySelfAdjointOperator.allBase_centerLeg_diagonal_impossible"},
+    {"qualified": "CarrySelfAdjointOperator.sameIndex_center_leftLeg_offDiagonal"},
+    {"qualified": "CarrySelfAdjointOperator.sameIndex_center_rightLeg_offDiagonal"},
+    {"qualified": "CarrySelfAdjointOperator.no_point_is_both_cameraCenter_and_cameraLeg"},
+    {"qualified": "CarrySelfAdjointOperator.not_hasCameraCenterLegDiagonal"},
+    {"qualified": "CarrySelfAdjointOperator.allSupportedBases_centerLegDiagonalImpossible"},
+    {"qualified": "CarrySelfAdjointOperator.BR2CameraIncidence.centerCoordinate_ne_legCoordinate"},
+    {"qualified": "CarrySelfAdjointOperator.BR2CameraIncidence.sameIndex_offDiagonal"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalParityCenterLeg_sameIndex_offDiagonal"},
+    {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.toComplexMomentKernel"},
+    {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.hankelPair_posSemidef"},
+    {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_canonicalCompletedNativeCenterLeg"}
+  ]
+}
