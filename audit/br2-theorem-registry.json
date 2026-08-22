@@ -14,11 +14,24 @@
     {"qualified": "CarrySelfAdjointOperator.no_point_is_both_cameraCenter_and_cameraLeg"},
     {"qualified": "CarrySelfAdjointOperator.not_hasCameraCenterLegDiagonal"},
     {"qualified": "CarrySelfAdjointOperator.allSupportedBases_centerLegDiagonalImpossible"},
+    {"qualified": "CarrySelfAdjointOperator.cameraSlope_pos_of_supported"},
+    {"qualified": "CarrySelfAdjointOperator.alignedCenter_injective_of_supported"},
+    {"qualified": "CarrySelfAdjointOperator.cameraBracketIncidence_apply_alignedCenter"},
+    {"qualified": "CarrySelfAdjointOperator.cameraBracketIncidence_linearIndependent_of_injective"},
+    {"qualified": "CarrySelfAdjointOperator.evenParityCameraIndex_injective"},
+    {"qualified": "CarrySelfAdjointOperator.oddParityCameraIndex_injective"},
+    {"qualified": "CarrySelfAdjointOperator.evenCameraBracketIncidence_linearIndependent"},
+    {"qualified": "CarrySelfAdjointOperator.oddCameraBracketIncidence_linearIndependent"},
     {"qualified": "CarrySelfAdjointOperator.BR2CameraIncidence.centerCoordinate_ne_legCoordinate"},
     {"qualified": "CarrySelfAdjointOperator.BR2CameraIncidence.sameIndex_offDiagonal"},
     {"qualified": "CarrySelfAdjointOperator.canonicalParityCenterLeg_sameIndex_offDiagonal"},
     {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.toComplexMomentKernel"},
     {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.hankelPair_posSemidef"},
-    {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_canonicalCompletedNativeCenterLeg"}
+    {"qualified": "CarrySelfAdjointOperator.hankelPair_posSemidef_of_canonicalCompletedNativeCenterLeg"},
+    {"qualified": "CarrySelfAdjointOperator.BR2BracketIncidenceJetTransport.evenPrefix_linearIndependent"},
+    {"qualified": "CarrySelfAdjointOperator.BR2BracketIncidenceJetTransport.oddPrefix_linearIndependent"},
+    {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.toRealMomentKernel"},
+    {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.hankelPair_posDef_of_incidenceTransport"},
+    {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.exists_canonicalFiniteHeightOperator_isSymm_of_incidenceTransport"}
   ]
 }
