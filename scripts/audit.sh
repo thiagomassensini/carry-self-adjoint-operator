@@ -8,6 +8,7 @@ bash scripts/static_audit.sh
 # Fail fast on the canonical LDL compatibility layer.
 lake build --wfail CarrySelfAdjointOperator.PositiveLowerWhiteningUniqueness
 lake build --wfail CarrySelfAdjointOperator.PositiveLowerFactorUniqueness
+lake build --wfail CarrySelfAdjointOperator.PositiveLowerWhiteningRigidity
 
 # Keep the existing focused audits before rebuilding the full import surface.
 lake build --wfail CarrySelfAdjointOperator.JacobiOrderPolynomial
