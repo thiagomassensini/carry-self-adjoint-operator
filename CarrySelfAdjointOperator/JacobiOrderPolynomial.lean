@@ -1,5 +1,5 @@
-import Mathlib.Data.Polynomial.Eval.Defs
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+import Mathlib.Algebra.Polynomial.Eval.Defs
+import Mathlib.Algebra.BigOperators.Ring.Finset
 import Mathlib.Tactic
 
 /-!
