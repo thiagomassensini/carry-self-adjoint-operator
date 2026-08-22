@@ -4,6 +4,12 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
+
+# Fail fast on the new ORDER layer before rebuilding the full import surface.
+lake build --wfail CarrySelfAdjointOperator.JacobiOrderPolynomial
+lake build --wfail CarrySelfAdjointOperator.ExactProjectiveMatrixTower
+lake build --wfail CarrySelfAdjointOperator.CanonicalProjectiveJacobiTower
+
 lake build --wfail CarrySelfAdjointOperator
 lake build --wfail CarrySelfAdjointOperator.Audit
 lake build --wfail CarrySelfAdjointOperator.BR2Audit
