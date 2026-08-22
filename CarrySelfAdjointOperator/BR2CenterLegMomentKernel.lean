@@ -1,24 +1,25 @@
-import CarrySelfAdjointOperator.BracketLegLatticeSeparation
+import CarrySelfAdjointOperator.AllBaseCenterLegNoDiagonal
 import CarrySelfAdjointOperator.CompletedGreenMomentJets
 import Mathlib.Tactic
 
 /-!
 # BR2 bipartite center--leg moment kernel
 
-The coefficient matrix is indexed by two geometric roles: one aligned center
-and one bracket leg.  Equality of formal matrix indices therefore does not
-mean equality of the sampled coordinates.
+The coefficient matrix uses one center role and one bracket-leg role. Equality
+of matrix indices therefore does not mean equality of geometric coordinates.
+The all-base divisibility theorem proves something stronger: every center--leg
+pair is geometrically off-diagonal, independently of the chosen index maps.
 
-`BracketLegLatticeSeparation` proves the stronger all-base statement needed
-here.  Every emitted leg lies outside the aligned-center lattice of its
-camera, so every center--leg sample is geometrically off-diagonal, including
-samples carrying the same formal index.
+This file inserts that fact immediately before the already-audited
+Green--Wronskian/Hankel bridge. A scalar Green kernel only needs an identity on
+unequal geometric coordinates. The center--leg obstruction discharges that
+side condition for every matrix entry, including entries with equal formal
+indices, and produces the full complex Gram representation expected by
+`CompletedGreenMomentJets`.
 
-This file inserts that fact immediately before the existing
-Green--Wronskian/Hankel bridge.  A scalar Green identity stated only for
-unequal geometric coordinates can therefore supply every entry of the moment
-Gram kernel.  No analytic collision value and no primality assumption are
-introduced.
+No primality hypothesis and no analytic diagonal regularization occur here.
+The remaining BR2 work is the concrete off-diagonal scalarization of the
+completed value/log-jet/provenance state.
 -/
 
 namespace CarrySelfAdjointOperator
@@ -27,28 +28,34 @@ open FiniteNativeCarryOperator.Camera
 
 noncomputable section
 
-/-- Which leg of a centered bracket is used by the bipartite readout. -/
-inductive BR2CameraLegSide where
+/-- Which leg of a centered bracket is used by a bipartite readout. -/
+inductive CameraLegSide where
   | left
   | right
   deriving DecidableEq
 
-/-- Coordinate of the selected bracket leg. -/
-def br2CameraLegCoordinate
-    (side : BR2CameraLegSide) (camera index radius : ℕ) : ℕ :=
-  match side with
-  | .left => alignedCenter camera index - radius
-  | .right => alignedCenter camera index + radius
+/-- Compatibility name used by the coefficient-recurrence route. -/
+abbrev BR2CameraLegSide := CameraLegSide
 
-/-- Arithmetic incidence assigning one aligned center and one emitted leg to
-every parity-jet index.  The two index maps may be different; lattice
-separation does not require them to agree. -/
+/-- Geometric coordinate of the selected bracket leg. -/
+def cameraLegCoordinate
+    (side : CameraLegSide) (base index radius : ℕ) : ℕ :=
+  match side with
+  | .left => cameraLeftLeg base index radius
+  | .right => cameraRightLeg base index radius
+
+/-- Compatibility name for the same center--leg coordinate map. -/
+abbrev br2CameraLegCoordinate := cameraLegCoordinate
+
+/-- Arithmetic data assigning one aligned center and one admissible bracket
+leg to every parity-jet index. The center and leg index maps may be different;
+the no-diagonal theorem does not require them to agree. -/
 structure BR2CameraIncidence where
-  camera : ℕ
+  base : ℕ
   radius : ℕ
-  hcamera : 2 ≤ camera
-  hradius : radius ∈ radiusSet camera
-  side : BR2CameraLegSide
+  hbase : IsSupported base
+  hradius : radius ∈ radiusSet base
+  side : CameraLegSide
   centerIndex : (ℕ ⊕ ℕ) → ℕ
   legIndex : (ℕ ⊕ ℕ) → ℕ
 
@@ -57,36 +64,32 @@ namespace BR2CameraIncidence
 /-- Center coordinate assigned to a parity-jet index. -/
 def centerCoordinate
     (incidence : BR2CameraIncidence) (i : ℕ ⊕ ℕ) : ℕ :=
-  alignedCenter incidence.camera (incidence.centerIndex i)
+  alignedCenter incidence.base (incidence.centerIndex i)
 
 /-- Leg coordinate assigned to a parity-jet index. -/
 def legCoordinate
     (incidence : BR2CameraIncidence) (j : ℕ ⊕ ℕ) : ℕ :=
-  br2CameraLegCoordinate incidence.side incidence.camera
+  cameraLegCoordinate incidence.side incidence.base
     (incidence.legIndex j) incidence.radius
 
-/-- Every selected center--leg pair lies off the geometric diagonal.  This
-includes equal formal indices. -/
+/-- Every center/leg pair selected by one supported camera lies off the
+coordinate diagonal. This includes equal formal indices. -/
 theorem centerCoordinate_ne_legCoordinate
     (incidence : BR2CameraIncidence) (i j : ℕ ⊕ ℕ) :
     incidence.centerCoordinate i ≠ incidence.legCoordinate j := by
   rcases incidence with
-    ⟨camera, radius, hcamera, hradius, side, centerIndex, legIndex⟩
+    ⟨base, radius, hbase, hradius, side, centerIndex, legIndex⟩
   cases side with
   | left =>
-      exact
-        ((bracketLegs_ne_any_alignedCenter
-          (camera := camera) (index := legIndex j)
-          (radius := radius) (otherIndex := centerIndex i)
-          hcamera hradius).1).symm
+      simpa [centerCoordinate, legCoordinate, cameraLegCoordinate] using
+        alignedCenter_ne_cameraLeftLeg
+          hbase hradius (centerIndex i) (legIndex j)
   | right =>
-      exact
-        ((bracketLegs_ne_any_alignedCenter
-          (camera := camera) (index := legIndex j)
-          (radius := radius) (otherIndex := centerIndex i)
-          hcamera hradius).2).symm
+      simpa [centerCoordinate, legCoordinate, cameraLegCoordinate] using
+        alignedCenter_ne_cameraRightLeg
+          hbase hradius (centerIndex i) (legIndex j)
 
-/-- Same-index entries remain geometrically off-diagonal. -/
+/-- Same-index matrix entries remain geometrically off-diagonal. -/
 theorem sameIndex_offDiagonal
     (incidence : BR2CameraIncidence) (i : ℕ ⊕ ℕ) :
     incidence.centerCoordinate i ≠ incidence.legCoordinate i :=
@@ -94,46 +97,58 @@ theorem sameIndex_offDiagonal
 
 end BR2CameraIncidence
 
-/-- Natural-number label carried by one parity jet. -/
+/-- Natural-number label carried by a parity jet. -/
+def parityJetNumber : (ℕ ⊕ ℕ) → ℕ
+  | Sum.inl n => 2 * n
+  | Sum.inr n => 2 * n + 1
+
+/-- Compatibility presentation used by the all-order coefficient certificate.
+It is intentionally reduced by cases so the older certificate's simplifier
+interface remains stable after the BR2 merge. -/
 def br2ParityJetNumber : (ℕ ⊕ ℕ) → ℕ
   | Sum.inl n => 2 * n
   | Sum.inr n => 2 * n + 1
 
-/-- Canonical incidence using the parity-jet number on both roles.  Equal
-formal indices still select unequal coordinates because the roles are center
-and leg. -/
+/-- The two parity-jet naming conventions denote the same label. -/
+theorem br2ParityJetNumber_eq_parityJetNumber (i : ℕ ⊕ ℕ) :
+    br2ParityJetNumber i = parityJetNumber i := by
+  cases i <;> rfl
+
+/-- Canonical incidence using the parity-jet number on both roles. Equal
+matrix indices still yield unequal geometric coordinates because the roles
+are center and leg. -/
 def canonicalParityCenterLegIncidence
-    (camera radius : ℕ)
-    (hcamera : 2 ≤ camera)
-    (hradius : radius ∈ radiusSet camera)
-    (side : BR2CameraLegSide) : BR2CameraIncidence where
-  camera := camera
+    (base radius : ℕ)
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (side : CameraLegSide) : BR2CameraIncidence where
+  base := base
   radius := radius
-  hcamera := hcamera
+  hbase := hbase
   hradius := hradius
   side := side
-  centerIndex := br2ParityJetNumber
-  legIndex := br2ParityJetNumber
+  centerIndex := parityJetNumber
+  legIndex := parityJetNumber
 
 /-- Explicit same-index obstruction for the canonical parity incidence. -/
 theorem canonicalParityCenterLeg_sameIndex_offDiagonal
-    (camera radius : ℕ)
-    (hcamera : 2 ≤ camera)
-    (hradius : radius ∈ radiusSet camera)
-    (side : BR2CameraLegSide) (i : ℕ ⊕ ℕ) :
+    (base radius : ℕ)
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (side : CameraLegSide) (i : ℕ ⊕ ℕ) :
     (canonicalParityCenterLegIncidence
-        camera radius hcamera hradius side).centerCoordinate i ≠
+        base radius hbase hradius side).centerCoordinate i ≠
       (canonicalParityCenterLegIncidence
-        camera radius hcamera hradius side).legCoordinate i :=
+        base radius hbase hradius side).legCoordinate i :=
   (canonicalParityCenterLegIncidence
-    camera radius hcamera hradius side).sameIndex_offDiagonal i
+    base radius hbase hradius side).sameIndex_offDiagonal i
 
 /-- A bipartite scalar Green kernel realizing the parity-split moment matrix.
 
-`momentReadout` identifies its coefficients with the Hankel moment kernel.
-`greenOffDiagonalReadout` identifies the same scalar values with Hilbert inner
-products whenever the two geometric coordinates differ.  The camera
-incidence proves that this side condition holds for every matrix entry. -/
+`momentReadout` identifies the scalar kernel coefficients with the Hankel
+moment kernel. `greenOffDiagonalReadout` identifies the same scalar values
+with Hilbert inner products whenever the two geometric coordinates differ.
+The camera incidence proves that this side condition holds for every entry. -/
 structure BR2CenterLegGreenMomentCertificate
     {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℂ E]
@@ -154,8 +169,8 @@ structure BR2CenterLegGreenMomentCertificate
 
 namespace BR2CenterLegGreenMomentCertificate
 
-/-- Lattice separation converts the off-diagonal Green identity into the
-complete complex moment-kernel Gram representation.  There is no missing
+/-- The all-base center--leg obstruction converts an off-diagonal Green
+identity into the complete complex Gram representation, with no missing
 matrix diagonal. -/
 theorem toComplexMomentKernel
     {E : Type*}
@@ -176,8 +191,8 @@ theorem toComplexMomentKernel
       certificate.greenOffDiagonalReadout i j
         (incidence.centerCoordinate_ne_legCoordinate i j)
 
-/-- Consequently both finite Hankel sections are positive semidefinite at
-every order. -/
+/-- The certificate therefore makes both finite Hankel sections positive
+semidefinite at every order. -/
 theorem hankelPair_posSemidef
     {E : Type*}
     [NormedAddCommGroup E] [InnerProductSpace ℂ E]
@@ -193,36 +208,36 @@ theorem hankelPair_posSemidef
 
 end BR2CenterLegGreenMomentCertificate
 
-/-- Concrete certificate type for the actual normalized completed native/C3
-product-ledger jets. -/
+/-- Concrete BR2 certificate type for the actual normalized completed
+native/C3 product-ledger jets. -/
 abbrev CanonicalCompletedNativeBR2CenterLegCertificate
     {Hxi : Type*}
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
-    (camera radius : ℕ)
-    (hcamera : 2 ≤ camera)
-    (hradius : radius ∈ radiusSet camera)
-    (side : BR2CameraLegSide)
+    (base radius : ℕ)
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (side : CameraLegSide)
     (xiState : ℂ → Hxi) (moments : ℕ → ℝ) :=
   BR2CenterLegGreenMomentCertificate
     (canonicalParityCenterLegIncidence
-      camera radius hcamera hradius side)
+      base radius hbase hradius side)
     moments
     (completedGreenParityJet
       (normalizedCompletedGreenState
         completedNativeOperatorCharacteristic
         (completedNativeC3ProductLedgerState xiState)))
 
-/-- End-to-end finite positivity after the two factor Green representations
-and the concrete center--leg coefficient certificate are supplied.  The
-former analytic diagonal premise has disappeared: every sampled pair is
-off-diagonal by camera geometry. -/
+/-- End-to-end finite positivity statement after the two factor Green
+representations and the concrete center--leg coefficient certificate are
+supplied. The former analytic diagonal premise has disappeared: all kernel
+samples are geometrically off-diagonal by the camera divisibility theorem. -/
 theorem hankelPair_posSemidef_of_canonicalCompletedNativeCenterLeg
     {Hxi : Type*}
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
-    (camera radius : ℕ)
-    (hcamera : 2 ≤ camera)
-    (hradius : radius ∈ radiusSet camera)
-    (side : BR2CameraLegSide)
+    (base radius : ℕ)
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (side : CameraLegSide)
     (xiState : ℂ → Hxi) (moments : ℕ → ℝ)
     (hxi : HasDivisionFreeGreenRepresentation
       nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion xiState)
@@ -231,7 +246,7 @@ theorem hankelPair_posSemidef_of_canonicalCompletedNativeCenterLeg
         canonicalCompletedOperatorC3HilbertState)
     (certificate :
       CanonicalCompletedNativeBR2CenterLegCertificate
-        camera radius hcamera hradius side xiState moments)
+        base radius hbase hradius side xiState moments)
     (N : ℕ) :
     (hankelGram moments N).PosSemidef ∧
       (shiftedHankel moments N).PosSemidef :=
