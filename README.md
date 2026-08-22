@@ -34,6 +34,10 @@ The construction does not take a zero list or target heights as input.
 - packages those channels in `ZMod d`, proves that cyclic reflection fixes the
   center and swaps the literal legs, separates the center singleton from every
   leg orbit, and computes that orbit's exact one-or-two cardinality;
+- lifts cyclic reflection to an isometric symmetric involution on the full
+  Euclidean residue-signal space, constructs its complementary orthogonal
+  even/odd projections, and proves that the centered bracket is even while
+  the oriented leg difference is odd;
 - names the exact finite-head-plus-whole-center-tail characteristic and proves
   it equals the common dressed native scalar independently of cutoff;
 - defines the actual camera-independent operator characteristic by removing
@@ -73,6 +77,9 @@ The construction does not take a zero list or target heights as input.
 - proves its characteristic polynomial has roots exactly
   `1 / sqrt(lambda_i(J_N))`, so the height spectrum is derived rather than
   supplied as input.
+- constructs the canonical signed realization `H_N = T_N ⊕ (-T_N)`, proves
+  exact symmetry and sector-factorization of its characteristic polynomial,
+  and proves that the symmetric sector swap satisfies `S H_N S = -H_N`;
 - proves the exact projective block law: a lower-block-triangular extension of
   the inverse whitening factor forces the old Jacobi matrix to be literally
   the upper-left block of the new one.
