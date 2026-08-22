@@ -40,16 +40,16 @@ theorem LDL_lowerInv_diag_eq_one
     (Pi.basisFun ℝ (Fin N)) i =
       gs i +
         ∑ k ∈ Finset.Iio i,
-          (inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i) /
-              (‖gs k‖ : ℝ) ^ 2) • gs k at hdef
+          ((‖gs k‖ : ℝ)⁻¹ ^ 2 *
+              inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i)) • gs k at hdef
   have hzero : ∀ k : Fin N, k < i → gs k i = 0 := by
     intro k hki
     simpa [gs, LDL.lowerInv] using
       (LDL.lowerInv_triangular hgram hki)
   have hsum :
       (∑ k ∈ Finset.Iio i,
-        (inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i) /
-            (‖gs k‖ : ℝ) ^ 2) * gs k i) = 0 := by
+        ((‖gs k‖ : ℝ)⁻¹ ^ 2 *
+            inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i)) * gs k i) = 0 := by
     apply Finset.sum_eq_zero
     intro k hk
     have hki : k < i := Finset.mem_Iio.mp hk
@@ -59,8 +59,8 @@ theorem LDL_lowerInv_diag_eq_one
     (Pi.basisFun ℝ (Fin N) i) i =
       gs i i +
         ∑ k ∈ Finset.Iio i,
-          (inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i) /
-              (‖gs k‖ : ℝ) ^ 2) * gs k i at hcoord
+          ((‖gs k‖ : ℝ)⁻¹ ^ 2 *
+              inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i)) * gs k i at hcoord
   have hbasis : (Pi.basisFun ℝ (Fin N) i) i = 1 := by simp
   rw [hbasis, hsum, add_zero] at hcoord
   simpa [gs, LDL.lowerInv] using hcoord.symm
