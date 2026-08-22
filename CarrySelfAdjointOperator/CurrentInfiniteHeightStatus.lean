@@ -29,7 +29,7 @@ noncomputable section
 
 /-- All-order strict positivity of the unshifted Hankel sections supplied by
 one globally independent even Green-jet family. -/
-def canonicalGreenJetHankelGramPosDef
+theorem canonicalGreenJetHankelGramPosDef
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
@@ -42,7 +42,7 @@ def canonicalGreenJetHankelGramPosDef
 
 /-- All-order strict positivity of the shifted Hankel sections supplied by
 one globally independent odd Green-jet family. -/
-def canonicalGreenJetShiftedHankelPosDef
+theorem canonicalGreenJetShiftedHankelPosDef
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
