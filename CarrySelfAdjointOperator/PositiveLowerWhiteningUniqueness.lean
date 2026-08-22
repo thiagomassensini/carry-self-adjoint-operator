@@ -34,8 +34,10 @@ theorem LDL_lowerInv_diag_eq_one
   letI := gram.transpose.toInnerProductSpace hgram.transpose.posSemidef
   let gs : Fin N → (Fin N → ℝ) :=
     InnerProductSpace.gramSchmidt ℝ (Pi.basisFun ℝ (Fin N))
-  letI (k : Fin N) : CompleteSpace (ℝ ∙ gs k) :=
-    FiniteDimensional.complete ℝ (ℝ ∙ gs k)
+  letI (k : Fin N) : (ℝ ∙ gs k).HasOrthogonalProjection := by
+    letI : CompleteSpace (ℝ ∙ gs k) :=
+      FiniteDimensional.complete ℝ (ℝ ∙ gs k)
+    exact Submodule.HasOrthogonalProjection.ofCompleteSpace
   have hdef :=
     InnerProductSpace.gramSchmidt_def ℝ
       (Pi.basisFun ℝ (Fin N)) i
