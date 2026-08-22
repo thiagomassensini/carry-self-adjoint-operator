@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "theorems": [
+    {"qualified": "CarrySelfAdjointOperator.IsExactPrincipalTower.submatrix_of_le"},
+    {"qualified": "CarrySelfAdjointOperator.exactPrincipalTowerLimit_submatrix"},
+    {"qualified": "CarrySelfAdjointOperator.ExactProjectiveJacobiTower.limitMatrix_submatrix"},
+    {"qualified": "CarrySelfAdjointOperator.ExactProjectiveJacobiTower.dotProduct_limitSection_mulVec"},
+    {"qualified": "CarrySelfAdjointOperator.jacobiTowerLimitMatrix_submatrix"},
+    {"qualified": "CarrySelfAdjointOperator.jacobiOrderPolynomial_eval_succ_succ"},
+    {"qualified": "CarrySelfAdjointOperator.jacobiOldRootDefectAtSucc"},
+    {"qualified": "CarrySelfAdjointOperator.sum_orderIncrement_range"},
+    {"qualified": "CarrySelfAdjointOperator.value_eq_later_add_orderTail"}
+  ]
+}
