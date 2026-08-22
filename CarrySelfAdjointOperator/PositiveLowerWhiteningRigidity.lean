@@ -59,7 +59,7 @@ theorem positiveLowerWhitening_unique
     (hB : IsPositiveLowerWhitening gram B) :
     A = B := by
   apply positiveLowerFactor_unique_of_transpose_mul_self_eq
-    ⟨hA.1, hA.2.1⟩ ⟨hB.1, hB.2.1⟩
+    hA.1 hB.1 hA.2.1 hB.2.1
   rw [transpose_mul_self_eq_invOf_of_whitening hgram hA.2.2,
     transpose_mul_self_eq_invOf_of_whitening hgram hB.2.2]
 
