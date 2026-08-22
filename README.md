@@ -91,6 +91,12 @@ The construction does not take a zero list or target heights as input.
 - proves the exact finite/global law `R V_N = V_N S_N` at every order and its
   compatibility with every cutoff inclusion, so this reflection is one
   cutoff-independent Hilbert operator rather than a family of fitted maps;
+- constructs the algebraic Green energy factor `B₀ e_n = o_n` and reverse
+  shift `C₀ o_n = e_(n+1)`, derives their formal-adjoint law from the exact
+  shifted moment relation, and proves that the dense reverse-shift domain
+  forces `B₀` to be closable;
+- defines the canonical graph closure of `B₀`, proves it closed, contains the
+  algebraic factor, and retains the original algebraic domain as a core;
 - proves the exact projective block law: a lower-block-triangular extension of
   the inverse whitening factor forces the old Jacobi matrix to be literally
   the upper-left block of the new one.
@@ -183,3 +189,6 @@ recorded separately in
 The global closed-sector decomposition, self-adjoint parity reflection, and
 its exact finite/cutoff restrictions are recorded in
 [`docs/green-jet-parity-reflection.md`](docs/green-jet-parity-reflection.md).
+The exact shifted-moment adjoint law, closability proof, and the distinction
+between graph closure and circular provenance are recorded in
+[`docs/green-jet-energy-factor-closability.md`](docs/green-jet-energy-factor-closability.md).
