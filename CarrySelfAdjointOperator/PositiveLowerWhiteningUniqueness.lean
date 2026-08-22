@@ -37,7 +37,7 @@ theorem LDL_lowerInv_diag_eq_one
   letI (k : Fin N) : (ℝ ∙ gs k).HasOrthogonalProjection := by
     letI : CompleteSpace (ℝ ∙ gs k) :=
       FiniteDimensional.complete ℝ (ℝ ∙ gs k)
-    exact Submodule.HasOrthogonalProjection.ofCompleteSpace
+    infer_instance
   have hdef :=
     InnerProductSpace.gramSchmidt_def ℝ
       (Pi.basisFun ℝ (Fin N)) i
