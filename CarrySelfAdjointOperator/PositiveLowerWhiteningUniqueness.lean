@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.CanonicalLDLWhitening
 import Mathlib.Analysis.InnerProductSpace.GramSchmidtOrtho
+import Mathlib.Analysis.Normed.Module.FiniteDimension
 import Mathlib.Tactic
 
 /-!
@@ -31,6 +32,8 @@ theorem LDL_lowerInv_diag_eq_one
     LDL.lowerInv hgram i i = 1 := by
   letI := gram.transpose.toNormedAddCommGroup hgram.transpose
   letI := gram.transpose.toInnerProductSpace hgram.transpose.posSemidef
+  letI : CompleteSpace (Fin N → ℝ) :=
+    FiniteDimensional.complete ℝ (Fin N → ℝ)
   let gs : Fin N → (Fin N → ℝ) :=
     InnerProductSpace.gramSchmidt ℝ (Pi.basisFun ℝ (Fin N))
   have hdef :=
