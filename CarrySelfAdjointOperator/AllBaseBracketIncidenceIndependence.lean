@@ -118,6 +118,8 @@ theorem cameraBracketIncidence_linearIndependent_of_injective
 theorem evenParityCameraIndex_injective (N : ℕ) :
     Function.Injective (fun i : Fin N => 2 * (i : ℕ)) := by
   intro i j hij
+  have hij' : 2 * (i : ℕ) = 2 * (j : ℕ) := by
+    simpa using hij
   apply Fin.ext
   omega
 
@@ -125,6 +127,8 @@ theorem evenParityCameraIndex_injective (N : ℕ) :
 theorem oddParityCameraIndex_injective (N : ℕ) :
     Function.Injective (fun i : Fin N => 2 * (i : ℕ) + 1) := by
   intro i j hij
+  have hij' : 2 * (i : ℕ) + 1 = 2 * (j : ℕ) + 1 := by
+    simpa using hij
   apply Fin.ext
   omega
 
