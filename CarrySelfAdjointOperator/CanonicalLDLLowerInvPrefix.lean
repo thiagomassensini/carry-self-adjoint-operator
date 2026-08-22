@@ -69,13 +69,13 @@ theorem ldlLowerInv_mul_eq_zero_of_lt
       (Pi.basisFun ℝ (Fin N)) hji
   change
     dotProduct
-      (Matrix.mulVec gram.transpose (Pi.basisFun ℝ (Fin N) j))
+      (Matrix.mulVec gram.transpose (Pi.single j 1))
       (star (LDL.lowerInv hgram i)) = 0 at horth
+  rw [Matrix.mulVec_single_one] at horth
   have hsymm : ∀ a b : Fin N, gram a b = gram b a := by
     intro a b
     simpa using hgram.isHermitian.apply b a
-  simpa [Matrix.mul_apply, Matrix.mulVec, dotProduct,
-    hsymm, mul_comm] using horth
+  simpa [Matrix.mul_apply, dotProduct, hsymm, mul_comm] using horth
 
 /-- Intrinsic row certificate used by the prefix argument. -/
 def IsUnitLowerOrthogonalRow
