@@ -1,6 +1,5 @@
 import CarrySelfAdjointOperator.CanonicalLDLWhitening
 import Mathlib.Analysis.InnerProductSpace.GramSchmidtOrtho
-import Mathlib.Analysis.Normed.Module.FiniteDimension
 import Mathlib.Tactic
 
 /-!
@@ -34,37 +33,37 @@ theorem LDL_lowerInv_diag_eq_one
   letI := gram.transpose.toInnerProductSpace hgram.transpose.posSemidef
   let gs : Fin N → (Fin N → ℝ) :=
     InnerProductSpace.gramSchmidt ℝ (Pi.basisFun ℝ (Fin N))
-  letI (k : Fin N) : (ℝ ∙ gs k).HasOrthogonalProjection := by
-    letI : CompleteSpace (ℝ ∙ gs k) :=
-      FiniteDimensional.complete ℝ (ℝ ∙ gs k)
-    infer_instance
   have hdef :=
-    InnerProductSpace.gramSchmidt_def ℝ
+    InnerProductSpace.gramSchmidt_def'' ℝ
       (Pi.basisFun ℝ (Fin N)) i
+  change
+    (Pi.basisFun ℝ (Fin N)) i =
+      gs i +
+        ∑ k ∈ Finset.Iio i,
+          (inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i) /
+              (‖gs k‖ : ℝ) ^ 2) • gs k at hdef
   have hzero : ∀ k : Fin N, k < i → gs k i = 0 := by
     intro k hki
     simpa [gs, LDL.lowerInv] using
       (LDL.lowerInv_triangular hgram hki)
   have hsum :
       (∑ k ∈ Finset.Iio i,
-        ((ℝ ∙ gs k).starProjection
-          (Pi.basisFun ℝ (Fin N) i)) i) = 0 := by
+        (inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i) /
+            (‖gs k‖ : ℝ) ^ 2) * gs k i) = 0 := by
     apply Finset.sum_eq_zero
     intro k hk
     have hki : k < i := Finset.mem_Iio.mp hk
-    rw [Submodule.starProjection_singleton]
     simp [hzero k hki]
   have hcoord := congrArg (fun v : Fin N → ℝ => v i) hdef
-  simp only [Pi.sub_apply, Finset.sum_apply] at hcoord
-  change gs i i =
-    (Pi.basisFun ℝ (Fin N) i) i -
-      (∑ k ∈ Finset.Iio i,
-        ((ℝ ∙ gs k).starProjection
-          (Pi.basisFun ℝ (Fin N) i)) i) at hcoord
-  rw [hsum, sub_zero] at hcoord
+  change
+    (Pi.basisFun ℝ (Fin N) i) i =
+      gs i i +
+        ∑ k ∈ Finset.Iio i,
+          (inner ℝ (gs k) ((Pi.basisFun ℝ (Fin N)) i) /
+              (‖gs k‖ : ℝ) ^ 2) * gs k i at hcoord
   have hbasis : (Pi.basisFun ℝ (Fin N) i) i = 1 := by simp
-  rw [hbasis] at hcoord
-  simpa [gs, LDL.lowerInv] using hcoord
+  rw [hbasis, hsum, add_zero] at hcoord
+  simpa [gs, LDL.lowerInv] using hcoord.symm
 
 /-- Pointwise diagonal formula for the normalized inverse LDL factor. -/
 theorem canonicalLDLInverseFactor_diag
