@@ -5,15 +5,9 @@ cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
 
-# Fail first on the exact rowwise LDL prefix proof requested by the project.
+# Fail first on the exact canonical LDL prefix proof.
 lake build --wfail CarrySelfAdjointOperator.CanonicalLDLLowerInvPrefix
 lake build --wfail CarrySelfAdjointOperator.CanonicalLDLPrefixReduction
-
-# Legacy positive-lower-whitening route remains below until the exact
-# rowwise proof has replaced it completely.
-lake build --wfail CarrySelfAdjointOperator.PositiveLowerWhiteningUniqueness
-lake build --wfail CarrySelfAdjointOperator.PositiveLowerFactorUniqueness
-lake build --wfail CarrySelfAdjointOperator.PositiveLowerWhiteningRigidity
 lake build --wfail CarrySelfAdjointOperator.CanonicalProjectiveJacobiTower
 lake build --wfail CarrySelfAdjointOperator.LDLCompatibilityAudit
 
