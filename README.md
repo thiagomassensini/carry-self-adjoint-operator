@@ -166,5 +166,6 @@ The structural derivation of the causal reconstruction theorem is recorded in
 [`docs/causal-bracket-state-uniqueness.md`](docs/causal-bracket-state-uniqueness.md).
 The cyclic center/leg channel decomposition is recorded in
 [`docs/bracket-residue-reflection-orbit.md`](docs/bracket-residue-reflection-orbit.md).
-The finite reflection-to-signed-height construction is recorded in
+The finite reflection-to-signed-height construction, its exact transported
+cutoff cocycle, and the resulting complete metric carrier are recorded in
 [`docs/canonical-green-jet-signed-height-intertwiner.md`](docs/canonical-green-jet-signed-height-intertwiner.md).

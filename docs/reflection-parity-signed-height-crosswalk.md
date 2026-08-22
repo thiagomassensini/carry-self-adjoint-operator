@@ -180,9 +180,22 @@ signed-sector swap `S` have the same abstract signature: symmetric
 involutions with an even/odd decomposition.  They do not yet have the same
 type, so similarity of formulas is not an identification.
 
-The remaining object is the compatible bounded realization from the actual
-completed Green/camera state into the all-order jet completion.  Its finite
-sections must recover the `B_N` above and preserve
+The finite maps now carry an exact transported cutoff system.  If
+`P_N = diag(G_N,K_N)` and `S_N = P_N B_N^T`, then
+
+```text
+C_NM = B_N R_NM S_M
+```
+
+satisfies `C_NM C_NM^T = I`, `C_NM C_ML = C_NL`, and commutes with the signed
+reflection.  Hence `C_NM^T` gives the canonical isometric inclusion.  The
+metric inductive limit of these inclusions and its complete metric completion
+are constructed in `CompletedGreenJetSignedHeightIntertwiner.lean`.
+
+The remaining object is the compatible bounded Hilbert realization from the
+actual completed Green/camera state into that all-order completion.  It must
+promote the completed metric carrier to the required linear inner-product
+structure, recover the finite `B_N`, and preserve
 
 ```text
 B R = S B
@@ -191,8 +204,8 @@ B R = S B
 together with the Green kernel, logarithmic jets, completion channel, and
 projective cutoff maps.  The Naimark adjoint already fixes the camera readout
 once that ambient state realization is supplied.  What remains is therefore
-the state realization and its compatibility with the projective tower, not a
-new choice of finite intertwiner.
+the Hilbert/operator realization and its identification with the completed
+state, not a new choice of finite intertwiner or cutoff map.
 
 The resulting exact chain is therefore
 

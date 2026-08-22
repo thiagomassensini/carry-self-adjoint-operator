@@ -111,8 +111,60 @@ The construction assumes one reflected Green moment-kernel representation and
 linear independence of the two order-`N` jet prefixes.  It does not assume a
 list of heights, a fitted matrix, or an order-dependent calibration.
 
-The remaining passage is not another finite formula.  One must construct the
-bounded completed-state realization whose finite sections are these `B_N`,
-and prove compatibility with the projective cutoff maps.  Once that ambient
-realization is known, the existing Naimark adjoint fixes its camera readout
-canonically.
+## Exact transported cutoff law
+
+The finite inverse square roots need not be principal submatrices of one
+another.  Functional calculus does not generally commute with principal
+compression, so that would be the wrong compatibility condition to impose.
+
+Write
+
+```text
+P_N = diag(G_N,K_N),
+A_N = B_N,
+S_N = P_N A_N^T.
+```
+
+Since `A_N P_N A_N^T = I`, finite-dimensionality proves both
+
+```text
+A_N S_N = I,
+S_N A_N = I.
+```
+
+For `N <= M`, let `R_NM` be raw prefix restriction in both parity sectors and
+define the transported cutoff
+
+```text
+C_NM = A_N R_NM S_M.
+```
+
+`CompletedGreenJetSignedHeightIntertwiner.lean` proves exactly
+
+```text
+C_NM C_NM^T = I,
+C_NM C_ML = C_NL,
+C_NM S = S C_NM,
+S C_NM^T = C_NM^T S.
+```
+
+Thus `C_NM^T` is the canonical isometric inclusion from the signed section of
+order `N` into the section of order `M`.  It also proves that these inclusions
+preserve the Euclidean inner product, constructs their metric inductive limit,
+and takes its complete metric completion.  Every finite section maps
+isometrically into this completed carrier, and consecutive inclusions become
+literally equal in the inductive limit.
+
+No asymptotic estimate enters this construction: cutoff compatibility is an
+exact cocycle identity.
+
+## Remaining operator-theoretic layer
+
+The exact metric completion and its finite isometric charts are now
+constructed.  What is not yet claimed is a completed Hilbert-space operator:
+the metric quotient must still be promoted to a compatible real linear inner
+product structure, the finite signed reflections and finite height operators
+must be shown to descend or close there, and the resulting realization must be
+identified with the actual completed Green/camera state.  Once that ambient
+state realization is available, the existing Naimark adjoint fixes its camera
+readout canonically.
