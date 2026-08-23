@@ -109,8 +109,8 @@ theorem canonicalCompletedC3TotalGammaState_centeredHeightParameter
   have hz : (centeredHeightParameter s).im ≠ 0 := by
     rw [← carryComplexTimeOfParameter_eq_centeredHeightParameter]
     exact
-      NativeCarryC3Crosswalk.
-        carryComplexTimeOfParameter_im_ne_zero_of_re_ne_half hoff
+      NativeCarryC3Crosswalk.carryComplexTimeOfParameter_im_ne_zero_of_re_ne_half
+        hoff
   rw [totalCarryGammaState_of_im_ne_zero
       canonicalCompletedC3SixCameraSource hz,
     canonicalCompletedC3SixCameraSource_centeredHeightParameter]
