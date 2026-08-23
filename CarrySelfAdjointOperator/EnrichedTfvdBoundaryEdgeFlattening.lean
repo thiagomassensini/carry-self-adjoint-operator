@@ -80,6 +80,8 @@ theorem sum_enrichedTfvdBoundaryEdges_eq_cellTotal
     enrichedTfvdBoundaryEdgeJetRight,
     enrichedTfvdSameSBoundaryCells,
     TfvdSameSBoundaryCells.total]
+  rw [← Fin.succ_zero_eq_one]
+  rfl
 
 /-- Flattening all blocks and both retained edges recovers literally the
 existing finite enriched TFVD boundary form. -/

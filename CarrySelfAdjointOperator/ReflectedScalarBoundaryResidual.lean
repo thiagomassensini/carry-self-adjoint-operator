@@ -35,25 +35,25 @@ open CPFormal.Analytic.Cp
 /-- Residual in the reflected left leg. -/
 def reflectedBoundaryLeftResidual
     {ι : Type*} [Fintype ι]
-    (value logJet : ℂ) (legs : ReflectedBoundarySynthesisData ι) : ℂ :=
+    (_value logJet : ℂ) (legs : ReflectedBoundarySynthesisData ι) : ℂ :=
   (starRingEnd ℂ) logJet - ∑ i : ι, legs.left i
 
 /-- Residual in the reflected right leg. -/
 def reflectedBoundaryRightResidual
     {ι : Type*} [Fintype ι]
-    (value logJet : ℂ) (legs : ReflectedBoundarySynthesisData ι) : ℂ :=
+    (value _logJet : ℂ) (legs : ReflectedBoundarySynthesisData ι) : ℂ :=
   (starRingEnd ℂ) value - ∑ i : ι, legs.right i
 
 /-- Residual in the left log-jet leg. -/
 def reflectedBoundaryJetLeftResidual
     {ι : Type*} [Fintype ι]
-    (value logJet : ℂ) (legs : ReflectedBoundarySynthesisData ι) : ℂ :=
+    (_value logJet : ℂ) (legs : ReflectedBoundarySynthesisData ι) : ℂ :=
   logJet - ∑ i : ι, legs.jetLeft i
 
 /-- Residual in the right value leg. -/
 def reflectedBoundaryJetRightResidual
     {ι : Type*} [Fintype ι]
-    (value logJet : ℂ) (legs : ReflectedBoundarySynthesisData ι) : ℂ :=
+    (value _logJet : ℂ) (legs : ReflectedBoundarySynthesisData ι) : ℂ :=
   value - ∑ i : ι, legs.jetRight i
 
 /-- Exact bilinear correction produced by the four linear synthesis
@@ -104,9 +104,8 @@ theorem scalarBoundaryWedge_eq_localTwoLeg_add_cross_add_residualCorrection
         twoLegBoundaryCrossProvenance
           legs.left legs.right legs.jetLeft legs.jetRight +
         reflectedBoundaryResidualCorrection value logJet legs := by
-  rw [scalarBoundaryWedge_eq_summedTwoLeg_add_residualCorrection,
-    sameSEdgeBoundaryWedge_sum_eq_local_add_crossProvenance]
-  ring
+  rw [scalarBoundaryWedge_eq_summedTwoLeg_add_residualCorrection (ι := ι),
+    sameSEdgeBoundaryWedge_sum_eq_local_add_crossProvenance (ι := ι)]
 
 /-- The previous synthesis theorem is recovered when all four residuals
 vanish, but vanishing is no longer built into the general identity. -/
@@ -124,7 +123,7 @@ theorem scalarBoundaryWedge_eq_localTwoLeg_add_crossProvenance_of_residuals_zero
           (legs.jetLeft i) (legs.jetRight i)) +
         twoLegBoundaryCrossProvenance
           legs.left legs.right legs.jetLeft legs.jetRight := by
-  rw [scalarBoundaryWedge_eq_localTwoLeg_add_cross_add_residualCorrection]
+  rw [scalarBoundaryWedge_eq_localTwoLeg_add_cross_add_residualCorrection (ι := ι)]
   unfold reflectedBoundaryResidualCorrection
   rw [hleft, hright, hjetLeft, hjetRight]
   simp
