@@ -20,6 +20,7 @@ scalar boundary-trace equality itself.
 namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
+open NativeCarrySpectralWeyl.Infinite
 
 noncomputable section
 
@@ -40,7 +41,7 @@ gamma-state norm. -/
 def HasCanonicalCompletedNativeGammaStripDiagonalEnergy
     (source : ℂ → RealifiedCameraComplexification) : Prop :=
   ∀ (z : ℂ), operatorHeightParameter z ∈ genuineCriticalStrip →
-    ∀ hz : z.im ≠ 0,
+    ∀ _hz : z.im ≠ 0,
       completedGreenWronskian
           completedNativeOperatorCharacteristic
           completedNativeOperatorBoundaryCompanion z z =
@@ -58,8 +59,6 @@ theorem canonicalGammaCauchyStripScalarization_iff_diagonalEnergy
     rw [hscalar z hzStrip hz]
     unfold completedGammaCauchySkew
     rw [NativeCarryC3Crosswalk.carryGammaSource_cauchy_skew_energy]
-    change _ = (z - (starRingEnd ℂ) z) *
-      (((‖totalCarryGammaState source z‖ ^ 2 : ℝ)) : ℂ)
     rw [totalCarryGammaState_of_im_ne_zero source hz]
     rw [WithLp.prod_norm_sq_eq_of_L2]
     apply Complex.ext <;> simp <;> ring
@@ -131,7 +130,9 @@ theorem finalGenuineZeroConfinement_of_canonicalCompletedC3StripScalarization
   have hcharacteristic :
       completedNativeOperatorCharacteristic z = 0 := by
     rw [completedNativeOperatorCharacteristic_eq_completedRiemannZeta]
-    · simp [z, genuineContinuation_eq_riemannZeta hs, hzero]
+    · have hzeta : riemannZeta s = 0 := by
+        rwa [genuineContinuation_eq_riemannZeta hs] at hzero
+      simp [z, operatorHeightParameter_centeredHeightParameter, hzeta]
     · exact hzStrip
   have hwronskian :
       completedGreenWronskian

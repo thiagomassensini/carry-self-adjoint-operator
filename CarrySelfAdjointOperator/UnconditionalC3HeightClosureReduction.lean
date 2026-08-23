@@ -35,15 +35,15 @@ noncomputable section
 
 /-- Exact remaining scalarization datum for the canonical source which PR #6
 identifies with the completed public TFVD/C3 ledger source. -/
-def CanonicalCompletedC3GammaCauchyScalarization : Prop :=
+def CanonicalCompletedC3GammaCauchyScalarizationReduction : Prop :=
   HasCanonicalCompletedNativeGammaCauchyScalarization
     canonicalCompletedC3SixCameraSource
 
 /-- Once the exact scalarization is available, the canonical full-ledger C3
 source gives the unconditional public Genuine-zero confinement statement.
 The source-nonvanishing obligation is discharged internally. -/
-theorem finalGenuineZeroConfinement_of_canonicalCompletedC3Scalarization
-    (hscalar : CanonicalCompletedC3GammaCauchyScalarization) :
+theorem finalGenuineZeroConfinement_of_canonicalCompletedC3ScalarizationReduction
+    (hscalar : CanonicalCompletedC3GammaCauchyScalarizationReduction) :
     NativeCarryC3Crosswalk.FinalGenuineZeroConfinement := by
   intro s hs hzero
   apply riemannZeta_zero_re_eq_half_of_canonicalC3SixCameraScalarization
@@ -53,7 +53,7 @@ theorem finalGenuineZeroConfinement_of_canonicalCompletedC3Scalarization
 
 /-- Strict positivity of every unshifted Hankel section from one global even
 Green-jet family. -/
-def allOrderHankelGramPosDef
+theorem allOrderHankelGramPosDefReduction
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
@@ -66,7 +66,7 @@ def allOrderHankelGramPosDef
 
 /-- Strict positivity of every shifted Hankel section from one global odd
 Green-jet family. -/
-def allOrderShiftedHankelPosDef
+theorem allOrderShiftedHankelPosDefReduction
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
@@ -80,7 +80,7 @@ def allOrderShiftedHankelPosDef
 /-- One all-order Green kernel plus global parity-jet independence closes all
 finite positivity premises, the exact canonical Jacobi tower, and the closed
 infinite Green energy factor simultaneously. -/
-theorem allOrderHeightClosure_of_greenMomentKernel
+theorem allOrderHeightClosure_of_greenMomentKernelReduction
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
@@ -92,8 +92,8 @@ theorem allOrderHeightClosure_of_greenMomentKernel
         (fun N => canonicalFiniteJacobiSection moments N (hgram N)) ∧
       (closedGreenJetEnergyFactor hrep heven hodd).IsClosed := by
   let hgram : ∀ N : ℕ, (hankelGram moments N).PosDef :=
-    allOrderHankelGramPosDef hrep heven
-  refine ⟨hgram, allOrderShiftedHankelPosDef hrep hodd, ?_, ?_⟩
+    allOrderHankelGramPosDefReduction hrep heven
+  refine ⟨hgram, allOrderShiftedHankelPosDefReduction hrep hodd, ?_, ?_⟩
   · exact canonicalFiniteJacobiSection_isExactPrincipalTower_unconditional
       moments hgram
   · exact closedGreenJetEnergyFactor_isClosed hrep heven hodd

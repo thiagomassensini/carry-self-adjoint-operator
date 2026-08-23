@@ -42,23 +42,7 @@ theorem canonicalTotalCarryGammaState_centeredHeightParameter_eq_seeded
     canonicalCompletedC3SixCameraSource hz]
   unfold NativeCarryC3Crosswalk.seededCompletedTfvdCarryGammaState
   rw [canonicalCompletedC3SixCameraSource_centeredHeightParameter]
-  let hpublic : (carryComplexTimeOfParameter s).im ≠ 0 :=
-    NativeCarryC3Crosswalk.carryComplexTimeOfParameter_im_ne_zero_of_re_ne_half
-      hoff
-  have hparameter :
-      centeredHeightParameter s = carryComplexTimeOfParameter s :=
-    (carryComplexTimeOfParameter_eq_centeredHeightParameter s).symm
-  have hsubtype :
-      (⟨centeredHeightParameter s, hz⟩ : {z : ℂ // z.im ≠ 0}) =
-        ⟨carryComplexTimeOfParameter s, hpublic⟩ := by
-    apply Subtype.ext
-    exact hparameter
-  exact congrArg
-    (fun parameter : {z : ℂ // z.im ≠ 0} =>
-      NativeCarrySpectralWeyl.Boundary.carryGammaSource
-        parameter.1 parameter.2
-        (NativeCarryC3Crosswalk.seededCompletedTfvdGreenCameraState s))
-    hsubtype
+  simp [carryComplexTimeOfParameter_eq_centeredHeightParameter]
 
 /-- Therefore the private total gamma state is nonzero at every off-critical
 point of the open strip. -/

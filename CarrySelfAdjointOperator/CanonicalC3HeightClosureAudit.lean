@@ -39,7 +39,7 @@ def CanonicalCompletedC3GammaCauchyScalarization : Prop :=
 
 /-- Once the exact scalarization is available, source nondegeneracy is already
 internal and the public Genuine-zero confinement statement follows. -/
-theorem finalGenuineZeroConfinement_of_canonicalCompletedC3Scalarization
+theorem finalGenuineZeroConfinement_of_canonicalC3HeightClosureScalarization
     (hscalar : CanonicalCompletedC3GammaCauchyScalarization) :
     NativeCarryC3Crosswalk.FinalGenuineZeroConfinement := by
   intro s hs hzero
@@ -50,7 +50,7 @@ theorem finalGenuineZeroConfinement_of_canonicalCompletedC3Scalarization
 
 /-- Strict positivity of every unshifted Hankel section from one globally
 independent even Green-jet family. -/
-def allOrderHankelGramPosDef
+theorem allOrderHankelGramPosDef
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
@@ -63,7 +63,7 @@ def allOrderHankelGramPosDef
 
 /-- Strict positivity of every shifted Hankel section from one globally
 independent odd Green-jet family. -/
-def allOrderShiftedHankelPosDef
+theorem allOrderShiftedHankelPosDef
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
@@ -123,7 +123,7 @@ theorem finalConfinement_and_heightClosure_of_certificate
         (closedGreenJetEnergyFactor certificate.momentKernel
           certificate.evenIndependent certificate.oddIndependent).IsClosed := by
   constructor
-  · exact finalGenuineZeroConfinement_of_canonicalCompletedC3Scalarization
+  · exact finalGenuineZeroConfinement_of_canonicalC3HeightClosureScalarization
       certificate.scalarization
   · exact allOrderHeightClosure_of_greenMomentKernel
       certificate.momentKernel certificate.evenIndependent

@@ -1,3 +1,4 @@
+import CarrySelfAdjointOperator.CanonicalC3GammaStateIdentity
 import CarrySelfAdjointOperator.UnconditionalLimitConfinementProbe
 import Mathlib.Analysis.InnerProductSpace.ProdL2
 import Mathlib.Tactic
@@ -56,7 +57,7 @@ theorem neg_two_i_mul_completedGammaCauchySkew_eq_centeredFactor_mul_energy
 /-- Energy-form spelling of the completed scalarization. -/
 def HasCanonicalCompletedNativeGammaEnergyScalarization
     (source : ℂ → RealifiedCameraComplexification) : Prop :=
-  ∀ (z : ℂ) (hz : z.im ≠ 0),
+  ∀ (z : ℂ) (_hz : z.im ≠ 0),
     completedGreenWronskian
         completedNativeOperatorCharacteristic
         completedNativeOperatorBoundaryCompanion z z =
@@ -106,16 +107,7 @@ theorem canonicalCompletedC3TotalGammaState_centeredHeightParameter
     totalCarryGammaState canonicalCompletedC3SixCameraSource
         (centeredHeightParameter s) =
       NativeCarryC3Crosswalk.seededCompletedTfvdCarryGammaState s hoff := by
-  have hz : (centeredHeightParameter s).im ≠ 0 := by
-    rw [← carryComplexTimeOfParameter_eq_centeredHeightParameter]
-    exact
-      NativeCarryC3Crosswalk.carryComplexTimeOfParameter_im_ne_zero_of_re_ne_half
-        hoff
-  rw [totalCarryGammaState_of_im_ne_zero
-      canonicalCompletedC3SixCameraSource hz,
-    canonicalCompletedC3SixCameraSource_centeredHeightParameter]
-  unfold NativeCarryC3Crosswalk.seededCompletedTfvdCarryGammaState
-  rw [carryComplexTimeOfParameter_eq_centeredHeightParameter]
+  exact canonicalTotalCarryGammaState_centeredHeightParameter_eq_seeded s hoff
 
 /-- Therefore the private canonical energy is literally the positive gamma
 energy already proved for the public completed TFVD ledger. -/

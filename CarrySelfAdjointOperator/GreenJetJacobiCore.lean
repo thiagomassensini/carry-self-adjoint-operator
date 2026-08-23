@@ -42,6 +42,16 @@ def greenJetJacobiCoreMap
   (greenJetEvenOperatorCoreBasis heven).constr ℝ
     (fun n => greenJetEvenSectorJet jet (n + 1))
 
+/-- Direct linear-map spelling of the Green energy factor on the Jacobi core. -/
+private def greenJetJacobiEnergyFactorMap
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {jet : (ℕ ⊕ ℕ) → E}
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n))) :
+    greenJetEvenOperatorCore jet →ₗ[ℝ]
+      greenJetOddHilbertSubspace jet :=
+  (greenJetEvenOperatorCoreBasis heven).constr ℝ
+    (greenJetOddSectorJet jet)
+
 /-- The corresponding densely defined operator on the closed even Green
 sector. -/
 def greenJetJacobiCore
@@ -72,6 +82,17 @@ def greenJetJacobiCore
     greenJetJacobiCore heven (greenJetEvenCoreJet jet n) =
       greenJetEvenSectorJet jet (n + 1) :=
   greenJetJacobiCoreMap_jet heven n
+
+@[simp] private theorem greenJetJacobiEnergyFactorMap_jet
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {jet : (ℕ ⊕ ℕ) → E}
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (n : ℕ) :
+    greenJetJacobiEnergyFactorMap heven (greenJetEvenCoreJet jet n) =
+      greenJetOddSectorJet jet n := by
+  rw [← greenJetEvenOperatorCoreBasis_apply heven n]
+  exact (greenJetEvenOperatorCoreBasis heven).constr_basis ℝ
+    (greenJetOddSectorJet jet) n
 
 /-- Generator identity behind positivity: shifting the even jet in the first
 slot gives exactly the odd/odd shifted-moment Gram entry. -/
@@ -134,6 +155,7 @@ theorem greenJetJacobiCore_energyIdentity
           (y : greenJetEvenHilbertSubspace jet)⟫_ℝ =
         ⟪greenJetEnergyFactorCore heven x,
           greenJetEnergyFactorCore heven y⟫_ℝ := by
+  let B := greenJetJacobiEnergyFactorMap heven
   have hcore := linearMaps_formalAdjoint_of_basis
     (I := ℕ) (J := ℕ)
     (E₀ := greenJetEvenOperatorCore jet)
@@ -144,14 +166,27 @@ theorem greenJetJacobiCore_energyIdentity
     (greenJetEvenOperatorCoreBasis heven)
     (greenJetJacobiCoreMap heven)
     (greenJetEvenOperatorCore jet).subtype
-    (greenJetEnergyFactorCore heven).toFun
-    (greenJetEnergyFactorCore heven).toFun
+    B
+    B
     (fun i j => by
-      simpa only [greenJetEvenOperatorCoreBasis_apply,
-        greenJetJacobiCoreMap_jet, greenJetEnergyFactorCore_jet] using
+      rw [greenJetEvenOperatorCoreBasis_apply heven i,
+        greenJetEvenOperatorCoreBasis_apply heven j]
+      change
+        ⟪greenJetJacobiCoreMap heven (greenJetEvenCoreJet jet i),
+            (greenJetEvenCoreJet jet j :
+              greenJetEvenHilbertSubspace jet)⟫_ℝ =
+          ⟪greenJetJacobiEnergyFactorMap heven (greenJetEvenCoreJet jet i),
+            greenJetJacobiEnergyFactorMap heven
+              (greenJetEvenCoreJet jet j)⟫_ℝ
+      rw [greenJetJacobiCoreMap_jet,
+        greenJetJacobiEnergyFactorMap_jet,
+        greenJetJacobiEnergyFactorMap_jet]
+      exact
           inner_greenJetEvenSectorJet_succ_eq_inner_greenJetOddSectorJet
             hrep i j)
-  exact hcore
+  intro x y
+  simpa [B, greenJetJacobiEnergyFactorMap, greenJetEnergyFactorCore] using
+    hcore x y
 
 /-- The minimal Green-jet Jacobi operator is symmetric on its algebraic core. -/
 theorem greenJetJacobiCore_formalSelfAdjoint
@@ -177,8 +212,18 @@ theorem greenJetJacobiCore_formalSelfAdjoint
     (greenJetEvenOperatorCore jet).subtype
     (greenJetJacobiCoreMap heven)
     (fun i j => by
-      simpa only [greenJetEvenOperatorCoreBasis_apply,
-        greenJetJacobiCoreMap_jet] using
+      rw [greenJetEvenOperatorCoreBasis_apply heven i,
+        greenJetEvenOperatorCoreBasis_apply heven j]
+      change
+        ⟪greenJetJacobiCoreMap heven (greenJetEvenCoreJet jet i),
+            (greenJetEvenCoreJet jet j :
+              greenJetEvenHilbertSubspace jet)⟫_ℝ =
+          ⟪(greenJetEvenCoreJet jet i :
+              greenJetEvenHilbertSubspace jet),
+            greenJetJacobiCoreMap heven
+              (greenJetEvenCoreJet jet j)⟫_ℝ
+      rw [greenJetJacobiCoreMap_jet, greenJetJacobiCoreMap_jet]
+      exact
           inner_greenJetEvenSectorJet_succ_eq_inner_succ_right hrep i j)
   exact hcore
 
@@ -212,17 +257,54 @@ theorem greenJetJacobiCore_isClosable
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
     (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n))) :
     (greenJetJacobiCore heven).IsClosable := by
-  let J : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
-      greenJetEvenHilbertSubspace jet := greenJetJacobiCore heven
-  have hdense : Dense (J.domain : Set (greenJetEvenHilbertSubspace jet)) := by
-    simpa [J] using greenJetJacobiCore_dense_domain heven
+  let J := greenJetJacobiCore heven
+  have hJ : Dense (J.domain : Set (greenJetEvenHilbertSubspace jet)) :=
+    greenJetJacobiCore_dense_domain heven
   have hformal : ∀ (x : J.domain) (y : J.domain),
       ⟪J x, (y : greenJetEvenHilbertSubspace jet)⟫_ℝ =
         ⟪(x : greenJetEvenHilbertSubspace jet), J y⟫_ℝ := by
     intro x y
-    simpa [J] using greenJetJacobiCore_formalSelfAdjoint hrep heven x y
-  simpa [J] using
-    linearPMap_isClosable_of_dense_formalAdjoint J J hdense hformal
+    change
+      ⟪greenJetJacobiCoreMap heven x,
+          (y : greenJetEvenHilbertSubspace jet)⟫_ℝ =
+        ⟪(x : greenJetEvenHilbertSubspace jet),
+          greenJetJacobiCoreMap heven y⟫_ℝ
+    exact greenJetJacobiCore_formalSelfAdjoint hrep heven x y
+  let graphClosure := J.graph.topologicalClosure
+  have hvertical :
+      ∀ (p : greenJetEvenHilbertSubspace jet ×
+          greenJetEvenHilbertSubspace jet)
+        (_hp : p ∈ graphClosure) (_hp0 : p.fst = 0), p.snd = 0 := by
+    intro p hp hp0
+    apply hJ.eq_zero_of_inner_left ℝ
+    intro z hz
+    let zd : J.domain := ⟨z, hz⟩
+    let annihilator : Set (greenJetEvenHilbertSubspace jet ×
+        greenJetEvenHilbertSubspace jet) :=
+      {q | ⟪q.snd, z⟫_ℝ = ⟪q.fst, J zd⟫_ℝ}
+    have hannihilatorClosed : IsClosed annihilator := by
+      apply isClosed_eq
+      · fun_prop
+      · fun_prop
+    have hgraph : (J.graph : Set (greenJetEvenHilbertSubspace jet ×
+        greenJetEvenHilbertSubspace jet)) ⊆ annihilator := by
+      intro q hq
+      rcases (LinearPMap.mem_graph_iff J).mp hq with ⟨x, hx, hJx⟩
+      change ⟪q.snd, z⟫_ℝ = ⟪q.fst, J zd⟫_ℝ
+      rw [← hJx, ← hx]
+      exact hformal x zd
+    have hpClosure : p ∈ _root_.closure
+        (J.graph : Set (greenJetEvenHilbertSubspace jet ×
+          greenJetEvenHilbertSubspace jet)) := by
+      change p ∈ J.graph.topologicalClosure at hp
+      rw [← Submodule.topologicalClosure_coe]
+      exact hp
+    have hpAnnihilator : p ∈ annihilator :=
+      closure_minimal hgraph hannihilatorClosed hpClosure
+    change ⟪p.snd, z⟫_ℝ = ⟪p.fst, J zd⟫_ℝ at hpAnnihilator
+    simpa [hp0] using hpAnnihilator
+  refine ⟨graphClosure.toLinearPMap, ?_⟩
+  exact (Submodule.toLinearPMap_graph_eq graphClosure hvertical).symm
 
 /-- Canonical graph closure of the positive symmetric Jacobi core. -/
 def closedGreenJetJacobiOperator
