@@ -186,6 +186,12 @@ sign convention `Psi = -F'` used by the Green Wronskian. -/
 def completedNativeOperatorBoundaryCompanion (z : ℂ) : ℂ :=
   -deriv completedNativeOperatorCharacteristic z
 
+@[simp] theorem completedNativeOperatorBoundaryCompanion_eq_neg_deriv
+    (z : ℂ) :
+    completedNativeOperatorBoundaryCompanion z =
+      -deriv completedNativeOperatorCharacteristic z :=
+  rfl
+
 /-- Final real-energy interface with no freely chosen scalar trace: the
 boundary companion is fixed to the derivative of the actual completed native
 operator characteristic. -/
