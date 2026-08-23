@@ -43,8 +43,8 @@ theorem canonicalTotalCarryGammaState_centeredHeightParameter_eq_seeded
   unfold NativeCarryC3Crosswalk.seededCompletedTfvdCarryGammaState
   rw [canonicalCompletedC3SixCameraSource_centeredHeightParameter]
   let hpublic : (carryComplexTimeOfParameter s).im ≠ 0 :=
-    NativeCarryC3Crosswalk.
-      carryComplexTimeOfParameter_im_ne_zero_of_re_ne_half hoff
+    NativeCarryC3Crosswalk.carryComplexTimeOfParameter_im_ne_zero_of_re_ne_half
+      hoff
   have hparameter :
       centeredHeightParameter s = carryComplexTimeOfParameter s :=
     (carryComplexTimeOfParameter_eq_centeredHeightParameter s).symm
