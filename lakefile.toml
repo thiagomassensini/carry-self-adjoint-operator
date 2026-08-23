@@ -8,4 +8,4 @@ name = "CarrySelfAdjointOperator"
 [[require]]
 name = "NativeCarryC3Crosswalk"
 git = "https://github.com/thiagomassensini/native-carry-c3-crosswalk.git"
-rev = "dff0ae29b492cb1ae14387957e7ecaf980d13d75"
+rev = "150cfc7fb08da96bf8117f15869cc2b819d593c2"
