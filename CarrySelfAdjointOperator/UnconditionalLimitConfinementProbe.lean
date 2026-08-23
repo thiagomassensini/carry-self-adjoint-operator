@@ -38,9 +38,8 @@ for unconditional confinement. -/
 theorem finalGenuineZeroConfinement_of_minimalPublicC3Seam
     (hseam : MinimalPublicC3ConfinementSeam) :
     NativeCarryC3Crosswalk.FinalGenuineZeroConfinement :=
-  NativeCarryC3Crosswalk.
-    finalGenuineZeroConfinement_of_finiteC3CompletedGreenWronskianSeam
-      1 (by norm_num) hseam
+  NativeCarryC3Crosswalk.finalGenuineZeroConfinement_of_finiteC3CompletedGreenWronskianSeam
+    1 (by norm_num) hseam
 
 /-- Stronger xi-completed scalarization statement on the canonical completed
 C3 source used by the height-operator repository. -/
