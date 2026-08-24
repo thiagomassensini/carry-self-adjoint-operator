@@ -201,6 +201,13 @@ The construction does not take a zero list or target heights as input.
 - specializes that limit at a Genuine zero and proves the structural triple
   tends to `-radial Green`, hence tends to zero exactly when `re s = 1/2` and
   cannot tend to zero at a hypothetical off-critical Genuine zero;
+- embeds every finite C3 cutoff into one permanent orthonormal global camera
+  family, keeps the direct and quarter-turned real skew channels separate
+  through Naimark promotion, and reconstructs the full complex Green form
+  exactly only at the final two-quadrature readout;
+- proves that this concrete readout is literally the radial field of the
+  six-channel `(F,-F')` ledger and that radial plus chart converges to the
+  completed candidate global Green kernel;
 - restates the final capstone with no abstract state or extra nonvanishing
   premise using this positive radial energy.
 
@@ -209,11 +216,14 @@ global kernel identification.  The complete mixed ledger and its `(F,-F')`
 readout are closed, but its structural triple is not a disposable completion
 tail: at a Genuine zero its vanishing is equivalent to the critical-line
 conclusion.  The raw complex bulk and raw-coefficient renaming are both
-formally ruled out as shortcuts.  The correctly rotated positive Green form
-is now transported injectively through the global camera completion and
-Naimark realization with exact skew preservation.  The remaining noncircular
-step is to identify that concrete global skew with the completed Wronskian
-while preserving every channel until its local final readout.  The infinite
+formally ruled out as shortcuts.  The correctly rotated Green form is now
+transported through one all-cutoff global camera/Naimark realization.  Two
+separate real quadratures recover the full complex Green kernel, and their
+weighted global readout converges to the completed candidate Green kernel.
+Lean proves that convergence of this same concrete readout to the completed
+Wronskian is equivalent to vanishing of the retained structural triple.  The
+remaining noncircular step is therefore an independent positive/no-leak
+control of that structural state.  The infinite
 self-adjoint Jacobi realization is now constructed; passage to its
 inverse-square-root height operator and the final spectral identification
 remain a separate operator-completion route.  No unconditional global

@@ -17,8 +17,9 @@ remaining global Green-Wronskian identification.
 | `CompletedC3MixedGreenWronskianDefect` | Polarizes the finite ledger at independent `z,w`, retains provenance and residual channels, and proves only the actual tail correction tends to zero. |
 | `CompletedC3FNegFPrimeMixedKernel` | Applies the height rotation and xi/chart product rule, gives the exact six-channel final readout, and computes the structural limit. |
 | `CanonicalC3SymplecticNaimarkBridge` | Realifies each complete C3 leg without loss, applies the symplectic sign before scalar readout, and transports `re(greenForm)` exactly through the global camera completion and Naimark isometry. |
+| `CompletedC3SymplecticNaimarkLimitBridge` | Uses one permanent orthonormal camera family for every cutoff, retains two real skew quadratures through Naimark promotion, reconstructs the full complex Green form, and passes its Genuine radial readout to the completed kernel. |
 
-All nine modules are imported by `CarrySelfAdjointOperator.lean` and their
+All ten modules are imported by `CarrySelfAdjointOperator.lean` and their
 public theorem surface is checked by `CarrySelfAdjointOperator/Audit.lean`.
 
 ## Completed finite ledger
@@ -113,23 +114,41 @@ Only after this rotation is the ambient real skew evaluated.  Lean proves
 realifiedGreenSkew (pack x) (pack y) = re (greenForm x y),
 ```
 
-and the same equality after coordinatewise Naimark promotion.  Both maps are
-injective.  On the canonical direct/reflected pair this gives the exact radial
-factorization in the global Hilbert space and vanishing exactly at
-`re s = 1/2` in the open strip.  These statements are unconditional finite/core
-transport identities; they do not equate the ambient Green skew with the
-completed `(F,-F')` Wronskian.
+and the same equality after coordinatewise Naimark promotion.  The all-cutoff
+extension assigns the real and imaginary parts of cell `n` permanently to
+coordinates `2n` and `2n+1` in one infinite orthonormal camera family.  Thus
+all finite ports live in the same global camera and Naimark spaces.
+
+A second skew is evaluated after rotating the right port by `i`, before any
+real projection.  Keeping the two readings separate gives
+
+```text
+q0 = re G,
+q1 = re (i G) = -im G,
+G = q0 - i q1.
+```
+
+Lean proves this reconstruction equals the full finite complex `greenForm`,
+not merely its real part.  On the mixed Genuine ports at cutoff `3M`, this
+readout is literally the radial field of the existing six-channel ledger.  It
+converges to the completed radial Gram kernel; after adding the separately
+retained chart channel, it converges to
+`canonicalCompletedC3FNegFPrimeMixedGreenKernel`.
 
 ## Remaining gate
 
-The corrected Green kernel now has an exact, injective global
-camera/Naimark realization.  The outstanding step is the noncircular equality
-between that concrete ambient skew and the completed Wronskian.  It must
-either control the retained structural channels by an independent positive
-Hilbert identity or reconstruct them inside a larger completed direct-sum
-state.  Applying `re` before the channel-local rotation, renaming the raw
-camera coefficient, or assuming the structural limit is zero would bypass the
-exact obstruction proved above.
+The corrected complex Green kernel now has an exact all-cutoff global
+camera/Naimark realization and a proved completed limit.  The theorem
+`canonicalCompletedC3FiniteFNegFPrimeSymplecticGlobalGreenReadout_tendsto_wronskian_iff`
+states the remaining frontier without an abstract readout: this concrete
+global sequence converges to the completed `(F,-F')` Wronskian if and only if
+the retained structural triple tends to zero.
+
+The outstanding step must therefore control those structural channels by an
+independent positive Hilbert identity or reconstruct them inside a larger
+completed direct-sum state.  Applying `re` before the quarter-turn, renaming
+the raw camera coefficient, or assuming the structural limit is zero would
+bypass the exact obstruction proved above.
 
 No unconditional global confinement theorem is claimed by these modules.
 
