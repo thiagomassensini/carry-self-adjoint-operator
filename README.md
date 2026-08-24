@@ -97,6 +97,26 @@ The construction does not take a zero list or target heights as input.
   forces `B₀` to be closable;
 - defines the canonical graph closure of `B₀`, proves it closed, contains the
   algebraic factor, and retains the original algebraic domain as a core;
+- defines the maximal real adjoint directly on its represented-functional
+  domain and proves the closed-graph resolvent theorem
+  `(I + B* B)x = f` for every `f`;
+- constructs the canonical infinite positive operator `J = B* B`, proves it
+  densely defined, closed, and literally equal to its maximal adjoint after
+  Hilbert completion, with the exact core inclusion `J₀ ≤ J`;
+- proves that every canonical finite Jacobi section is the exact compression
+  of this same self-adjoint `J`, so the projective matrix and operator tower
+  agree on every finite cylinder;
+- proves `ker (B* B) = ker B` and identifies trivial kernel of the closed
+  factor exactly with closability of the algebraic inverse `B₀⁻¹`;
+- reduces a sufficient zero-spectral-mass condition to one literal
+  head--tail completion gate: `e₀` must belong to the closure of
+  `span {e₁, e₂, ...}`; this final approximation is not assumed to follow from
+  finite Hankel positivity;
+- rewrites that head--tail gate exactly as a moment-only limit: for finite
+  coefficients `c`, the squared error is
+  `h₀ - 2 sum c_n h_(n+1) + sum c_i c_j h_(i+j+2)`, and arbitrarily small
+  values of this explicit quadratic defect force `ker J = 0` without a zero
+  list or an atomic measure model;
 - proves the exact projective block law: a lower-block-triangular extension of
   the inverse whitening factor forces the old Jacobi matrix to be literally
   the upper-left block of the new one.
@@ -118,6 +138,15 @@ The construction does not take a zero list or target heights as input.
   literal six-camera family `2, ..., 7`, using separate real and imaginary
   Hilbert channels, and proves that this all-bases camera source is injective
   and therefore nonzero throughout the open strip;
+- separates faithful coordinate storage from Green transport: after proving
+  that the raw real/imaginary split is not an intrinsic Green intertwiner, it
+  constructs the corrected symplectic packing `(x1,x2) -> (-R x1,R x2)` into
+  the global camera Hilbert space and proves its ambient skew is exactly
+  `re(greenForm x y)`;
+- promotes that corrected packing through the coordinatewise Naimark
+  isometry without loss, proves the resulting global state is injective and
+  nonzero in the open strip, and recovers the exact radial factorization and
+  its zero criterion `re s = 1/2` in the ambient Hilbert space;
 - proves exact product and additive recomposition laws for the Green
   Wronskian, retaining every off-diagonal synthesis channel, and proves that
   at a zero of the scalar factor the completion-jet channel vanishes rather
@@ -180,10 +209,13 @@ global kernel identification.  The complete mixed ledger and its `(F,-F')`
 readout are closed, but its structural triple is not a disposable completion
 tail: at a Genuine zero its vanishing is equivalent to the critical-line
 conclusion.  The raw complex bulk and raw-coefficient renaming are both
-formally ruled out as shortcuts.  A noncircular construction must identify
-the correctly rotated/cofactored positive Green kernel with the completed
-Wronskian while preserving every channel until its local final readout.  The
-infinite Jacobi realization and passage from finite functional calculus
+formally ruled out as shortcuts.  The correctly rotated positive Green form
+is now transported injectively through the global camera completion and
+Naimark realization with exact skew preservation.  The remaining noncircular
+step is to identify that concrete global skew with the completed Wronskian
+while preserving every channel until its local final readout.  The infinite
+self-adjoint Jacobi realization is now constructed; passage to its
+inverse-square-root height operator and the final spectral identification
 remain a separate operator-completion route.  No unconditional global
 confinement theorem is claimed at this stage.
 

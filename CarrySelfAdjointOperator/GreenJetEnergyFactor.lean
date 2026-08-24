@@ -19,7 +19,7 @@ limit.
 
 This is the operator-theoretic form of the shifted-Hankel Green energy.  Its
 closure is the canonical closed factor from which the positive operator
-`B* B` is to be constructed.
+`B* B` is constructed in `GreenJetMaximalAdjointSquare`.
 -/
 
 open scoped InnerProductSpace LinearPMap RealInnerProductSpace

@@ -16,8 +16,9 @@ remaining global Green-Wronskian identification.
 | `GlobalKernelProbe` | Rules out raw coefficient renaming and proves that a genuine off-zero kernel sewing would extend continuously to zeros. |
 | `CompletedC3MixedGreenWronskianDefect` | Polarizes the finite ledger at independent `z,w`, retains provenance and residual channels, and proves only the actual tail correction tends to zero. |
 | `CompletedC3FNegFPrimeMixedKernel` | Applies the height rotation and xi/chart product rule, gives the exact six-channel final readout, and computes the structural limit. |
+| `CanonicalC3SymplecticNaimarkBridge` | Realifies each complete C3 leg without loss, applies the symplectic sign before scalar readout, and transports `re(greenForm)` exactly through the global camera completion and Naimark isometry. |
 
-All eight modules are imported by `CarrySelfAdjointOperator.lean` and their
+All nine modules are imported by `CarrySelfAdjointOperator.lean` and their
 public theorem surface is checked by `CarrySelfAdjointOperator/Audit.lean`.
 
 ## Completed finite ledger
@@ -96,15 +97,39 @@ Thus the structural triple is not a completion tail that can be discarded.
 Proving that it vanishes at every Genuine zero has the same strength as the
 critical-line conclusion itself.
 
+## Symplectic global transport
+
+The faithful six-camera real/imaginary storage map is injective, but it does
+not preserve the intrinsic C3 Green form.  The corrected map keeps each
+complex boundary leg intact, realifies it isometrically, and sends
+
+```text
+(x1, x2) -> (-R x1, R x2).
+```
+
+Only after this rotation is the ambient real skew evaluated.  Lean proves
+
+```text
+realifiedGreenSkew (pack x) (pack y) = re (greenForm x y),
+```
+
+and the same equality after coordinatewise Naimark promotion.  Both maps are
+injective.  On the canonical direct/reflected pair this gives the exact radial
+factorization in the global Hilbert space and vanishing exactly at
+`re s = 1/2` in the open strip.  These statements are unconditional finite/core
+transport identities; they do not equate the ambient Green skew with the
+completed `(F,-F')` Wronskian.
+
 ## Remaining gate
 
-The outstanding step is a noncircular global identification between the
-correctly rotated/cofactored positive Green kernel and the completed
-Wronskian.  It must either control the retained structural channels by an
-independent positive Hilbert identity or reconstruct them inside a larger
-completed direct-sum state.  Applying `re` before the channel-local rotation,
-renaming the raw camera coefficient, or assuming the structural limit is zero
-would bypass the exact obstruction proved above.
+The corrected Green kernel now has an exact, injective global
+camera/Naimark realization.  The outstanding step is the noncircular equality
+between that concrete ambient skew and the completed Wronskian.  It must
+either control the retained structural channels by an independent positive
+Hilbert identity or reconstruct them inside a larger completed direct-sum
+state.  Applying `re` before the channel-local rotation, renaming the raw
+camera coefficient, or assuming the structural limit is zero would bypass the
+exact obstruction proved above.
 
 No unconditional global confinement theorem is claimed by these modules.
 
