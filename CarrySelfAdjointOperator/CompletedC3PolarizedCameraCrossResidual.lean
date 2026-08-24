@@ -292,6 +292,37 @@ def canonicalC3FiniteMixedHeightGreenEmbedding
     CanonicalC3FiniteMixedHeightPolarizedCommonHilbert M :=
   WithLp.toLp 2 (0, value)
 
+/-- The two injections used by the lossless common carrier occupy orthogonal
+summands.  Thus this carrier preserves both inputs but does not itself
+identify the scalar trace with the Green port. -/
+theorem inner_canonicalC3FiniteMixedHeightScalarEmbedding_greenEmbedding
+    (M : ℕ) (scalar : ℂ)
+    (green : FiniteC3GreenBoundarySpace (3 * M)) :
+    inner ℂ
+        (canonicalC3FiniteMixedHeightScalarEmbedding M scalar)
+        (canonicalC3FiniteMixedHeightGreenEmbedding green) = 0 := by
+  simp [canonicalC3FiniteMixedHeightScalarEmbedding,
+    canonicalC3FiniteMixedHeightGreenEmbedding,
+    WithLp.prod_inner_apply]
+
+/-- Equality between the two orthogonal injections is possible only when
+both retained coordinates vanish. -/
+theorem canonicalC3FiniteMixedHeightScalarEmbedding_eq_greenEmbedding_iff
+    (M : ℕ) (scalar : ℂ)
+    (green : FiniteC3GreenBoundarySpace (3 * M)) :
+    canonicalC3FiniteMixedHeightScalarEmbedding M scalar =
+        canonicalC3FiniteMixedHeightGreenEmbedding green ↔
+      scalar = 0 ∧ green = 0 := by
+  constructor
+  · intro h
+    have hpair := congrArg
+      (WithLp.ofLp :
+        CanonicalC3FiniteMixedHeightPolarizedCommonHilbert M →
+          ℂ × FiniteC3GreenBoundarySpace (3 * M)) h
+    exact ⟨congrArg Prod.fst hpair, (congrArg Prod.snd hpair).symm⟩
+  · rintro ⟨rfl, rfl⟩
+    rfl
+
 /-- Scalar boundary pair embedded into the common carrier. -/
 def canonicalC3FiniteMixedHeightScalarBoundaryPair
     (M : ℕ) (companion value : ℂ) :
@@ -358,6 +389,12 @@ def finiteHeightPolarizedCameraCrossResidualChannelState
 def polarizedCameraCrossResidualChannelScalarReadout
     (state : PolarizedCameraCrossResidualChannelHilbert) : ℂ :=
   state.fst + state.snd.fst + state.snd.snd.fst + state.snd.snd.snd
+
+/-- The final four-channel scalar synthesis is continuous. -/
+theorem continuous_polarizedCameraCrossResidualChannelScalarReadout :
+    Continuous polarizedCameraCrossResidualChannelScalarReadout := by
+  unfold polarizedCameraCrossResidualChannelScalarReadout
+  fun_prop
 
 /-- Local-minus-Green layer of the canonical C3 finite polarized ledger. -/
 def canonicalC3FiniteMixedHeightLocalGreenResidualChannel
@@ -1705,6 +1742,135 @@ theorem finiteHeightPolarizedCameraCrossResidualChannelState_tendsto_zero
   convert hallLp using 1
   · simp [Function.comp_def]
   · rfl
+
+/-! ## The remaining four-channel structural/camera gate -/
+
+/-- The honest final vector gate: after matching the same cutoff, the four
+structural Green/TFVD defects and the four finite camera defects become the
+same vector in completion. -/
+def CanonicalC3FourChannelStructuralCameraCompletionAt
+    (camera : ℕ) (z w : ℂ) : Prop :=
+  Tendsto
+    (fun M : ℕ =>
+      canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState
+          M z w -
+        finiteHeightPolarizedCameraCrossResidualChannelState
+          camera M z w)
+    atTop (nhds 0)
+
+/-- Since the camera defect already converges channel by channel to zero, the
+final vector gate is exactly vanishing of the full structural four-state.
+No scalar readout is used in this equivalence. -/
+theorem canonicalC3FourChannelStructuralCameraCompletionAt_iff_structural_tendsto_zero
+    {camera : ℕ} (hcamera : 2 ≤ camera) {z w : ℂ}
+    (hz : z ∈ bracketDomain) (hw : w ∈ bracketDomain) :
+    CanonicalC3FourChannelStructuralCameraCompletionAt camera z w ↔
+      Tendsto
+        (fun M : ℕ =>
+          canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState
+            M z w)
+        atTop (nhds 0) := by
+  have hcameraLimit :=
+    finiteHeightPolarizedCameraCrossResidualChannelState_tendsto_zero
+      hcamera hz hw
+  constructor
+  · intro hgate
+    unfold CanonicalC3FourChannelStructuralCameraCompletionAt at hgate
+    have hadd := hgate.add hcameraLimit
+    simpa only [sub_add_cancel, add_zero] using hadd
+  · intro hstructural
+    unfold CanonicalC3FourChannelStructuralCameraCompletionAt
+    simpa using hstructural.sub hcameraLimit
+
+/-- Vanishing of the structural four-state forces vanishing of its existing
+scalar structural defect. -/
+theorem canonicalC3FullPolarizedStructuralResidualState_tendsto_zero_implies_scalar
+    {z w : ℂ}
+    (hstate : Tendsto
+      (fun M : ℕ =>
+        canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState
+          M z w)
+      atTop (nhds 0)) :
+    Tendsto
+      (fun M : ℕ => canonicalC3FiniteMixedHeightStructuralDefect M z w)
+      atTop (nhds 0) := by
+  have hreadout : Tendsto
+      (fun M : ℕ =>
+        polarizedCameraCrossResidualChannelScalarReadout
+          (canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState
+            M z w))
+      atTop (nhds 0) := by
+    simpa [Function.comp_def,
+      polarizedCameraCrossResidualChannelScalarReadout] using
+      continuous_polarizedCameraCrossResidualChannelScalarReadout.continuousAt.tendsto.comp
+        hstate
+  simpa only [canonicalC3FullPolarizedStructuralResidualState_scalarReadout]
+    using hreadout
+
+/-- On a Genuine zero, closing the final four-channel structural/camera gate
+already proves critical-line confinement for that zero. -/
+theorem canonicalC3FourChannelStructuralCameraCompletionAt_implies_re_eq_half_of_genuineZero
+    {camera : ℕ} (hcamera : 2 ≤ camera) {s : ℂ}
+    (hs : s ∈ genuineCriticalStrip)
+    (hzero : genuineContinuation s = 0)
+    (hgate : CanonicalC3FourChannelStructuralCameraCompletionAt
+      camera s s) :
+    s.re = (1 : ℝ) / 2 := by
+  have hsDomain : s ∈ bracketDomain := by
+    change -1 < s.re
+    linarith [hs.1]
+  have hstate :=
+    (canonicalC3FourChannelStructuralCameraCompletionAt_iff_structural_tendsto_zero
+      hcamera hsDomain hsDomain).1 hgate
+  have hscalar :=
+    canonicalC3FullPolarizedStructuralResidualState_tendsto_zero_implies_scalar
+      hstate
+  exact
+    (canonicalC3FiniteMixedHeightStructuralDefect_tendsto_zero_at_genuineZero_iff
+      hs hzero).1 hscalar
+
+/-- In particular, an exact cutoffwise identification of the four structural
+channels with the four camera channels already proves confinement. -/
+theorem canonicalC3FullPolarizedStructuralResidualState_eq_camera_implies_re_eq_half_of_genuineZero
+    {camera : ℕ} (hcamera : 2 ≤ camera) {s : ℂ}
+    (hs : s ∈ genuineCriticalStrip)
+    (hzero : genuineContinuation s = 0)
+    (hchannels : ∀ M : ℕ,
+      canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState
+          M s s =
+        finiteHeightPolarizedCameraCrossResidualChannelState
+          camera M s s) :
+    s.re = (1 : ℝ) / 2 := by
+  apply
+    canonicalC3FourChannelStructuralCameraCompletionAt_implies_re_eq_half_of_genuineZero
+      hcamera hs hzero
+  unfold CanonicalC3FourChannelStructuralCameraCompletionAt
+  have hzeroState :
+      (fun M : ℕ =>
+        canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState
+            M s s -
+          finiteHeightPolarizedCameraCrossResidualChannelState
+            camera M s s) =
+        (fun _ : ℕ =>
+          (0 : PolarizedCameraCrossResidualChannelHilbert)) := by
+    funext M
+    rw [hchannels M]
+    simp
+  rw [hzeroState]
+  exact tendsto_const_nhds
+
+/-- Consequently, at a hypothetical off-critical Genuine zero the final
+four-channel structural/camera identification cannot hold. -/
+theorem canonicalC3FourChannelStructuralCameraCompletionAt_not_of_offCritical_genuineZero
+    {camera : ℕ} (hcamera : 2 ≤ camera) {s : ℂ}
+    (hs : s ∈ genuineCriticalStrip)
+    (hzero : genuineContinuation s = 0)
+    (hoff : s.re ≠ (1 : ℝ) / 2) :
+    ¬ CanonicalC3FourChannelStructuralCameraCompletionAt camera s s := by
+  intro hgate
+  exact hoff
+    (canonicalC3FourChannelStructuralCameraCompletionAt_implies_re_eq_half_of_genuineZero
+      hcamera hs hzero hgate)
 
 theorem finitePolarizedCameraCrossResidual_tendsto_zero
     {camera : ℕ} (hcamera : 2 ≤ camera) {z w : ℂ}
