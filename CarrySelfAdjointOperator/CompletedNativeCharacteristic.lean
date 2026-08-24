@@ -25,6 +25,15 @@ def completedNativeCharacteristic
   finiteBracketCharacteristic camera cutoff s +
     ∑' index : ℕ, centerBracketTerm camera s (index + cutoff)
 
+/-- The completed head--tail presentation is literally the infinite camera
+characteristic throughout the bracket domain. -/
+theorem completedNativeCharacteristic_eq_bracketCharacteristic
+    {camera cutoff : ℕ} (hcamera : 2 ≤ camera) {s : ℂ}
+    (hs : s ∈ bracketDomain) :
+    completedNativeCharacteristic camera cutoff s =
+      bracketCharacteristic camera s := by
+  exact complete_head_add_complete_center_tail_of_mem_domain hcamera hs
+
 /-- The completed characteristic is exactly the common native scalar dressed
 by the camera factor.  No zero or critical-line hypothesis is used. -/
 theorem completedNativeCharacteristic_eq_factor_mul_nativeScalar
