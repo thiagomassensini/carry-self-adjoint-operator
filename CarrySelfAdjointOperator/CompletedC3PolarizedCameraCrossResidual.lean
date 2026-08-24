@@ -1743,11 +1743,11 @@ theorem finiteHeightPolarizedCameraCrossResidualChannelState_tendsto_zero
   · simp [Function.comp_def]
   · rfl
 
-/-! ## The remaining four-channel structural/camera gate -/
+/-! ## The over-strong one-camera four-channel candidate -/
 
-/-- The honest final vector gate: after matching the same cutoff, the four
-structural Green/TFVD defects and the four finite camera defects become the
-same vector in completion. -/
+/-- A candidate comparison between the four structural Green/TFVD terms and
+the four defects of one camera.  The no-go theorem below shows that this is
+strictly stronger than the intended simultaneous six-camera skew readout. -/
 def CanonicalC3FourChannelStructuralCameraCompletionAt
     (camera : ℕ) (z w : ℂ) : Prop :=
   Tendsto
@@ -1781,6 +1781,288 @@ theorem canonicalC3FourChannelStructuralCameraCompletionAt_iff_structural_tendst
   · intro hstructural
     unfold CanonicalC3FourChannelStructuralCameraCompletionAt
     simpa using hstructural.sub hcameraLimit
+
+/-- The second polarized structural coordinate is a concrete finite radial
+Gram pairing.  This identity is independent of any zero hypothesis and of
+any arithmetic classification of camera labels. -/
+theorem inner_finiteC3GenuineBracketGreenBoundaryPair_snd_reflected_fst
+    (N : ℕ) (s : ℂ) :
+    inner ℂ
+        (finiteC3GenuineBracketGreenBoundaryPair N s).2
+        (finiteC3GenuineBracketGreenBoundaryPair
+          N (reflectedParameter s)).1 =
+      (((3 : ℝ) ^ (criticalDisplacement s.re) : ℝ) : ℂ) *
+        finiteReflectedGradientPairing N s := by
+  rw [finiteC3GenuineBracketGreenBoundaryPair_eq_greenBoundaryPair,
+    finiteC3GenuineBracketGreenBoundaryPair_eq_greenBoundaryPair,
+    PiLp.inner_apply]
+  simp only [finiteC3GreenBoundaryPair_fst_apply,
+    finiteC3GreenBoundaryPair_snd_apply, RCLike.inner_apply']
+  rw [Finset.sum_fin_eq_sum_range]
+  simp_rw [phaseNormalizedCpBlockGradient_reflected_eq_radial_mul
+    3 (by norm_num)]
+  unfold finiteReflectedGradientPairing
+  rw [Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro n hn
+  simp [Finset.mem_range.mp hn]
+  ring
+
+/-- At equal parameters, the second structural coordinate retains the
+negative finite radial Gram pairing. -/
+theorem canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState_second_eq
+    (M : ℕ) (s : ℂ) :
+    (canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState
+      M s s).snd.fst =
+      -((((3 : ℝ) ^ (criticalDisplacement s.re) : ℝ) : ℂ) *
+        finiteReflectedGradientPairing (3 * M) s) := by
+  change
+    inner ℂ
+        (canonicalC3FiniteMixedHeightScalarEmbedding M
+          (canonicalBoundaryResidualData M tfvdHaarScale
+            (fun _ : ℕ => (1 : ℂ)) s).valueReadout -
+          canonicalC3FiniteMixedHeightGreenEmbedding
+            (finiteC3GenuineBracketGreenBoundaryPair (3 * M) s).2)
+        (canonicalC3FiniteMixedHeightGreenEmbedding
+          (finiteC3GenuineBracketGreenBoundaryPair
+            (3 * M) (reflectedParameter s)).1) = _
+  rw [inner_sub_left,
+    inner_canonicalC3FiniteMixedHeightScalarEmbedding_greenEmbedding]
+  simp only [zero_sub]
+  rw [show inner ℂ
+      (canonicalC3FiniteMixedHeightGreenEmbedding
+        (finiteC3GenuineBracketGreenBoundaryPair (3 * M) s).2)
+      (canonicalC3FiniteMixedHeightGreenEmbedding
+        (finiteC3GenuineBracketGreenBoundaryPair
+          (3 * M) (reflectedParameter s)).1) =
+      inner ℂ
+        (finiteC3GenuineBracketGreenBoundaryPair (3 * M) s).2
+        (finiteC3GenuineBracketGreenBoundaryPair
+          (3 * M) (reflectedParameter s)).1 by
+    simp [canonicalC3FiniteMixedHeightGreenEmbedding,
+      WithLp.prod_inner_apply]]
+  rw [inner_finiteC3GenuineBracketGreenBoundaryPair_snd_reflected_fst]
+
+/-- The retained second coordinate converges to its completed radial Gram
+pairing throughout the Genuine critical strip. -/
+theorem canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState_second_tendsto
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip) :
+    Tendsto
+      (fun M : ℕ =>
+        (canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState
+          M s s).snd.fst)
+      atTop
+      (nhds
+        (-((((3 : ℝ) ^ (criticalDisplacement s.re) : ℝ) : ℂ) *
+          infiniteReflectedGradientPairing s))) := by
+  have hpair :=
+    (finiteReflectedGradientPairing_tendsto_infinite hs).comp
+      tendsto_three_mul_atTop
+  have hscaled :=
+    (tendsto_const_nhds : Tendsto
+      (fun _ : ℕ =>
+        (((3 : ℝ) ^ (criticalDisplacement s.re) : ℝ) : ℂ))
+      atTop
+      (nhds (((3 : ℝ) ^ (criticalDisplacement s.re) : ℝ) : ℂ))).mul
+      hpair
+  simpa only [
+    canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState_second_eq,
+    Function.comp_apply] using hscaled.neg
+
+/-- The completed limit retained by the second structural coordinate is
+nonzero everywhere in the Genuine critical strip. -/
+theorem canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState_second_limit_ne_zero
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip) :
+    -((((3 : ℝ) ^ (criticalDisplacement s.re) : ℝ) : ℂ) *
+        infiniteReflectedGradientPairing s) ≠ 0 := by
+  apply neg_ne_zero.mpr
+  apply mul_ne_zero
+  · exact_mod_cast (ne_of_gt
+      (Real.rpow_pos_of_pos (by norm_num : (0 : ℝ) < 3)
+        (criticalDisplacement s.re)))
+  · exact infiniteReflectedGradientPairing_ne_zero hs
+
+/-- Consequently, the full four-term structural state does not converge to
+zero, including on the critical line.  Its four entries are bilinear terms
+whose legitimate Green cancellation occurs only in the final skew readout. -/
+theorem canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState_not_tendsto_zero
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip) :
+    ¬ Tendsto
+      (fun M : ℕ =>
+        canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState
+          M s s)
+      atTop (nhds 0) := by
+  intro hzero
+  have hprojection : Continuous
+      (fun state : PolarizedCameraCrossResidualChannelHilbert =>
+        state.snd.fst) := by
+    fun_prop
+  have hsecondZero : Tendsto
+      (fun M : ℕ =>
+        (canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState
+          M s s).snd.fst)
+      atTop (nhds 0) := by
+    simpa [Function.comp_def] using
+      hprojection.continuousAt.tendsto.comp hzero
+  have heq := tendsto_nhds_unique
+    (canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState_second_tendsto
+      hs)
+    hsecondZero
+  exact
+    canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState_second_limit_ne_zero
+      hs heq
+
+/-- The one-camera four-channel candidate never closes at equal parameters
+in the Genuine critical strip.  It must be replaced by the simultaneous
+six-camera symplectic readout, not strengthened with a zero assumption. -/
+theorem canonicalC3FourChannelStructuralCameraCompletionAt_not_in_genuineCriticalStrip
+    {camera : ℕ} (hcamera : 2 ≤ camera)
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip) :
+    ¬ CanonicalC3FourChannelStructuralCameraCompletionAt camera s s := by
+  intro hgate
+  have hsDomain : s ∈ bracketDomain := by
+    change -1 < s.re
+    linarith [hs.1]
+  have hstructural :=
+    (canonicalC3FourChannelStructuralCameraCompletionAt_iff_structural_tendsto_zero
+      hcamera hsDomain hsDomain).1 hgate
+  exact
+    canonicalC3FiniteMixedHeightFullPolarizedStructuralResidualState_not_tendsto_zero
+      hs hstructural
+
+/-! ## Correct simultaneous six-camera symplectic readout -/
+
+/-- Every literal camera used by the fixed symplectic C3 realization has a
+label in `2, ..., 7`.  No primality, parity, or factorization condition is
+present in this index set. -/
+theorem canonicalC3RealCoordinateCameraIndex_val_mem_Icc_two_seven
+    (j : CanonicalC3RealCoordinate) :
+    (canonicalC3RealCoordinateCameraIndex j).val ∈ Finset.Icc 2 7 := by
+  rw [Finset.mem_Icc]
+  constructor
+  · simp [canonicalC3RealCoordinateCameraIndex]
+  · have hj : j.val < 6 := by
+      simpa [CanonicalC3RealCoordinate,
+        finiteC3GreenBoundarySpace_real_finrank_eq_six] using j.isLt
+    simp only [canonicalC3RealCoordinateCameraIndex]
+    omega
+
+/-- Conversely, every camera label from `2` through `7` occurs in the fixed
+C3 coordinate family. -/
+theorem exists_canonicalC3RealCoordinateCameraIndex_eq_of_mem_Icc_two_seven
+    {camera : ℕ} (hlower : 2 ≤ camera) (hupper : camera ≤ 7) :
+    ∃ j : CanonicalC3RealCoordinate,
+      (canonicalC3RealCoordinateCameraIndex j).val = camera := by
+  have hlt : camera - 2 < 6 := by omega
+  let j : CanonicalC3RealCoordinate :=
+    ⟨camera - 2, by
+      simpa [CanonicalC3RealCoordinate,
+        finiteC3GreenBoundarySpace_real_finrank_eq_six] using hlt⟩
+  refine ⟨j, ?_⟩
+  simp [canonicalC3RealCoordinateCameraIndex, j]
+  omega
+
+/-- For each of the six literal camera labels, all four completed traces are
+the corresponding four projections of the weighted enriched TFVD carrier. -/
+theorem completedCameraCrossLeftTraceState_eq_weightedTfvdTraceState_canonicalC3Camera
+    (j : CanonicalC3RealCoordinate) (cutoff : ℕ) {z w : ℂ}
+    (hz : z ∈ bracketDomain) (hw : w ∈ bracketDomain) :
+    completedCameraCrossLeftTraceState
+        (canonicalC3RealCoordinateCameraIndex j).val cutoff z w =
+      canonicalCompletedC3CameraWeightedTfvdTraceState
+        (canonicalC3RealCoordinateCameraIndex j).val cutoff z w := by
+  have hcamera : 2 ≤ (canonicalC3RealCoordinateCameraIndex j).val :=
+    (Finset.mem_Icc.mp
+      (canonicalC3RealCoordinateCameraIndex_val_mem_Icc_two_seven j)).1
+  exact completedCameraCrossLeftTraceState_eq_weightedTfvdTraceState
+    hcamera cutoff hz hw
+
+/-- The preceding four-trace identification holds simultaneously as an
+equality of the complete six-camera family. -/
+theorem canonicalC3SixCameraCompletedTraceFamily_eq_weightedTfvd
+    (cutoff : ℕ) {z w : ℂ}
+    (hz : z ∈ bracketDomain) (hw : w ∈ bracketDomain) :
+    (fun j : CanonicalC3RealCoordinate =>
+      completedCameraCrossLeftTraceState
+        (canonicalC3RealCoordinateCameraIndex j).val cutoff z w) =
+      (fun j : CanonicalC3RealCoordinate =>
+        canonicalCompletedC3CameraWeightedTfvdTraceState
+          (canonicalC3RealCoordinateCameraIndex j).val cutoff z w) := by
+  funext j
+  exact
+    completedCameraCrossLeftTraceState_eq_weightedTfvdTraceState_canonicalC3Camera
+      j cutoff hz hw
+
+/-- Lossless complex readout of the fixed C3 port through the symplectic
+Naimark realization supported on cameras `2, ..., 7`.  The direct and
+quarter-turned real skews are retained until this final reconstruction. -/
+def canonicalC3SixCameraSymplecticComplexReadout
+    (x y : FiniteC3GreenPortCarrier 3) : ℂ :=
+  (realifiedGreenSkew
+      (canonicalC3SymplecticNaimarkRealization x)
+      (canonicalC3SymplecticNaimarkRealization y) : ℂ) -
+    Complex.I *
+      (realifiedGreenSkew
+        (canonicalC3SymplecticNaimarkRealization x)
+        (canonicalC3SymplecticNaimarkRealization (Complex.I • y)) : ℂ)
+
+/-- The two fixed six-camera quadratures reconstruct the intrinsic complex
+C3 Green form exactly. -/
+theorem canonicalC3SixCameraSymplecticComplexReadout_eq_greenForm
+    (x y : FiniteC3GreenPortCarrier 3) :
+    canonicalC3SixCameraSymplecticComplexReadout x y =
+      greenForm (𝕜 := ℂ) x y := by
+  unfold canonicalC3SixCameraSymplecticComplexReadout
+  rw [realifiedGreenSkew_canonicalC3SymplecticNaimarkRealization,
+    realifiedGreenSkew_canonicalC3SymplecticNaimarkRealization,
+    greenForm_smul_right]
+  apply Complex.ext <;> simp
+
+/-- Canonical direct/reflected Green readout obtained from the completed
+TFVD port and the fixed six-camera symplectic realization. -/
+def canonicalCompletedC3SixCameraSymplecticGreenReadout
+    (z w : ℂ) : ℂ :=
+  canonicalC3SixCameraSymplecticComplexReadout
+    (canonicalEnrichedC3SourcePort w)
+    (canonicalEnrichedC3SourcePort (reflectedParameter z))
+
+/-- The completed TFVD source intertwiner identifies the fixed six-camera
+readout with the Genuine bracket Green form, without a zero hypothesis. -/
+theorem canonicalCompletedC3SixCameraSymplecticGreenReadout_eq_greenForm
+    (z w : ℂ) :
+    canonicalCompletedC3SixCameraSymplecticGreenReadout z w =
+      greenForm (𝕜 := ℂ)
+        (finiteC3GenuineBracketGreenBoundaryPair 3 w)
+        (finiteC3GenuineBracketGreenBoundaryPair
+          3 (reflectedParameter z)) := by
+  unfold canonicalCompletedC3SixCameraSymplecticGreenReadout
+  rw [canonicalC3SixCameraSymplecticComplexReadout_eq_greenForm,
+    canonicalEnrichedC3SourcePort_eq_completedTfvdGreenLedgerC3Port,
+    canonicalEnrichedC3SourcePort_eq_completedTfvdGreenLedgerC3Port,
+    completedTfvdGreenLedgerC3Port_seeded,
+    completedTfvdGreenLedgerC3Port_seeded]
+
+/-- Exact corrected gate at the canonical complete C3 block.  The completed
+Wronskian and the fixed six-camera Green readout are projections of the same
+TFVD construction; their difference remains explicitly split into the
+structural and head--tail channels. -/
+theorem canonicalCompletedC3RawHeightMixedWronskian_eq_sixCameraGreen_add_channels
+    {z w : ℂ}
+    (hz : z ∈ genuineCriticalStrip)
+    (hw : w ∈ genuineCriticalStrip) :
+    canonicalCompletedC3RawHeightMixedWronskian
+        (centeredHeightParameter z) (centeredHeightParameter w) =
+      canonicalCompletedC3SixCameraSymplecticGreenReadout z w +
+        canonicalC3FiniteMixedHeightStructuralDefect 1 z w +
+        canonicalC3MixedHeightTailCompletionDefect 1
+          (centeredHeightParameter z) (centeredHeightParameter w) := by
+  have h :=
+    canonicalCompletedC3RawHeightMixedWronskian_eq_green_add_channels
+      1 (z := centeredHeightParameter z) (w := centeredHeightParameter w)
+      (by simpa using hz) (by simpa using hw)
+  simp only [operatorHeightParameter_centeredHeightParameter] at h
+  rw [← canonicalCompletedC3SixCameraSymplecticGreenReadout_eq_greenForm] at h
+  exact h
 
 /-- Vanishing of the structural four-state forces vanishing of its existing
 scalar structural defect. -/
