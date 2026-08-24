@@ -208,6 +208,11 @@ The construction does not take a zero list or target heights as input.
 - proves that this concrete readout is literally the radial field of the
   six-channel `(F,-F')` ledger and that radial plus chart converges to the
   completed candidate global Green kernel;
+- bundles the enriched TFVD transport with its value and log-jet tails in one
+  cutoff-indexed state, proves that its completed trace is `(F,-F')` while
+  its retained port is the Genuine bracket port, and factors the completed
+  Wronskian through `bracket -> enriched TFVD -> Green` with provenance,
+  off-diagonal, residual, tail, and chart channels still explicit;
 - restates the final capstone with no abstract state or extra nonvanishing
   premise using this positive radial energy.
 
@@ -222,8 +227,11 @@ separate real quadratures recover the full complex Green kernel, and their
 weighted global readout converges to the completed candidate Green kernel.
 Lean proves that convergence of this same concrete readout to the completed
 Wronskian is equivalent to vanishing of the retained structural triple.  The
-remaining noncircular step is therefore an independent positive/no-leak
-control of that structural state.  The infinite
+new bracket--TFVD factorization verifies that this is the correct location of
+the obstruction: the completed Wronskian realizes the tail-completed TFVD
+trace, and the corrected TFVD boundary independently realizes the bracket
+Green form.  Their final identification still requires an independent
+positive/no-leak control of the structural state.  The infinite
 self-adjoint Jacobi realization is now constructed; passage to its
 inverse-square-root height operator and the final spectral identification
 remain a separate operator-completion route.  No unconditional global

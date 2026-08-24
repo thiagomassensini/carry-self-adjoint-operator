@@ -18,8 +18,9 @@ remaining global Green-Wronskian identification.
 | `CompletedC3FNegFPrimeMixedKernel` | Applies the height rotation and xi/chart product rule, gives the exact six-channel final readout, and computes the structural limit. |
 | `CanonicalC3SymplecticNaimarkBridge` | Realifies each complete C3 leg without loss, applies the symplectic sign before scalar readout, and transports `re(greenForm)` exactly through the global camera completion and Naimark isometry. |
 | `CompletedC3SymplecticNaimarkLimitBridge` | Uses one permanent orthonormal camera family for every cutoff, retains two real skew quadratures through Naimark promotion, reconstructs the full complex Green form, and passes its Genuine radial readout to the completed kernel. |
+| `CompletedC3BracketTfvdGreenFactorization` | Bundles TFVD heads, value/log-jet tails, and the bracket port in one state; identifies its completed trace with `(F,-F')`; and factors the full ledger through bracket, enriched TFVD, and Green in that order. |
 
-All ten modules are imported by `CarrySelfAdjointOperator.lean` and their
+All eleven modules are imported by `CarrySelfAdjointOperator.lean` and their
 public theorem surface is checked by `CarrySelfAdjointOperator/Audit.lean`.
 
 ## Completed finite ledger
@@ -135,6 +136,50 @@ converges to the completed radial Gram kernel; after adding the separately
 retained chart channel, it converges to
 `canonicalCompletedC3FNegFPrimeMixedGreenKernel`.
 
+## Bracket--TFVD factorization
+
+`CanonicalC3BracketTfvdCompletionState M` retains three fields before any
+boundary pairing:
+
+```text
+finite enriched TFVD transport
+unresolved value tail
+unresolved log-jet tail
+```
+
+The transport itself retains the value head, log-jet head, all boundary
+cells, and the complete Green port.  For every cutoff, Lean proves
+simultaneously that its heads are the finite bracket charts and that its
+Green port is the Genuine bracket boundary pair.  Head plus tail is
+cutoff-independent.  After chart normalization and xi completion, the trace
+projection of this same carrier is exactly `(F,-F')`.
+
+The other projection is taken in the opposite order.  The independently
+defined enriched TFVD boundary is first corrected by its block Green
+provenance.  It is then proved equal to the Green form of the retained ports;
+only afterwards are those ports identified with the Genuine brackets and
+read through the two Naimark quadratures.  The central finite theorem is
+
+```text
+completedWronskian_factors_through_correctedTfvdBoundary_then_green
+```
+
+It has the literal channel structure
+
+```text
+chartWeight * completed Wronskian
+  = xiWeight * corrected TFVD Green boundary
+  + Green provenance
+  + off-diagonal provenance
+  + readout residual
+  + tail completion
+  + archimedean/chart channel.
+```
+
+Thus the Wronskian and Green constructions now demonstrably originate in the
+same bracket-derived enriched TFVD ledger.  This theorem does not discard the
+remaining channels or assert that they vanish.
+
 ## Remaining gate
 
 The corrected complex Green kernel now has an exact all-cutoff global
@@ -143,6 +188,13 @@ camera/Naimark realization and a proved completed limit.  The theorem
 states the remaining frontier without an abstract readout: this concrete
 global sequence converges to the completed `(F,-F')` Wronskian if and only if
 the retained structural triple tends to zero.
+
+The same statement is now proved after forcing the construction through the
+bracket--TFVD carrier, as
+`canonicalC3BracketTfvdGlobalGreenReadout_tendsto_wronskian_iff`.  Hence the
+earlier obstruction was not caused by skipping a definitional transport:
+the full state-level transport is closed, and the remaining issue is the
+independent no-leak behavior of its structural channels.
 
 The outstanding step must therefore control those structural channels by an
 independent positive Hilbert identity or reconstruct them inside a larger
