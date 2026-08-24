@@ -156,22 +156,36 @@ The construction does not take a zero list or target heights as input.
 - extracts the correctly typed positive radial C3 energy using the exact
   continuous cofactor of the tilt, and proves
   `(z - conj z) * energy = -2i * re(C3 bulk)` in centered coordinates;
+- constructs the ordinary and log-jet all-cutoff C3 states in `l2`, proves
+  norm convergence of both finite-prefix channels, and identifies the raw
+  finite gamma kernel with their completed Gram pairing;
+- transports the causal C3 bracket and Genuine Green pair to that same
+  completed state while retaining radial, provenance, off-diagonal, seam,
+  residual, and completion channels as separate data;
+- polarizes the construction at independent spectral parameters, applies the
+  exact height-coordinate rotation and xi/chart product rule, and proves that
+  the six-channel final readout is the completed `(F,-F')` Wronskian at every
+  cutoff before the nonzero chart weight is divided out;
+- proves that only the independent head-tail correction automatically tends
+  to zero: the retained provenance/off-diagonal/residual triple converges to
+  `raw Wronskian - radial Green`;
+- specializes that limit at a Genuine zero and proves the structural triple
+  tends to `-radial Green`, hence tends to zero exactly when `re s = 1/2` and
+  cannot tend to zero at a hypothetical off-critical Genuine zero;
 - restates the final capstone with no abstract state or extra nonvanishing
   premise using this positive radial energy.
 
-The direct critical-line capstone is now kernel-reduced to one correctly typed
-intertwiner identity: the diagonal Wronskian of the actual completed
-characteristic must equal `(z - conj z)` times the positive radial C3 energy,
-equivalently `-2i` times the real part of the factorized C3 bulk.  The raw
-complex bulk itself is formally ruled out as a diagonal scalarization; this
-no-go does not touch the two-channel gamma/Cauchy route.  The scalar readout,
-complete port, nonvanishing, radial factorization, positive energy, and its
-zero detector are already closed.  A noncircular construction must preserve
-diagonal TFVD, provenance, off-diagonal synthesis, log-jet, defect, and
-completion channels while proving the corrected identity.  The
-infinite Jacobi realization and passage from finite functional calculus remain
-a separate operator-completion route.  No unconditional global confinement
-theorem is claimed at this stage.
+The direct critical-line capstone is now reduced to one correctly typed
+global kernel identification.  The complete mixed ledger and its `(F,-F')`
+readout are closed, but its structural triple is not a disposable completion
+tail: at a Genuine zero its vanishing is equivalent to the critical-line
+conclusion.  The raw complex bulk and raw-coefficient renaming are both
+formally ruled out as shortcuts.  A noncircular construction must identify
+the correctly rotated/cofactored positive Green kernel with the completed
+Wronskian while preserving every channel until its local final readout.  The
+infinite Jacobi realization and passage from finite functional calculus
+remain a separate operator-completion route.  No unconditional global
+confinement theorem is claimed at this stage.
 
 Lean is validated exclusively by the exact-checkout GitHub Actions workflow.
 
@@ -192,3 +206,6 @@ its exact finite/cutoff restrictions are recorded in
 The exact shifted-moment adjoint law, closability proof, and the distinction
 between graph closure and circular provenance are recorded in
 [`docs/green-jet-energy-factor-closability.md`](docs/green-jet-energy-factor-closability.md).
+The completed C3 module map, six-channel sewing identities, exact structural
+limit, and remaining noncircular Green--Wronskian gate are recorded in
+[`docs/completed-c3-green-wronskian-frontier.md`](docs/completed-c3-green-wronskian-frontier.md).

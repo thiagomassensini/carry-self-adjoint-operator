@@ -94,6 +94,46 @@ theorem canonicalCompletedC3GlobalCameraSource_eq_source :
   funext z
   exact realifiedNaimarkAdjoint_canonicalCompletedC3NaimarkState z
 
+/-- Faithfulness of the six-camera coordinate packing is not intrinsic Green
+compatibility.  A real vector in the first C3 leg and the matching real vector
+in the second leg have nonzero C3 Green form, while their packed realified
+skew is zero.  Thus Naimark reconstruction alone cannot supply the missing
+Green--Wronskian identification. -/
+theorem canonicalC3SixCameraSourceMap_not_intrinsicGreenIntertwiner :
+    ∃ x y : NativeCarryC3Crosswalk.FiniteC3GreenPortCarrier 3,
+      (NativeCarrySpectralWeyl.Boundary.greenForm (𝕜 := ℂ) x y).re ≠
+        NativeCarryC3Crosswalk.realifiedGreenSkew
+          (canonicalC3SixCameraSourceMap x)
+          (canonicalC3SixCameraSourceMap y) := by
+  let x : NativeCarryC3Crosswalk.FiniteC3GreenPortCarrier 3 :=
+    (EuclideanSpace.single (0 : Fin 3) (1 : ℂ), 0)
+  let y : NativeCarryC3Crosswalk.FiniteC3GreenPortCarrier 3 :=
+    (0, EuclideanSpace.single (0 : Fin 3) (1 : ℂ))
+  refine ⟨x, y, ?_⟩
+  have hgreen :
+      NativeCarrySpectralWeyl.Boundary.greenForm (𝕜 := ℂ) x y = -1 := by
+    simp [x, y, NativeCarrySpectralWeyl.Boundary.greenForm]
+  have hxFirst (i : Fin 3) : (x.1 i).im = 0 := by
+    by_cases hi : i = 0 <;> simp [x, PiLp.single_apply, hi]
+  have hxSecond (i : Fin 3) : (x.2 i).im = 0 := by
+    simp [x]
+  have hyFirst (i : Fin 3) : (y.1 i).im = 0 := by
+    simp [y]
+  have hySecond (i : Fin 3) : (y.2 i).im = 0 := by
+    by_cases hi : i = 0 <;> simp [y, PiLp.single_apply, hi]
+  have hxImag : canonicalC3ImagCameraFinsupp x = 0 := by
+    simp [canonicalC3ImagCameraFinsupp, hxFirst, hxSecond]
+  have hyImag : canonicalC3ImagCameraFinsupp y = 0 := by
+    simp [canonicalC3ImagCameraFinsupp, hyFirst, hySecond]
+  have hskew :
+      NativeCarryC3Crosswalk.realifiedGreenSkew
+          (canonicalC3SixCameraSourceMap x)
+          (canonicalC3SixCameraSourceMap y) = 0 := by
+    simp [NativeCarryC3Crosswalk.realifiedGreenSkew,
+      canonicalC3SixCameraSourceMap, hxImag, hyImag]
+  rw [hgreen, hskew]
+  norm_num
+
 /-- The ambient logarithmic generator underlying the all-camera Cauchy trace
 is self-adjoint. -/
 theorem canonicalCompletedC3GlobalLogarithmicGenerator_isSelfAdjoint :
@@ -185,6 +225,30 @@ final quarter-turn, so `Re` is intentionally applied before multiplication by
 def canonicalCompletedC3BoundaryTraceNormalization (a : ℂ) : ℂ :=
   (-(2 : ℂ) * Complex.I) * (a.re : ℂ)
 
+theorem canonicalCompletedC3BoundaryTraceNormalization_add
+    (a b : ℂ) :
+    canonicalCompletedC3BoundaryTraceNormalization (a + b) =
+      canonicalCompletedC3BoundaryTraceNormalization a +
+        canonicalCompletedC3BoundaryTraceNormalization b := by
+  simp [canonicalCompletedC3BoundaryTraceNormalization, Complex.add_re]
+  ring
+
+theorem canonicalCompletedC3BoundaryTraceNormalization_sub
+    (a b : ℂ) :
+    canonicalCompletedC3BoundaryTraceNormalization (a - b) =
+      canonicalCompletedC3BoundaryTraceNormalization a -
+        canonicalCompletedC3BoundaryTraceNormalization b := by
+  simp [canonicalCompletedC3BoundaryTraceNormalization, Complex.sub_re]
+  ring
+
+theorem canonicalCompletedC3BoundaryTraceNormalization_scalarBoundaryWedge_eq_zero
+    (value logJet : ℂ) :
+    canonicalCompletedC3BoundaryTraceNormalization
+        (scalarBoundaryWedge value logJet) = 0 := by
+  unfold canonicalCompletedC3BoundaryTraceNormalization scalarBoundaryWedge
+  simp [Complex.mul_re]
+  ring
+
 /-- Orientation of one complex boundary channel.  The channel is rotated
 first, projected to its real readout only afterwards, and finally rebuilt in
 the oriented complex boundary line. -/
@@ -212,6 +276,18 @@ original skew orientation afterwards. -/
 def canonicalCompletedC3WronskianSkewChannelOrientation :
     CanonicalCompletedC3BoundaryChannelOrientation :=
   ⟨-Complex.I, Complex.I⟩
+
+/-- The off-diagonal provenance contributes to the radial account before the
+final scalar reconstruction. -/
+def canonicalCompletedC3OffDiagonalChannelOrientation :
+    CanonicalCompletedC3BoundaryChannelOrientation :=
+  canonicalCompletedC3RadialGreenChannelOrientation
+
+/-- The seam account is subtracted from the radial and off-diagonal channels.
+Its opposite post-rotation records that sign without merging the channels. -/
+def canonicalCompletedC3SeamDefectChannelOrientation :
+    CanonicalCompletedC3BoundaryChannelOrientation :=
+  ⟨1, (2 : ℂ) * Complex.I⟩
 
 /-- Four boundary channels retained until their channel-local final
 readouts.  No complex sum is formed in this carrier. -/
@@ -243,6 +319,13 @@ def canonicalCompletedC3SeparatedBoundaryOrientationsWith
     seamDefect := seamDefect
   }
 
+/-- Canonical orientations forced by the finite polarized ledger. -/
+def canonicalCompletedC3SeparatedBoundaryOrientations :
+    CanonicalCompletedC3SeparatedBoundaryOrientations :=
+  canonicalCompletedC3SeparatedBoundaryOrientationsWith
+    canonicalCompletedC3OffDiagonalChannelOrientation
+    canonicalCompletedC3SeamDefectChannelOrientation
+
 /-- Final readout formed only after every retained channel has undergone its
 own rotation and real projection. -/
 def canonicalCompletedC3SeparatedBoundaryFinalReadout
@@ -264,6 +347,22 @@ theorem canonicalCompletedC3RadialGreenChannelReadout_eq_normalization
       canonicalCompletedC3BoundaryTraceNormalization a := by
   simp [canonicalCompletedC3RotatedRealChannelReadout,
     canonicalCompletedC3RadialGreenChannelOrientation,
+    canonicalCompletedC3BoundaryTraceNormalization]
+
+theorem canonicalCompletedC3OffDiagonalChannelReadout_eq_normalization
+    (a : ℂ) :
+    canonicalCompletedC3RotatedRealChannelReadout
+        canonicalCompletedC3OffDiagonalChannelOrientation a =
+      canonicalCompletedC3BoundaryTraceNormalization a := by
+  exact canonicalCompletedC3RadialGreenChannelReadout_eq_normalization a
+
+theorem canonicalCompletedC3SeamDefectChannelReadout_eq_neg_normalization
+    (a : ℂ) :
+    canonicalCompletedC3RotatedRealChannelReadout
+        canonicalCompletedC3SeamDefectChannelOrientation a =
+      -canonicalCompletedC3BoundaryTraceNormalization a := by
+  simp [canonicalCompletedC3RotatedRealChannelReadout,
+    canonicalCompletedC3SeamDefectChannelOrientation,
     canonicalCompletedC3BoundaryTraceNormalization]
 
 /-- The skew-channel order preserves every purely imaginary boundary datum. -/
@@ -565,9 +664,34 @@ theorem canonicalCompletedC3FiniteEnrichedTfvdBoundaryCompanion_eq_completed
     canonicalCompletedC3FiniteEnrichedTfvdNormalizedLogJetTailReadout_eq_completed
       M hs]
 
-/-- The finite four-channel ledger with only its scalar skew coordinate
-replaced by the independently tail- and xi-completed enriched TFVD pair.  The
-radial, off-diagonal, and seam coordinates remain present and unmerged. -/
+/-- Tail-completed seam account.  The finite angular boundary is replaced by
+the independently constructed moving outer endpoint plus unresolved bracket
+tail, while Green provenance and the readout residual remain separate. -/
+def canonicalCompletedC3FiniteEnrichedSeamDefect
+    (M : ℕ) (s : ℂ) : ℂ :=
+  NativeCarryC3Crosswalk.finiteC3GenuineTailGreenBoundary M s -
+    (finiteCanonicalTfvdSameSGreenProvenanceDefect 3 M s +
+      canonicalBoundaryReadoutResidualCorrection M tfvdHaarScale
+        (fun _ : ℕ => (1 : ℂ)) s)
+
+/-- The completed seam is not an added free channel: it is the original finite
+seam plus the same head--tail C3 chart used by the enriched completion. -/
+theorem canonicalCompletedC3FiniteEnrichedSeamDefect_eq_finiteSeam_add_completedChart
+    (M : ℕ) {s : ℂ} (hs : -1 < s.re) :
+    canonicalCompletedC3FiniteEnrichedSeamDefect M s =
+      (canonicalCompletedC3FiniteSeparatedBoundaryChannels M s).seamDefect +
+        bracketedDirichletChart 3 s := by
+  unfold canonicalCompletedC3FiniteEnrichedSeamDefect
+    canonicalCompletedC3FiniteSeparatedBoundaryChannels
+    NativeCarryC3Crosswalk.finiteC3GenuineTailGreenBoundary
+  rw [finiteCanonicalAngularBracketCoupledBoundary_eq_outer_sub_finiteChart,
+    bracketedDirichletChart_eq_finite_add_cutoffTail
+      3 M (by norm_num) hs]
+  ring
+
+/-- The finite four-channel ledger with both the scalar pair and its seam
+account completed by the same C3 tail.  Every channel remains present and
+unmerged until the final channel-local readout. -/
 def canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels
     (M : ℕ) (z : ℂ) : CanonicalCompletedC3SeparatedBoundaryChannels :=
   { canonicalCompletedC3FiniteSeparatedBoundaryChannels M
@@ -575,28 +699,28 @@ def canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels
     wronskianSkew :=
       scalarBoundaryWedge
         (canonicalCompletedC3FiniteEnrichedTfvdCompletedValueTailReadout M z)
-        (canonicalCompletedC3FiniteEnrichedTfvdBoundaryCompanion M z) }
+        (canonicalCompletedC3FiniteEnrichedTfvdBoundaryCompanion M z)
+    seamDefect :=
+      canonicalCompletedC3FiniteEnrichedSeamDefect M
+        (operatorHeightParameter z) }
 
-/-- The final scalar readout is the skew projection of the separated ledger.
-The other three provenance channels remain available for independent Green
-and no-leak audits and are not silently added to the scalar Wronskian. -/
-def canonicalCompletedC3FinalScalarReadout
+/-- Exact skew readout of only the completed Wronskian channel. -/
+def canonicalCompletedC3WronskianChannelReadout
     (channels : CanonicalCompletedC3SeparatedBoundaryChannels) : ℂ :=
   canonicalCompletedC3RotatedRealChannelReadout
     canonicalCompletedC3WronskianSkewChannelOrientation
     channels.wronskianSkew
 
-/-- The tail-completed enriched separated ledger has exactly the completed
-Wronskian as its final scalar readout, at every cutoff. -/
-theorem finalScalarReadout_eq_completedWronskian
+/-- Tail completion identifies the Wronskian channel exactly at every cutoff. -/
+theorem wronskianChannelReadout_eq_completedWronskian
     (M : ℕ) {z : ℂ}
     (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
-    canonicalCompletedC3FinalScalarReadout
+    canonicalCompletedC3WronskianChannelReadout
         (canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels M z) =
       completedGreenWronskian
         canonicalCompletedC3EnrichedTfvdCompletedValueTailReadout
         canonicalCompletedC3EnrichedTfvdBoundaryCompanion z z := by
-  unfold canonicalCompletedC3FinalScalarReadout
+  unfold canonicalCompletedC3WronskianChannelReadout
     canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels
   rw [
     canonicalCompletedC3FiniteEnrichedTfvdCompletedValueTailReadout_eq_completed
@@ -614,7 +738,126 @@ theorem finalScalarReadout_eq_completedWronskian
   exact canonicalCompletedC3WronskianSkewChannelReadout_completedWronskian
     _ _ z
 
-/-- Limit form of the exact scalar sewing theorem. -/
+/-- Sum of the radial Green, off-diagonal, and completed seam readouts.  The
+three channels remain separate until this final scalar addition. -/
+def canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout
+    (M : ℕ) (z : ℂ) : ℂ :=
+  let channels :=
+    canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels M z
+  canonicalCompletedC3RotatedRealChannelReadout
+      canonicalCompletedC3RadialGreenChannelOrientation channels.radialGreen +
+    canonicalCompletedC3RotatedRealChannelReadout
+      canonicalCompletedC3OffDiagonalChannelOrientation channels.offDiagonal +
+    canonicalCompletedC3RotatedRealChannelReadout
+      canonicalCompletedC3SeamDefectChannelOrientation channels.seamDefect
+
+/-- Exact finite sewing identity for the three non-Wronskian channels.  Their
+common final readout leaves only the independently constructed completed C3
+boundary, with no global defect premise. -/
+theorem canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout_eq_neg_boundary
+    (M : ℕ) (z : ℂ) :
+    canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout M z =
+      -canonicalCompletedC3BoundaryTraceNormalization
+        (NativeCarryC3Crosswalk.finiteC3GenuineTailGreenBoundary M
+          (operatorHeightParameter z)) := by
+  let s := operatorHeightParameter z
+  have hdecomposition :=
+    canonicalEnrichedScalarBoundary_eq_green_add_explicitDefects
+      M tfvdHaarScale_ne_zero (fun _ : ℕ => (1 : ℂ))
+      (by intro m; norm_num) s
+  have hnormalized := congrArg
+    canonicalCompletedC3BoundaryTraceNormalization hdecomposition
+  rw [
+    canonicalCompletedC3BoundaryTraceNormalization_scalarBoundaryWedge_eq_zero,
+    canonicalCompletedC3BoundaryTraceNormalization_add,
+    canonicalCompletedC3BoundaryTraceNormalization_add,
+    canonicalCompletedC3BoundaryTraceNormalization_add] at hnormalized
+  unfold canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout
+    canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels
+    canonicalCompletedC3FiniteEnrichedSeamDefect
+    canonicalCompletedC3FiniteSeparatedBoundaryChannels
+  dsimp only [s]
+  rw [canonicalCompletedC3RadialGreenChannelReadout_eq_normalization,
+    canonicalCompletedC3OffDiagonalChannelReadout_eq_normalization,
+    canonicalCompletedC3SeamDefectChannelReadout_eq_neg_normalization,
+    canonicalCompletedC3BoundaryTraceNormalization_sub,
+    canonicalCompletedC3BoundaryTraceNormalization_add]
+  linear_combination -hnormalized
+
+/-- The completed outer-endpoint/tail boundary vanishes independently of any
+zero, no-leak, scalarization, or confinement hypothesis. -/
+theorem canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout_tendsto_zero
+    {z : ℂ} (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    Tendsto
+      (fun M : ℕ =>
+        canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout M z)
+      atTop (nhds 0) := by
+  have hboundary :=
+    NativeCarryC3Crosswalk.finiteC3GenuineTailGreenBoundary_tendsto_zero
+      (s := operatorHeightParameter z) (by linarith [hs.1])
+  have hcontinuous :
+      Continuous canonicalCompletedC3BoundaryTraceNormalization := by
+    unfold canonicalCompletedC3BoundaryTraceNormalization
+    fun_prop
+  have hnormalized :
+      Tendsto
+        (fun M : ℕ =>
+          -canonicalCompletedC3BoundaryTraceNormalization
+            (NativeCarryC3Crosswalk.finiteC3GenuineTailGreenBoundary M
+              (operatorHeightParameter z)))
+        atTop (nhds 0) := by
+    simpa [Function.comp_def,
+      canonicalCompletedC3BoundaryTraceNormalization] using
+      ((hcontinuous.tendsto 0).comp hboundary).neg
+  exact hnormalized.congr' (Eventually.of_forall fun M =>
+    (canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout_eq_neg_boundary
+      M z).symm)
+
+/-- Final scalar readout of the complete separated ledger.  No channel is
+discarded: each is rotated and projected locally before the four readings are
+added. -/
+def canonicalCompletedC3FinalScalarReadout
+    (channels : CanonicalCompletedC3SeparatedBoundaryChannels) : ℂ :=
+  canonicalCompletedC3SeparatedBoundaryFinalReadout
+    canonicalCompletedC3SeparatedBoundaryOrientations channels
+
+/-- At each cutoff, the full readout is the completed Wronskian minus the
+explicit completed C3 endpoint/tail boundary. -/
+theorem finalScalarReadout_eq_completedWronskian_sub_boundary
+    (M : ℕ) {z : ℂ}
+    (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    canonicalCompletedC3FinalScalarReadout
+        (canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels M z) =
+      completedGreenWronskian
+          canonicalCompletedC3EnrichedTfvdCompletedValueTailReadout
+          canonicalCompletedC3EnrichedTfvdBoundaryCompanion z z -
+        canonicalCompletedC3BoundaryTraceNormalization
+          (NativeCarryC3Crosswalk.finiteC3GenuineTailGreenBoundary M
+            (operatorHeightParameter z)) := by
+  have hwronskian :=
+    wronskianChannelReadout_eq_completedWronskian M hs
+  have hnonWronskian :=
+    canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout_eq_neg_boundary
+      M z
+  unfold canonicalCompletedC3FinalScalarReadout
+    canonicalCompletedC3SeparatedBoundaryFinalReadout
+    canonicalCompletedC3SeparatedBoundaryOrientations
+    canonicalCompletedC3SeparatedBoundaryOrientationsWith
+    canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout at *
+  change canonicalCompletedC3RotatedRealChannelReadout
+      canonicalCompletedC3WronskianSkewChannelOrientation
+      (canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels M z).wronskianSkew = _
+    at hwronskian
+  change _ +
+      canonicalCompletedC3RotatedRealChannelReadout
+        canonicalCompletedC3WronskianSkewChannelOrientation
+        (canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels M z).wronskianSkew +
+      _ + _ = _
+  rw [hwronskian]
+  linear_combination hnonWronskian
+
+/-- The complete separated ledger, not merely its Wronskian coordinate,
+converges to the completed Wronskian. -/
 theorem finalScalarReadout_tendsto_completedWronskian
     {z : ℂ} (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
     Tendsto
@@ -626,18 +869,34 @@ theorem finalScalarReadout_tendsto_completedWronskian
         (completedGreenWronskian
           canonicalCompletedC3EnrichedTfvdCompletedValueTailReadout
           canonicalCompletedC3EnrichedTfvdBoundaryCompanion z z)) := by
-  have hfunctions :
-      (fun M : ℕ =>
-        canonicalCompletedC3FinalScalarReadout
-          (canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels M z)) =
-        (fun _ : ℕ =>
-          completedGreenWronskian
-            canonicalCompletedC3EnrichedTfvdCompletedValueTailReadout
-            canonicalCompletedC3EnrichedTfvdBoundaryCompanion z z) := by
-    funext M
-    exact finalScalarReadout_eq_completedWronskian M hs
-  rw [hfunctions]
-  exact tendsto_const_nhds
+  have hnonWronskian :=
+    canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout_tendsto_zero
+      hs
+  let W : ℂ :=
+    completedGreenWronskian
+      canonicalCompletedC3EnrichedTfvdCompletedValueTailReadout
+      canonicalCompletedC3EnrichedTfvdBoundaryCompanion z z
+  have hconstant : Tendsto (fun _ : ℕ => W) atTop (nhds W) :=
+    tendsto_const_nhds
+  have hsum := hconstant.add hnonWronskian
+  have hsum' :
+      Tendsto
+        (fun M : ℕ =>
+          W +
+            canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout
+              M z)
+        atTop (nhds W) := by
+    simpa using hsum
+  change Tendsto _ atTop (nhds W)
+  refine hsum'.congr' (Eventually.of_forall fun M => ?_)
+  change W +
+      canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout M z =
+    canonicalCompletedC3FinalScalarReadout
+      (canonicalCompletedC3FiniteEnrichedSeparatedBoundaryChannels M z)
+  rw [finalScalarReadout_eq_completedWronskian_sub_boundary M hs,
+    canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout_eq_neg_boundary]
+  dsimp only [W]
+  ring
 
 /-- Explicit mismatch between the cutoff-indexed final scalar readout and the
 completed Wronskian. -/
@@ -649,13 +908,18 @@ def canonicalCompletedC3FinalScalarReadoutDefect
       canonicalCompletedC3EnrichedTfvdCompletedValueTailReadout
       canonicalCompletedC3EnrichedTfvdBoundaryCompanion z z
 
-/-- Head-plus-tail completion leaves no scalar sewing defect at any cutoff. -/
-theorem canonicalCompletedC3FinalScalarReadoutDefect_eq_zero
+/-- The explicit full-readout mismatch is exactly the completed endpoint/tail
+boundary; it is not hidden by projecting away the other three channels. -/
+theorem canonicalCompletedC3FinalScalarReadoutDefect_eq_neg_boundary
     (M : ℕ) {z : ℂ}
     (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
-    canonicalCompletedC3FinalScalarReadoutDefect M z = 0 := by
+    canonicalCompletedC3FinalScalarReadoutDefect M z =
+      -canonicalCompletedC3BoundaryTraceNormalization
+        (NativeCarryC3Crosswalk.finiteC3GenuineTailGreenBoundary M
+          (operatorHeightParameter z)) := by
   rw [canonicalCompletedC3FinalScalarReadoutDefect,
-    finalScalarReadout_eq_completedWronskian M hs, sub_self]
+    finalScalarReadout_eq_completedWronskian_sub_boundary M hs]
+  ring
 
 /-- In particular, the explicit scalar sewing defect tends to zero. -/
 theorem canonicalCompletedC3FinalScalarReadoutDefect_tendsto_zero
@@ -663,13 +927,14 @@ theorem canonicalCompletedC3FinalScalarReadoutDefect_tendsto_zero
     Tendsto
       (fun M : ℕ => canonicalCompletedC3FinalScalarReadoutDefect M z)
       atTop (nhds 0) := by
-  have hfunctions :
-      (fun M : ℕ => canonicalCompletedC3FinalScalarReadoutDefect M z) =
-        (fun _ : ℕ => (0 : ℂ)) := by
-    funext M
-    exact canonicalCompletedC3FinalScalarReadoutDefect_eq_zero M hs
-  rw [hfunctions]
-  exact tendsto_const_nhds
+  exact
+    (canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout_tendsto_zero
+      hs).congr' (Eventually.of_forall fun M => by
+        change canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout
+            M z =
+          canonicalCompletedC3FinalScalarReadoutDefect M z
+        rw [canonicalCompletedC3FinalScalarReadoutDefect_eq_neg_boundary M hs,
+          canonicalCompletedC3FiniteEnrichedRadialOffDiagonalSeamReadout_eq_neg_boundary])
 
 /-- The previous explicit seam is the difference of the retained seam and
 off-diagonal channels, not an early scalar collapse of them. -/
