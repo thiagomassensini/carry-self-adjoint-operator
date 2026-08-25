@@ -119,10 +119,16 @@ Thus the compatible finite signed tower is dense in the canonical carrier.
 Together with completeness of the automatically completed carrier, this is
 the Hilbert completion statement supplied by the geometry.
 
-## 6. Next operator layer
+## 6. Global operator layer
 
 The Hilbert space, finite linear isometries, exact cutoff commutation, nested
 ranges, inverse synthesis, and density are formalized here.  The canonical
 bounded parity reflection on this carrier has since been constructed and is
 recorded in [`green-jet-parity-reflection.md`](green-jet-parity-reflection.md).
-The unbounded height-operator closure remains a separate layer.
+The subsequent Green-factor construction now supplies the global reciprocal
+signed-height operator on the completed even/odd sectors.  Under the exact
+head-in-shifted-tail, equivalently vanishing moment-defect, gate, this operator
+is densely defined, closed, and maximal real self-adjoint.  Its two-step action
+identifies its square with the natural inverse of `J=B*B` on the range of `J`.
+See
+[`global-reciprocal-signed-height-operator.md`](global-reciprocal-signed-height-operator.md).

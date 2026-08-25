@@ -117,6 +117,15 @@ The construction does not take a zero list or target heights as input.
   `h₀ - 2 sum c_n h_(n+1) + sum c_i c_j h_(i+j+2)`, and arbitrarily small
   values of this explicit quadratic defect force `ker J = 0` without a zero
   list or an atomic measure model;
+- constructs, once this same zero-mass gate is supplied, the canonical global
+  reciprocal signed-height block
+  `H(x,y) = (B⁻¹ y, (B*)⁻¹ x)` on the completed even/odd Green sectors;
+- proves that this `H` has dense natural domain, is closed, and is literally
+  equal to its maximal real adjoint; no extension parameter or unbounded
+  Borel-functional-calculus choice enters the construction;
+- proves the exact reciprocal-square law
+  `(B*B x, 0) ↦ (0, Bx) ↦ (x, 0)`, so the first channel of `H²` is the
+  natural inverse of the already constructed global Jacobi operator `J=B*B`;
 - proves the exact projective block law: a lower-block-triangular extension of
   the inverse whitening factor forces the old Jacobi matrix to be literally
   the upper-left block of the new one.
@@ -232,10 +241,12 @@ the obstruction: the completed Wronskian realizes the tail-completed TFVD
 trace, and the corrected TFVD boundary independently realizes the bracket
 Green form.  Their final identification still requires an independent
 positive/no-leak control of the structural state.  The infinite
-self-adjoint Jacobi realization is now constructed; passage to its
-inverse-square-root height operator and the final spectral identification
-remain a separate operator-completion route.  No unconditional global
-confinement theorem is claimed at this stage.
+self-adjoint Jacobi realization and its reciprocal signed-height block are now
+constructed.  The reciprocal block currently depends on the explicit
+zero-mass/head-in-shifted-tail gate; deriving that gate from the concrete C3
+carrier and identifying the resulting spectrum with all zero heights remain
+separate steps.  No unconditional global confinement theorem is claimed at
+this stage.
 
 Lean is validated exclusively by the exact-checkout GitHub Actions workflow.
 
@@ -256,6 +267,9 @@ its exact finite/cutoff restrictions are recorded in
 The exact shifted-moment adjoint law, closability proof, and the distinction
 between graph closure and circular provenance are recorded in
 [`docs/green-jet-energy-factor-closability.md`](docs/green-jet-energy-factor-closability.md).
+The reciprocal global signed-height operator, its maximal self-adjointness,
+and its exact square relation to `J=B*B` are recorded in
+[`docs/global-reciprocal-signed-height-operator.md`](docs/global-reciprocal-signed-height-operator.md).
 The completed C3 module map, six-channel sewing identities, exact structural
 limit, and remaining noncircular Green--Wronskian gate are recorded in
 [`docs/completed-c3-green-wronskian-frontier.md`](docs/completed-c3-green-wronskian-frontier.md).
