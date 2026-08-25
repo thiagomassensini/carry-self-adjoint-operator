@@ -40,6 +40,14 @@ The construction does not take a zero list or target heights as input.
   the oriented leg difference is odd;
 - names the exact finite-head-plus-whole-center-tail characteristic and proves
   it equals the common dressed native scalar independently of cutoff;
+- proves directly, for every camera `b >= 2`, cutoff, and derivative order,
+  that the real finite native operator plus its exact analytic tail is the
+  corresponding completed camera jet; after xi dressing, this jet satisfies
+  the cross-multiplied identity with the single camera-independent operator
+  characteristic, with no division;
+- proves that every completed camera has exactly the same real-height zero
+  set as the camera-independent characteristic; hence cameras `2, ..., 7`
+  agree exactly after completion, independently of their cutoffs;
 - defines the actual camera-independent operator characteristic by removing
   the camera factor and applying the exact xi completion, with a
   cross-multiplied head-tail bridge requiring no division;
@@ -51,8 +59,9 @@ The construction does not take a zero list or target heights as input.
 - records the division-free coefficient identity `q Phi = -Phi'`;
 - defines the coefficients of `Phi_G` directly as the even Taylor jets of
   the concrete `completedNativeOperatorCharacteristic`, proves its constant
-  coefficient is nonzero, and proves that this concrete characteristic has
-  at most one real logarithmic Weyl-moment sequence;
+  coefficient is nonzero, proves every Taylor derivative on the real height
+  axis is real, and recursively constructs the unique real logarithmic
+  Weyl-moment sequence satisfying the division-free recurrence;
 - transports that uniqueness through both Hankel towers, every canonical
   finite Jacobi/height section, the exact projective Jacobi limit, and the
   completed maximal self-adjoint reciprocal signed-height operator, so none
@@ -241,7 +250,11 @@ The construction does not take a zero list or target heights as input.
   satisfy both the concrete Genuine log-derivative recurrence and the Gram
   coefficient identity of the concrete normalized C3 product ledger; the
   resulting package constructs the global maximal self-adjoint height
-  operator and admits no second moment realization.
+  operator and admits no second moment realization;
+- specializes that certificate to the recursively constructed canonical
+  moments, so a packaged completed Green-moment identity, global parity
+  independence, and exact head-tail closure feed directly into the theorem
+  `heightOperator_adjoint_eq`, with no external moment witness.
 
 The enriched C3 sewing is now an exact state-level theorem at every cutoff.
 The fixed all-cutoff Hilbert ledger retains the two Naimark quadratures,
@@ -259,6 +272,9 @@ every finite enriched TFVD atlas reconstructs that same vector exactly, and
 the simultaneous projective analysis preserves every parity/order component.
 Independently, the packaged real finite jet plus its exact analytic tail is
 the cutoff-free complex bracket jet in every camera and derivative order.
+The all-order camera bridge now continues this identity through the xi
+completion to the concrete operator characteristic and proves exact
+camera/cutoff independence of its real zero readout.
 
 The old convenience alias targeting complex Taylor derivatives *after* C3
 radial phase normalization cannot be the final all-order endpoint.  Lean now

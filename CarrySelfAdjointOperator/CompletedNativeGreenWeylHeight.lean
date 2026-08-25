@@ -1,4 +1,4 @@
-import CarrySelfAdjointOperator.CompletedNativeWeylMoments
+import CarrySelfAdjointOperator.CompletedNativeRealWeylMoments
 import CarrySelfAdjointOperator.CompletedGreenJetCoefficientRecurrence
 import CarrySelfAdjointOperator.GreenJetReciprocalSignedHeightOperator
 import CarrySelfAdjointOperator.BR2IncidenceStrictPositivity
@@ -100,6 +100,59 @@ theorem completedNativeGreenWeylHeightCertificate_of_factors
     xiState moments hxi hnative
       (complexGreenWronskianMomentKernel_of_coefficientEquation hcoeff)
 
+/-- Concrete-moment form of the constructor.  The real logarithmic moment
+sequence is now derived internally from the completed native characteristic;
+callers only supply its identification with the completed Green state and the
+two global closure properties. -/
+theorem canonicalCompletedNativeGreenWeylHeightCertificate_of_factors
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    (xiState : ℂ → Hxi)
+    (hxi : HasDivisionFreeGreenRepresentation
+      nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion xiState)
+    (hnative : HasDivisionFreeGreenRepresentation
+      nativeHeightScalar nativeHeightScalarBoundaryCompanion
+        canonicalCompletedOperatorC3HilbertState)
+    (hcoeff : HasCompletedGreenJetCoefficientEquation
+      canonicalCompletedNativeLogDerivativeMoment
+      (canonicalCompletedNativeNormalizedGreenState xiState))
+    (heven : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inl n)))
+    (hodd : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inr n)))
+    (hvanish : HasVanishingGreenJetHeadTailMomentDefect
+      canonicalCompletedNativeLogDerivativeMoment) :
+    CompletedNativeGreenWeylHeightCertificate xiState
+      canonicalCompletedNativeLogDerivativeMoment :=
+  completedNativeGreenWeylHeightCertificate_of_factors
+    xiState canonicalCompletedNativeLogDerivativeMoment
+      canonicalCompletedNativeLogDerivativeMoment_isMomentSequence
+      hxi hnative hcoeff heven hodd hvanish
+
+/-- Packaged Green-moment form of the concrete constructor.  This is the
+direct seam from the completed Green/Gram identification to the canonical
+native moment sequence; no factorization data are requested a second time. -/
+theorem canonicalCompletedNativeGreenWeylHeightCertificate_of_greenMomentJets
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    (xiState : ℂ → Hxi)
+    (greenMomentJets : HasCanonicalCompletedNativeGreenMomentJets xiState
+      canonicalCompletedNativeLogDerivativeMoment)
+    (heven : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inl n)))
+    (hodd : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inr n)))
+    (hvanish : HasVanishingGreenJetHeadTailMomentDefect
+      canonicalCompletedNativeLogDerivativeMoment) :
+    CompletedNativeGreenWeylHeightCertificate xiState
+      canonicalCompletedNativeLogDerivativeMoment :=
+  { logarithmicMoments :=
+      canonicalCompletedNativeLogDerivativeMoment_isMomentSequence
+    greenMomentJets := greenMomentJets
+    evenIndependent := heven
+    oddIndependent := hodd
+    headTailMomentDefect := hvanish }
+
 /-- Incidence transport discharges both global independence fields.  Thus the
 strictness part of the completed operator requires only the one injective
 vector bridge from the native bracket incidences to the actual Green jets. -/
@@ -127,6 +180,35 @@ theorem completedNativeGreenWeylHeightCertificate_of_incidenceTransport
       (transport.even_linearIndependent hbase hradius)
       (transport.odd_linearIndependent hbase hradius)
       hvanish
+
+/-- Concrete-moment incidence form.  The all-order incidence transport now
+feeds the canonical native moment sequence without an external logarithmic
+moment witness. -/
+theorem canonicalCompletedNativeGreenWeylHeightCertificate_of_incidenceTransport
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (xiState : ℂ → Hxi)
+    (hxi : HasDivisionFreeGreenRepresentation
+      nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion xiState)
+    (hnative : HasDivisionFreeGreenRepresentation
+      nativeHeightScalar nativeHeightScalarBoundaryCompanion
+        canonicalCompletedOperatorC3HilbertState)
+    (hcoeff : HasCompletedGreenJetCoefficientEquation
+      canonicalCompletedNativeLogDerivativeMoment
+      (canonicalCompletedNativeNormalizedGreenState xiState))
+    (transport : CanonicalCompletedNativeBR2IncidenceJetTransport
+      base radius xiState)
+    (hvanish : HasVanishingGreenJetHeadTailMomentDefect
+      canonicalCompletedNativeLogDerivativeMoment) :
+    CompletedNativeGreenWeylHeightCertificate xiState
+      canonicalCompletedNativeLogDerivativeMoment :=
+  completedNativeGreenWeylHeightCertificate_of_incidenceTransport
+    hbase hradius xiState canonicalCompletedNativeLogDerivativeMoment
+      canonicalCompletedNativeLogDerivativeMoment_isMomentSequence
+      hxi hnative hcoeff transport hvanish
 
 namespace CompletedNativeGreenWeylHeightCertificate
 
@@ -199,6 +281,34 @@ theorem heightOperator_adjoint_eq
   exact certificate.toMaximalSelfAdjointHeightData.adjoint_eq
 
 end CompletedNativeGreenWeylHeightCertificate
+
+/-- Direct canonical capstone: the concrete completed Green-moment package,
+global parity independence, and the exact head--tail closure construct a
+maximal self-adjoint signed-height operator. -/
+theorem canonicalCompletedNativeHeightOperator_adjoint_eq_of_greenMomentJets
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    (xiState : ℂ → Hxi)
+    (greenMomentJets : HasCanonicalCompletedNativeGreenMomentJets xiState
+      canonicalCompletedNativeLogDerivativeMoment)
+    (heven : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inl n)))
+    (hodd : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inr n)))
+    (hvanish : HasVanishingGreenJetHeadTailMomentDefect
+      canonicalCompletedNativeLogDerivativeMoment) :
+    let certificate :=
+      canonicalCompletedNativeGreenWeylHeightCertificate_of_greenMomentJets
+        xiState greenMomentJets heven hodd hvanish
+    letI : InnerProductSpace ℝ
+        (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    let data := certificate.toMaximalSelfAdjointHeightData
+    data.operator.realAdjoint data.denseDomain = data.operator := by
+  dsimp only
+  exact
+    (canonicalCompletedNativeGreenWeylHeightCertificate_of_greenMomentJets
+      xiState greenMomentJets heven hodd hvanish).heightOperator_adjoint_eq
 
 end
 
