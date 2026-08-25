@@ -243,37 +243,32 @@ The construction does not take a zero list or target heights as input.
   resulting package constructs the global maximal self-adjoint height
   operator and admits no second moment realization.
 
-The direct critical-line capstone is now reduced to one correctly typed
-global kernel identification.  The complete mixed ledger and its `(F,-F')`
-readout are closed, but its structural triple is not a disposable completion
-tail: at a Genuine zero its vanishing is equivalent to the critical-line
-conclusion.  The raw complex bulk and raw-coefficient renaming are both
-formally ruled out as shortcuts.  The correctly rotated Green form is now
-transported through one all-cutoff global camera/Naimark realization.  Two
-separate real quadratures recover the full complex Green kernel, and their
-weighted global readout converges to the completed candidate Green kernel.
-Lean proves that convergence of this same concrete readout to the completed
-Wronskian is equivalent to vanishing of the retained structural triple.  The
-new bracket--TFVD factorization verifies that this is the correct location of
-the obstruction: the completed Wronskian realizes the tail-completed TFVD
-trace, and the corrected TFVD boundary independently realizes the bracket
-Green form.  Their final identification still requires an independent
-positive/no-leak control of the structural state.  The infinite
-self-adjoint Jacobi realization and its reciprocal signed-height block are now
-constructed.  The reciprocal block currently depends on the explicit
-zero-mass/head-in-shifted-tail gate; deriving that gate from the concrete C3
-carrier and identifying the resulting spectrum with all zero heights remain
-separate steps.  No unconditional global confinement theorem is claimed at
-this stage.
+The enriched C3 sewing is now an exact state-level theorem at every cutoff.
+The fixed all-cutoff Hilbert ledger retains the two Naimark quadratures,
+provenance, off-diagonal, residual, tail, xi, and archimedean channels; only its
+final readout combines them.  That readout is exactly the chart-weighted
+completed Wronskian of `(F,-F')`, and exact head--tail completion makes it
+cutoff-independent.  No structural channel is assumed to vanish in this
+identity.  This stronger Green/TFVD/Wronskian realization is logically
+separate from the already formalized native carry-operator confinement in the
+upstream kernel.
 
-The remaining carrier mismatch is now typed rather than implicit.  The C3
-four-trace theorem supplies a pointwise mixed source at `(z,w)` and its three
-Naimark vectors.  The height certificate requires one injective linear map
-from the complete bracket-incidence family to all even and odd Taylor jets of
-the same normalized completed Green state.  Constructing that all-order map,
-proving its coefficient equation, and discharging the zero-mass defect are
-the uninstantiated fields; the downstream Weyl/Jacobi/self-adjoint chain is
-already a theorem once those fields are filled.
+The BR2 carrier boundary is also now explicit.  Bracket incidences land
+injectively in the concrete infinite-dimensional `CarryVerticalL2` carrier;
+every finite enriched TFVD atlas reconstructs that same vector exactly, and
+the simultaneous projective analysis preserves every parity/order component.
+Independently, the packaged real finite jet plus its exact analytic tail is
+the cutoff-free complex bracket jet in every camera and derivative order.
+
+The old convenience alias targeting complex Taylor derivatives *after* C3
+radial phase normalization cannot be the final all-order endpoint.  Lean now
+proves that one retained coordinate contains the non-holomorphic factor
+`exp (log 3 * im z)`, so the normalized state is not complex differentiable at
+the Taylor center and no supported injective transport into those complex
+jets exists.  This does not affect the projective TFVD transport or the exact
+final scalar sewing; it fixes the order of operations.  The remaining BR2
+identification must target the raw holomorphic carrier or the real native-line
+jets, with radial rotation applied only by the final readout.
 
 Lean is validated exclusively by the exact-checkout GitHub Actions workflow.
 

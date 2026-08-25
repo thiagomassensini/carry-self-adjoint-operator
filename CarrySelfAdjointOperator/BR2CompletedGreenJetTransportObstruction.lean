@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.BR2IncidenceStrictPositivity
+import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
 import Mathlib.LinearAlgebra.Dimension.Finite
 import Mathlib.Tactic
 
@@ -67,6 +68,43 @@ theorem not_nonempty_canonicalCompletedNativeBR2IncidenceJetTransport_complex
       (show IsSupported 2 by norm_num [IsSupported])
       (show 1 ∈ radiusSet 2 by norm_num [radiusSet, halfRange])
       xiState
+
+/-- An all-order incidence transport into the actual completed Green jets
+forces complex differentiability of the whole normalized product state at the
+Taylor center.  A real-linear packaging equivalence alone cannot discharge
+this condition: if complex differentiability fails, Lean's first complex
+iterated derivative is zero, contradicting odd-jet independence. -/
+theorem
+    normalizedCompletedNativeC3ProductLedger_differentiableAt_zero_of_incidenceTransport
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (xiState : ℂ → Hxi)
+    (transport : CanonicalCompletedNativeBR2IncidenceJetTransport
+      base radius xiState) :
+    DifferentiableAt ℂ
+      (normalizedCompletedGreenState
+        completedNativeOperatorCharacteristic
+        (completedNativeC3ProductLedgerState xiState)) 0 := by
+  by_contra hdiff
+  have hzero :
+      completedGreenParityJet
+          (normalizedCompletedGreenState
+            completedNativeOperatorCharacteristic
+            (completedNativeC3ProductLedgerState xiState))
+          (Sum.inr 0) = 0 := by
+    simp only [completedGreenParityJet, Nat.mul_zero, zero_add]
+    unfold completedGreenTaylorJet
+    rw [show iteratedDeriv 1
+          (normalizedCompletedGreenState
+            completedNativeOperatorCharacteristic
+            (completedNativeC3ProductLedgerState xiState)) 0 = 0 by
+      simpa [iteratedDeriv_one] using
+        (deriv_zero_of_not_differentiableAt hdiff)]
+    simp
+  exact (transport.odd_linearIndependent hbase hradius).ne_zero 0 hzero
 
 end
 
