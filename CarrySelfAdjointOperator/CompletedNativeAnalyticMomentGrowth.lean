@@ -480,6 +480,182 @@ theorem completedJacobiResolventPrefix_tendsto_tsum
   simp [greenJetJacobiCoreResolventPrefix,
     greenJetEvenCoreJet]
 
+/-- The cyclic endomorphism sends each finite resolvent prefix to the
+corresponding finite shifted-jet sum. -/
+theorem greenJetJacobiCoreEndomorphism_resolventPrefix_eq_shiftedSum
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {jet : (ℕ ⊕ ℕ) → E}
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (u : ℝ) (N : ℕ) :
+    (((greenJetJacobiCoreEndomorphism heven
+        (greenJetJacobiCoreResolventPrefix (jet := jet) u N) :
+          greenJetEvenOperatorCore jet) :
+      greenJetEvenHilbertSubspace jet)) =
+      ∑ k ∈ Finset.range (N + 1),
+        u ^ k • greenJetEvenSectorJet jet (k + 1) := by
+  rw [greenJetJacobiCoreEndomorphism_coe]
+  unfold greenJetJacobiCoreResolventPrefix
+  rw [map_sum]
+  simp [greenJetJacobiCoreMap_jet]
+
+set_option synthInstance.maxHeartbeats 200000 in
+/-- The image series obtained by advancing every completed Green jet once is
+summable on the same kind of nontrivial neighborhood as the resolvent
+series. -/
+theorem completedJacobiShiftedSeries_summable
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+    letI : InnerProductSpace ℝ
+        (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    let jet := completedGreenJet
+      (canonicalCompletedNativeGreenParityJet xiState)
+    ∃ r : ℝ, 0 < r ∧ ∀ u : ℝ, |u| * r < 1 →
+      Summable (fun n : ℕ =>
+        u ^ n • greenJetEvenSectorJet jet (n + 1)) := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  dsimp only
+  let jet := completedGreenJet
+    (canonicalCompletedNativeGreenParityJet xiState)
+  letI : CompleteSpace (greenJetEvenHilbertSubspace jet) :=
+    (greenJetEvenHilbertSubspace_isClosed jet).completeSpace_coe
+  obtain ⟨D, r, hD, hr, hbound⟩ :=
+    certificate.completedGreenEvenJet_norm_geometricBound
+  refine ⟨r, hr, fun u hu => ?_⟩
+  refine ((summable_geometric_of_lt_one
+    (mul_nonneg (abs_nonneg u) hr.le) hu).mul_left (D * r)).of_norm_bounded
+      (fun n => ?_)
+  calc
+    ‖u ^ n • greenJetEvenSectorJet
+        (completedGreenJet
+          (canonicalCompletedNativeGreenParityJet xiState)) (n + 1)‖ =
+        |u| ^ n *
+          ‖greenJetEvenSectorJet
+            (completedGreenJet
+              (canonicalCompletedNativeGreenParityJet xiState)) (n + 1)‖ := by
+          rw [norm_smul, Real.norm_eq_abs, abs_pow]
+    _ ≤ |u| ^ n * (D * r ^ (n + 1)) := by
+          exact mul_le_mul_of_nonneg_left (hbound (n + 1))
+            (pow_nonneg (abs_nonneg u) _)
+    _ = (D * r) * (|u| * r) ^ n := by
+          rw [pow_succ, mul_pow]
+          ring
+
+/-- Finite shifted-jet sums converge to the image-series sum. -/
+theorem completedJacobiShiftedPrefix_tendsto_tsum
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+    letI : InnerProductSpace ℝ
+        (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    let jet := completedGreenJet
+      (canonicalCompletedNativeGreenParityJet xiState)
+    ∃ r : ℝ, 0 < r ∧ ∀ u : ℝ, |u| * r < 1 →
+      Tendsto
+        (fun N : ℕ =>
+          ∑ k ∈ Finset.range (N + 1),
+            u ^ k • greenJetEvenSectorJet jet (k + 1))
+        atTop
+        (nhds (∑' n : ℕ,
+          u ^ n • greenJetEvenSectorJet jet (n + 1))) := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  dsimp only
+  let jet := completedGreenJet
+    (canonicalCompletedNativeGreenParityJet xiState)
+  letI : CompleteSpace (greenJetEvenHilbertSubspace jet) :=
+    (greenJetEvenHilbertSubspace_isClosed jet).completeSpace_coe
+  obtain ⟨r, hr, hsummable⟩ :=
+    certificate.completedJacobiShiftedSeries_summable
+  refine ⟨r, hr, fun u hu => ?_⟩
+  have hsum := (hsummable u hu).hasSum.tendsto_sum_nat.comp
+    (Filter.tendsto_add_atTop_nat 1)
+  convert hsum using 1
+  funext N
+  simp
+
+set_option maxHeartbeats 800000 in
+/-- The completed resolvent series and its shifted series form a point of the
+closed graph of the actual Green maximal-adjoint square.  Thus the formal
+Jacobi shift survives completion as the action of the global operator. -/
+theorem completedJacobiResolventTsum_mem_closedAdjointSquareGraph
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+    letI : InnerProductSpace ℝ
+        (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    let jet := completedGreenJet
+      (canonicalCompletedNativeGreenParityJet xiState)
+    let hrep := completedGreenJet_gramRepresentation
+      certificate.realMomentKernel
+    let heven := completedGreenJet_even_linearIndependent
+      certificate.evenIndependent
+    let hodd := completedGreenJet_odd_linearIndependent
+      certificate.oddIndependent
+    let A := closedGreenJetEnergyAdjointSquare hrep heven hodd
+    ∃ r : ℝ, 0 < r ∧ ∀ u : ℝ, |u| * r < 1 →
+      ((∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet n),
+          (∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet (n + 1))) ∈
+        A.graph := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  dsimp only
+  let jet := completedGreenJet
+    (canonicalCompletedNativeGreenParityJet xiState)
+  let hrep := completedGreenJet_gramRepresentation
+    certificate.realMomentKernel
+  let heven := completedGreenJet_even_linearIndependent
+    certificate.evenIndependent
+  let hodd := completedGreenJet_odd_linearIndependent
+    certificate.oddIndependent
+  let A := closedGreenJetEnergyAdjointSquare hrep heven hodd
+  letI : CompleteSpace (greenJetEvenHilbertSubspace jet) :=
+    (greenJetEvenHilbertSubspace_isClosed jet).completeSpace_coe
+  obtain ⟨rx, hrx, hxPrefix⟩ :=
+    certificate.completedJacobiResolventPrefix_tendsto_tsum
+  obtain ⟨ry, hry, hyPrefix⟩ :=
+    certificate.completedJacobiShiftedPrefix_tendsto_tsum
+  refine ⟨max rx ry, lt_of_lt_of_le hrx (le_max_left _ _), fun u hu => ?_⟩
+  have hux : |u| * rx < 1 :=
+    lt_of_le_of_lt
+      (mul_le_mul_of_nonneg_left (le_max_left rx ry) (abs_nonneg u)) hu
+  have huy : |u| * ry < 1 :=
+    lt_of_le_of_lt
+      (mul_le_mul_of_nonneg_left (le_max_right rx ry) (abs_nonneg u)) hu
+  have hx := hxPrefix u hux
+  have hy := hyPrefix u huy
+  have hpairs := hx.prodMk_nhds hy
+  apply (closedGreenJetEnergyAdjointSquare_isClosed hrep heven hodd).mem_of_tendsto
+    hpairs
+  filter_upwards [] with N
+  let xN := greenJetJacobiCoreResolventPrefix (jet := jet) u N
+  let dxN := greenJetEvenCoreInClosedAdjointSquareDomain
+    hrep heven hodd xN
+  change
+    (((greenJetJacobiCoreResolventPrefix (jet := jet) u N :
+        greenJetEvenOperatorCore jet) : greenJetEvenHilbertSubspace jet),
+      ∑ k ∈ Finset.range (N + 1),
+        u ^ k • greenJetEvenSectorJet jet (k + 1)) ∈ A.graph
+  rw [LinearPMap.mem_graph_iff]
+  refine ⟨dxN, ?_, ?_⟩
+  · rfl
+  · rw [certificate.completedEnergyAdjointSquare_apply_core_eq_cyclicEndomorphism]
+    exact greenJetJacobiCoreEndomorphism_resolventPrefix_eq_shiftedSum
+      heven u N
+
 /-- The explicit terminal term in the finite cyclic resolvent identity tends
 to zero throughout a nontrivial neighborhood of the centered origin. -/
 theorem completedJacobiResolventTerminal_tendsto_zero
@@ -531,6 +707,152 @@ theorem completedJacobiResolventTerminal_tendsto_zero
             (Filter.tendsto_add_atTop_nat 1)) :
         Tendsto (fun N : ℕ => D * (|u| * r) ^ (N + 1))
           atTop (nhds (D * 0)))
+
+set_option maxHeartbeats 4000000 in
+/-- Local completed resolvent certificate for the global positive operator.
+The domain vector is the sum of the actual completed Green jets, its operator
+image is the shifted sum, and the exact resolvent equation holds without a
+remaining terminal defect. -/
+theorem completedJacobiResolventTsum_closedAdjointSquareCertificate
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+    letI : InnerProductSpace ℝ
+        (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    let jet := completedGreenJet
+      (canonicalCompletedNativeGreenParityJet xiState)
+    let hrep := completedGreenJet_gramRepresentation
+      certificate.realMomentKernel
+    let heven := completedGreenJet_even_linearIndependent
+      certificate.evenIndependent
+    let hodd := completedGreenJet_odd_linearIndependent
+      certificate.oddIndependent
+    let A := closedGreenJetEnergyAdjointSquare hrep heven hodd
+    ∃ r : ℝ, 0 < r ∧ ∀ u : ℝ, |u| * r < 1 →
+      ∃ xu : A.domain,
+        (xu : greenJetEvenHilbertSubspace jet) =
+            ∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet n ∧
+        A xu =
+            ∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet (n + 1) ∧
+        (xu : greenJetEvenHilbertSubspace jet) - u • A xu =
+            greenJetEvenSectorJet jet 0 := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  dsimp only
+  let jet := completedGreenJet
+    (canonicalCompletedNativeGreenParityJet xiState)
+  let hrep := completedGreenJet_gramRepresentation
+    certificate.realMomentKernel
+  let heven := completedGreenJet_even_linearIndependent
+    certificate.evenIndependent
+  let hodd := completedGreenJet_odd_linearIndependent
+    certificate.oddIndependent
+  let A := closedGreenJetEnergyAdjointSquare hrep heven hodd
+  letI : CompleteSpace (greenJetEvenHilbertSubspace jet) :=
+    (greenJetEvenHilbertSubspace_isClosed jet).completeSpace_coe
+  obtain ⟨rg, hrg, hgraph⟩ :=
+    certificate.completedJacobiResolventTsum_mem_closedAdjointSquareGraph
+  obtain ⟨rx, hrx, hxPrefix⟩ :=
+    certificate.completedJacobiResolventPrefix_tendsto_tsum
+  obtain ⟨ry, hry, hyPrefix⟩ :=
+    certificate.completedJacobiShiftedPrefix_tendsto_tsum
+  obtain ⟨rt, hrt, hterminal⟩ :=
+    certificate.completedJacobiResolventTerminal_tendsto_zero
+  let r := max rg (max rx (max ry rt))
+  have hr : 0 < r := lt_of_lt_of_le hrg (le_max_left _ _)
+  refine ⟨r, hr, fun u hu => ?_⟩
+  have hrg_le : rg ≤ r := le_max_left _ _
+  have hrx_le : rx ≤ r := by
+    exact (le_max_left rx (max ry rt)).trans (le_max_right rg _)
+  have hry_le : ry ≤ r := by
+    exact (le_max_left ry rt).trans
+      ((le_max_right rx _).trans (le_max_right rg _))
+  have hrt_le : rt ≤ r := by
+    exact (le_max_right ry rt).trans
+      ((le_max_right rx _).trans (le_max_right rg _))
+  have hu_of_le {q : ℝ} (hq : q ≤ r) : |u| * q < 1 :=
+    lt_of_le_of_lt
+      (mul_le_mul_of_nonneg_left hq (abs_nonneg u)) hu
+  have hgraphu := hgraph u (hu_of_le hrg_le)
+  rw [LinearPMap.mem_graph_iff] at hgraphu
+  rcases hgraphu with ⟨xu, hxu, hAxu⟩
+  have hx := hxPrefix u (hu_of_le hrx_le)
+  have hy := hyPrefix u (hu_of_le hry_le)
+  have ht := hterminal u (hu_of_le hrt_le)
+  have hfinite : ∀ N : ℕ,
+      ((greenJetJacobiCoreResolventPrefix (jet := jet) u N :
+          greenJetEvenOperatorCore jet) : greenJetEvenHilbertSubspace jet) -
+          u • (∑ k ∈ Finset.range (N + 1),
+            u ^ k • greenJetEvenSectorJet jet (k + 1)) =
+        greenJetEvenSectorJet jet 0 -
+          u ^ (N + 1) • greenJetEvenSectorJet jet (N + 1) := by
+    intro N
+    have hcore := greenJetJacobiCoreResolventPrefix_sub_smul_shift
+      heven u N
+    have hshift :=
+      greenJetJacobiCoreEndomorphism_resolventPrefix_eq_shiftedSum
+        heven u N
+    calc
+      ((greenJetJacobiCoreResolventPrefix (jet := jet) u N :
+            greenJetEvenOperatorCore jet) : greenJetEvenHilbertSubspace jet) -
+          u • (∑ k ∈ Finset.range (N + 1),
+            u ^ k • greenJetEvenSectorJet jet (k + 1)) =
+        ((greenJetJacobiCoreResolventPrefix (jet := jet) u N :
+            greenJetEvenOperatorCore jet) : greenJetEvenHilbertSubspace jet) -
+          u • (((greenJetJacobiCoreEndomorphism heven
+            (greenJetJacobiCoreResolventPrefix (jet := jet) u N) :
+              greenJetEvenOperatorCore jet) :
+            greenJetEvenHilbertSubspace jet)) := by rw [hshift]
+      _ = ((greenJetJacobiCoreResolventPrefix (jet := jet) u N -
+          u • greenJetJacobiCoreEndomorphism heven
+            (greenJetJacobiCoreResolventPrefix (jet := jet) u N) :
+          greenJetEvenOperatorCore jet) :
+          greenJetEvenHilbertSubspace jet) := rfl
+      _ = ((greenJetEvenCoreJet jet 0 -
+          u ^ (N + 1) • greenJetEvenCoreJet jet (N + 1) :
+          greenJetEvenOperatorCore jet) :
+          greenJetEvenHilbertSubspace jet) := congrArg
+            (greenJetEvenOperatorCore jet).subtype hcore
+      _ = greenJetEvenSectorJet jet 0 -
+          u ^ (N + 1) • greenJetEvenSectorJet jet (N + 1) := rfl
+  have hleft : Tendsto
+      (fun N : ℕ =>
+        ((greenJetJacobiCoreResolventPrefix (jet := jet) u N :
+            greenJetEvenOperatorCore jet) : greenJetEvenHilbertSubspace jet) -
+          u • (∑ k ∈ Finset.range (N + 1),
+            u ^ k • greenJetEvenSectorJet jet (k + 1)))
+      atTop
+      (nhds ((∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet n) -
+        u • (∑' n : ℕ,
+          u ^ n • greenJetEvenSectorJet jet (n + 1)))) :=
+    hx.sub (tendsto_const_nhds.smul hy)
+  have hright : Tendsto
+      (fun N : ℕ => greenJetEvenSectorJet jet 0 -
+        u ^ (N + 1) • greenJetEvenSectorJet jet (N + 1))
+      atTop (nhds (greenJetEvenSectorJet jet 0 - 0)) :=
+    tendsto_const_nhds.sub ht
+  have hright' : Tendsto
+      (fun N : ℕ =>
+        ((greenJetJacobiCoreResolventPrefix (jet := jet) u N :
+            greenJetEvenOperatorCore jet) : greenJetEvenHilbertSubspace jet) -
+          u • (∑ k ∈ Finset.range (N + 1),
+            u ^ k • greenJetEvenSectorJet jet (k + 1)))
+      atTop (nhds (greenJetEvenSectorJet jet 0 - 0)) := by
+    exact hright.congr' (Filter.Eventually.of_forall
+      (fun N => (hfinite N).symm))
+  have hresolvent :
+      (∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet n) -
+          u • (∑' n : ℕ,
+            u ^ n • greenJetEvenSectorJet jet (n + 1)) =
+        greenJetEvenSectorJet jet 0 := by
+    simpa using tendsto_nhds_unique hleft hright'
+  refine ⟨xu, hxu, hAxu, ?_⟩
+  rw [hxu, hAxu]
+  exact hresolvent
 
 end CompletedNativeGreenWeylHeightCertificate
 
