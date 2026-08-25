@@ -52,6 +52,38 @@ theorem logarithmicMoment_eq
           ∑ k ∈ Finset.range n, moments k * phi (n - k) := by
       linarith [hrel n]
 
+/-- The completed characteristic leaves no freedom in its logarithmic moment
+sequence.  Once `phi 0` is nonzero, any two sequences satisfying the
+division-free identity `q * Phi = -Phi'` agree in every order. -/
+theorem IsLogDerivativeMomentSequence.unique
+    {phi moments moments' : ℕ → ℝ}
+    (hphi : phi 0 ≠ 0)
+    (hrel : IsLogDerivativeMomentSequence phi moments)
+    (hrel' : IsLogDerivativeMomentSequence phi moments') :
+    moments = moments' := by
+  funext n
+  induction n using Nat.strong_induction_on with
+  | h n ih =>
+      have hsum :
+          ∑ k ∈ Finset.range n, moments k * phi (n - k) =
+            ∑ k ∈ Finset.range n, moments' k * phi (n - k) := by
+        apply Finset.sum_congr rfl
+        intro k hk
+        rw [ih k (Finset.mem_range.mp hk)]
+      have hn : phi 0 * moments n = phi 0 * moments' n := by
+        linarith [hrel n, hrel' n]
+      exact mul_left_cancel₀ hphi hn
+
+/-- Pointwise form of logarithmic-moment uniqueness. -/
+theorem logarithmicMoment_eq_of_two_relations
+    {phi moments moments' : ℕ → ℝ}
+    (hphi : phi 0 ≠ 0)
+    (hrel : IsLogDerivativeMomentSequence phi moments)
+    (hrel' : IsLogDerivativeMomentSequence phi moments')
+    (n : ℕ) :
+    moments n = moments' n := by
+  rw [hrel.unique hphi hrel']
+
 /-- Order-`N` Hankel Gram matrix `G_N = (h_(i+j))`. -/
 def hankelGram (moments : ℕ → ℝ) (N : ℕ) :
     Matrix (Fin N) (Fin N) ℝ :=

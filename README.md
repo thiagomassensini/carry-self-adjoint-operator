@@ -49,6 +49,14 @@ The construction does not take a zero list or target heights as input.
   the open critical strip and identifies the operator characteristic with the
   standard completed zeta expression there;
 - records the division-free coefficient identity `q Phi = -Phi'`;
+- defines the coefficients of `Phi_G` directly as the even Taylor jets of
+  the concrete `completedNativeOperatorCharacteristic`, proves its constant
+  coefficient is nonzero, and proves that this concrete characteristic has
+  at most one real logarithmic Weyl-moment sequence;
+- transports that uniqueness through both Hankel towers, every canonical
+  finite Jacobi/height section, the exact projective Jacobi limit, and the
+  completed maximal self-adjoint reciprocal signed-height operator, so none
+  of these objects retains a moment-level fitting parameter;
 - proves that continuity removes the apparent real-axis Green diagonal
   ambiguity: the normalized state norm is forced to equal the derivative of
   the scalar response at the collision point;
@@ -61,6 +69,10 @@ The construction does not take a zero list or target heights as input.
   one Hilbert-space Gram representation of each moment kernel;
 - proves positive semidefiniteness at every order, and positive definiteness
   whenever the corresponding finite feature prefix is linearly independent.
+- promotes the all-base even and odd bracket-incidence independence from
+  every finite prefix to the complete `Nat`-indexed families and proves that
+  one injective incidence-to-Green-jet transport supplies both global
+  independence certificates;
 - defines the exact whitening transport `J_N = B_N K_N B_Nᵀ` used by the
   reference script (`B_N = L_N⁻¹` for Cholesky whitening);
 - proves that the exact whitening identity itself forces `B_N` to act
@@ -224,6 +236,12 @@ The construction does not take a zero list or target heights as input.
   off-diagonal, residual, tail, and chart channels still explicit;
 - restates the final capstone with no abstract state or extra nonvanishing
   premise using this positive radial energy.
+- packages the exact completed-native provenance interface in
+  `CompletedNativeGreenWeylHeightCertificate`: one moment sequence must
+  satisfy both the concrete Genuine log-derivative recurrence and the Gram
+  coefficient identity of the concrete normalized C3 product ledger; the
+  resulting package constructs the global maximal self-adjoint height
+  operator and admits no second moment realization.
 
 The direct critical-line capstone is now reduced to one correctly typed
 global kernel identification.  The complete mixed ledger and its `(F,-F')`
@@ -247,6 +265,15 @@ zero-mass/head-in-shifted-tail gate; deriving that gate from the concrete C3
 carrier and identifying the resulting spectrum with all zero heights remain
 separate steps.  No unconditional global confinement theorem is claimed at
 this stage.
+
+The remaining carrier mismatch is now typed rather than implicit.  The C3
+four-trace theorem supplies a pointwise mixed source at `(z,w)` and its three
+Naimark vectors.  The height certificate requires one injective linear map
+from the complete bracket-incidence family to all even and odd Taylor jets of
+the same normalized completed Green state.  Constructing that all-order map,
+proving its coefficient equation, and discharging the zero-mass defect are
+the uninstantiated fields; the downstream Weyl/Jacobi/self-adjoint chain is
+already a theorem once those fields are filled.
 
 Lean is validated exclusively by the exact-checkout GitHub Actions workflow.
 
