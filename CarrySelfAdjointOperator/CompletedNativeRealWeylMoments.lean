@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.CompletedNativeWeylMoments
 import CarrySelfAdjointOperator.GlobalKernelProbe
+import CarrySelfAdjointOperator.NativeScalarDirectSchwarzReflection
 import Mathlib.Tactic
 
 /-!
@@ -48,17 +49,10 @@ theorem completedNativeOperatorCharacteristic_neg_ofReal_eq_conj (t : ℝ) :
     completedNativeOperatorCharacteristic (-(t : ℂ)) =
       (starRingEnd ℂ)
         (completedNativeOperatorCharacteristic (t : ℂ)) := by
-  have hstrip : operatorHeightParameter (t : ℂ) ∈ genuineCriticalStrip := by
-    constructor <;> norm_num [operatorHeightParameter]
-  have hnegstrip :
-      operatorHeightParameter (-(t : ℂ)) ∈ genuineCriticalStrip := by
-    constructor <;> norm_num [operatorHeightParameter]
   unfold completedNativeOperatorCharacteristic
-  rw [nativeScalar_eq_riemannZeta hnegstrip,
-    nativeScalar_eq_riemannZeta hstrip,
-    nativeXiCompletionFactor_neg_ofReal_eq_conj,
+  rw [nativeXiCompletionFactor_neg_ofReal_eq_conj,
     operatorHeightParameter_neg_ofReal_eq_conj,
-    riemannZeta_conj]
+    nativeScalar_conj_from_nativeSeries]
   simp
 
 /-- The completed native characteristic is real-valued on the whole centered

@@ -1,5 +1,5 @@
 import CarrySelfAdjointOperator.GreenWronskianRecomposition
-import CarrySelfAdjointOperator.NativeScalarZetaIdentification
+import CarrySelfAdjointOperator.NativeScalarGenuineIdentification
 import Mathlib.Analysis.SpecialFunctions.Gamma.Beta
 import Mathlib.Analysis.SpecialFunctions.Gamma.Deriv
 import Mathlib.Tactic
@@ -187,38 +187,6 @@ theorem completedNativeOperatorGreenWronskian_eq_zero_at_nativeScalar_zero
         completedNativeOperatorBoundaryCompanion z z = 0 := by
   rw [completedNativeOperatorGreenWronskian_at_nativeScalar_zero hs hzero]
   simp [completedGreenWronskian, hzero]
-
-/-- The same product-channel reduction stated directly at a Riemann-zeta
-zero.  The native scalar is not an auxiliary fitted characteristic here: its
-previously proved analytic identification with `riemannZeta` supplies the
-zero used by the exact product ledger. -/
-theorem completedNativeOperatorGreenWronskian_at_riemannZeta_zero
-    {z : ℂ} (hs : operatorHeightParameter z ∈ genuineCriticalStrip)
-    (hzero : riemannZeta (operatorHeightParameter z) = 0) :
-    completedGreenWronskian
-        completedNativeOperatorCharacteristic
-        completedNativeOperatorBoundaryCompanion z z =
-      nativeXiCompletionFactor z *
-          (starRingEnd ℂ) (nativeXiCompletionFactor z) *
-        completedGreenWronskian
-          nativeHeightScalar nativeHeightScalarBoundaryCompanion z z := by
-  apply completedNativeOperatorGreenWronskian_at_nativeScalar_zero hs
-  unfold nativeHeightScalar
-  rw [nativeScalar_eq_riemannZeta hs, hzero]
-
-/-- In particular the scalar diagonal Wronskian of the completed native
-characteristic vanishes at every zeta zero in the open strip.  This makes
-precise why the nonzero C3 provenance state must be retained before scalar
-projection. -/
-theorem completedNativeOperatorGreenWronskian_eq_zero_at_riemannZeta_zero
-    {z : ℂ} (hs : operatorHeightParameter z ∈ genuineCriticalStrip)
-    (hzero : riemannZeta (operatorHeightParameter z) = 0) :
-    completedGreenWronskian
-        completedNativeOperatorCharacteristic
-        completedNativeOperatorBoundaryCompanion z z = 0 := by
-  apply completedNativeOperatorGreenWronskian_eq_zero_at_nativeScalar_zero hs
-  unfold nativeHeightScalar
-  rw [nativeScalar_eq_riemannZeta hs, hzero]
 
 end
 

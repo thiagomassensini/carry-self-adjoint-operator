@@ -1,4 +1,4 @@
-import CarrySelfAdjointOperator.CompletedProductJet
+import CarrySelfAdjointOperator.NativeScalarZetaIdentification
 import CarrySelfAdjointOperator.CanonicalC3GreenIntertwiner
 
 /-!

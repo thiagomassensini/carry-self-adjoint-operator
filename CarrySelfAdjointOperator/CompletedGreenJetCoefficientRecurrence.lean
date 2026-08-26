@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.CompletedGreenMomentJets
+import CarrySelfAdjointOperator.NativeScalarZetaIdentification
 
 /-!
 # Exact coefficient recurrence for the completed Green jet kernel
