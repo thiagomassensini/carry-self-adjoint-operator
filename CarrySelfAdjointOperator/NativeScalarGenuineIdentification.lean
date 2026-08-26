@@ -7,8 +7,9 @@ import Mathlib.Tactic
 # Native scalar and Genuine chart identification
 
 The native camera-3 bracket and the canonical Genuine chart are the same
-absolutely summable series.  Their seed terms coincide, and every aligned
-camera-3 center block is literally the same centered second difference.
+series.  Their seed terms coincide, and every aligned camera-3 center block
+is literally the same centered second difference.  On the explicit half-plane
+`-1 < re s`, both series are absolutely summable in norm.
 
 This gives the native-to-Genuine identification directly from the carry
 geometry, without passing through any external meromorphic function.
@@ -35,6 +36,21 @@ theorem centerBracketTerm_three_eq_realCpSaturatedBracket
     centeredBracketTerm, dirichletValue, natDirichletTerm, dirichletTerm]
   ring_nf
 
+/-- Absolute summability of the native camera-3 center blocks on the explicit
+half-plane `-1 < re s`. -/
+theorem centerBracketTerm_three_norm_summable_of_neg_one_lt_re
+    {s : ℂ} (hs : -1 < s.re) :
+    Summable (fun index : ℕ => ‖centerBracketTerm 3 s index‖) :=
+  centerBracketTerm_norm_summable (camera := 3) (by norm_num) hs
+
+/-- The corresponding Genuine/TFVD camera-3 blocks are absolutely summable
+on the same half-plane, transported through the literal block identity. -/
+theorem realCpSaturatedBracket_three_norm_summable_of_neg_one_lt_re
+    {s : ℂ} (hs : -1 < s.re) :
+    Summable (fun index : ℕ => ‖realCpSaturatedBracket 3 index s‖) := by
+  simpa only [centerBracketTerm_three_eq_realCpSaturatedBracket] using
+    centerBracketTerm_three_norm_summable_of_neg_one_lt_re hs
+
 /-- The finite seed of the native camera-3 series is the Genuine camera-3
 seed. -/
 theorem seedDirichletTerm_three_eq_genuineSeed (s : ℂ) :
@@ -55,6 +71,18 @@ theorem bracketCharacteristic_three_eq_bracketedDirichletChart_native
   congr 1
   exact tsum_congr (fun index =>
     centerBracketTerm_three_eq_realCpSaturatedBracket index s)
+
+/-- On `-1 < re s`, the native and Genuine camera-3 charts are explicitly
+the same absolutely convergent series: both norm series are summable and the
+resulting chart values coincide. -/
+theorem cameraThreeBracketCharts_absoluteSummability_and_eq
+    {s : ℂ} (hs : -1 < s.re) :
+    Summable (fun index : ℕ => ‖centerBracketTerm 3 s index‖) ∧
+      Summable (fun index : ℕ => ‖realCpSaturatedBracket 3 index s‖) ∧
+      bracketCharacteristic 3 s = bracketedDirichletChart 3 s :=
+  ⟨centerBracketTerm_three_norm_summable_of_neg_one_lt_re hs,
+    realCpSaturatedBracket_three_norm_summable_of_neg_one_lt_re hs,
+    bracketCharacteristic_three_eq_bracketedDirichletChart_native s⟩
 
 /-- Every finite camera-3 prefix is also literally the corresponding finite
 Genuine bracket prefix. -/
