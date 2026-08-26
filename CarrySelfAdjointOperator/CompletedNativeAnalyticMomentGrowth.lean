@@ -315,6 +315,25 @@ theorem completedNativeLogDerivativeTaylorCoefficient_eq_canonical
       exact mul_right_cancel₀
         completedNativeEvenCharacteristicCoefficient_zero_ne_zero hproduct
 
+/-- Near the centered point, the actual analytic logarithmic derivative is
+the sum of the canonical real moment series.  This upgrades coefficientwise
+agreement to equality of the represented analytic germ. -/
+theorem completedNativeLogDerivative_eventually_hasSum_canonical :
+    ∀ᶠ u : ℂ in nhds 0,
+      HasSum
+        (fun n : ℕ =>
+          u ^ n * (canonicalCompletedNativeLogDerivativeMoment n : ℂ))
+        (completedNativeLogDerivative u) := by
+  have hseries :=
+    completedNativeLogDerivative_analyticAt.hasFPowerSeriesAt.eventually_hasSum
+  filter_upwards [hseries] with u hu
+  have hcoeff : ∀ n : ℕ,
+      iteratedDeriv n completedNativeLogDerivative 0 / n.factorial =
+        (canonicalCompletedNativeLogDerivativeMoment n : ℂ) := by
+    intro n
+    exact completedNativeLogDerivativeTaylorCoefficient_eq_canonical n
+  simpa [FormalMultilinearSeries.ofScalars_apply_eq, hcoeff] using hu
+
 /-- The canonical completed-native logarithmic moments have a concrete
 geometric growth bound derived from analyticity. -/
 theorem canonicalCompletedNativeLogDerivativeMoment_geometricBound :
@@ -440,6 +459,103 @@ theorem completedJacobiResolventSeries_summable
     _ = D * (|u| * r) ^ n := by
           rw [mul_pow]
           ring
+
+set_option maxHeartbeats 800000 in
+set_option synthInstance.maxHeartbeats 200000 in
+/-- On a real neighborhood of the centered point, the scalar readout of the
+actual completed Jacobi resolvent vector is the analytic logarithmic
+derivative of the completed native characteristic.  Thus the operator and
+native sides agree as functions, not only coefficient by coefficient. -/
+theorem completedJacobiResolventReadout_eventually_eq_nativeLogDerivative
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
+    letI : InnerProductSpace ℝ
+        (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    let jet := completedGreenJet
+      (canonicalCompletedNativeGreenParityJet xiState)
+    let readout := fun u : ℝ =>
+      inner ℝ (∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet n)
+        (greenJetEvenSectorJet jet 0)
+    ∀ᶠ u : ℝ in nhds 0,
+      Complex.ofReal (readout u) =
+        completedNativeLogDerivative (u : ℂ) := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  dsimp only
+  let jet := completedGreenJet
+    (canonicalCompletedNativeGreenParityJet xiState)
+  letI : CompleteSpace (greenJetEvenHilbertSubspace jet) :=
+    (greenJetEvenHilbertSubspace_isClosed jet).completeSpace_coe
+  obtain ⟨r, hr, hsummable⟩ :=
+    certificate.completedJacobiResolventSeries_summable
+  have hsmall : ∀ᶠ u : ℝ in nhds 0, |u| * r < 1 := by
+    have htend : Tendsto (fun u : ℝ => |u| * r) (nhds 0) (nhds 0) := by
+      simpa using Filter.Tendsto.mul_const r
+        (_root_.continuous_abs.tendsto (0 : ℝ))
+    simpa using htend.eventually
+      (Iio_mem_nhds (show (0 : ℝ) < 1 by norm_num))
+  have hanalytic : ∀ᶠ u : ℝ in nhds 0,
+      HasSum
+        (fun n : ℕ =>
+          (u : ℂ) ^ n *
+            (canonicalCompletedNativeLogDerivativeMoment n : ℂ))
+        (completedNativeLogDerivative (u : ℂ)) := by
+    have hpull := Complex.continuous_ofReal.continuousAt.eventually
+      completedNativeLogDerivative_eventually_hasSum_canonical
+    simpa using hpull
+  filter_upwards [hsmall, hanalytic] with u hu hlog
+  let hrep := completedGreenJet_gramRepresentation certificate.realMomentKernel
+  let head : greenJetEvenHilbertSubspace jet :=
+    greenJetEvenSectorJet jet 0
+  have hvector : HasSum
+      (fun n : ℕ => u ^ n • greenJetEvenSectorJet jet n)
+      (∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet n) :=
+    (hsummable u hu).hasSum
+  have hinner := hvector.mapL (innerSL ℝ head)
+  have hreadReal : HasSum
+      (fun n : ℕ =>
+        u ^ n * canonicalCompletedNativeLogDerivativeMoment n)
+      (inner ℝ (∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet n) head) := by
+    have hinner' : HasSum
+        (fun n : ℕ =>
+          u ^ n * canonicalCompletedNativeLogDerivativeMoment n)
+        ((innerSL ℝ head)
+          (∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet n)) := by
+      refine HasSum.congr_fun hinner (fun n => ?_)
+      change
+        u ^ n * canonicalCompletedNativeLogDerivativeMoment n =
+          inner ℝ head (u ^ n • greenJetEvenSectorJet jet n)
+      calc
+        u ^ n * canonicalCompletedNativeLogDerivativeMoment n =
+            u ^ n * moments n := by
+          rw [completedNativeLogDerivativeMoment_eq_canonical
+            certificate.logarithmicMoments]
+        _ = u ^ n * inner ℝ head (greenJetEvenSectorJet jet n) := by
+          change u ^ n * moments n =
+            u ^ n * inner ℝ (greenJetEvenSectorJet jet 0)
+              (greenJetEvenSectorJet jet n)
+          rw [inner_greenJetEvenSectorJet_eq_moment hrep]
+          simp
+        _ = inner ℝ head
+            (u ^ n • greenJetEvenSectorJet jet n) := by
+          exact (real_inner_smul_right _ _ _).symm
+    rw [innerSL_apply_apply, real_inner_comm] at hinner'
+    exact hinner'
+  have hreadComplexRaw := hreadReal.mapL Complex.ofRealCLM
+  have hreadComplex : HasSum
+      (fun n : ℕ =>
+        (u : ℂ) ^ n *
+          (canonicalCompletedNativeLogDerivativeMoment n : ℂ))
+      (Complex.ofReal
+        (inner ℝ (∑' n : ℕ, u ^ n • greenJetEvenSectorJet jet n) head)) := by
+    refine HasSum.congr_fun hreadComplexRaw (fun n => ?_)
+    simp [Complex.ofRealCLM_apply]
+  exact hreadComplex.unique hlog
 
 set_option synthInstance.maxHeartbeats 200000 in
 /-- Finite cyclic resolvent prefixes converge to their vector-valued sum. -/
@@ -876,6 +992,11 @@ abbrev completedGreenEvenJet_norm_geometricBound
 abbrev completedJacobiResolventSeries_summable
     (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
   certificate.toReduced.completedJacobiResolventSeries_summable
+
+abbrev completedJacobiResolventReadout_eventually_eq_nativeLogDerivative
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced
+    |>.completedJacobiResolventReadout_eventually_eq_nativeLogDerivative
 
 abbrev completedJacobiResolventPrefix_tendsto_tsum
     (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=

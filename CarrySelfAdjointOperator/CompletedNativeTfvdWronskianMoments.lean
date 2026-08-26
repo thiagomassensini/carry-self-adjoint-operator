@@ -604,6 +604,47 @@ theorem tfvdWronskianMomentPolynomial_tendsto_completedJacobiResolventReadout
     (certificate.completedJacobiResolventPrefixScalarReadout_eq_tfvdWronskianMoments
       M u N)
 
+set_option synthInstance.maxHeartbeats 200000 in
+/-- On a real neighborhood of the centered point, the bracket--TFVD moment
+polynomials converge directly to the analytic logarithmic derivative of the
+completed native characteristic.  The intermediate limit is the scalar
+readout of the actual completed Jacobi resolvent. -/
+theorem tfvdWronskianMomentPolynomial_tendsto_nativeLogDerivative
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments)
+    (M : ℕ) :
+    ∀ᶠ u : ℝ in nhds 0,
+      Tendsto
+        (fun N : ℕ => Complex.ofReal
+          (∑ k ∈ Finset.range (N + 1),
+            u ^ k * canonicalC3BracketTfvdMoment M k))
+        atTop
+        (nhds (completedNativeLogDerivative (u : ℂ))) := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  let jet := completedGreenJet
+    (canonicalCompletedNativeGreenParityJet xiState)
+  letI : CompleteSpace (greenJetEvenHilbertSubspace jet) :=
+    (greenJetEvenHilbertSubspace_isClosed jet).completeSpace_coe
+  obtain ⟨r, hr, hpolynomial⟩ :=
+    certificate.tfvdWronskianMomentPolynomial_tendsto_completedJacobiResolventReadout M
+  have hsmall : ∀ᶠ u : ℝ in nhds 0, |u| * r < 1 := by
+    have htend : Tendsto (fun u : ℝ => |u| * r) (nhds 0) (nhds 0) := by
+      simpa using Filter.Tendsto.mul_const r
+        (_root_.continuous_abs.tendsto (0 : ℝ))
+    simpa using htend.eventually
+      (Iio_mem_nhds (show (0 : ℝ) < 1 by norm_num))
+  have hreadout :=
+    certificate.completedJacobiResolventReadout_eventually_eq_nativeLogDerivative
+  filter_upwards [hsmall, hreadout] with u hu hvalue
+  have hcomplex := (hpolynomial u hu).ofReal
+  rw [hvalue] at hcomplex
+  exact hcomplex
+
 end CompletedNativeGreenWeylReducedHeightCertificate
 
 end
