@@ -36,7 +36,42 @@ Either concrete criterion proves `ker B = 0` and makes the range of `B*`
 dense.  Thus both inverse channels have dense natural domains.  The converse
 from `ker B = 0` back to the concrete head-tail approximation is not claimed.
 
-## 2. Signed reciprocal block
+## 2. Canonical nonzero-support reduction
+
+The repository now also defines the closed ambient kernel of any closed
+partial real operator and its canonical support
+
+```text
+H_even^red = (ker B)^perp.
+```
+
+The restriction `B_red : H_even^red -> H_odd` is proved closed, densely
+defined, and injective.  Its range is exactly the range of `B`.  Projection of
+the original maximal adjoint supplies a dense formal-adjoint core, and the
+maximal adjoint of `B_red` has dense range.  Therefore
+
+```text
+H_red(x,y) = ((B_red*)^-1 y, B_red^-1 x)
+```
+
+is maximal real self-adjoint on `H_even^red ⊕ H_odd` without assuming
+`ker B = 0`.  The head-tail condition is needed only to identify this reduced
+source with the entire even carrier.
+
+The generic implementation is
+`RealLinearPMapKernelReduction.lean`; the concrete Green and completed-native
+wrappers are `closedGreenJetReducedReciprocalSignedHeightData` and
+`CompletedNativeGreenWeylReducedHeightCertificate`.
+
+The completed-native wrapper currently consumes the canonical Green-moment
+kernel identity and global parity independence.  The completed projective
+TFVD carrier already supplies all-order independence.  Instantiating the
+wrapper on that carrier still requires the exact Gram identification between
+its parity jets and the canonical logarithmic moments.  The normalized radial
+Taylor carrier is not a substitute: its first odd complex jet vanishes by the
+existing differentiability obstruction.
+
+## 3. Full-carrier signed reciprocal block
 
 Define on `H_even ⊕ H_odd`
 
@@ -63,7 +98,7 @@ independence statements are preserved.  The resulting
 `canonicalCompletedGreenJetMomentReciprocalSignedHeightOperator` therefore
 requires no completeness hypothesis on the original ambient space.
 
-## 3. Exact relation to the Jacobi operator
+## 4. Exact relation to the Jacobi operator
 
 For every `x` in the natural domain of `J=B*B`, Lean constructs both required
 domain witnesses and proves
@@ -76,11 +111,15 @@ This is `LinearPMap.realReciprocalOffDiagonal_apply_secondSquareInput`.
 It identifies the first channel of `H²` with `J⁻¹` on `range J`, without an
 external extension and without an unbounded Borel functional calculus.
 
-## 4. Remaining frontier
+## 5. Spectral frontier
 
 The exact finite TFVD head-plus-tail identities and the Hilbert
-head-in-shifted-tail approximation are different statements.  The current
-theorem graph does not yet derive the latter from the concrete C3 carrier.
-That instantiation, followed by identification of the spectrum of `H` with
-all zero heights, remains the next gate.  Self-adjointness by itself does not
-establish that spectral identification.
+head-in-shifted-tail approximation remain different statements.  They affect
+whether the full even carrier equals the reduced support, but no longer block
+the reduced maximal self-adjoint operator or its completed resolvent limit.
+
+Once the projective TFVD Gram identification instantiates the concrete
+reduced certificate, the spectral identification is a separate theorem: one
+must identify the nonzero spectrum of the reduced signed-height operator with
+all Genuine zero heights.  Self-adjointness by itself does not establish that
+identification.

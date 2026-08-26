@@ -1,5 +1,5 @@
 import CarrySelfAdjointOperator.GreenJetMomentZeroMassCriterion
-import CarrySelfAdjointOperator.RealLinearPMapReciprocalBlock
+import CarrySelfAdjointOperator.RealLinearPMapKernelReduction
 import Mathlib.Tactic
 
 /-!
@@ -27,6 +27,22 @@ open scoped InnerProductSpace LinearPMap RealInnerProductSpace
 namespace CarrySelfAdjointOperator
 
 noncomputable section
+
+@[reducible] private def coherentReducedGreenJetEvenInnerProductSpace
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    (jet : (ℕ ⊕ ℕ) → E) :
+    InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+  { (inferInstance :
+      InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet)) with
+    toNormedSpace := inferInstance }
+
+@[reducible] private def coherentReducedGreenJetOddInnerProductSpace
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    (jet : (ℕ ⊕ ℕ) → E) :
+    InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+  { (inferInstance :
+      InnerProductSpace ℝ (greenJetOddHilbertSubspace jet)) with
+    toNormedSpace := inferInstance }
 
 /-! ## Dense ranges of the closed Green factor and its adjoint -/
 
@@ -105,6 +121,88 @@ theorem closedGreenJetEnergyRealAdjoint_dense_range_of_head_mem_tail
   exact (LinearPMap.apply_comp_inclusion
     (greenJetEnergyFormalAdjointCore_le_closedRealAdjoint
       hrep heven hodd) x).symm
+
+/-! ## Canonical support reduction without a zero-mass premise -/
+
+/-- Canonical reciprocal signed-height package on the nonzero support of the
+closed Green factor.  It is maximal self-adjoint without a head-in-tail or
+zero-mass hypothesis. -/
+def closedGreenJetReducedReciprocalSignedHeightData
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n))) :
+    @LinearPMap.RealReducedMaximalSelfAdjointData
+      (greenJetEvenHilbertSubspace jet)
+      (greenJetOddHilbertSubspace jet)
+      (inferInstanceAs (NormedAddCommGroup
+        (greenJetEvenHilbertSubspace jet)))
+      (coherentReducedGreenJetEvenInnerProductSpace jet)
+      (inferInstanceAs (NormedAddCommGroup
+        (greenJetOddHilbertSubspace jet)))
+      (coherentReducedGreenJetOddInnerProductSpace jet) := by
+  letI : CompleteSpace
+      (CanonicalGreenJetSignedHeightHilbertSpace jet) := inferInstance
+  letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+    coherentReducedGreenJetEvenInnerProductSpace jet
+  letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+    coherentReducedGreenJetOddInnerProductSpace jet
+  letI : CompleteSpace (greenJetEvenHilbertSubspace jet) :=
+    (greenJetEvenHilbertSubspace_isClosed jet).completeSpace_coe
+  letI : CompleteSpace (greenJetOddHilbertSubspace jet) :=
+    (greenJetOddHilbertSubspace_isClosed jet).completeSpace_coe
+  let B : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetOddHilbertSubspace jet :=
+    closedGreenJetEnergyFactor hrep heven hodd
+  let hB : Dense (B.domain : Set (greenJetEvenHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_domain hrep heven hodd
+  have hBadjDomain : Dense ((LinearPMap.realAdjoint
+      (E := greenJetEvenHilbertSubspace jet)
+      (F := greenJetOddHilbertSubspace jet) B hB).domain :
+        Set (greenJetOddHilbertSubspace jet)) := by
+    change Dense ((closedGreenJetEnergyRealAdjoint
+      hrep heven hodd).domain : Set (greenJetOddHilbertSubspace jet))
+    exact closedGreenJetEnergyRealAdjoint_dense_domain hrep heven hodd
+  have hBclosed : B.IsClosed :=
+    closedGreenJetEnergyFactor_isClosed hrep heven hodd
+  have hBrange : Dense (LinearMap.range B.toFun :
+      Set (greenJetOddHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_range hrep heven hodd
+  exact B.reducedRealReciprocalOffDiagonalBundle
+    hB hBadjDomain hBclosed hBrange
+
+/-- The reduced global signed-height operator itself. -/
+def closedGreenJetReducedReciprocalSignedHeightOperator
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n))) :
+    let data := closedGreenJetReducedReciprocalSignedHeightData
+      hrep heven hodd
+    WithLp 2 (data.sourceSupport × greenJetOddHilbertSubspace jet) →ₗ.[ℝ]
+      WithLp 2 (data.sourceSupport × greenJetOddHilbertSubspace jet) :=
+  (closedGreenJetReducedReciprocalSignedHeightData
+    hrep heven hodd).selfAdjointData.operator
+
+/-- The reduced Green signed-height operator is maximal real self-adjoint. -/
+theorem closedGreenJetReducedReciprocalSignedHeightOperator_adjoint_eq
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n))) :
+    let data := closedGreenJetReducedReciprocalSignedHeightData
+      hrep heven hodd
+    data.selfAdjointData.operator.realAdjoint
+        data.selfAdjointData.denseDomain =
+      data.selfAdjointData.operator :=
+  (closedGreenJetReducedReciprocalSignedHeightData
+    hrep heven hodd).selfAdjointData.adjoint_eq
 
 /-! ## The reciprocal signed operator -/
 
@@ -265,6 +363,45 @@ def closedGreenJetMomentReciprocalSignedHeightOperator
     ((greenJetEvenShiftedTailCore_head_mem_iff_momentDefect hrep).2 hvanish)
 
 /-! ## Automatic ambient completion -/
+
+/-- Canonical reduced reciprocal signed-height package after automatic
+Hilbert completion.  Unlike the full-carrier wrapper below, this construction
+does not require vanishing head-tail moment defect. -/
+def canonicalCompletedGreenJetReducedReciprocalSignedHeightData
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n))) :
+    @LinearPMap.RealReducedMaximalSelfAdjointData
+      (greenJetEvenHilbertSubspace (completedGreenJet jet))
+      (greenJetOddHilbertSubspace (completedGreenJet jet))
+      (inferInstanceAs (NormedAddCommGroup
+        (greenJetEvenHilbertSubspace (completedGreenJet jet))))
+      (coherentReducedGreenJetEvenInnerProductSpace (completedGreenJet jet))
+      (inferInstanceAs (NormedAddCommGroup
+        (greenJetOddHilbertSubspace (completedGreenJet jet))))
+      (coherentReducedGreenJetOddInnerProductSpace (completedGreenJet jet)) :=
+  closedGreenJetReducedReciprocalSignedHeightData
+    (completedGreenJet_gramRepresentation hrep)
+    (completedGreenJet_even_linearIndependent heven)
+    (completedGreenJet_odd_linearIndependent hodd)
+
+/-- The automatically completed reduced reciprocal operator is maximal real
+self-adjoint, with no zero-mass premise. -/
+theorem canonicalCompletedGreenJetReducedReciprocalSignedHeightOperator_adjoint_eq
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n))) :
+    let data := canonicalCompletedGreenJetReducedReciprocalSignedHeightData
+      hrep heven hodd
+    data.selfAdjointData.operator.realAdjoint
+        data.selfAdjointData.denseDomain =
+      data.selfAdjointData.operator :=
+  (canonicalCompletedGreenJetReducedReciprocalSignedHeightData
+    hrep heven hodd).selfAdjointData.adjoint_eq
 
 /-- Canonical reciprocal signed-height package after automatic Hilbert
 completion of an arbitrary ambient Green-jet realization. -/

@@ -328,7 +328,7 @@ theorem canonicalCompletedNativeLogDerivativeMoment_geometricBound :
   rw [completedNativeLogDerivativeTaylorCoefficient_eq_canonical] at hn
   simpa using hn
 
-namespace CompletedNativeGreenWeylHeightCertificate
+namespace CompletedNativeGreenWeylReducedHeightCertificate
 
 /-- The completed even Green jet has squared norm equal to its diagonal
 canonical moment. -/
@@ -337,7 +337,7 @@ theorem completedGreenEvenJet_norm_sq_eq_canonicalMoment
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments)
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments)
     (n : ℕ) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
@@ -365,7 +365,7 @@ theorem completedGreenEvenJet_norm_geometricBound
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -404,7 +404,7 @@ theorem completedJacobiResolventSeries_summable
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -448,7 +448,7 @@ theorem completedJacobiResolventPrefix_tendsto_tsum
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -507,7 +507,7 @@ theorem completedJacobiShiftedSeries_summable
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -552,7 +552,7 @@ theorem completedJacobiShiftedPrefix_tendsto_tsum
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -592,7 +592,7 @@ theorem completedJacobiResolventTsum_mem_closedAdjointSquareGraph
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -663,7 +663,7 @@ theorem completedJacobiResolventTerminal_tendsto_zero
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -718,7 +718,7 @@ theorem completedJacobiResolventTsum_closedAdjointSquareCertificate
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -853,6 +853,63 @@ theorem completedJacobiResolventTsum_closedAdjointSquareCertificate
   refine ⟨xu, hxu, hAxu, ?_⟩
   rw [hxu, hAxu]
   exact hresolvent
+
+end CompletedNativeGreenWeylReducedHeightCertificate
+
+/-! ## Full-carrier compatibility wrappers -/
+
+namespace CompletedNativeGreenWeylHeightCertificate
+
+variable {Hxi : Type*}
+variable [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+variable {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+
+abbrev completedGreenEvenJet_norm_sq_eq_canonicalMoment
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments)
+    (n : ℕ) :=
+  certificate.toReduced.completedGreenEvenJet_norm_sq_eq_canonicalMoment n
+
+abbrev completedGreenEvenJet_norm_geometricBound
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced.completedGreenEvenJet_norm_geometricBound
+
+abbrev completedJacobiResolventSeries_summable
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced.completedJacobiResolventSeries_summable
+
+abbrev completedJacobiResolventPrefix_tendsto_tsum
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced.completedJacobiResolventPrefix_tendsto_tsum
+
+abbrev greenJetJacobiCoreEndomorphism_resolventPrefix_eq_shiftedSum
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {jet : (ℕ ⊕ ℕ) → E}
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (u : ℝ) (N : ℕ) :=
+  CompletedNativeGreenWeylReducedHeightCertificate.greenJetJacobiCoreEndomorphism_resolventPrefix_eq_shiftedSum
+    heven u N
+
+abbrev completedJacobiShiftedSeries_summable
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced.completedJacobiShiftedSeries_summable
+
+abbrev completedJacobiShiftedPrefix_tendsto_tsum
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced.completedJacobiShiftedPrefix_tendsto_tsum
+
+abbrev completedJacobiResolventTsum_mem_closedAdjointSquareGraph
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced
+    |>.completedJacobiResolventTsum_mem_closedAdjointSquareGraph
+
+abbrev completedJacobiResolventTerminal_tendsto_zero
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced.completedJacobiResolventTerminal_tendsto_zero
+
+abbrev completedJacobiResolventTsum_closedAdjointSquareCertificate
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced
+    |>.completedJacobiResolventTsum_closedAdjointSquareCertificate
 
 end CompletedNativeGreenWeylHeightCertificate
 

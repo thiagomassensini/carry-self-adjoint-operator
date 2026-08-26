@@ -68,6 +68,38 @@ structure CompletedNativeGreenWeylHeightCertificate
   headTailMomentDefect :
     HasVanishingGreenJetHeadTailMomentDefect moments
 
+/-- Provenance certificate for the canonical nonzero-support realization.
+Unlike the full-carrier certificate, it does not assert that the original
+Green factor has trivial kernel: that kernel is removed canonically before
+forming the reciprocal signed-height operator. -/
+structure CompletedNativeGreenWeylReducedHeightCertificate
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    (xiState : ℂ → Hxi) (moments : ℕ → ℝ) : Prop where
+  logarithmicMoments :
+    IsCompletedNativeLogDerivativeMomentSequence moments
+  greenMomentJets :
+    HasCanonicalCompletedNativeGreenMomentJets xiState moments
+  evenIndependent :
+    LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inl n))
+  oddIndependent :
+    LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inr n))
+
+/-- Forgetting the full-carrier zero-mass field gives the canonical
+nonzero-support certificate. -/
+theorem CompletedNativeGreenWeylHeightCertificate.toReduced
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :
+    CompletedNativeGreenWeylReducedHeightCertificate xiState moments where
+  logarithmicMoments := certificate.logarithmicMoments
+  greenMomentJets := certificate.greenMomentJets
+  evenIndependent := certificate.evenIndependent
+  oddIndependent := certificate.oddIndependent
+
 /-- The two factor Green identities and the all-order coefficient equation
 construct the concrete Green half of the certificate.  The logarithmic
 identity is stated independently, so the same `moments` must pass both sides
@@ -153,6 +185,53 @@ theorem canonicalCompletedNativeGreenWeylHeightCertificate_of_greenMomentJets
     oddIndependent := hodd
     headTailMomentDefect := hvanish }
 
+/-- Canonical reduced certificate from the completed Green/Gram seam and the
+two all-order parity independence statements.  No head-tail premise enters. -/
+theorem canonicalCompletedNativeGreenWeylReducedHeightCertificate_of_greenMomentJets
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    (xiState : ℂ → Hxi)
+    (greenMomentJets : HasCanonicalCompletedNativeGreenMomentJets xiState
+      canonicalCompletedNativeLogDerivativeMoment)
+    (heven : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inl n)))
+    (hodd : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inr n))) :
+    CompletedNativeGreenWeylReducedHeightCertificate xiState
+      canonicalCompletedNativeLogDerivativeMoment :=
+  { logarithmicMoments :=
+      canonicalCompletedNativeLogDerivativeMoment_isMomentSequence
+    greenMomentJets := greenMomentJets
+    evenIndependent := heven
+    oddIndependent := hodd }
+
+/-- Factor-level constructor for the reduced certificate. -/
+theorem completedNativeGreenWeylReducedHeightCertificate_of_factors
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    (xiState : ℂ → Hxi) (moments : ℕ → ℝ)
+    (hlog : IsCompletedNativeLogDerivativeMomentSequence moments)
+    (hxi : HasDivisionFreeGreenRepresentation
+      nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion xiState)
+    (hnative : HasDivisionFreeGreenRepresentation
+      nativeHeightScalar nativeHeightScalarBoundaryCompanion
+        canonicalCompletedOperatorC3HilbertState)
+    (hcoeff : HasCompletedGreenJetCoefficientEquation moments
+      (canonicalCompletedNativeNormalizedGreenState xiState))
+    (heven : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inl n)))
+    (hodd : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inr n))) :
+    CompletedNativeGreenWeylReducedHeightCertificate xiState moments := by
+  refine
+    { logarithmicMoments := hlog
+      greenMomentJets := ?_
+      evenIndependent := heven
+      oddIndependent := hodd }
+  exact hasCanonicalCompletedNativeGreenMomentJets_of_factors
+    xiState moments hxi hnative
+      (complexGreenWronskianMomentKernel_of_coefficientEquation hcoeff)
+
 /-- Incidence transport discharges both global independence fields.  Thus the
 strictness part of the completed operator requires only the one injective
 vector bridge from the native bracket incidences to the actual Green jets. -/
@@ -209,6 +288,31 @@ theorem canonicalCompletedNativeGreenWeylHeightCertificate_of_incidenceTransport
     hbase hradius xiState canonicalCompletedNativeLogDerivativeMoment
       canonicalCompletedNativeLogDerivativeMoment_isMomentSequence
       hxi hnative hcoeff transport hvanish
+
+/-- Incidence transport discharges both global independence fields in the
+reduced certificate, with no zero-mass argument. -/
+theorem completedNativeGreenWeylReducedHeightCertificate_of_incidenceTransport
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (xiState : ℂ → Hxi) (moments : ℕ → ℝ)
+    (hlog : IsCompletedNativeLogDerivativeMomentSequence moments)
+    (hxi : HasDivisionFreeGreenRepresentation
+      nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion xiState)
+    (hnative : HasDivisionFreeGreenRepresentation
+      nativeHeightScalar nativeHeightScalarBoundaryCompanion
+        canonicalCompletedOperatorC3HilbertState)
+    (hcoeff : HasCompletedGreenJetCoefficientEquation moments
+      (canonicalCompletedNativeNormalizedGreenState xiState))
+    (transport : CanonicalCompletedNativeBR2IncidenceJetTransport
+      base radius xiState) :
+    CompletedNativeGreenWeylReducedHeightCertificate xiState moments :=
+  completedNativeGreenWeylReducedHeightCertificate_of_factors
+    xiState moments hlog hxi hnative hcoeff
+      (transport.even_linearIndependent hbase hradius)
+      (transport.odd_linearIndependent hbase hradius)
 
 namespace CompletedNativeGreenWeylHeightCertificate
 
@@ -282,6 +386,61 @@ theorem heightOperator_adjoint_eq
 
 end CompletedNativeGreenWeylHeightCertificate
 
+namespace CompletedNativeGreenWeylReducedHeightCertificate
+
+/-- The completed root-free chain constructs a canonical maximal
+self-adjoint signed-height package on the nonzero Green support, without a
+head-tail or zero-mass field. -/
+def toMaximalSelfAdjointReducedHeightData
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
+    letI : InnerProductSpace ℝ
+        (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    LinearPMap.RealReducedMaximalSelfAdjointData
+      (greenJetEvenHilbertSubspace
+        (completedGreenJet
+          (canonicalCompletedNativeGreenParityJet xiState)))
+      (greenJetOddHilbertSubspace
+        (completedGreenJet
+          (canonicalCompletedNativeGreenParityJet xiState))) := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  have hcomplex := certificate.greenMomentJets.momentKernel
+  have hreal : IsGreenWronskianMomentKernelGramRepresentation
+      moments (canonicalCompletedNativeGreenParityJet xiState) := by
+    intro i j
+    change greenWronskianMomentKernel moments i j =
+      (inner ℂ
+        (canonicalCompletedNativeGreenParityJet xiState i)
+        (canonicalCompletedNativeGreenParityJet xiState j)).re
+    have h := congrArg Complex.re (hcomplex i j)
+    simpa [canonicalCompletedNativeGreenParityJet,
+      canonicalCompletedNativeNormalizedGreenState] using h
+  exact canonicalCompletedGreenJetReducedReciprocalSignedHeightData
+    hreal certificate.evenIndependent certificate.oddIndependent
+
+/-- Maximal self-adjointness of the canonical completed reduced height
+operator. -/
+theorem reducedHeightOperator_adjoint_eq
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
+    let data := certificate.toMaximalSelfAdjointReducedHeightData
+    data.selfAdjointData.operator.realAdjoint
+        data.selfAdjointData.denseDomain =
+      data.selfAdjointData.operator := by
+  exact certificate.toMaximalSelfAdjointReducedHeightData
+    |>.selfAdjointData.adjoint_eq
+
+end CompletedNativeGreenWeylReducedHeightCertificate
+
 /-- Direct canonical capstone: the concrete completed Green-moment package,
 global parity independence, and the exact head--tail closure construct a
 maximal self-adjoint signed-height operator. -/
@@ -309,6 +468,30 @@ theorem canonicalCompletedNativeHeightOperator_adjoint_eq_of_greenMomentJets
   exact
     (canonicalCompletedNativeGreenWeylHeightCertificate_of_greenMomentJets
       xiState greenMomentJets heven hodd hvanish).heightOperator_adjoint_eq
+
+/-- Reduced-support capstone: the concrete completed Green-moment package and
+global parity independence construct a maximal self-adjoint signed-height
+operator with no head-tail premise. -/
+theorem canonicalCompletedNativeReducedHeightOperator_adjoint_eq_of_greenMomentJets
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    (xiState : ℂ → Hxi)
+    (greenMomentJets : HasCanonicalCompletedNativeGreenMomentJets xiState
+      canonicalCompletedNativeLogDerivativeMoment)
+    (heven : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inl n)))
+    (hodd : LinearIndependent ℝ
+      (fun n : ℕ ↦ canonicalCompletedNativeGreenParityJet xiState (Sum.inr n))) :
+    let certificate :=
+      canonicalCompletedNativeGreenWeylReducedHeightCertificate_of_greenMomentJets
+        xiState greenMomentJets heven hodd
+    let data := certificate.toMaximalSelfAdjointReducedHeightData
+    data.selfAdjointData.operator.realAdjoint
+        data.selfAdjointData.denseDomain =
+      data.selfAdjointData.operator := by
+  exact
+    (canonicalCompletedNativeGreenWeylReducedHeightCertificate_of_greenMomentJets
+      xiState greenMomentJets heven hodd).reducedHeightOperator_adjoint_eq
 
 end
 

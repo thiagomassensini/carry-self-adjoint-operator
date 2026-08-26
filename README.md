@@ -138,6 +138,12 @@ The construction does not take a zero list or target heights as input.
   `h₀ - 2 sum c_n h_(n+1) + sum c_i c_j h_(i+j+2)`, and arbitrarily small
   values of this explicit quadratic defect force `ker J = 0` without a zero
   list or an atomic measure model;
+- constructs, from the Green-kernel representation and the two parity
+  independence statements but without a zero-mass premise, the canonical nonzero support
+  `H_even^red = (ker B)^perp`, proves the restriction
+  `B_red : H_even^red -> H_odd` closed, densely defined, injective, and with
+  exactly the same range as `B`, and obtains a maximal self-adjoint reciprocal
+  signed-height block on `H_even^red ⊕ H_odd` without a head--tail premise;
 - constructs, once this same zero-mass gate is supplied, the canonical global
   reciprocal signed-height block
   `H(x,y) = (B⁻¹ y, (B*)⁻¹ x)` on the completed even/odd Green sectors;
@@ -255,6 +261,11 @@ The construction does not take a zero list or target heights as input.
   moments, so a packaged completed Green-moment identity, global parity
   independence, and exact head-tail closure feed directly into the theorem
   `heightOperator_adjoint_eq`, with no external moment witness.
+- separates the canonical reduced certificate from that full-carrier
+  certificate: the reduced certificate has no head--tail field, constructs a
+  maximal self-adjoint signed-height operator, and carries the moment,
+  resolvent-series, closed-graph, and limit theorems without a zero-mass
+  hypothesis.
 
 The enriched C3 sewing is now an exact state-level theorem at every cutoff.
 The fixed all-cutoff Hilbert ledger retains the two Naimark quadratures,

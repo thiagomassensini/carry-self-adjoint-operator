@@ -231,7 +231,7 @@ theorem closedGreenJetEnergyAdjointSquare_apply_cyclicJet
   rw [closedGreenJetEnergyAdjointSquare_apply_core,
     greenJetJacobiCoreMap_jet]
 
-namespace CompletedNativeGreenWeylHeightCertificate
+namespace CompletedNativeGreenWeylReducedHeightCertificate
 
 /-- The complex completed Green kernel, restricted to real scalars. -/
 theorem realMomentKernel
@@ -239,7 +239,7 @@ theorem realMomentKernel
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -265,7 +265,7 @@ theorem jacobiCyclicMoment_eq_canonicalLogDerivativeMoment
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments)
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments)
     (n : ℕ) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
@@ -294,7 +294,7 @@ theorem completedJacobiCyclicMoment_eq_canonicalLogDerivativeMoment
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments)
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments)
     (n : ℕ) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
@@ -334,7 +334,7 @@ theorem completedJacobiResolventPrefixScalarReadout_eq_canonical
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments)
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments)
     (u : ℝ) (N : ℕ) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
@@ -366,7 +366,7 @@ theorem completedEnergyAdjointSquare_apply_core_eq_cyclicEndomorphism
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -404,7 +404,7 @@ theorem jacobiCyclicMoment_isCompletedNativeLogDerivativeMomentSequence
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -430,7 +430,7 @@ theorem completedJacobiCyclicMoment_isCompletedNativeLogDerivativeMomentSequence
     [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
     {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
     (certificate :
-      CompletedNativeGreenWeylHeightCertificate xiState moments) :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments) :
     letI : InnerProductSpace ℝ
         (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
       InnerProductSpace.rclikeToReal ℂ _
@@ -455,6 +455,51 @@ theorem completedJacobiCyclicMoment_isCompletedNativeLogDerivativeMomentSequence
     exact certificate.completedJacobiCyclicMoment_eq_canonicalLogDerivativeMoment n
   rw [hfun]
   exact canonicalCompletedNativeLogDerivativeMoment_isMomentSequence
+
+end CompletedNativeGreenWeylReducedHeightCertificate
+
+/-! ## Full-carrier compatibility wrappers -/
+
+namespace CompletedNativeGreenWeylHeightCertificate
+
+variable {Hxi : Type*}
+variable [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+variable {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+
+abbrev realMomentKernel
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced.realMomentKernel
+
+abbrev jacobiCyclicMoment_eq_canonicalLogDerivativeMoment
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments)
+    (n : ℕ) :=
+  certificate.toReduced.jacobiCyclicMoment_eq_canonicalLogDerivativeMoment n
+
+abbrev completedJacobiCyclicMoment_eq_canonicalLogDerivativeMoment
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments)
+    (n : ℕ) :=
+  certificate.toReduced.completedJacobiCyclicMoment_eq_canonicalLogDerivativeMoment n
+
+abbrev completedJacobiResolventPrefixScalarReadout_eq_canonical
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments)
+    (u : ℝ) (N : ℕ) :=
+  certificate.toReduced
+    |>.completedJacobiResolventPrefixScalarReadout_eq_canonical u N
+
+abbrev completedEnergyAdjointSquare_apply_core_eq_cyclicEndomorphism
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced
+    |>.completedEnergyAdjointSquare_apply_core_eq_cyclicEndomorphism
+
+abbrev jacobiCyclicMoment_isCompletedNativeLogDerivativeMomentSequence
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced
+    |>.jacobiCyclicMoment_isCompletedNativeLogDerivativeMomentSequence
+
+abbrev completedJacobiCyclicMoment_isCompletedNativeLogDerivativeMomentSequence
+    (certificate : CompletedNativeGreenWeylHeightCertificate xiState moments) :=
+  certificate.toReduced
+    |>.completedJacobiCyclicMoment_isCompletedNativeLogDerivativeMomentSequence
 
 end CompletedNativeGreenWeylHeightCertificate
 
