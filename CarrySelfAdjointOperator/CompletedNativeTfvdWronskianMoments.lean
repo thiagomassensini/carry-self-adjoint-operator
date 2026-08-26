@@ -17,7 +17,8 @@ division-free moment sequence.  No Green Gram representation, positivity
 premise, zero hypothesis, or spectral data enters this construction.
 -/
 
-open scoped BigOperators ComplexConjugate
+open scoped BigOperators ComplexConjugate InnerProductSpace
+  RealInnerProductSpace
 
 namespace CarrySelfAdjointOperator
 
@@ -447,6 +448,17 @@ theorem completedNativeGreenResponseTaylorCoefficient_odd_eq_canonical
       exact mul_left_cancel₀
         completedNativeEvenCharacteristicCoefficient_zero_ne_zero hproduct
 
+/-- The quadratic reduction from the notes is exact coefficient by
+coefficient: the `z^(2n+1)` coefficient of `-F'/(2F)` is the `u^n`
+coefficient of the reduced logarithmic derivative `q(u)`. -/
+theorem canonicalC3BracketTfvdResponseTaylorCoefficient_odd_eq_logDerivative
+    (M n : ℕ) :
+    canonicalC3BracketTfvdResponseTaylorCoefficient M (2 * n + 1) =
+      completedNativeLogDerivativeTaylorCoefficient n := by
+  rw [canonicalC3BracketTfvdResponseTaylorCoefficient_eq_completed,
+    completedNativeGreenResponseTaylorCoefficient_odd_eq_canonical,
+    completedNativeLogDerivativeTaylorCoefficient_eq_canonical]
+
 /-! ## Concrete moments read from the TFVD carrier -/
 
 /-- Real moment sequence obtained from the odd Taylor coefficients of the
@@ -486,6 +498,113 @@ theorem canonicalC3BracketTfvdMoment_cutoff_independent
   funext n
   rw [canonicalC3BracketTfvdMoment_eq_canonical,
     canonicalC3BracketTfvdMoment_eq_canonical]
+
+/-! ## Cyclic Jacobi readout of the same TFVD moments -/
+
+namespace CompletedNativeGreenWeylReducedHeightCertificate
+
+/-- On every completed Green/Jacobi realization, the cyclic moments of the
+positive operator are exactly the moments read from the TFVD Wronskian. -/
+theorem completedJacobiCyclicMoment_eq_canonicalC3BracketTfvdMoment
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments)
+    (M n : ℕ) :
+    letI : InnerProductSpace ℝ
+        (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    let heven := completedGreenJet_even_linearIndependent
+      certificate.evenIndependent
+    greenJetJacobiCoreCyclicMoment
+        (jet := completedGreenJet
+          (canonicalCompletedNativeGreenParityJet xiState)) heven n =
+      canonicalC3BracketTfvdMoment M n := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  dsimp only
+  rw [certificate.completedJacobiCyclicMoment_eq_canonicalLogDerivativeMoment,
+    canonicalC3BracketTfvdMoment_eq_canonical]
+
+set_option maxHeartbeats 800000 in
+/-- The finite cyclic resolvent readout is the truncated generating function
+of the moments extracted from the bracket--TFVD Wronskian, with no root list
+or fitted spectral input. -/
+theorem completedJacobiResolventPrefixScalarReadout_eq_tfvdWronskianMoments
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments)
+    (M : ℕ) (u : ℝ) (N : ℕ) :
+    letI : InnerProductSpace ℝ
+        (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    let jet := completedGreenJet
+      (canonicalCompletedNativeGreenParityJet xiState)
+    ⟪(greenJetJacobiCoreResolventPrefix (jet := jet) u N :
+        greenJetEvenHilbertSubspace jet),
+      greenJetEvenSectorJet jet 0⟫_ℝ =
+      ∑ k ∈ Finset.range (N + 1),
+        u ^ k * canonicalC3BracketTfvdMoment M k := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  dsimp only
+  rw [certificate.completedJacobiResolventPrefixScalarReadout_eq_canonical]
+  apply Finset.sum_congr rfl
+  intro k hk
+  rw [canonicalC3BracketTfvdMoment_eq_canonical]
+
+set_option synthInstance.maxHeartbeats 200000 in
+/-- On a nontrivial neighborhood of the centered point, the TFVD moment
+polynomials converge to the scalar readout of the completed Jacobi resolvent
+vector. -/
+theorem tfvdWronskianMomentPolynomial_tendsto_completedJacobiResolventReadout
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} {moments : ℕ → ℝ}
+    (certificate :
+      CompletedNativeGreenWeylReducedHeightCertificate xiState moments)
+    (M : ℕ) :
+    letI : InnerProductSpace ℝ
+        (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    let jet := completedGreenJet
+      (canonicalCompletedNativeGreenParityJet xiState)
+    ∃ r : ℝ, 0 < r ∧ ∀ u : ℝ, |u| * r < 1 →
+      Tendsto
+        (fun N : ℕ ↦
+          ∑ k ∈ Finset.range (N + 1),
+            u ^ k * canonicalC3BracketTfvdMoment M k)
+        atTop
+        (nhds
+          ⟪(∑' n : ℕ,
+              u ^ n • greenJetEvenSectorJet jet n),
+            greenJetEvenSectorJet jet 0⟫_ℝ) := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  dsimp only
+  let jet := completedGreenJet
+    (canonicalCompletedNativeGreenParityJet xiState)
+  obtain ⟨r, hr, hresolvent⟩ :=
+    certificate.completedJacobiResolventPrefix_tendsto_tsum
+  refine ⟨r, hr, fun u hu ↦ ?_⟩
+  have hinner := Filter.Tendsto.inner (𝕜 := ℝ)
+    (hresolvent u hu)
+    (tendsto_const_nhds : Tendsto
+      (fun _ : ℕ ↦ greenJetEvenSectorJet jet 0) atTop
+      (nhds (greenJetEvenSectorJet jet 0)))
+  apply hinner.congr'
+  filter_upwards [] with N
+  exact
+    (certificate.completedJacobiResolventPrefixScalarReadout_eq_tfvdWronskianMoments
+      M u N)
+
+end CompletedNativeGreenWeylReducedHeightCertificate
 
 end
 
