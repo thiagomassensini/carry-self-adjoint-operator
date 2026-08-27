@@ -201,6 +201,19 @@
     {"qualified": "CarrySelfAdjointOperator.completedNativeGreenNormalizedResponse_zero"},
     {"qualified": "CarrySelfAdjointOperator.completedNativeGreenState_inner_self_zero_eq_responseDerivative_of_continuous"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedOperatorC3HilbertState_continuousAt_zero"},
-    {"qualified": "CarrySelfAdjointOperator.completedNativeC3ProductLedger_inner_self_zero_eq_responseDerivative"}
+    {"qualified": "CarrySelfAdjointOperator.completedNativeC3ProductLedger_inner_self_zero_eq_responseDerivative"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedOperatorC3HilbertState_continuous"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeC3ProductLedgerState_continuousAt_ofReal"},
+    {"qualified": "CarrySelfAdjointOperator.completedGreenKernelForwardDifference_eq_of_eq_on_grid"},
+    {"qualified": "CarrySelfAdjointOperator.nsmul_canonicalGreenJetStep_eq_ofReal"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeC3ProductLedger_normalizedKernel_ofReal_eq_dslope_of_continuous"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeOperatorCharacteristic_nsmul_canonicalGreenJetStep_eventually_ne_zero"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeC3ProductLedger_kernelForwardDifference_eventuallyEq_dslope"},
+    {"qualified": "CarrySelfAdjointOperator.completedNative_kernelForwardDifference_eventuallyEq_dslope"},
+    {"qualified": "CarrySelfAdjointOperator.hasCompletedNativeRealAxisNormalizedGreenKernel_of_continuousGreenFactors"},
+    {"qualified": "CarrySelfAdjointOperator.hasCompletedGreenForwardDifferenceGramLimit_of_realAxisKernel"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeHankelPair_posSemidef_of_realAxisKernel"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeC3ProductLedger_hasForwardDifferenceGramLimit"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeHankelPair_posSemidef_of_continuousGreenFactors"}
   ]
 }

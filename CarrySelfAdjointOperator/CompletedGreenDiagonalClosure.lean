@@ -281,13 +281,12 @@ theorem completedNativeGreenState_inner_self_zero_eq_responseDerivative_of_conti
       completedNativeOperatorCharacteristic_zero_ne_zero hstate
   · exact hderiv
 
--- The provenance-preserving C3 coordinate is finite dimensional and its
--- parameter dependence is given by explicit Dirichlet-coordinate functions.
--- This local continuity fact will feed the concrete product-ledger closure.
-theorem canonicalCompletedOperatorC3HilbertState_continuousAt_zero :
-    ContinuousAt canonicalCompletedOperatorC3HilbertState 0 := by
+/-- The provenance-preserving C3 coordinate is finite dimensional and its
+parameter dependence is given by explicit Dirichlet-coordinate functions. -/
+theorem canonicalCompletedOperatorC3HilbertState_continuous :
+    Continuous canonicalCompletedOperatorC3HilbertState := by
   unfold canonicalCompletedOperatorC3HilbertState
-  apply (WithLp.prod_continuous_toLp 2 _ _).continuousAt.comp
+  apply (WithLp.prod_continuous_toLp 2 _ _).comp
   have hstate : canonicalCompletedOperatorC3State =
       fun z ↦ NativeCarryC3Crosswalk.finiteC3GenuineBracketGreenBoundaryPair
         3 (operatorHeightParameter z) := by
@@ -336,17 +335,46 @@ theorem canonicalCompletedOperatorC3HilbertState_continuousAt_zero :
   have hparameter : Continuous operatorHeightParameter := by
     unfold operatorHeightParameter
     fun_prop
+  apply Continuous.prodMk
+  · convert
+      (PiLp.continuous_toLp 2 _).comp
+        (continuous_pi fun n : Fin 3 ↦
+          (hphase (n : ℕ)).comp hparameter) using 1
+    all_goals rfl
+  · convert
+      (PiLp.continuous_toLp 2 _).comp
+        (continuous_pi fun n : Fin 3 ↦
+          (hpositive (n : ℕ)).comp hparameter) using 1
+    all_goals rfl
+
+/-- Centered specialization retained for the diagonal closure API. -/
+theorem canonicalCompletedOperatorC3HilbertState_continuousAt_zero :
+    ContinuousAt canonicalCompletedOperatorC3HilbertState 0 :=
+  canonicalCompletedOperatorC3HilbertState_continuous.continuousAt
+
+/-- The concrete product ledger is continuous at every real height whenever
+the completion-factor state is continuous there. -/
+theorem completedNativeC3ProductLedgerState_continuousAt_ofReal
+    {Hxi : Type*} [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    {xiState : ℂ → Hxi} (time : ℝ)
+    (hxiState : ContinuousAt xiState (time : ℂ)) :
+    ContinuousAt (completedNativeC3ProductLedgerState xiState) (time : ℂ) := by
+  unfold completedNativeC3ProductLedgerState weightedProductGreenState
+  apply (WithLp.prod_continuous_toLp 2 _ _).continuousAt.comp
   apply ContinuousAt.prodMk
-  · convert
-      ((PiLp.continuous_toLp 2 _).comp
-        (continuous_pi fun n : Fin 3 ↦
-          (hphase (n : ℕ)).comp hparameter)).continuousAt using 1
-    all_goals rfl
-  · convert
-      ((PiLp.continuous_toLp 2 _).comp
-        (continuous_pi fun n : Fin 3 ↦
-          (hpositive (n : ℕ)).comp hparameter)).continuousAt using 1
-    all_goals rfl
+  · have hstrip :
+        operatorHeightParameter (time : ℂ) ∈ genuineCriticalStrip :=
+      by constructor <;> norm_num [operatorHeightParameter]
+    have hnativeDomain :
+        operatorHeightParameter (time : ℂ) ∈ nativeScalarDomain :=
+      ⟨by linarith [hstrip.1], hstrip.2⟩
+    exact (nativeHeightScalar_differentiableAt hnativeDomain).continuousAt.smul
+      hxiState
+  · have hstrip :
+        operatorHeightParameter (time : ℂ) ∈ genuineCriticalStrip :=
+      by constructor <;> norm_num [operatorHeightParameter]
+    exact (nativeXiCompletionFactor_differentiableAt hstrip).continuousAt.smul
+      canonicalCompletedOperatorC3HilbertState_continuous.continuousAt
 
 /-- The concrete completed product ledger is continuous at the Taylor center
 as soon as its still-abstract first factor state is continuous there.  The C3
