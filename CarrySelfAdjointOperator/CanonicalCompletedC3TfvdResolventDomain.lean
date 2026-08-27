@@ -129,6 +129,125 @@ theorem canonicalCompletedC3TfvdUniversalResolventDefect_eq_zero
   exact
     (canonicalCompletedC3TfvdSameSourceResolventCandidate z w hz hw).universalDefect_eq_zero
 
+/-! ## Scalar expansion through the bracket Cauchy readout -/
+
+/-- After vector uniqueness, the TFVD domain boundary is exactly the existing
+Gamma Cauchy boundary. -/
+theorem canonicalCompletedC3TfvdDomainBoundaryReadout_eq_gammaBoundaryReadout
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) :
+    canonicalCompletedC3CandidateResolventBoundaryReadout z w
+        (canonicalCompletedC3TfvdResolventDomainVector z hz)
+        (canonicalCompletedC3TfvdResolventDomainVector w hw) =
+      canonicalCompletedC3PolarizedGammaBoundaryReadout z w hz hw := by
+  symm
+  apply sub_eq_zero.mp
+  rw [canonicalCompletedC3GammaBoundary_sub_candidate_eq_universalDefectReadout,
+    canonicalCompletedC3TfvdUniversalResolventDefect_eq_zero,
+    canonicalCompletedC3UniversalResolventDefectReadout_zero]
+
+/-- The literal six-camera packing of the complete C3 bracket port. -/
+def canonicalCompletedC3BracketCauchyCamera (z : ℂ) :
+    RealifiedCameraComplexification :=
+  NativeCarryC3Crosswalk.c3SixCameraPacking
+    (NativeCarryC3Crosswalk.finiteC3GenuineBracketGreenBoundaryPair 3
+      (operatorHeightParameter z))
+
+/-- Fully expanded two-point Cauchy readout of the bracket cameras. -/
+def canonicalCompletedC3BracketCauchyBoundaryReadout
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) : ℂ :=
+  inner ℂ
+      (canonicalCompletedC3GammaCameraView
+        (allBasesCauchyBlock z hz
+          (canonicalCompletedC3BracketCauchyCamera z)))
+      (canonicalCompletedC3GammaCameraView
+        (canonicalCompletedC3BracketCauchyCamera w)) -
+    inner ℂ
+      (canonicalCompletedC3GammaCameraView
+        (canonicalCompletedC3BracketCauchyCamera z))
+      (canonicalCompletedC3GammaCameraView
+        (allBasesCauchyBlock w hw
+          (canonicalCompletedC3BracketCauchyCamera w)))
+
+/-- Expanding the maximal-domain boundary readout yields exactly the Cauchy
+readout of the complete bracket packing. -/
+theorem canonicalCompletedC3TfvdDomainBoundaryReadout_eq_bracketCauchy
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) :
+    canonicalCompletedC3CandidateResolventBoundaryReadout z w
+        (canonicalCompletedC3TfvdResolventDomainVector z hz)
+        (canonicalCompletedC3TfvdResolventDomainVector w hw) =
+      canonicalCompletedC3BracketCauchyBoundaryReadout z w hz hw := by
+  rw [canonicalCompletedC3TfvdDomainBoundaryReadout_eq_gammaBoundaryReadout]
+  unfold canonicalCompletedC3PolarizedGammaBoundaryReadout
+    carryGammaPolarizedBoundaryReadout carryGammaComplexCauchyReadout
+    canonicalCompletedC3BracketCauchyBoundaryReadout
+  rw [← canonicalCompletedC3TfvdCameraSource_eq_canonicalSource z,
+    ← canonicalCompletedC3TfvdCameraSource_eq_canonicalSource w]
+  have hzCamera :
+      canonicalCompletedC3TfvdCameraSource z =
+        canonicalCompletedC3BracketCauchyCamera z := by
+    exact NativeCarryC3Crosswalk.seededCompletedTfvdGreenCameraState_eq_canonical
+      (operatorHeightParameter z)
+  have hwCamera :
+      canonicalCompletedC3TfvdCameraSource w =
+        canonicalCompletedC3BracketCauchyCamera w := by
+    exact NativeCarryC3Crosswalk.seededCompletedTfvdGreenCameraState_eq_canonical
+      (operatorHeightParameter w)
+  rw [hzCamera, hwCamera]
+  rfl
+
+/-- The same scalar expansion through the positive Gamma Gram. -/
+theorem canonicalCompletedC3TfvdDomainBoundaryReadout_eq_separation_mul_gammaKernel
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) :
+    canonicalCompletedC3CandidateResolventBoundaryReadout z w
+        (canonicalCompletedC3TfvdResolventDomainVector z hz)
+        (canonicalCompletedC3TfvdResolventDomainVector w hw) =
+      (w - conj z) * canonicalCompletedC3PolarizedGammaKernel z w hz hw := by
+  rw [canonicalCompletedC3TfvdDomainBoundaryReadout_eq_gammaBoundaryReadout,
+    canonicalCompletedC3PolarizedGammaBoundaryReadout_eq_kernel]
+
+/-- After bracket expansion and the completed log-jet identity, the requested
+scalar sewing is exactly the equality between the positive Gamma Gram boundary
+and the Wronskian of `(F,-F')`. -/
+theorem canonicalCompletedC3TfvdDomainBoundary_eq_tfvdWronskian_iff
+    (M : ℕ) {z w : ℂ} (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip) :
+    canonicalCompletedC3CandidateResolventBoundaryReadout z w
+          (canonicalCompletedC3TfvdResolventDomainVector z hz)
+          (canonicalCompletedC3TfvdResolventDomainVector w hw) =
+        canonicalC3BracketTfvdCompletedWronskianReadout M w z ↔
+      (w - conj z) * canonicalCompletedC3PolarizedGammaKernel z w hz hw =
+        completedGreenWronskian
+          completedNativeOperatorCharacteristic
+          (fun u : ℂ ↦ -deriv completedNativeOperatorCharacteristic u) w z := by
+  rw [canonicalCompletedC3TfvdDomainBoundaryReadout_eq_separation_mul_gammaKernel,
+    canonicalC3BracketTfvdCompletedWronskianReadout_eq_F_negFprime
+      M hwStrip hzStrip]
+
+/-- At a nonreal characteristic zero, the positive Cauchy boundary cannot
+already equal the completed TFVD Wronskian: the latter vanishes while the
+former is nonzero.  Thus a global proof of the scalar sewing at zeros is
+itself a proof that no such off-axis zero exists. -/
+theorem canonicalCompletedC3TfvdDomainBoundary_ne_tfvdWronskian_of_characteristicZero
+    (M : ℕ) {z : ℂ} (hz : z.im ≠ 0)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hzero : completedNativeOperatorCharacteristic z = 0) :
+    canonicalCompletedC3CandidateResolventBoundaryReadout z z
+          (canonicalCompletedC3TfvdResolventDomainVector z hz)
+          (canonicalCompletedC3TfvdResolventDomainVector z hz) ≠
+        canonicalC3BracketTfvdCompletedWronskianReadout M z z := by
+  have hwronskian :
+      canonicalC3BracketTfvdCompletedWronskianReadout M z z = 0 := by
+    rw [canonicalC3BracketTfvdCompletedWronskianReadout_eq_F_negFprime
+      M hzStrip hzStrip]
+    simp [completedGreenWronskian, hzero]
+  have hboundary :=
+    canonicalCompletedC3PolarizedGammaBoundaryReadout_diagonal_ne_zero
+      hzStrip hz
+  rw [canonicalCompletedC3TfvdDomainBoundaryReadout_eq_gammaBoundaryReadout,
+    hwronskian]
+  exact hboundary
+
 /-- The remaining raw scalar defect after the concrete TFVD vectors have been
 identified by uniqueness.  Its right side compares their domain boundary
 readout with the independently completed TFVD Wronskian. -/
