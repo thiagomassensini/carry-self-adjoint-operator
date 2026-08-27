@@ -1266,6 +1266,66 @@ theorem completedNativeGreenForwardDifferenceLimitParityJet_momentKernel
       state hkernel hscalar
   exact completedGreenForwardDifferenceLimitParityJet_momentKernel hcross
 
+/-! ## Canonical completed-native specialization -/
+
+/-- Joint cross-Gram convergence after discharging the scalar two-step gate
+with its canonical inhabitant. -/
+theorem hasCanonicalCompletedNativeGreenForwardDifferenceCrossGramLimit
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    (state : ℂ → E)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state) :
+    HasCompletedGreenForwardDifferenceCrossGramLimit
+      canonicalCompletedNativeLogDerivativeMoment
+      (normalizedCompletedGreenState
+        completedNativeOperatorCharacteristic state) :=
+  hasCompletedGreenForwardDifferenceCrossGramLimit_of_realAxisKernel
+    state hkernel hasCompletedNativeGreenKernelTwoStepLimit
+
+/-- Canonical completed-native limit jet.  The bivariate scalar limit is no
+longer an argument: it is the proved `dslope` theorem. -/
+def canonicalCompletedNativeGreenForwardDifferenceLimitParityJet
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    [CompleteSpace E]
+    (state : ℂ → E)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state) :
+    (ℕ ⊕ ℕ) → E :=
+  completedNativeGreenForwardDifferenceLimitParityJet
+    state hkernel hasCompletedNativeGreenKernelTwoStepLimit
+
+/-- Every canonical forward-difference approximant converges to the selected
+completed-native limit vector. -/
+theorem completedGreenForwardDifferenceParityJet_tendsto_canonicalNativeLimit
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    [CompleteSpace E]
+    (state : ℂ → E)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (i : ℕ ⊕ ℕ) :
+    Tendsto
+      (fun k ↦ completedGreenForwardDifferenceParityJet
+        (normalizedCompletedGreenState
+          completedNativeOperatorCharacteristic state) k i)
+      atTop
+      (nhds (canonicalCompletedNativeGreenForwardDifferenceLimitParityJet
+        state hkernel i)) := by
+  exact completedGreenForwardDifferenceParityJet_tendsto_limit
+    (hasCanonicalCompletedNativeGreenForwardDifferenceCrossGramLimit
+      state hkernel) i
+
+/-- The canonical limit vectors realize the completed-native
+Green--Wronskian moment kernel exactly. -/
+theorem canonicalCompletedNativeGreenForwardDifferenceLimitParityJet_momentKernel
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    [CompleteSpace E]
+    (state : ℂ → E)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state) :
+    letI : InnerProductSpace ℝ E := InnerProductSpace.rclikeToReal ℂ E
+    IsGreenWronskianMomentKernelGramRepresentation
+      canonicalCompletedNativeLogDerivativeMoment
+      (canonicalCompletedNativeGreenForwardDifferenceLimitParityJet
+        state hkernel) := by
+  exact completedNativeGreenForwardDifferenceLimitParityJet_momentKernel
+    state hkernel hasCompletedNativeGreenKernelTwoStepLimit
+
 end
 
 end CarrySelfAdjointOperator

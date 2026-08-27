@@ -456,6 +456,24 @@ def canonicalCompletedNativeRealTfvdGreenMomentTransport_of_vectorLimit_eq_proje
   rw [hjet]
   exact br2CameraBracketProjectiveHilbertIncidenceJetTransport base radius
 
+/-- The scalar bivariate `dslope` theorem, Hilbert completion, and one
+incidence transport into the resulting vectors produce the concrete
+TFVD/Green moment transport. -/
+def canonicalCompletedNativeRealTfvdGreenMomentTransport_of_canonicalVectorLimit
+    {base radius : ℕ}
+    (state : ℂ → CanonicalCompletedTfvdGreenHilbertCarrier)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (canonicalCompletedNativeGreenForwardDifferenceLimitParityJet
+        state hkernel)) :
+    CanonicalCompletedNativeRealTfvdGreenMomentTransport base radius where
+  jet := canonicalCompletedNativeGreenForwardDifferenceLimitParityJet
+    state hkernel
+  incidenceTransport := transport
+  momentKernel :=
+    canonicalCompletedNativeGreenForwardDifferenceLimitParityJet_momentKernel
+      state hkernel
+
 /-- The exact state-level identity needed after the scalar coefficient
 recurrence has been discharged.  It compares the canonical polarized Green
 coefficient with the complex Hilbert inner product of the same TFVD carrier
@@ -514,6 +532,25 @@ theorem completedNativeRealHPCarrierCertificate_of_tfvdGreenMomentTransport
     hbase hradius
   oddIndependent := transport.incidenceTransport.odd_linearIndependent
     hbase hradius
+
+/-- Direct HP certificate from the canonical bivariate vector limit and its
+lossless bracket-incidence transport. -/
+theorem completedNativeRealHPCarrierCertificate_of_canonicalVectorLimit
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (state : ℂ → CanonicalCompletedTfvdGreenHilbertCarrier)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (canonicalCompletedNativeGreenForwardDifferenceLimitParityJet
+        state hkernel)) :
+    CompletedNativeRealHPCarrierCertificate
+      (canonicalCompletedNativeGreenForwardDifferenceLimitParityJet
+        state hkernel) :=
+  completedNativeRealHPCarrierCertificate_of_tfvdGreenMomentTransport
+    hbase hradius
+      (canonicalCompletedNativeRealTfvdGreenMomentTransport_of_canonicalVectorLimit
+        state hkernel transport)
 
 /-- Direct carrier-correct HP constructor from the one remaining center--leg
 state identity.  Incidence injectivity supplies both global parity
