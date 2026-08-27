@@ -1,6 +1,7 @@
 import CarrySelfAdjointOperator.BR2GreenFrameIncidenceTransport
 import CarrySelfAdjointOperator.CompletedGreenForwardDifferenceVectorLimit
 import CarrySelfAdjointOperator.CompletedNativeHPGateAudit
+import GreenFrame.Concrete.Analysis.CanonicalParseval
 import Mathlib.Tactic
 
 /-!
@@ -24,6 +25,7 @@ open Filter
 open FiniteNativeCarryOperator.Camera
 open GreenFrame.Concrete
 open NativeCarrySpectralWeyl.Camera
+open scoped ComplexOrder
 
 noncomputable section
 
@@ -46,6 +48,132 @@ theorem canonicalCompletedGreenFrameAnalysisCLM_injective :
     Function.Injective canonicalCompletedGreenFrameAnalysisCLM :=
   canonicalCompletedGreenFrameAnalysis_injective
 
+/-! ## Canonical Parseval realization of the completed Green kernel -/
+
+/-- Canonical isometric all-bases analysis of the completed TFVD carrier.
+The inverse square root of the concrete frame operator is applied at source
+level, before the four Green-frame coordinates are read. -/
+def canonicalCompletedGreenFrameParsevalAnalysis :
+    CarryVerticalL2 →ₗᵢ[ℂ] CanonicalCompletedGreenFrameCarrier :=
+  (canonicalParseval
+      (concreteSplitFrameBounds
+        canonicalCarryInfinitePartition).toComplexFrameBounds).comp
+    carryVerticalL2GreenFrameStateEquiv.toLinearIsometry
+
+/-- Parseval transport preserves the complete complex inner product, not
+only the norm or a final real scalar readout. -/
+theorem canonicalCompletedGreenFrameParsevalAnalysis_inner
+    (x y : CarryVerticalL2) :
+    inner ℂ
+        (canonicalCompletedGreenFrameParsevalAnalysis x)
+        (canonicalCompletedGreenFrameParsevalAnalysis y) =
+      inner ℂ x y := by
+  exact canonicalCompletedGreenFrameParsevalAnalysis.inner_map_map x y
+
+/-- The normalized completed-native state transported into the concrete
+all-bases Green-frame carrier.  Its seed, residual, depth-one, and bulk
+coordinates remain literal orthogonal coordinates of the target. -/
+def canonicalCompletedNativeParsevalGreenFrameState
+    (state : ℂ → CarryVerticalL2) (z : ℂ) :
+    CanonicalCompletedGreenFrameCarrier :=
+  canonicalCompletedGreenFrameParsevalAnalysis
+    (normalizedCompletedGreenState
+      completedNativeOperatorCharacteristic state z)
+
+/-- The total completed-native `dslope` is the positive Hilbert product of
+the transported states in the same all-bases Green-frame carrier. -/
+theorem canonicalCompletedNativeParsevalGreenFrameState_inner_eq_dslope
+    (state : ℂ → CarryVerticalL2)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (x z : ℝ)
+    (hxF : completedNativeOperatorCharacteristic (x : ℂ) ≠ 0)
+    (hzF : completedNativeOperatorCharacteristic (z : ℂ) ≠ 0) :
+    inner ℂ
+        (canonicalCompletedNativeParsevalGreenFrameState state (x : ℂ))
+        (canonicalCompletedNativeParsevalGreenFrameState state (z : ℂ)) =
+      dslope
+        (completedGreenNormalizedResponse
+          completedNativeOperatorCharacteristic
+          completedNativeOperatorBoundaryCompanion) (x : ℂ) (z : ℂ) := by
+  rw [canonicalCompletedNativeParsevalGreenFrameState,
+    canonicalCompletedNativeParsevalGreenFrameState,
+    canonicalCompletedGreenFrameParsevalAnalysis_inner]
+  exact hkernel x z hxF hzF
+
+/-- Orthogonal expansion of the transported product into the four concrete
+all-bases Green-frame channels.  No coordinate is added in `ℂ` before this
+identity is formed. -/
+theorem canonicalCompletedNativeParsevalGreenFrameState_inner_eq_channelSum
+    (state : ℂ → CarryVerticalL2) (z w : ℂ) :
+    let stateZ := canonicalCompletedNativeParsevalGreenFrameState state z
+    let stateW := canonicalCompletedNativeParsevalGreenFrameState state w
+    inner ℂ stateZ stateW =
+      inner ℂ stateZ.fst.fst.fst stateW.fst.fst.fst +
+        inner ℂ stateZ.fst.fst.snd stateW.fst.fst.snd +
+        inner ℂ stateZ.fst.snd stateW.fst.snd +
+        inner ℂ stateZ.snd stateW.snd := by
+  dsimp only
+  rw [WithLp.prod_inner_apply, WithLp.prod_inner_apply,
+    WithLp.prod_inner_apply]
+  rfl
+
+/-- Channel-separated form of the exact positive `dslope` realization.
+The four summands are respectively seed, residual, depth-one Green, and bulk
+Green. -/
+theorem canonicalCompletedNativeParsevalGreenFrame_dslope_eq_channelSum
+    (state : ℂ → CarryVerticalL2)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (x z : ℝ)
+    (hxF : completedNativeOperatorCharacteristic (x : ℂ) ≠ 0)
+    (hzF : completedNativeOperatorCharacteristic (z : ℂ) ≠ 0) :
+    let stateX :=
+      canonicalCompletedNativeParsevalGreenFrameState state (x : ℂ)
+    let stateZ :=
+      canonicalCompletedNativeParsevalGreenFrameState state (z : ℂ)
+    dslope
+        (completedGreenNormalizedResponse
+          completedNativeOperatorCharacteristic
+          completedNativeOperatorBoundaryCompanion) (x : ℂ) (z : ℂ) =
+      inner ℂ stateX.fst.fst.fst stateZ.fst.fst.fst +
+        inner ℂ stateX.fst.fst.snd stateZ.fst.fst.snd +
+        inner ℂ stateX.fst.snd stateZ.fst.snd +
+        inner ℂ stateX.snd stateZ.snd := by
+  dsimp only
+  rw [← canonicalCompletedNativeParsevalGreenFrameState_inner_eq_channelSum]
+  exact (canonicalCompletedNativeParsevalGreenFrameState_inner_eq_dslope
+    state hkernel x z hxF hzF).symm
+
+/-- Every finite real-axis section of the completed `dslope` kernel is
+positive semidefinite because all entries are products of the same Parseval
+Green-frame states. -/
+theorem canonicalCompletedNativeDslopeKernel_posSemidef_of_greenState
+    {ι : Type*} [Finite ι]
+    (state : ℂ → CarryVerticalL2)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (point : ι → ℝ)
+    (hF : ∀ i, completedNativeOperatorCharacteristic (point i : ℂ) ≠ 0) :
+    (Matrix.of fun i j ↦
+      dslope
+        (completedGreenNormalizedResponse
+          completedNativeOperatorCharacteristic
+          completedNativeOperatorBoundaryCompanion)
+        (point i : ℂ) (point j : ℂ)).PosSemidef := by
+  rw [show
+      Matrix.of (fun i j ↦
+        dslope
+          (completedGreenNormalizedResponse
+            completedNativeOperatorCharacteristic
+            completedNativeOperatorBoundaryCompanion)
+          (point i : ℂ) (point j : ℂ)) =
+        Matrix.gram ℂ (fun i ↦
+          canonicalCompletedNativeParsevalGreenFrameState
+            state (point i : ℂ)) by
+    ext i j
+    exact
+      (canonicalCompletedNativeParsevalGreenFrameState_inner_eq_dslope
+        state hkernel (point i) (point j) (hF i) (hF j)).symm]
+  exact Matrix.posSemidef_gram ℂ _
+
 /-! ## Order-zero anchoring and phase audit -/
 
 /-- The zeroth even forward-difference component is the centered state itself;
@@ -67,7 +195,18 @@ theorem HasCompletedNativeRealAxisNormalizedGreenKernel.neg
     HasCompletedNativeRealAxisNormalizedGreenKernel
       (fun z ↦ -state z) := by
   intro x z hx hz
-  simpa [normalizedCompletedGreenState] using hkernel x z hx hz
+  rw [show normalizedCompletedGreenState
+        completedNativeOperatorCharacteristic (fun u ↦ -state u) (x : ℂ) =
+      -normalizedCompletedGreenState
+        completedNativeOperatorCharacteristic state (x : ℂ) by
+    simp [normalizedCompletedGreenState],
+    show normalizedCompletedGreenState
+        completedNativeOperatorCharacteristic (fun u ↦ -state u) (z : ℂ) =
+      -normalizedCompletedGreenState
+        completedNativeOperatorCharacteristic state (z : ℂ) by
+      simp [normalizedCompletedGreenState],
+    inner_neg_neg]
+  exact hkernel x z hx hz
 
 /-! ## The canonical dslope jet in the split Green carrier -/
 

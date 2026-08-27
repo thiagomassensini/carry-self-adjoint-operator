@@ -400,6 +400,54 @@ theorem canonicalCompletedC3AllCutoffOrientedRealKernelReadout_eq_dslope
   rw [canonicalCompletedC3AllCutoffOrientedRealKernelReadout_eq_ledger,
     canonicalCompletedC3AllCutoffRealKernelReadout_eq_dslope M x z hxF hzF]
 
+/-- Exact identification of the complete oriented C3 readout with the
+positive Parseval product in the concrete all-bases Green-frame carrier.
+The left side still contains radial, provenance, off-diagonal, residual,
+tail, xi, and chart channels; the right side changes only their final Hilbert
+presentation. -/
+theorem
+    canonicalCompletedC3AllCutoffOrientedRealKernelReadout_eq_parsevalInner
+    (M : ℕ)
+    (state : ℂ → CarryVerticalL2)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (x z : ℝ)
+    (hxF : completedNativeOperatorCharacteristic (x : ℂ) ≠ 0)
+    (hzF : completedNativeOperatorCharacteristic (z : ℂ) ≠ 0) :
+    canonicalCompletedC3AllCutoffOrientedRealKernelReadout M x z =
+      inner ℂ
+        (canonicalCompletedNativeParsevalGreenFrameState state (x : ℂ))
+        (canonicalCompletedNativeParsevalGreenFrameState state (z : ℂ)) := by
+  rw [canonicalCompletedC3AllCutoffOrientedRealKernelReadout_eq_dslope
+      M x z hxF hzF,
+    canonicalCompletedNativeParsevalGreenFrameState_inner_eq_dslope
+      state hkernel x z hxF hzF]
+
+/-- Fully channel-separated version of the same identification.  The
+oriented C3 ledger is synthesized only after it has been identified with the
+orthogonal seed, residual, depth-one Green, and bulk Green products. -/
+theorem
+    canonicalCompletedC3AllCutoffOrientedRealKernelReadout_eq_parsevalChannelSum
+    (M : ℕ)
+    (state : ℂ → CarryVerticalL2)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (x z : ℝ)
+    (hxF : completedNativeOperatorCharacteristic (x : ℂ) ≠ 0)
+    (hzF : completedNativeOperatorCharacteristic (z : ℂ) ≠ 0) :
+    let stateX :=
+      canonicalCompletedNativeParsevalGreenFrameState state (x : ℂ)
+    let stateZ :=
+      canonicalCompletedNativeParsevalGreenFrameState state (z : ℂ)
+    canonicalCompletedC3AllCutoffOrientedRealKernelReadout M x z =
+      inner ℂ stateX.fst.fst.fst stateZ.fst.fst.fst +
+        inner ℂ stateX.fst.fst.snd stateZ.fst.fst.snd +
+        inner ℂ stateX.fst.snd stateZ.fst.snd +
+        inner ℂ stateX.snd stateZ.snd := by
+  dsimp only
+  rw [canonicalCompletedC3AllCutoffOrientedRealKernelReadout_eq_dslope
+      M x z hxF hzF,
+    canonicalCompletedNativeParsevalGreenFrame_dslope_eq_channelSum
+      state hkernel x z hxF hzF]
+
 /-! ## Forward-difference limit of the oriented readout -/
 
 /-- Complex-argument wrapper used by the mixed forward-difference API. -/
