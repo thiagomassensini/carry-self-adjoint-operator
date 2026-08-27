@@ -121,6 +121,47 @@ theorem eigenvalue_im_eq_zero_of_isSelfAdjoint
   rw [Complex.conj_im] at him
   linarith
 
+/-- A point eigenvalue of a positive real partial operator is nonnegative. -/
+theorem realEigenvalue_nonneg_of_inner_nonneg
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {A : E →ₗ.[ℝ] E} {mu : ℝ}
+    (hpositive : ∀ x : A.domain,
+      0 ≤ inner ℝ (A x) (x : E))
+    (hmu : HasRealEigenvalue A mu) :
+    0 ≤ mu := by
+  obtain ⟨x, hx, hAx⟩ := hmu
+  have heq := congrArg (fun y : E => inner ℝ y (x : E)) hAx
+  rw [real_inner_smul_left] at heq
+  have hnormPos : 0 < inner ℝ (x : E) (x : E) :=
+    real_inner_self_pos.mpr hx
+  nlinarith [hpositive x]
+
+/-- The complexification of a positive maximal real self-adjoint operator
+has real nonnegative point spectrum. -/
+theorem RealMaximalSelfAdjointData.complexification_eigenvalue_real_nonneg
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    (data : RealMaximalSelfAdjointData E)
+    (hpositive : ∀ x : data.operator.domain,
+      0 ≤ inner ℝ (data.operator x) (x : E))
+    {mu : ℂ}
+    (hmu : HasEigenvalue data.complexification mu) :
+    mu.im = 0 ∧ 0 ≤ mu.re := by
+  have him : mu.im = 0 :=
+    eigenvalue_im_eq_zero_of_isSelfAdjoint
+      data.complexification_isSelfAdjoint hmu
+  have hmuEq : (mu.re : ℂ) = mu := by
+    apply Complex.ext
+    · simp
+    · simp [him]
+  have hrealComplex :
+      HasEigenvalue data.complexification (mu.re : ℂ) := by
+    rw [hmuEq]
+    exact hmu
+  have hreal : HasRealEigenvalue data.operator mu.re :=
+    hasRealEigenvalue_of_complexification_hasEigenvalue hrealComplex
+  exact ⟨him, realEigenvalue_nonneg_of_inner_nonneg hpositive hreal⟩
+
 end
 
 

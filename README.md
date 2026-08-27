@@ -358,6 +358,39 @@ $$
 Every theorem that crosses one of these boundaries names the corresponding
 certificate or representation explicitly.
 
+## Completed Native HP Implication
+
+[`CompletedNativeHPConfinement.lean`](CarrySelfAdjointOperator/CompletedNativeHPConfinement.lean)
+formalizes the Hilbert--Polya implication on the actual completed Green
+carrier. It does not replace that carrier by the raw bracket-incidence
+`CarryVerticalL2` family: incidence transport proves independence, but by
+itself does not identify the native moment Gram.
+
+```mermaid
+flowchart LR
+  G["completed Green/Weyl certificate"] --> J["positive closed Jacobi B*B"]
+  J --> H["maximal self-adjoint signed height"]
+  J --> L["local graph resolvent"]
+  L --> R["native log-derivative readout"]
+  X["global graph continuation"] --> E["native zero gives (z^2)^(-1) eigenvalue"]
+  J --> E
+  E --> C["positivity and self-adjointness force Im(z)=0"]
+```
+
+The operator-theoretic conclusion uses two inputs that remain explicit and
+are not conflated:
+
+| Named interface | Exact content |
+|---|---|
+| `CompletedNativeGreenWeylReducedHeightCertificate` | The actual completed Green state realizes the native moments with globally independent parity jets |
+| `HasGlobalGraphResolventAt` | Its local graph germ extends to the selected height with the same graph equation and native Weyl readout |
+
+Given both interfaces at a native zero,
+`zero_im_eq_zero_of_globalGraphResolvent`
+proves that its centered height is real. The proof first obtains the
+eigenvalue `(z^2)⁻¹` of the positive self-adjoint Jacobi operator; reality and
+nonnegativity of that eigenvalue exclude every nonreal `z`.
+
 ## Repository Map
 
 | Layer | Main modules |
@@ -367,6 +400,7 @@ certificate or representation explicitly.
 | Real moments | `CompletedNativeRealWeylMoments`, `CompletedNativeTfvdWronskianMoments` |
 | Finite Jacobi and heights | `CanonicalLDLWhitening`, `CanonicalFiniteHeight`, `SignedFiniteHeightOperator` |
 | Completed Green carrier | `CompletedNativeC3LedgerState`, `CompletedC3AllCutoffHilbertState`, `CompletedC3EnrichedSymplecticNoLeakBridge` |
+| Completed native HP implication | `CompletedNativeHPConfinement` |
 | Scalar kernel bridge | `CompletedGreenRealKernelClosure`, `CompletedGreenForwardDifferenceLimit`, `CompletedC3FinalReadoutKernelBridge` |
 | Gram positivity | `CompletedGreenForwardDifferenceGramBridge`, `BR2IncidenceStrictPositivity`, `GreenKernelCoefficientClosure` |
 | Infinite operator | `GreenJetEnergyFactor`, `GreenJetMaximalAdjointSquare`, `GreenJetReciprocalSignedHeightOperator` |
