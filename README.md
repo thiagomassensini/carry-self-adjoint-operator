@@ -374,21 +374,20 @@ flowchart LR
   T["real all-order TFVD/Hilbert carrier"] --> G["exact native moment Gram"]
   G --> J["positive closed Jacobi B*B"]
   J --> H["maximal self-adjoint signed height"]
-  J --> L["local graph resolvent"]
-  L --> R["native log-derivative readout"]
-  X["global graph continuation"] --> E["native zero gives (z^2)^(-1) eigenvalue"]
-  J --> E
-  E --> C["positivity and self-adjointness force Im(z)=0"]
+  J --> R["global resolvent outside [0, infinity)"]
+  R --> U["local analytic charts and resolvent uniqueness"]
+  L["native Weyl germ at z = 0"] --> U
+  U --> O["division-free ODE: 2 z m F + F' = 0"]
+  O --> C["meromorphic order excludes Im(z) != 0"]
 ```
 
-The corrected operator-theoretic conclusion uses two interfaces that remain
-explicit and are not conflated:
+The carrier construction uses two interfaces that remain explicit and are not
+conflated:
 
 | Named interface | Exact content |
 |---|---|
 | `CanonicalCompletedNativeRealTfvdGreenMomentTransport` | One real jet in the concrete completed TFVD/Green Hilbert carrier, its injective all-order incidence transport, and its exact canonical native moment Gram; no isometry of the raw incidence Gram is assumed |
 | `HasCanonicalCompletedNativeTfvdGreenCenterLegReadout` | The canonical polarized coefficient equals the complex Hilbert inner product of the same TFVD jets on every center--leg pair |
-| `CompletedNativeRealHPCarrierCertificate.HasGlobalGraphResolventAt` | The constructed local vector graph germ extends to the selected height with the same operator equation and native Weyl readout |
 
 The division-free coefficient recurrence is no longer an input:
 `polarizedGreenMomentCoefficient_coefficientEquation` proves it for the
@@ -410,13 +409,36 @@ already-built projective bracket-incidence jet. The scalar input is isolated as
 `HasCompletedNativeGreenKernelTwoStepLimit`; it contains no vector or incidence
 hypothesis.
 
-The local vector interface is already constructed and
-`eventually_hasGlobalGraphResolventAt` proves the global contract throughout
-a neighborhood of the Taylor center. Given the TFVD/Green moment transport
-and continuation to a native zero, the
-carrier-correct `zero_im_eq_zero_of_globalGraphResolvent` first obtains the
-eigenvalue `(z^2)⁻¹` of the positive self-adjoint Jacobi operator; reality and
-nonnegativity of that eigenvalue exclude every nonreal `z`.
+[`CompletedNativePositiveJacobiResolvent.lean`](CarrySelfAdjointOperator/CompletedNativePositiveJacobiResolvent.lean)
+constructs the unique global resolvent of the positive closed Jacobi operator
+outside `[0, infinity)`. The analytic continuation is therefore no longer an
+external pointwise hypothesis.
+
+[`CompletedNativePositiveJacobiResolventAnalytic.lean`](CarrySelfAdjointOperator/CompletedNativePositiveJacobiResolventAnalytic.lean)
+constructs bounded local analytic resolvent charts and identifies their cyclic
+readout with the native Weyl germ near the Taylor center by uniqueness. The
+identity principle then propagates the division-free equation
+
+$$
+2 z\,m(z)F(z)+F'(z)=0
+$$
+
+through the connected upper and lower cones. At an off-axis native zero, the
+known order `-1` of `-F'/F` contradicts the nonnegative meromorphic order of
+the analytic resolvent readout `2 z m(z)`. The resulting theorem is:
+
+```lean
+theorem completedNativeOperator_zero_im_eq_zero_of_positiveJacobiResolvent
+    (certificate : CompletedNativeRealHPCarrierCertificate jet)
+    {z : ℂ}
+    (hzDomain : z ∈ completedNativeHeightDomain)
+    (hzero : completedNativeOperatorCharacteristic z = 0) :
+    z.im = 0
+```
+
+Thus `HasGlobalGraphResolventAt` is not an input to the final theorem. The real
+HP carrier certificate remains explicit and is supplied by the concrete TFVD/
+Green moment-transport constructors described above.
 
 ## Repository Map
 
