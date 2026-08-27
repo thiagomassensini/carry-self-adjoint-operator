@@ -360,15 +360,19 @@ certificate or representation explicitly.
 
 ## Completed Native HP Implication
 
-[`CompletedNativeHPConfinement.lean`](CarrySelfAdjointOperator/CompletedNativeHPConfinement.lean)
-formalizes the Hilbert--Polya implication on the actual completed Green
-carrier. It does not replace that carrier by the raw bracket-incidence
-`CarryVerticalL2` family: incidence transport proves independence, but by
-itself does not identify the native moment Gram.
+[`CompletedNativeHPGateAudit.lean`](CarrySelfAdjointOperator/CompletedNativeHPGateAudit.lean)
+formalizes the carrier-correct Hilbert--Polya implication and audits the older
+complex-Taylor interface. The normalized product ledger contains the radial
+phase and is not complex differentiable at the center. Consequently its first
+odd complex Taylor jet is zero, and
+`CompletedNativeGreenWeylReducedHeightCertificate` is uninhabited for that
+state. The viable route uses real all-order jets on the completed TFVD/Hilbert
+carrier.
 
 ```mermaid
 flowchart LR
-  G["completed Green/Weyl certificate"] --> J["positive closed Jacobi B*B"]
+  T["real all-order TFVD/Hilbert carrier"] --> G["exact native moment Gram"]
+  G --> J["positive closed Jacobi B*B"]
   J --> H["maximal self-adjoint signed height"]
   J --> L["local graph resolvent"]
   L --> R["native log-derivative readout"]
@@ -377,17 +381,19 @@ flowchart LR
   E --> C["positivity and self-adjointness force Im(z)=0"]
 ```
 
-The operator-theoretic conclusion uses two inputs that remain explicit and
-are not conflated:
+The corrected operator-theoretic conclusion uses two interfaces that remain
+explicit and are not conflated:
 
 | Named interface | Exact content |
 |---|---|
-| `CompletedNativeGreenWeylReducedHeightCertificate` | The actual completed Green state realizes the native moments with globally independent parity jets |
-| `HasGlobalGraphResolventAt` | Its local graph germ extends to the selected height with the same graph equation and native Weyl readout |
+| `CanonicalCompletedNativeRealTfvdGreenMomentTransport` | One real jet in the concrete completed TFVD/Green Hilbert carrier, its injective all-order incidence transport, and its exact canonical native moment Gram; no isometry of the raw incidence Gram is assumed |
+| `CompletedNativeRealHPCarrierCertificate.HasGlobalGraphResolventAt` | The constructed local vector graph germ extends to the selected height with the same operator equation and native Weyl readout |
 
-Given both interfaces at a native zero,
-`zero_im_eq_zero_of_globalGraphResolvent`
-proves that its centered height is real. The proof first obtains the
+The local vector interface is already constructed and
+`eventually_hasGlobalGraphResolventAt` proves the global contract throughout
+a neighborhood of the Taylor center. Given the TFVD/Green moment transport
+and continuation to a native zero, the
+carrier-correct `zero_im_eq_zero_of_globalGraphResolvent` first obtains the
 eigenvalue `(z^2)⁻¹` of the positive self-adjoint Jacobi operator; reality and
 nonnegativity of that eigenvalue exclude every nonreal `z`.
 
@@ -400,7 +406,7 @@ nonnegativity of that eigenvalue exclude every nonreal `z`.
 | Real moments | `CompletedNativeRealWeylMoments`, `CompletedNativeTfvdWronskianMoments` |
 | Finite Jacobi and heights | `CanonicalLDLWhitening`, `CanonicalFiniteHeight`, `SignedFiniteHeightOperator` |
 | Completed Green carrier | `CompletedNativeC3LedgerState`, `CompletedC3AllCutoffHilbertState`, `CompletedC3EnrichedSymplecticNoLeakBridge` |
-| Completed native HP implication | `CompletedNativeHPConfinement` |
+| Completed native HP implication | `CompletedNativeHPConfinement`, `CompletedNativeHPGateAudit` |
 | Scalar kernel bridge | `CompletedGreenRealKernelClosure`, `CompletedGreenForwardDifferenceLimit`, `CompletedC3FinalReadoutKernelBridge` |
 | Gram positivity | `CompletedGreenForwardDifferenceGramBridge`, `BR2IncidenceStrictPositivity`, `GreenKernelCoefficientClosure` |
 | Infinite operator | `GreenJetEnergyFactor`, `GreenJetMaximalAdjointSquare`, `GreenJetReciprocalSignedHeightOperator` |
