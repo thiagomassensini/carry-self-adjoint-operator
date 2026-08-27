@@ -399,6 +399,7 @@ structure RealReducedMaximalSelfAdjointData (E F : Type*)
     [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     [NormedAddCommGroup F] [InnerProductSpace ℝ F] where
   sourceSupport : Submodule ℝ E
+  sourceSupport_isClosed : _root_.IsClosed (sourceSupport : Set E)
   selfAdjointData :
     RealMaximalSelfAdjointData (WithLp 2 (sourceSupport × F))
 
@@ -411,6 +412,7 @@ def reducedRealReciprocalOffDiagonalBundle
     (hRange : Dense (LinearMap.range T.toFun : Set F)) :
     RealReducedMaximalSelfAdjointData E F where
   sourceSupport := T.kernelSupport hClosed
+  sourceSupport_isClosed := Submodule.isClosed_orthogonal T.ambientKernel
   selfAdjointData := T.reducedRealReciprocalOffDiagonalSelfAdjointData
     hDomain hAdjointDomain hClosed hRange
 
