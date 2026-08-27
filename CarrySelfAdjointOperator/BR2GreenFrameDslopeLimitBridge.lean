@@ -21,7 +21,9 @@ namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
 open Filter
+open FiniteNativeCarryOperator.Camera
 open GreenFrame.Concrete
+open NativeCarrySpectralWeyl.Camera
 
 noncomputable section
 
@@ -43,6 +45,29 @@ def canonicalCompletedGreenFrameAnalysisCLM :
 theorem canonicalCompletedGreenFrameAnalysisCLM_injective :
     Function.Injective canonicalCompletedGreenFrameAnalysisCLM :=
   canonicalCompletedGreenFrameAnalysis_injective
+
+/-! ## Order-zero anchoring and phase audit -/
+
+/-- The zeroth even forward-difference component is the centered state itself;
+there is no limiting operation in this component. -/
+@[simp] theorem completedGreenForwardDifferenceParityJet_inl_zero
+    {E : Type*} [AddCommGroup E] [Module ℂ E]
+    (state : ℂ → E) (k : ℕ) :
+    completedGreenForwardDifferenceParityJet state k (Sum.inl 0) =
+      state 0 := by
+  simp [completedGreenForwardDifferenceParityJet,
+    completedGreenForwardDifferenceJet]
+
+/-- A global sign change of a state realization does not change its normalized
+real-axis Green kernel. -/
+theorem HasCompletedNativeRealAxisNormalizedGreenKernel.neg
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    {state : ℂ → E}
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state) :
+    HasCompletedNativeRealAxisNormalizedGreenKernel
+      (fun z ↦ -state z) := by
+  intro x z hx hz
+  simpa [normalizedCompletedGreenState] using hkernel x z hx hz
 
 /-! ## The canonical dslope jet in the split Green carrier -/
 
@@ -76,6 +101,53 @@ theorem canonicalCompletedGreenFrame_forwardDifference_tendsto_dslope
         state hkernel i)).comp
       (completedGreenForwardDifferenceParityJet_tendsto_canonicalNativeLimit
         state hkernel i)
+
+/-- The selected dslope limit has the expected exact zeroth component. -/
+theorem canonicalCompletedNativeGreenFrameDslopeJet_inl_zero
+    (state : ℂ → CarryVerticalL2)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state) :
+    canonicalCompletedNativeGreenFrameDslopeJet state hkernel (Sum.inl 0) =
+      canonicalCompletedGreenFrameAnalysisCLM
+        (normalizedCompletedGreenState
+          completedNativeOperatorCharacteristic state 0) := by
+  apply congrArg canonicalCompletedGreenFrameAnalysisCLM
+  have hlimit :=
+    completedGreenForwardDifferenceParityJet_tendsto_canonicalNativeLimit
+      state hkernel (Sum.inl 0)
+  have hconstant :
+      Tendsto
+        (fun k ↦ completedGreenForwardDifferenceParityJet
+          (normalizedCompletedGreenState
+            completedNativeOperatorCharacteristic state) k (Sum.inl 0))
+        atTop
+        (nhds (normalizedCompletedGreenState
+          completedNativeOperatorCharacteristic state 0)) := by
+    simpa only [completedGreenForwardDifferenceParityJet_inl_zero] using
+      (tendsto_const_nhds : Tendsto
+        (fun _ : ℕ ↦ normalizedCompletedGreenState
+          completedNativeOperatorCharacteristic state 0)
+        atTop
+        (nhds (normalizedCompletedGreenState
+          completedNativeOperatorCharacteristic state 0)))
+  exact tendsto_nhds_unique hlimit hconstant
+
+/-- The zeroth BR2 Green-frame component is nonzero in every supported
+camera/radius pair. -/
+theorem br2CameraBracketGreenFrameParityJet_inl_zero_ne_zero
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base) :
+    br2CameraBracketGreenFrameParityJet base radius (Sum.inl 0) ≠ 0 := by
+  intro hzero
+  have hstate : br2CameraBracketVerticalState base radius 0 = 0 := by
+    apply canonicalCompletedGreenFrameAnalysis_injective
+    simpa [br2CameraBracketGreenFrameParityJet,
+      br2CameraBracketProjectiveHilbertParityJet] using hzero
+  have hcoordinate := congrArg
+    (fun x : CarryVerticalL2 ↦ x (alignedCenter base 0)) hstate
+  rw [br2CameraBracketVerticalState_apply_alignedCenter
+    hbase hradius 0 0] at hcoordinate
+  simp at hcoordinate
 
 /-! ## Exact vector identification criteria -/
 
@@ -182,6 +254,109 @@ theorem canonicalCompletedNativeGreenFrameDslopeJet_apply_eq_br2_iff_defect_tend
         (br2CameraBracketGreenFrameParityJet base radius i)
     have hz := tendsto_nhds_unique ht h
     exact sub_eq_zero.mp hz
+
+/-- At order zero the vector convergence gate is exactly an anchoring
+identity.  Completion and cutoff estimates cannot alter this component. -/
+theorem canonicalCompletedNativeGreenFrame_evenZero_defect_tendsto_zero_iff_anchor
+    (state : ℂ → CarryVerticalL2)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (base radius : ℕ) :
+    Tendsto
+        (fun k ↦ canonicalCompletedGreenFrameAnalysisCLM
+            (completedGreenForwardDifferenceParityJet
+              (normalizedCompletedGreenState
+                completedNativeOperatorCharacteristic state) k (Sum.inl 0)) -
+          br2CameraBracketGreenFrameParityJet base radius (Sum.inl 0))
+        atTop (nhds 0) ↔
+      normalizedCompletedGreenState
+          completedNativeOperatorCharacteristic state 0 =
+        br2CameraBracketVerticalState base radius 0 := by
+  rw [←
+    canonicalCompletedNativeGreenFrameDslopeJet_apply_eq_br2_iff_defect_tendsto_zero
+      state hkernel base radius (Sum.inl 0)]
+  rw [canonicalCompletedNativeGreenFrameDslopeJet_inl_zero]
+  constructor
+  · intro h
+    apply canonicalCompletedGreenFrameAnalysisCLM_injective
+    simpa [br2CameraBracketGreenFrameParityJet,
+      br2CameraBracketProjectiveHilbertParityJet] using h
+  · intro h
+    exact congrArg canonicalCompletedGreenFrameAnalysisCLM
+      (by simpa [br2CameraBracketProjectiveHilbertParityJet] using h)
+
+/-- Named form of the full vector convergence gate. -/
+def HasCanonicalCompletedNativeGreenFrameDslopeBR2DefectLimit
+    (state : ℂ → CarryVerticalL2) (base radius : ℕ) : Prop :=
+  ∀ i : ℕ ⊕ ℕ,
+    Tendsto
+      (fun k ↦ canonicalCompletedGreenFrameAnalysisCLM
+          (completedGreenForwardDifferenceParityJet
+            (normalizedCompletedGreenState
+              completedNativeOperatorCharacteristic state) k i) -
+        br2CameraBracketGreenFrameParityJet base radius i)
+      atTop (nhds 0)
+
+/-- A state and its global negative cannot both converge to the same nonzero
+BR2 jet.  This is the exact phase obstruction hidden by scalar kernel data. -/
+theorem not_both_greenFrameDslopeBR2DefectLimit_state_neg
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (state : ℂ → CarryVerticalL2)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state) :
+    ¬(HasCanonicalCompletedNativeGreenFrameDslopeBR2DefectLimit
+          state base radius ∧
+      HasCanonicalCompletedNativeGreenFrameDslopeBR2DefectLimit
+          (fun z ↦ -state z) base radius) := by
+  rintro ⟨hstate, hnegState⟩
+  have hanchor :=
+    (canonicalCompletedNativeGreenFrame_evenZero_defect_tendsto_zero_iff_anchor
+      state hkernel base radius).mp (hstate (Sum.inl 0))
+  have hnegAnchor :=
+    (canonicalCompletedNativeGreenFrame_evenZero_defect_tendsto_zero_iff_anchor
+      (fun z ↦ -state z) hkernel.neg base radius).mp
+      (hnegState (Sum.inl 0))
+  have hneg :
+      -br2CameraBracketVerticalState base radius 0 =
+        br2CameraBracketVerticalState base radius 0 := by
+    calc
+      -br2CameraBracketVerticalState base radius 0 =
+          -normalizedCompletedGreenState
+            completedNativeOperatorCharacteristic state 0 :=
+        congrArg Neg.neg hanchor.symm
+      _ = normalizedCompletedGreenState
+          completedNativeOperatorCharacteristic (fun z ↦ -state z) 0 := by
+        simp [normalizedCompletedGreenState]
+      _ = br2CameraBracketVerticalState base radius 0 := hnegAnchor
+  have hadd :
+      br2CameraBracketVerticalState base radius 0 +
+          br2CameraBracketVerticalState base radius 0 = 0 :=
+    neg_eq_iff_add_eq_zero.mp hneg
+  have hzero : br2CameraBracketVerticalState base radius 0 = 0 := by
+    have htwo :
+        (2 : ℂ) • br2CameraBracketVerticalState base radius 0 = 0 := by
+      simpa [two_smul ℂ] using hadd
+    exact (smul_eq_zero.mp htwo).resolve_left (by norm_num)
+  apply br2CameraBracketGreenFrameParityJet_inl_zero_ne_zero hbase hradius
+  simp [br2CameraBracketGreenFrameParityJet,
+    br2CameraBracketProjectiveHilbertParityJet, hzero]
+
+/-- Consequently the normalized scalar kernel interface alone cannot prove
+the raw BR2-coordinate convergence for every realization of that kernel. -/
+theorem not_forall_greenFrameDslopeBR2DefectLimit_of_kernel
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (state : ℂ → CarryVerticalL2)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state) :
+    ¬(∀ candidate : ℂ → CarryVerticalL2,
+      HasCompletedNativeRealAxisNormalizedGreenKernel candidate →
+      HasCanonicalCompletedNativeGreenFrameDslopeBR2DefectLimit
+        candidate base radius) := by
+  intro hall
+  exact not_both_greenFrameDslopeBR2DefectLimit_state_neg
+    hbase hradius state hkernel
+      ⟨hall state hkernel, hall (fun z ↦ -state z) hkernel.neg⟩
 
 /-- All-order equality is equivalent to disappearance of the complete
 Green-frame vector defect in every parity/order component. -/
