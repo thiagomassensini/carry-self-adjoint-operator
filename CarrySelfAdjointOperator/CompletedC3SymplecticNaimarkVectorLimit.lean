@@ -1,4 +1,6 @@
 import CarrySelfAdjointOperator.CompletedC3SymplecticNaimarkLimitBridge
+import CarrySelfAdjointOperator.RealLinearPMapComplexification
+import Mathlib.Analysis.InnerProductSpace.GramMatrix
 import Mathlib.Analysis.InnerProductSpace.l2Space
 import Mathlib.Tactic
 
@@ -15,7 +17,8 @@ The final Naimark limit is obtained only by continuity of the already-defined
 Naimark isometry.
 -/
 
-open scoped ComplexConjugate RealInnerProductSpace Topology lp
+open scoped ComplexConjugate ComplexOrder InnerProductSpace
+  RealInnerProductSpace Topology lp
 
 namespace CarrySelfAdjointOperator
 
@@ -560,6 +563,184 @@ theorem canonicalC3AllCutoffGenuineQuarterTurnSymplecticNaimarkRealization_tends
   exact
     (finiteC3GenuineQuarterTurnSymplecticNaimarkRealization_tendsto hs).comp
       tendsto_three_mul_atTop
+
+/-! ## Completed two-quadrature Green readout -/
+
+/-- Direct and quarter-turned Green readings after vector completion.  Both
+coordinates live in the same global Naimark space and are retained until the
+complex readout is formed. -/
+def completedC3MixedSymplecticNaimarkQuadratures
+    (z w : ℂ) (hw : 0 < w.re)
+    (hzReflected : 0 < (reflectedParameter z).re) :
+    FiniteC3SymplecticGreenQuadratures where
+  direct := NativeCarryC3Crosswalk.realifiedGreenSkew
+    (completedC3SymplecticNaimarkState w hw)
+    (completedC3SymplecticNaimarkState
+      (reflectedParameter z) hzReflected)
+  quarterTurn := NativeCarryC3Crosswalk.realifiedGreenSkew
+    (completedC3SymplecticNaimarkState w hw)
+    (completedC3QuarterTurnSymplecticNaimarkState
+      (reflectedParameter z) hzReflected)
+
+/-- Complex Green readout formed only after both completed real quadratures
+have been retained. -/
+def completedC3MixedSymplecticNaimarkGreenReadout
+    (z w : ℂ) (hw : 0 < w.re)
+    (hzReflected : 0 < (reflectedParameter z).re) : ℂ :=
+  (completedC3MixedSymplecticNaimarkQuadratures
+    z w hw hzReflected).complexReadout
+
+/-- The finite direct Naimark quadrature converges to the direct reading of
+the two completed vectors. -/
+theorem canonicalC3FiniteMixedSymplecticNaimarkQuadrature_direct_tendsto
+    {z w : ℂ} (hw : 0 < w.re)
+    (hzReflected : 0 < (reflectedParameter z).re) :
+    Tendsto
+      (fun M : ℕ ↦
+        (canonicalC3FiniteMixedSymplecticNaimarkQuadratures M z w).direct)
+      atTop
+      (nhds
+        (completedC3MixedSymplecticNaimarkQuadratures
+          z w hw hzReflected).direct) := by
+  have hwLimit :=
+    canonicalC3AllCutoffGenuineSymplecticNaimarkRealization_tendsto hw
+  have hzLimit :=
+    canonicalC3AllCutoffGenuineSymplecticNaimarkRealization_tendsto
+      hzReflected
+  unfold canonicalC3FiniteMixedSymplecticNaimarkQuadratures
+    finiteC3SymplecticNaimarkGreenQuadratures
+    completedC3MixedSymplecticNaimarkQuadratures
+    NativeCarryC3Crosswalk.realifiedGreenSkew
+  exact (Filter.Tendsto.inner
+      ((WithLp.continuous_fst 2 NaimarkSpace NaimarkSpace).continuousAt.tendsto.comp
+        hwLimit)
+      ((WithLp.continuous_snd 2 NaimarkSpace NaimarkSpace).continuousAt.tendsto.comp
+        hzLimit)).sub
+    (Filter.Tendsto.inner
+      ((WithLp.continuous_snd 2 NaimarkSpace NaimarkSpace).continuousAt.tendsto.comp
+        hwLimit)
+      ((WithLp.continuous_fst 2 NaimarkSpace NaimarkSpace).continuousAt.tendsto.comp
+        hzLimit))
+
+/-- The finite quarter-turn Naimark quadrature converges independently to
+the retained quarter-turn reading of the completed vectors. -/
+theorem canonicalC3FiniteMixedSymplecticNaimarkQuadrature_quarterTurn_tendsto
+    {z w : ℂ} (hw : 0 < w.re)
+    (hzReflected : 0 < (reflectedParameter z).re) :
+    Tendsto
+      (fun M : ℕ ↦
+        (canonicalC3FiniteMixedSymplecticNaimarkQuadratures M z w).quarterTurn)
+      atTop
+      (nhds
+        (completedC3MixedSymplecticNaimarkQuadratures
+          z w hw hzReflected).quarterTurn) := by
+  have hwLimit :=
+    canonicalC3AllCutoffGenuineSymplecticNaimarkRealization_tendsto hw
+  have hzLimit :=
+    canonicalC3AllCutoffGenuineQuarterTurnSymplecticNaimarkRealization_tendsto
+      hzReflected
+  unfold canonicalC3FiniteMixedSymplecticNaimarkQuadratures
+    finiteC3SymplecticNaimarkGreenQuadratures
+    completedC3MixedSymplecticNaimarkQuadratures
+    NativeCarryC3Crosswalk.realifiedGreenSkew
+  exact (Filter.Tendsto.inner
+      ((WithLp.continuous_fst 2 NaimarkSpace NaimarkSpace).continuousAt.tendsto.comp
+        hwLimit)
+      ((WithLp.continuous_snd 2 NaimarkSpace NaimarkSpace).continuousAt.tendsto.comp
+        hzLimit)).sub
+    (Filter.Tendsto.inner
+      ((WithLp.continuous_snd 2 NaimarkSpace NaimarkSpace).continuousAt.tendsto.comp
+        hwLimit)
+      ((WithLp.continuous_fst 2 NaimarkSpace NaimarkSpace).continuousAt.tendsto.comp
+        hzLimit))
+
+/-- The lossless complex reconstruction commutes with the all-cutoff vector
+limit. -/
+theorem canonicalC3FiniteMixedSymplecticNaimarkGreenReadout_tendsto_vector
+    {z w : ℂ} (hw : 0 < w.re)
+    (hzReflected : 0 < (reflectedParameter z).re) :
+    Tendsto
+      (fun M : ℕ ↦ canonicalC3FiniteMixedSymplecticNaimarkGreenReadout
+        M z w)
+      atTop
+      (nhds
+        (completedC3MixedSymplecticNaimarkGreenReadout
+          z w hw hzReflected)) := by
+  have hdirect :=
+    canonicalC3FiniteMixedSymplecticNaimarkQuadrature_direct_tendsto
+      hw hzReflected
+  have hquarter :=
+    canonicalC3FiniteMixedSymplecticNaimarkQuadrature_quarterTurn_tendsto
+      hw hzReflected
+  simpa [canonicalC3FiniteMixedSymplecticNaimarkGreenReadout,
+    completedC3MixedSymplecticNaimarkGreenReadout,
+    FiniteC3SymplecticGreenQuadratures.complexReadout] using
+      hdirect.ofReal.sub (tendsto_const_nhds.mul hquarter.ofReal)
+
+/-- The completed radial Green kernel is literally the lossless readout of
+the two completed Naimark vectors.  This is a vector identity obtained by
+uniqueness of the common finite limit, not by scalar channel cancellation. -/
+theorem completedC3MixedSymplecticNaimarkGreenReadout_eq_radialKernel
+    {z w : ℂ} (hw : 0 < w.re)
+    (hzReflected : 0 < (reflectedParameter z).re) :
+    completedC3MixedSymplecticNaimarkGreenReadout z w hw hzReflected =
+      canonicalCompletedC3MixedRadialGreenKernel
+        z w hw hzReflected := by
+  exact tendsto_nhds_unique
+    (canonicalC3FiniteMixedSymplecticNaimarkGreenReadout_tendsto_vector
+      hw hzReflected)
+    (canonicalC3FiniteMixedSymplecticNaimarkGreenReadout_tendsto_completed
+      hw hzReflected)
+
+/-! ## Positive product on the same completed carrier -/
+
+/-- The completed vector viewed through the canonical complex Hilbert
+structure on the same two real Naimark quadratures.  This is a definitional
+change of type presentation; no coordinate map is applied. -/
+def completedC3SymplecticNaimarkComplexState
+    (z : ℂ) (hz : 0 < z.re) :
+    RealHilbertComplexification NaimarkSpace :=
+  completedC3SymplecticNaimarkState z hz
+
+/-- Ordinary complex Hilbert product of the completed symplectic Naimark
+states.  This uses the same ambient vectors as the preceding Green readout;
+only the final bilinear operation changes from symplectic skew to Hilbert
+product. -/
+def completedC3SymplecticNaimarkGram
+    (z w : ℂ) (hz : 0 < z.re) (hw : 0 < w.re) : ℂ :=
+  inner ℂ
+    (completedC3SymplecticNaimarkComplexState z hz)
+    (completedC3SymplecticNaimarkComplexState w hw)
+
+/-- The diagonal of the completed Naimark Gram is exactly a squared norm. -/
+theorem completedC3SymplecticNaimarkGram_self
+    (z : ℂ) (hz : 0 < z.re) :
+    completedC3SymplecticNaimarkGram z z hz hz =
+      ((‖completedC3SymplecticNaimarkComplexState z hz‖ : ℝ) : ℂ) ^ 2 := by
+  simp [completedC3SymplecticNaimarkGram, inner_self_eq_norm_sq_to_K]
+
+/-- In particular, the real diagonal of the uncollapsed completed state is
+nonnegative. -/
+theorem completedC3SymplecticNaimarkGram_self_re_nonneg
+    (z : ℂ) (hz : 0 < z.re) :
+    0 ≤ (completedC3SymplecticNaimarkGram z z hz hz).re := by
+  rw [completedC3SymplecticNaimarkGram_self]
+  rw [← Complex.ofReal_pow, Complex.ofReal_re]
+  positivity
+
+/-- Every finite section of the completed all-cutoff Naimark product is
+positive semidefinite.  No Green channel is set to zero in this statement;
+the vectors are exactly those used by the completed two-quadrature readout. -/
+theorem completedC3SymplecticNaimarkGram_posSemidef
+    {ι : Type*} [Finite ι]
+    (point : ι → ℂ) (hpos : ∀ i, 0 < (point i).re) :
+    (Matrix.of fun i j ↦
+      completedC3SymplecticNaimarkGram
+        (point i) (point j) (hpos i) (hpos j)).PosSemidef := by
+  change (Matrix.gram ℂ (fun i ↦
+    completedC3SymplecticNaimarkComplexState
+      (point i) (hpos i))).PosSemidef
+  exact Matrix.posSemidef_gram ℂ _
 
 end
 
