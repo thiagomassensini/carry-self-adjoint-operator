@@ -692,6 +692,59 @@ theorem completedC3MixedSymplecticNaimarkGreenReadout_eq_radialKernel
     (canonicalC3FiniteMixedSymplecticNaimarkGreenReadout_tendsto_completed
       hw hzReflected)
 
+/-! ## Positive all-order realization of the radial channel -/
+
+/-- The positive one-point state underlying the completed radial C3 channel.
+It is the same all-order ordinary-gradient state whose finite prefixes were
+used to construct the global camera and Naimark vector limits above. -/
+def completedC3RadialAllOrderState
+    (z : ℂ) (hz : 0 < z.re) : CarryVerticalL2 :=
+  canonicalCompletedC3DirichletGradientState z hz
+
+/-- Positive Gram kernel of the completed all-order radial states. -/
+def completedC3RadialAllOrderGram
+    (z w : ℂ) (hz : 0 < z.re) (hw : 0 < w.re) : ℂ :=
+  inner ℂ
+    (completedC3RadialAllOrderState z hz)
+    (completedC3RadialAllOrderState w hw)
+
+/-- The all-order radial Gram is literally the previously completed raw C3
+Gamma Gram; no limit or scalar readout separates the two definitions. -/
+theorem completedC3RadialAllOrderGram_eq_rawGammaGram
+    (z w : ℂ) (hz : 0 < z.re) (hw : 0 < w.re) :
+    completedC3RadialAllOrderGram z w hz hw =
+      canonicalCompletedC3RawGammaGram z w hz hw := by
+  rfl
+
+/-- Every finite section of the all-order radial Gram is positive
+semidefinite because all points are realized in the same completed `l2`
+carrier. -/
+theorem completedC3RadialAllOrderGram_posSemidef
+    {ι : Type*} [Finite ι]
+    (point : ι → ℂ) (hpos : ∀ i, 0 < (point i).re) :
+    (Matrix.of fun i j ↦
+      completedC3RadialAllOrderGram
+        (point i) (point j) (hpos i) (hpos j)).PosSemidef := by
+  change (Matrix.gram ℂ (fun i ↦
+    completedC3RadialAllOrderState (point i) (hpos i))).PosSemidef
+  exact Matrix.posSemidef_gram ℂ _
+
+/-- Exact identification of the completed two-quadrature Naimark readout
+with the positive all-order radial Gram and its retained radial coefficient.
+The coefficient is not absorbed into either state, so its sign and phase stay
+visible for the later structural-channel sewing. -/
+theorem
+    completedC3MixedSymplecticNaimarkGreenReadout_eq_coefficient_mul_radialGram
+    {z w : ℂ} (hw : 0 < w.re)
+    (hzReflected : 0 < (reflectedParameter z).re) :
+    completedC3MixedSymplecticNaimarkGreenReadout z w hw hzReflected =
+      canonicalC3MixedRadialCoefficient z w *
+        completedC3RadialAllOrderGram
+          w (reflectedParameter z) hw hzReflected := by
+  rw [completedC3MixedSymplecticNaimarkGreenReadout_eq_radialKernel
+      hw hzReflected]
+  rfl
+
 /-! ## Positive product on the same completed carrier -/
 
 /-- The completed vector viewed through the canonical complex Hilbert

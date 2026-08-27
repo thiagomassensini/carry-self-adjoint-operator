@@ -183,6 +183,58 @@ theorem canonicalCompletedC3AllCutoffPolarizedLedgerNumerator_eq_mul_dslope
     canonicalCompletedNativePolarizedResponseNumerator_eq_mul_dslope
       hzStrip hsep]
 
+/-! ## Channel-separated positive radial numerator -/
+
+/-- The completed-native `dslope` numerator read with every finite C3 channel
+still explicit.  The first term is the positive finite all-order Gram; Green
+provenance, ordered off-diagonal provenance, readout residual, completion
+tail, xi weight, and the archimedean chart are retained as distinct terms.
+No structural channel is set to zero or absorbed into the radial Gram. -/
+theorem canonicalCompletedC3AllCutoffChannelSeparatedNumerator_eq_mul_dslope
+    (M : ℕ) {z w : ℂ}
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip)
+    (hzF : completedNativeOperatorCharacteristic z ≠ 0)
+    (hwF : completedNativeOperatorCharacteristic w ≠ 0)
+    (hsep : w ≠ conj z) :
+    (mixedHermitianWeight nativeXiCompletionFactor w z *
+          (canonicalC3MixedRadialCoefficient
+                (operatorHeightParameter w) (operatorHeightParameter z) *
+              inner ℂ
+                (canonicalCompletedC3DirichletGradientPrefixState
+                  (operatorHeightParameter z) (3 * M))
+                (canonicalCompletedC3DirichletGradientPrefixState
+                  (reflectedParameter (operatorHeightParameter w)) (3 * M)) +
+            canonicalC3FiniteMixedHeightGreenProvenanceChannel M
+              (operatorHeightParameter w) (operatorHeightParameter z) +
+            canonicalC3FiniteMixedHeightOffDiagonalChannel M
+              (operatorHeightParameter w) (operatorHeightParameter z) +
+            canonicalC3FiniteMixedHeightReadoutResidualChannel M
+              (operatorHeightParameter w) (operatorHeightParameter z) +
+            canonicalC3MixedHeightTailCompletionDefect M w z) +
+        canonicalCompletedC3ArchimedeanChartMixedChannel w z) /
+        (mixedHermitianWeight canonicalC3ChartFactorHeight w z *
+          ((2 : ℂ) *
+            conj (completedNativeOperatorCharacteristic z) *
+            completedNativeOperatorCharacteristic w)) =
+      (w - conj z) * canonicalCompletedNativePolarizedDslopeKernel z w := by
+  rw [← canonicalCompletedC3AllCutoffPolarizedLedgerNumerator_eq_mul_dslope
+      M hzStrip hwStrip hzF hwF hsep]
+  unfold canonicalCompletedC3AllCutoffPolarizedLedgerNumerator
+    CanonicalCompletedC3AllCutoffKernelLedgerHilbert.finalReadout
+    CanonicalCompletedC3AllCutoffKernelLedgerHilbert.rawReadout
+    canonicalC3MixedStructuralScalarReadout
+  rw [canonicalCompletedC3AllCutoffKernelLedgerState_xiWeight,
+    canonicalCompletedC3AllCutoffKernelLedgerState_radial_eq_greenForm,
+    greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_gram,
+    c3RawGammaGram_eq_inner_completedPrefix,
+    canonicalCompletedC3AllCutoffKernelLedgerState_greenProvenanceCoordinate,
+    canonicalCompletedC3AllCutoffKernelLedgerState_offDiagonalCoordinate,
+    canonicalCompletedC3AllCutoffKernelLedgerState_readoutResidualCoordinate,
+    canonicalCompletedC3AllCutoffKernelLedgerState_tail,
+    canonicalCompletedC3AllCutoffKernelLedgerState_archimedeanChart]
+  ring
+
 /-! ## Exact positive-realization gate -/
 
 /-- The positive gamma Gram realizes the completed-native polarized `dslope`
