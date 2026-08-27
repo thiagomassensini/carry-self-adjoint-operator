@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.CompletedNativeHPConfinement
 import CarrySelfAdjointOperator.BR2ProjectiveHilbertIncidenceTransport
+import CarrySelfAdjointOperator.BR2CenterLegCoefficientRecurrence
 import Mathlib.Tactic
 
 /-!
@@ -417,6 +418,49 @@ structure CanonicalCompletedNativeRealTfvdGreenMomentTransport
     IsGreenWronskianMomentKernelGramRepresentation
       canonicalCompletedNativeLogDerivativeMoment jet
 
+/-- The exact state-level identity needed after the scalar coefficient
+recurrence has been discharged.  It compares the canonical polarized Green
+coefficient with the complex Hilbert inner product of the same TFVD carrier
+jets, while retaining the center--leg off-diagonal witness. -/
+def HasCanonicalCompletedNativeTfvdGreenCenterLegReadout
+    (incidence : BR2CameraIncidence)
+    (jet : (ℕ ⊕ ℕ) → CanonicalCompletedTfvdGreenHilbertCarrier) : Prop :=
+  ∀ i j : ℕ ⊕ ℕ,
+    incidence.centerCoordinate i ≠ incidence.legCoordinate j →
+      polarizedGreenMomentCoefficient
+          canonicalCompletedNativeLogDerivativeMoment
+          (br2ParityJetNumber i) (br2ParityJetNumber j) =
+        inner ℂ (jet i) (jet j)
+
+/-- A center--leg readout on the concrete completed TFVD carrier produces the
+real moment Gram required by the carrier-correct HP certificate.  The scalar
+coefficient recurrence is supplied internally by the canonical moments. -/
+def canonicalCompletedNativeRealTfvdGreenMomentTransport_of_centerLegReadout
+    {base radius : ℕ}
+    {jet : (ℕ ⊕ ℕ) → CanonicalCompletedTfvdGreenHilbertCarrier}
+    (transport : BR2BracketIncidenceJetTransport base radius jet)
+    (incidence : BR2CameraIncidence)
+    (hreadout :
+      HasCanonicalCompletedNativeTfvdGreenCenterLegReadout incidence jet) :
+    CanonicalCompletedNativeRealTfvdGreenMomentTransport base radius := by
+  let certificate : BR2CenterLegCoefficientCertificate incidence
+      canonicalCompletedNativeLogDerivativeMoment jet :=
+    { coeff := polarizedGreenMomentCoefficient
+        canonicalCompletedNativeLogDerivativeMoment
+      coefficientEquation :=
+        polarizedGreenMomentCoefficient_coefficientEquation _
+      greenOffDiagonalReadout := hreadout }
+  refine
+    { jet := jet
+      incidenceTransport := transport
+      momentKernel := ?_ }
+  intro i j
+  change greenWronskianMomentKernel
+      canonicalCompletedNativeLogDerivativeMoment i j =
+    (inner ℂ (jet i) (jet j)).re
+  have h := congrArg Complex.re (certificate.toComplexMomentKernel i j)
+  simpa using h
+
 /-- A concrete TFVD/Green moment transport discharges both independence
 fields through the existing all-order incidence theorem and supplies the
 carrier-correct HP certificate. -/
@@ -432,6 +476,25 @@ theorem completedNativeRealHPCarrierCertificate_of_tfvdGreenMomentTransport
     hbase hradius
   oddIndependent := transport.incidenceTransport.odd_linearIndependent
     hbase hradius
+
+/-- Direct carrier-correct HP constructor from the one remaining center--leg
+state identity.  Incidence injectivity supplies both global parity
+independence fields; the coefficient recurrence supplies all four moment
+blocks. -/
+theorem completedNativeRealHPCarrierCertificate_of_centerLegReadout
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    {jet : (ℕ ⊕ ℕ) → CanonicalCompletedTfvdGreenHilbertCarrier}
+    (transport : BR2BracketIncidenceJetTransport base radius jet)
+    (incidence : BR2CameraIncidence)
+    (hreadout :
+      HasCanonicalCompletedNativeTfvdGreenCenterLegReadout incidence jet) :
+    CompletedNativeRealHPCarrierCertificate jet :=
+  completedNativeRealHPCarrierCertificate_of_tfvdGreenMomentTransport
+    hbase hradius
+      (canonicalCompletedNativeRealTfvdGreenMomentTransport_of_centerLegReadout
+        transport incidence hreadout)
 
 end ProjectiveTfvdCarrier
 

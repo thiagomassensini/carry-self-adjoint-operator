@@ -267,6 +267,21 @@ def IsPolarizedGreenCoefficientEquation
       else if p = 0 then -oddMomentResponseCoefficient moments q
       else 0
 
+/-- The canonical polarized coefficient array satisfies the division-free
+two-variable recurrence for every real moment sequence.  Thus the recurrence
+itself contributes no additional analytic premise once the moments have been
+fixed. -/
+theorem polarizedGreenMomentCoefficient_coefficientEquation
+    (moments : ℕ → ℝ) :
+    IsPolarizedGreenCoefficientEquation moments
+      (polarizedGreenMomentCoefficient moments) := by
+  intro p q
+  cases p <;> cases q <;>
+    simp [polarizedGreenMomentCoefficient, oddMomentResponseCoefficient]
+  rename_i p q
+  rw [show p + (q + 1) = p + 1 + q by omega]
+  simp
+
 /-- The coefficient equation fixes the `q = 0` boundary. -/
 theorem polarizedGreenCoefficient_boundary
     {moments : ℕ → ℝ} {coeff : ℕ → ℕ → ℂ}

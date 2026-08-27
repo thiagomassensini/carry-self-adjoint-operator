@@ -387,7 +387,17 @@ explicit and are not conflated:
 | Named interface | Exact content |
 |---|---|
 | `CanonicalCompletedNativeRealTfvdGreenMomentTransport` | One real jet in the concrete completed TFVD/Green Hilbert carrier, its injective all-order incidence transport, and its exact canonical native moment Gram; no isometry of the raw incidence Gram is assumed |
+| `HasCanonicalCompletedNativeTfvdGreenCenterLegReadout` | The canonical polarized coefficient equals the complex Hilbert inner product of the same TFVD jets on every center--leg pair |
 | `CompletedNativeRealHPCarrierCertificate.HasGlobalGraphResolventAt` | The constructed local vector graph germ extends to the selected height with the same operator equation and native Weyl readout |
+
+The division-free coefficient recurrence is no longer an input:
+`polarizedGreenMomentCoefficient_coefficientEquation` proves it for the
+canonical coefficient array. The constructor
+`canonicalCompletedNativeRealTfvdGreenMomentTransport_of_centerLegReadout`
+then derives all four parity blocks of the real moment Gram from the single
+center--leg state readout, and
+`completedNativeRealHPCarrierCertificate_of_centerLegReadout` adds both
+all-order independence fields through the incidence transport.
 
 The local vector interface is already constructed and
 `eventually_hasGlobalGraphResolventAt` proves the global contract throughout
