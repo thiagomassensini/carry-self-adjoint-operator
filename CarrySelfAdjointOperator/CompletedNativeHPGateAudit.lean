@@ -1,6 +1,7 @@
 import CarrySelfAdjointOperator.CompletedNativeHPConfinement
 import CarrySelfAdjointOperator.BR2ProjectiveHilbertIncidenceTransport
 import CarrySelfAdjointOperator.BR2CenterLegCoefficientRecurrence
+import CarrySelfAdjointOperator.CompletedGreenForwardDifferenceVectorLimit
 import Mathlib.Tactic
 
 /-!
@@ -417,6 +418,43 @@ structure CanonicalCompletedNativeRealTfvdGreenMomentTransport
   momentKernel :
     IsGreenWronskianMomentKernelGramRepresentation
       canonicalCompletedNativeLogDerivativeMoment jet
+
+/-- Direct construction of the HP moment transport from the completed
+two-step Green limit on the concrete TFVD carrier.  The moment Gram is proved
+by Hilbert completion; the incidence field must identify the same limit jet,
+so no unrelated independent family can be substituted. -/
+def canonicalCompletedNativeRealTfvdGreenMomentTransport_of_vectorLimit
+    {base radius : ℕ}
+    (state : ℂ → CanonicalCompletedTfvdGreenHilbertCarrier)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (hscalar : HasCompletedNativeGreenKernelTwoStepLimit)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (completedNativeGreenForwardDifferenceLimitParityJet
+        state hkernel hscalar)) :
+    CanonicalCompletedNativeRealTfvdGreenMomentTransport base radius where
+  jet := completedNativeGreenForwardDifferenceLimitParityJet
+    state hkernel hscalar
+  incidenceTransport := transport
+  momentKernel :=
+    completedNativeGreenForwardDifferenceLimitParityJet_momentKernel
+      state hkernel hscalar
+
+/-- Equivalent concrete presentation using the already-built projective
+bracket-incidence transport.  It is enough to identify the completed Green
+limit jet with the canonical projective incidence jet, vector by vector. -/
+def canonicalCompletedNativeRealTfvdGreenMomentTransport_of_vectorLimit_eq_projective
+    {base radius : ℕ}
+    (state : ℂ → CanonicalCompletedTfvdGreenHilbertCarrier)
+    (hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state)
+    (hscalar : HasCompletedNativeGreenKernelTwoStepLimit)
+    (hjet : completedNativeGreenForwardDifferenceLimitParityJet
+        state hkernel hscalar =
+      br2CameraBracketProjectiveHilbertParityJet base radius) :
+    CanonicalCompletedNativeRealTfvdGreenMomentTransport base radius := by
+  apply canonicalCompletedNativeRealTfvdGreenMomentTransport_of_vectorLimit
+    state hkernel hscalar
+  rw [hjet]
+  exact br2CameraBracketProjectiveHilbertIncidenceJetTransport base radius
 
 /-- The exact state-level identity needed after the scalar coefficient
 recurrence has been discharged.  It compares the canonical polarized Green

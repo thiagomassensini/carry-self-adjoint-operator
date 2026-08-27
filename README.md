@@ -399,6 +399,17 @@ center--leg state readout, and
 `completedNativeRealHPCarrierCertificate_of_centerLegReadout` adds both
 all-order independence fields through the incidence transport.
 
+`CompletedGreenForwardDifferenceVectorLimit` now performs the Hilbert-valued
+completion without differentiating the state. It keeps two canonical steps
+independent, proves the exact cross-kernel identity, obtains Cauchy convergence,
+and constructs a limit jet with the canonical native moment Gram. The direct
+constructor
+`canonicalCompletedNativeRealTfvdGreenMomentTransport_of_vectorLimit_eq_projective`
+feeds that jet into the HP carrier precisely when it is identified with the
+already-built projective bracket-incidence jet. The scalar input is isolated as
+`HasCompletedNativeGreenKernelTwoStepLimit`; it contains no vector or incidence
+hypothesis.
+
 The local vector interface is already constructed and
 `eventually_hasGlobalGraphResolventAt` proves the global contract throughout
 a neighborhood of the Taylor center. Given the TFVD/Green moment transport
@@ -418,6 +429,7 @@ nonnegativity of that eigenvalue exclude every nonreal `z`.
 | Completed Green carrier | `CompletedNativeC3LedgerState`, `CompletedC3AllCutoffHilbertState`, `CompletedC3EnrichedSymplecticNoLeakBridge` |
 | Completed native HP implication | `CompletedNativeHPConfinement`, `CompletedNativeHPGateAudit` |
 | Scalar kernel bridge | `CompletedGreenRealKernelClosure`, `CompletedGreenForwardDifferenceLimit`, `CompletedC3FinalReadoutKernelBridge` |
+| Vector Green completion | `CompletedGreenForwardDifferenceVectorLimit` |
 | Gram positivity | `CompletedGreenForwardDifferenceGramBridge`, `BR2IncidenceStrictPositivity`, `GreenKernelCoefficientClosure` |
 | Infinite operator | `GreenJetEnergyFactor`, `GreenJetMaximalAdjointSquare`, `GreenJetReciprocalSignedHeightOperator` |
 | Weyl/resolvent readout | `CompletedNativeJacobiCyclicReadout`, `CompletedNativeJacobiWeylContinuation`, `CompletedNativeComplexGraphResolvent` |
