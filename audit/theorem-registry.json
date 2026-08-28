@@ -214,6 +214,16 @@
     {"qualified": "CarrySelfAdjointOperator.hasCompletedGreenForwardDifferenceGramLimit_of_realAxisKernel"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeHankelPair_posSemidef_of_realAxisKernel"},
     {"qualified": "CarrySelfAdjointOperator.completedNativeC3ProductLedger_hasForwardDifferenceGramLimit"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeHankelPair_posSemidef_of_continuousGreenFactors"}
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeHankelPair_posSemidef_of_continuousGreenFactors"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3DirichletGradient_response_add_boundary_parityJet"},
+    {"qualified": "CarrySelfAdjointOperator.nativeOddLogPowerSlopeJet_prefix_linearIndependent"},
+    {"qualified": "CarrySelfAdjointOperator.nativeOddLogPowerSlopeJet_linearIndependent"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3DirichletGradientCoefficientParityJet_apply_tendsto"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrdinarySlopeCoordinateReadout_limitParityJet"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3LogJetSlopeCoordinateReadout_limitParityJet"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeConcreteLimitOdd_linearIndependent_complex"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeConcreteLimitEven_linearIndependent_complex"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeRealHPCarrierCertificate_of_concreteC3Kernel"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeOperator_zero_im_eq_zero_of_concreteC3Kernel"}
   ]
 }
