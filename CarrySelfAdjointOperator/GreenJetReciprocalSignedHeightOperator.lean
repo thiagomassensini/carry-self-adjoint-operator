@@ -94,6 +94,322 @@ theorem closedGreenJetEnergyRealAdjoint_dense_domain
     (greenJetEnergyFormalAdjointCore_le_closedRealAdjoint
       hrep heven hodd).1
 
+/-! ## The global signed generator -/
+
+/-- Maximal self-adjoint signed generator `[[0, B*], [B, 0]]` of the
+completed Green factor.  This is the operator whose reciprocal on the
+nonzero support is the signed-height operator. -/
+def closedGreenJetSignedGeneratorData
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n))) :
+    LinearPMap.RealMaximalSelfAdjointData
+      (WithLp 2 (greenJetEvenHilbertSubspace jet ×
+        greenJetOddHilbertSubspace jet)) := by
+  letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+    coherentReducedGreenJetEvenInnerProductSpace jet
+  letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+    coherentReducedGreenJetOddInnerProductSpace jet
+  letI : CompleteSpace (greenJetEvenHilbertSubspace jet) :=
+    (greenJetEvenHilbertSubspace_isClosed jet).completeSpace_coe
+  letI : CompleteSpace (greenJetOddHilbertSubspace jet) :=
+    (greenJetOddHilbertSubspace_isClosed jet).completeSpace_coe
+  let B : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetOddHilbertSubspace jet :=
+    closedGreenJetEnergyFactor hrep heven hodd
+  let hB : Dense (B.domain : Set (greenJetEvenHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_domain hrep heven hodd
+  have hBadjDomain : Dense ((B.realAdjoint hB).domain :
+      Set (greenJetOddHilbertSubspace jet)) := by
+    change Dense ((closedGreenJetEnergyRealAdjoint
+      hrep heven hodd).domain : Set (greenJetOddHilbertSubspace jet))
+    exact closedGreenJetEnergyRealAdjoint_dense_domain hrep heven hodd
+  have hBclosed : B.IsClosed :=
+    closedGreenJetEnergyFactor_isClosed hrep heven hodd
+  exact B.realAdjointOffDiagonalSelfAdjointData
+    hB hBadjDomain hBclosed
+
+/-- The completed signed generator itself. -/
+def closedGreenJetSignedGenerator
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n))) :
+    WithLp 2 (greenJetEvenHilbertSubspace jet ×
+        greenJetOddHilbertSubspace jet) →ₗ.[ℝ]
+      WithLp 2 (greenJetEvenHilbertSubspace jet ×
+        greenJetOddHilbertSubspace jet) := by
+  letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+    coherentReducedGreenJetEvenInnerProductSpace jet
+  letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+    coherentReducedGreenJetOddInnerProductSpace jet
+  let B : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetOddHilbertSubspace jet :=
+    closedGreenJetEnergyFactor hrep heven hodd
+  let hB : Dense (B.domain : Set (greenJetEvenHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_domain hrep heven hodd
+  exact B.realAdjointOffDiagonal hB
+
+/-- The operator exposed directly as an off-diagonal block is exactly the
+operator stored in its maximal self-adjointness package. -/
+theorem closedGreenJetSignedGeneratorData_operator_eq
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n))) :
+    (closedGreenJetSignedGeneratorData hrep heven hodd).operator =
+      closedGreenJetSignedGenerator hrep heven hodd := by
+  rfl
+
+/-- The signed generator is maximal real self-adjoint before any reciprocal
+or kernel reduction is taken. -/
+theorem closedGreenJetSignedGenerator_adjoint_eq
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n))) :
+    (closedGreenJetSignedGeneratorData hrep heven hodd).operator.realAdjoint
+        (closedGreenJetSignedGeneratorData hrep heven hodd).denseDomain =
+      closedGreenJetSignedGenerator hrep heven hodd :=
+  (closedGreenJetSignedGeneratorData hrep heven hodd).adjoint_eq
+
+/-- Canonical even core vector in the natural domain of the signed
+generator. -/
+def closedGreenJetSignedGeneratorEvenCoreDomain
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)))
+    (n : ℕ) :
+    (closedGreenJetSignedGenerator hrep heven hodd).domain := by
+  letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+    coherentReducedGreenJetEvenInnerProductSpace jet
+  letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+    coherentReducedGreenJetOddInnerProductSpace jet
+  let B : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetOddHilbertSubspace jet :=
+    closedGreenJetEnergyFactor hrep heven hodd
+  let hB : Dense (B.domain : Set (greenJetEvenHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_domain hrep heven hodd
+  let xb : B.domain := closedGreenJetEnergyCoreDomainVector
+    hrep heven hodd (greenJetEvenCoreJet jet n)
+  refine ⟨WithLp.toLp 2
+    ((xb : greenJetEvenHilbertSubspace jet),
+      (0 : greenJetOddHilbertSubspace jet)), ?_⟩
+  change (xb : greenJetEvenHilbertSubspace jet) ∈ B.domain ∧
+    (0 : greenJetOddHilbertSubspace jet) ∈ (B.realAdjoint hB).domain
+  exact ⟨xb.property, (B.realAdjoint hB).domain.zero_mem⟩
+
+/-- The even core domain vector has the expected unframed Hilbert-sum
+value. -/
+theorem closedGreenJetSignedGeneratorEvenCoreDomain_coe
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)))
+    (n : ℕ) :
+    (closedGreenJetSignedGeneratorEvenCoreDomain hrep heven hodd n :
+      WithLp 2 (greenJetEvenHilbertSubspace jet ×
+        greenJetOddHilbertSubspace jet)) =
+      WithLp.toLp 2 (greenJetEvenSectorJet jet n, 0) := by
+  rfl
+
+/-- One generator step sends the even core vector exactly to the matching
+odd Green jet. -/
+theorem closedGreenJetSignedGenerator_apply_evenCore
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)))
+    (n : ℕ) :
+    closedGreenJetSignedGenerator hrep heven hodd
+        (closedGreenJetSignedGeneratorEvenCoreDomain hrep heven hodd n) =
+      WithLp.toLp 2 (0, greenJetOddSectorJet jet n) := by
+  letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+    coherentReducedGreenJetEvenInnerProductSpace jet
+  letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+    coherentReducedGreenJetOddInnerProductSpace jet
+  let B : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetOddHilbertSubspace jet :=
+    closedGreenJetEnergyFactor hrep heven hodd
+  let hB : Dense (B.domain : Set (greenJetEvenHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_domain hrep heven hodd
+  let xb : B.domain := closedGreenJetEnergyCoreDomainVector
+    hrep heven hodd (greenJetEvenCoreJet jet n)
+  apply WithLp.ofLp_injective 2
+  change WithLp.ofLp
+    (LinearPMap.realOffDiagonal B (B.realAdjoint hB) _) = _
+  rw [LinearPMap.realOffDiagonal_apply_ofLp]
+  have hfirst : LinearPMap.realOffDiagonalFirstDomain B (B.realAdjoint hB)
+      (closedGreenJetSignedGeneratorEvenCoreDomain hrep heven hodd n) =
+        xb := by
+    apply Subtype.ext
+    rfl
+  have hsecond : LinearPMap.realOffDiagonalSecondDomain B (B.realAdjoint hB)
+      (closedGreenJetSignedGeneratorEvenCoreDomain hrep heven hodd n) = 0 := by
+    apply Subtype.ext
+    rfl
+  rw [hfirst, hsecond, (B.realAdjoint hB).map_zero]
+  apply Prod.ext
+  · rfl
+  · change B xb = greenJetOddSectorJet jet n
+    calc
+      B xb = greenJetEnergyFactorCore heven
+          (greenJetEvenCoreJet jet n) :=
+        closedGreenJetEnergyFactor_core_apply hrep heven hodd
+          (greenJetEvenCoreJet jet n)
+      _ = greenJetOddSectorJet jet n :=
+        greenJetEnergyFactorCore_jet heven n
+
+/-- Canonical odd core vector in the natural domain of the signed generator. -/
+def closedGreenJetSignedGeneratorOddCoreDomain
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)))
+    (n : ℕ) :
+    (closedGreenJetSignedGenerator hrep heven hodd).domain := by
+  letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+    coherentReducedGreenJetEvenInnerProductSpace jet
+  letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+    coherentReducedGreenJetOddInnerProductSpace jet
+  let B : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetOddHilbertSubspace jet :=
+    closedGreenJetEnergyFactor hrep heven hodd
+  let hB : Dense (B.domain : Set (greenJetEvenHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_domain hrep heven hodd
+  let C : greenJetOddHilbertSubspace jet →ₗ.[ℝ]
+      greenJetEvenHilbertSubspace jet :=
+    greenJetEnergyFormalAdjointCore hodd
+  let yc : C.domain := greenJetEnergyFactorToFormalAdjointDomain heven
+    (greenJetEvenCoreJet jet n)
+  let hle : C ≤ B.realAdjoint hB :=
+    greenJetEnergyFormalAdjointCore_le_realAdjoint
+      hrep heven hodd hB
+  let ya : (B.realAdjoint hB).domain := Submodule.inclusion hle.1 yc
+  refine ⟨WithLp.toLp 2
+    ((0 : greenJetEvenHilbertSubspace jet),
+      (ya : greenJetOddHilbertSubspace jet)), ?_⟩
+  change (0 : greenJetEvenHilbertSubspace jet) ∈ B.domain ∧
+    (ya : greenJetOddHilbertSubspace jet) ∈ (B.realAdjoint hB).domain
+  exact ⟨B.domain.zero_mem, ya.property⟩
+
+/-- The odd core domain vector has the expected Hilbert-sum value. -/
+theorem closedGreenJetSignedGeneratorOddCoreDomain_coe
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)))
+    (n : ℕ) :
+    (closedGreenJetSignedGeneratorOddCoreDomain hrep heven hodd n :
+      WithLp 2 (greenJetEvenHilbertSubspace jet ×
+        greenJetOddHilbertSubspace jet)) =
+      WithLp.toLp 2 (0, greenJetOddSectorJet jet n) := by
+  letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+    coherentReducedGreenJetEvenInnerProductSpace jet
+  letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+    coherentReducedGreenJetOddInnerProductSpace jet
+  let B : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetOddHilbertSubspace jet :=
+    closedGreenJetEnergyFactor hrep heven hodd
+  let hB : Dense (B.domain : Set (greenJetEvenHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_domain hrep heven hodd
+  let C : greenJetOddHilbertSubspace jet →ₗ.[ℝ]
+      greenJetEvenHilbertSubspace jet :=
+    greenJetEnergyFormalAdjointCore hodd
+  let yc : C.domain := greenJetEnergyFactorToFormalAdjointDomain heven
+    (greenJetEvenCoreJet jet n)
+  let hle : C ≤ B.realAdjoint hB :=
+    greenJetEnergyFormalAdjointCore_le_realAdjoint
+      hrep heven hodd hB
+  let ya : (B.realAdjoint hB).domain := Submodule.inclusion hle.1 yc
+  apply WithLp.ofLp_injective 2
+  apply Prod.ext
+  · rfl
+  · change (ya : greenJetOddHilbertSubspace jet) =
+      greenJetOddSectorJet jet n
+    calc
+      (ya : greenJetOddHilbertSubspace jet) =
+          greenJetEnergyFactorCore heven (greenJetEvenCoreJet jet n) :=
+        greenJetEnergyFactorToFormalAdjointDomain_coe heven
+          (greenJetEvenCoreJet jet n)
+      _ = greenJetOddSectorJet jet n :=
+        greenJetEnergyFactorCore_jet heven n
+
+/-- The next generator step sends the odd core vector to the next even Green
+jet. -/
+theorem closedGreenJetSignedGenerator_apply_oddCore
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)))
+    (n : ℕ) :
+    closedGreenJetSignedGenerator hrep heven hodd
+        (closedGreenJetSignedGeneratorOddCoreDomain hrep heven hodd n) =
+      WithLp.toLp 2 (greenJetEvenSectorJet jet (n + 1), 0) := by
+  letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+    coherentReducedGreenJetEvenInnerProductSpace jet
+  letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+    coherentReducedGreenJetOddInnerProductSpace jet
+  let B : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetOddHilbertSubspace jet :=
+    closedGreenJetEnergyFactor hrep heven hodd
+  let hB : Dense (B.domain : Set (greenJetEvenHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_domain hrep heven hodd
+  let C : greenJetOddHilbertSubspace jet →ₗ.[ℝ]
+      greenJetEvenHilbertSubspace jet :=
+    greenJetEnergyFormalAdjointCore hodd
+  let yc : C.domain := greenJetEnergyFactorToFormalAdjointDomain heven
+    (greenJetEvenCoreJet jet n)
+  let hle : C ≤ B.realAdjoint hB :=
+    greenJetEnergyFormalAdjointCore_le_realAdjoint
+      hrep heven hodd hB
+  let ya : (B.realAdjoint hB).domain := Submodule.inclusion hle.1 yc
+  apply WithLp.ofLp_injective 2
+  change WithLp.ofLp
+    (LinearPMap.realOffDiagonal B (B.realAdjoint hB) _) = _
+  rw [LinearPMap.realOffDiagonal_apply_ofLp]
+  have hfirst : LinearPMap.realOffDiagonalFirstDomain B (B.realAdjoint hB)
+      (closedGreenJetSignedGeneratorOddCoreDomain hrep heven hodd n) = 0 := by
+    apply Subtype.ext
+    rfl
+  have hsecond : LinearPMap.realOffDiagonalSecondDomain B (B.realAdjoint hB)
+      (closedGreenJetSignedGeneratorOddCoreDomain hrep heven hodd n) = ya := by
+    apply Subtype.ext
+    rfl
+  rw [hfirst, hsecond, B.map_zero]
+  apply Prod.ext
+  · calc
+      B.realAdjoint hB ya = C yc :=
+        (LinearPMap.apply_comp_inclusion
+          hle yc).symm
+      _ = greenJetEvenSectorJet jet (n + 1) := by
+        rw [show yc = greenJetOddCoreJet jet n from
+          greenJetEnergyFactorToFormalAdjointDomain_jet heven n]
+        exact greenJetEnergyFormalAdjointCore_jet hodd n
+  · rfl
+
 /-- The maximal adjoint has dense range precisely once the shifted even tail
 is dense. -/
 theorem closedGreenJetEnergyRealAdjoint_dense_range_of_head_mem_tail

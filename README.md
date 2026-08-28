@@ -440,6 +440,46 @@ Thus `HasGlobalGraphResolventAt` is not an input to the final theorem. The real
 HP carrier certificate remains explicit and is supplied by the concrete TFVD/
 Green moment-transport constructors described above.
 
+### Direct signed-generator resolvent
+
+The completed construction also globalizes the native Weyl germ without
+passing through the resolvent of the positive square. In
+[`CompletedNativeSignedGeneratorResolvent.lean`](CarrySelfAdjointOperator/CompletedNativeSignedGeneratorResolvent.lean),
+the maximal self-adjoint signed generator is used directly:
+
+$$
+K=\begin{pmatrix}0&B^*\\B&0\end{pmatrix},
+\qquad
+(e_n,0)\mapsto(0,o_n)\mapsto(e_{n+1},0).
+$$
+
+Its cyclic-head coefficients are exactly the interleaved native moments,
+with zero odd coefficients. Therefore the local graph equation
+
+$$
+x-zKx=e_0
+$$
+
+has scalar readout equal to the canonical native Weyl germ. Self-adjointness
+alone makes `K-lambda` bijective for every nonreal `lambda`; no positivity
+bound is used in that resolvent theorem. Bounded local charts, vector
+uniqueness, and the same division-free ODE then give the direct conclusion:
+
+```lean
+theorem completedNativeOperator_zero_im_eq_zero_of_signedGeneratorResolvent
+    (certificate : CompletedNativeRealHPCarrierCertificate jet)
+    {z : ℂ}
+    (hzDomain : z ∈ completedNativeHeightDomain)
+    (hzero : completedNativeOperatorCharacteristic z = 0) :
+    z.im = 0
+```
+
+This route does not call the positive-Jacobi resolvent or assume
+`HasGlobalGraphResolventAt`. It does not assert, without a separate theorem,
+that every zero is already a point eigenvalue of the reciprocal height
+operator. What it proves is the carrier-correct confinement implication from
+the directly globalized signed-generator readout.
+
 ## Repository Map
 
 | Layer | Main modules |

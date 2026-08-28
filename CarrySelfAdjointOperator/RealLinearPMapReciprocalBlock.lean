@@ -489,6 +489,137 @@ theorem realAdjointSquare_apply_retained
   change realMaximalComp (T.realAdjoint hDomain) T x = _
   exact realMaximalComp_apply (T.realAdjoint hDomain) T x
 
+/-! ## The signed generator before reciprocal inversion -/
+
+/-- Canonical off-diagonal signed generator `[[0, T*], [T, 0]]`.  Its
+reciprocal on the nonzero support is the signed-height operator constructed
+below. -/
+def realAdjointOffDiagonal
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E)) :
+    WithLp 2 (E × F) →ₗ.[ℝ] WithLp 2 (E × F) :=
+  realOffDiagonal T (T.realAdjoint hDomain)
+
+/-- Dense domains of `T` and `T*` give the natural dense domain of the
+signed generator. -/
+theorem realAdjointOffDiagonal_dense_domain
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E))
+    (hAdjointDomain : Dense
+      ((T.realAdjoint hDomain).domain : Set F)) :
+    Dense ((T.realAdjointOffDiagonal hDomain).domain :
+      Set (WithLp 2 (E × F))) := by
+  exact realOffDiagonal_dense_domain T (T.realAdjoint hDomain)
+    hDomain hAdjointDomain
+
+/-- Exact action of the maximal-adjoint off-diagonal block on a pair of
+domain vectors. -/
+@[simp] theorem realOffDiagonal_apply_domainPair
+    (A : E →ₗ.[ℝ] F) (C : F →ₗ.[ℝ] E)
+    (x : A.domain) (y : C.domain) :
+    realOffDiagonal A C
+        ⟨WithLp.toLp 2 ((x : E), (y : F)), ⟨x.property, y.property⟩⟩ =
+      WithLp.toLp 2 (C y, A x) := by
+  apply WithLp.ofLp_injective 2
+  rw [realOffDiagonal_apply_ofLp]
+  rfl
+
+/-- A closed densely defined operator and its maximal adjoint form a maximal
+self-adjoint signed generator. -/
+theorem realAdjoint_realAdjointOffDiagonal_eq
+    [CompleteSpace E] [CompleteSpace F]
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E))
+    (hAdjointDomain : Dense
+      ((T.realAdjoint hDomain).domain : Set F))
+    (hClosed : T.IsClosed) :
+    (T.realAdjointOffDiagonal hDomain).realAdjoint
+        (T.realAdjointOffDiagonal_dense_domain
+          hDomain hAdjointDomain) =
+      T.realAdjointOffDiagonal hDomain := by
+  exact realAdjoint_realOffDiagonal_eq T (T.realAdjoint hDomain)
+    hDomain hAdjointDomain rfl
+      (T.realAdjoint_realAdjoint_eq_of_isClosed
+        hDomain hAdjointDomain hClosed)
+
+/-- Even-sector domain vector retained by the signed generator from one
+vector in the maximal adjoint-square domain. -/
+def realAdjointOffDiagonalEvenSquareInput
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E))
+    (x : (T.realAdjointSquare hDomain).domain) :
+    (T.realAdjointOffDiagonal hDomain).domain :=
+  ⟨WithLp.toLp 2
+      ((T.realAdjointSquareFirstDomain hDomain x : E), 0),
+    ⟨(T.realAdjointSquareFirstDomain hDomain x).property,
+      (T.realAdjoint hDomain).domain.zero_mem⟩⟩
+
+/-- One signed-generator step sends the retained even vector to the retained
+odd vector `T x`. -/
+theorem realAdjointOffDiagonal_apply_evenSquareInput
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E))
+    (x : (T.realAdjointSquare hDomain).domain) :
+    WithLp.ofLp
+        (T.realAdjointOffDiagonal hDomain
+          (T.realAdjointOffDiagonalEvenSquareInput hDomain x)) =
+      (0, (T.realAdjointSquareSecondDomain hDomain x : F)) := by
+  change WithLp.ofLp
+      (realOffDiagonal T (T.realAdjoint hDomain) _) = _
+  rw [realOffDiagonal_apply_ofLp]
+  have hfirst : realOffDiagonalFirstDomain T (T.realAdjoint hDomain)
+      (T.realAdjointOffDiagonalEvenSquareInput hDomain x) =
+        T.realAdjointSquareFirstDomain hDomain x := by
+    apply Subtype.ext
+    rfl
+  have hsecond : realOffDiagonalSecondDomain T (T.realAdjoint hDomain)
+      (T.realAdjointOffDiagonalEvenSquareInput hDomain x) = 0 := by
+    apply Subtype.ext
+    rfl
+  rw [hfirst, hsecond, (T.realAdjoint hDomain).map_zero]
+  apply Prod.ext
+  · rfl
+  · rfl
+
+/-- Odd-sector domain vector retained by the signed generator from the same
+maximal square-domain vector. -/
+def realAdjointOffDiagonalOddSquareInput
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E))
+    (x : (T.realAdjointSquare hDomain).domain) :
+    (T.realAdjointOffDiagonal hDomain).domain :=
+  ⟨WithLp.toLp 2
+      (0, (T.realAdjointSquareSecondDomain hDomain x : F)),
+    ⟨T.domain.zero_mem,
+      (T.realAdjointSquareSecondDomain hDomain x).property⟩⟩
+
+/-- The next signed-generator step is exactly the maximal adjoint-square
+action on the even channel. -/
+theorem realAdjointOffDiagonal_apply_oddSquareInput
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E))
+    (x : (T.realAdjointSquare hDomain).domain) :
+    WithLp.ofLp
+        (T.realAdjointOffDiagonal hDomain
+          (T.realAdjointOffDiagonalOddSquareInput hDomain x)) =
+      (T.realAdjointSquare hDomain x, 0) := by
+  change WithLp.ofLp
+      (realOffDiagonal T (T.realAdjoint hDomain) _) = _
+  rw [realOffDiagonal_apply_ofLp]
+  have hfirst : realOffDiagonalFirstDomain T (T.realAdjoint hDomain)
+      (T.realAdjointOffDiagonalOddSquareInput hDomain x) = 0 := by
+    apply Subtype.ext
+    rfl
+  have hsecond : realOffDiagonalSecondDomain T (T.realAdjoint hDomain)
+      (T.realAdjointOffDiagonalOddSquareInput hDomain x) =
+        T.realAdjointSquareSecondDomain hDomain x := by
+    apply Subtype.ext
+    rfl
+  rw [hfirst, hsecond, T.map_zero]
+  apply Prod.ext
+  · exact T.realAdjointSquare_apply_retained hDomain x
+  · rfl
+
 /-- Canonical first input for the exact two-step reciprocal identity.  It is
 the even-channel vector `(T* T x, 0)`. -/
 def realReciprocalOffDiagonalFirstSquareInput
@@ -708,6 +839,23 @@ theorem RealMaximalSelfAdjointData.isClosed
   have hadjointClosed := data.operator.realAdjoint_isClosed data.denseDomain
   rw [data.adjoint_eq] at hadjointClosed
   exact hadjointClosed
+
+/-- Bundled maximal self-adjoint signed generator `[[0, T*], [T, 0]]`.
+Unlike the reciprocal signed-height operator, this construction needs no
+injectivity or range hypothesis. -/
+def realAdjointOffDiagonalSelfAdjointData
+    [CompleteSpace E] [CompleteSpace F]
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E))
+    (hAdjointDomain : Dense
+      ((T.realAdjoint hDomain).domain : Set F))
+    (hClosed : T.IsClosed) :
+    RealMaximalSelfAdjointData (WithLp 2 (E × F)) where
+  operator := T.realAdjointOffDiagonal hDomain
+  denseDomain := T.realAdjointOffDiagonal_dense_domain
+    hDomain hAdjointDomain
+  adjoint_eq := T.realAdjoint_realAdjointOffDiagonal_eq
+    hDomain hAdjointDomain hClosed
 
 end
 

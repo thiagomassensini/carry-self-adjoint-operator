@@ -263,6 +263,26 @@ def closedGreenJetEnergyRealAdjoint
     ((greenJetEnergyFactorCore heven).closure_dense_domain
       (greenJetEnergyFactorCore_dense_domain heven))
 
+/-- The maximal Green adjoint is independent of the proof used to expose the
+dense domain of the closed factor. -/
+theorem closedGreenJetEnergyRealAdjoint_eq_realAdjoint
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)))
+    (hDomain : Dense
+      ((closedGreenJetEnergyFactor hrep heven hodd).domain :
+        Set (greenJetEvenHilbertSubspace jet))) :
+    letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+      coherentGreenJetEvenInnerProductSpace jet
+    letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+      coherentGreenJetOddInnerProductSpace jet
+    closedGreenJetEnergyRealAdjoint hrep heven hodd =
+      (closedGreenJetEnergyFactor hrep heven hodd).realAdjoint hDomain := by
+  unfold closedGreenJetEnergyRealAdjoint closedGreenJetEnergyFactor
+  congr
+
 /-- The forced algebraic reverse shift is contained in the maximal adjoint of
 the canonical closed Green energy factor. -/
 theorem greenJetEnergyFormalAdjointCore_le_closedRealAdjoint
@@ -286,6 +306,27 @@ theorem greenJetEnergyFormalAdjointCore_le_closedRealAdjoint
       (greenJetEnergyFactorCore_isClosable hrep heven hodd)
       (greenJetEnergyFactorCore_formalAdjointIdentity hrep heven hodd)
 
+/-- The same formal-adjoint inclusion, stated for any proof witnessing the
+dense domain of the closed Green factor. -/
+theorem greenJetEnergyFormalAdjointCore_le_realAdjoint
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)))
+    (hDomain : Dense
+      ((closedGreenJetEnergyFactor hrep heven hodd).domain :
+        Set (greenJetEvenHilbertSubspace jet))) :
+    letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+      coherentGreenJetEvenInnerProductSpace jet
+    letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+      coherentGreenJetOddInnerProductSpace jet
+    greenJetEnergyFormalAdjointCore hodd ≤
+      (closedGreenJetEnergyFactor hrep heven hodd).realAdjoint hDomain := by
+  exact (closedGreenJetEnergyRealAdjoint_eq_realAdjoint
+    hrep heven hodd hDomain) ▸
+      greenJetEnergyFormalAdjointCore_le_closedRealAdjoint hrep heven hodd
+
 /-- Canonical maximal-adjoint square of the closed Green energy factor. -/
 def closedGreenJetEnergyAdjointSquare
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -303,7 +344,7 @@ def closedGreenJetEnergyAdjointSquare
     ((greenJetEnergyFactorCore heven).closure_dense_domain
       (greenJetEnergyFactorCore_dense_domain heven))
 
-private def closedGreenJetEnergyCoreDomainVector
+def closedGreenJetEnergyCoreDomainVector
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
@@ -314,7 +355,7 @@ private def closedGreenJetEnergyCoreDomainVector
   Submodule.inclusion
     (greenJetEnergyFactorCore_le_closed hrep heven hodd).1 x
 
-private theorem closedGreenJetEnergyFactor_core_apply
+theorem closedGreenJetEnergyFactor_core_apply
     {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
     {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
     (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
