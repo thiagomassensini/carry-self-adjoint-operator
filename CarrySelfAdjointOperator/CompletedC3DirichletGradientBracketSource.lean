@@ -795,6 +795,340 @@ theorem canonicalCompletedC3DirichletGradient_greenResponse_add_boundary_tendsto
   exact (canonicalCompletedC3DirichletGradient_greenResponse_add_boundary_eq_prefix
     (base := base) (cutoff := cutoff) hbase s).symm
 
+/-! ## Channel-separated causal completion -/
+
+/-- Boundary-return channel of one geometrically complete TFVD prefix. -/
+def canonicalCompletedC3DirichletGradientPrefixBoundaryReturn
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (s : ℂ) : CarryVerticalL2 :=
+  let q : ℝ := canonicalBR2CarryAmplitudeRatio base
+  carryWeightedVerticalReturn q
+      (canonicalBR2CarryAmplitudeRatio_pos hbase).le
+      (canonicalBR2CarryAmplitudeRatio_lt_one hbase)
+    (carryWeightedVerticalTrace q
+      (canonicalCompletedC3DirichletGradientPrefixState s
+        (NativeCarrySpectralWeyl.Limits.finiteCameraWindow base cutoff + 1)))
+
+/-- Bracket source of the completed TFVD slope state. -/
+def canonicalCompletedC3DirichletGradientBracketSourceState
+    (base : ℕ) (s : ℂ) (hs : 0 < s.re) : CarryVerticalL2 :=
+  carryWeightedVerticalCenteredBracket
+    (canonicalBR2CarryAmplitudeRatio base)
+    (canonicalCompletedC3DirichletGradientState s hs)
+
+/-- Completed causal Green response obtained by applying the same bounded
+source and response maps to the completed TFVD slope state. -/
+def canonicalCompletedC3DirichletGradientCausalGreenState
+    (base : ℕ) (s : ℂ) (hs : 0 < s.re) : CarryVerticalL2 :=
+  carryVerticalL2WeightedGreen (canonicalBR2CarryAmplitudeRatio base)
+    (canonicalCompletedC3DirichletGradientBracketSourceState base s hs)
+
+/-- Completed return of the two canonical boundary traces. -/
+def canonicalCompletedC3DirichletGradientBoundaryReturnState
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (s : ℂ) (hs : 0 < s.re) : CarryVerticalL2 :=
+  let q : ℝ := canonicalBR2CarryAmplitudeRatio base
+  carryWeightedVerticalReturn q
+      (canonicalBR2CarryAmplitudeRatio_pos hbase).le
+      (canonicalBR2CarryAmplitudeRatio_lt_one hbase)
+    (carryWeightedVerticalTrace q
+      (canonicalCompletedC3DirichletGradientState s hs))
+
+/-- The weighted causal Green operator is injective on the zero-head source
+subspace because the bracket is a left inverse there. -/
+theorem carryVerticalL2WeightedGreen_injective_on_zeroHead
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    {x y : CarryVerticalL2} (hx : x 0 = 0) (hy : y 0 = 0)
+    (hresponse : carryVerticalL2WeightedGreen q x =
+      carryVerticalL2WeightedGreen q y) :
+    x = y := by
+  have hsource := congrArg
+    (fun state : CarryVerticalL2 ↦
+      carryWeightedVerticalCenteredBracket q state) hresponse
+  rw [carryWeightedVerticalCenteredBracket_weightedGreen q hqpos hq1,
+    carryWeightedVerticalCenteredBracket_weightedGreen q hqpos hq1] at hsource
+  ext n
+  by_cases hn : n = 0
+  · subst n
+    exact hx.trans hy.symm
+  · simpa [carryVerticalL2ZeroHeadProjection_apply, hn] using
+      congrArg (fun state : CarryVerticalL2 ↦ state n) hsource
+
+/-- The raw causal-response Gram is the source pairing against the positive
+adjoint square `G†G`.  This is the exact operator appearing before any
+identification with a Green boundary readout. -/
+theorem carryVerticalL2WeightedGreen_inner_eq_source_adjointSquare
+    (q : ℝ) (x y : CarryVerticalL2) :
+    inner ℂ (carryVerticalL2WeightedGreen q x)
+        (carryVerticalL2WeightedGreen q y) =
+      inner ℂ x
+        (ContinuousLinearMap.adjoint (carryVerticalL2WeightedGreen q)
+          (carryVerticalL2WeightedGreen q y)) := by
+  exact (ContinuousLinearMap.adjoint_inner_right
+    (carryVerticalL2WeightedGreen q) x
+    (carryVerticalL2WeightedGreen q y)).symm
+
+/-- The completed bracket source has zero boundary-reservoir coordinate. -/
+@[simp] theorem canonicalCompletedC3DirichletGradientBracketSourceState_zero
+    (base : ℕ) (s : ℂ) (hs : 0 < s.re) :
+    canonicalCompletedC3DirichletGradientBracketSourceState base s hs 0 = 0 := by
+  simp [canonicalCompletedC3DirichletGradientBracketSourceState]
+
+/-- Applying the bracket to the completed causal response recovers its exact
+completed source. -/
+theorem canonicalCompletedC3DirichletGradientBracket_causalGreen_eq_source
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (s : ℂ) (hs : 0 < s.re) :
+    carryWeightedVerticalCenteredBracket
+        (canonicalBR2CarryAmplitudeRatio base)
+        (canonicalCompletedC3DirichletGradientCausalGreenState base s hs) =
+      canonicalCompletedC3DirichletGradientBracketSourceState base s hs := by
+  rw [canonicalCompletedC3DirichletGradientCausalGreenState,
+    carryWeightedVerticalCenteredBracket_weightedGreen
+      (canonicalBR2CarryAmplitudeRatio base)
+      (canonicalBR2CarryAmplitudeRatio_pos hbase)
+      (canonicalBR2CarryAmplitudeRatio_lt_one hbase)]
+  ext n
+  by_cases hn : n = 0
+  · subst n
+    simp
+  · simp [carryVerticalL2ZeroHeadProjection_apply, hn]
+
+/-- Specialized operator form of the completed causal-response Gram. -/
+theorem canonicalCompletedC3DirichletGradientCausalGreenState_inner_eq_source_adjointSquare
+    (base : ℕ) (s t : ℂ) (hs : 0 < s.re) (ht : 0 < t.re) :
+    inner ℂ
+        (canonicalCompletedC3DirichletGradientCausalGreenState base s hs)
+        (canonicalCompletedC3DirichletGradientCausalGreenState base t ht) =
+      inner ℂ
+        (canonicalCompletedC3DirichletGradientBracketSourceState base s hs)
+        (ContinuousLinearMap.adjoint (carryVerticalL2WeightedGreen
+          (canonicalBR2CarryAmplitudeRatio base))
+          (canonicalCompletedC3DirichletGradientCausalGreenState
+            base t ht)) := by
+  exact carryVerticalL2WeightedGreen_inner_eq_source_adjointSquare
+    (canonicalBR2CarryAmplitudeRatio base)
+    (canonicalCompletedC3DirichletGradientBracketSourceState base s hs)
+    (canonicalCompletedC3DirichletGradientBracketSourceState base t ht)
+
+/-- The finite bracket sources converge separately to the completed bracket
+source under the same bounded source map. -/
+theorem canonicalCompletedC3DirichletGradientBracketSource_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    {s : ℂ} (hs : 0 < s.re) :
+    Filter.Tendsto
+      (fun cutoff : ℕ ↦
+        canonicalCompletedC3DirichletGradientBracketSource base cutoff s)
+      Filter.atTop
+      (nhds (canonicalCompletedC3DirichletGradientBracketSourceState
+        base s hs)) := by
+  have hprefix :=
+    (canonicalCompletedC3DirichletGradientPrefixState_tendsto hs).comp
+      (finiteCameraWindow_add_one_tendsto_atTop hbase)
+  have hsource :=
+    (carryWeightedVerticalCenteredBracket
+      (canonicalBR2CarryAmplitudeRatio base)).continuous.continuousAt.tendsto.comp
+        hprefix
+  unfold canonicalCompletedC3DirichletGradientBracketSource
+    canonicalCompletedC3DirichletGradientBracketSourceState
+  convert hsource using 1
+  all_goals rfl
+
+/-- The finite causal response converges separately, rather than only after it
+has been added to the boundary return. -/
+theorem canonicalCompletedC3DirichletGradientBracketGreenResponse_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    {s : ℂ} (hs : 0 < s.re) :
+    Filter.Tendsto
+      (fun cutoff : ℕ ↦
+        canonicalCompletedC3DirichletGradientBracketGreenResponse
+          base cutoff s)
+      Filter.atTop
+      (nhds (canonicalCompletedC3DirichletGradientCausalGreenState
+        base s hs)) := by
+  let responseMap : CarryVerticalL2 →L[ℂ] CarryVerticalL2 :=
+    (carryVerticalL2WeightedGreen
+      (canonicalBR2CarryAmplitudeRatio base)).comp
+      (carryWeightedVerticalCenteredBracket
+        (canonicalBR2CarryAmplitudeRatio base))
+  have hprefix :=
+    (canonicalCompletedC3DirichletGradientPrefixState_tendsto hs).comp
+      (finiteCameraWindow_add_one_tendsto_atTop hbase)
+  have hresponse :=
+    responseMap.continuous.continuousAt.tendsto.comp hprefix
+  unfold canonicalCompletedC3DirichletGradientBracketGreenResponse
+    canonicalCompletedC3DirichletGradientBracketSource
+    canonicalCompletedC3DirichletGradientCausalGreenState
+    canonicalCompletedC3DirichletGradientBracketSourceState
+  convert hresponse using 1 <;> rfl
+
+/-- The retained two-coordinate boundary return also converges separately. -/
+theorem canonicalCompletedC3DirichletGradientPrefixBoundaryReturn_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    {s : ℂ} (hs : 0 < s.re) :
+    Filter.Tendsto
+      (fun cutoff : ℕ ↦
+        canonicalCompletedC3DirichletGradientPrefixBoundaryReturn
+          hbase cutoff s)
+      Filter.atTop
+      (nhds (canonicalCompletedC3DirichletGradientBoundaryReturnState
+        hbase s hs)) := by
+  let q : ℝ := canonicalBR2CarryAmplitudeRatio base
+  let boundaryMap : CarryVerticalL2 →L[ℂ] CarryVerticalL2 :=
+    (carryWeightedVerticalReturn q
+      (canonicalBR2CarryAmplitudeRatio_pos hbase).le
+      (canonicalBR2CarryAmplitudeRatio_lt_one hbase)).comp
+        (carryWeightedVerticalTrace q)
+  have hprefix :=
+    (canonicalCompletedC3DirichletGradientPrefixState_tendsto hs).comp
+      (finiteCameraWindow_add_one_tendsto_atTop hbase)
+  have hboundary :=
+    boundaryMap.continuous.continuousAt.tendsto.comp hprefix
+  unfold canonicalCompletedC3DirichletGradientPrefixBoundaryReturn
+    canonicalCompletedC3DirichletGradientBoundaryReturnState
+  dsimp only
+  convert hboundary using 1 <;> rfl
+
+/-- The completed response and boundary reconstruct the completed TFVD state
+exactly.  Neither channel is discarded or declared zero. -/
+theorem canonicalCompletedC3DirichletGradient_causalGreen_add_boundary
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (s : ℂ) (hs : 0 < s.re) :
+    canonicalCompletedC3DirichletGradientCausalGreenState base s hs +
+        canonicalCompletedC3DirichletGradientBoundaryReturnState hbase s hs =
+      canonicalCompletedC3DirichletGradientState s hs := by
+  ext n
+  exact carryWeightedVerticalTfvd_apply
+    (canonicalBR2CarryAmplitudeRatio base)
+    (canonicalBR2CarryAmplitudeRatio_pos hbase)
+    (canonicalBR2CarryAmplitudeRatio_lt_one hbase)
+    (canonicalCompletedC3DirichletGradientState s hs) n
+
+/-- Fixed Hilbert carrier retaining the completed causal response and boundary
+return as two orthogonal coordinates. -/
+abbrev CanonicalCompletedC3CausalGreenBoundaryCarrier :=
+  WithLp 2 (CarryVerticalL2 × CarryVerticalL2)
+
+/-- Finite response/boundary state before completion. -/
+def canonicalCompletedC3DirichletGradientCausalGreenBoundaryPrefixState
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (s : ℂ) :
+    CanonicalCompletedC3CausalGreenBoundaryCarrier :=
+  WithLp.toLp 2
+    (canonicalCompletedC3DirichletGradientBracketGreenResponse base cutoff s,
+      canonicalCompletedC3DirichletGradientPrefixBoundaryReturn hbase cutoff s)
+
+/-- Channel-separated completed response/boundary state. -/
+def canonicalCompletedC3DirichletGradientCausalGreenBoundaryState
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (s : ℂ) (hs : 0 < s.re) :
+    CanonicalCompletedC3CausalGreenBoundaryCarrier :=
+  WithLp.toLp 2
+    (canonicalCompletedC3DirichletGradientCausalGreenState base s hs,
+      canonicalCompletedC3DirichletGradientBoundaryReturnState hbase s hs)
+
+/-- The full two-channel state converges in one fixed Hilbert carrier. -/
+theorem canonicalCompletedC3DirichletGradientCausalGreenBoundaryPrefixState_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    {s : ℂ} (hs : 0 < s.re) :
+    Filter.Tendsto
+      (fun cutoff : ℕ ↦
+        canonicalCompletedC3DirichletGradientCausalGreenBoundaryPrefixState
+          hbase cutoff s)
+      Filter.atTop
+      (nhds (canonicalCompletedC3DirichletGradientCausalGreenBoundaryState
+        hbase s hs)) := by
+  have hpair :=
+    (canonicalCompletedC3DirichletGradientBracketGreenResponse_tendsto
+        hbase hs).prodMk_nhds
+      (canonicalCompletedC3DirichletGradientPrefixBoundaryReturn_tendsto
+        hbase hs)
+  exact
+    (WithLp.prod_continuous_toLp
+      (p := 2) (α := CarryVerticalL2) (β := CarryVerticalL2)).continuousAt.tendsto.comp
+        hpair
+
+/-- Adding the two retained coordinates of the completed carrier recovers the
+completed ordinary TFVD state. -/
+theorem canonicalCompletedC3DirichletGradientCausalGreenBoundaryState_sum
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (s : ℂ) (hs : 0 < s.re) :
+    (canonicalCompletedC3DirichletGradientCausalGreenBoundaryState
+        hbase s hs).fst +
+      (canonicalCompletedC3DirichletGradientCausalGreenBoundaryState
+        hbase s hs).snd =
+      canonicalCompletedC3DirichletGradientState s hs := by
+  exact canonicalCompletedC3DirichletGradient_causalGreen_add_boundary
+    hbase s hs
+
+/-! ## Real-axis all-order cutoff transport -/
+
+/-- Real-height wrapper of the finite causal response/boundary carrier. -/
+def canonicalCompletedC3CausalGreenBoundaryRealAxisPrefixState
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (z : ℂ) : CanonicalCompletedC3CausalGreenBoundaryCarrier :=
+  canonicalCompletedC3DirichletGradientCausalGreenBoundaryPrefixState
+    hbase cutoff (operatorHeightParameter (z.re : ℂ))
+
+/-- Real-height wrapper of the completed causal response/boundary carrier. -/
+def canonicalCompletedC3CausalGreenBoundaryRealAxisState
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z : ℂ) : CanonicalCompletedC3CausalGreenBoundaryCarrier :=
+  canonicalCompletedC3DirichletGradientCausalGreenBoundaryState hbase
+    (operatorHeightParameter (z.re : ℂ))
+    (ofReal_mem_completedNativeHeightDomain z.re).1
+
+/-- Pointwise cutoff convergence on every real-height sampling point. -/
+theorem canonicalCompletedC3CausalGreenBoundaryRealAxisPrefixState_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z : ℂ) :
+    Filter.Tendsto
+      (fun cutoff : ℕ ↦
+        canonicalCompletedC3CausalGreenBoundaryRealAxisPrefixState
+          hbase cutoff z)
+      Filter.atTop
+      (nhds (canonicalCompletedC3CausalGreenBoundaryRealAxisState hbase z)) :=
+  canonicalCompletedC3DirichletGradientCausalGreenBoundaryPrefixState_tendsto
+    hbase (ofReal_mem_completedNativeHeightDomain z.re).1
+
+/-- Every fixed parity/order forward difference passes through the same
+channel-separated causal completion. -/
+theorem canonicalCompletedC3CausalGreenBoundary_forwardDifferenceParityJet_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (k : ℕ) (i : ℕ ⊕ ℕ) :
+    Filter.Tendsto
+      (fun cutoff : ℕ ↦ completedGreenForwardDifferenceParityJet
+        (canonicalCompletedC3CausalGreenBoundaryRealAxisPrefixState
+          hbase cutoff) k i)
+      Filter.atTop
+      (nhds (completedGreenForwardDifferenceParityJet
+        (canonicalCompletedC3CausalGreenBoundaryRealAxisState hbase) k i)) := by
+  cases i with
+  | inl n =>
+      unfold completedGreenForwardDifferenceParityJet
+        completedGreenForwardDifferenceJet
+      exact (completedGreenForwardDifference_iter_tendsto_of_pointwise
+        Filter.atTop
+        (canonicalCompletedC3CausalGreenBoundaryRealAxisPrefixState hbase)
+        (canonicalCompletedC3CausalGreenBoundaryRealAxisState hbase)
+        (canonicalCompletedC3CausalGreenBoundaryRealAxisPrefixState_tendsto
+          hbase)
+        (canonicalGreenJetStep k) (2 * n) 0).const_smul
+          (((Nat.factorial (2 * n) : ℂ) *
+            canonicalGreenJetStep k ^ (2 * n))⁻¹)
+  | inr n =>
+      unfold completedGreenForwardDifferenceParityJet
+        completedGreenForwardDifferenceJet
+      exact (completedGreenForwardDifference_iter_tendsto_of_pointwise
+        Filter.atTop
+        (canonicalCompletedC3CausalGreenBoundaryRealAxisPrefixState hbase)
+        (canonicalCompletedC3CausalGreenBoundaryRealAxisState hbase)
+        (canonicalCompletedC3CausalGreenBoundaryRealAxisPrefixState_tendsto
+          hbase)
+        (canonicalGreenJetStep k) (2 * n + 1) 0).const_smul
+          (((Nat.factorial (2 * n + 1) : ℂ) *
+            canonicalGreenJetStep k ^ (2 * n + 1))⁻¹)
+
 end
 
 end CarrySelfAdjointOperator
