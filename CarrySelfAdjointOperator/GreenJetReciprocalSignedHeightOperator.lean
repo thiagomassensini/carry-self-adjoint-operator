@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.GreenJetMomentZeroMassCriterion
 import CarrySelfAdjointOperator.RealLinearPMapKernelReduction
+import CarrySelfAdjointOperator.RealReciprocalBlockPointSpectrum
 import Mathlib.Tactic
 
 /-!
@@ -203,6 +204,67 @@ theorem closedGreenJetReducedReciprocalSignedHeightOperator_adjoint_eq
       data.selfAdjointData.operator :=
   (closedGreenJetReducedReciprocalSignedHeightData
     hrep heven hodd).selfAdjointData.adjoint_eq
+
+/-- A nonzero complex signed root of a real point eigenvalue of the canonical
+Green energy square is a point eigenvalue of the canonical reduced signed
+height operator. -/
+theorem closedGreenJetReducedReciprocalSignedHeight_hasEigenvalue_of_adjointSquare_complex
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (heven : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)))
+    (hodd : LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)))
+    {lambda : ℝ} {mu : ℂ} (hlambda : lambda ≠ 0)
+    (hmu : mu ^ 2 * (lambda : ℂ) = 1)
+    (x : (closedGreenJetEnergyAdjointSquare hrep heven hodd).domain)
+    (hx : (x : greenJetEvenHilbertSubspace jet) ≠ 0)
+    (hAx : closedGreenJetEnergyAdjointSquare hrep heven hodd x =
+      lambda • (x : greenJetEvenHilbertSubspace jet)) :
+    LinearPMap.HasEigenvalue
+      (closedGreenJetReducedReciprocalSignedHeightData
+        hrep heven hodd).selfAdjointData.complexification mu := by
+  letI : InnerProductSpace ℝ (greenJetEvenHilbertSubspace jet) :=
+    coherentReducedGreenJetEvenInnerProductSpace jet
+  letI : InnerProductSpace ℝ (greenJetOddHilbertSubspace jet) :=
+    coherentReducedGreenJetOddInnerProductSpace jet
+  letI : CompleteSpace (greenJetEvenHilbertSubspace jet) :=
+    (greenJetEvenHilbertSubspace_isClosed jet).completeSpace_coe
+  letI : CompleteSpace (greenJetOddHilbertSubspace jet) :=
+    (greenJetOddHilbertSubspace_isClosed jet).completeSpace_coe
+  let B : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetOddHilbertSubspace jet :=
+    closedGreenJetEnergyFactor hrep heven hodd
+  let hB : Dense (B.domain : Set (greenJetEvenHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_domain hrep heven hodd
+  have hBadjDomain : Dense ((B.realAdjoint hB).domain :
+      Set (greenJetOddHilbertSubspace jet)) := by
+    change Dense ((closedGreenJetEnergyRealAdjoint hrep heven hodd).domain :
+      Set (greenJetOddHilbertSubspace jet))
+    exact closedGreenJetEnergyRealAdjoint_dense_domain hrep heven hodd
+  have hBclosed : B.IsClosed :=
+    closedGreenJetEnergyFactor_isClosed hrep heven hodd
+  have hBrange : Dense (LinearMap.range B.toFun :
+      Set (greenJetOddHilbertSubspace jet)) :=
+    closedGreenJetEnergyFactor_dense_range hrep heven hodd
+  let squareB : greenJetEvenHilbertSubspace jet →ₗ.[ℝ]
+      greenJetEvenHilbertSubspace jet :=
+    B.realAdjointSquare hB
+  have hAeq : closedGreenJetEnergyAdjointSquare hrep heven hodd = squareB := by
+    rfl
+  have heigenB : ∃ xb : squareB.domain,
+      (xb : greenJetEvenHilbertSubspace jet) ≠ 0 ∧
+        squareB xb = lambda • (xb : greenJetEvenHilbertSubspace jet) := by
+    rw [← hAeq]
+    exact ⟨x, hx, hAx⟩
+  obtain ⟨xb, hxb, hBxb⟩ := heigenB
+  have hsigned :=
+    B.reducedRealReciprocalOffDiagonalSelfAdjointData_hasEigenvalue_of_adjointSquare_complex
+      hB hBadjDomain hBclosed hBrange hlambda hmu xb hxb hBxb
+  change LinearPMap.HasEigenvalue
+    (B.reducedRealReciprocalOffDiagonalSelfAdjointData
+      hB hBadjDomain hBclosed hBrange).complexification mu
+  exact hsigned
 
 /-! ## The reciprocal signed operator -/
 

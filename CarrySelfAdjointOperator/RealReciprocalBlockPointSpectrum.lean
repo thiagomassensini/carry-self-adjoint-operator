@@ -102,6 +102,150 @@ theorem realReciprocalOffDiagonal_hasRealEigenvalue_of_adjointSquare
         nlinarith [hmu]]
       exact (one_smul ℝ _).symm
 
+/-- A real eigenmode of `T* T` also produces a genuinely complex signed
+eigenvalue of the complexified reciprocal block whenever
+`mu ^ 2 * lambda = 1`.  Unlike the real version above, this statement does
+not assume in advance that the signed height `mu` is real. -/
+theorem complexification_realReciprocalOffDiagonal_hasEigenvalue_of_adjointSquare_complex
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E))
+    (hKer : LinearMap.ker T.toFun = ⊥)
+    (hAdjointKer : LinearMap.ker
+      (T.realAdjoint hDomain).toFun = ⊥)
+    {lambda : ℝ} {mu : ℂ} (hlambda : lambda ≠ 0)
+    (hmu : mu ^ 2 * (lambda : ℂ) = 1)
+    (x : (T.realAdjointSquare hDomain).domain)
+    (hx : (x : E) ≠ 0)
+    (hAx : T.realAdjointSquare hDomain x = lambda • (x : E)) :
+    HasEigenvalue (T.realReciprocalOffDiagonal hDomain).complexification
+      mu := by
+  let H := T.realReciprocalOffDiagonal hDomain
+  let p : H.domain :=
+    T.realReciprocalOffDiagonalFirstSquareInput hDomain x
+  let q : H.domain :=
+    T.realReciprocalOffDiagonalSecondSquareInput hDomain hAdjointKer x
+  let pc : H.complexification.domain :=
+    ⟨CarrySelfAdjointOperator.RealHilbertComplexification.mk
+        (p : WithLp 2 (E × F)) 0,
+      ⟨p.property, H.domain.zero_mem⟩⟩
+  let qc : H.complexification.domain :=
+    ⟨CarrySelfAdjointOperator.RealHilbertComplexification.mk
+        (q : WithLp 2 (E × F)) 0,
+      ⟨q.property, H.domain.zero_mem⟩⟩
+  let firstBlock : CarrySelfAdjointOperator.RealHilbertComplexification
+      (WithLp 2 (E × F)) :=
+    CarrySelfAdjointOperator.RealHilbertComplexification.mk
+      (WithLp.toLp 2 ((x : E), 0)) 0
+  let coefficient : ℂ := mu * (lambda : ℂ)
+  let eigenvector : H.complexification.domain :=
+    pc + coefficient • qc
+  have hpcRe : H.complexificationDomainRe pc = p := by
+    apply Subtype.ext
+    rfl
+  have hpcIm : H.complexificationDomainIm pc = 0 := by
+    apply Subtype.ext
+    rfl
+  have hqcRe : H.complexificationDomainRe qc = q := by
+    apply Subtype.ext
+    rfl
+  have hqcIm : H.complexificationDomainIm qc = 0 := by
+    apply Subtype.ext
+    rfl
+  have hpApply : WithLp.ofLp (H p) =
+      (0, T (T.realAdjointSquareFirstDomain hDomain x)) := by
+    simpa only [H, p] using
+      T.realReciprocalOffDiagonal_apply_firstSquareInput
+        hDomain hAdjointKer x
+  have hqApply : WithLp.ofLp (H q) = ((x : E), 0) := by
+    simpa only [H, q] using
+      T.realReciprocalOffDiagonal_apply_secondSquareInput
+        hDomain hKer hAdjointKer x
+  have hpcApply : H.complexification pc =
+      (qc : CarrySelfAdjointOperator.RealHilbertComplexification
+        (WithLp 2 (E × F))) := by
+    apply CarrySelfAdjointOperator.RealHilbertComplexification.ext
+    · rw [re_complexification_apply, hpcRe]
+      rfl
+    · rw [im_complexification_apply, hpcIm, H.map_zero]
+      rfl
+  have hqcApply : H.complexification qc = firstBlock := by
+    apply CarrySelfAdjointOperator.RealHilbertComplexification.ext
+    · rw [re_complexification_apply, hqcRe]
+      exact WithLp.ofLp_injective 2 hqApply
+    · rw [im_complexification_apply, hqcIm, H.map_zero]
+      rfl
+  have hpValue :
+      (pc : CarrySelfAdjointOperator.RealHilbertComplexification
+        (WithLp 2 (E × F))) = (lambda : ℂ) • firstBlock := by
+    apply CarrySelfAdjointOperator.RealHilbertComplexification.ext
+    · simp only [pc, firstBlock,
+        CarrySelfAdjointOperator.RealHilbertComplexification.re_mk,
+        CarrySelfAdjointOperator.RealHilbertComplexification.re_smul,
+        Complex.ofReal_re, Complex.ofReal_im, zero_smul, sub_zero]
+      apply WithLp.ofLp_injective 2
+      rw [show WithLp.ofLp (p : WithLp 2 (E × F)) =
+          (T.realAdjointSquare hDomain x, 0) by rfl,
+        WithLp.ofLp_smul]
+      exact Prod.ext hAx (by simp)
+    · rw [CarrySelfAdjointOperator.RealHilbertComplexification.im_smul]
+      simp [pc, firstBlock]
+  refine ⟨eigenvector, ?_, ?_⟩
+  · intro hzero
+    dsimp only [eigenvector] at hzero
+    change
+      (pc : CarrySelfAdjointOperator.RealHilbertComplexification
+        (WithLp 2 (E × F))) + coefficient •
+          (qc : CarrySelfAdjointOperator.RealHilbertComplexification
+            (WithLp 2 (E × F))) = 0 at hzero
+    have hzero' :
+        (pc : CarrySelfAdjointOperator.RealHilbertComplexification
+          (WithLp 2 (E × F))) + coefficient •
+            (qc : CarrySelfAdjointOperator.RealHilbertComplexification
+              (WithLp 2 (E × F))) = 0 := by
+      exact hzero
+    have hre := congrArg
+      CarrySelfAdjointOperator.RealHilbertComplexification.re hzero'
+    rw [CarrySelfAdjointOperator.RealHilbertComplexification.re_add,
+      CarrySelfAdjointOperator.RealHilbertComplexification.re_smul,
+      CarrySelfAdjointOperator.RealHilbertComplexification.re_zero] at hre
+    have hpcReValue :
+        CarrySelfAdjointOperator.RealHilbertComplexification.re
+          (pc : CarrySelfAdjointOperator.RealHilbertComplexification
+            (WithLp 2 (E × F))) = (p : WithLp 2 (E × F)) := rfl
+    have hqcReValue :
+        CarrySelfAdjointOperator.RealHilbertComplexification.re
+          (qc : CarrySelfAdjointOperator.RealHilbertComplexification
+            (WithLp 2 (E × F))) = (q : WithLp 2 (E × F)) := rfl
+    have hqcImValue :
+        CarrySelfAdjointOperator.RealHilbertComplexification.im
+          (qc : CarrySelfAdjointOperator.RealHilbertComplexification
+            (WithLp 2 (E × F))) = 0 := rfl
+    rw [hpcReValue, hqcReValue, hqcImValue, smul_zero, sub_zero] at hre
+    have hfirst := congrArg
+      (fun y : WithLp 2 (E × F) => (WithLp.ofLp y).1) hre
+    have hqFirst : (WithLp.ofLp (q : WithLp 2 (E × F))).1 = 0 := by
+      change (WithLp.ofLp (H p)).1 = 0
+      rw [hpApply]
+    rw [WithLp.ofLp_add, WithLp.ofLp_smul, Prod.fst_add,
+      Prod.smul_fst, hqFirst, smul_zero, add_zero] at hfirst
+    change T.realAdjointSquare hDomain x = 0 at hfirst
+    rw [hAx] at hfirst
+    exact hx ((smul_eq_zero.mp hfirst).resolve_left hlambda)
+  · change H.complexification (pc + coefficient • qc) =
+      mu • ((pc : CarrySelfAdjointOperator.RealHilbertComplexification
+        (WithLp 2 (E × F))) + coefficient •
+          (qc : CarrySelfAdjointOperator.RealHilbertComplexification
+            (WithLp 2 (E × F))))
+    rw [H.complexification.map_add, H.complexification.map_smul,
+      hpcApply, hqcApply, hpValue]
+    have hmuc : mu * coefficient = 1 := by
+      dsimp only [coefficient]
+      rw [← mul_assoc, ← pow_two, hmu]
+    rw [smul_add, smul_smul, smul_smul, hmuc, one_smul]
+    dsimp only [coefficient]
+    rw [mul_smul]
+    exact add_comm _ _
+
 /-- A nonzero point eigenmode of `T* T` lies in the canonical orthogonal
 kernel support and remains an eigenmode of the maximal adjoint square after
 kernel reduction. Thus the reduction removes only the zero mode. -/
@@ -227,6 +371,68 @@ theorem complexification_kernelReducedReciprocal_hasEigenvalue_of_adjointSquare
       hDomain hClosed hlambda x hx hAx
   exact R.complexification_realReciprocalOffDiagonal_hasEigenvalue_of_adjointSquare
     hRDomain hRKer hRAdjointKer hlambda hmu xr hxr hRx
+
+/-- Complex signed-height transport through canonical kernel reduction.  The
+positive-square eigenvalue remains real, but the reciprocal signed root is
+allowed to be complex until self-adjointness of the reduced block forces its
+reality. -/
+theorem complexification_kernelReducedReciprocal_hasEigenvalue_of_adjointSquare_complex
+    [CompleteSpace E]
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E))
+    (hClosed : T.IsClosed)
+    (hRange : Dense (LinearMap.range T.toFun : Set F))
+    {lambda : ℝ} {mu : ℂ} (hlambda : lambda ≠ 0)
+    (hmu : mu ^ 2 * (lambda : ℂ) = 1)
+    (x : (T.realAdjointSquare hDomain).domain)
+    (hx : (x : E) ≠ 0)
+    (hAx : T.realAdjointSquare hDomain x = lambda • (x : E)) :
+    let R := T.kernelOrthogonalReduction hClosed
+    let hRDomain := T.kernelOrthogonalReduction_dense_domain hClosed hDomain
+    HasEigenvalue (R.realReciprocalOffDiagonal hRDomain).complexification
+      mu := by
+  dsimp only
+  let R := T.kernelOrthogonalReduction hClosed
+  let hRDomain : Dense (R.domain : Set (T.kernelSupport hClosed)) :=
+    T.kernelOrthogonalReduction_dense_domain hClosed hDomain
+  have hRKer : LinearMap.ker R.toFun = ⊥ :=
+    T.kernelOrthogonalReduction_ker_eq_bot hClosed
+  have hRRange : Dense (LinearMap.range R.toFun : Set F) :=
+    T.kernelOrthogonalReduction_dense_range hClosed hRange
+  have hRAdjointKer : LinearMap.ker
+      (R.realAdjoint hRDomain).toFun = ⊥ :=
+    R.realAdjoint_ker_eq_bot_of_denseRange hRDomain hRRange
+  obtain ⟨xr, hxr, hRx⟩ :=
+    T.exists_kernelOrthogonalReduction_adjointSquare_eigenvector
+      hDomain hClosed hlambda x hx hAx
+  exact
+    R.complexification_realReciprocalOffDiagonal_hasEigenvalue_of_adjointSquare_complex
+      hRDomain hRKer hRAdjointKer hlambda hmu xr hxr hRx
+
+/-- Bundled form of the complex signed-root transport.  Its target is exactly
+the complexification exported by the canonical reduced maximal self-adjoint
+package. -/
+theorem reducedRealReciprocalOffDiagonalSelfAdjointData_hasEigenvalue_of_adjointSquare_complex
+    [CompleteSpace E] [CompleteSpace F]
+    (T : E →ₗ.[ℝ] F)
+    (hDomain : Dense (T.domain : Set E))
+    (hAdjointDomain : Dense ((T.realAdjoint hDomain).domain : Set F))
+    (hClosed : T.IsClosed)
+    (hRange : Dense (LinearMap.range T.toFun : Set F))
+    {lambda : ℝ} {mu : ℂ} (hlambda : lambda ≠ 0)
+    (hmu : mu ^ 2 * (lambda : ℂ) = 1)
+    (x : (T.realAdjointSquare hDomain).domain)
+    (hx : (x : E) ≠ 0)
+    (hAx : T.realAdjointSquare hDomain x = lambda • (x : E)) :
+    HasEigenvalue
+      (T.reducedRealReciprocalOffDiagonalSelfAdjointData
+        hDomain hAdjointDomain hClosed hRange).complexification mu := by
+  let R := T.kernelOrthogonalReduction hClosed
+  let hRDomain : Dense (R.domain : Set (T.kernelSupport hClosed)) :=
+    T.kernelOrthogonalReduction_dense_domain hClosed hDomain
+  change HasEigenvalue (R.realReciprocalOffDiagonal hRDomain).complexification mu
+  exact T.complexification_kernelReducedReciprocal_hasEigenvalue_of_adjointSquare_complex
+    hDomain hClosed hRange hlambda hmu x hx hAx
 
 /-- End-to-end operator-theoretic pole transport. A meromorphic graph
 resolvent of the complexified positive square at `lambda⁻¹`, detected by a

@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.CompletedNativeHPConfinement
+import CarrySelfAdjointOperator.RealReciprocalBlockPointSpectrum
 import CarrySelfAdjointOperator.BR2ProjectiveHilbertIncidenceTransport
 import CarrySelfAdjointOperator.BR2CenterLegCoefficientRecurrence
 import CarrySelfAdjointOperator.CompletedGreenForwardDifferenceVectorLimit
@@ -375,6 +376,104 @@ theorem completedJacobiEnergyComplexification_hasEigenvalue_inv_sq_of_globalGrap
 
 set_option maxHeartbeats 800000 in
 set_option synthInstance.maxHeartbeats 300000 in
+/-- Direct signed-height form of the HP spectral arrow.  A native zero and
+the global graph continuation produce the height `z₀` itself as a point
+eigenvalue of the already-constructed reduced signed-height operator.  No
+reality assumption on `z₀` and no positivity argument occur in this
+transport. -/
+theorem reducedSignedHeightComplexification_hasEigenvalue_of_globalGraphResolvent
+    (certificate : CompletedNativeRealHPCarrierCertificate jet)
+    {z₀ : ℂ}
+    (hzDomain : z₀ ∈ completedNativeHeightDomain)
+    (hzero : completedNativeOperatorCharacteristic z₀ = 0)
+    (hglobal : certificate.HasGlobalGraphResolventAt z₀) :
+    LinearPMap.HasEigenvalue
+      certificate.toReducedMaximalSelfAdjointHeightData.selfAdjointData.complexification
+      z₀ := by
+  let data := certificate.completedJacobiEnergySelfAdjointData
+  have hz₀ : z₀ ≠ 0 := by
+    intro hz
+    subst z₀
+    exact completedNativeOperatorCharacteristic_zero_ne_zero hzero
+  have heigen :
+      LinearPMap.HasEigenvalue data.complexification (z₀ ^ 2)⁻¹ :=
+    certificate.completedJacobiEnergyComplexification_hasEigenvalue_inv_sq_of_globalGraphResolvent
+      hzDomain hzero hglobal
+  have hlambdaIm : ((z₀ ^ 2)⁻¹).im = 0 :=
+    LinearPMap.eigenvalue_im_eq_zero_of_isSelfAdjoint
+      data.complexification_isSelfAdjoint heigen
+  let lambda : ℝ := ((z₀ ^ 2)⁻¹).re
+  have hlambdaComplex : (lambda : ℂ) = (z₀ ^ 2)⁻¹ := by
+    apply Complex.ext
+    · change lambda = ((z₀ ^ 2)⁻¹).re
+      rfl
+    · change (0 : ℝ) = ((z₀ ^ 2)⁻¹).im
+      exact hlambdaIm.symm
+  have heigenRealComplex :
+      LinearPMap.HasEigenvalue data.complexification (lambda : ℂ) := by
+    rw [hlambdaComplex]
+    exact heigen
+  obtain ⟨x, hx, hAx⟩ :=
+    LinearPMap.hasRealEigenvalue_of_complexification_hasEigenvalue
+      heigenRealComplex
+  have hlambda : lambda ≠ 0 := by
+    intro hlambdaZero
+    have : ((z₀ ^ 2)⁻¹ : ℂ) = 0 := by
+      rw [← hlambdaComplex, hlambdaZero]
+      norm_num
+    exact inv_ne_zero (pow_ne_zero 2 hz₀) this
+  have hroot : z₀ ^ 2 * (lambda : ℂ) = 1 := by
+    rw [hlambdaComplex]
+    exact mul_inv_cancel₀ (pow_ne_zero 2 hz₀)
+  let completed := completedGreenJet jet
+  let hrep := completedGreenJet_gramRepresentation certificate.momentKernel
+  let heven := completedGreenJet_even_linearIndependent certificate.evenIndependent
+  let hodd := completedGreenJet_odd_linearIndependent certificate.oddIndependent
+  let square := closedGreenJetEnergyAdjointSquare hrep heven hodd
+  have hAeq : data.operator = square := by
+    rfl
+  have heigenSquare : ∃ xs : square.domain,
+      (xs : EvenCarrier jet) ≠ 0 ∧
+        square xs = lambda • (xs : EvenCarrier jet) := by
+    rw [← hAeq]
+    exact ⟨x, hx, hAx⟩
+  obtain ⟨xs, hxs, hSquareXs⟩ := heigenSquare
+  have hsigned :=
+    closedGreenJetReducedReciprocalSignedHeight_hasEigenvalue_of_adjointSquare_complex
+      hrep heven hodd hlambda hroot xs hxs hSquareXs
+  change LinearPMap.HasEigenvalue
+    (closedGreenJetReducedReciprocalSignedHeightData
+      hrep heven hodd).selfAdjointData.complexification z₀
+  exact hsigned
+
+set_option maxHeartbeats 800000 in
+set_option synthInstance.maxHeartbeats 300000 in
+/-- Direct Hilbert--Polya conclusion through the signed-height operator.  Once
+the native zero has been transported to the point spectrum, maximal
+self-adjointness alone forces the height to be real. -/
+theorem zero_im_eq_zero_of_signedHeightGlobalGraphResolvent
+    (certificate : CompletedNativeRealHPCarrierCertificate jet)
+    {z₀ : ℂ}
+    (hzDomain : z₀ ∈ completedNativeHeightDomain)
+    (hzero : completedNativeOperatorCharacteristic z₀ = 0)
+    (hglobal : certificate.HasGlobalGraphResolventAt z₀) :
+    z₀.im = 0 := by
+  let signed := certificate.toReducedMaximalSelfAdjointHeightData
+  letI : CompleteSpace signed.sourceSupport :=
+    signed.sourceSupport_isClosed.completeSpace_coe
+  letI : CompleteSpace
+      (greenJetOddHilbertSubspace (completedGreenJet jet)) :=
+    (greenJetOddHilbertSubspace_isClosed
+      (completedGreenJet jet)).completeSpace_coe
+  have heigen : LinearPMap.HasEigenvalue
+      signed.selfAdjointData.complexification z₀ :=
+    certificate.reducedSignedHeightComplexification_hasEigenvalue_of_globalGraphResolvent
+      hzDomain hzero hglobal
+  exact LinearPMap.eigenvalue_im_eq_zero_of_isSelfAdjoint
+    signed.selfAdjointData.complexification_isSelfAdjoint heigen
+
+set_option maxHeartbeats 800000 in
+set_option synthInstance.maxHeartbeats 300000 in
 /-- Carrier-correct Hilbert--Polya implication.  No complex radial Taylor
 certificate occurs in this theorem. -/
 theorem zero_im_eq_zero_of_globalGraphResolvent
@@ -384,20 +483,8 @@ theorem zero_im_eq_zero_of_globalGraphResolvent
     (hzero : completedNativeOperatorCharacteristic z₀ = 0)
     (hglobal : certificate.HasGlobalGraphResolventAt z₀) :
     z₀.im = 0 := by
-  let data := certificate.completedJacobiEnergySelfAdjointData
-  have hz₀ : z₀ ≠ 0 := by
-    intro hz
-    subst z₀
-    exact completedNativeOperatorCharacteristic_zero_ne_zero hzero
-  have heigen :
-      LinearPMap.HasEigenvalue data.complexification (z₀ ^ 2)⁻¹ := by
-    exact certificate.completedJacobiEnergyComplexification_hasEigenvalue_inv_sq_of_globalGraphResolvent
-      hzDomain hzero hglobal
-  have hspectrum :=
-    data.complexification_eigenvalue_real_nonneg
-      certificate.completedJacobiEnergyOperator_inner_nonneg heigen
-  exact complex_im_eq_zero_of_sq_inv_real_nonneg
-    hz₀ hspectrum.1 hspectrum.2
+  exact certificate.zero_im_eq_zero_of_signedHeightGlobalGraphResolvent
+    hzDomain hzero hglobal
 
 end CompletedNativeRealHPCarrierCertificate
 
