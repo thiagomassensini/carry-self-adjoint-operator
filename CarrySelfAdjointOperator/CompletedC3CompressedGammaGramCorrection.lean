@@ -506,6 +506,70 @@ theorem canonicalCompletedC3FiniteGammaCorrectionBalance_eq_energyDifference
   rw [inner_re_symm]
   ring
 
+/-- The finite ambient TFVD energy is the ordinary carry-gradient prefix
+energy with the radial first-leg factor exposed.  This is an isometric
+packing computation and does not use a Green or Gamma sewing statement. -/
+theorem canonicalCompletedC3FiniteAmbientTfvdEnergy_eq_prefix
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (z : ℂ) :
+    ‖canonicalCompletedC3GammaNaimarkView
+        (realifiedLogarithmicDomainEmbedding
+          (canonicalCompletedC3CausalResponseBoundaryDomainVector
+            hbase cutoff (operatorHeightParameter z)))‖ ^ 2 =
+      (completedC3RadialRealCoefficient (operatorHeightParameter z) ^ 2 + 1) *
+        ‖canonicalCompletedC3DirichletGradientPrefixState
+          (operatorHeightParameter z)
+          (NativeCarrySpectralWeyl.Limits.finiteCameraWindow base cutoff + 1)‖ ^ 2 := by
+  let N := NativeCarrySpectralWeyl.Limits.finiteCameraWindow base cutoff + 1
+  let s := operatorHeightParameter z
+  let x := NativeCarryC3Crosswalk.finiteC3GenuineBracketGreenBoundaryPair N s
+  rw [norm_sq_eq_re_inner (𝕜 := ℂ)]
+  rw [canonicalCompletedC3CausalResponseBoundaryDomainVector_embedding]
+  change (inner ℂ
+      (canonicalCompletedC3GammaNaimarkView
+        (finiteC3SymplecticNaimarkRealization N x))
+      (canonicalCompletedC3GammaNaimarkView
+        (finiteC3SymplecticNaimarkRealization N x))).re = _
+  rw [show finiteC3SymplecticNaimarkRealization N x =
+      realifiedNaimarkPort (finiteC3SymplecticCameraPacking N x) by rfl,
+    inner_complex_gammaNaimarkView_port_port,
+    inner_canonicalCompletedC3GammaCameraView_re]
+  rw [finiteC3SymplecticCameraPacking_apply]
+  simp only [WithLp.toLp_fst, WithLp.toLp_snd, inner_neg_left,
+    inner_neg_right, neg_neg]
+  rw [finiteC3GenuineFirstLegCamera_eq_radial_completedPrefix,
+    finiteC3GenuineSecondLegCamera_eq_completedPrefix]
+  simp only [real_inner_self_eq_norm_sq]
+  unfold completedC3LegCameraState
+  simp only [norm_smul, completedC3GlobalLegCameraIsometry.norm_map,
+    Real.norm_eq_abs]
+  rw [mul_pow, sq_abs]
+  dsimp [s, N]
+  simp only [Nat.add_comm]
+  ring
+
+/-- Completed form of the same isometric packing computation. -/
+theorem canonicalCompletedC3AmbientResponseEnergy_eq_gradient
+    (z : ℂ) (hzHalf : 0 < (operatorHeightParameter z).re) :
+    ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+      (completedC3RadialRealCoefficient (operatorHeightParameter z) ^ 2 + 1) *
+        ‖canonicalCompletedC3DirichletGradientState
+          (operatorHeightParameter z) hzHalf‖ ^ 2 := by
+  rw [norm_sq_eq_re_inner (𝕜 := ℂ)]
+  unfold canonicalCompletedC3AmbientResponseState
+    completedC3SymplecticNaimarkState
+  rw [inner_complex_gammaNaimarkView_port_port,
+    RCLike.re_eq_complex_re,
+    inner_canonicalCompletedC3GammaCameraView_re]
+  unfold completedC3SymplecticCameraState
+  simp only [WithLp.toLp_fst, WithLp.toLp_snd, inner_neg_left,
+    inner_neg_right, neg_neg, real_inner_self_eq_norm_sq]
+  unfold completedC3LegCameraState
+  simp only [norm_smul, completedC3GlobalLegCameraIsometry.norm_map,
+    Real.norm_eq_abs]
+  rw [mul_pow, sq_abs]
+  ring
+
 /-- The same energy-difference identity after completion.  This is obtained
 from the exact Hilbert-space state factorization, independently of the
 finite-limit theorem. -/
@@ -540,6 +604,20 @@ theorem canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_energy
     exact sub_eq_zero.mp ((mul_eq_zero.mp h).resolve_left hz)
   · intro h
     rw [h, sub_self, mul_zero]
+
+/-- Fully geometric spelling of the completed cancellation gate.  The left
+energy is now an ordinary carry-gradient norm; the right energy remains the
+canonical Gamma/Cauchy response norm. -/
+theorem canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_gradientEnergy
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    canonicalCompletedC3GammaCorrectionBalance z hz hzHalf = 0 ↔
+      (completedC3RadialRealCoefficient (operatorHeightParameter z) ^ 2 + 1) *
+          ‖canonicalCompletedC3DirichletGradientState
+            (operatorHeightParameter z) hzHalf‖ ^ 2 =
+        ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 := by
+  rw [canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_energy,
+    canonicalCompletedC3AmbientResponseEnergy_eq_gradient]
 
 /-- The exact finite cancellation balances converge to the completed
 balance.  In particular, no nonzero finite channel is discarded when the
@@ -611,6 +689,38 @@ theorem canonicalCompletedC3FiniteTfvdGammaEnergyDifference_tendsto
       congrArg nhds
         (canonicalCompletedC3GammaCorrectionBalance_eq_energyDifference
           z hz hzHalf).symm
+
+/-- The finite-to-completed limit with the TFVD side expanded entirely into
+the ordinary carry-gradient prefix. -/
+theorem canonicalCompletedC3FiniteGradientGammaEnergyDifference_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    Tendsto
+      (fun cutoff : ℕ =>
+        z.im *
+          ((completedC3RadialRealCoefficient (operatorHeightParameter z) ^ 2 + 1) *
+              ‖canonicalCompletedC3DirichletGradientPrefixState
+                (operatorHeightParameter z)
+                (NativeCarrySpectralWeyl.Limits.finiteCameraWindow
+                  base cutoff + 1)‖ ^ 2 -
+            ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2))
+      atTop
+      (nhds (z.im *
+        ((completedC3RadialRealCoefficient (operatorHeightParameter z) ^ 2 + 1) *
+            ‖canonicalCompletedC3DirichletGradientState
+              (operatorHeightParameter z) hzHalf‖ ^ 2 -
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2))) := by
+  have hlimit :=
+    canonicalCompletedC3FiniteTfvdGammaEnergyDifference_tendsto
+      hbase z hz hzHalf
+  convert hlimit using 1
+  · funext cutoff
+    rw [canonicalCompletedC3FiniteAmbientTfvdEnergy_eq_prefix]
+  · exact congrArg nhds (congrArg (fun energy : ℝ =>
+      z.im * (energy -
+        ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2))
+      (canonicalCompletedC3AmbientResponseEnergy_eq_gradient z hzHalf).symm)
 
 /-- An exact finite-cutoff cancellation identity passes to the completed
 balance.  This is the non-asymptotic interface expected from the native
