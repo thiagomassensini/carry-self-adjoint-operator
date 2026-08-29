@@ -137,6 +137,117 @@ theorem canonicalCompletedC3OnePointCompletedTraceProjection_state_eq
     canonicalCompletedC3AllCutoffOnePointState_completedValue_eq M hz]
   rfl
 
+/-! ## Completed enriched one-point state -/
+
+/-- The actual all-cutoff limit of the enriched TFVD state.  The direct,
+reflected, and quarter-turned Naimark vectors remain present, while each of
+the four boundary traces is completed independently. -/
+def canonicalCompletedC3CompletedOnePointState
+    (z : ℂ)
+    (hz : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    CanonicalCompletedC3AllCutoffOnePointHilbert :=
+  WithLp.toLp 2
+    (completedC3SymplecticNaimarkState
+        (operatorHeightParameter z) hz.1,
+      WithLp.toLp 2
+        (completedC3SymplecticNaimarkState
+            (reflectedParameter (operatorHeightParameter z))
+            (by
+              simpa [reflectedParameter] using sub_pos.mpr hz.2),
+          WithLp.toLp 2
+            (completedC3QuarterTurnSymplecticNaimarkState
+                (reflectedParameter (operatorHeightParameter z))
+                (by
+                  simpa [reflectedParameter] using sub_pos.mpr hz.2),
+              WithLp.toLp 2
+                (bracketedDirichletChart 3 (operatorHeightParameter z),
+                  WithLp.toLp 2
+                    (canonicalCompletedC3EnrichedTfvdLogJetTailReadout
+                        (operatorHeightParameter z),
+                      WithLp.toLp 2 (0, 0))))))
+
+/-- The permanent cutoff states converge as vectors to the completed
+enriched TFVD state.  This combines the three Naimark vector limits with the
+four separate head/tail limits; no scalar readout is used in the proof. -/
+theorem canonicalCompletedC3AllCutoffOnePointState_tendsto_completed
+    {z : ℂ}
+    (hz : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    Filter.Tendsto
+      (fun M : ℕ => canonicalCompletedC3AllCutoffOnePointState M z)
+      Filter.atTop
+      (nhds (canonicalCompletedC3CompletedOnePointState z hz)) := by
+  have hreflected :
+      0 < (reflectedParameter (operatorHeightParameter z)).re := by
+    simpa [reflectedParameter] using sub_pos.mpr hz.2
+  have hdirect :=
+    canonicalC3AllCutoffGenuineSymplecticNaimarkRealization_tendsto hz.1
+  have hreflectedState :=
+    canonicalC3AllCutoffGenuineSymplecticNaimarkRealization_tendsto
+      hreflected
+  have hquarterTurn :=
+    canonicalC3AllCutoffGenuineQuarterTurnSymplecticNaimarkRealization_tendsto
+      hreflected
+  have hvalueHead :=
+    finiteBracketedDirichletChart_tendsto
+      3 (by norm_num) (s := operatorHeightParameter z) (by linarith [hz.1])
+  have hlogJetHead :=
+    finiteCanonicalLogBracketChart_tendsto_completed hz.1
+  have hvalueTail :=
+    realCpBracketCutoffTail_tendsto_zero
+      3 (by norm_num) (s := operatorHeightParameter z) (by linarith [hz.1])
+  have hlogJetTail := canonicalC3LogJetCutoffTail_tendsto_zero hz.1
+  have htailPair := hvalueTail.prodMk_nhds hlogJetTail
+  have htail :=
+    (WithLp.prod_continuous_toLp 2 _ _).continuousAt.tendsto.comp htailPair
+  have hlogJetPair := hlogJetHead.prodMk_nhds htail
+  have hlogJet :=
+    (WithLp.prod_continuous_toLp 2 _ _).continuousAt.tendsto.comp hlogJetPair
+  have hvaluePair := hvalueHead.prodMk_nhds hlogJet
+  have htrace :=
+    (WithLp.prod_continuous_toLp 2 _ _).continuousAt.tendsto.comp hvaluePair
+  have hquarterPair := hquarterTurn.prodMk_nhds htrace
+  have hquarter :=
+    (WithLp.prod_continuous_toLp 2 _ _).continuousAt.tendsto.comp hquarterPair
+  have hreflectedPair := hreflectedState.prodMk_nhds hquarter
+  have hreflectedBlock :=
+    (WithLp.prod_continuous_toLp 2 _ _).continuousAt.tendsto.comp
+      hreflectedPair
+  have hfullPair := hdirect.prodMk_nhds hreflectedBlock
+  have hfull :=
+    (WithLp.prod_continuous_toLp 2 _ _).continuousAt.tendsto.comp hfullPair
+  unfold canonicalCompletedC3AllCutoffOnePointState
+    canonicalCompletedC3CompletedOnePointState
+  convert hfull using 1
+  funext M
+  rfl
+
+/-- The completed trace projection of the vector limit is the exact raw
+value/log-jet boundary pair. -/
+theorem canonicalCompletedC3OnePointCompletedTraceProjection_completed_eq
+    {z : ℂ}
+    (hz : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    canonicalCompletedC3OnePointCompletedTraceProjection
+        (canonicalCompletedC3CompletedOnePointState z hz) =
+      completedScalarBoundaryTraceState
+        canonicalCompletedC3RawHeightValue
+        canonicalCompletedC3RawHeightCompanion z := by
+  have hlimit :=
+    canonicalCompletedC3OnePointCompletedTraceProjection.continuous.continuousAt.tendsto.comp
+      (canonicalCompletedC3AllCutoffOnePointState_tendsto_completed hz)
+  have hcanonical : Filter.Tendsto
+      (fun M : ℕ =>
+        canonicalCompletedC3OnePointCompletedTraceProjection
+          (canonicalCompletedC3AllCutoffOnePointState M z))
+      Filter.atTop
+      (nhds
+        (completedScalarBoundaryTraceState
+          canonicalCompletedC3RawHeightValue
+          canonicalCompletedC3RawHeightCompanion z)) := by
+    refine tendsto_const_nhds.congr' (Filter.Eventually.of_forall fun M => ?_)
+    exact
+      (canonicalCompletedC3OnePointCompletedTraceProjection_state_eq M hz).symm
+  exact tendsto_nhds_unique hlimit hcanonical
+
 /-! ## Full direct-sum operator carrier -/
 
 /-- Hilbert carrier of the xi-weighted raw C3 trace and the independently
@@ -156,6 +267,45 @@ def canonicalCompletedC3FullWronskianOperatorState
         canonicalCompletedC3OnePointCompletedTraceProjection
           (canonicalCompletedC3AllCutoffOnePointState M z),
       canonicalCompletedC3ArchimedeanChartOperatorState z)
+
+/-- Cutoff-free state obtained by applying the same bounded trace projection
+to the completed enriched TFVD vector. -/
+def canonicalCompletedC3FullWronskianFunctionalState
+    (z : ℂ)
+    (hz : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    CanonicalCompletedC3FullWronskianOperatorCarrier :=
+  WithLp.toLp 2
+    (nativeXiCompletionFactor z •
+        canonicalCompletedC3OnePointCompletedTraceProjection
+          (canonicalCompletedC3CompletedOnePointState z hz),
+      canonicalCompletedC3ArchimedeanChartOperatorState z)
+
+/-- Exact head--tail completion makes every cutoff state equal to the
+cutoff-free functional state after the bounded trace projection. -/
+theorem canonicalCompletedC3FullWronskianOperatorState_eq_functionalState
+    (M : ℕ) {z : ℂ}
+    (hz : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    canonicalCompletedC3FullWronskianOperatorState M z =
+      canonicalCompletedC3FullWronskianFunctionalState z hz := by
+  unfold canonicalCompletedC3FullWronskianOperatorState
+    canonicalCompletedC3FullWronskianFunctionalState
+  rw [canonicalCompletedC3OnePointCompletedTraceProjection_state_eq M hz,
+    canonicalCompletedC3OnePointCompletedTraceProjection_completed_eq hz]
+
+/-- The projected operator states therefore converge to the same canonical
+functional state; in fact the sequence is exactly constant. -/
+theorem canonicalCompletedC3FullWronskianOperatorState_tendsto_functionalState
+    {z : ℂ}
+    (hz : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    Filter.Tendsto
+      (fun M : ℕ => canonicalCompletedC3FullWronskianOperatorState M z)
+      Filter.atTop
+      (nhds (canonicalCompletedC3FullWronskianFunctionalState z hz)) := by
+  refine tendsto_const_nhds.congr'
+    (Filter.Eventually.of_forall fun M => ?_)
+  exact
+    (canonicalCompletedC3FullWronskianOperatorState_eq_functionalState
+      M hz).symm
 
 /-- Bounded block operator: the canonical boundary rotation on the raw trace
 and the already-proved crossed chart operator on the correction block. -/
@@ -192,6 +342,11 @@ def canonicalCompletedC3FullWronskianOperator :
   apply Prod.ext
   · exact completedScalarBoundarySymplecticRotation_sq state.fst
   · exact canonicalCompletedC3ArchimedeanChartOperator_sq state.snd
+
+/-- The cutoff-free symplectic functional on the full trace/chart carrier. -/
+def canonicalCompletedC3FullWronskianFunctional
+    (stateW stateZ : CanonicalCompletedC3FullWronskianOperatorCarrier) : ℂ :=
+  inner ℂ stateW (canonicalCompletedC3FullWronskianOperator stateZ)
 
 /-- The full bounded-operator readout is exactly the chart-weighted completed
 Wronskian of `(F,-F')`.  No radial no-leak identification is used. -/
@@ -232,6 +387,26 @@ theorem completedFNegFPrimeWronskian_eq_fullOperatorInner
   unfold mixedHermitianWeight canonicalCompletedC3RawHeightMixedWronskian
   ring
 
+/-- The completed enriched TFVD limit realizes the chart-weighted
+Wronskian through the cutoff-free symplectic functional. -/
+theorem completedFNegFPrimeWronskian_eq_fullSymplecticFunctional
+    {z w : ℂ}
+    (hz : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hw : operatorHeightParameter w ∈ genuineCriticalStrip) :
+    mixedHermitianWeight canonicalC3ChartFactorHeight z w *
+        completedGreenWronskian
+          completedNativeOperatorCharacteristic
+          (fun u : ℂ => -deriv completedNativeOperatorCharacteristic u)
+          z w =
+      canonicalCompletedC3FullWronskianFunctional
+        (canonicalCompletedC3FullWronskianFunctionalState w hw)
+        (canonicalCompletedC3FullWronskianFunctionalState z hz) := by
+  rw [← canonicalCompletedC3FullWronskianOperatorState_eq_functionalState
+      0 hw,
+    ← canonicalCompletedC3FullWronskianOperatorState_eq_functionalState
+      0 hz]
+  exact completedFNegFPrimeWronskian_eq_fullOperatorInner 0 hz hw
+
 /-- The full operator realization is cutoff-independent at the scalar readout
 level, as forced by exact head--tail completion. -/
 theorem canonicalCompletedC3FullWronskianOperatorInner_cutoff_independent
@@ -258,6 +433,14 @@ def canonicalCompletedC3NormalizedFullWronskianOperatorState
   (canonicalC3ChartFactorHeight z)⁻¹ •
     canonicalCompletedC3FullWronskianOperatorState M z
 
+/-- Canonically chart-normalized cutoff-free functional state. -/
+def canonicalCompletedC3NormalizedFullWronskianFunctionalState
+    (z : ℂ)
+    (hz : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    CanonicalCompletedC3FullWronskianOperatorCarrier :=
+  (canonicalC3ChartFactorHeight z)⁻¹ •
+    canonicalCompletedC3FullWronskianFunctionalState z hz
+
 /-- After the canonical chart normalization, the same bounded operator reads
 the unweighted completed Wronskian exactly. -/
 theorem completedGreenWronskian_eq_normalizedFullOperatorInner
@@ -280,6 +463,28 @@ theorem completedGreenWronskian_eq_normalizedFullOperatorInner
   unfold mixedHermitianWeight
   simp only [map_inv₀]
   field_simp [hchartZ, hchartW]
+
+/-- After the canonical chart normalization, the cutoff-free symplectic
+functional is exactly the unweighted completed Wronskian. -/
+theorem completedGreenWronskian_eq_normalizedFullSymplecticFunctional
+    {z w : ℂ}
+    (hz : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hw : operatorHeightParameter w ∈ genuineCriticalStrip) :
+    completedGreenWronskian
+        completedNativeOperatorCharacteristic
+        (fun u : ℂ => -deriv completedNativeOperatorCharacteristic u)
+        z w =
+      canonicalCompletedC3FullWronskianFunctional
+        (canonicalCompletedC3NormalizedFullWronskianFunctionalState w hw)
+        (canonicalCompletedC3NormalizedFullWronskianFunctionalState z hz) := by
+  unfold canonicalCompletedC3NormalizedFullWronskianFunctionalState
+  rw [← canonicalCompletedC3FullWronskianOperatorState_eq_functionalState
+      0 hw,
+    ← canonicalCompletedC3FullWronskianOperatorState_eq_functionalState
+      0 hz]
+  simpa [canonicalCompletedC3FullWronskianFunctional,
+    canonicalCompletedC3NormalizedFullWronskianOperatorState] using
+      (completedGreenWronskian_eq_normalizedFullOperatorInner 0 hz hw)
 
 /-- Scalar kernel represented by the normalized full state. -/
 def canonicalCompletedC3NormalizedFullWronskianOperatorKernel
