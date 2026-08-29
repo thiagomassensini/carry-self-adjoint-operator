@@ -126,6 +126,29 @@ theorem canonicalCompletedC3NormalizedGammaKernel_eq_dslope_iff_fullOperatorInne
     completedGreenWronskian_eq_normalizedFullOperatorInner
       M hwStrip hzStrip]
 
+/-- Fully vectorial form of the remaining compatibility square.  The left
+side is now literally the Gram readout of the normalized positive Gamma
+responses; no abstract kernel or positivity premise remains hidden. -/
+theorem canonicalCompletedC3NormalizedGammaState_inner_eq_dslope_iff_fullOperatorInner
+    (M : ℕ) (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip)
+    (hzF : completedNativeOperatorCharacteristic z ≠ 0)
+    (hwF : completedNativeOperatorCharacteristic w ≠ 0)
+    (hsep : w ≠ conj z) :
+    inner ℂ
+        (canonicalCompletedC3NormalizedPolarizedGammaState z hz)
+        (canonicalCompletedC3NormalizedPolarizedGammaState w hw) =
+        canonicalCompletedNativePolarizedDslopeKernel z w ↔
+      canonicalCompletedC3PolarizedGammaBoundaryReadout z w hz hw =
+        inner ℂ
+          (canonicalCompletedC3NormalizedFullWronskianOperatorState M z)
+          (canonicalCompletedC3FullWronskianOperator
+            (canonicalCompletedC3NormalizedFullWronskianOperatorState M w)) := by
+  rw [← canonicalCompletedC3NormalizedPolarizedGammaKernel_eq_inner]
+  exact canonicalCompletedC3NormalizedGammaKernel_eq_dslope_iff_fullOperatorInner
+    M z w hz hw hzStrip hwStrip hzF hwF hsep
+
 /-- At a hypothetical off-axis characteristic zero, the two concrete Hilbert
 readouts cannot agree: the full Wronskian operator readout vanishes while the
 positive Gamma boundary readout is nonzero.  This confirms that closing the

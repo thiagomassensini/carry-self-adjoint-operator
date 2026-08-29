@@ -16,7 +16,7 @@ with the completed ledger is equivalent to the raw Cauchy boundary readout
 being exactly the completed Wronskian.  No factor is cancelled at a zero.
 -/
 
-open scoped ComplexConjugate InnerProductSpace
+open scoped ComplexConjugate ComplexOrder InnerProductSpace
 
 namespace CarrySelfAdjointOperator
 
@@ -36,6 +36,60 @@ def canonicalCompletedC3NormalizedPolarizedGammaKernel
     (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) : ℂ :=
   canonicalCompletedC3PolarizedGammaKernel z w hz hw /
     canonicalCompletedC3GammaCharacteristicWeight z w
+
+/-- The concrete Gamma/Naimark response with the exact `sqrt 2 * F`
+normalization used by the completed native moment construction. -/
+def canonicalCompletedC3NormalizedPolarizedGammaState
+    (z : ℂ) (hz : z.im ≠ 0) : CarryGammaComplexNaimark :=
+  ((((Real.sqrt 2 : ℝ) : ℂ) *
+      completedNativeOperatorCharacteristic z)⁻¹) •
+    canonicalCompletedC3PolarizedGammaState z hz
+
+/-- The normalized Gamma kernel is literally the Gram kernel of the
+normalized Gamma/Naimark responses.  In particular, its positivity does not
+use the pending Gamma--Wronskian sewing. -/
+theorem canonicalCompletedC3NormalizedPolarizedGammaKernel_eq_inner
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) :
+    canonicalCompletedC3NormalizedPolarizedGammaKernel z w hz hw =
+      inner ℂ
+        (canonicalCompletedC3NormalizedPolarizedGammaState z hz)
+        (canonicalCompletedC3NormalizedPolarizedGammaState w hw) := by
+  unfold canonicalCompletedC3NormalizedPolarizedGammaKernel
+    canonicalCompletedC3GammaCharacteristicWeight
+    canonicalCompletedC3NormalizedPolarizedGammaState
+    canonicalCompletedC3PolarizedGammaKernel
+  have hsqrt_sq : (((Real.sqrt 2 : ℝ) : ℂ) ^ 2) = 2 := by
+    norm_cast
+    exact Real.sq_sqrt (by norm_num)
+  have hsqrt_inv_sq : (2 : ℂ)⁻¹ =
+      ((Real.sqrt 2 : ℝ) : ℂ)⁻¹ *
+        ((Real.sqrt 2 : ℝ) : ℂ)⁻¹ := by
+    rw [← hsqrt_sq, ← inv_pow, pow_two]
+  rw [inner_smul_left, inner_smul_right]
+  simp only [map_inv₀, map_mul, Complex.conj_ofReal]
+  simp only [div_eq_mul_inv, mul_inv]
+  rw [hsqrt_inv_sq]
+  ring
+
+/-- Every finite section of the normalized Gamma kernel is positive
+semidefinite.  The statement uses Lean's total inverse at characteristic
+zeros; it does not assert a continuous extension through such a zero. -/
+theorem canonicalCompletedC3NormalizedPolarizedGammaKernel_posSemidef
+    {ι : Type*} [Finite ι]
+    (point : ι → ℂ) (hoffAxis : ∀ i, (point i).im ≠ 0) :
+    (Matrix.of fun i j =>
+      canonicalCompletedC3NormalizedPolarizedGammaKernel
+        (point i) (point j) (hoffAxis i) (hoffAxis j)).PosSemidef := by
+  rw [show (Matrix.of fun i j =>
+      canonicalCompletedC3NormalizedPolarizedGammaKernel
+        (point i) (point j) (hoffAxis i) (hoffAxis j)) =
+      Matrix.gram ℂ (fun i =>
+        canonicalCompletedC3NormalizedPolarizedGammaState
+          (point i) (hoffAxis i)) by
+    ext i j
+    exact canonicalCompletedC3NormalizedPolarizedGammaKernel_eq_inner
+      (point i) (point j) (hoffAxis i) (hoffAxis j)]
+  exact Matrix.posSemidef_gram ℂ _
 
 /-- Cauchy boundary readout with the same characteristic normalization. -/
 def canonicalCompletedC3NormalizedPolarizedGammaBoundaryReadout
