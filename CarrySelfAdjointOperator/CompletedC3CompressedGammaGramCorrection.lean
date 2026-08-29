@@ -19,6 +19,7 @@ open scoped ComplexConjugate InnerProductSpace lp
 namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
+open Filter
 open NativeCarrySpectralWeyl.Boundary
 open NativeCarrySpectralWeyl.Infinite
 
@@ -214,6 +215,427 @@ theorem canonicalCompletedC3GammaCorrectionSourceBoundaryReadout_diagonal_im
   simp only [Complex.mul_im, Complex.sub_re, Complex.sub_im,
     Complex.conj_re, Complex.conj_im] at h
   nlinarith
+
+/-! ## Finite-cutoff source boundary and its strong limit -/
+
+/-- The finite induced logarithmic source minus the same canonical TFVD
+source used by the completed Gamma response. -/
+def canonicalCompletedC3FiniteAmbientTfvdSourceCorrection
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (z : ℂ) : RealifiedNaimarkComplexification :=
+  canonicalCompletedC3CausalResponseBoundaryFiniteInducedSource
+      hbase cutoff z -
+    realifiedNaimarkPort (canonicalCompletedC3TfvdCameraSource z)
+
+/-- Resolve the finite source correction in the same ambient logarithmic
+resolvent and view it in the canonical complex Hilbert structure. -/
+def canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (z : ℂ) (hz : z.im ≠ 0) : CarryGammaComplexNaimark :=
+  canonicalCompletedC3GammaNaimarkView
+    (realifiedLogarithmicDomainEmbedding
+      (logarithmicResolventIntoDomain z hz
+        (canonicalCompletedC3FiniteAmbientTfvdSourceCorrection
+          hbase cutoff z)))
+
+/-- The finite resolved correction is exactly the finite TFVD state minus
+the canonical Gamma state.  This uses the resolvent left inverse, not a norm
+or scalar boundary argument. -/
+theorem canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState_eq_sub
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (z : ℂ) (hz : z.im ≠ 0) :
+    canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+        hbase cutoff z hz =
+      canonicalCompletedC3GammaNaimarkView
+          (realifiedLogarithmicDomainEmbedding
+            (canonicalCompletedC3CausalResponseBoundaryDomainVector
+              hbase cutoff (operatorHeightParameter z))) -
+        canonicalCompletedC3PolarizedGammaState z hz := by
+  unfold canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+    canonicalCompletedC3FiniteAmbientTfvdSourceCorrection
+    canonicalCompletedC3CausalResponseBoundaryFiniteInducedSource
+  rw [map_sub,
+    logarithmicResolvent_apply_realifiedLambdaMinus,
+    map_sub, canonicalCompletedC3GammaNaimarkView_sub]
+  change _ -
+      canonicalCompletedC3GammaNaimarkView
+        (realifiedLogarithmicDomainEmbedding
+          (canonicalCompletedC3TfvdResolventDomainVector z hz)) = _
+  rw [canonicalCompletedC3TfvdResolventDomainVector_embedding_eq_gammaState]
+
+/-- The finite source corrections converge strongly to the completed source
+correction. -/
+theorem canonicalCompletedC3FiniteAmbientTfvdSourceCorrection_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z : ℂ) (hzHalf : 0 < (operatorHeightParameter z).re) :
+    Tendsto
+      (fun cutoff : ℕ =>
+        canonicalCompletedC3FiniteAmbientTfvdSourceCorrection
+          hbase cutoff z)
+      atTop
+      (nhds (canonicalCompletedC3AmbientTfvdSourceCorrection z hzHalf)) := by
+  simpa [canonicalCompletedC3FiniteAmbientTfvdSourceCorrection,
+    canonicalCompletedC3AmbientTfvdSourceCorrection] using
+    (canonicalCompletedC3CausalResponseBoundaryFiniteInducedSource_tendsto_ambientLimit
+      hbase z hzHalf).sub_const
+        (realifiedNaimarkPort (canonicalCompletedC3TfvdCameraSource z))
+
+/-- Boundedness of the ambient resolvent transports the finite source limit
+to the resolved correction states. -/
+theorem canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    Tendsto
+      (fun cutoff : ℕ =>
+        canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+          hbase cutoff z hz)
+      atTop
+      (nhds (canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+        z hz hzHalf)) := by
+  have hsource :=
+    canonicalCompletedC3FiniteAmbientTfvdSourceCorrection_tendsto
+      hbase z hzHalf
+  have hresolved :=
+    (logarithmicResolventBlock z hz).continuous.continuousAt.tendsto.comp
+      hsource
+  change Tendsto
+    (fun cutoff : ℕ =>
+      logarithmicResolventBlock z hz
+        (canonicalCompletedC3FiniteAmbientTfvdSourceCorrection
+          hbase cutoff z))
+    atTop
+    (nhds (logarithmicResolventBlock z hz
+      (canonicalCompletedC3AmbientTfvdSourceCorrection z hzHalf)))
+  exact hresolved
+
+/-- Finite source-boundary skew in precisely the same orientation as the
+completed Gamma--correction source readout. -/
+def canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) : ℂ :=
+  inner ℂ
+      (canonicalCompletedC3PolarizedGammaState z hz)
+      (canonicalCompletedC3GammaNaimarkView
+        (canonicalCompletedC3FiniteAmbientTfvdSourceCorrection
+          hbase cutoff w)) -
+    inner ℂ
+      (canonicalCompletedC3GammaNaimarkView
+        (realifiedNaimarkPort (canonicalCompletedC3TfvdCameraSource z)))
+      (canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+        hbase cutoff w hw)
+
+/-- At every cutoff, the finite source-boundary skew is spectral separation
+times the Gamma/finite-correction cross Gram. -/
+theorem canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout_eq_kernel
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) :
+    canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout
+        hbase cutoff z w hz hw =
+      (w - conj z) *
+        inner ℂ
+          (canonicalCompletedC3PolarizedGammaState z hz)
+          (canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+            hbase cutoff w hw) := by
+  let correctionW : RealifiedLogarithmicDomain :=
+    logarithmicResolventIntoDomain w hw
+      (canonicalCompletedC3FiniteAmbientTfvdSourceCorrection
+        hbase cutoff w)
+  have hboundary :=
+    canonicalCompletedC3AmbientDefectBoundaryReadout_eq_kernel
+      z w (canonicalCompletedC3TfvdResolventDomainVector z hz) correctionW
+  unfold canonicalCompletedC3AmbientDefectBoundaryReadout at hboundary
+  rw [canonicalCompletedC3TfvdResolventDomainVector_embedding_eq_gammaState
+    z hz] at hboundary
+  have htfvdSource :
+      realifiedLambdaMinusLogarithmicMultiplication z
+          (canonicalCompletedC3TfvdResolventDomainVector z hz) =
+        realifiedNaimarkPort (canonicalCompletedC3TfvdCameraSource z) := by
+    unfold canonicalCompletedC3TfvdResolventDomainVector
+    rw [realifiedLambdaMinusLogarithmicMultiplication_apply_resolvent]
+  rw [htfvdSource] at hboundary
+  simp only [realifiedLambdaMinusLogarithmicMultiplication_apply_resolvent,
+    correctionW] at hboundary
+  unfold canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout
+    canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+  exact hboundary
+
+/-- Finite-cutoff diagonal form of the source-boundary identity. -/
+theorem canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout_diagonal_im
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (z : ℂ) (hz : z.im ≠ 0) :
+    (canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout
+        hbase cutoff z z hz hz).im =
+      2 * z.im *
+        (inner ℂ
+          (canonicalCompletedC3PolarizedGammaState z hz)
+          (canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+            hbase cutoff z hz)).re := by
+  have h := congrArg Complex.im
+    (canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout_eq_kernel
+      hbase cutoff z z hz hz)
+  simp only [Complex.mul_im, Complex.sub_re, Complex.sub_im,
+    Complex.conj_re, Complex.conj_im] at h
+  nlinarith
+
+/-- The finite source-boundary readouts converge to the completed concrete
+source-boundary readout. -/
+theorem canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hwHalf : 0 < (operatorHeightParameter w).re) :
+    Tendsto
+      (fun cutoff : ℕ =>
+        canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout
+          hbase cutoff z w hz hw)
+      atTop
+      (nhds (canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+        z w hz hw hwHalf)) := by
+  have hsource :=
+    canonicalCompletedC3FiniteAmbientTfvdSourceCorrection_tendsto
+      hbase w hwHalf
+  have hsourceView : Tendsto
+      (fun cutoff : ℕ =>
+        canonicalCompletedC3GammaNaimarkView
+          (canonicalCompletedC3FiniteAmbientTfvdSourceCorrection
+            hbase cutoff w))
+      atTop
+      (nhds (canonicalCompletedC3GammaNaimarkView
+        (canonicalCompletedC3AmbientTfvdSourceCorrection w hwHalf))) := by
+    change Tendsto
+      (fun cutoff : ℕ =>
+        canonicalCompletedC3FiniteAmbientTfvdSourceCorrection
+          hbase cutoff w)
+      atTop
+      (nhds (canonicalCompletedC3AmbientTfvdSourceCorrection w hwHalf))
+    exact hsource
+  have hresolved :=
+    canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState_tendsto
+      hbase w hw hwHalf
+  have hfirst : Tendsto
+      (fun cutoff : ℕ => inner ℂ
+        (canonicalCompletedC3PolarizedGammaState z hz)
+        (canonicalCompletedC3GammaNaimarkView
+          (canonicalCompletedC3FiniteAmbientTfvdSourceCorrection
+            hbase cutoff w)))
+      atTop
+      (nhds (inner ℂ
+        (canonicalCompletedC3PolarizedGammaState z hz)
+        (canonicalCompletedC3GammaNaimarkView
+          (canonicalCompletedC3AmbientTfvdSourceCorrection w hwHalf)))) :=
+    Filter.Tendsto.inner (𝕜 := ℂ) tendsto_const_nhds hsourceView
+  have hsecond : Tendsto
+      (fun cutoff : ℕ => inner ℂ
+        (canonicalCompletedC3GammaNaimarkView
+          (realifiedNaimarkPort (canonicalCompletedC3TfvdCameraSource z)))
+        (canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+          hbase cutoff w hw))
+      atTop
+      (nhds (inner ℂ
+        (canonicalCompletedC3GammaNaimarkView
+          (realifiedNaimarkPort (canonicalCompletedC3TfvdCameraSource z)))
+        (canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+          w hw hwHalf))) :=
+    Filter.Tendsto.inner (𝕜 := ℂ) tendsto_const_nhds hresolved
+  simpa [canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout,
+    canonicalCompletedC3GammaCorrectionSourceBoundaryReadout] using
+      hfirst.sub hsecond
+
+/-- The finite diagonal cancellation balance, retaining both the source
+boundary skew and the positive resolved-correction channel. -/
+def canonicalCompletedC3FiniteGammaCorrectionBalance
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (z : ℂ) (hz : z.im ≠ 0) : ℝ :=
+  (canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout
+      hbase cutoff z z hz hz).im +
+    z.im *
+      ‖canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+        hbase cutoff z hz‖ ^ 2
+
+/-- The completed diagonal cancellation balance isolated by the exact
+Gamma-correction decomposition. -/
+def canonicalCompletedC3GammaCorrectionBalance
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) : ℝ :=
+  (canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+      z z hz hz hzHalf).im +
+    z.im *
+      ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+        z hz hzHalf‖ ^ 2
+
+/-- At every cutoff, the cancellation balance is exactly the imaginary
+spectral coordinate times the finite-TFVD/Gamma energy difference.  Thus the
+remaining finite gate is an equality of two concrete state norms. -/
+theorem canonicalCompletedC3FiniteGammaCorrectionBalance_eq_energyDifference
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (cutoff : ℕ) (z : ℂ) (hz : z.im ≠ 0) :
+    canonicalCompletedC3FiniteGammaCorrectionBalance hbase cutoff z hz =
+      z.im *
+        (‖canonicalCompletedC3GammaNaimarkView
+            (realifiedLogarithmicDomainEmbedding
+              (canonicalCompletedC3CausalResponseBoundaryDomainVector
+                hbase cutoff (operatorHeightParameter z)))‖ ^ 2 -
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2) := by
+  let finiteState : CarryGammaComplexNaimark :=
+    canonicalCompletedC3GammaNaimarkView
+      (realifiedLogarithmicDomainEmbedding
+        (canonicalCompletedC3CausalResponseBoundaryDomainVector
+          hbase cutoff (operatorHeightParameter z)))
+  let gammaState : CarryGammaComplexNaimark :=
+    canonicalCompletedC3PolarizedGammaState z hz
+  let correctionState : CarryGammaComplexNaimark :=
+    canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+      hbase cutoff z hz
+  have hcorrection : correctionState = finiteState - gammaState := by
+    exact canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState_eq_sub
+      hbase cutoff z hz
+  have hboundary :=
+    canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout_diagonal_im
+      hbase cutoff z hz
+  change
+    (canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout
+        hbase cutoff z z hz hz).im + z.im * ‖correctionState‖ ^ 2 =
+      z.im * (‖finiteState‖ ^ 2 - ‖gammaState‖ ^ 2)
+  change
+    (canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout
+        hbase cutoff z z hz hz).im =
+      2 * z.im * (inner ℂ gammaState correctionState).re at hboundary
+  rw [hboundary, hcorrection, norm_sub_sq (𝕜 := ℂ)]
+  simp only [inner_sub_right, ← RCLike.re_eq_complex_re, map_sub,
+    inner_self_eq_norm_sq]
+  rw [inner_re_symm]
+  ring
+
+/-- The same energy-difference identity after completion.  This is obtained
+from the exact Hilbert-space state factorization, independently of the
+finite-limit theorem. -/
+theorem canonicalCompletedC3GammaCorrectionBalance_eq_energyDifference
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    canonicalCompletedC3GammaCorrectionBalance z hz hzHalf =
+      z.im *
+        (‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 -
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2) := by
+  rw [canonicalCompletedC3AmbientResponseState_eq_gamma_add_correction
+    z hz hzHalf]
+  unfold canonicalCompletedC3GammaCorrectionBalance
+  rw [canonicalCompletedC3GammaCorrectionSourceBoundaryReadout_diagonal_im,
+    norm_add_sq (𝕜 := ℂ)]
+  unfold canonicalCompletedC3GammaCorrectionKernel
+  simp only [← RCLike.re_eq_complex_re]
+  ring
+
+/-- Because the centered spectral coordinate is nonreal, vanishing of the
+completed correction balance is exactly equality of the two canonical
+energies. -/
+theorem canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_energy
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    canonicalCompletedC3GammaCorrectionBalance z hz hzHalf = 0 ↔
+      ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+        ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 := by
+  rw [canonicalCompletedC3GammaCorrectionBalance_eq_energyDifference]
+  constructor
+  · intro h
+    exact sub_eq_zero.mp ((mul_eq_zero.mp h).resolve_left hz)
+  · intro h
+    rw [h, sub_self, mul_zero]
+
+/-- The exact finite cancellation balances converge to the completed
+balance.  In particular, no nonzero finite channel is discarded when the
+cutoff is removed. -/
+theorem canonicalCompletedC3FiniteGammaCorrectionBalance_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    Tendsto
+      (fun cutoff : ℕ =>
+        canonicalCompletedC3FiniteGammaCorrectionBalance
+          hbase cutoff z hz)
+      atTop
+      (nhds (canonicalCompletedC3GammaCorrectionBalance z hz hzHalf)) := by
+  have hboundaryComplex :=
+    canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout_tendsto
+      hbase z z hz hz hzHalf
+  have hboundary : Tendsto
+      (fun cutoff : ℕ =>
+        (canonicalCompletedC3FiniteGammaCorrectionSourceBoundaryReadout
+          hbase cutoff z z hz hz).im)
+      atTop
+      (nhds ((canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+        z z hz hz hzHalf).im)) :=
+    Complex.continuous_im.continuousAt.tendsto.comp hboundaryComplex
+  have hresolved :=
+    canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState_tendsto
+      hbase z hz hzHalf
+  have hnormSq : Tendsto
+      (fun cutoff : ℕ =>
+        ‖canonicalCompletedC3FiniteAmbientTfvdResolvedCorrectionState
+          hbase cutoff z hz‖ ^ 2)
+      atTop
+      (nhds (‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+        z hz hzHalf‖ ^ 2)) :=
+    hresolved.norm.pow 2
+  simpa [canonicalCompletedC3FiniteGammaCorrectionBalance,
+    canonicalCompletedC3GammaCorrectionBalance] using
+      hboundary.add (hnormSq.const_mul z.im)
+
+/-- Direct finite-to-completed passage for the concrete TFVD/Gamma energy
+difference.  This is the scalar consequence of strong vector convergence;
+there is no assumption that the limit vanishes. -/
+theorem canonicalCompletedC3FiniteTfvdGammaEnergyDifference_tendsto
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    Tendsto
+      (fun cutoff : ℕ =>
+        z.im *
+          (‖canonicalCompletedC3GammaNaimarkView
+              (realifiedLogarithmicDomainEmbedding
+                (canonicalCompletedC3CausalResponseBoundaryDomainVector
+                  hbase cutoff (operatorHeightParameter z)))‖ ^ 2 -
+            ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2))
+      atTop
+      (nhds (z.im *
+        (‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 -
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2))) := by
+  have hbalance :=
+    canonicalCompletedC3FiniteGammaCorrectionBalance_tendsto
+      hbase z hz hzHalf
+  convert hbalance using 1
+  · funext cutoff
+    exact
+      (canonicalCompletedC3FiniteGammaCorrectionBalance_eq_energyDifference
+        hbase cutoff z hz).symm
+  · exact
+      congrArg nhds
+        (canonicalCompletedC3GammaCorrectionBalance_eq_energyDifference
+          z hz hzHalf).symm
+
+/-- An exact finite-cutoff cancellation identity passes to the completed
+balance.  This is the non-asymptotic interface expected from the native
+head/tail geometry. -/
+theorem canonicalCompletedC3GammaCorrectionBalance_eq_zero_of_finite
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re)
+    (hfinite : ∀ cutoff : ℕ,
+      canonicalCompletedC3FiniteGammaCorrectionBalance
+        hbase cutoff z hz = 0) :
+    canonicalCompletedC3GammaCorrectionBalance z hz hzHalf = 0 := by
+  have hlimit :=
+    canonicalCompletedC3FiniteGammaCorrectionBalance_tendsto
+      hbase z hz hzHalf
+  have hzero : Tendsto
+      (fun cutoff : ℕ =>
+        canonicalCompletedC3FiniteGammaCorrectionBalance
+          hbase cutoff z hz)
+      atTop (nhds 0) := by
+    convert (tendsto_const_nhds :
+      Tendsto (fun _ : ℕ => (0 : ℝ)) atTop (nhds 0)) using 1
+    funext cutoff
+    exact hfinite cutoff
+  exact tendsto_nhds_unique hlimit hzero
 
 /-- Polarizing the exact state factorization produces all three correction
 channels, with no omitted cross term. -/
