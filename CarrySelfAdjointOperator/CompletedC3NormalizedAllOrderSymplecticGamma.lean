@@ -200,6 +200,86 @@ theorem inner_canonicalCompletedC3NormalizedAllOrderSymplecticGammaState_eq_rawW
     canonicalCompletedC3NormalizedAllOrderSymplecticGammaKernel_eq_rawWronskianKernel_iff_tendsto
       z w hz hw hzStrip hwStrip hzRaw hwRaw hsep]
 
+/-! ## Audit at a hypothetical off-critical zero -/
+
+/-- At a hypothetical Genuine zero away from the critical line, the completed
+dynamic-to-static Gamma limit cannot equal the completed structural limit.
+Indeed, their equality would identify the nonzero diagonal Gamma boundary with
+the zero raw Wronskian. -/
+theorem canonicalCompletedC3AllOrderSymplecticGammaDynamicStaticDifference_ne_structural_at_offCriticalGenuineZero
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hzero : genuineContinuation s = 0) (hoff : s.re ≠ 1 / 2) :
+    canonicalCompletedC3AllOrderSymplecticGammaDynamicStaticDifference
+        (centeredHeightParameter s) (centeredHeightParameter s)
+        (centeredHeightParameter_im_ne_zero_of_re_ne_half hoff)
+        (centeredHeightParameter_im_ne_zero_of_re_ne_half hoff)
+        (by simpa using hs) (by simpa using hs) ≠
+      canonicalCompletedC3AllOrderStructuralChannelLimit
+        (centeredHeightParameter s) (centeredHeightParameter s)
+        (by simpa using hs) (by simpa using hs) := by
+  let z := centeredHeightParameter s
+  have hz : z.im ≠ 0 :=
+    centeredHeightParameter_im_ne_zero_of_re_ne_half hoff
+  have hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip := by
+    simpa [z] using hs
+  have hboundaryNe :
+      canonicalCompletedC3AllOrderSymplecticGammaBoundaryReadout
+          z z hz hz hzStrip hzStrip ≠ 0 :=
+    canonicalCompletedC3AllOrderSymplecticGammaBoundaryReadout_diagonal_ne_zero
+      hz hzStrip
+  have hwronskian :
+      canonicalCompletedC3RawHeightMixedWronskian z z = 0 := by
+    simpa [z] using
+      canonicalCompletedC3RawHeightMixedWronskian_self_eq_zero_of_genuine_zero
+        hs hzero
+  intro hchannels
+  have hboundary :
+      canonicalCompletedC3AllOrderSymplecticGammaBoundaryReadout
+          z z hz hz hzStrip hzStrip =
+        canonicalCompletedC3RawHeightMixedWronskian z z := by
+    have hadd := congrArg
+      (fun value : ℂ => value +
+        canonicalCompletedC3AllOrderStaticSymplecticGreenReadout
+          z z hzStrip hzStrip) hchannels
+    simpa [canonicalCompletedC3AllOrderSymplecticGammaDynamicStaticDifference,
+      canonicalCompletedC3AllOrderStructuralChannelLimit, z] using hadd
+  exact hboundaryNe (hboundary.trans hwronskian)
+
+/-- Consequently the explicit finite dynamic/static, structural, and
+head--tail mismatch cannot tend to zero at a hypothetical off-critical Genuine
+zero.  Thus this limit statement has confinement strength and is not supplied
+by completion or by the real/complex coordinate equivalence. -/
+theorem canonicalCompletedC3AllCutoffSymplecticGammaWronskianChannelDifference_not_tendsto_zero_of_offCriticalGenuineZero
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hzero : genuineContinuation s = 0) (hoff : s.re ≠ 1 / 2) :
+    ¬Tendsto
+      (fun M : ℕ ↦
+        canonicalCompletedC3AllCutoffSymplecticGammaWronskianChannelDifference
+          M (centeredHeightParameter s) (centeredHeightParameter s)
+          (centeredHeightParameter_im_ne_zero_of_re_ne_half hoff)
+          (centeredHeightParameter_im_ne_zero_of_re_ne_half hoff))
+      atTop (nhds 0) := by
+  let z := centeredHeightParameter s
+  have hz : z.im ≠ 0 :=
+    centeredHeightParameter_im_ne_zero_of_re_ne_half hoff
+  have hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip := by
+    simpa [z] using hs
+  have hboundaryNe :
+      canonicalCompletedC3AllOrderSymplecticGammaBoundaryReadout
+          z z hz hz hzStrip hzStrip ≠ 0 :=
+    canonicalCompletedC3AllOrderSymplecticGammaBoundaryReadout_diagonal_ne_zero
+      hz hzStrip
+  have hwronskian :
+      canonicalCompletedC3RawHeightMixedWronskian z z = 0 := by
+    simpa [z] using
+      canonicalCompletedC3RawHeightMixedWronskian_self_eq_zero_of_genuine_zero
+        hs hzero
+  intro hlimit
+  have hboundary :=
+    (canonicalCompletedC3AllOrderSymplecticGammaBoundary_eq_rawWronskian_iff_tendsto
+      z z hz hz hzStrip hzStrip).2 hlimit
+  exact hboundaryNe (hboundary.trans hwronskian)
+
 end
 
 end CarrySelfAdjointOperator
