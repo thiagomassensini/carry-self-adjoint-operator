@@ -150,6 +150,71 @@ theorem canonicalCompletedC3AmbientDefectBoundary_correction_correction_eq_kerne
   rw [canonicalCompletedC3AmbientDefectBoundaryReadout_eq_kernel]
   rfl
 
+/-! ## Source-level form of the Gamma--correction channel -/
+
+/-- The concrete source skew pairing the canonical TFVD/Gamma response with
+the full ambient-to-TFVD source correction. -/
+def canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hwHalf : 0 < (operatorHeightParameter w).re) : ℂ :=
+  inner ℂ
+      (canonicalCompletedC3PolarizedGammaState z hz)
+      (canonicalCompletedC3GammaNaimarkView
+        (canonicalCompletedC3AmbientTfvdSourceCorrection w hwHalf)) -
+    inner ℂ
+      (canonicalCompletedC3GammaNaimarkView
+        (realifiedNaimarkPort (canonicalCompletedC3TfvdCameraSource z)))
+      (canonicalCompletedC3AmbientTfvdResolvedCorrectionState w hw hwHalf)
+
+/-- Expanding both exact defect equations identifies the ambient cross
+boundary with the concrete TFVD-source/source-correction skew. -/
+theorem canonicalCompletedC3AmbientDefectBoundary_tfvd_correction_eq_source
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hwHalf : 0 < (operatorHeightParameter w).re) :
+    canonicalCompletedC3AmbientDefectBoundaryReadout z w
+        (canonicalCompletedC3TfvdResolventDomainVector z hz)
+        (canonicalCompletedC3AmbientTfvdResolvedCorrection w hw hwHalf) =
+      canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+        z w hz hw hwHalf := by
+  unfold canonicalCompletedC3AmbientDefectBoundaryReadout
+    canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+    canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+  rw [canonicalCompletedC3TfvdResolventDomainVector_embedding_eq_gammaState]
+  simp only [canonicalCompletedC3AmbientTfvdResolvedCorrection,
+    canonicalCompletedC3TfvdResolventDomainVector,
+    realifiedLambdaMinusLogarithmicMultiplication_apply_resolvent]
+
+/-- Division-free source realization of the Gamma--correction kernel. -/
+theorem canonicalCompletedC3GammaCorrectionSourceBoundaryReadout_eq_kernel
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hwHalf : 0 < (operatorHeightParameter w).re) :
+    canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+        z w hz hw hwHalf =
+      (w - conj z) *
+        canonicalCompletedC3GammaCorrectionKernel
+          z w hz hw hwHalf := by
+  rw [← canonicalCompletedC3AmbientDefectBoundary_tfvd_correction_eq_source]
+  exact canonicalCompletedC3AmbientDefectBoundary_tfvd_correction_eq_kernel
+    z w hz hw hwHalf
+
+/-- On the diagonal, the imaginary part of the source boundary skew is
+exactly twice the spectral imaginary coordinate times the real cross Gram.
+This is the division-free form needed for a cancellation audit. -/
+theorem canonicalCompletedC3GammaCorrectionSourceBoundaryReadout_diagonal_im
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    (canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+        z z hz hz hzHalf).im =
+      2 * z.im *
+        (canonicalCompletedC3GammaCorrectionKernel
+          z z hz hz hzHalf).re := by
+  have h := congrArg Complex.im
+    (canonicalCompletedC3GammaCorrectionSourceBoundaryReadout_eq_kernel
+      z z hz hz hzHalf)
+  simp only [Complex.mul_im, Complex.sub_re, Complex.sub_im,
+    Complex.conj_re, Complex.conj_im] at h
+  nlinarith
+
 /-- Polarizing the exact state factorization produces all three correction
 channels, with no omitted cross term. -/
 theorem canonicalCompletedC3AmbientResponseKernel_eq_gamma_add_threeCorrections
@@ -330,6 +395,136 @@ theorem canonicalCompletedC3CompressedGram_sub_gamma_diagonal_re
   norm_num [pow_two, Complex.mul_re] at h
   norm_num [pow_two, Complex.mul_re]
   nlinarith
+
+/-- Multiplying the diagonal Gram difference by `im z` exposes its exact
+source-boundary balance.  No division or sign premise is used. -/
+theorem canonicalCompletedC3CompressedGram_sub_gamma_diagonal_re_mul_im
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    z.im *
+        (canonicalCompletedC3CompressedGramCoefficient
+              (operatorHeightParameter z) (operatorHeightParameter z) *
+            ((canonicalCompletedC3RawGammaGram
+              (operatorHeightParameter z) (operatorHeightParameter z)
+              hzHalf hzHalf).re : ℂ) -
+            canonicalCompletedC3PolarizedGammaKernel z z hz hz).re =
+      (canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+          z z hz hz hzHalf).im +
+        z.im *
+          ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+            z hz hzHalf‖ ^ 2 := by
+  rw [canonicalCompletedC3CompressedGram_sub_gamma_diagonal_re,
+    canonicalCompletedC3GammaCorrectionSourceBoundaryReadout_diagonal_im]
+  ring
+
+/-- Exact noncircular cancellation criterion.  Equality of the compressed
+and Gamma diagonal energies is equivalent to one explicit source-boundary
+balance; the nonzero imaginary coordinate is the only cancellation used. -/
+theorem canonicalCompletedC3CompressedGram_diagonal_eq_gamma_iff_sourceBoundary
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    (canonicalCompletedC3CompressedGramCoefficient
+            (operatorHeightParameter z) (operatorHeightParameter z) *
+          ((canonicalCompletedC3RawGammaGram
+            (operatorHeightParameter z) (operatorHeightParameter z)
+            hzHalf hzHalf).re : ℂ) -
+          canonicalCompletedC3PolarizedGammaKernel z z hz hz).re = 0 ↔
+      (canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+          z z hz hz hzHalf).im +
+        z.im *
+          ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+            z hz hzHalf‖ ^ 2 = 0 := by
+  constructor
+  · intro hzero
+    rw [← canonicalCompletedC3CompressedGram_sub_gamma_diagonal_re_mul_im]
+    rw [hzero, mul_zero]
+  · intro hboundary
+    have hmul :=
+      canonicalCompletedC3CompressedGram_sub_gamma_diagonal_re_mul_im
+        z hz hzHalf
+    rw [hboundary] at hmul
+    exact (mul_eq_zero.mp hmul).resolve_left hz
+
+/-! ## The canonical nonzero-leak witness -/
+
+/-- At the established geometric witness, the correction Gram is strictly
+positive.  This transports the already proved source mismatch through the
+injective ambient resolvent. -/
+theorem canonicalCompletedC3CorrectionKernel_noLeakWitness_diagonal_re_pos
+    : 0 < (canonicalCompletedC3CorrectionKernel
+      noLeakWitnessHeight noLeakWitnessHeight
+      (by rw [noLeakWitnessHeight_im]; norm_num)
+      (by rw [noLeakWitnessHeight_im]; norm_num)
+      (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num)
+      (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num)).re := by
+  let hz : noLeakWitnessHeight.im ≠ 0 := by
+    rw [noLeakWitnessHeight_im]
+    norm_num
+  let hs : 0 < (operatorHeightParameter noLeakWitnessHeight).re := by
+    rw [operatorHeightParameter_noLeakWitnessHeight_re]
+    norm_num
+  let hbase : FiniteNativeCarryOperator.Camera.IsSupported 3 := by
+    norm_num [FiniteNativeCarryOperator.Camera.IsSupported]
+  change 0 < (canonicalCompletedC3CorrectionKernel
+    noLeakWitnessHeight noLeakWitnessHeight hz hz hs hs).re
+  apply canonicalCompletedC3CorrectionKernel_diagonal_re_pos_of_source_ne_zero
+  intro hsource
+  have hzero : canonicalCompletedC3AmbientTfvdResolvedCorrection
+      noLeakWitnessHeight hz hs = 0 :=
+    (canonicalCompletedC3AmbientTfvdResolvedCorrection_eq_zero_iff_source
+      noLeakWitnessHeight hz hs).mpr hsource
+  exact canonicalCompletedC3AmbientTfvdResolvedCorrection_ne_zero_at_witness
+    hbase hzero
+
+/-- At the same witness, diagonal cancellation is equivalent to one literal
+positive-target identity: the imaginary source-boundary skew must equal one
+quarter of the squared correction norm. -/
+theorem canonicalCompletedC3CompressedGram_noLeakWitness_eq_gamma_iff
+    : (canonicalCompletedC3CompressedGramCoefficient
+          (operatorHeightParameter noLeakWitnessHeight)
+          (operatorHeightParameter noLeakWitnessHeight) *
+        ((canonicalCompletedC3RawGammaGram
+          (operatorHeightParameter noLeakWitnessHeight)
+          (operatorHeightParameter noLeakWitnessHeight)
+          (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num)
+          (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num)).re : ℂ) -
+        canonicalCompletedC3PolarizedGammaKernel
+          noLeakWitnessHeight noLeakWitnessHeight
+          (by rw [noLeakWitnessHeight_im]; norm_num)
+          (by rw [noLeakWitnessHeight_im]; norm_num)).re = 0 ↔
+      (canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+          noLeakWitnessHeight noLeakWitnessHeight
+          (by rw [noLeakWitnessHeight_im]; norm_num)
+          (by rw [noLeakWitnessHeight_im]; norm_num)
+          (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num)).im =
+        (1 / 4 : ℝ) *
+          ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+            noLeakWitnessHeight
+            (by rw [noLeakWitnessHeight_im]; norm_num)
+            (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num)‖ ^ 2 := by
+  let hz : noLeakWitnessHeight.im ≠ 0 := by
+    rw [noLeakWitnessHeight_im]
+    norm_num
+  let hs : 0 < (operatorHeightParameter noLeakWitnessHeight).re := by
+    rw [operatorHeightParameter_noLeakWitnessHeight_re]
+    norm_num
+  change
+    (canonicalCompletedC3CompressedGramCoefficient
+          (operatorHeightParameter noLeakWitnessHeight)
+          (operatorHeightParameter noLeakWitnessHeight) *
+        ((canonicalCompletedC3RawGammaGram
+          (operatorHeightParameter noLeakWitnessHeight)
+          (operatorHeightParameter noLeakWitnessHeight) hs hs).re : ℂ) -
+        canonicalCompletedC3PolarizedGammaKernel
+          noLeakWitnessHeight noLeakWitnessHeight hz hz).re = 0 ↔
+      (canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+        noLeakWitnessHeight noLeakWitnessHeight hz hz hs).im =
+        (1 / 4 : ℝ) *
+          ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+            noLeakWitnessHeight hz hs‖ ^ 2
+  rw [canonicalCompletedC3CompressedGram_diagonal_eq_gamma_iff_sourceBoundary]
+  rw [noLeakWitnessHeight_im]
+  constructor <;> intro h <;> nlinarith
 
 end
 
