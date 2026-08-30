@@ -250,6 +250,58 @@ def canonicalCompletedC3RecoveredAllCutoffLedgerState
         canonicalCompletedC3ArchimedeanChartOperatorState w :=
   rfl
 
+/-- The completion weight retained as its own ledger coordinate never
+vanishes on the completed strip.  This is a vector-level statement and does
+not use the final scalar readout. -/
+theorem canonicalCompletedC3RecoveredAllCutoffLedgerState_xiWeight_ne_zero
+    (M : ℕ) (z w : ℂ)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip) :
+    (canonicalCompletedC3RecoveredAllCutoffLedgerState
+      M z w hzStrip hwStrip).xiWeight ≠ 0 := by
+  rw [canonicalCompletedC3RecoveredAllCutoffLedgerState_xiWeight]
+  unfold mixedHermitianWeight
+  exact mul_ne_zero
+    (nativeXiCompletionFactor_ne_zero hwStrip)
+    ((map_ne_zero (starRingEnd ℂ)).2
+      (nativeXiCompletionFactor_ne_zero hzStrip))
+
+/-- No scalar cancellation can annihilate the recovered channel ledger: its
+explicit completion-weight coordinate is already nonzero. -/
+theorem canonicalCompletedC3RecoveredAllCutoffLedgerState_ne_zero
+    (M : ℕ) (z w : ℂ)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip) :
+    canonicalCompletedC3RecoveredAllCutoffLedgerState
+      M z w hzStrip hwStrip ≠ 0 := by
+  intro hzero
+  have hweight := congrArg
+    CanonicalCompletedC3RecoveredAllCutoffLedgerHilbert.xiWeight hzero
+  have hweightZero :
+      (canonicalCompletedC3RecoveredAllCutoffLedgerState
+        M z w hzStrip hwStrip).xiWeight = 0 := by
+    simpa [CanonicalCompletedC3RecoveredAllCutoffLedgerHilbert.xiWeight] using
+      hweight
+  exact
+    (canonicalCompletedC3RecoveredAllCutoffLedgerState_xiWeight_ne_zero
+      M z w hzStrip hwStrip) hweightZero
+
+/-- The total uncollapsed ledger energy is strictly positive throughout the
+completed strip, independently of the value of its scalar readout. -/
+theorem canonicalCompletedC3RecoveredAllCutoffLedgerState_energy_pos
+    (M : ℕ) (z w : ℂ)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip) :
+    0 < ‖canonicalCompletedC3RecoveredAllCutoffLedgerState
+      M z w hzStrip hwStrip‖ ^ 2 := by
+  have hnorm :
+      0 < ‖canonicalCompletedC3RecoveredAllCutoffLedgerState
+        M z w hzStrip hwStrip‖ :=
+    norm_pos_iff.mpr
+      (canonicalCompletedC3RecoveredAllCutoffLedgerState_ne_zero
+        M z w hzStrip hwStrip)
+  positivity
+
 /-- Exact expansion of the enriched readout.  The reflected radial pairing,
 the three-coordinate structural readout, the head-tail return, the xi weight,
 and the crossed chart operator remain visibly distinct. -/
@@ -333,6 +385,33 @@ theorem canonicalCompletedC3RecoveredAllCutoffLedgerState_readout_tendsto_wronsk
   simpa only [add_zero,
     canonicalCompletedC3RecoveredAllCutoffLedgerState_readout_eq_channels]
     using hfinal
+
+/-- At a zero of the completed characteristic the diagonal scalar result
+converges to zero, although the recovered channel state has strictly positive
+energy at every cutoff.  This is the precise distinction between scalar
+cancellation and loss of total Hilbert energy. -/
+theorem
+    canonicalCompletedC3RecoveredAllCutoffLedger_scalarZero_but_energySurvives
+    {z : ℂ}
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hzero : completedNativeOperatorCharacteristic z = 0) :
+    (∀ M : ℕ,
+      0 < ‖canonicalCompletedC3RecoveredAllCutoffLedgerState
+        M z z hzStrip hzStrip‖ ^ 2) ∧
+      Tendsto
+        (fun M : ℕ =>
+          CanonicalCompletedC3RecoveredAllCutoffLedgerHilbert.readout z z
+            (canonicalCompletedC3RecoveredAllCutoffLedgerState
+              M z z hzStrip hzStrip))
+        atTop (nhds 0) := by
+  constructor
+  · intro M
+    exact canonicalCompletedC3RecoveredAllCutoffLedgerState_energy_pos
+      M z z hzStrip hzStrip
+  · have hlimit :=
+      canonicalCompletedC3RecoveredAllCutoffLedgerState_readout_tendsto_wronskian
+        hzStrip hzStrip
+    simpa [completedGreenWronskian, hzero] using hlimit
 
 /-- The enriched geometric ledger converges to the bounded one-point
 Wronskian operator readout already constructed from the completed trace

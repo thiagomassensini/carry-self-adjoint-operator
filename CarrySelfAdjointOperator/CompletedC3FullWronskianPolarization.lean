@@ -157,6 +157,23 @@ theorem inner_canonicalCompletedC3FullWronskianPolarizations_eq_zero
     hisometry]
   ring
 
+/-- Pythagorean decomposition of the full carrier into its two orthogonal
+chiralities.  This is the total Hilbert energy before the Wronskian readout
+takes their signed difference. -/
+theorem canonicalCompletedC3FullWronskianPolarization_norm_sq
+    (state : CanonicalCompletedC3FullWronskianOperatorCarrier) :
+    ‖state‖ ^ 2 =
+      ‖canonicalCompletedC3FullWronskianPositivePolarization state‖ ^ 2 +
+        ‖canonicalCompletedC3FullWronskianNegativePolarization state‖ ^ 2 := by
+  have horth :=
+    inner_canonicalCompletedC3FullWronskianPolarizations_eq_zero state state
+  have hpyth := norm_add_sq_eq_norm_sq_add_norm_sq_of_inner_eq_zero
+    (canonicalCompletedC3FullWronskianPositivePolarization state)
+    (canonicalCompletedC3FullWronskianNegativePolarization state)
+    horth
+  rw [canonicalCompletedC3FullWronskianPolarization_add] at hpyth
+  simpa [pow_two] using hpyth
+
 /-- The original skew operator is the canonical quarter turn of its Hermitian
 involution. -/
 theorem canonicalCompletedC3FullWronskianOperator_eq_i_smul_involution
@@ -210,6 +227,49 @@ theorem inner_canonicalCompletedC3FullWronskianOperator_eq_polarizationDifferenc
   rw [canonicalCompletedC3FullWronskianOperator_eq_i_smul_involution,
     inner_smul_right, hdiff]
 
+/-- After the canonical quarter turn, the scalar Wronskian readout is the
+signed difference of the two chiral energies. -/
+theorem canonicalCompletedC3FullWronskian_chiralityBalance
+    (state : CanonicalCompletedC3FullWronskianOperatorCarrier) :
+    ((-Complex.I) * inner ℂ state
+      (canonicalCompletedC3FullWronskianOperator state)).re =
+        ‖canonicalCompletedC3FullWronskianPositivePolarization state‖ ^ 2 -
+          ‖canonicalCompletedC3FullWronskianNegativePolarization state‖ ^ 2 := by
+  rw [inner_canonicalCompletedC3FullWronskianOperator_eq_polarizationDifference]
+  rw [inner_self_eq_norm_sq_to_K, inner_self_eq_norm_sq_to_K]
+  norm_num [Complex.mul_re, Complex.ofReal_re, Complex.ofReal_pow]
+  norm_cast
+
+/-- A vanishing scalar readout means equality of the two chiral energies,
+not vanishing of the underlying state. -/
+theorem canonicalCompletedC3FullWronskian_chiralityBalance_eq_zero_iff
+    (state : CanonicalCompletedC3FullWronskianOperatorCarrier) :
+    ((-Complex.I) * inner ℂ state
+        (canonicalCompletedC3FullWronskianOperator state)).re = 0 ↔
+      ‖canonicalCompletedC3FullWronskianPositivePolarization state‖ ^ 2 =
+        ‖canonicalCompletedC3FullWronskianNegativePolarization state‖ ^ 2 := by
+  rw [canonicalCompletedC3FullWronskian_chiralityBalance]
+  exact sub_eq_zero
+
+/-- If the total state is nonzero while its scalar balance vanishes, both
+orthogonal chiral channels carry strictly positive energy. -/
+theorem canonicalCompletedC3FullWronskian_chiralEnergies_pos_of_balance_zero
+    {state : CanonicalCompletedC3FullWronskianOperatorCarrier}
+    (hstate : state ≠ 0)
+    (hbalance :
+      ((-Complex.I) * inner ℂ state
+        (canonicalCompletedC3FullWronskianOperator state)).re = 0) :
+    0 < ‖canonicalCompletedC3FullWronskianPositivePolarization state‖ ^ 2 ∧
+      0 < ‖canonicalCompletedC3FullWronskianNegativePolarization state‖ ^ 2 := by
+  have htotal : 0 < ‖state‖ ^ 2 := by
+    have hnorm : 0 < ‖state‖ := norm_pos_iff.mpr hstate
+    positivity
+  have hsum := canonicalCompletedC3FullWronskianPolarization_norm_sq state
+  have heq :=
+    (canonicalCompletedC3FullWronskian_chiralityBalance_eq_zero_iff state).mp
+      hbalance
+  constructor <;> nlinarith
+
 /-! ## Concrete completed C3 kernels -/
 
 /-- The concrete full Wronskian kernel is the exact difference of its two
@@ -252,6 +312,33 @@ theorem canonicalCompletedC3NormalizedFullWronskianOperatorKernel_eq_polarizatio
     inner_canonicalCompletedC3FullWronskianOperator_eq_polarizationDifference
       (canonicalCompletedC3NormalizedFullWronskianOperatorState M w)
       (canonicalCompletedC3NormalizedFullWronskianOperatorState M z)
+
+/-- At a zero of the completed characteristic, the normalized full state has
+equal positive- and negative-chirality energies.  The scalar Wronskian
+vanishes by balance of orthogonal channels; it does not assert that either
+channel, or the uncollapsed ledger behind them, vanishes. -/
+theorem
+    canonicalCompletedC3NormalizedFullWronskian_chiralEnergies_eq_of_characteristicZero
+    (M : ℕ) {z : ℂ}
+    (hz : z ∈ completedNativeHeightDomain)
+    (hzero : completedNativeOperatorCharacteristic z = 0) :
+    ‖canonicalCompletedC3FullWronskianPositivePolarization
+        (canonicalCompletedC3NormalizedFullWronskianOperatorState M z)‖ ^ 2 =
+      ‖canonicalCompletedC3FullWronskianNegativePolarization
+        (canonicalCompletedC3NormalizedFullWronskianOperatorState M z)‖ ^ 2 := by
+  apply
+    (canonicalCompletedC3FullWronskian_chiralityBalance_eq_zero_iff
+      (canonicalCompletedC3NormalizedFullWronskianOperatorState M z)).mp
+  have hreadout :
+      inner ℂ
+          (canonicalCompletedC3NormalizedFullWronskianOperatorState M z)
+          (canonicalCompletedC3FullWronskianOperator
+            (canonicalCompletedC3NormalizedFullWronskianOperatorState M z)) =
+        0 := by
+    rw [← completedGreenWronskian_eq_normalizedFullOperatorInner M hz hz]
+    simp [completedGreenWronskian, hzero]
+  rw [hreadout]
+  simp
 
 end
 
