@@ -619,6 +619,83 @@ theorem canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_gradientEnergy
   rw [canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_energy,
     canonicalCompletedC3AmbientResponseEnergy_eq_gradient]
 
+/-! ## Exact Pythagorean criterion at the response level -/
+
+/-- The ambient response admits the expected Pythagorean decomposition
+precisely when the real Gamma/correction cross Gram vanishes.  Orthogonality
+of the source port and source leak is not used here and is not silently
+transported through the resolvent. -/
+theorem canonicalCompletedC3AmbientResponse_pythagoras_iff_crossOrthogonal
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 +
+            ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+              z hz hzHalf‖ ^ 2 ↔
+      (inner ℂ
+        (canonicalCompletedC3PolarizedGammaState z hz)
+        (canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+          z hz hzHalf)).re = 0 := by
+  rw [canonicalCompletedC3AmbientResponseState_eq_gamma_add_correction
+      z hz hzHalf,
+    norm_add_sq (𝕜 := ℂ)]
+  simp only [← RCLike.re_eq_complex_re]
+  constructor
+  · intro h
+    nlinarith
+  · intro h
+    rw [h]
+    ring
+
+/-- Response-level Pythagoras is equivalently the vanishing of the concrete
+source-boundary skew channel.  This is the exact extra condition required to
+transport the source orthogonality through the logarithmic resolvent. -/
+theorem canonicalCompletedC3AmbientResponse_pythagoras_iff_sourceBoundary_im
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 +
+            ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+              z hz hzHalf‖ ^ 2 ↔
+      (canonicalCompletedC3GammaCorrectionSourceBoundaryReadout
+        z z hz hz hzHalf).im = 0 := by
+  rw [canonicalCompletedC3AmbientResponse_pythagoras_iff_crossOrthogonal
+      z hz hzHalf,
+    canonicalCompletedC3GammaCorrectionSourceBoundaryReadout_diagonal_im
+      z hz hzHalf]
+  let cross : ℝ :=
+    (canonicalCompletedC3GammaCorrectionKernel
+      z z hz hz hzHalf).re
+  change cross = 0 ↔ 2 * z.im * cross = 0
+  constructor
+  · intro hcross
+    rw [hcross, mul_zero]
+  · intro hproduct
+    exact (mul_eq_zero.mp hproduct).resolve_left
+      (mul_ne_zero (by norm_num) hz)
+
+/-- If response-level Pythagoras holds and the correction state is nonzero,
+the ambient and Gamma energies are necessarily different.  Thus Pythagoras
+prevents cancellation; it cannot by itself prove the sewing equality. -/
+theorem canonicalCompletedC3AmbientResponse_energy_ne_gamma_of_pythagoras
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re)
+    (hpythagoras :
+      ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+        ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 +
+          ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+            z hz hzHalf‖ ^ 2)
+    (hcorrection :
+      canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+        z hz hzHalf ≠ 0) :
+    ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 ≠
+      ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 := by
+  have hnorm : 0 <
+      ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+        z hz hzHalf‖ ^ 2 :=
+    pow_pos (norm_pos_iff.mpr hcorrection) 2
+  nlinarith
+
 /-- The exact finite cancellation balances converge to the completed
 balance.  In particular, no nonzero finite channel is discarded when the
 cutoff is removed. -/
