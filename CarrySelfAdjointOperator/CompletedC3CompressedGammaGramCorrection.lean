@@ -14,7 +14,7 @@ This module keeps the three resulting Hilbert channels separate: Gamma against
 correction, correction against Gamma, and correction against correction.
 -/
 
-open scoped ComplexConjugate InnerProductSpace lp
+open scoped ComplexConjugate ComplexOrder InnerProductSpace lp
 
 namespace CarrySelfAdjointOperator
 
@@ -76,6 +76,20 @@ def canonicalCompletedC3AmbientResponseKernel
   inner ℂ
     (canonicalCompletedC3AmbientResponseState z hzHalf)
     (canonicalCompletedC3AmbientResponseState w hwHalf)
+
+/-- Every finite section of the actual all-cutoff ambient-response kernel is
+positive semidefinite.  The source may depend on the spectral parameter; all
+response vectors nevertheless inhabit the same completed Naimark space. -/
+theorem canonicalCompletedC3AmbientResponseKernel_posSemidef
+    {ι : Type*} [Finite ι]
+    (point : ι → ℂ)
+    (hhalf : ∀ i, 0 < (operatorHeightParameter (point i)).re) :
+    (Matrix.of fun i j =>
+      canonicalCompletedC3AmbientResponseKernel
+        (point i) (point j) (hhalf i) (hhalf j)).PosSemidef := by
+  change (Matrix.gram ℂ (fun i =>
+    canonicalCompletedC3AmbientResponseState (point i) (hhalf i))).PosSemidef
+  exact Matrix.posSemidef_gram ℂ _
 
 /-- Gamma in the first slot and the resolved correction in the second. -/
 def canonicalCompletedC3GammaCorrectionKernel
