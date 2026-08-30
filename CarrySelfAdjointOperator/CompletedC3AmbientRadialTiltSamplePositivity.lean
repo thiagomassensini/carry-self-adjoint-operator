@@ -1,6 +1,7 @@
 import CarrySelfAdjointOperator.CompletedC3CompressedGammaGramCorrection
 import CarrySelfAdjointOperator.CompletedNativeRadialTiltSamplePositivity
 import Mathlib.Analysis.InnerProductSpace.GramMatrix
+import Mathlib.Analysis.Normed.Group.Tannery
 import Mathlib.Tactic
 
 /-!
@@ -20,8 +21,10 @@ the completed-native `dslope` is isolated as one source-matched boundary gate.
 
 namespace CarrySelfAdjointOperator
 
-open scoped ComplexConjugate ComplexOrder InnerProductSpace
+open scoped ComplexConjugate ComplexOrder InnerProductSpace BigOperators lp ENNReal
 open Filter Topology
+open CPFormal.Analytic.Cp
+open NativeCarrySpectralWeyl.Infinite
 
 noncomputable section
 
@@ -121,6 +124,181 @@ theorem canonicalCompletedC3AmbientRadialTiltPoint_half_pos
     ((n : ℕ) : ℝ) + 1 ≤ (N : ℝ) := hn
     _ < ((N : ℝ) + 1) * ((k : ℝ) + 1) := by nlinarith
     _ = (1 / 2 : ℝ) * (2 * ((N : ℝ) + 1) * ((k : ℝ) + 1)) := by ring
+
+private theorem positiveDirichletGradient_continuous
+    (n : ℕ) :
+    Continuous (fun s : ℂ ↦ positiveDirichletGradient s n) := by
+  have hnatDirichlet (m : ℕ) (hm : 0 < m) :
+      Continuous (fun s : ℂ ↦ natDirichletTerm s m) := by
+    have hmComplex : (((m : ℤ) : ℂ)) ≠ 0 := by
+      exact_mod_cast (Nat.ne_of_gt hm)
+    unfold natDirichletTerm dirichletTerm
+    exact continuous_id.neg.const_cpow (Or.inl hmComplex)
+  unfold positiveDirichletGradient
+  exact (hnatDirichlet (n + 2) (by omega)).sub
+    (hnatDirichlet (n + 1) (by omega))
+
+/-- The completed ordinary gradient state is strongly continuous along every
+fixed admissible radial sample.  The proof keeps the whole infinite carrier:
+Tannery's theorem is applied to its canonical single-coordinate expansion,
+with the uniform summable majorant `(n + 1)^(-5/4)`. -/
+theorem canonicalCompletedC3DirichletGradientState_ambientRadial_tendsto
+    (N : ℕ) (i : Fin N) :
+    Tendsto
+      (fun k : ℕ ↦
+        canonicalCompletedC3DirichletGradientState
+          (operatorHeightParameter
+            (canonicalCompletedC3AmbientRadialTiltPoint k N i))
+          (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i))
+      atTop
+      (nhds (canonicalCompletedC3DirichletGradientState
+        (operatorHeightParameter 0) (by norm_num [operatorHeightParameter]))) := by
+  let parameter : ℕ → ℂ := fun k ↦
+    operatorHeightParameter
+      (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+  have hparameter : Tendsto parameter atTop (nhds (operatorHeightParameter 0)) := by
+    have hcontinuous : Continuous operatorHeightParameter := by
+      unfold operatorHeightParameter
+      fun_prop
+    exact hcontinuous.continuousAt.tendsto.comp
+      (canonicalCompletedC3AmbientRadialTiltPoint_tendsto_zero N i)
+  have hre : Tendsto (fun k ↦ (parameter k).re) atTop (nhds (1 / 2 : ℝ)) := by
+    simpa [Function.comp_def, operatorHeightParameter] using
+      Complex.continuous_re.continuousAt.tendsto.comp hparameter
+  have hnorm : Tendsto (fun k ↦ ‖parameter k‖) atTop (nhds (1 / 2 : ℝ)) := by
+    simpa [Function.comp_def, operatorHeightParameter] using
+      tendsto_norm.comp hparameter
+  have hreEventually : ∀ᶠ k : ℕ in atTop, (1 / 4 : ℝ) < (parameter k).re :=
+    (tendsto_order.1 hre).1 _ (by norm_num)
+  have hnormEventually : ∀ᶠ k : ℕ in atTop, ‖parameter k‖ < (1 : ℝ) :=
+    (tendsto_order.1 hnorm).2 _ (by norm_num)
+  let bound : ℕ → ℝ := fun n ↦ (((n + 1 : ℕ) : ℝ) ^ (-5 / 4 : ℝ))
+  have hboundSummable : Summable bound := by
+    have hbase : Summable (fun n : ℕ ↦ (n : ℝ) ^ (-5 / 4 : ℝ)) :=
+      Real.summable_nat_rpow.mpr (by norm_num)
+    have hshift := hbase.comp_injective
+      (show Function.Injective (fun n : ℕ ↦ n + 1) by
+        intro a b hab
+        exact Nat.add_right_cancel hab)
+    simpa [bound, Function.comp_def] using hshift
+  have hterm (n : ℕ) :
+      Tendsto
+        (fun k : ℕ ↦
+          (lp.single 2 n (positiveDirichletGradient (parameter k) n) :
+            CarryVerticalL2))
+        atTop
+        (nhds (lp.single 2 n
+          (positiveDirichletGradient (operatorHeightParameter 0) n) :
+            CarryVerticalL2)) := by
+    have hcoordinate :=
+      (positiveDirichletGradient_continuous n).continuousAt.tendsto.comp hparameter
+    simpa only [lp.singleContinuousLinearMap_apply, Function.comp_def] using
+      (lp.singleContinuousLinearMap ℂ (fun _ : ℕ ↦ ℂ) 2 n).continuous.continuousAt.tendsto.comp
+        hcoordinate
+  have htermBound : ∀ᶠ k : ℕ in atTop, ∀ n : ℕ,
+      ‖(lp.single 2 n (positiveDirichletGradient (parameter k) n) :
+        CarryVerticalL2)‖ ≤ bound n := by
+    filter_upwards [hreEventually, hnormEventually] with k hkRe hkNorm
+    intro n
+    have hkPos : 0 < (parameter k).re := by linarith
+    have hgradient := norm_positiveDirichletGradient_le hkPos n
+    have hbase : (1 : ℝ) ≤ ((n + 1 : ℕ) : ℝ) := by
+      exact_mod_cast Nat.one_le_iff_ne_zero.mpr (by omega : n + 1 ≠ 0)
+    have hexponent : -(parameter k).re - 1 ≤ (-5 / 4 : ℝ) := by
+      linarith
+    rw [lp.norm_single (by norm_num)]
+    calc
+      ‖positiveDirichletGradient (parameter k) n‖ ≤
+          ‖parameter k‖ *
+            ((n + 1 : ℕ) : ℝ) ^ (-(parameter k).re - 1) := hgradient
+      _ ≤ 1 * ((n + 1 : ℕ) : ℝ) ^ (-(parameter k).re - 1) := by
+        exact mul_le_mul_of_nonneg_right (le_of_lt hkNorm)
+          (Real.rpow_nonneg (zero_le_one.trans hbase) _)
+      _ ≤ 1 * ((n + 1 : ℕ) : ℝ) ^ (-5 / 4 : ℝ) := by
+        exact mul_le_mul_of_nonneg_left
+          (Real.rpow_le_rpow_of_exponent_le hbase hexponent) zero_le_one
+      _ = bound n := by simp [bound]
+  have htannery := tendsto_tsum_of_dominated_convergence
+    hboundSummable hterm htermBound
+  have hsource (k : ℕ) :
+      (∑' n : ℕ,
+        (lp.single 2 n (positiveDirichletGradient (parameter k) n) :
+          CarryVerticalL2)) =
+        canonicalCompletedC3DirichletGradientState
+          (parameter k)
+          (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i) := by
+    exact (lp.hasSum_single (p := (2 : ℝ≥0∞)) (by norm_num)
+      (canonicalCompletedC3DirichletGradientState
+        (parameter k)
+        (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i))).tsum_eq
+  have htarget :
+      (∑' n : ℕ,
+        (lp.single 2 n
+          (positiveDirichletGradient (operatorHeightParameter 0) n) :
+            CarryVerticalL2)) =
+        canonicalCompletedC3DirichletGradientState
+          (operatorHeightParameter 0) (by norm_num [operatorHeightParameter]) := by
+    exact (lp.hasSum_single (p := (2 : ℝ≥0∞)) (by norm_num)
+      (canonicalCompletedC3DirichletGradientState
+        (operatorHeightParameter 0)
+        (by norm_num [operatorHeightParameter]))).tsum_eq
+  rw [htarget] at htannery
+  exact htannery.congr' (Eventually.of_forall fun k ↦ by rw [hsource k])
+
+/-- The radial first-leg coefficient tends to its exact centered value one. -/
+theorem completedC3RadialRealCoefficient_ambientRadial_tendsto_one
+    (N : ℕ) (i : Fin N) :
+    Tendsto
+      (fun k : ℕ ↦ completedC3RadialRealCoefficient
+        (operatorHeightParameter
+          (canonicalCompletedC3AmbientRadialTiltPoint k N i)))
+      atTop (nhds 1) := by
+  have him : Tendsto
+      (fun k : ℕ ↦
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i).im)
+      atTop (nhds 0) := by
+    simpa [Function.comp_def] using
+      Complex.continuous_im.continuousAt.tendsto.comp
+        (canonicalCompletedC3AmbientRadialTiltPoint_tendsto_zero N i)
+  have hpow :=
+    (Real.continuousAt_const_rpow (by norm_num : (3 : ℝ) ≠ 0)).tendsto.comp him
+  simpa [Function.comp_def, completedC3RadialRealCoefficient,
+    criticalDisplacement, operatorHeightParameter] using hpow
+
+/-- The complete source-matched ambient response has a genuine vector limit
+at the Taylor center.  Both symplectic legs and the Naimark channel are kept
+throughout the transport. -/
+theorem canonicalCompletedC3AmbientResponseState_ambientRadial_tendsto
+    (N : ℕ) (i : Fin N) :
+    Tendsto
+      (fun k : ℕ ↦ canonicalCompletedC3AmbientResponseState
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+        (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i))
+      atTop
+      (nhds (canonicalCompletedC3AmbientResponseState 0
+        (by norm_num [operatorHeightParameter]))) := by
+  have hgradient :=
+    canonicalCompletedC3DirichletGradientState_ambientRadial_tendsto N i
+  have hcamera :=
+    completedC3GlobalLegCameraIsometry.continuous.continuousAt.tendsto.comp
+      hgradient
+  have hcoefficient :=
+    completedC3RadialRealCoefficient_ambientRadial_tendsto_one N i
+  have hfirst := (hcoefficient.smul hcamera).neg
+  have hpair := hfirst.prodMk_nhds hcamera
+  have hlp :=
+    (WithLp.prod_continuous_toLp 2 _ _).continuousAt.tendsto.comp hpair
+  have hnaimark :=
+    (realifiedNaimarkPort.continuous.continuousAt.tendsto).comp hlp
+  have hview : Continuous canonicalCompletedC3GammaNaimarkView := by
+    unfold canonicalCompletedC3GammaNaimarkView
+    exact continuous_id
+  have hcomplex := hview.continuousAt.tendsto.comp hnaimark
+  simpa [canonicalCompletedC3AmbientResponseState,
+    completedC3SymplecticNaimarkState, completedC3SymplecticCameraState,
+    canonicalCompletedC3GammaNaimarkView, completedC3LegCameraState,
+    Function.comp_def,
+    completedC3RadialRealCoefficient_operatorHeightParameter_zero] using hcomplex
 
 /-- The admissible radial grid lies in the full open critical strip, not only
 in the positive half-plane used by the source construction. -/
@@ -282,6 +460,29 @@ def canonicalCompletedC3NormalizedAmbientResponseState
       completedNativeOperatorCharacteristic z)⁻¹) •
     canonicalCompletedC3AmbientResponseState z hzHalf
 
+/-- Exact characteristic normalization preserves the ambient radial vector
+limit because the completed characteristic is nonzero at the center. -/
+theorem canonicalCompletedC3NormalizedAmbientResponseState_ambientRadial_tendsto
+    (N : ℕ) (i : Fin N) :
+    Tendsto
+      (fun k : ℕ ↦ canonicalCompletedC3NormalizedAmbientResponseState
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+        (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i))
+      atTop
+      (nhds (canonicalCompletedC3NormalizedAmbientResponseState 0
+        (by norm_num [operatorHeightParameter]))) := by
+  have hpoint := canonicalCompletedC3AmbientRadialTiltPoint_tendsto_zero N i
+  have hF :=
+    completedNativeOperatorCharacteristic_differentiableAt_zero.continuousAt.tendsto.comp
+      hpoint
+  have hsqrt : (((Real.sqrt 2 : ℝ) : ℂ)) ≠ 0 := by
+    exact_mod_cast (show Real.sqrt 2 ≠ 0 by positivity)
+  have hscalar :=
+    (tendsto_const_nhds.mul hF).inv₀
+      (mul_ne_zero hsqrt completedNativeOperatorCharacteristic_zero_ne_zero)
+  exact hscalar.smul
+    (canonicalCompletedC3AmbientResponseState_ambientRadial_tendsto N i)
+
 /-- Normalized positive kernel of the source-matched ambient responses. -/
 def canonicalCompletedC3NormalizedAmbientResponseKernel
     (z w : ℂ)
@@ -318,6 +519,35 @@ theorem canonicalCompletedC3NormalizedAmbientResponseKernel_eq_inner
   simp only [div_eq_mul_inv, mul_inv]
   rw [hsqrt_inv_sq]
   ring
+
+/-- Every fixed entry of the normalized ambient Gram has a finite centered
+limit, obtained from the strong vector limit rather than from a scalar energy
+estimate. -/
+theorem canonicalCompletedC3NormalizedAmbientResponseKernel_ambientRadial_tendsto
+    (N : ℕ) (i j : Fin N) :
+    Tendsto
+      (fun k : ℕ ↦ canonicalCompletedC3NormalizedAmbientResponseKernel
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+        (canonicalCompletedC3AmbientRadialTiltPoint k N j)
+        (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)
+        (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N j))
+      atTop
+      (nhds (inner ℂ
+        (canonicalCompletedC3NormalizedAmbientResponseState 0
+          (by norm_num [operatorHeightParameter]))
+        (canonicalCompletedC3NormalizedAmbientResponseState 0
+          (by norm_num [operatorHeightParameter])))) := by
+  have hi :=
+    canonicalCompletedC3NormalizedAmbientResponseState_ambientRadial_tendsto N i
+  have hj :=
+    canonicalCompletedC3NormalizedAmbientResponseState_ambientRadial_tendsto N j
+  have hinner := Filter.Tendsto.inner (𝕜 := ℂ) hi hj
+  exact hinner.congr' (Eventually.of_forall fun k ↦
+    (canonicalCompletedC3NormalizedAmbientResponseKernel_eq_inner
+      (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+      (canonicalCompletedC3AmbientRadialTiltPoint k N j)
+      (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)
+      (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N j)).symm)
 
 /-- Every finite section of the normalized full ambient kernel remains PSD,
 including under Lean's total inverse at characteristic zeros. -/
@@ -384,6 +614,52 @@ def canonicalCompletedNativeAmbientRadialDslopeSampleMatrix
     canonicalCompletedNativePolarizedDslopeKernel
       (canonicalCompletedC3AmbientRadialTiltPoint k N i)
       (canonicalCompletedC3AmbientRadialTiltPoint k N j)
+
+/-- The completed-native polarized divided difference has its finite analytic
+center limit on the same ambient radial grid. -/
+theorem canonicalCompletedNativePolarizedDslopeKernel_ambientRadial_tendsto
+    (N : ℕ) (i j : Fin N) :
+    Tendsto
+      (fun k : ℕ ↦ canonicalCompletedNativePolarizedDslopeKernel
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+        (canonicalCompletedC3AmbientRadialTiltPoint k N j))
+      atTop
+      (nhds (deriv
+        (completedGreenNormalizedResponse
+          completedNativeOperatorCharacteristic
+          completedNativeOperatorBoundaryCompanion) 0)) := by
+  have hi := canonicalCompletedC3AmbientRadialTiltPoint_tendsto_zero N i
+  have hj := canonicalCompletedC3AmbientRadialTiltPoint_tendsto_zero N j
+  have hiconj : Tendsto
+      (fun k : ℕ ↦ conj
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i))
+      atTop (nhds 0) := by
+    simpa [Function.comp_def] using
+      Complex.continuous_conj.continuousAt.tendsto.comp hi
+  have hpair := hiconj.prodMk_nhds hj
+  have hjoint := completedGreenDslope_tendsto_prod_of_analyticAt
+    completedNativeGreenNormalizedResponse_analyticAt
+  simpa [canonicalCompletedNativePolarizedDslopeKernel, Function.comp_def] using
+    hjoint.comp hpair
+
+/-- The Hermitian separation of any fixed radial pair vanishes at the Taylor
+center. -/
+theorem canonicalCompletedC3AmbientRadialTilt_separation_tendsto_zero
+    (N : ℕ) (i j : Fin N) :
+    Tendsto
+      (fun k : ℕ ↦
+        canonicalCompletedC3AmbientRadialTiltPoint k N j -
+          conj (canonicalCompletedC3AmbientRadialTiltPoint k N i))
+      atTop (nhds 0) := by
+  have hi := canonicalCompletedC3AmbientRadialTiltPoint_tendsto_zero N i
+  have hj := canonicalCompletedC3AmbientRadialTiltPoint_tendsto_zero N j
+  have hiconj : Tendsto
+      (fun k : ℕ ↦ conj
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i))
+      atTop (nhds 0) := by
+    simpa [Function.comp_def] using
+      Complex.continuous_conj.continuousAt.tendsto.comp hi
+  simpa using hj.sub hiconj
 
 /-- Normalized ambient Gram on the admissible radial grid. -/
 def canonicalCompletedC3NormalizedAmbientRadialResponseSampleMatrix
@@ -578,6 +854,63 @@ def canonicalCompletedC3NormalizedAmbientRadialDslopeDefect
       conj (canonicalCompletedC3AmbientRadialTiltPoint k N i)) *
       canonicalCompletedNativeAmbientRadialDslopeSampleMatrix k N i j
 
+/-- Exact structural factorization of the normalized sewing defect.  No
+correction channel is discarded: their total is the vanishing Hermitian
+separation times the difference of the two finite kernels. -/
+theorem canonicalCompletedC3NormalizedAmbientRadialDslopeDefect_eq_mul_kernel_sub
+    (k N : ℕ) (i j : Fin N) :
+    canonicalCompletedC3NormalizedAmbientRadialDslopeDefect k N i j =
+      (canonicalCompletedC3AmbientRadialTiltPoint k N j -
+        conj (canonicalCompletedC3AmbientRadialTiltPoint k N i)) *
+        (canonicalCompletedC3NormalizedAmbientResponseKernel
+            (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+            (canonicalCompletedC3AmbientRadialTiltPoint k N j)
+            (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)
+            (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N j) -
+          canonicalCompletedNativePolarizedDslopeKernel
+            (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+            (canonicalCompletedC3AmbientRadialTiltPoint k N j)) := by
+  unfold canonicalCompletedC3NormalizedAmbientRadialDslopeDefect
+  rw [canonicalCompletedC3NormalizedAmbientRadialBoundarySampleMatrix_apply]
+  simp only [canonicalCompletedC3NormalizedAmbientRadialResponseSampleMatrix,
+    canonicalCompletedNativeAmbientRadialDslopeSampleMatrix, Matrix.of_apply]
+  ring
+
+/-- The full normalized ambient-versus-native defect vanishes radially.  The
+proof uses only finite limits of the two kernels and the explicit separation
+factor; it does not assert channelwise disappearance. -/
+theorem canonicalCompletedC3NormalizedAmbientRadialDslopeDefect_tendsto_zero
+    (N : ℕ) (i j : Fin N) :
+    Tendsto
+      (fun k : ℕ ↦
+        canonicalCompletedC3NormalizedAmbientRadialDslopeDefect k N i j)
+      atTop (nhds 0) := by
+  have hseparation :=
+    canonicalCompletedC3AmbientRadialTilt_separation_tendsto_zero N i j
+  have hambient :=
+    canonicalCompletedC3NormalizedAmbientResponseKernel_ambientRadial_tendsto
+      N i j
+  have hdslope :=
+    canonicalCompletedNativePolarizedDslopeKernel_ambientRadial_tendsto N i j
+  have hproduct := hseparation.mul (hambient.sub hdslope)
+  have hzero : Tendsto
+      (fun k : ℕ ↦
+        (canonicalCompletedC3AmbientRadialTiltPoint k N j -
+          conj (canonicalCompletedC3AmbientRadialTiltPoint k N i)) *
+          (canonicalCompletedC3NormalizedAmbientResponseKernel
+              (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+              (canonicalCompletedC3AmbientRadialTiltPoint k N j)
+              (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)
+              (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N j) -
+            canonicalCompletedNativePolarizedDslopeKernel
+              (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+              (canonicalCompletedC3AmbientRadialTiltPoint k N j)))
+      atTop (nhds 0) := by
+    simpa only [zero_mul] using hproduct
+  exact hzero.congr' (Eventually.of_forall fun k ↦
+    (canonicalCompletedC3NormalizedAmbientRadialDslopeDefect_eq_mul_kernel_sub
+      k N i j).symm)
+
 /-- The four-channel ledger with exactly the completed characteristic
 normalization used by the ambient response state. -/
 def canonicalCompletedC3NormalizedAmbientRadialCorrectionLedger
@@ -626,6 +959,20 @@ theorem
   · exact h.congr'
       (canonicalCompletedC3NormalizedAmbientRadialDslopeDefect_eventually_eq_ledger
         M N i j).symm
+
+/-- Consequently the complete normalized four-channel correction ledger
+vanishes on every fixed radial entry, with no extra sewing hypothesis. -/
+theorem canonicalCompletedC3NormalizedAmbientRadialCorrectionLedger_tendsto_zero
+    (M N : ℕ) (i j : Fin N) :
+    Tendsto
+      (fun k : ℕ ↦
+        canonicalCompletedC3NormalizedAmbientRadialCorrectionLedger k N i j)
+      atTop (nhds 0) := by
+  exact
+    (canonicalCompletedC3NormalizedAmbientRadialDslopeDefect_tendsto_zero_iff_ledger
+      M N i j).mp
+      (canonicalCompletedC3NormalizedAmbientRadialDslopeDefect_tendsto_zero
+        N i j)
 
 end
 
