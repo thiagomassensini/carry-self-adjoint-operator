@@ -697,6 +697,296 @@ def canonicalCompletedC3AmbientPortProjection :
       RealifiedNaimarkComplexification :=
   realifiedNaimarkPort ∘L realifiedNaimarkAdjoint
 
+/-- Compressing after the canonical ambient-port projection returns the
+original compression. -/
+theorem realifiedNaimarkAdjoint_canonicalCompletedC3AmbientPortProjection
+    (x : RealifiedNaimarkComplexification) :
+    realifiedNaimarkAdjoint
+        (canonicalCompletedC3AmbientPortProjection x) =
+      realifiedNaimarkAdjoint x := by
+  change (realifiedNaimarkAdjoint ∘L realifiedNaimarkPort)
+      (realifiedNaimarkAdjoint x) = realifiedNaimarkAdjoint x
+  rw [NativeCarryC3Crosswalk.realifiedNaimarkAdjoint_comp_realifiedNaimarkPort]
+  rfl
+
+/-- The canonical ambient-port map is an actual projection. -/
+theorem canonicalCompletedC3AmbientPortProjection_idempotent
+    (x : RealifiedNaimarkComplexification) :
+    canonicalCompletedC3AmbientPortProjection
+        (canonicalCompletedC3AmbientPortProjection x) =
+      canonicalCompletedC3AmbientPortProjection x := by
+  change realifiedNaimarkPort
+      (realifiedNaimarkAdjoint
+        (canonicalCompletedC3AmbientPortProjection x)) =
+    realifiedNaimarkPort (realifiedNaimarkAdjoint x)
+  rw [realifiedNaimarkAdjoint_canonicalCompletedC3AmbientPortProjection]
+
+/-- The complementary component has zero camera compression. -/
+theorem realifiedNaimarkAdjoint_sub_canonicalCompletedC3AmbientPortProjection
+    (x : RealifiedNaimarkComplexification) :
+    realifiedNaimarkAdjoint
+        (x - canonicalCompletedC3AmbientPortProjection x) = 0 := by
+  rw [map_sub,
+    realifiedNaimarkAdjoint_canonicalCompletedC3AmbientPortProjection,
+    sub_self]
+
+/-- The projected ambient range is orthogonal to every complementary
+component in the full two-quadrature complex Hilbert structure. -/
+theorem inner_canonicalCompletedC3AmbientPortProjection_sub_eq_zero
+    (x y : RealifiedNaimarkComplexification) :
+    inner ℂ
+        (canonicalCompletedC3GammaNaimarkView
+          (canonicalCompletedC3AmbientPortProjection x))
+        (canonicalCompletedC3GammaNaimarkView
+          (y - canonicalCompletedC3AmbientPortProjection y)) = 0 := by
+  change inner ℂ
+      (canonicalCompletedC3GammaNaimarkView
+        (realifiedNaimarkPort (realifiedNaimarkAdjoint x)))
+      (canonicalCompletedC3GammaNaimarkView
+        (y - canonicalCompletedC3AmbientPortProjection y)) = 0
+  rw [inner_complex_gammaNaimarkView_port_eq_adjoint,
+    realifiedNaimarkAdjoint_sub_canonicalCompletedC3AmbientPortProjection]
+  simp
+
+/-- The completed ambient TFVD response already belongs to the Naimark-port
+range. -/
+theorem canonicalCompletedC3AmbientPortProjection_completedSymplecticState
+    (z : ℂ) (hzHalf : 0 < (operatorHeightParameter z).re) :
+    canonicalCompletedC3AmbientPortProjection
+        (completedC3SymplecticNaimarkState
+          (operatorHeightParameter z) hzHalf) =
+      completedC3SymplecticNaimarkState
+        (operatorHeightParameter z) hzHalf := by
+  unfold canonicalCompletedC3AmbientPortProjection
+    completedC3SymplecticNaimarkState
+  change realifiedNaimarkPort
+      ((realifiedNaimarkAdjoint ∘L realifiedNaimarkPort)
+        (completedC3SymplecticCameraState
+          (operatorHeightParameter z) hzHalf)) = _
+  rw [NativeCarryC3Crosswalk.realifiedNaimarkAdjoint_comp_realifiedNaimarkPort]
+  rfl
+
+/-- Port component of the concrete Gamma response. -/
+def canonicalCompletedC3ProjectedGammaPortState
+    (z : ℂ) (hz : z.im ≠ 0) : CarryGammaComplexNaimark :=
+  canonicalCompletedC3GammaNaimarkView
+    (canonicalCompletedC3AmbientPortProjection
+      (canonicalCompletedC3PolarizedGammaState z hz))
+
+/-- Complementary Naimark component of the concrete Gamma response. -/
+def canonicalCompletedC3GammaPortEscapeState
+    (z : ℂ) (hz : z.im ≠ 0) : CarryGammaComplexNaimark :=
+  canonicalCompletedC3PolarizedGammaState z hz -
+    canonicalCompletedC3ProjectedGammaPortState z hz
+
+/-- Difference internal to the Naimark port between the completed ambient
+response and the projected Gamma response. -/
+def canonicalCompletedC3AmbientPortDifferenceState
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    CarryGammaComplexNaimark :=
+  canonicalCompletedC3AmbientResponseState z hzHalf -
+    canonicalCompletedC3ProjectedGammaPortState z hz
+
+/-- The compression of the concrete Gamma response is its canonical Cauchy
+boundary value. -/
+theorem realifiedNaimarkAdjoint_canonicalCompletedC3PolarizedGammaState
+    (z : ℂ) (hz : z.im ≠ 0) :
+    realifiedNaimarkAdjoint
+        (canonicalCompletedC3PolarizedGammaState z hz) =
+      allBasesCauchyBlock z hz
+        (canonicalCompletedC3SixCameraSource z) := by
+  simpa [canonicalCompletedC3PolarizedGammaState,
+    carryGammaComplexState, carryDefectGammaZero,
+    ContinuousLinearMap.comp_apply] using
+      (carryDefectGammaZero_apply z hz
+        (canonicalCompletedC3SixCameraSource z))
+
+/-- The projected Gamma vector is exactly the Naimark promotion of its
+compressed Cauchy boundary value. -/
+theorem canonicalCompletedC3ProjectedGammaPortState_eq_cauchyPort
+    (z : ℂ) (hz : z.im ≠ 0) :
+    canonicalCompletedC3ProjectedGammaPortState z hz =
+      canonicalCompletedC3GammaNaimarkView
+        (realifiedNaimarkPort
+          (allBasesCauchyBlock z hz
+            (canonicalCompletedC3SixCameraSource z))) := by
+  unfold canonicalCompletedC3ProjectedGammaPortState
+    canonicalCompletedC3AmbientPortProjection
+  rw [ContinuousLinearMap.comp_apply,
+    realifiedNaimarkAdjoint_canonicalCompletedC3PolarizedGammaState]
+
+/-- The Gamma response is the orthogonal sum of its port and escape
+components. -/
+theorem canonicalCompletedC3PolarizedGammaState_eq_port_add_escape
+    (z : ℂ) (hz : z.im ≠ 0) :
+    canonicalCompletedC3PolarizedGammaState z hz =
+      canonicalCompletedC3ProjectedGammaPortState z hz +
+        canonicalCompletedC3GammaPortEscapeState z hz := by
+  unfold canonicalCompletedC3GammaPortEscapeState
+  abel
+
+/-- The resolved TFVD correction contains the internal port difference and
+the opposite Gamma escape component. -/
+theorem canonicalCompletedC3AmbientTfvdResolvedCorrectionState_eq_portDifference_sub_escape
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    canonicalCompletedC3AmbientTfvdResolvedCorrectionState z hz hzHalf =
+      canonicalCompletedC3AmbientPortDifferenceState z hz hzHalf -
+        canonicalCompletedC3GammaPortEscapeState z hz := by
+  unfold canonicalCompletedC3AmbientPortDifferenceState
+    canonicalCompletedC3GammaPortEscapeState
+  rw [canonicalCompletedC3AmbientResponseState_eq_gamma_add_correction
+    z hz hzHalf]
+  abel
+
+/-- The projected Gamma component is orthogonal to its escape component. -/
+theorem inner_canonicalCompletedC3ProjectedGammaPort_escape_eq_zero
+    (z : ℂ) (hz : z.im ≠ 0) :
+    inner ℂ
+        (canonicalCompletedC3ProjectedGammaPortState z hz)
+        (canonicalCompletedC3GammaPortEscapeState z hz) = 0 := by
+  exact inner_canonicalCompletedC3AmbientPortProjection_sub_eq_zero
+    (canonicalCompletedC3PolarizedGammaState z hz)
+    (canonicalCompletedC3PolarizedGammaState z hz)
+
+/-- The internal port difference is also orthogonal to the Gamma escape. -/
+theorem inner_canonicalCompletedC3AmbientPortDifference_escape_eq_zero
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    inner ℂ
+        (canonicalCompletedC3AmbientPortDifferenceState z hz hzHalf)
+        (canonicalCompletedC3GammaPortEscapeState z hz) = 0 := by
+  have hambient :
+      inner ℂ
+          (canonicalCompletedC3AmbientResponseState z hzHalf)
+          (canonicalCompletedC3GammaPortEscapeState z hz) = 0 := by
+    rw [show canonicalCompletedC3AmbientResponseState z hzHalf =
+        canonicalCompletedC3GammaNaimarkView
+          (canonicalCompletedC3AmbientPortProjection
+            (completedC3SymplecticNaimarkState
+              (operatorHeightParameter z) hzHalf)) by
+      unfold canonicalCompletedC3AmbientResponseState
+      rw [canonicalCompletedC3AmbientPortProjection_completedSymplecticState]]
+    exact inner_canonicalCompletedC3AmbientPortProjection_sub_eq_zero
+      (completedC3SymplecticNaimarkState
+        (operatorHeightParameter z) hzHalf)
+      (canonicalCompletedC3PolarizedGammaState z hz)
+  unfold canonicalCompletedC3AmbientPortDifferenceState
+  rw [inner_sub_left, hambient,
+    inner_canonicalCompletedC3ProjectedGammaPort_escape_eq_zero,
+    sub_zero]
+
+/-- The port part of the cross channel is a literal camera-space Cauchy
+pairing.  No ambient or spectral scalarization remains on this side. -/
+theorem inner_projectedGammaPort_ambientPortDifference_eq_cauchyCamera
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    inner ℂ
+        (canonicalCompletedC3ProjectedGammaPortState z hz)
+        (canonicalCompletedC3AmbientPortDifferenceState z hz hzHalf) =
+      inner ℂ
+        (canonicalCompletedC3GammaCameraView
+          (allBasesCauchyBlock z hz
+            (canonicalCompletedC3SixCameraSource z)))
+        (canonicalCompletedC3GammaCameraView
+          (completedC3SymplecticCameraState
+              (operatorHeightParameter z) hzHalf -
+            allBasesCauchyBlock z hz
+              (canonicalCompletedC3SixCameraSource z))) := by
+  rw [canonicalCompletedC3ProjectedGammaPortState_eq_cauchyPort]
+  unfold canonicalCompletedC3AmbientPortDifferenceState
+    canonicalCompletedC3AmbientResponseState
+    completedC3SymplecticNaimarkState
+  rw [canonicalCompletedC3ProjectedGammaPortState_eq_cauchyPort]
+  simp only [← canonicalCompletedC3GammaNaimarkView_sub, ← map_sub]
+  rw [inner_complex_gammaNaimarkView_port_port]
+
+/-- The Gamma escape is precisely the failure of the ambient logarithmic
+resolvent response to remain in the Naimark port. -/
+theorem canonicalCompletedC3GammaPortEscapeState_eq_resolvent_sub_projection
+    (z : ℂ) (hz : z.im ≠ 0) :
+    canonicalCompletedC3GammaPortEscapeState z hz =
+      canonicalCompletedC3GammaNaimarkView
+        (logarithmicResolventBlock z hz
+            (realifiedNaimarkPort
+              (canonicalCompletedC3SixCameraSource z)) -
+          canonicalCompletedC3AmbientPortProjection
+            (logarithmicResolventBlock z hz
+              (realifiedNaimarkPort
+                (canonicalCompletedC3SixCameraSource z)))) := by
+  unfold canonicalCompletedC3GammaPortEscapeState
+    canonicalCompletedC3ProjectedGammaPortState
+    canonicalCompletedC3PolarizedGammaState carryGammaComplexState
+    carryGammaSource
+  simp only [ContinuousLinearMap.comp_apply,
+    canonicalCompletedC3GammaNaimarkView_sub]
+  rfl
+
+/-- Vanishing of the Gamma escape is exactly invariance of the concrete
+canonical-source resolvent response under the Naimark-port projection. -/
+theorem canonicalCompletedC3GammaPortEscapeState_eq_zero_iff_resolvent_in_port
+    (z : ℂ) (hz : z.im ≠ 0) :
+    canonicalCompletedC3GammaPortEscapeState z hz = 0 ↔
+      canonicalCompletedC3AmbientPortProjection
+          (logarithmicResolventBlock z hz
+            (realifiedNaimarkPort
+              (canonicalCompletedC3SixCameraSource z))) =
+        logarithmicResolventBlock z hz
+          (realifiedNaimarkPort
+            (canonicalCompletedC3SixCameraSource z)) := by
+  rw [canonicalCompletedC3GammaPortEscapeState_eq_resolvent_sub_projection]
+  change logarithmicResolventBlock z hz
+          (realifiedNaimarkPort
+            (canonicalCompletedC3SixCameraSource z)) -
+        canonicalCompletedC3AmbientPortProjection
+          (logarithmicResolventBlock z hz
+            (realifiedNaimarkPort
+              (canonicalCompletedC3SixCameraSource z))) = 0 ↔ _
+  rw [sub_eq_zero]
+  exact eq_comm
+
+/-- Exact signed decomposition of the diagonal Gamma--correction cross
+channel.  The complementary escape contributes with the fixed negative sign;
+all remaining cancellation is internal to the camera port. -/
+theorem canonicalCompletedC3GammaCorrectionKernel_diagonal_re_eq_port_sub_escape
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    (canonicalCompletedC3GammaCorrectionKernel
+        z z hz hz hzHalf).re =
+      (inner ℂ
+        (canonicalCompletedC3ProjectedGammaPortState z hz)
+        (canonicalCompletedC3AmbientPortDifferenceState
+          z hz hzHalf)).re -
+        ‖canonicalCompletedC3GammaPortEscapeState z hz‖ ^ 2 := by
+  have hportEscape :=
+    inner_canonicalCompletedC3ProjectedGammaPort_escape_eq_zero z hz
+  have hportDifferenceEscape :=
+    inner_canonicalCompletedC3AmbientPortDifference_escape_eq_zero
+      z hz hzHalf
+  have hescapePortDifference :
+      inner ℂ
+          (canonicalCompletedC3GammaPortEscapeState z hz)
+          (canonicalCompletedC3AmbientPortDifferenceState z hz hzHalf) = 0 :=
+    inner_eq_zero_symm.mp hportDifferenceEscape
+  unfold canonicalCompletedC3GammaCorrectionKernel
+  rw [canonicalCompletedC3PolarizedGammaState_eq_port_add_escape z hz,
+    canonicalCompletedC3AmbientTfvdResolvedCorrectionState_eq_portDifference_sub_escape
+      z hz hzHalf,
+    inner_add_left, inner_sub_right, inner_sub_right,
+    hportEscape, hescapePortDifference]
+  simp only [sub_zero, zero_sub, Complex.add_re, Complex.neg_re]
+  have hnorm :
+      (inner ℂ
+        (canonicalCompletedC3GammaPortEscapeState z hz)
+        (canonicalCompletedC3GammaPortEscapeState z hz)).re =
+      ‖canonicalCompletedC3GammaPortEscapeState z hz‖ ^ 2 := by
+    simpa only [RCLike.re_eq_complex_re] using
+      (norm_sq_eq_re_inner (𝕜 := ℂ)
+        (canonicalCompletedC3GammaPortEscapeState z hz)).symm
+  rw [hnorm]
+  ring
+
 /-- On the concrete induced source, failure of the ambient resolvent to
 commute with the Naimark-port projection is exactly the resolved leak.  Thus
 the response-level obstruction is not an unnamed defect: it is the return of
@@ -930,6 +1220,104 @@ theorem canonicalCompletedC3AmbientResponse_pythagoras_iff_port_add_leak_cross
     z z hz hz hzHalf).re = 0 ↔ _
   rw [canonicalCompletedC3GammaCorrectionKernel_eq_port_add_leak
     z hz hzHalf hbound, Complex.add_re]
+
+/-- The response-level cross channel vanishes exactly when its internal
+Cauchy-port pairing pays the full positive cost of the Gamma escape. -/
+theorem canonicalCompletedC3AmbientResponse_pythagoras_iff_portBalance
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 +
+            ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+              z hz hzHalf‖ ^ 2 ↔
+      (inner ℂ
+        (canonicalCompletedC3ProjectedGammaPortState z hz)
+        (canonicalCompletedC3AmbientPortDifferenceState
+          z hz hzHalf)).re =
+        ‖canonicalCompletedC3GammaPortEscapeState z hz‖ ^ 2 := by
+  rw [canonicalCompletedC3AmbientResponse_pythagoras_iff_crossOrthogonal
+      z hz hzHalf]
+  change (canonicalCompletedC3GammaCorrectionKernel
+    z z hz hz hzHalf).re = 0 ↔ _
+  rw [canonicalCompletedC3GammaCorrectionKernel_diagonal_re_eq_port_sub_escape]
+  constructor <;> intro h <;> nlinarith
+
+/-- Camera-space form of the exact cancellation criterion.  This is the
+first point at which the remaining gate is expressed solely through the
+compressed Cauchy response and the orthogonal resolvent escape. -/
+theorem canonicalCompletedC3AmbientResponse_pythagoras_iff_cauchyCameraBalance
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 +
+            ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+              z hz hzHalf‖ ^ 2 ↔
+      (inner ℂ
+        (canonicalCompletedC3GammaCameraView
+          (allBasesCauchyBlock z hz
+            (canonicalCompletedC3SixCameraSource z)))
+        (canonicalCompletedC3GammaCameraView
+          (completedC3SymplecticCameraState
+              (operatorHeightParameter z) hzHalf -
+            allBasesCauchyBlock z hz
+              (canonicalCompletedC3SixCameraSource z)))).re =
+        ‖canonicalCompletedC3GammaPortEscapeState z hz‖ ^ 2 := by
+  rw [canonicalCompletedC3AmbientResponse_pythagoras_iff_portBalance,
+    inner_projectedGammaPort_ambientPortDifference_eq_cauchyCamera]
+
+/-- The previously separated resolved port and leak cross channels combine
+to the same signed camera/escape formula. -/
+theorem canonicalCompletedC3GammaPort_add_leak_cross_eq_cauchy_sub_escape
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re)
+    (hbound : CanonicalCompletedC3CompressedSourceFormBounded z hzHalf) :
+    (canonicalCompletedC3GammaPortCorrectionKernel
+        z hz hzHalf hbound).re +
+      (canonicalCompletedC3GammaLeakCorrectionKernel
+        z hz hzHalf hbound).re =
+      (inner ℂ
+        (canonicalCompletedC3GammaCameraView
+          (allBasesCauchyBlock z hz
+            (canonicalCompletedC3SixCameraSource z)))
+        (canonicalCompletedC3GammaCameraView
+          (completedC3SymplecticCameraState
+              (operatorHeightParameter z) hzHalf -
+            allBasesCauchyBlock z hz
+              (canonicalCompletedC3SixCameraSource z)))).re -
+        ‖canonicalCompletedC3GammaPortEscapeState z hz‖ ^ 2 := by
+  rw [← Complex.add_re,
+    ← canonicalCompletedC3GammaCorrectionKernel_eq_port_add_leak
+      z hz hzHalf hbound,
+    canonicalCompletedC3GammaCorrectionKernel_diagonal_re_eq_port_sub_escape,
+    inner_projectedGammaPort_ambientPortDifference_eq_cauchyCamera]
+
+/-- If the internal camera cross pairing is nonpositive and the resolvent
+really escapes the Naimark port, response-level Pythagoras is impossible. -/
+theorem canonicalCompletedC3AmbientResponse_not_pythagoras_of_cauchyCross_nonpos
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re)
+    (hcross :
+      (inner ℂ
+        (canonicalCompletedC3GammaCameraView
+          (allBasesCauchyBlock z hz
+            (canonicalCompletedC3SixCameraSource z)))
+        (canonicalCompletedC3GammaCameraView
+          (completedC3SymplecticCameraState
+              (operatorHeightParameter z) hzHalf -
+            allBasesCauchyBlock z hz
+              (canonicalCompletedC3SixCameraSource z)))).re ≤ 0)
+    (hescape : canonicalCompletedC3GammaPortEscapeState z hz ≠ 0) :
+    ¬ ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+        ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 +
+          ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+            z hz hzHalf‖ ^ 2 := by
+  intro hpythagoras
+  have hbalance :=
+    (canonicalCompletedC3AmbientResponse_pythagoras_iff_cauchyCameraBalance
+      z hz hzHalf).mp hpythagoras
+  have hnorm : 0 < ‖canonicalCompletedC3GammaPortEscapeState z hz‖ ^ 2 :=
+    pow_pos (norm_pos_iff.mpr hescape) 2
+  nlinarith
 
 /-- If response-level Pythagoras holds and the correction state is nonzero,
 the ambient and Gamma energies are necessarily different.  Thus Pythagoras
