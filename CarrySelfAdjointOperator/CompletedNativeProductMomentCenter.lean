@@ -261,6 +261,16 @@ theorem canonicalCompletedNativeLogDerivativeMoment_eq_factorCoefficients
   exact completedNativeGreenResponseTaylorCoefficient_eq_factorCoefficients
     (2 * n + 1)
 
+/-- The first nonconstant response coefficient is the exact two-channel
+decomposition of the zeroth completed-native moment. This is the center test
+any product-enriched Hilbert jet must realize before an all-order Gram
+identification can be attempted. -/
+theorem canonicalCompletedNativeLogDerivativeMoment_zero_eq_factorResponseCoefficients :
+    (canonicalCompletedNativeLogDerivativeMoment 0 : ℂ) =
+      nativeXiCompletionResponseTaylorCoefficient 1 +
+        nativeHeightScalarResponseTaylorCoefficient 1 := by
+  simpa using canonicalCompletedNativeLogDerivativeMoment_eq_factorCoefficients 0
+
 end
 
 end CarrySelfAdjointOperator

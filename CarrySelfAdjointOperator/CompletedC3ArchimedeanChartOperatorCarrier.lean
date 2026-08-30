@@ -66,6 +66,24 @@ theorem completedGreenWronskian_eq_boundarySymplecticInner
     completedScalarBoundarySymplecticRotation, WithLp.prod_inner_apply]
   ring
 
+/-- A boundary trace paired with its own symplectic rotation has zero real
+part. Thus this exact Wronskian carrier is operator-valued, not a positive
+Gram realization obtained by forgetting the rotation. -/
+theorem completedScalarBoundarySymplecticRotation_inner_self_re_eq_zero
+    (state : CompletedScalarBoundaryTraceCarrier) :
+    (inner ℂ state
+      (completedScalarBoundarySymplecticRotation state)).re = 0 := by
+  rw [completedScalarBoundarySymplecticRotation_apply,
+    WithLp.prod_inner_apply]
+  change (inner ℂ state.fst (-state.snd) +
+    inner ℂ state.snd state.fst).re = 0
+  rw [inner_neg_right, Complex.add_re, Complex.neg_re]
+  have hsymm :
+      (inner ℂ state.fst state.snd).re =
+        (inner ℂ state.snd state.fst).re := by
+    exact inner_re_symm (𝕜 := ℂ) state.fst state.snd
+  linarith
+
 /-- Two-block Hilbert carrier of the crossed completion/chart correction. -/
 abbrev CanonicalCompletedC3ArchimedeanChartOperatorCarrier :=
   WithLp 2
@@ -159,6 +177,18 @@ theorem canonicalCompletedC3ArchimedeanChartOperator_inner
         inner ℂ x.snd (-completedScalarBoundarySymplecticRotation y.snd) = _
   rw [inner_neg_right]
   rfl
+
+/-- The crossed archimedean/chart operator remains symplectic on the
+diagonal: its quadratic readout has zero real part. -/
+theorem canonicalCompletedC3ArchimedeanChartOperator_inner_self_re_eq_zero
+    (state : CanonicalCompletedC3ArchimedeanChartOperatorCarrier) :
+    (inner ℂ state
+      (canonicalCompletedC3ArchimedeanChartOperator state)).re = 0 := by
+  rw [canonicalCompletedC3ArchimedeanChartOperator_inner,
+    Complex.sub_re,
+    completedScalarBoundarySymplecticRotation_inner_self_re_eq_zero,
+    completedScalarBoundarySymplecticRotation_inner_self_re_eq_zero]
+  ring
 
 /-- Exact Hilbert-operator realization of the archimedean/chart mixed
 channel.  No positivity, zero condition, or spectral premise is used. -/

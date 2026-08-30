@@ -343,6 +343,25 @@ def canonicalCompletedC3FullWronskianOperator :
   · exact completedScalarBoundarySymplecticRotation_sq state.fst
   · exact canonicalCompletedC3ArchimedeanChartOperator_sq state.snd
 
+/-- The complete Wronskian operator has a purely skew diagonal readout. In
+particular, the completed product channels are faithfully Hilbertized here,
+but not as a positive Gram kernel before division by spectral separation. -/
+theorem canonicalCompletedC3FullWronskianOperator_inner_self_re_eq_zero
+    (state : CanonicalCompletedC3FullWronskianOperatorCarrier) :
+    (inner ℂ state
+      (canonicalCompletedC3FullWronskianOperator state)).re = 0 := by
+  rw [canonicalCompletedC3FullWronskianOperator_apply,
+    WithLp.prod_inner_apply]
+  change
+    (inner ℂ state.fst
+        (completedScalarBoundarySymplecticRotation state.fst) +
+      inner ℂ state.snd
+        (canonicalCompletedC3ArchimedeanChartOperator state.snd)).re = 0
+  rw [Complex.add_re,
+    completedScalarBoundarySymplecticRotation_inner_self_re_eq_zero,
+    canonicalCompletedC3ArchimedeanChartOperator_inner_self_re_eq_zero]
+  ring
+
 /-- The cutoff-free symplectic functional on the full trace/chart carrier. -/
 def canonicalCompletedC3FullWronskianFunctional
     (stateW stateZ : CanonicalCompletedC3FullWronskianOperatorCarrier) : ℂ :=
