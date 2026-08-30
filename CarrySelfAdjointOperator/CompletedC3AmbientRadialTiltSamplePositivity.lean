@@ -549,6 +549,37 @@ theorem canonicalCompletedC3NormalizedAmbientResponseKernel_ambientRadial_tendst
       (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)
       (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N j)).symm)
 
+/-- Exact zeroth-order audit for the ambient carrier.  Its radial Gram limit
+is the completed-native zeroth moment exactly when the centered ambient state
+has that norm.  Thus higher forward differences cannot bypass this first
+coefficient identification. -/
+theorem
+    canonicalCompletedC3NormalizedAmbientResponseKernel_ambientRadial_tendsto_moment_zero_iff
+    (N : ℕ) (i j : Fin N) :
+    Tendsto
+        (fun k : ℕ ↦ canonicalCompletedC3NormalizedAmbientResponseKernel
+          (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+          (canonicalCompletedC3AmbientRadialTiltPoint k N j)
+          (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)
+          (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N j))
+        atTop
+        (nhds (canonicalCompletedNativeLogDerivativeMoment 0 : ℂ)) ↔
+      inner ℂ
+          (canonicalCompletedC3NormalizedAmbientResponseState 0
+            (by norm_num [operatorHeightParameter]))
+          (canonicalCompletedC3NormalizedAmbientResponseState 0
+            (by norm_num [operatorHeightParameter])) =
+        (canonicalCompletedNativeLogDerivativeMoment 0 : ℂ) := by
+  have hcenter :=
+    canonicalCompletedC3NormalizedAmbientResponseKernel_ambientRadial_tendsto
+      N i j
+  constructor
+  · intro hmoment
+    exact tendsto_nhds_unique hcenter hmoment
+  · intro hcenterMoment
+    rw [← hcenterMoment]
+    exact hcenter
+
 /-- Every finite section of the normalized full ambient kernel remains PSD,
 including under Lean's total inverse at characteristic zeros. -/
 theorem canonicalCompletedC3NormalizedAmbientResponseKernel_posSemidef
