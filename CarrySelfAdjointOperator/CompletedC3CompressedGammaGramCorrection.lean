@@ -721,6 +721,35 @@ theorem canonicalCompletedC3AmbientPortProjection_idempotent
     realifiedNaimarkPort (realifiedNaimarkAdjoint x)
   rw [realifiedNaimarkAdjoint_canonicalCompletedC3AmbientPortProjection]
 
+/-- The ambient-port projection fixes every promoted camera vector. -/
+theorem canonicalCompletedC3AmbientPortProjection_realifiedNaimarkPort
+    (u : RealifiedCameraComplexification) :
+    canonicalCompletedC3AmbientPortProjection (realifiedNaimarkPort u) =
+      realifiedNaimarkPort u := by
+  unfold canonicalCompletedC3AmbientPortProjection
+  change realifiedNaimarkPort
+      ((realifiedNaimarkAdjoint ∘L realifiedNaimarkPort) u) = _
+  rw [NativeCarryC3Crosswalk.realifiedNaimarkAdjoint_comp_realifiedNaimarkPort]
+  rfl
+
+/-- The real orthogonal projection acts identically on both quadratures, so
+it commutes with the real block representing complex scalar multiplication. -/
+theorem canonicalCompletedC3AmbientPortProjection_realifiedNaimarkScalar
+    (z : ℂ) (x : RealifiedNaimarkComplexification) :
+    canonicalCompletedC3AmbientPortProjection (realifiedNaimarkScalar z x) =
+      realifiedNaimarkScalar z
+        (canonicalCompletedC3AmbientPortProjection x) := by
+  apply WithLp.ofLp_injective 2
+  apply Prod.ext
+  · simp [canonicalCompletedC3AmbientPortProjection,
+      realifiedNaimarkPort, realifiedNaimarkAdjoint,
+      realifiedNaimarkScalar, realifiedContinuousLinearBlock,
+      ContinuousLinearMap.comp_apply]
+  · simp [canonicalCompletedC3AmbientPortProjection,
+      realifiedNaimarkPort, realifiedNaimarkAdjoint,
+      realifiedNaimarkScalar, realifiedContinuousLinearBlock,
+      ContinuousLinearMap.comp_apply]
+
 /-- The complementary component has zero camera compression. -/
 theorem realifiedNaimarkAdjoint_sub_canonicalCompletedC3AmbientPortProjection
     (x : RealifiedNaimarkComplexification) :
@@ -945,6 +974,99 @@ theorem canonicalCompletedC3GammaPortEscapeState_eq_zero_iff_resolvent_in_port
               (canonicalCompletedC3SixCameraSource z))) = 0 ↔ _
   rw [sub_eq_zero]
   exact eq_comm
+
+/-- Complementary logarithmic image of the canonical Gamma domain response.
+This is the concrete off-port vector that must be detected to prove that the
+Gamma resolvent response really escapes the camera port. -/
+def canonicalCompletedC3GammaLogarithmicLeakState
+    (z : ℂ) (hz : z.im ≠ 0) : CarryGammaComplexNaimark :=
+  canonicalCompletedC3GammaNaimarkView
+    (realifiedLogarithmicMultiplication
+        (canonicalCompletedC3TfvdResolventDomainVector z hz) -
+      canonicalCompletedC3AmbientPortProjection
+        (realifiedLogarithmicMultiplication
+          (canonicalCompletedC3TfvdResolventDomainVector z hz)))
+
+/-- Applying the complementary port projection to the exact resolvent
+equation identifies the logarithmic leak with `z` times the Gamma escape.
+No Gram identity or positivity input is used. -/
+theorem canonicalCompletedC3GammaLogarithmicLeakState_eq_smul_escape
+    (z : ℂ) (hz : z.im ≠ 0) :
+    canonicalCompletedC3GammaLogarithmicLeakState z hz =
+      z • canonicalCompletedC3GammaPortEscapeState z hz := by
+  let x : RealifiedNaimarkComplexification :=
+    realifiedLogarithmicDomainEmbedding
+      (canonicalCompletedC3TfvdResolventDomainVector z hz)
+  let y : RealifiedNaimarkComplexification :=
+    realifiedLogarithmicMultiplication
+      (canonicalCompletedC3TfvdResolventDomainVector z hz)
+  let u : RealifiedNaimarkComplexification :=
+    realifiedNaimarkPort (canonicalCompletedC3SixCameraSource z)
+  have hdef : realifiedNaimarkScalar z x = y + u := by
+    exact canonicalCompletedC3TfvdResolventDomainVector_canonicalDefectEquation
+      z hz
+  have hprojected := congrArg canonicalCompletedC3AmbientPortProjection hdef
+  rw [map_add,
+    canonicalCompletedC3AmbientPortProjection_realifiedNaimarkScalar,
+    canonicalCompletedC3AmbientPortProjection_realifiedNaimarkPort] at hprojected
+  have hy : y = realifiedNaimarkScalar z x - u := by
+    rw [hdef]
+    abel
+  have hpy : canonicalCompletedC3AmbientPortProjection y =
+      realifiedNaimarkScalar z
+          (canonicalCompletedC3AmbientPortProjection x) - u := by
+    rw [hprojected]
+    abel
+  have hleak :
+      y - canonicalCompletedC3AmbientPortProjection y =
+        realifiedNaimarkScalar z
+          (x - canonicalCompletedC3AmbientPortProjection x) := by
+    rw [hpy, hy, map_sub]
+    abel
+  unfold canonicalCompletedC3GammaLogarithmicLeakState
+  change canonicalCompletedC3GammaNaimarkView
+      (y - canonicalCompletedC3AmbientPortProjection y) = _
+  rw [hleak,
+    canonicalCompletedC3GammaNaimarkView_realifiedNaimarkScalar]
+  rw [canonicalCompletedC3GammaPortEscapeState_eq_resolvent_sub_projection]
+  have hx : x =
+      logarithmicResolventBlock z hz
+        (realifiedNaimarkPort (canonicalCompletedC3SixCameraSource z)) := by
+    dsimp [x, canonicalCompletedC3TfvdResolventDomainVector]
+    rw [realifiedLogarithmicDomainEmbedding_resolventDomainElement,
+      canonicalCompletedC3TfvdCameraSource_eq_canonicalSource]
+  rw [hx]
+
+/-- Since the resolvent parameter is off the real axis, its scalar action is
+injective.  Thus the concrete logarithmic leak and the Gamma escape vanish
+simultaneously. -/
+theorem canonicalCompletedC3GammaLogarithmicLeakState_eq_zero_iff_escape
+    (z : ℂ) (hz : z.im ≠ 0) :
+    canonicalCompletedC3GammaLogarithmicLeakState z hz = 0 ↔
+      canonicalCompletedC3GammaPortEscapeState z hz = 0 := by
+  rw [canonicalCompletedC3GammaLogarithmicLeakState_eq_smul_escape]
+  have hz0 : z ≠ 0 := by
+    intro hzero
+    apply hz
+    rw [hzero]
+    rfl
+  simp [hz0]
+
+theorem canonicalCompletedC3GammaLogarithmicLeakState_ne_zero_iff_escape
+    (z : ℂ) (hz : z.im ≠ 0) :
+    canonicalCompletedC3GammaLogarithmicLeakState z hz ≠ 0 ↔
+      canonicalCompletedC3GammaPortEscapeState z hz ≠ 0 := by
+  exact not_congr
+    (canonicalCompletedC3GammaLogarithmicLeakState_eq_zero_iff_escape z hz)
+
+/-- Norm form of the exact logarithmic-leak/escape identity. -/
+theorem canonicalCompletedC3GammaLogarithmicLeakState_norm_sq
+    (z : ℂ) (hz : z.im ≠ 0) :
+    ‖canonicalCompletedC3GammaLogarithmicLeakState z hz‖ ^ 2 =
+      ‖z‖ ^ 2 * ‖canonicalCompletedC3GammaPortEscapeState z hz‖ ^ 2 := by
+  rw [canonicalCompletedC3GammaLogarithmicLeakState_eq_smul_escape,
+    norm_smul]
+  ring
 
 /-- Exact signed decomposition of the diagonal Gamma--correction cross
 channel.  The complementary escape contributes with the fixed negative sign;
@@ -1264,6 +1386,66 @@ theorem canonicalCompletedC3AmbientResponse_pythagoras_iff_cauchyCameraBalance
         ‖canonicalCompletedC3GammaPortEscapeState z hz‖ ^ 2 := by
   rw [canonicalCompletedC3AmbientResponse_pythagoras_iff_portBalance,
     inner_projectedGammaPort_ambientPortDifference_eq_cauchyCamera]
+
+/-- Division-free operator-domain form of the exact cancellation criterion.
+The escape norm is replaced by the complementary logarithmic image computed
+directly from the Gamma maximal-domain vector. -/
+theorem canonicalCompletedC3AmbientResponse_pythagoras_iff_logarithmicLeakBalance
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 +
+            ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+              z hz hzHalf‖ ^ 2 ↔
+      ‖z‖ ^ 2 *
+          (inner ℂ
+            (canonicalCompletedC3GammaCameraView
+              (allBasesCauchyBlock z hz
+                (canonicalCompletedC3SixCameraSource z)))
+            (canonicalCompletedC3GammaCameraView
+              (completedC3SymplecticCameraState
+                  (operatorHeightParameter z) hzHalf -
+                allBasesCauchyBlock z hz
+                  (canonicalCompletedC3SixCameraSource z)))).re =
+        ‖canonicalCompletedC3GammaLogarithmicLeakState z hz‖ ^ 2 := by
+  rw [canonicalCompletedC3AmbientResponse_pythagoras_iff_cauchyCameraBalance,
+    canonicalCompletedC3GammaLogarithmicLeakState_norm_sq]
+  have hz0 : z ≠ 0 := by
+    intro hzero
+    apply hz
+    rw [hzero]
+    rfl
+  have hnorm : ‖z‖ ^ 2 ≠ 0 := pow_ne_zero 2 (norm_ne_zero_iff.mpr hz0)
+  constructor
+  · intro h
+    rw [h]
+  · intro h
+    exact mul_left_cancel₀ hnorm h
+
+/-- Negated form of the same exact criterion.  This is the honest remaining
+noncancellation statement; neither a sign nor an escape hypothesis is hidden
+in its interface. -/
+theorem canonicalCompletedC3AmbientResponse_not_pythagoras_iff_logarithmicLeak_imbalance
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    (¬ ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 +
+            ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+              z hz hzHalf‖ ^ 2) ↔
+      ‖z‖ ^ 2 *
+          (inner ℂ
+            (canonicalCompletedC3GammaCameraView
+              (allBasesCauchyBlock z hz
+                (canonicalCompletedC3SixCameraSource z)))
+            (canonicalCompletedC3GammaCameraView
+              (completedC3SymplecticCameraState
+                  (operatorHeightParameter z) hzHalf -
+                allBasesCauchyBlock z hz
+                  (canonicalCompletedC3SixCameraSource z)))).re ≠
+        ‖canonicalCompletedC3GammaLogarithmicLeakState z hz‖ ^ 2 := by
+  exact not_congr
+    (canonicalCompletedC3AmbientResponse_pythagoras_iff_logarithmicLeakBalance
+      z hz hzHalf)
 
 /-- The previously separated resolved port and leak cross channels combine
 to the same signed camera/escape formula. -/
