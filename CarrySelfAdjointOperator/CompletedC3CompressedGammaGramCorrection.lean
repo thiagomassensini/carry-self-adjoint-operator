@@ -621,6 +621,241 @@ theorem canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_gradientEnergy
 
 /-! ## Exact Pythagorean criterion at the response level -/
 
+/-- Gamma paired with the resolvent response to the intrinsic compressed-port
+source discrepancy. -/
+def canonicalCompletedC3GammaPortCorrectionKernel
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re)
+    (hbound : CanonicalCompletedC3CompressedSourceFormBounded z hzHalf) : ℂ :=
+  inner ℂ
+    (canonicalCompletedC3PolarizedGammaState z hz)
+    (canonicalCompletedC3GammaNaimarkView
+      (realifiedLogarithmicDomainEmbedding
+        (canonicalCompletedC3CompressedTfvdPortResolvedCorrection
+          z hz hzHalf hbound)))
+
+/-- Gamma paired with the resolvent response to the complementary ambient
+Naimark leak. -/
+def canonicalCompletedC3GammaLeakCorrectionKernel
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re)
+    (hbound : CanonicalCompletedC3CompressedSourceFormBounded z hzHalf) : ℂ :=
+  inner ℂ
+    (canonicalCompletedC3PolarizedGammaState z hz)
+    (canonicalCompletedC3GammaNaimarkView
+      (realifiedLogarithmicDomainEmbedding
+        (canonicalCompletedC3AmbientLeakResolvedCorrection
+          z hz hzHalf hbound)))
+
+/-- The response cross Gram retains both source channels.  Linearity of the
+ambient resolvent gives this decomposition without an orthogonality premise. -/
+theorem canonicalCompletedC3GammaCorrectionKernel_eq_port_add_leak
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re)
+    (hbound : CanonicalCompletedC3CompressedSourceFormBounded z hzHalf) :
+    canonicalCompletedC3GammaCorrectionKernel z z hz hz hzHalf =
+      canonicalCompletedC3GammaPortCorrectionKernel
+          z hz hzHalf hbound +
+        canonicalCompletedC3GammaLeakCorrectionKernel
+          z hz hzHalf hbound := by
+  unfold canonicalCompletedC3GammaCorrectionKernel
+    canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+    canonicalCompletedC3GammaPortCorrectionKernel
+    canonicalCompletedC3GammaLeakCorrectionKernel
+  rw [canonicalCompletedC3AmbientTfvdResolvedCorrection_eq_port_add_leak
+      z hz hzHalf hbound,
+    map_add, canonicalCompletedC3GammaNaimarkView_add, inner_add_right]
+
+/-- Before resolving, the canonical port source is exactly orthogonal to the
+completed complementary leak.  This records the genuine source-level
+Pythagorean input separately from the response-level question. -/
+theorem canonicalCompletedC3TfvdSource_inner_ambientLeak_eq_zero
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z : ℂ) (hzHalf : 0 < (operatorHeightParameter z).re)
+    (hbound : CanonicalCompletedC3CompressedSourceFormBounded z hzHalf)
+    (hsource : Tendsto
+      (fun cutoff : ℕ =>
+        canonicalCompletedC3CausalResponseBoundaryFiniteCompressedSource
+          hbase cutoff z)
+      atTop
+      (nhds (canonicalCompletedC3CompressedHilbertSource
+        z hzHalf hbound))) :
+    inner ℂ
+        (canonicalCompletedC3GammaNaimarkView
+          (realifiedNaimarkPort (canonicalCompletedC3TfvdCameraSource z)))
+        (canonicalCompletedC3GammaNaimarkView
+          (canonicalCompletedC3AmbientNaimarkLeakLimit
+            z hzHalf hbound)) = 0 := by
+  rw [inner_complex_gammaNaimarkView_port_eq_adjoint,
+    realifiedNaimarkAdjoint_canonicalCompletedC3AmbientNaimarkLeakLimit
+      hbase z hzHalf hbound hsource]
+  simp
+
+/-- Orthogonal projection onto the realified Naimark-port range. -/
+def canonicalCompletedC3AmbientPortProjection :
+    RealifiedNaimarkComplexification →L[ℝ]
+      RealifiedNaimarkComplexification :=
+  realifiedNaimarkPort ∘L realifiedNaimarkAdjoint
+
+/-- On the concrete induced source, failure of the ambient resolvent to
+commute with the Naimark-port projection is exactly the resolved leak.  Thus
+the response-level obstruction is not an unnamed defect: it is the return of
+the source channel that was orthogonal before applying the resolvent. -/
+theorem canonicalCompletedC3AmbientPortProjection_resolvent_commutator_eq_leak
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re)
+    (hbound : CanonicalCompletedC3CompressedSourceFormBounded z hzHalf)
+    (hsource : Tendsto
+      (fun cutoff : ℕ =>
+        canonicalCompletedC3CausalResponseBoundaryFiniteCompressedSource
+          hbase cutoff z)
+      atTop
+      (nhds (canonicalCompletedC3CompressedHilbertSource
+        z hzHalf hbound))) :
+    canonicalCompletedC3AmbientPortProjection
+          (logarithmicResolventBlock z hz
+            (canonicalCompletedC3AmbientInducedSourceLimit z hzHalf)) -
+        logarithmicResolventBlock z hz
+          (canonicalCompletedC3AmbientPortProjection
+            (canonicalCompletedC3AmbientInducedSourceLimit z hzHalf)) =
+      realifiedLogarithmicDomainEmbedding
+        (canonicalCompletedC3AmbientLeakResolvedCorrection
+          z hz hzHalf hbound) := by
+  have hleakAdjoint :=
+    realifiedNaimarkAdjoint_canonicalCompletedC3AmbientNaimarkLeakLimit
+      hbase z hzHalf hbound hsource
+  have hadjointPort (u : RealifiedCameraComplexification) :
+      realifiedNaimarkAdjoint (realifiedNaimarkPort u) = u := by
+    change (realifiedNaimarkAdjoint ∘L realifiedNaimarkPort) u = u
+    rw [NativeCarryC3Crosswalk.realifiedNaimarkAdjoint_comp_realifiedNaimarkPort]
+    rfl
+  have hprojectionSource :
+      canonicalCompletedC3AmbientPortProjection
+          (canonicalCompletedC3AmbientInducedSourceLimit z hzHalf) =
+        realifiedNaimarkPort
+          (canonicalCompletedC3CompressedHilbertSource
+            z hzHalf hbound) := by
+    unfold canonicalCompletedC3AmbientPortProjection
+    rw [ContinuousLinearMap.comp_apply,
+      canonicalCompletedC3AmbientInducedSourceLimit_eq_port_add_leak
+        z hzHalf hbound,
+      map_add, hadjointPort, hleakAdjoint, add_zero]
+  have hresolventSource :
+      logarithmicResolventBlock z hz
+          (canonicalCompletedC3AmbientInducedSourceLimit z hzHalf) =
+        completedC3SymplecticNaimarkState
+          (operatorHeightParameter z) hzHalf := by
+    have h := canonicalCompletedC3AmbientResolventDomainVector_embedding
+      z hz hzHalf
+    unfold canonicalCompletedC3AmbientResolventDomainVector at h
+    change realifiedLogarithmicDomainEmbedding
+        (logarithmicResolventDomainElement z hz
+          (canonicalCompletedC3AmbientInducedSourceLimit z hzHalf)) = _ at h
+    rw [realifiedLogarithmicDomainEmbedding_resolventDomainElement] at h
+    exact h
+  have hprojectionState :
+      canonicalCompletedC3AmbientPortProjection
+          (completedC3SymplecticNaimarkState
+            (operatorHeightParameter z) hzHalf) =
+        completedC3SymplecticNaimarkState
+          (operatorHeightParameter z) hzHalf := by
+    unfold canonicalCompletedC3AmbientPortProjection
+      completedC3SymplecticNaimarkState
+    rw [ContinuousLinearMap.comp_apply, hadjointPort]
+  have hsourceSplit :=
+    canonicalCompletedC3AmbientInducedSourceLimit_eq_port_add_leak
+      z hzHalf hbound
+  have hresolventSplit := congrArg (logarithmicResolventBlock z hz) hsourceSplit
+  simp only [map_add] at hresolventSplit
+  have hleakResolved :
+      realifiedLogarithmicDomainEmbedding
+          (canonicalCompletedC3AmbientLeakResolvedCorrection
+            z hz hzHalf hbound) =
+        logarithmicResolventBlock z hz
+          (canonicalCompletedC3AmbientNaimarkLeakLimit
+            z hzHalf hbound) := by
+    unfold canonicalCompletedC3AmbientLeakResolvedCorrection
+    change realifiedLogarithmicDomainEmbedding
+        (logarithmicResolventDomainElement z hz
+          (canonicalCompletedC3AmbientNaimarkLeakLimit
+            z hzHalf hbound)) = _
+    rw [realifiedLogarithmicDomainEmbedding_resolventDomainElement]
+  rw [hresolventSource, hprojectionState, hprojectionSource]
+  rw [hleakResolved]
+  rw [hresolventSource] at hresolventSplit
+  rw [hresolventSplit]
+  abel
+
+/-- At the established geometric witness the projection/resolvent
+commutator is genuinely nonzero.  The source-level Pythagorean decomposition
+therefore cannot be transported to the response by a reducing-subspace
+argument. -/
+theorem exists_canonicalCompletedC3AmbientPortProjection_resolvent_commutator_ne_zero_at_witness
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base) :
+    ∃ hbound : CanonicalCompletedC3CompressedSourceFormBounded
+        noLeakWitnessHeight
+        (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num),
+      ∃ _hsource : Tendsto
+        (fun cutoff : ℕ =>
+          canonicalCompletedC3CausalResponseBoundaryFiniteCompressedSource
+            hbase cutoff noLeakWitnessHeight)
+        atTop
+        (nhds (canonicalCompletedC3CompressedHilbertSource
+          noLeakWitnessHeight
+          (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num)
+          hbound)),
+      canonicalCompletedC3AmbientPortProjection
+            (logarithmicResolventBlock noLeakWitnessHeight
+              (by rw [noLeakWitnessHeight_im]; norm_num)
+              (canonicalCompletedC3AmbientInducedSourceLimit
+                noLeakWitnessHeight
+                (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num))) -
+          logarithmicResolventBlock noLeakWitnessHeight
+            (by rw [noLeakWitnessHeight_im]; norm_num)
+            (canonicalCompletedC3AmbientPortProjection
+              (canonicalCompletedC3AmbientInducedSourceLimit
+                noLeakWitnessHeight
+                (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num))) ≠ 0 := by
+  let hz : noLeakWitnessHeight.im ≠ 0 := by
+    rw [noLeakWitnessHeight_im]
+    norm_num
+  let hs : 0 < (operatorHeightParameter noLeakWitnessHeight).re := by
+    rw [operatorHeightParameter_noLeakWitnessHeight_re]
+    norm_num
+  rcases exists_canonicalCompletedC3AmbientNaimarkLeakLimit_ne_zero_at_witness
+      hbase with ⟨hbound, hsource, hleak⟩
+  refine ⟨hbound, hsource, ?_⟩
+  change canonicalCompletedC3AmbientPortProjection
+          (logarithmicResolventBlock noLeakWitnessHeight hz
+            (canonicalCompletedC3AmbientInducedSourceLimit
+              noLeakWitnessHeight hs)) -
+        logarithmicResolventBlock noLeakWitnessHeight hz
+          (canonicalCompletedC3AmbientPortProjection
+            (canonicalCompletedC3AmbientInducedSourceLimit
+              noLeakWitnessHeight hs)) ≠ 0
+  rw [canonicalCompletedC3AmbientPortProjection_resolvent_commutator_eq_leak
+    hbase noLeakWitnessHeight hz hs hbound hsource]
+  intro hembedding
+  have hdomain :
+      canonicalCompletedC3AmbientLeakResolvedCorrection
+        noLeakWitnessHeight hz hs hbound = 0 := by
+    apply Prod.ext
+    · apply Subtype.ext
+      exact congrArg WithLp.fst hembedding
+    · apply Subtype.ext
+      exact congrArg WithLp.snd hembedding
+  have hsourceZero :
+      canonicalCompletedC3AmbientNaimarkLeakLimit
+        noLeakWitnessHeight hs hbound = 0 := by
+    apply logarithmicResolventIntoDomain_injective noLeakWitnessHeight hz
+    change logarithmicResolventIntoDomain noLeakWitnessHeight hz
+        (canonicalCompletedC3AmbientNaimarkLeakLimit
+          noLeakWitnessHeight hs hbound) = 0 at hdomain
+    exact hdomain.trans
+      (map_zero (logarithmicResolventIntoDomain noLeakWitnessHeight hz)).symm
+  exact hleak hsourceZero
+
 /-- The ambient response admits the expected Pythagorean decomposition
 precisely when the real Gamma/correction cross Gram vanishes.  Orthogonality
 of the source port and source leak is not used here and is not silently
@@ -673,6 +908,28 @@ theorem canonicalCompletedC3AmbientResponse_pythagoras_iff_sourceBoundary_im
   · intro hproduct
     exact (mul_eq_zero.mp hproduct).resolve_left
       (mul_ne_zero (by norm_num) hz)
+
+/-- Channel-separated response criterion.  Source orthogonality alone only
+controls the unresolved source vectors; after the resolvent, both the port
+discrepancy and returned leak cross terms remain visible. -/
+theorem canonicalCompletedC3AmbientResponse_pythagoras_iff_port_add_leak_cross
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re)
+    (hbound : CanonicalCompletedC3CompressedSourceFormBounded z hzHalf) :
+    ‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 =
+          ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2 +
+            ‖canonicalCompletedC3AmbientTfvdResolvedCorrectionState
+              z hz hzHalf‖ ^ 2 ↔
+      (canonicalCompletedC3GammaPortCorrectionKernel
+          z hz hzHalf hbound).re +
+        (canonicalCompletedC3GammaLeakCorrectionKernel
+          z hz hzHalf hbound).re = 0 := by
+  rw [canonicalCompletedC3AmbientResponse_pythagoras_iff_crossOrthogonal
+      z hz hzHalf]
+  change (canonicalCompletedC3GammaCorrectionKernel
+    z z hz hz hzHalf).re = 0 ↔ _
+  rw [canonicalCompletedC3GammaCorrectionKernel_eq_port_add_leak
+    z hz hzHalf hbound, Complex.add_re]
 
 /-- If response-level Pythagoras holds and the correction state is nonzero,
 the ambient and Gamma energies are necessarily different.  Thus Pythagoras
