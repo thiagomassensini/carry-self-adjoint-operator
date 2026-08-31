@@ -460,6 +460,91 @@ def canonicalCompletedC3NormalizedAmbientResponseState
       completedNativeOperatorCharacteristic z)⁻¹) •
     canonicalCompletedC3AmbientResponseState z hzHalf
 
+/-- The exact central norm of the normalized ambient response.  The radial
+factor contributes the first `2`, while the canonical `sqrt 2 * F(0)`
+normalization removes it.  No comparison with the completed-native zeroth
+moment is used here. -/
+theorem norm_sq_canonicalCompletedC3NormalizedAmbientResponseState_zero :
+    ‖canonicalCompletedC3NormalizedAmbientResponseState 0
+        (by norm_num [operatorHeightParameter])‖ ^ 2 =
+      ‖canonicalCompletedC3DirichletGradientState
+          (operatorHeightParameter 0)
+          (by norm_num [operatorHeightParameter])‖ ^ 2 /
+        ‖completedNativeOperatorCharacteristic 0‖ ^ 2 := by
+  have hF : ‖completedNativeOperatorCharacteristic 0‖ ≠ 0 :=
+    norm_ne_zero_iff.mpr completedNativeOperatorCharacteristic_zero_ne_zero
+  have hsqrt : ‖(((Real.sqrt 2 : ℝ) : ℂ))‖ ^ 2 = 2 := by
+    simp [Complex.norm_real, abs_of_nonneg (Real.sqrt_nonneg 2),
+      Real.sq_sqrt]
+  unfold canonicalCompletedC3NormalizedAmbientResponseState
+  rw [norm_smul, mul_pow, norm_inv, norm_mul,
+    canonicalCompletedC3AmbientResponseEnergy_eq_gradient,
+    completedC3RadialRealCoefficient_operatorHeightParameter_zero]
+  field_simp [hF]
+  rw [hsqrt]
+  ring
+
+/-- Coordinate expansion of the central Dirichlet-gradient energy. -/
+theorem inner_canonicalCompletedC3DirichletGradientState_half_eq_tsum :
+    inner ℂ
+        (canonicalCompletedC3DirichletGradientState
+          (1 / 2 : ℂ) (by norm_num))
+        (canonicalCompletedC3DirichletGradientState
+          (1 / 2 : ℂ) (by norm_num)) =
+      ∑' n : ℕ,
+        (starRingEnd ℂ)
+            (positiveDirichletGradient (1 / 2 : ℂ) n) *
+          positiveDirichletGradient (1 / 2 : ℂ) n := by
+  rw [lp.inner_eq_tsum]
+  congr 1
+  funext n
+  simp [canonicalCompletedC3DirichletGradientState_apply, mul_comm]
+  change ((‖positiveDirichletGradient (2 : ℂ)⁻¹ n‖ : ℂ) ^ 2) =
+    positiveDirichletGradient (2 : ℂ)⁻¹ n *
+      conj (positiveDirichletGradient (2 : ℂ)⁻¹ n)
+  rw [Complex.mul_conj]
+  exact_mod_cast Complex.sq_norm
+    (positiveDirichletGradient (2 : ℂ)⁻¹ n)
+
+/-- Fully explicit central energy series.  This is the exact quantity whose
+ratio by `‖F(0)‖²` must be compared with the zeroth completed-native moment. -/
+theorem inner_canonicalCompletedC3DirichletGradientState_half_eq_explicit_tsum :
+    inner ℂ
+        (canonicalCompletedC3DirichletGradientState
+          (1 / 2 : ℂ) (by norm_num))
+        (canonicalCompletedC3DirichletGradientState
+          (1 / 2 : ℂ) (by norm_num)) =
+      ∑' n : ℕ,
+        (((((n + 2 : ℕ) : ℝ) ^ (-(1 / 2 : ℝ)) -
+            ((n + 1 : ℕ) : ℝ) ^ (-(1 / 2 : ℝ))) ^ 2 : ℝ) : ℂ) := by
+  rw [inner_canonicalCompletedC3DirichletGradientState_half_eq_tsum]
+  apply tsum_congr
+  intro n
+  unfold positiveDirichletGradient
+  rw [natDirichletTerm_half_eq_realRpow,
+    natDirichletTerm_half_eq_realRpow]
+  simp only [map_sub, Complex.conj_ofReal]
+  push_cast
+  ring
+
+/-- Exact real criterion for the zeroth-moment comparison.  It exposes the
+characteristic weight without introducing a fitted normalization. -/
+theorem
+    norm_sq_canonicalCompletedC3NormalizedAmbientResponseState_zero_eq_moment_zero_iff :
+    ‖canonicalCompletedC3NormalizedAmbientResponseState 0
+        (by norm_num [operatorHeightParameter])‖ ^ 2 =
+        canonicalCompletedNativeLogDerivativeMoment 0 ↔
+      ‖canonicalCompletedC3DirichletGradientState
+          (operatorHeightParameter 0)
+          (by norm_num [operatorHeightParameter])‖ ^ 2 =
+        ‖completedNativeOperatorCharacteristic 0‖ ^ 2 *
+          canonicalCompletedNativeLogDerivativeMoment 0 := by
+  rw [norm_sq_canonicalCompletedC3NormalizedAmbientResponseState_zero]
+  have hF : (‖completedNativeOperatorCharacteristic 0‖ ^ 2 : ℝ) ≠ 0 :=
+    pow_ne_zero 2
+      (norm_ne_zero_iff.mpr completedNativeOperatorCharacteristic_zero_ne_zero)
+  simpa [mul_comm] using (div_eq_iff hF)
+
 /-- Exact characteristic normalization preserves the ambient radial vector
 limit because the completed characteristic is nonzero at the center. -/
 theorem canonicalCompletedC3NormalizedAmbientResponseState_ambientRadial_tendsto
