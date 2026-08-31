@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.CompletedC3FullWronskianOperatorCarrier
+import Mathlib.Analysis.InnerProductSpace.GramMatrix
 import Mathlib.Tactic
 
 /-!
@@ -13,7 +14,7 @@ This is an algebraic decomposition only.  It does not assume that either
 polarization vanishes on the completed-native state family.
 -/
 
-open scoped ComplexConjugate InnerProductSpace lp
+open scoped ComplexConjugate ComplexOrder InnerProductSpace lp
 
 namespace CarrySelfAdjointOperator
 
@@ -339,6 +340,193 @@ theorem
     simp [completedGreenWronskian, hzero]
   rw [hreadout]
   simp
+
+/-! ## Chiral realization of the completed logarithmic response -/
+
+/-- Canonical normalization shared by the two chiral channels.  Its square
+produces exactly the factor `2 * F z * conj (F w)` occurring in the completed
+normalized Wronskian response. -/
+def canonicalCompletedC3FullWronskianChiralNormalization (z : ℂ) : ℂ :=
+  (((Real.sqrt 2 : ℝ) : ℂ) * completedNativeOperatorCharacteristic z)⁻¹
+
+/-- Positive-chirality state after the characteristic normalization dictated
+by the completed logarithmic response. -/
+def canonicalCompletedC3NormalizedFullWronskianPositiveChiralState
+    (M : ℕ) (z : ℂ) : CanonicalCompletedC3FullWronskianOperatorCarrier :=
+  canonicalCompletedC3FullWronskianChiralNormalization z •
+    canonicalCompletedC3FullWronskianPositivePolarization
+      (canonicalCompletedC3NormalizedFullWronskianOperatorState M z)
+
+/-- Negative-chirality state with the same canonical normalization. -/
+def canonicalCompletedC3NormalizedFullWronskianNegativeChiralState
+    (M : ℕ) (z : ℂ) : CanonicalCompletedC3FullWronskianOperatorCarrier :=
+  canonicalCompletedC3FullWronskianChiralNormalization z •
+    canonicalCompletedC3FullWronskianNegativePolarization
+      (canonicalCompletedC3NormalizedFullWronskianOperatorState M z)
+
+/-- Positive Gram channel of the normalized full Wronskian carrier. -/
+def canonicalCompletedC3NormalizedFullWronskianPositiveChiralKernel
+    (M : ℕ) (w z : ℂ) : ℂ :=
+  inner ℂ
+    (canonicalCompletedC3NormalizedFullWronskianPositiveChiralState M w)
+    (canonicalCompletedC3NormalizedFullWronskianPositiveChiralState M z)
+
+/-- Negative Gram channel of the normalized full Wronskian carrier. -/
+def canonicalCompletedC3NormalizedFullWronskianNegativeChiralKernel
+    (M : ℕ) (w z : ℂ) : ℂ :=
+  inner ℂ
+    (canonicalCompletedC3NormalizedFullWronskianNegativeChiralState M w)
+    (canonicalCompletedC3NormalizedFullWronskianNegativeChiralState M z)
+
+/-- Every finite sample of the positive chiral kernel is positive
+semidefinite because it is literally a Hilbert Gram matrix. -/
+theorem canonicalCompletedC3NormalizedFullWronskianPositiveChiralKernel_posSemidef
+    {ι : Type*} [Finite ι] (M : ℕ) (point : ι → ℂ) :
+    (Matrix.of fun i j =>
+      canonicalCompletedC3NormalizedFullWronskianPositiveChiralKernel
+        M (point i) (point j)).PosSemidef := by
+  change (Matrix.gram ℂ (fun i =>
+    canonicalCompletedC3NormalizedFullWronskianPositiveChiralState
+      M (point i))).PosSemidef
+  exact Matrix.posSemidef_gram ℂ _
+
+/-- Every finite sample of the negative chiral kernel is likewise positive
+semidefinite. -/
+theorem canonicalCompletedC3NormalizedFullWronskianNegativeChiralKernel_posSemidef
+    {ι : Type*} [Finite ι] (M : ℕ) (point : ι → ℂ) :
+    (Matrix.of fun i j =>
+      canonicalCompletedC3NormalizedFullWronskianNegativeChiralKernel
+        M (point i) (point j)).PosSemidef := by
+  change (Matrix.gram ℂ (fun i =>
+    canonicalCompletedC3NormalizedFullWronskianNegativeChiralState
+      M (point i))).PosSemidef
+  exact Matrix.posSemidef_gram ℂ _
+
+/-- After the exact characteristic normalization, the full Wronskian readout
+is `i` times the difference of the two positive chiral Gram kernels.  This is
+the precise location of the completed logarithmic-derivative information: it
+is a signed chiral balance, not the norm of the unpolarized state. -/
+theorem canonicalCompletedC3NormalizedFullWronskianKernel_div_eq_chiralDifference
+    (M : ℕ) {w z : ℂ}
+    (hw : completedNativeOperatorCharacteristic w ≠ 0)
+    (hz : completedNativeOperatorCharacteristic z ≠ 0) :
+    canonicalCompletedC3NormalizedFullWronskianOperatorKernel M w z /
+          ((2 : ℂ) * completedNativeOperatorCharacteristic z *
+            (starRingEnd ℂ) (completedNativeOperatorCharacteristic w)) =
+      Complex.I *
+        (canonicalCompletedC3NormalizedFullWronskianPositiveChiralKernel
+            M w z -
+          canonicalCompletedC3NormalizedFullWronskianNegativeChiralKernel
+            M w z) := by
+  rw [canonicalCompletedC3NormalizedFullWronskianOperatorKernel_eq_polarizationDifference]
+  unfold canonicalCompletedC3NormalizedFullWronskianPositiveChiralKernel
+    canonicalCompletedC3NormalizedFullWronskianNegativeChiralKernel
+    canonicalCompletedC3NormalizedFullWronskianPositiveChiralState
+    canonicalCompletedC3NormalizedFullWronskianNegativeChiralState
+    canonicalCompletedC3FullWronskianChiralNormalization
+  simp only [inner_smul_left, inner_smul_right, map_inv₀, map_mul,
+    Complex.conj_ofReal]
+  have hsqrt : (Real.sqrt 2 : ℝ) ≠ 0 := by positivity
+  have hsqrtComplex : (((Real.sqrt 2 : ℝ) : ℂ)) ≠ 0 := by exact_mod_cast hsqrt
+  have hstarW :
+      (starRingEnd ℂ) (completedNativeOperatorCharacteristic w) ≠ 0 :=
+    (map_ne_zero (starRingEnd ℂ)).2 hw
+  have hsqrtSq : ((((Real.sqrt 2 : ℝ) : ℂ)) ^ 2) = 2 := by
+    norm_cast
+    exact Real.sq_sqrt (by norm_num)
+  field_simp [hsqrtComplex, hz, hstarW]
+  rw [hsqrtSq]
+
+/-- Center-pinned signed chiral response. -/
+def canonicalCompletedC3FullWronskianChiralBalanceResponse
+    (M : ℕ) (z : ℂ) : ℂ :=
+  Complex.I *
+    (canonicalCompletedC3NormalizedFullWronskianPositiveChiralKernel M 0 z -
+      canonicalCompletedC3NormalizedFullWronskianNegativeChiralKernel M 0 z)
+
+/-- Wherever the characteristic is nonzero, the center-pinned full operator
+response is exactly its signed chiral balance. -/
+theorem canonicalCompletedC3FullOperatorNormalizedResponse_eq_chiralBalance
+    (M : ℕ) {z : ℂ}
+    (hz : completedNativeOperatorCharacteristic z ≠ 0) :
+    canonicalCompletedC3FullOperatorNormalizedResponse M z =
+      canonicalCompletedC3FullWronskianChiralBalanceResponse M z := by
+  exact canonicalCompletedC3NormalizedFullWronskianKernel_div_eq_chiralDifference
+    M completedNativeOperatorCharacteristic_zero_ne_zero hz
+
+/-- Near the center, the signed chiral balance is exactly the completed
+normalized logarithmic response `-F'/(2F)`. -/
+theorem canonicalCompletedC3FullWronskianChiralBalanceResponse_eventuallyEq_completed
+    (M : ℕ) :
+    canonicalCompletedC3FullWronskianChiralBalanceResponse M =ᶠ[nhds 0]
+      completedGreenNormalizedResponse
+        completedNativeOperatorCharacteristic
+        completedNativeOperatorBoundaryCompanion := by
+  have hnonzero : ∀ᶠ z in nhds (0 : ℂ),
+      completedNativeOperatorCharacteristic z ≠ 0 :=
+    completedNativeOperatorCharacteristic_differentiableAt_zero.continuousAt.eventually_ne
+      completedNativeOperatorCharacteristic_zero_ne_zero
+  have hbalance :
+      canonicalCompletedC3FullWronskianChiralBalanceResponse M =ᶠ[nhds 0]
+        canonicalCompletedC3FullOperatorNormalizedResponse M := by
+    filter_upwards [hnonzero] with z hz
+    exact (canonicalCompletedC3FullOperatorNormalizedResponse_eq_chiralBalance
+      M hz).symm
+  exact hbalance.trans
+    (canonicalCompletedC3FullOperatorNormalizedResponse_eventuallyEq_completed M)
+
+/-- Taylor coefficient of the signed chiral response. -/
+def canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+    (M order : ℕ) : ℂ :=
+  iteratedDeriv order
+      (canonicalCompletedC3FullWronskianChiralBalanceResponse M) 0 /
+    order.factorial
+
+/-- Every signed chiral coefficient is the corresponding completed response
+coefficient. -/
+theorem canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient_eq_completed
+    (M order : ℕ) :
+    canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient M order =
+      completedNativeGreenResponseTaylorCoefficient order := by
+  unfold canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+    completedNativeGreenResponseTaylorCoefficient
+  rw [Filter.EventuallyEq.iteratedDeriv_eq order
+    (canonicalCompletedC3FullWronskianChiralBalanceResponse_eventuallyEq_completed M)]
+
+/-- The odd Taylor coefficients of the signed chiral balance are exactly the
+canonical completed-native logarithmic moments at every order. -/
+theorem canonicalCompletedC3FullWronskianChiralResponse_odd_eq_canonicalMoment
+    (M n : ℕ) :
+    canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+        M (2 * n + 1) =
+      (canonicalCompletedNativeLogDerivativeMoment n : ℂ) := by
+  rw [canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient_eq_completed,
+    completedNativeGreenResponseTaylorCoefficient_odd_eq_canonical]
+
+/-- Every mixed derivative order of the chiral balance gives the corresponding
+polarized canonical moment coefficient. -/
+theorem canonicalCompletedC3FullWronskianChiralResponse_succ_eq_polarizedMoment
+    (M p q : ℕ) :
+    canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+        M (p + q + 1) =
+      polarizedGreenMomentCoefficient
+        canonicalCompletedNativeLogDerivativeMoment p q := by
+  rw [canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient_eq_completed,
+    completedNativeGreenResponseTaylorCoefficient_succ_eq_polarized]
+
+/-- At the central collision the removable `dslope` of the signed chiral
+balance is exactly the zeroth completed-native logarithmic moment.  Thus the
+central moment is a derivative of the signed balance, not the norm of the raw
+unpolarized state. -/
+theorem canonicalCompletedC3FullWronskianChiralBalance_dslope_zero_zero
+    (M : ℕ) :
+    dslope (canonicalCompletedC3FullWronskianChiralBalanceResponse M) 0 0 =
+      (canonicalCompletedNativeLogDerivativeMoment 0 : ℂ) := by
+  rw [dslope_same]
+  have h :=
+    canonicalCompletedC3FullWronskianChiralResponse_odd_eq_canonicalMoment M 0
+  simpa [canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient,
+    iteratedDeriv_one] using h
 
 end
 
