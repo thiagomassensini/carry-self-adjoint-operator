@@ -52,6 +52,25 @@ theorem canonicalCompletedC3AmbientBoundaryReadout_diagonal_im_nonneg
     (ne_of_gt hzIm) hzHalf]
   positivity
 
+/-- The canonical Gamma boundary has the same diagonal Green normalization as
+the ambient response: twice the spectral height times the squared norm of the
+Gamma state. -/
+theorem canonicalCompletedC3PolarizedGammaBoundaryReadout_diagonal_im_eq_energy
+    {z : ℂ} (hzIm : z.im ≠ 0) :
+    (canonicalCompletedC3PolarizedGammaBoundaryReadout
+        z z hzIm hzIm).im =
+      2 * z.im *
+        ‖canonicalCompletedC3PolarizedGammaState z hzIm‖ ^ 2 := by
+  rw [canonicalCompletedC3PolarizedGammaBoundaryReadout_eq_kernel]
+  change
+    ((z - conj z) * inner ℂ
+      (canonicalCompletedC3PolarizedGammaState z hzIm)
+      (canonicalCompletedC3PolarizedGammaState z hzIm)).im = _
+  rw [inner_self_eq_norm_sq_to_K]
+  simp [Complex.mul_im]
+  norm_cast
+  ring
+
 /-- On the diagonal, the completed TFVD Wronskian is exactly any honest
 local/cross/residual presentation of the completed native scalar ledger. -/
 theorem canonicalC3BracketTfvdCompletedWronskianReadout_diagonal_eq_localLegLedger
@@ -115,6 +134,118 @@ theorem completedNativeLocalLegLedger_im_add_ambientCorrection_im_eq_energy
     (canonicalCompletedC3AmbientRadialTiltPoint_im_ne_zero k N i)
     (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)] at hsum
   simpa only [Complex.add_im] using hsum
+
+/-- The full radial correction is not an independent error term.  Its
+imaginary part is exactly the positive ambient energy minus the completed
+native Wronskian readout. -/
+theorem
+    canonicalCompletedC3AmbientRadialCorrectionLedger_diagonal_im_eq_energy_sub_wronskian
+    (M k N : ℕ) (i : Fin N) :
+    (canonicalCompletedC3AmbientRadialWronskianCorrectionLedger
+        k N i i).im =
+      2 * (canonicalCompletedC3AmbientRadialTiltPoint k N i).im *
+          ‖canonicalCompletedC3AmbientResponseState
+            (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+            (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)‖ ^ 2 -
+        (canonicalC3BracketTfvdCompletedWronskianReadout M
+          (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+          (canonicalCompletedC3AmbientRadialTiltPoint k N i)).im := by
+  have hsquare := congrArg Complex.im
+    (canonicalCompletedC3AmbientRadialBoundary_sub_wronskian_eq_ledger
+      M k N i i)
+  rw [Complex.sub_im,
+    canonicalCompletedC3AmbientBoundaryReadout_diagonal_im_eq_energy
+      (canonicalCompletedC3AmbientRadialTiltPoint_im_ne_zero k N i)
+      (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)] at hsquare
+  linarith
+
+/-- Consequently the proposed first-order correction bound is literally the
+nonnegativity of the completed native Wronskian on the same diagonal. -/
+theorem
+    canonicalCompletedC3AmbientRadialCorrection_le_energy_iff_wronskian_im_nonneg
+    (M k N : ℕ) (i : Fin N) :
+    (canonicalCompletedC3AmbientRadialWronskianCorrectionLedger
+        k N i i).im ≤
+        2 * (canonicalCompletedC3AmbientRadialTiltPoint k N i).im *
+          ‖canonicalCompletedC3AmbientResponseState
+            (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+            (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)‖ ^ 2 ↔
+      0 ≤ (canonicalC3BracketTfvdCompletedWronskianReadout M
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i)).im := by
+  rw [
+    canonicalCompletedC3AmbientRadialCorrectionLedger_diagonal_im_eq_energy_sub_wronskian]
+  constructor <;> intro h <;> linarith
+
+/-- The raw Gamma--Wronskian defect has the analogous exact diagonal
+decomposition.  This isolates the part that cannot be bounded by a
+Cauchy--Schwarz estimate on the ambient/Gamma response correction. -/
+theorem
+    canonicalCompletedC3RawGammaWronskianDefect_diagonal_im_eq_energy_sub_wronskian
+    (M : ℕ) {z : ℂ}
+    (hzStrip : operatorHeightParameter z ∈
+      CPFormal.Analytic.Cp.genuineCriticalStrip)
+    (hzIm : z.im ≠ 0) :
+    (canonicalCompletedC3RawGammaWronskianDefect z z hzIm hzIm).im =
+      2 * z.im * ‖canonicalCompletedC3PolarizedGammaState z hzIm‖ ^ 2 -
+        (canonicalC3BracketTfvdCompletedWronskianReadout M z z).im := by
+  have hcompanion :
+      completedNativeOperatorBoundaryCompanion =
+        (fun u : ℂ => -deriv completedNativeOperatorCharacteristic u) := by
+    funext u
+    exact completedNativeOperatorBoundaryCompanion_eq_neg_deriv u
+  unfold canonicalCompletedC3RawGammaWronskianDefect
+  rw [hcompanion,
+    ← canonicalC3BracketTfvdCompletedWronskianReadout_eq_F_negFprime
+      M hzStrip hzStrip,
+    Complex.sub_im,
+    canonicalCompletedC3PolarizedGammaBoundaryReadout_diagonal_im_eq_energy]
+
+/-- Bounding the raw defect by the Gamma energy is neither stronger nor
+weaker than positivity of the native Wronskian. -/
+theorem
+    canonicalCompletedC3RawGammaWronskianDefect_le_gammaEnergy_iff_wronskian_im_nonneg
+    (M : ℕ) {z : ℂ}
+    (hzStrip : operatorHeightParameter z ∈
+      CPFormal.Analytic.Cp.genuineCriticalStrip)
+    (hzIm : z.im ≠ 0) :
+    (canonicalCompletedC3RawGammaWronskianDefect z z hzIm hzIm).im ≤
+        2 * z.im * ‖canonicalCompletedC3PolarizedGammaState z hzIm‖ ^ 2 ↔
+      0 ≤ (canonicalC3BracketTfvdCompletedWronskianReadout M z z).im := by
+  rw [
+    canonicalCompletedC3RawGammaWronskianDefect_diagonal_im_eq_energy_sub_wronskian
+      M hzStrip hzIm]
+  constructor <;> intro h <;> linarith
+
+/-- Exact comparison of the two correction formulations.  All resolved
+ambient channels cancel from the logical gate; the retained obstruction is
+precisely the raw Gamma--Wronskian defect. -/
+theorem
+    canonicalCompletedC3AmbientRadialCorrection_le_energy_iff_rawGammaDefect_le_gammaEnergy
+    (M k N : ℕ) (i : Fin N) :
+    (canonicalCompletedC3AmbientRadialWronskianCorrectionLedger
+        k N i i).im ≤
+        2 * (canonicalCompletedC3AmbientRadialTiltPoint k N i).im *
+          ‖canonicalCompletedC3AmbientResponseState
+            (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+            (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)‖ ^ 2 ↔
+      (canonicalCompletedC3RawGammaWronskianDefect
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+        (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+        (canonicalCompletedC3AmbientRadialTiltPoint_im_ne_zero k N i)
+        (canonicalCompletedC3AmbientRadialTiltPoint_im_ne_zero k N i)).im ≤
+          2 * (canonicalCompletedC3AmbientRadialTiltPoint k N i).im *
+            ‖canonicalCompletedC3PolarizedGammaState
+              (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+              (canonicalCompletedC3AmbientRadialTiltPoint_im_ne_zero k N i)‖ ^ 2 := by
+  exact
+    (canonicalCompletedC3AmbientRadialCorrection_le_energy_iff_wronskian_im_nonneg
+      M k N i).trans
+      (canonicalCompletedC3RawGammaWronskianDefect_le_gammaEnergy_iff_wronskian_im_nonneg
+        M
+        (canonicalCompletedC3AmbientRadialTiltPoint_mem_genuineCriticalStrip
+          k N i)
+        (canonicalCompletedC3AmbientRadialTiltPoint_im_ne_zero k N i)).symm
 
 /-- The exact inequality left by the positive ambient factorization.  Native
 route-B positivity holds precisely when the correction ledger consumes no more
@@ -184,6 +315,37 @@ theorem
   exact
     completedNativeLocalLegLedger_im_nonneg_iff_ambientCorrection_le_energy
       M k N i legs
+
+/-- Final concrete form of the route-B gate.  After all ambient, Gamma,
+center--leg, cross, and residual channels have been retained, the remaining
+inequality is exactly Hermite--Biehler dominance for the completed native
+trace `(-F', F)` at the same radial point. -/
+theorem
+    canonicalCompletedC3AmbientRadialCorrection_le_energy_iff_hermiteBiehlerDominance
+    {ι : Type*} [Fintype ι]
+    (M k N : ℕ) (i : Fin N)
+    (legs : ReflectedBoundarySynthesisData ι)
+    (hF : completedNativeOperatorCharacteristic
+      (canonicalCompletedC3AmbientRadialTiltPoint k N i) ≠ 0) :
+    (canonicalCompletedC3AmbientRadialWronskianCorrectionLedger
+        k N i i).im ≤
+        2 * (canonicalCompletedC3AmbientRadialTiltPoint k N i).im *
+          ‖canonicalCompletedC3AmbientResponseState
+            (canonicalCompletedC3AmbientRadialTiltPoint k N i)
+            (canonicalCompletedC3AmbientRadialTiltPoint_half_pos k N i)‖ ^ 2 ↔
+      ‖completedNativeNegativeHermiteBiehlerCoordinate
+          (canonicalCompletedC3AmbientRadialTiltPoint k N i)‖ ^ 2 ≤
+        ‖completedNativePositiveHermiteBiehlerCoordinate
+          (canonicalCompletedC3AmbientRadialTiltPoint k N i)‖ ^ 2 := by
+  rw [←
+    completedNativePolarizedDslopeKernel_diagonal_re_nonneg_iff_ambientCorrection_le_energy
+      (ι := ι) M k N i legs hF]
+  exact
+    completedNativePolarizedDslopeKernel_diagonal_re_nonneg_iff_hermiteBiehler
+      (canonicalCompletedC3AmbientRadialTiltPoint_mem_genuineCriticalStrip
+        k N i)
+      hF
+      (canonicalCompletedC3AmbientRadialTiltPoint_im_pos k N i)
 
 end
 
