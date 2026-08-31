@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.CompletedNativeCentralFiniteGreenVariation
 import CarrySelfAdjointOperator.BR2GreenFrameDslopeLimitBridge
+import GreenFrame.Concrete.Analysis.RestrictedGraph
 import Mathlib.Tactic
 
 /-!
@@ -22,6 +23,7 @@ namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
 open Filter
+open GreenFrame.Concrete
 
 noncomputable section
 
@@ -109,6 +111,74 @@ theorem canonicalCentralInfiniteGreenBulkFirstVariation_eq_atlasChannelSum :
     rw [inner_self_eq_norm_sq_to_K]
     rfl]
   rw [inner_canonicalCentralCompletedGradientParsevalAtlasState_eq_channels]
+
+/-! ## The same atlas state on the exact compatible Poisson graph -/
+
+/-- Source presentation used by the concrete Green frame. -/
+def canonicalCentralCompletedGradientGreenFrameSource : State :=
+  carryVerticalL2GreenFrameStateEquiv
+    canonicalCentralCompletedDirichletGradientState
+
+/-- External coordinate equipped with the proof that it comes from one
+global source. -/
+def canonicalCentralCompletedGradientCompatibleExternal :
+    CompatibleExternal
+      (concreteAnalysisOperator canonicalCarryInfinitePartition) :=
+  (normalizedExternal
+      (concreteAnalysisOperator canonicalCarryInfinitePartition)).rangeRestrict
+    canonicalCentralCompletedGradientGreenFrameSource
+
+/-- The external component of the Parseval atlas is exactly the compatible
+external datum above. -/
+theorem canonicalCentralCompletedGradientParsevalAtlasState_fst_eq_external :
+    canonicalCentralCompletedGradientParsevalAtlasState.fst =
+      (canonicalCentralCompletedGradientCompatibleExternal :
+        ConcreteExternalSpace) := by
+  rfl
+
+/-- The bulk component is not independent data: it is reconstructed exactly
+from the compatible external coordinate by the canonical Poisson operator. -/
+theorem canonicalCentralCompletedGradientParsevalAtlasState_snd_eq_poisson :
+    canonicalCentralCompletedGradientParsevalAtlasState.snd =
+      restrictedPoisson
+          (concreteSplitFrameBounds canonicalCarryInfinitePartition)
+        canonicalCentralCompletedGradientCompatibleExternal := by
+  symm
+  exact restrictedPoisson_apply_external
+    (concreteSplitFrameBounds canonicalCarryInfinitePartition)
+    canonicalCentralCompletedGradientGreenFrameSource
+
+/-- Exact graph-norm form of the centered reflected Green energy.  The first
+term contains seed, residual, and depth-one channels; the second is the bulk
+reconstructed from those compatible data. -/
+theorem infiniteReflectedGreenEnergy_half_eq_compatiblePoissonGraphEnergy :
+    infiniteReflectedGreenEnergy (1 / 2 : ℂ) =
+      ‖(canonicalCentralCompletedGradientCompatibleExternal :
+          ConcreteExternalSpace)‖ ^ 2 +
+        ‖restrictedPoisson
+            (concreteSplitFrameBounds canonicalCarryInfinitePartition)
+          canonicalCentralCompletedGradientCompatibleExternal‖ ^ 2 := by
+  calc
+    infiniteReflectedGreenEnergy (1 / 2 : ℂ) =
+        ‖canonicalCentralCompletedDirichletGradientState‖ ^ 2 :=
+      infiniteReflectedGreenEnergy_half_eq_gradient_norm_sq
+    _ = ‖canonicalCentralCompletedGradientGreenFrameSource‖ ^ 2 := by
+      unfold canonicalCentralCompletedGradientGreenFrameSource
+      rw [carryVerticalL2GreenFrameStateEquiv.norm_map]
+    _ = ‖normalizedExternal
+          (concreteAnalysisOperator canonicalCarryInfinitePartition)
+          canonicalCentralCompletedGradientGreenFrameSource‖ ^ 2 +
+        ‖normalizedBulk
+          (concreteAnalysisOperator canonicalCarryInfinitePartition)
+          canonicalCentralCompletedGradientGreenFrameSource‖ ^ 2 :=
+      (normalized_split_energy
+        (concreteSplitFrameBounds
+          canonicalCarryInfinitePartition).toComplexFrameBounds
+        canonicalCentralCompletedGradientGreenFrameSource).symm
+    _ = _ := by
+      unfold canonicalCentralCompletedGradientCompatibleExternal
+      rw [restrictedPoisson_apply_external]
+      rfl
 
 end
 
