@@ -403,7 +403,9 @@ theorem finiteC3HeightBoundaryWedge_im_nonneg_iff_cross_le_localEnergy
 
 /-! ## Passage of the complete crossed ledger to the native limit -/
 
-private theorem scalarBoundaryWedge_tendsto
+/-- Continuity of the scalar boundary wedge under simultaneous convergence
+of its value and companion channels. -/
+theorem scalarBoundaryWedge_tendsto
     {α : Type*} {l : Filter α}
     {value logJet : α → ℂ} {valueLimit logJetLimit : ℂ}
     (hvalue : Filter.Tendsto value l (nhds valueLimit))
