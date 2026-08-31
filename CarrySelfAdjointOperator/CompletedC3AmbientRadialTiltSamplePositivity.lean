@@ -545,6 +545,132 @@ theorem
       (norm_ne_zero_iff.mpr completedNativeOperatorCharacteristic_zero_ne_zero)
   simpa [mul_comm] using (div_eq_iff hF)
 
+/-! ## Central clock Schur audit -/
+
+/-- At the centered parameter the logarithmic gradient is coordinatewise
+real.  This is the clock-direction counterpart of
+`positiveDirichletGradient_half_im`. -/
+theorem positiveLogDirichletGradient_half_im (n : ℕ) :
+    (positiveLogDirichletGradient (1 / 2 : ℂ) n).im = 0 := by
+  unfold positiveLogDirichletGradient positiveLogDirichletValue
+  rw [positiveDirichletValue_eq_natDirichletTerm,
+    positiveDirichletValue_eq_natDirichletTerm,
+    natDirichletTerm_half_eq_realRpow,
+    natDirichletTerm_half_eq_realRpow]
+  simp
+
+/-- Ordinary centered C3 gradient used in the Atlas-style projection audit. -/
+def canonicalCompletedC3CentralOrdinaryState : CarryVerticalL2 :=
+  canonicalCompletedC3DirichletGradientState (1 / 2 : ℂ) (by norm_num)
+
+/-- Centered logarithmic jet before the quarter-turn into clock direction. -/
+def canonicalCompletedC3CentralLogJetState : CarryVerticalL2 :=
+  canonicalCompletedC3LogJetState (1 / 2 : ℂ) (by norm_num)
+
+/-- Real clock tangent: differentiation in height rotates the real logarithmic
+jet by `-i`. -/
+def canonicalCompletedC3CentralClockTangent : CarryVerticalL2 :=
+  (-Complex.I) • canonicalCompletedC3CentralLogJetState
+
+/-- Atlas-style energy after optimizing the ordinary centered state along its
+one real clock direction.  No characteristic normalization is included. -/
+def canonicalCompletedC3CentralClockSchurEnergy : ℝ :=
+  ‖canonicalCompletedC3CentralOrdinaryState‖ ^ 2 -
+    (inner ℂ canonicalCompletedC3CentralOrdinaryState
+      canonicalCompletedC3CentralClockTangent).im ^ 2 /
+      ‖canonicalCompletedC3CentralClockTangent‖ ^ 2
+
+/-- The ordinary/log-jet pairing is real at the center. -/
+theorem inner_canonicalCompletedC3CentralOrdinary_logJet_im_eq_zero :
+    (inner ℂ canonicalCompletedC3CentralOrdinaryState
+      canonicalCompletedC3CentralLogJetState).im = 0 := by
+  have hordinary (n : ℕ) :
+      (positiveDirichletGradient (2 : ℂ)⁻¹ n).im = 0 := by
+    simpa only [one_div] using positiveDirichletGradient_half_im n
+  have hlogJet (n : ℕ) :
+      (positiveLogDirichletGradient (2 : ℂ)⁻¹ n).im = 0 := by
+    simpa only [one_div] using positiveLogDirichletGradient_half_im n
+  rw [lp.inner_eq_tsum,
+    Complex.im_tsum (lp.summable_inner
+      canonicalCompletedC3CentralOrdinaryState
+      canonicalCompletedC3CentralLogJetState)]
+  simp [canonicalCompletedC3CentralOrdinaryState,
+    canonicalCompletedC3CentralLogJetState, RCLike.inner_apply,
+    Complex.mul_im, hordinary, hlogJet]
+
+/-- The real-clock correction is exactly the complex projective Schur
+correction because the unrotated centered pairing is real. -/
+theorem canonicalCompletedC3CentralClockSchurEnergy_eq_projective :
+    canonicalCompletedC3CentralClockSchurEnergy =
+      ‖canonicalCompletedC3CentralOrdinaryState‖ ^ 2 -
+        ‖inner ℂ canonicalCompletedC3CentralOrdinaryState
+          canonicalCompletedC3CentralLogJetState‖ ^ 2 /
+          ‖canonicalCompletedC3CentralLogJetState‖ ^ 2 := by
+  unfold canonicalCompletedC3CentralClockSchurEnergy
+    canonicalCompletedC3CentralClockTangent
+  rw [inner_smul_right, norm_smul]
+  have him :=
+    inner_canonicalCompletedC3CentralOrdinary_logJet_im_eq_zero
+  simp only [norm_neg, Complex.norm_I, one_mul]
+  have hclock :
+      ((-Complex.I * inner ℂ canonicalCompletedC3CentralOrdinaryState
+        canonicalCompletedC3CentralLogJetState).im) ^ 2 =
+        ‖inner ℂ canonicalCompletedC3CentralOrdinaryState
+          canonicalCompletedC3CentralLogJetState‖ ^ 2 := by
+    rw [Complex.sq_norm, Complex.normSq_apply, him]
+    simp [Complex.mul_im, pow_two]
+  rw [hclock]
+
+/-- The centered clock Schur energy is nonnegative by Cauchy--Schwarz.  This
+is unconditional but does not identify it with the completed-native moment. -/
+theorem canonicalCompletedC3CentralClockSchurEnergy_nonneg :
+    0 ≤ canonicalCompletedC3CentralClockSchurEnergy := by
+  rw [canonicalCompletedC3CentralClockSchurEnergy_eq_projective]
+  apply sub_nonneg.mpr
+  by_cases hlogJet : ‖canonicalCompletedC3CentralLogJetState‖ = 0
+  · simp [hlogJet]
+  have hlogJetPos : 0 < ‖canonicalCompletedC3CentralLogJetState‖ :=
+    lt_of_le_of_ne (norm_nonneg _) (Ne.symm hlogJet)
+  rw [div_le_iff₀ (pow_pos hlogJetPos 2)]
+  have hinner :
+      ‖inner ℂ canonicalCompletedC3CentralOrdinaryState
+        canonicalCompletedC3CentralLogJetState‖ ≤
+        ‖canonicalCompletedC3CentralOrdinaryState‖ *
+          ‖canonicalCompletedC3CentralLogJetState‖ :=
+    norm_inner_le_norm
+      canonicalCompletedC3CentralOrdinaryState
+      canonicalCompletedC3CentralLogJetState
+  have hsquare := mul_self_le_mul_self
+    (norm_nonneg (inner ℂ canonicalCompletedC3CentralOrdinaryState
+      canonicalCompletedC3CentralLogJetState)) hinner
+  calc
+    ‖inner ℂ canonicalCompletedC3CentralOrdinaryState
+        canonicalCompletedC3CentralLogJetState‖ ^ 2 ≤
+      (‖canonicalCompletedC3CentralOrdinaryState‖ *
+          ‖canonicalCompletedC3CentralLogJetState‖) *
+        (‖canonicalCompletedC3CentralOrdinaryState‖ *
+          ‖canonicalCompletedC3CentralLogJetState‖) := by
+            simpa [pow_two] using hsquare
+    _ = ‖canonicalCompletedC3CentralOrdinaryState‖ ^ 2 *
+        ‖canonicalCompletedC3CentralLogJetState‖ ^ 2 := by ring
+
+/-- Exact zeroth-moment gate for the Atlas-style clock projection.  The
+characteristic factor is forced by the existing normalized response; no
+fitted scalar is introduced. -/
+theorem
+    canonicalCompletedC3CentralClockSchurEnergy_normalized_eq_moment_zero_iff :
+    canonicalCompletedC3CentralClockSchurEnergy /
+          ‖completedNativeOperatorCharacteristic 0‖ ^ 2 =
+        canonicalCompletedNativeLogDerivativeMoment 0 ↔
+      canonicalCompletedC3CentralClockSchurEnergy =
+        ‖completedNativeOperatorCharacteristic 0‖ ^ 2 *
+          canonicalCompletedNativeLogDerivativeMoment 0 := by
+  simpa [mul_comm] using
+    (div_eq_iff
+      (pow_ne_zero 2
+        (norm_ne_zero_iff.mpr
+          completedNativeOperatorCharacteristic_zero_ne_zero)))
+
 /-- Exact characteristic normalization preserves the ambient radial vector
 limit because the completed characteristic is nonzero at the center. -/
 theorem canonicalCompletedC3NormalizedAmbientResponseState_ambientRadial_tendsto
