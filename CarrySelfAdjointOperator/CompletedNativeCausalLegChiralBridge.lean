@@ -466,6 +466,182 @@ def completedNativeVerticalModulusEnergy (z : ℂ) (y : ℝ) : ℝ :=
   ‖completedNativeOperatorCharacteristic
       (z + Complex.I * (y : ℂ))‖ ^ 2
 
+/-! ## Central radial curvature -/
+
+private def completedNativeCentralVerticalCharacteristic (y : ℝ) : ℂ :=
+  completedNativeOperatorCharacteristic (Complex.I * (y : ℂ))
+
+private def completedNativeCentralVerticalFirstVariation (y : ℝ) : ℝ :=
+  2 * ⟪completedNativeCentralVerticalCharacteristic y,
+    Complex.I * deriv completedNativeOperatorCharacteristic
+      (Complex.I * (y : ℂ))⟫_ℝ
+
+private theorem hasDerivAt_completedNativeCentralVerticalCharacteristic
+    {y : ℝ}
+    (hy : Complex.I * (y : ℂ) ∈ completedNativeHeightDomain) :
+    HasDerivAt completedNativeCentralVerticalCharacteristic
+      (Complex.I * deriv completedNativeOperatorCharacteristic
+        (Complex.I * (y : ℂ))) y := by
+  have hF :=
+    (completedNativeOperatorCharacteristic_analyticAt hy).differentiableAt.hasDerivAt
+  have hline : HasDerivAt (fun u : ℂ => Complex.I * u) Complex.I (y : ℂ) := by
+    simpa using (hasDerivAt_id (y : ℂ)).const_mul Complex.I
+  have hcomplex := hF.comp (y : ℂ) hline
+  change HasDerivAt
+    (fun u : ℝ => completedNativeOperatorCharacteristic (Complex.I * (u : ℂ)))
+    _ y
+  simpa [mul_comm] using hcomplex.comp_ofReal
+
+private theorem hasDerivAt_completedNativeCentralVerticalFirstVariation :
+    HasDerivAt completedNativeCentralVerticalFirstVariation
+      (2 * ⟪completedNativeOperatorCharacteristic 0,
+        -iteratedDeriv 2 completedNativeOperatorCharacteristic 0⟫_ℝ) 0 := by
+  have hzero : deriv completedNativeOperatorCharacteristic 0 = 0 :=
+    deriv_zero_of_eventually_even completedNativeOperatorCharacteristic
+      completedNativeOperatorCharacteristic_eventually_even
+  have hvalue :
+      HasDerivAt completedNativeCentralVerticalCharacteristic 0 0 := by
+    have hmem : Complex.I * ((0 : ℝ) : ℂ) ∈
+        completedNativeHeightDomain := by
+      simp
+    convert hasDerivAt_completedNativeCentralVerticalCharacteristic
+      (y := 0) hmem using 1
+    all_goals simp [hzero]
+  have hderivF : HasDerivAt (deriv completedNativeOperatorCharacteristic)
+      (iteratedDeriv 2 completedNativeOperatorCharacteristic 0) 0 := by
+    have h :=
+      (completedNativeOperatorCharacteristic_analyticAt
+        zero_mem_completedNativeHeightDomain).deriv.differentiableAt.hasDerivAt
+    simpa [show (2 : ℕ) = 1 + 1 by omega, iteratedDeriv_succ] using h
+  have hline : HasDerivAt (fun u : ℂ => Complex.I * u) Complex.I 0 := by
+    simpa using (hasDerivAt_id (0 : ℂ)).const_mul Complex.I
+  have hderivFAtLine : HasDerivAt (deriv completedNativeOperatorCharacteristic)
+      (iteratedDeriv 2 completedNativeOperatorCharacteristic 0)
+      ((fun u : ℂ => Complex.I * u) 0) := by
+    simpa using hderivF
+  have hjetComplex := (hderivFAtLine.comp 0 hline).const_mul Complex.I
+  have hjet : HasDerivAt
+      (fun y : ℝ => Complex.I *
+        deriv completedNativeOperatorCharacteristic (Complex.I * (y : ℂ)))
+      (-iteratedDeriv 2 completedNativeOperatorCharacteristic 0) 0 := by
+    convert hjetComplex.comp_ofReal using 1
+    · rfl
+    · symm
+      calc
+        Complex.I *
+            (iteratedDeriv 2 completedNativeOperatorCharacteristic 0 * Complex.I) =
+            (Complex.I * Complex.I) *
+              iteratedDeriv 2 completedNativeOperatorCharacteristic 0 := by ring
+        _ = -iteratedDeriv 2 completedNativeOperatorCharacteristic 0 := by
+          rw [Complex.I_mul_I]
+          ring
+  have hinner := hvalue.inner ℝ hjet
+  unfold completedNativeCentralVerticalFirstVariation
+  simpa [completedNativeCentralVerticalCharacteristic, hzero] using
+    hinner.const_mul 2
+
+private theorem completedNativeCentralVerticalEnergy_deriv_eventuallyEq :
+    deriv (completedNativeVerticalModulusEnergy 0) =ᶠ[nhds 0]
+      completedNativeCentralVerticalFirstVariation := by
+  have hdomain : ∀ᶠ y : ℝ in nhds 0,
+      Complex.I * (y : ℂ) ∈ completedNativeHeightDomain := by
+    have hcontinuous : ContinuousAt (fun y : ℝ => Complex.I * (y : ℂ)) 0 := by
+      fun_prop
+    have hmem : (fun y : ℝ => Complex.I * (y : ℂ)) 0 ∈
+        completedNativeHeightDomain := by
+      simp
+    exact hcontinuous
+      (isOpen_completedNativeHeightDomain.mem_nhds hmem)
+  filter_upwards [hdomain] with y hy
+  have h :=
+    (hasDerivAt_completedNativeCentralVerticalCharacteristic hy).norm_sq.deriv
+  rw [show completedNativeVerticalModulusEnergy 0 =
+      (fun x : ℝ =>
+        ‖completedNativeOperatorCharacteristic (Complex.I * (x : ℂ))‖ ^ 2) by
+    funext x
+    simp [completedNativeVerticalModulusEnergy]]
+  change deriv
+      (fun x : ℝ =>
+        ‖completedNativeOperatorCharacteristic (Complex.I * (x : ℂ))‖ ^ 2) y = _
+  simpa [completedNativeCentralVerticalCharacteristic,
+    completedNativeCentralVerticalFirstVariation] using h
+
+private theorem
+    canonicalCompletedNativeLogDerivativeMoment_zero_eq_characteristicCurvature :
+    (canonicalCompletedNativeLogDerivativeMoment 0 : ℂ) =
+      -iteratedDeriv 2 completedNativeOperatorCharacteristic 0 /
+        (2 * completedNativeOperatorCharacteristic 0) := by
+  rw [canonicalCompletedNativeLogDerivativeMoment_zero_eq_productJet,
+    ← completedNativeOperatorCharacteristic_secondDerivative_product]
+  simp only [completedNativeOperatorCharacteristic, nativeHeightScalar]
+  ring
+
+/-- The transverse second variation at the centered height is exactly the
+zeroth completed-native moment, with the characteristic normalization forced
+by the product rule. -/
+theorem completedNativeVerticalModulusEnergy_secondDerivative_zero_eq_moment_zero :
+    iteratedDeriv 2 (completedNativeVerticalModulusEnergy 0) 0 =
+      4 * ‖completedNativeOperatorCharacteristic 0‖ ^ 2 *
+        canonicalCompletedNativeLogDerivativeMoment 0 := by
+  rw [show iteratedDeriv 2 (completedNativeVerticalModulusEnergy 0) =
+      deriv (deriv (completedNativeVerticalModulusEnergy 0)) by
+    rw [show (2 : ℕ) = 1 + 1 by omega, iteratedDeriv_succ,
+      show iteratedDeriv 1 (completedNativeVerticalModulusEnergy 0) =
+          deriv (completedNativeVerticalModulusEnergy 0) by
+        rw [show (1 : ℕ) = 0 + 1 by omega, iteratedDeriv_succ]
+        simp]]
+  rw [completedNativeCentralVerticalEnergy_deriv_eventuallyEq.deriv_eq]
+  rw [hasDerivAt_completedNativeCentralVerticalFirstVariation.deriv]
+  have hF : completedNativeOperatorCharacteristic 0 ≠ 0 :=
+    completedNativeOperatorCharacteristic_zero_ne_zero
+  have hF_im : (completedNativeOperatorCharacteristic 0).im = 0 :=
+    iteratedDeriv_completedNativeOperatorCharacteristic_zero_im 0 0
+  have hF2_im :
+      (iteratedDeriv 2 completedNativeOperatorCharacteristic 0).im = 0 :=
+    iteratedDeriv_completedNativeOperatorCharacteristic_zero_im 2 0
+  have hm :=
+    canonicalCompletedNativeLogDerivativeMoment_zero_eq_characteristicCurvature
+  have hm_re := congrArg Complex.re hm
+  simp [Complex.div_re, Complex.normSq_apply, hF_im, hF2_im] at hm_re
+  rw [real_inner_eq_re_inner]
+  simp [RCLike.inner_apply, Complex.mul_re, hF_im, hF2_im,
+    Complex.sq_norm, Complex.normSq_apply]
+  have hFre : (completedNativeOperatorCharacteristic 0).re ≠ 0 := by
+    intro hre
+    apply hF
+    apply Complex.ext <;> simp [hre, hF_im]
+  field_simp at hm_re
+  linear_combination
+    (-2 * (completedNativeOperatorCharacteristic 0).re) * hm_re
+
+/-- Nonnegative central tilt curvature is exactly nonnegativity of the first
+canonical Hankel moment. -/
+theorem
+    completedNativeVerticalModulusEnergy_secondDerivative_zero_nonneg_iff_moment_zero :
+    0 ≤ iteratedDeriv 2 (completedNativeVerticalModulusEnergy 0) 0 ↔
+      0 ≤ canonicalCompletedNativeLogDerivativeMoment 0 := by
+  rw [completedNativeVerticalModulusEnergy_secondDerivative_zero_eq_moment_zero]
+  have hnorm : 0 < ‖completedNativeOperatorCharacteristic 0‖ :=
+    norm_pos_iff.mpr completedNativeOperatorCharacteristic_zero_ne_zero
+  have hfactor :
+      0 < 4 * ‖completedNativeOperatorCharacteristic 0‖ ^ 2 := by
+    exact mul_pos (by norm_num) (pow_pos hnorm 2)
+  exact mul_nonneg_iff_of_pos_left hfactor
+
+/-- Strict central tilt curvature is exactly strict positivity of the first
+canonical Hankel moment. -/
+theorem
+    completedNativeVerticalModulusEnergy_secondDerivative_zero_pos_iff_moment_zero :
+    0 < iteratedDeriv 2 (completedNativeVerticalModulusEnergy 0) 0 ↔
+      0 < canonicalCompletedNativeLogDerivativeMoment 0 := by
+  rw [completedNativeVerticalModulusEnergy_secondDerivative_zero_eq_moment_zero]
+  have hnorm : 0 < ‖completedNativeOperatorCharacteristic 0‖ :=
+    norm_pos_iff.mpr completedNativeOperatorCharacteristic_zero_ne_zero
+  have hfactor :
+      0 < 4 * ‖completedNativeOperatorCharacteristic 0‖ ^ 2 := by
+    exact mul_pos (by norm_num) (pow_pos hnorm 2)
+  exact mul_pos_iff_of_pos_left hfactor
+
 /-- The derivative of the transverse modulus energy is exactly the imaginary
 completed `(F,-F')` boundary wedge.  This packages local cells, ordered cross
 terms, completion, and the readout residual before taking the sign. -/
