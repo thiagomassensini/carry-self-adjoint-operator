@@ -708,6 +708,23 @@ chiral Pick positivity, without any cross-carrier normalization premise.
 Proving the two coefficient inequalities from the completed geometry remains
 the next analytic obligation.
 
+[`CompletedNativeXiCosineKernel.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineKernel.lean)
+now fixes the concrete Jacobi--theta kernel and its normalization.  Its
+integer-mode summand is
+
+$$
+2\pi n^2e^{5u/2}
+  \left(2\pi n^2e^{2u}-3\right)e^{-\pi n^2e^{2u}},
+$$
+
+and the sum over $n\in\mathbb Z$ is exactly twice the positive-mode sum, with
+the zero mode vanishing.  Lean proves absolute summability for every real
+$u$, positivity of every nonzero mode for $u\geq0$, and hence strict
+positivity of the full kernel there.  This fixes the factor-of-two ambiguity
+that otherwise appears among conventions for the classical Xi transform;
+the transform identity itself is kept as the next theorem rather than folded
+into the definition.
+
 [`CompletedNativeXiCosineMomentHerglotzGate.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineMomentHerglotzGate.lean)
 translates that obligation into the standard low moments of an even cosine
 representation.  With
