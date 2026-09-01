@@ -18,6 +18,11 @@ boundary form.  Its specialization to a canonical source contradicts the
 strictly positive boundary defect already proved at an upper-half-plane
 native closure.
 
+The fixed-parameter kernel condition is also audited against the finite
+dimension of the positive trace.  Thirteen independent intrinsic camera
+responses would refute it, so it cannot be promoted to a theorem merely from
+causal-span membership or Naimark coherence.
+
 No contraction, positivity, zero, spectral, or confinement statement is
 assumed or proved here.
 -/
@@ -27,6 +32,7 @@ open scoped InnerProductSpace lp
 namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
+open NativeCarrySpectralWeyl.Infinite
 
 noncomputable section
 
@@ -66,6 +72,212 @@ theorem canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_defectGram
     nlinarith [norm_nonneg
       (canonicalCompletedC3EnrichedCoisometricCameraChiralReadout z state)]
   exact norm_eq_zero.mp hzero
+
+/-! ## Exact kernel audit on the causal span -/
+
+/-- Positive Wronskian readout restricted to the actual causal source span. -/
+def canonicalCompletedC3CausalPositiveChiralReadout
+    (z : ℂ) :
+    canonicalCompletedC3CausalChiralSourceSubmodule →L[ℝ]
+      CanonicalCompletedC3FullWronskianOperatorCarrier :=
+  (canonicalCompletedC3EnrichedPositiveChiralReadout z).comp
+    canonicalCompletedC3CausalChiralSourceSubmodule.subtypeL
+
+/-- Coisometric camera/chiral readout restricted to the same causal span. -/
+def canonicalCompletedC3CausalCoisometricCameraChiralReadout
+    (z : ℂ) :
+    canonicalCompletedC3CausalChiralSourceSubmodule →L[ℝ]
+      CanonicalCompletedC3CoisometricCameraChiralEnergyCarrier :=
+  (canonicalCompletedC3EnrichedCoisometricCameraChiralReadout z).comp
+    canonicalCompletedC3CausalChiralSourceSubmodule.subtypeL
+
+@[simp] theorem canonicalCompletedC3CausalPositiveChiralReadout_apply
+    (z : ℂ) (state : canonicalCompletedC3CausalChiralSourceSubmodule) :
+    canonicalCompletedC3CausalPositiveChiralReadout z state =
+      canonicalCompletedC3EnrichedPositiveChiralReadout z state :=
+  rfl
+
+@[simp] theorem canonicalCompletedC3CausalCoisometricCameraChiralReadout_apply
+    (z : ℂ) (state : canonicalCompletedC3CausalChiralSourceSubmodule) :
+    canonicalCompletedC3CausalCoisometricCameraChiralReadout z state =
+      canonicalCompletedC3EnrichedCoisometricCameraChiralReadout z state :=
+  rfl
+
+/-- The pointwise implication used by the proposed causal factorization is
+literally inclusion of the two kernels after both readouts are restricted to
+the same source span. -/
+theorem canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_iff_ker_le
+    (z : ℂ) :
+    CanonicalCompletedC3CausalChiralReadoutKernelCompatibleAt z ↔
+      LinearMap.ker
+          (canonicalCompletedC3CausalPositiveChiralReadout z).toLinearMap ≤
+        LinearMap.ker
+          (canonicalCompletedC3CausalCoisometricCameraChiralReadout z).toLinearMap := by
+  constructor
+  · intro hcompat state hpositive
+    change canonicalCompletedC3EnrichedCoisometricCameraChiralReadout z state = 0
+    exact hcompat state state.property hpositive
+  · intro hker state hstate hpositive
+    let causalState : canonicalCompletedC3CausalChiralSourceSubmodule :=
+      ⟨state, hstate⟩
+    have hpositive' :
+        canonicalCompletedC3CausalPositiveChiralReadout z causalState = 0 :=
+      hpositive
+    have hcamera := hker hpositive'
+    exact hcamera
+
+/-- Kernel compatibility transfers linear independence backwards: a finite
+family of causal sources distinguishable by the full camera/chiral response
+must already be distinguishable by the fixed-parameter positive trace. -/
+theorem canonicalCompletedC3CausalPositiveChiralReadout_linearIndependent_of_camera
+    {ι : Type*} [Fintype ι] (z : ℂ)
+    (source : ι → CanonicalCompletedC3EnrichedChiralSourceCarrier)
+    (hsource : ∀ i, source i ∈
+      canonicalCompletedC3CausalChiralSourceSubmodule)
+    (hcompat : CanonicalCompletedC3CausalChiralReadoutKernelCompatibleAt z)
+    (hcamera : LinearIndependent ℝ
+      (fun i =>
+        canonicalCompletedC3EnrichedCoisometricCameraChiralReadout z
+          (source i))) :
+    LinearIndependent ℝ
+      (fun i => canonicalCompletedC3EnrichedPositiveChiralReadout z (source i)) := by
+  rw [Fintype.linearIndependent_iff] at hcamera ⊢
+  intro coeff hpositive i
+  let state : CanonicalCompletedC3EnrichedChiralSourceCarrier :=
+    ∑ j, coeff j • source j
+  have hstate : state ∈ canonicalCompletedC3CausalChiralSourceSubmodule := by
+    apply Submodule.sum_mem
+    intro j _
+    exact Submodule.smul_mem _ _ (hsource j)
+  have hpositiveState :
+      canonicalCompletedC3EnrichedPositiveChiralReadout z state = 0 := by
+    simpa [state] using hpositive
+  have hcameraState :
+      canonicalCompletedC3EnrichedCoisometricCameraChiralReadout z state = 0 :=
+    hcompat state hstate hpositiveState
+  apply hcamera coeff
+  simpa [state] using hcameraState
+
+/-- In the upper half-plane, linear independence of the intrinsic camera
+responses already implies independence of the larger camera/chiral outputs.
+The negative chirality is not used: projection to the first coordinate and
+the nonzero canonical square-root factor suffice. -/
+theorem canonicalCompletedC3EnrichedCoisometricCameraChiralReadout_linearIndependent_of_camera
+    {ι : Type*} (z : ℂ) (hzIm : 0 < z.im)
+    (source : ι → CanonicalCompletedC3EnrichedChiralSourceCarrier)
+    (hcamera : LinearIndependent ℝ
+      (fun i => canonicalCompletedC3EnrichedCameraReadout (source i))) :
+    LinearIndependent ℝ
+      (fun i =>
+        canonicalCompletedC3EnrichedCoisometricCameraChiralReadout z
+          (source i)) := by
+  let firstCoordinate :
+      CanonicalCompletedC3CoisometricCameraChiralEnergyCarrier →ₗ[ℝ]
+        RealifiedCameraComplexification :=
+    (WithLp.fstL 2 ℝ
+      RealifiedCameraComplexification
+      CanonicalCompletedC3FullWronskianOperatorCarrier).toLinearMap
+  apply LinearIndependent.of_comp firstCoordinate
+  let scaleUnit : ℝˣ :=
+    Units.mk0 (Real.sqrt (2 * z.im)) (by positivity)
+  have hscaled := hcamera.units_smul (fun _ : ι => scaleUnit)
+  change LinearIndependent ℝ
+    (fun i => (scaleUnit : ℝ) •
+      canonicalCompletedC3EnrichedCameraReadout (source i)) at hscaled
+  convert hscaled using 1
+  funext i
+  rfl
+
+/-- The full completed-Wronskian trace carrier has real dimension twelve:
+three complex boundary pairs.  The positive projection lands in a smaller
+subspace, but this coarse dimension is already enough for the audit below. -/
+theorem finrank_real_canonicalCompletedC3FullWronskianOperatorCarrier :
+    Module.finrank ℝ CanonicalCompletedC3FullWronskianOperatorCarrier = 12 := by
+  change Module.finrank ℝ
+      (WithLp 2
+        (WithLp 2 (ℂ × ℂ) ×
+          WithLp 2 (WithLp 2 (ℂ × ℂ) × WithLp 2 (ℂ × ℂ)))) = 12
+  rw [(WithLp.linearEquiv 2 ℝ _).finrank_eq]
+  rw [Module.finrank_prod]
+  rw [(WithLp.linearEquiv 2 ℝ _).finrank_eq]
+  rw [(WithLp.linearEquiv 2 ℝ _).finrank_eq]
+  rw [Module.finrank_prod]
+  rw [Module.finrank_prod]
+  rw [(WithLp.linearEquiv 2 ℝ _).finrank_eq]
+  simp
+
+/-- No thirteen vectors in the fixed-parameter positive trace carrier can be
+real-linearly independent. -/
+theorem not_linearIndependent_canonicalCompletedC3CausalPositiveChiralReadout_fin13
+    (z : ℂ)
+    (source : Fin 13 → CanonicalCompletedC3EnrichedChiralSourceCarrier) :
+    ¬ LinearIndependent ℝ
+      (fun i => canonicalCompletedC3EnrichedPositiveChiralReadout z (source i)) := by
+  intro hlinear
+  have hcard := hlinear.fintype_card_le_finrank
+  rw [finrank_real_canonicalCompletedC3FullWronskianOperatorCarrier] at hcard
+  norm_num at hcard
+
+/-- Concrete finite-rank obstruction to the proposed kernel gate.  Any
+thirteen causal sources whose full camera/chiral responses are independent
+refute fixed-parameter kernel compatibility.  Establishing such a family is
+therefore the precise next test; no Gram or positivity premise is involved. -/
+theorem not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_fin13_cameraIndependent
+    (z : ℂ)
+    (source : Fin 13 → CanonicalCompletedC3EnrichedChiralSourceCarrier)
+    (hsource : ∀ i, source i ∈
+      canonicalCompletedC3CausalChiralSourceSubmodule)
+    (hcamera : LinearIndependent ℝ
+      (fun i =>
+        canonicalCompletedC3EnrichedCoisometricCameraChiralReadout z
+          (source i))) :
+    ¬ CanonicalCompletedC3CausalChiralReadoutKernelCompatibleAt z := by
+  intro hcompat
+  exact
+    not_linearIndependent_canonicalCompletedC3CausalPositiveChiralReadout_fin13
+      z source
+      (canonicalCompletedC3CausalPositiveChiralReadout_linearIndependent_of_camera
+        z source hsource hcompat hcamera)
+
+/-- Intrinsic-camera spelling of the finite-rank obstruction.  Thus the
+remaining concrete audit is only independence of thirteen canonical camera
+responses; neither the negative chirality nor a Gram identity is needed. -/
+theorem not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_fin13_intrinsicCameraIndependent
+    (z : ℂ) (hzIm : 0 < z.im)
+    (source : Fin 13 → CanonicalCompletedC3EnrichedChiralSourceCarrier)
+    (hsource : ∀ i, source i ∈
+      canonicalCompletedC3CausalChiralSourceSubmodule)
+    (hcamera : LinearIndependent ℝ
+      (fun i => canonicalCompletedC3EnrichedCameraReadout (source i))) :
+    ¬ CanonicalCompletedC3CausalChiralReadoutKernelCompatibleAt z := by
+  exact
+    not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_fin13_cameraIndependent
+      z source hsource
+      (canonicalCompletedC3EnrichedCoisometricCameraChiralReadout_linearIndependent_of_camera
+        z hzIm source hcamera)
+
+/-- Canonical-source specialization of the obstruction.  It names the exact
+remaining object: thirteen completed symplectic camera states sampled from
+the genuine strip. -/
+theorem not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_fin13_symplecticCameraIndependent
+    (z : ℂ) (hzIm : 0 < z.im)
+    (point : Fin 13 → ℂ)
+    (hstrip : ∀ i, operatorHeightParameter (point i) ∈ genuineCriticalStrip)
+    (hcamera : LinearIndependent ℝ
+      (fun i => completedC3SymplecticCameraState
+        (operatorHeightParameter (point i)) (hstrip i).1)) :
+    ¬ CanonicalCompletedC3CausalChiralReadoutKernelCompatibleAt z := by
+  let source : Fin 13 → CanonicalCompletedC3EnrichedChiralSourceCarrier :=
+    fun i => canonicalCompletedC3EnrichedChiralSourceState
+      (point i) (hstrip i)
+  apply
+    not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_fin13_intrinsicCameraIndependent
+      z hzIm source
+  · intro i
+    exact canonicalCompletedC3EnrichedChiralSourceState_mem_causalSubmodule
+      (point i) (hstrip i)
+  · simpa only [source,
+      canonicalCompletedC3EnrichedCameraReadout_sourceState] using hcamera
 
 /-! ## Exact boundary-form spelling -/
 
