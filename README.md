@@ -666,21 +666,36 @@ h_0>0\ \wedge\ h_1>0
 }
 $$
 
-The remaining polarized input has also been reduced to one concrete scalar
-crosswalk.  The enriched TFVD odd Gram is already strictly positive at raw
-Taylor order one.  Therefore the single identification
+The raw enriched TFVD odd Gram is already strictly positive at Taylor order
+one.  If one additionally identifies
 
 $$
 \operatorname{Re}\langle v_1,v_1\rangle=h_1
 $$
 
-implies $h_1>0$; equivalently, the corresponding finite four-corner
-prefixes converge to $h_1$.  Combining this with central defect flatness
-gives both eventual $N=2$ Herglotz positivity and, through the exact Cayley
-congruence, eventual $N=2$ chiral Pick positivity.  The diagonal equality
-above remains an explicit gate: the strict positivity of its TFVD left side
-is proved, but the equality to the analytic moment is not silently assumed
-or claimed as unconditional.
+then $h_1>0$ follows; equivalently, the corresponding finite four-corner
+prefixes converge to $h_1$.  This is retained as a normalization audit, not
+as the preferred next gate: positivity of the raw Gram does not supply the
+displayed equality.
+
+[`CompletedNativeHerglotzFourthOrderGate.lean`](CarrySelfAdjointOperator/CompletedNativeHerglotzFourthOrderGate.lean)
+opens the analytic moment itself.  If $c_n$ denotes the real Taylor
+coefficient of order $n$ of the reduced even characteristic, Lean proves
+
+$$
+\boxed{
+h_1=\frac{c_1^2-2c_0c_2}{c_0^2},
+\qquad
+h_1>0\iff 2c_0c_2<c_1^2.
+}
+$$
+
+This is the honest fourth-order logarithmic-curvature gate.  It is also
+exactly positivity of the real third variation of the completed chiral
+signature.  Combining this inequality with central coisometric-defect
+flatness gives both eventual $N=2$ Herglotz positivity and, through the exact
+Cayley congruence, eventual $N=2$ chiral Pick positivity.  The fourth-order
+inequality itself remains to be proved from the completed geometry.
 
 ## What Is Not Being Identified
 

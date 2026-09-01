@@ -18,8 +18,9 @@ even-coordinate germ gives the exact matrix
 
 Its determinant vanishes at the center and has first `t = h²` derivative
 `4 h₀ h₁`.  Thus strict positivity of the first two canonical moments closes
-the two-point radial Herglotz gate.  A later section connects `h₁ > 0` to the
-first odd enriched TFVD diagonal.
+the two-point radial Herglotz gate.  A later section records, as a
+normalization audit, the additional equality that would be required to read
+`h₁` from the first odd enriched TFVD diagonal.
 -/
 
 open scoped ComplexConjugate ComplexOrder MatrixOrder
@@ -563,10 +564,39 @@ theorem
   rw [hk]
   exact hpos
 
-/-! ## The first concrete TFVD polarized gate -/
+/-- Positive `h₀` and `h₁` also close the literal two-point chiral Pick
+section through the exact Cayley--Herglotz congruence. -/
+theorem
+    canonicalCompletedNativeRadialChiralPickSampleMatrix_two_eventually_posSemidef_of_moments
+    (hmomentZero : 0 < canonicalCompletedNativeLogDerivativeMoment 0)
+    (hmomentOne : 0 < canonicalCompletedNativeLogDerivativeMoment 1) :
+    ∀ᶠ k : ℕ in atTop,
+      (canonicalCompletedNativeRadialChiralPickSampleMatrix k 2).PosSemidef := by
+  have hregular : ∀ᶠ k : ℕ in atTop, ∀ i : Fin 2,
+      completedNativeOperatorCharacteristic
+          (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 ∧
+        completedNativePositiveHermiteBiehlerCoordinate
+          (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 := by
+    rw [Filter.eventually_all]
+    intro i
+    filter_upwards [
+      (canonicalCompletedC3RadialTiltPoint_tendsto_zero i).eventually
+        completedNativeChiralPickFactorization_eventually_regular] with k hk
+    exact ⟨hk.2.1, hk.2.2⟩
+  filter_upwards [
+    canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_posSemidef_of_moments
+      hmomentZero hmomentOne,
+    hregular] with k hHerglotz hreg
+  exact
+    (canonicalCompletedNativeRadialChiralPickSampleMatrix_posSemidef_iff_herglotz
+      k 2 hreg).mpr hHerglotz
 
-/-- The first genuinely polarized obligation: the positive odd TFVD
-diagonal at raw Taylor order one must equal the analytic moment `h₁`. -/
+/-! ## Raw TFVD normalization audit -/
+
+/-- Candidate cross-carrier normalization: the positive odd TFVD diagonal at
+raw Taylor order one equals the analytic moment `h₁`.  This proposition is
+deliberately named rather than asserted; raw Gram positivity does not prove
+the equality. -/
 def CanonicalCompletedNativeTfvdFirstOddDiagonalMomentIdentification : Prop :=
   (inner ℂ
     (canonicalCompletedNativeTfvdEnrichedTaylorRawJet 1)
@@ -641,24 +671,14 @@ theorem
       CanonicalCompletedNativeTfvdFirstOddDiagonalMomentIdentification) :
     ∀ᶠ k : ℕ in atTop,
       (canonicalCompletedNativeRadialChiralPickSampleMatrix k 2).PosSemidef := by
-  have hregular : ∀ᶠ k : ℕ in atTop, ∀ i : Fin 2,
-      completedNativeOperatorCharacteristic
-          (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 ∧
-        completedNativePositiveHermiteBiehlerCoordinate
-          (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 := by
-    rw [Filter.eventually_all]
-    intro i
-    filter_upwards [
-      (canonicalCompletedC3RadialTiltPoint_tendsto_zero i).eventually
-        completedNativeChiralPickFactorization_eventually_regular] with k hk
-    exact ⟨hk.2.1, hk.2.2⟩
-  filter_upwards [
-    canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_posSemidef_of_centralFlat_and_tfvdFirstOddDiagonal
-      hflat hidentified,
-    hregular] with k hHerglotz hreg
-  exact
-    (canonicalCompletedNativeRadialChiralPickSampleMatrix_posSemidef_iff_herglotz
-      k 2 hreg).mpr hHerglotz
+  apply
+    canonicalCompletedNativeRadialChiralPickSampleMatrix_two_eventually_posSemidef_of_moments
+  · exact canonicalCompletedNativeLogDerivativeMoment_zero_pos_of_transverseCurvature
+      (deriv_canonicalCompletedC3CentralCoisometricEnergyDefect_zero_eq_zero_iff.mp
+        hflat)
+  · exact
+      canonicalCompletedNativeLogDerivativeMoment_one_pos_of_tfvdFirstOddDiagonal
+        hidentified
 
 end
 
