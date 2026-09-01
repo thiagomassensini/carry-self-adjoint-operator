@@ -1705,6 +1705,330 @@ private theorem thetaRationalThreeHalvesTangent_eq (y : ℝ) :
     thetaRationalProfileFirst thetaRationalProfile
   norm_num
 
+private theorem integral_thetaRationalMomentMajorant_le_exactChord
+    {a b A B : ℝ} (ha0 : 0 ≤ a) (hab : a < b)
+    (hbR : b ≤ thetaRationalInflection)
+    (hline : ∀ y : ℝ,
+      thetaRationalChordIntercept a b + thetaRationalChordSlope a b * y =
+        A + B * y) :
+    (∫ y in a..b, thetaRationalMomentMajorant y) ≤
+      thetaRationalAffinePrimitive A B b -
+        thetaRationalAffinePrimitive A B a := by
+  apply integral_thetaRationalMomentMajorant_le_affine ha0 hab.le
+  intro y hy
+  calc
+    thetaRationalProfile y ≤
+        thetaRationalChordIntercept a b + thetaRationalChordSlope a b * y :=
+      thetaRationalProfile_le_chord ha0 hab hbR hy.1 hy.2
+    _ = A + B * y := hline y
+
+private theorem integral_thetaRationalMomentMajorant_lt :
+    (∫ y in Ioi (0 : ℝ), thetaRationalMomentMajorant y) <
+      254 / 1000000 := by
+  have h0 :
+      (∫ y in (0 : ℝ)..(9 / 200 : ℝ), thetaRationalMomentMajorant y) ≤
+        thetaRationalAffinePrimitive (0 : ℝ)
+            (720000 / 17247409 : ℝ) (9 / 200 : ℝ) -
+          thetaRationalAffinePrimitive (0 : ℝ)
+            (720000 / 17247409 : ℝ) 0 := by
+    apply integral_thetaRationalMomentMajorant_le_exactChord
+    · norm_num
+    · norm_num
+    · unfold thetaRationalInflection
+      norm_num
+    · intro y
+      norm_num [thetaRationalChordIntercept, thetaRationalChordSlope,
+        thetaRationalProfile]
+  have h1 :
+      (∫ y in (9 / 200 : ℝ)..(2 / 25 : ℝ), thetaRationalMomentMajorant y) ≤
+        thetaRationalAffinePrimitive (-398959600 / 136616726689 : ℝ)
+            (131120000000 / 1229550540201 : ℝ) (2 / 25 : ℝ) -
+          thetaRationalAffinePrimitive (-398959600 / 136616726689 : ℝ)
+            (131120000000 / 1229550540201 : ℝ) (9 / 200 : ℝ) := by
+    apply integral_thetaRationalMomentMajorant_le_exactChord
+    · norm_num
+    · norm_num
+    · unfold thetaRationalInflection
+      norm_num
+    · intro y
+      norm_num [thetaRationalChordIntercept, thetaRationalChordSlope,
+        thetaRationalProfile]
+  have h2 :
+      (∫ y in (2 / 25 : ℝ)..(1 / 8 : ℝ), thetaRationalMomentMajorant y) ≤
+        thetaRationalAffinePrimitive (-5294800 / 744471027 : ℝ)
+            (118400000 / 744471027 : ℝ) (1 / 8 : ℝ) -
+          thetaRationalAffinePrimitive (-5294800 / 744471027 : ℝ)
+            (118400000 / 744471027 : ℝ) (2 / 25 : ℝ) := by
+    apply integral_thetaRationalMomentMajorant_le_exactChord
+    · norm_num
+    · norm_num
+    · unfold thetaRationalInflection
+      norm_num
+    · intro y
+      norm_num [thetaRationalChordIntercept, thetaRationalChordSlope,
+        thetaRationalProfile]
+  have h3 :
+      (∫ y in (1 / 8 : ℝ)..(9 / 50 : ℝ), thetaRationalMomentMajorant y) ≤
+        thetaRationalAffinePrimitive (-62959600 / 4627672729 : ℝ)
+            (8787200000 / 41649054561 : ℝ) (9 / 50 : ℝ) -
+          thetaRationalAffinePrimitive (-62959600 / 4627672729 : ℝ)
+            (8787200000 / 41649054561 : ℝ) (1 / 8 : ℝ) := by
+    apply integral_thetaRationalMomentMajorant_le_exactChord
+    · norm_num
+    · norm_num
+    · unfold thetaRationalInflection
+      norm_num
+    · intro y
+      norm_num [thetaRationalChordIntercept, thetaRationalChordSlope,
+        thetaRationalProfile]
+  have h4 :
+      (∫ y in (9 / 50 : ℝ)..(13 / 50 : ℝ), thetaRationalMomentMajorant y) ≤
+        thetaRationalAffinePrimitive (-5024172400 / 220215271441 : ℝ)
+            (519560000000 / 1981937442969 : ℝ) (13 / 50 : ℝ) -
+          thetaRationalAffinePrimitive (-5024172400 / 220215271441 : ℝ)
+            (519560000000 / 1981937442969 : ℝ) (9 / 50 : ℝ) := by
+    apply integral_thetaRationalMomentMajorant_le_exactChord
+    · norm_num
+    · norm_num
+    · unfold thetaRationalInflection
+      norm_num
+    · intro y
+      norm_num [thetaRationalChordIntercept, thetaRationalChordSlope,
+        thetaRationalProfile]
+  have h5 :
+      (∫ y in (13 / 50 : ℝ)..(7 / 20 : ℝ), thetaRationalMomentMajorant y) ≤
+        thetaRationalAffinePrimitive (-4534238800 / 133858140867 : ℝ)
+            (40784000000 / 133858140867 : ℝ) (7 / 20 : ℝ) -
+          thetaRationalAffinePrimitive (-4534238800 / 133858140867 : ℝ)
+            (40784000000 / 133858140867 : ℝ) (13 / 50 : ℝ) := by
+    apply integral_thetaRationalMomentMajorant_le_exactChord
+    · norm_num
+    · norm_num
+    · unfold thetaRationalInflection
+      norm_num
+    · intro y
+      norm_num [thetaRationalChordIntercept, thetaRationalChordSlope,
+        thetaRationalProfile]
+  have h6 :
+      (∫ y in (7 / 20 : ℝ)..(43 / 100 : ℝ), thetaRationalMomentMajorant y) ≤
+        thetaRationalAffinePrimitive (-85846524400 / 2008991577321 : ℝ)
+            (662944000000 / 2008991577321 : ℝ) (43 / 100 : ℝ) -
+          thetaRationalAffinePrimitive (-85846524400 / 2008991577321 : ℝ)
+            (662944000000 / 2008991577321 : ℝ) (7 / 20 : ℝ) := by
+    apply integral_thetaRationalMomentMajorant_le_exactChord
+    · norm_num
+    · norm_num
+    · unfold thetaRationalInflection
+      norm_num
+    · intro y
+      norm_num [thetaRationalChordIntercept, thetaRationalChordSlope,
+        thetaRationalProfile]
+  have h7 :
+      (∫ y in (43 / 100 : ℝ)..thetaRationalInflection,
+        thetaRationalMomentMajorant y) ≤
+        thetaRationalAffinePrimitive (-56226800 / 1141129233 : ℝ)
+            (393920000 / 1141129233 : ℝ) thetaRationalInflection -
+          thetaRationalAffinePrimitive (-56226800 / 1141129233 : ℝ)
+            (393920000 / 1141129233 : ℝ) (43 / 100 : ℝ) := by
+    apply integral_thetaRationalMomentMajorant_le_exactChord
+    · norm_num
+    · unfold thetaRationalInflection
+      norm_num
+    · exact le_rfl
+    · intro y
+      norm_num [thetaRationalChordIntercept, thetaRationalChordSlope,
+        thetaRationalProfile, thetaRationalInflection]
+  have h8 :
+      (∫ y in thetaRationalInflection..thetaRationalTangentSwitch,
+        thetaRationalMomentMajorant y) ≤
+        thetaRationalAffinePrimitive (-400 / 7803 : ℝ) (160 / 459 : ℝ)
+            thetaRationalTangentSwitch -
+          thetaRationalAffinePrimitive (-400 / 7803 : ℝ) (160 / 459 : ℝ)
+            thetaRationalInflection := by
+    apply integral_thetaRationalMomentMajorant_le_affine
+    · unfold thetaRationalInflection
+      norm_num
+    · unfold thetaRationalInflection thetaRationalTangentSwitch
+      norm_num
+    · intro y hy
+      calc
+        thetaRationalProfile y ≤
+            thetaRationalTangentIntercept thetaRationalInflection +
+              thetaRationalTangentSlope thetaRationalInflection * y :=
+          thetaRationalProfile_le_inflectionTangent hy.1
+        _ = (-400 / 7803 : ℝ) + (160 / 459 : ℝ) * y :=
+          thetaRationalInflectionTangent_eq y
+  have h9 :
+      (∫ y in Ioi thetaRationalTangentSwitch,
+        thetaRationalMomentMajorant y) ≤
+        -thetaRationalAffinePrimitive (39600 / 753571 : ℝ)
+          (192000 / 753571 : ℝ) thetaRationalTangentSwitch := by
+    apply integral_Ioi_thetaRationalMomentMajorant_le_affine
+    · unfold thetaRationalTangentSwitch
+      norm_num
+    · intro y hy
+      have hy0 : 0 ≤ y := by
+        change thetaRationalTangentSwitch < y at hy
+        unfold thetaRationalTangentSwitch at hy
+        norm_num at hy
+        linarith
+      calc
+        thetaRationalProfile y ≤
+            thetaRationalTangentIntercept (3 / 2 : ℝ) +
+              thetaRationalTangentSlope (3 / 2 : ℝ) * y :=
+          thetaRationalProfile_le_threeHalvesTangent hy0
+        _ = (39600 / 753571 : ℝ) + (192000 / 753571 : ℝ) * y :=
+          thetaRationalThreeHalvesTangent_eq y
+    · intro y hy
+      change thetaRationalTangentSwitch < y at hy
+      unfold thetaRationalTangentSwitch at hy
+      norm_num at hy ⊢
+      linarith
+  have hIoi : ∀ a : ℝ, 0 ≤ a →
+      IntegrableOn thetaRationalMomentMajorant (Ioi a) := by
+    intro a ha
+    apply integrableOn_thetaRationalMomentMajorant.mono_set
+    intro y hy
+    exact ha.trans hy.le
+  have hs0 := intervalIntegral.integral_interval_add_Ioi
+    (hIoi 0 (by norm_num)) (hIoi (9 / 200 : ℝ) (by norm_num))
+  have hs1 := intervalIntegral.integral_interval_add_Ioi
+    (hIoi (9 / 200 : ℝ) (by norm_num))
+    (hIoi (2 / 25 : ℝ) (by norm_num))
+  have hs2 := intervalIntegral.integral_interval_add_Ioi
+    (hIoi (2 / 25 : ℝ) (by norm_num))
+    (hIoi (1 / 8 : ℝ) (by norm_num))
+  have hs3 := intervalIntegral.integral_interval_add_Ioi
+    (hIoi (1 / 8 : ℝ) (by norm_num))
+    (hIoi (9 / 50 : ℝ) (by norm_num))
+  have hs4 := intervalIntegral.integral_interval_add_Ioi
+    (hIoi (9 / 50 : ℝ) (by norm_num))
+    (hIoi (13 / 50 : ℝ) (by norm_num))
+  have hs5 := intervalIntegral.integral_interval_add_Ioi
+    (hIoi (13 / 50 : ℝ) (by norm_num))
+    (hIoi (7 / 20 : ℝ) (by norm_num))
+  have hs6 := intervalIntegral.integral_interval_add_Ioi
+    (hIoi (7 / 20 : ℝ) (by norm_num))
+    (hIoi (43 / 100 : ℝ) (by norm_num))
+  have hs7 := intervalIntegral.integral_interval_add_Ioi
+    (hIoi (43 / 100 : ℝ) (by norm_num))
+    (hIoi thetaRationalInflection (by
+      unfold thetaRationalInflection
+      norm_num))
+  have hs8 := intervalIntegral.integral_interval_add_Ioi
+    (hIoi thetaRationalInflection (by
+      unfold thetaRationalInflection
+      norm_num))
+    (hIoi thetaRationalTangentSwitch (by
+      unfold thetaRationalTangentSwitch
+      norm_num))
+  let totalUpper : ℝ :=
+    (thetaRationalAffinePrimitive (0 : ℝ) (720000 / 17247409 : ℝ)
+          (9 / 200 : ℝ) -
+        thetaRationalAffinePrimitive (0 : ℝ) (720000 / 17247409 : ℝ) 0) +
+    (thetaRationalAffinePrimitive (-398959600 / 136616726689 : ℝ)
+          (131120000000 / 1229550540201 : ℝ) (2 / 25 : ℝ) -
+        thetaRationalAffinePrimitive (-398959600 / 136616726689 : ℝ)
+          (131120000000 / 1229550540201 : ℝ) (9 / 200 : ℝ)) +
+    (thetaRationalAffinePrimitive (-5294800 / 744471027 : ℝ)
+          (118400000 / 744471027 : ℝ) (1 / 8 : ℝ) -
+        thetaRationalAffinePrimitive (-5294800 / 744471027 : ℝ)
+          (118400000 / 744471027 : ℝ) (2 / 25 : ℝ)) +
+    (thetaRationalAffinePrimitive (-62959600 / 4627672729 : ℝ)
+          (8787200000 / 41649054561 : ℝ) (9 / 50 : ℝ) -
+        thetaRationalAffinePrimitive (-62959600 / 4627672729 : ℝ)
+          (8787200000 / 41649054561 : ℝ) (1 / 8 : ℝ)) +
+    (thetaRationalAffinePrimitive (-5024172400 / 220215271441 : ℝ)
+          (519560000000 / 1981937442969 : ℝ) (13 / 50 : ℝ) -
+        thetaRationalAffinePrimitive (-5024172400 / 220215271441 : ℝ)
+          (519560000000 / 1981937442969 : ℝ) (9 / 50 : ℝ)) +
+    (thetaRationalAffinePrimitive (-4534238800 / 133858140867 : ℝ)
+          (40784000000 / 133858140867 : ℝ) (7 / 20 : ℝ) -
+        thetaRationalAffinePrimitive (-4534238800 / 133858140867 : ℝ)
+          (40784000000 / 133858140867 : ℝ) (13 / 50 : ℝ)) +
+    (thetaRationalAffinePrimitive (-85846524400 / 2008991577321 : ℝ)
+          (662944000000 / 2008991577321 : ℝ) (43 / 100 : ℝ) -
+        thetaRationalAffinePrimitive (-85846524400 / 2008991577321 : ℝ)
+          (662944000000 / 2008991577321 : ℝ) (7 / 20 : ℝ)) +
+    (thetaRationalAffinePrimitive (-56226800 / 1141129233 : ℝ)
+          (393920000 / 1141129233 : ℝ) thetaRationalInflection -
+        thetaRationalAffinePrimitive (-56226800 / 1141129233 : ℝ)
+          (393920000 / 1141129233 : ℝ) (43 / 100 : ℝ)) +
+    (thetaRationalAffinePrimitive (-400 / 7803 : ℝ) (160 / 459 : ℝ)
+          thetaRationalTangentSwitch -
+        thetaRationalAffinePrimitive (-400 / 7803 : ℝ) (160 / 459 : ℝ)
+          thetaRationalInflection) -
+    thetaRationalAffinePrimitive (39600 / 753571 : ℝ)
+      (192000 / 753571 : ℝ) thetaRationalTangentSwitch
+  have htotal :
+      (∫ y in Ioi (0 : ℝ), thetaRationalMomentMajorant y) ≤ totalUpper := by
+    dsimp [totalUpper]
+    linarith [hs0, hs1, hs2, hs3, hs4, hs5, hs6, hs7, hs8,
+      h0, h1, h2, h3, h4, h5, h6, h7, h8, h9]
+  let certifiedUpper : ℝ :=
+    (720000000000 / 680860252703401 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ)) +
+    (79791920000000000 / 48537846554972753889 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + 9 / 200 : ℝ)) +
+    (672807065600000000000 / 506880731573580468862827 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + 2 / 25 : ℝ)) +
+    (51408208000000000000 / 39069741227827439908827 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + 1 / 8 : ℝ)) +
+    (39221940800000000000 / 30261160275537542460769 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + 9 / 50 : ℝ)) +
+    (7568882936000000000000 / 7024857563613100811354667 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + 13 / 50 : ℝ)) +
+    (25266236944000000000000 / 39411440484461117820381843 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + 7 / 20 : ℝ)) +
+    (57731520000000000 / 149802357245751224297 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + 43 / 100 : ℝ)) +
+    (11577760000000 / 135141957487229211 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + thetaRationalInflection)) -
+    (32443360000000 / 13654348461492921 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + thetaRationalTangentSwitch))
+  have haggregate : totalUpper = certifiedUpper := by
+    dsimp [totalUpper, certifiedUpper]
+    unfold thetaRationalAffinePrimitive thetaRationalInflection
+      thetaRationalTangentSwitch
+    norm_num
+    <;> ring
+  rw [haggregate] at htotal
+  have hcertified : certifiedUpper < (254 / 1000000 : ℝ) := by
+    dsimp [certifiedUpper]
+    linarith [exp_neg_6283_div_2000_lt,
+      exp_neg_thetaRationalKnot_one_lt,
+      exp_neg_thetaRationalKnot_two_lt,
+      exp_neg_thetaRationalKnot_three_lt,
+      exp_neg_thetaRationalKnot_four_lt,
+      exp_neg_thetaRationalKnot_five_lt,
+      exp_neg_thetaRationalKnot_six_lt,
+      exp_neg_thetaRationalKnot_seven_lt,
+      exp_neg_thetaRationalInflection_lt,
+      exp_neg_thetaRationalTangentSwitch_gt]
+  exact htotal.trans_lt hcertified
+
+/-- Certified upper bound for the quadratic theta-tail moment. -/
+theorem completedNativeThetaTailMoment_two_lt :
+    completedNativeThetaTailMoment 2 < (51 / 200000 : ℝ) := by
+  have hfirst :
+      (∫ u in Ioi (0 : ℝ), u ^ 2 * thetaFirstMode u) <
+        (254 / 1000000 : ℝ) :=
+    firstModeSecondMoment_le_rationalMajorant.trans_lt
+      integral_thetaRationalMomentMajorant_lt
+  have htail := completedNativeThetaTailMoment_two_le_firstMode
+  nlinarith
+
+/-- The concrete completed-Xi cosine kernel has strict sub-Gaussian
+fourth moment: `μ₀ μ₄ < 3 μ₂²`. -/
+theorem completedNativeXiCosineMoment_strict_kurtosis :
+    completedNativeXiCosineMoment 0 * completedNativeXiCosineMoment 2 <
+      3 * completedNativeXiCosineMoment 1 ^ 2 := by
+  apply completedNativeXiCosineMoment_inequality_of_thetaTailMoment_two_lt
+  have hzero := completedNativeThetaTailMoment_zero_gt
+  have htwo := completedNativeThetaTailMoment_two_lt
+  nlinarith [sq_nonneg
+    (completedNativeThetaTailMoment 0 - (113 / 10000 : ℝ))]
+
 end
 
 end CarrySelfAdjointOperator
