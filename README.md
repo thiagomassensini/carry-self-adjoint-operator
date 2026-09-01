@@ -742,9 +742,28 @@ $$
   \int_0^\infty A(u)\cos(tu)\,du.
 $$
 
-Thus the remaining representation step is the honest twofold integration
-by parts identifying `A'' - A/4` with the already positive explicit kernel;
-no Mellin/Fourier normalization is left implicit.
+[`CompletedNativeXiCosineTransform.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineTransform.lean)
+closes the remaining representation step.  Lean differentiates the theta
+series twice under the sum, proves the local uniform majorants and the
+global $Ce^{-3u/2}$ decay needed for improper integration, derives
+
+$$
+A''(u)-\frac14A(u)=K(u),
+\qquad A'(0)=-\frac12,
+$$
+
+and performs both integrations by parts on $(0,\infty)$.  Consequently the
+normalization is now an unconditional theorem:
+
+$$
+\boxed{
+\Xi(t)=\int_0^\infty K(u)\cos(tu)\,du,
+\qquad K(u)>0\quad(u\geq0).
+}
+$$
+
+No Mellin/Fourier normalization, boundary term, or interchange of an
+infinite sum with differentiation is left implicit.
 
 [`CompletedNativeXiCosineMomentHerglotzGate.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineMomentHerglotzGate.lean)
 translates that obligation into the standard low moments of an even cosine
