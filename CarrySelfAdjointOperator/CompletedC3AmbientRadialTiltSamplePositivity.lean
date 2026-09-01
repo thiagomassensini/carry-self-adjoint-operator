@@ -125,7 +125,10 @@ theorem canonicalCompletedC3AmbientRadialTiltPoint_half_pos
     _ < ((N : ℝ) + 1) * ((k : ℝ) + 1) := by nlinarith
     _ = (1 / 2 : ℝ) * (2 * ((N : ℝ) + 1) * ((k : ℝ) + 1)) := by ring
 
-private theorem positiveDirichletGradient_continuous
+/-- Every completed ordinary Dirichlet-gradient coordinate is continuous in
+the height parameter.  This coordinatewise statement is also used outside
+the prescribed radial grid when auditing the central coisometric defect. -/
+theorem positiveDirichletGradient_continuous
     (n : ℕ) :
     Continuous (fun s : ℂ ↦ positiveDirichletGradient s n) := by
   have hnatDirichlet (m : ℕ) (hm : 0 < m) :

@@ -614,6 +614,34 @@ theorem completedNativeVerticalModulusEnergy_secondDerivative_zero_eq_moment_zer
   linear_combination
     (-2 * (completedNativeOperatorCharacteristic 0).re) * hm_re
 
+/-- The first transverse energy variation is itself differentiable at the
+center.  Its derivative is the already identified second transverse
+variation.  This public regularity statement is the input needed to
+differentiate a center-pinned coisometric energy defect without replacing
+`deriv` by a formal symbol. -/
+theorem hasDerivAt_deriv_completedNativeVerticalModulusEnergy_zero :
+    HasDerivAt (deriv (completedNativeVerticalModulusEnergy 0))
+      (iteratedDeriv 2 (completedNativeVerticalModulusEnergy 0) 0) 0 := by
+  have hvariation :
+      HasDerivAt (deriv (completedNativeVerticalModulusEnergy 0))
+        (2 * ⟪completedNativeOperatorCharacteristic 0,
+          -iteratedDeriv 2 completedNativeOperatorCharacteristic 0⟫_ℝ) 0 := by
+    rw [completedNativeCentralVerticalEnergy_deriv_eventuallyEq.hasDerivAt_iff]
+    exact hasDerivAt_completedNativeCentralVerticalFirstVariation
+  have hcoefficient :
+      iteratedDeriv 2 (completedNativeVerticalModulusEnergy 0) 0 =
+        2 * ⟪completedNativeOperatorCharacteristic 0,
+          -iteratedDeriv 2 completedNativeOperatorCharacteristic 0⟫_ℝ := by
+    rw [show iteratedDeriv 2 (completedNativeVerticalModulusEnergy 0) =
+        deriv (deriv (completedNativeVerticalModulusEnergy 0)) by
+      rw [show (2 : ℕ) = 1 + 1 by omega, iteratedDeriv_succ,
+        show iteratedDeriv 1 (completedNativeVerticalModulusEnergy 0) =
+            deriv (completedNativeVerticalModulusEnergy 0) by
+          rw [show (1 : ℕ) = 0 + 1 by omega, iteratedDeriv_succ]
+          simp]]
+    exact hvariation.deriv
+  exact hvariation.congr_deriv hcoefficient.symm
+
 /-- Nonnegative central tilt curvature is exactly nonnegativity of the first
 canonical Hankel moment. -/
 theorem

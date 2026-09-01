@@ -588,6 +588,49 @@ F_{\mathrm{energy}}''(0)=4\|\nabla_{C3}(1/2)\|^2
 \Longrightarrow \text{eventual radial Herglotz positivity at }N=1.
 $$
 
+### 10. Literal first-order flatness of the central coisometric defect
+
+[`CompletedNativeCentralCoisometricDefectFlatness.lean`](CarrySelfAdjointOperator/CompletedNativeCentralCoisometricDefectFlatness.lean)
+formalizes the smaller infinitesimal sewing target directly.  On the central
+line, let
+
+$$
+A(y)=\bigl(r(1/2-y)^2+1\bigr)
+  \|\nabla_{C3}(1/2-y)\|^2,
+\qquad
+B(y)=2yA(y)-\frac{d}{dy}|F(iy)|^2.
+$$
+
+The completed gradient state is proved strongly continuous at the center by
+a full-carrier Tannery argument.  Thus no derivative of `A` is needed, and
+Lean obtains the literal identity
+
+$$
+\boxed{
+B'(0)=4\|\nabla_{C3}(1/2)\|^2-F_{\mathrm{energy}}''(0).
+}
+$$
+
+The same `B(y)` is proved equal, throughout the local critical strip, to the
+existing TFVD/coisometric diagonal Wronskian balance.  Consequently
+
+$$
+\boxed{
+B'(0)=0
+\iff
+F_{\mathrm{energy}}''(0)=4\|\nabla_{C3}(1/2)\|^2
+\iff
+\|\mathrm{Ambient}_{\mathrm{norm}}(0)\|^2=h_0.
+}
+$$
+
+It is also equivalent to vanishing of the separation-regularized four-channel
+C3 correction ledger in the radial limit.  This pins down exactly what a
+four-corner proof must establish: raw no-leak is not enough; its first
+separation-normalized coefficient must vanish.  From this flatness statement,
+the one-point radial Herglotz section is eventually positive semidefinite.
+The polarized sections `N > 1` remain a separate higher-order obligation.
+
 ## What Is Not Being Identified
 
 The following objects are deliberately distinct in the formalization:
