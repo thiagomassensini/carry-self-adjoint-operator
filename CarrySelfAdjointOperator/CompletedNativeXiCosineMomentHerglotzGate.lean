@@ -1,5 +1,5 @@
 import CarrySelfAdjointOperator.CompletedNativeHerglotzFourthOrderGate
-import CarrySelfAdjointOperator.CompletedNativeXiCosineMoments
+import CarrySelfAdjointOperator.CompletedNativeXiThetaMomentBounds
 import Mathlib.Tactic
 
 /-!
@@ -17,8 +17,9 @@ Under this normalization the two direct Herglotz curvature signs reduce to
 
 Thus the first polarized Herglotz/Pick section only asks for a strict
 sub-Gaussian fourth-moment inequality for the completed Xi cosine kernel.
-This file proves the algebraic transport from such a low-moment certificate;
-it does not assert the missing integral representation or its kurtosis bound.
+The theta-tail bounds now supply that inequality, so this file transports the
+certified moment estimate all the way to unconditional two-point
+Herglotz/Pick positivity.
 -/
 
 namespace CarrySelfAdjointOperator
@@ -134,6 +135,40 @@ theorem
   canonicalCompletedNativeRadialChiralPickSampleMatrix_two_eventually_posSemidef_of_lowOrderCurvature
     (canonicalCompletedNativeLowOrderHerglotzCurvaturePositive_of_xiCosineLowMoments
       hcosine)
+
+/-! ## Unconditional closure from the certified theta bounds -/
+
+/-- The concrete completed-Xi cosine moments satisfy the full low-order
+certificate without any remaining analytic hypothesis. -/
+theorem canonicalCompletedNativeXiCosineLowMomentCertificate :
+    CanonicalCompletedNativeXiCosineLowMomentCertificate :=
+  canonicalCompletedNativeXiCosineLowMomentCertificate_of_momentInequality
+    completedNativeXiCosineMoment_strict_kurtosis
+
+/-- Both direct low-order Herglotz curvature signs now hold
+unconditionally. -/
+theorem canonicalCompletedNativeLowOrderHerglotzCurvaturePositive :
+    CanonicalCompletedNativeLowOrderHerglotzCurvaturePositive :=
+  canonicalCompletedNativeLowOrderHerglotzCurvaturePositive_of_xiCosineLowMoments
+    canonicalCompletedNativeXiCosineLowMomentCertificate
+
+/-- Unconditional eventual positivity of the literal two-point radial
+Herglotz sample matrix. -/
+theorem
+    canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_posSemidef :
+    ∀ᶠ k : ℕ in atTop,
+      (canonicalCompletedNativeRadialHerglotzSampleMatrix k 2).PosSemidef :=
+  canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_posSemidef_of_xiCosineLowMoments
+    canonicalCompletedNativeXiCosineLowMomentCertificate
+
+/-- The exact Cayley congruence gives the corresponding unconditional
+two-point chiral Pick positivity. -/
+theorem
+    canonicalCompletedNativeRadialChiralPickSampleMatrix_two_eventually_posSemidef :
+    ∀ᶠ k : ℕ in atTop,
+      (canonicalCompletedNativeRadialChiralPickSampleMatrix k 2).PosSemidef :=
+  canonicalCompletedNativeRadialChiralPickSampleMatrix_two_eventually_posSemidef_of_xiCosineLowMoments
+    canonicalCompletedNativeXiCosineLowMomentCertificate
 
 end
 
