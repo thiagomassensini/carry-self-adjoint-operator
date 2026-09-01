@@ -583,6 +583,145 @@ theorem completedNativeThetaTailMoment_zero_gt :
     nlinarith
   nlinarith [hlineSplit, hsplit]
 
+private theorem exp_neg_nine_lt :
+    Real.exp (-9) < (1 / 8000 : ℝ) := by
+  apply exp_neg_lt_of_partial_sum 9 (1 / 8000 : ℝ) 30
+  · norm_num
+  · norm_num
+  · norm_num [Finset.sum_range_succ]
+
+private theorem thetaTailMode_le_geometric {u : ℝ} (hu : 0 ≤ u) (n : ℕ) :
+    thetaTailMode n u ≤ thetaTailMode 0 u * (1 / 8000 : ℝ) ^ n := by
+  have hindex :
+      (1 : ℝ) + 3 * (n : ℝ) ≤ (((n + 1 : ℕ) : ℝ) ^ 2) := by
+    cases n with
+    | zero => norm_num
+    | succ k =>
+        norm_num [Nat.cast_add, Nat.cast_one]
+        have hk : (0 : ℝ) ≤ k := Nat.cast_nonneg k
+        have hkprod : 0 ≤ (k : ℝ) * ((k : ℝ) + 1) := by positivity
+        nlinarith
+  have hexpOne : (1 : ℝ) ≤ Real.exp (2 * u) :=
+    Real.one_le_exp_iff.mpr (mul_nonneg (by norm_num) hu)
+  have hpiExp : (3 : ℝ) ≤ Real.pi * Real.exp (2 * u) := by
+    calc
+      (3 : ℝ) ≤ 3 * Real.exp (2 * u) := by nlinarith
+      _ ≤ Real.pi * Real.exp (2 * u) :=
+        mul_le_mul_of_nonneg_right Real.pi_gt_three.le (Real.exp_pos _).le
+  have hdiff :
+      3 * (n : ℝ) ≤ (((n + 1 : ℕ) : ℝ) ^ 2) - 1 := by
+    linarith
+  have hproduct :
+      9 * (n : ℝ) ≤
+        (Real.pi * Real.exp (2 * u)) *
+          ((((n + 1 : ℕ) : ℝ) ^ 2) - 1) := by
+    have hmul := mul_le_mul hpiExp hdiff
+      (mul_nonneg (by norm_num) (Nat.cast_nonneg n))
+      (mul_nonneg Real.pi_pos.le (Real.exp_pos _).le)
+    nlinarith
+  have hdecay :
+      Real.exp
+          (-Real.pi * ((((n + 1 : ℕ) : ℝ) ^ 2) - 1) *
+            Real.exp (2 * u)) ≤
+        (1 / 8000 : ℝ) ^ n := by
+    calc
+      Real.exp
+          (-Real.pi * ((((n + 1 : ℕ) : ℝ) ^ 2) - 1) *
+            Real.exp (2 * u)) ≤
+          Real.exp (-9 * (n : ℝ)) := by
+        apply Real.exp_le_exp.mpr
+        nlinarith
+      _ = Real.exp (-9) ^ n := by
+        convert Real.exp_nat_mul (-9) n using 1 <;> ring
+      _ ≤ (1 / 8000 : ℝ) ^ n :=
+        pow_le_pow_left₀ (Real.exp_nonneg _) exp_neg_nine_lt.le n
+  have hsplit :
+      Real.exp
+          (-Real.pi * (((n + 1 : ℕ) : ℝ) ^ 2) * Real.exp (2 * u)) =
+        Real.exp (-Real.pi * Real.exp (2 * u)) *
+          Real.exp
+            (-Real.pi * ((((n + 1 : ℕ) : ℝ) ^ 2) - 1) *
+              Real.exp (2 * u)) := by
+    rw [← Real.exp_add]
+    congr 1
+    ring
+  unfold thetaTailMode
+  rw [hsplit]
+  have hfactor :
+      0 ≤ Real.exp (u / 2) * Real.exp (-Real.pi * Real.exp (2 * u)) := by
+    positivity
+  calc
+    Real.exp (u / 2) *
+        (Real.exp (-Real.pi * Real.exp (2 * u)) *
+          Real.exp
+            (-Real.pi * ((((n + 1 : ℕ) : ℝ) ^ 2) - 1) *
+              Real.exp (2 * u))) =
+        (Real.exp (u / 2) * Real.exp (-Real.pi * Real.exp (2 * u))) *
+          Real.exp
+            (-Real.pi * ((((n + 1 : ℕ) : ℝ) ^ 2) - 1) *
+              Real.exp (2 * u)) := by ring
+    _ ≤ (Real.exp (u / 2) * Real.exp (-Real.pi * Real.exp (2 * u))) *
+        (1 / 8000 : ℝ) ^ n :=
+      mul_le_mul_of_nonneg_left hdecay hfactor
+    _ = Real.exp (u / 2) *
+        Real.exp (-Real.pi * (((0 + 1 : ℕ) : ℝ) ^ 2) * Real.exp (2 * u)) *
+          (1 / 8000 : ℝ) ^ n := by norm_num
+
+private theorem thetaTail_le_geometric_first {u : ℝ} (hu : 0 ≤ u) :
+    thetaTail u ≤ (8000 / 7999 : ℝ) * thetaFirstMode u := by
+  rw [thetaTail_eq_two_mul_tsum]
+  have hgeom : Summable (fun n : ℕ ↦
+      thetaTailMode 0 u * (1 / 8000 : ℝ) ^ n) :=
+    (summable_geometric_of_lt_one (by norm_num) (by norm_num :
+      (1 / 8000 : ℝ) < 1)).mul_left _
+  have hsum := (summable_thetaTailMode u).tsum_le_tsum
+    (thetaTailMode_le_geometric hu) hgeom
+  calc
+    2 * ∑' n : ℕ, thetaTailMode n u ≤
+        2 * ∑' n : ℕ, thetaTailMode 0 u * (1 / 8000 : ℝ) ^ n :=
+      mul_le_mul_of_nonneg_left hsum (by norm_num)
+    _ = (8000 / 7999 : ℝ) * thetaFirstMode u := by
+      rw [tsum_mul_left,
+        tsum_geometric_of_lt_one (by norm_num) (by norm_num :
+          (1 / 8000 : ℝ) < 1)]
+      unfold thetaFirstMode thetaTailMode
+      norm_num
+      ring
+
+private theorem integrableOn_pow_two_mul_thetaFirstMode :
+    IntegrableOn (fun u : ℝ ↦ u ^ 2 * thetaFirstMode u) (Ioi (0 : ℝ)) := by
+  apply (integrableOn_pow_mul_thetaTail 2).mono'
+  · exact (by
+      unfold thetaFirstMode
+      fun_prop : Continuous (fun u : ℝ ↦ u ^ 2 * thetaFirstMode u)
+      ).aestronglyMeasurable
+  · filter_upwards [ae_restrict_mem measurableSet_Ioi] with u hu
+    have hfirst0 : 0 ≤ thetaFirstMode u := by
+      unfold thetaFirstMode
+      positivity
+    rw [Real.norm_eq_abs,
+      abs_of_nonneg (mul_nonneg (sq_nonneg u) hfirst0)]
+    exact mul_le_mul_of_nonneg_left (thetaTail_ge_thetaFirstMode hu.le)
+      (sq_nonneg u)
+
+private theorem completedNativeThetaTailMoment_two_le_firstMode :
+    completedNativeThetaTailMoment 2 ≤
+      (8000 / 7999 : ℝ) *
+        ∫ u in Ioi (0 : ℝ), u ^ 2 * thetaFirstMode u := by
+  rw [completedNativeThetaTailMoment]
+  have hright : IntegrableOn
+      (fun u : ℝ ↦ (8000 / 7999 : ℝ) *
+        (u ^ 2 * thetaFirstMode u)) (Ioi (0 : ℝ)) :=
+    integrableOn_pow_two_mul_thetaFirstMode.const_mul _
+  have hmono := integral_mono_ae (integrableOn_pow_mul_thetaTail 2)
+    hright (by
+      filter_upwards [ae_restrict_mem measurableSet_Ioi] with u hu
+      have hpow : 0 ≤ u ^ 2 := sq_nonneg u
+      have h := mul_le_mul_of_nonneg_left
+        (thetaTail_le_geometric_first hu.le) hpow
+      nlinarith)
+  simpa [MeasureTheory.integral_const_mul] using hmono
+
 end
 
 end CarrySelfAdjointOperator
