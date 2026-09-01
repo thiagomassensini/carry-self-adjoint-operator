@@ -722,8 +722,29 @@ the zero mode vanishing.  Lean proves absolute summability for every real
 $u$, positivity of every nonzero mode for $u\geq0$, and hence strict
 positivity of the full kernel there.  This fixes the factor-of-two ambiguity
 that otherwise appears among conventions for the classical Xi transform;
-the transform identity itself is kept as the next theorem rather than folded
-into the definition.
+the identification of this differentiated kernel is kept separate from its
+Mellin precursor.
+
+[`CompletedNativeXiThetaCosineRepresentation.lean`](CarrySelfAdjointOperator/CompletedNativeXiThetaCosineRepresentation.lean)
+now derives that precursor directly from Mathlib's Mellin construction of
+the pole-removed completed zeta.  For
+
+$$
+A(u)=e^{u/2}\bigl(\theta(e^{2u})-1\bigr),
+$$
+
+Lean proves integrability and the exact even-profile reduction, including
+all Fourier scaling factors, and obtains
+
+$$
+\Xi(t)=\frac12-
+  \left(t^2+\frac14\right)
+  \int_0^\infty A(u)\cos(tu)\,du.
+$$
+
+Thus the remaining representation step is the honest twofold integration
+by parts identifying `A'' - A/4` with the already positive explicit kernel;
+no Mellin/Fourier normalization is left implicit.
 
 [`CompletedNativeXiCosineMomentHerglotzGate.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineMomentHerglotzGate.lean)
 translates that obligation into the standard low moments of an even cosine
