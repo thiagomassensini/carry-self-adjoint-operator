@@ -27,6 +27,8 @@ namespace CarrySelfAdjointOperator
 
 noncomputable section
 
+open scoped MatrixOrder
+
 /-! ## Exact centered scalar audit -/
 
 /-- At the centered left endpoint, the two normalized scalar chiral kernels
@@ -364,6 +366,81 @@ theorem completedNativeCenteredOddChiralContributions_add_eq_zero
     completedNativeCenteredNegativeOddChiralContribution_eq_neg_half_shiftedHankel]
   ext i j
   simp
+
+/-! ## Coefficient-level sign audit
+
+The centered Taylor contributions are signed scalar coefficients extracted
+from the center-pinned chiral response.  They are not two positive Gram
+blocks: the negative contribution is literally the additive inverse of the
+positive one.  Consequently a contraction/defect-Gram realization cannot be
+applied to these coefficient matrices.  It must be established on an honest
+two-variable Hilbert carrier before scalar Taylor extraction, together with
+the intrinsic spectral-separation regularization.
+-/
+
+/-- The negative even Taylor contribution is exactly the additive inverse of
+the positive contribution. -/
+theorem completedNativeCenteredNegativeEvenChiralContribution_eq_neg_positive
+    (N : ℕ) :
+    completedNativeCenteredNegativeEvenChiralContribution N =
+      -completedNativeCenteredPositiveEvenChiralContribution N := by
+  rw [completedNativeCenteredNegativeEvenChiralContribution_eq_neg_half_hankel,
+    completedNativeCenteredPositiveEvenChiralContribution_eq_half_hankel]
+  simp
+
+/-- The same sign identity holds in the shifted odd sector. -/
+theorem completedNativeCenteredNegativeOddChiralContribution_eq_neg_positive
+    (N : ℕ) :
+    completedNativeCenteredNegativeOddChiralContribution N =
+      -completedNativeCenteredPositiveOddChiralContribution N := by
+  rw [completedNativeCenteredNegativeOddChiralContribution_eq_neg_half_shiftedHankel,
+    completedNativeCenteredPositiveOddChiralContribution_eq_half_shiftedHankel]
+  simp
+
+/-- Unless the even Hankel matrix vanishes, the two signed Taylor
+contributions cannot both be positive semidefinite. -/
+theorem
+    completedNativeCenteredEvenChiralContributions_not_both_posSemidef_of_hankel_ne_zero
+    (N : ℕ)
+    (hH : hankelGram canonicalCompletedNativeLogDerivativeMoment N ≠ 0) :
+    ¬ ((completedNativeCenteredPositiveEvenChiralContribution N).PosSemidef ∧
+      (completedNativeCenteredNegativeEvenChiralContribution N).PosSemidef) := by
+  rintro ⟨hpos, hneg⟩
+  have hnegPos :
+      (-completedNativeCenteredPositiveEvenChiralContribution N).PosSemidef := by
+    rw [← completedNativeCenteredNegativeEvenChiralContribution_eq_neg_positive]
+    exact hneg
+  have hleZero : completedNativeCenteredPositiveEvenChiralContribution N ≤ 0 := by
+    rw [Matrix.le_iff]
+    simpa using hnegPos
+  have hzero : completedNativeCenteredPositiveEvenChiralContribution N = 0 :=
+    le_antisymm hleZero hpos.nonneg
+  apply hH
+  rw [completedNativeCenteredPositiveEvenChiralContribution_eq_half_hankel] at hzero
+  exact (smul_eq_zero.mp hzero).resolve_left (by norm_num)
+
+/-- Unless the shifted Hankel matrix vanishes, the two signed Taylor
+contributions cannot both be positive semidefinite. -/
+theorem
+    completedNativeCenteredOddChiralContributions_not_both_posSemidef_of_shiftedHankel_ne_zero
+    (N : ℕ)
+    (hH : shiftedHankel canonicalCompletedNativeLogDerivativeMoment N ≠ 0) :
+    ¬ ((completedNativeCenteredPositiveOddChiralContribution N).PosSemidef ∧
+      (completedNativeCenteredNegativeOddChiralContribution N).PosSemidef) := by
+  rintro ⟨hpos, hneg⟩
+  have hnegPos :
+      (-completedNativeCenteredPositiveOddChiralContribution N).PosSemidef := by
+    rw [← completedNativeCenteredNegativeOddChiralContribution_eq_neg_positive]
+    exact hneg
+  have hleZero : completedNativeCenteredPositiveOddChiralContribution N ≤ 0 := by
+    rw [Matrix.le_iff]
+    simpa using hnegPos
+  have hzero : completedNativeCenteredPositiveOddChiralContribution N = 0 :=
+    le_antisymm hleZero hpos.nonneg
+  apply hH
+  rw [completedNativeCenteredPositiveOddChiralContribution_eq_half_shiftedHankel]
+    at hzero
+  exact (smul_eq_zero.mp hzero).resolve_left (by norm_num)
 
 /-- Exact head-tail completion makes the even all-order chiral defect
 independent of the carrier cutoff. -/
