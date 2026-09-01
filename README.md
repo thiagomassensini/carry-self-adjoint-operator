@@ -342,6 +342,27 @@ half-plane. This audit is proved in
 using Dedekind independence of the underlying Dirichlet characters and the
 existing global camera isometry; it uses no zero or spectral premise.
 
+### 5. Coisometric ambient strict positivity
+
+The obstruction is a failure of the fixed finite readout, not a loss of the
+completed geometry.  On the canonical Naimark carrier, the complexified port
+obeys the exact polarized identity
+
+$$
+\langle Uu,Uv\rangle=\langle u,v\rangle,
+$$
+
+as a direct consequence of the coisometric law $U^*U=I$.  Thus every finite
+family of distinct positive real exponents produces a positive-definite
+ambient response Gram.  In particular, the same thirteen states that cannot
+factor through the fixed twelve-dimensional Wronskian trace have a strictly
+positive Gram in the lossless ambient carrier.  This is formalized in
+[`CompletedC3CoisometricAmbientStrictPositivity.lean`](CarrySelfAdjointOperator/CompletedC3CoisometricAmbientStrictPositivity.lean).
+
+This theorem establishes strict positivity of the canonical ambient kernel.
+It does not identify that kernel with the completed-native `dslope` moment
+kernel; that identification remains a separate typed interface.
+
 ## What Is Not Being Identified
 
 The following objects are deliberately distinct in the formalization:
