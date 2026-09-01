@@ -305,6 +305,263 @@ theorem hasDerivAt_completedNativeReducedRadialHerglotzTwoDeterminant_zero :
   rw [hcoefficient]
   convert h using 1 <;> rfl
 
+/-! ## Positivity of the reduced section -/
+
+/-- The reduced determinant is real because it is the determinant of a
+Hermitian two-by-two matrix. -/
+theorem completedNativeReducedRadialHerglotzTwoDeterminant_eq_ofReal_re
+    (t : ℝ) :
+    completedNativeReducedRadialHerglotzTwoDeterminant t =
+      ((completedNativeReducedRadialHerglotzTwoDeterminant t).re : ℂ) := by
+  symm
+  rw [← Complex.conj_eq_iff_re]
+  unfold completedNativeReducedRadialHerglotzTwoDeterminant
+    completedNativeReducedRadialHerglotzFirstDiagonal
+    completedNativeReducedRadialHerglotzSecondDiagonal
+  simp only [map_sub, map_mul, map_add, starRingEnd_self_apply]
+  ring
+
+/-- Real determinant used for the one-sided radial sign argument. -/
+def completedNativeReducedRadialHerglotzTwoRealDeterminant (t : ℝ) : ℝ :=
+  (completedNativeReducedRadialHerglotzTwoDeterminant t).re
+
+@[simp] theorem completedNativeReducedRadialHerglotzTwoRealDeterminant_zero :
+    completedNativeReducedRadialHerglotzTwoRealDeterminant 0 = 0 := by
+  simp [completedNativeReducedRadialHerglotzTwoRealDeterminant]
+
+theorem
+    hasDerivAt_completedNativeReducedRadialHerglotzTwoRealDeterminant_zero :
+    HasDerivAt completedNativeReducedRadialHerglotzTwoRealDeterminant
+      (4 * canonicalCompletedNativeLogDerivativeMoment 0 *
+        canonicalCompletedNativeLogDerivativeMoment 1) 0 := by
+  have hcomplex :=
+    hasDerivAt_completedNativeReducedRadialHerglotzTwoDeterminant_zero
+  have hre := Complex.reCLM.hasFDerivAt.comp 0 hcomplex.hasFDerivAt
+  change HasDerivAt
+    (fun t : ℝ ↦ (completedNativeReducedRadialHerglotzTwoDeterminant t).re)
+    _ 0
+  convert hre.hasDerivAt using 1 <;> try rfl
+  norm_num [Complex.mul_re]
+
+/-- Squared real step corresponding to the radial substitution `t = h²`. -/
+def canonicalCompletedNativeRadialHerglotzSquaredStep (k : ℕ) : ℝ :=
+  canonicalGreenJetRealStep k ^ 2
+
+theorem canonicalGreenJetRealStep_tendsto_zero :
+    Tendsto canonicalGreenJetRealStep atTop (nhds 0) := by
+  change Tendsto (fun k : ℕ ↦ ((k : ℝ) + 1)⁻¹) atTop (nhds 0)
+  simpa [one_div] using
+    (tendsto_one_div_add_atTop_nhds_zero_nat (𝕜 := ℝ))
+
+theorem canonicalCompletedNativeRadialHerglotzSquaredStep_tendsto_zero :
+    Tendsto canonicalCompletedNativeRadialHerglotzSquaredStep atTop
+      (nhds 0) := by
+  change Tendsto (fun k : ℕ ↦ canonicalGreenJetRealStep k ^ 2)
+    atTop (nhds 0)
+  simpa using canonicalGreenJetRealStep_tendsto_zero.pow 2
+
+theorem canonicalCompletedNativeRadialHerglotzSquaredStep_pos (k : ℕ) :
+    0 < canonicalCompletedNativeRadialHerglotzSquaredStep k := by
+  unfold canonicalCompletedNativeRadialHerglotzSquaredStep
+    canonicalGreenJetRealStep
+  positivity
+
+/-- The normalized reduced determinant converges to its first polarized
+coefficient `4 h₀ h₁`. -/
+theorem
+    completedNativeReducedRadialHerglotzTwoRealDeterminant_div_squaredStep_tendsto :
+    Tendsto
+      (fun k : ℕ ↦
+        completedNativeReducedRadialHerglotzTwoRealDeterminant
+            (canonicalCompletedNativeRadialHerglotzSquaredStep k) /
+          canonicalCompletedNativeRadialHerglotzSquaredStep k)
+      atTop
+      (nhds (4 * canonicalCompletedNativeLogDerivativeMoment 0 *
+        canonicalCompletedNativeLogDerivativeMoment 1)) := by
+  have hslope := hasDerivAt_iff_tendsto_slope_zero.mp
+    hasDerivAt_completedNativeReducedRadialHerglotzTwoRealDeterminant_zero
+  have hnonzero : ∀ᶠ k : ℕ in atTop,
+      canonicalCompletedNativeRadialHerglotzSquaredStep k ∈
+        ({0} : Set ℝ)ᶜ := by
+    filter_upwards [] with k
+    exact (canonicalCompletedNativeRadialHerglotzSquaredStep_pos k).ne'
+  have hwithin : Tendsto canonicalCompletedNativeRadialHerglotzSquaredStep
+      atTop (nhdsWithin 0 (({0} : Set ℝ)ᶜ)) :=
+    tendsto_nhdsWithin_iff.mpr
+      ⟨canonicalCompletedNativeRadialHerglotzSquaredStep_tendsto_zero,
+        hnonzero⟩
+  have hcomp := hslope.comp hwithin
+  apply hcomp.congr'
+  filter_upwards [] with k
+  simp only [Function.comp_apply, zero_add,
+    completedNativeReducedRadialHerglotzTwoRealDeterminant_zero, sub_zero,
+    smul_eq_mul]
+  rw [div_eq_mul_inv, mul_comm]
+
+/-- Positive first two canonical moments make the reduced two-point
+Herglotz matrix positive semidefinite on every sufficiently small canonical
+radial step. -/
+theorem
+    completedNativeReducedRadialHerglotzTwoMatrix_eventually_posSemidef_of_moments
+    (hmomentZero : 0 < canonicalCompletedNativeLogDerivativeMoment 0)
+    (hmomentOne : 0 < canonicalCompletedNativeLogDerivativeMoment 1) :
+    ∀ᶠ k : ℕ in atTop,
+      (completedNativeReducedRadialHerglotzTwoMatrix
+        (canonicalCompletedNativeRadialHerglotzSquaredStep k)).PosSemidef := by
+  have hdetQuotient : ∀ᶠ k : ℕ in atTop,
+      0 < completedNativeReducedRadialHerglotzTwoRealDeterminant
+            (canonicalCompletedNativeRadialHerglotzSquaredStep k) /
+          canonicalCompletedNativeRadialHerglotzSquaredStep k :=
+    Filter.Tendsto.eventually_lt tendsto_const_nhds
+      completedNativeReducedRadialHerglotzTwoRealDeterminant_div_squaredStep_tendsto
+      (by positivity)
+  have hfirstTendsto : Tendsto
+      (fun k : ℕ ↦
+        (completedNativeReducedRadialHerglotzFirstDiagonal
+          (canonicalCompletedNativeRadialHerglotzSquaredStep k)).re)
+      atTop (nhds (2 * canonicalCompletedNativeLogDerivativeMoment 0)) := by
+    have hcontinuous :=
+      hasDerivAt_completedNativeReducedRadialHerglotzFirstDiagonal_zero.continuousAt
+    have hre := (Complex.continuous_re.tendsto
+      (completedNativeReducedRadialHerglotzFirstDiagonal 0)).comp
+        hcontinuous
+    have hcomposed := hre.comp
+      canonicalCompletedNativeRadialHerglotzSquaredStep_tendsto_zero
+    simpa [Function.comp_def] using hcomposed
+  have hfirstPositive : ∀ᶠ k : ℕ in atTop,
+      0 < (completedNativeReducedRadialHerglotzFirstDiagonal
+        (canonicalCompletedNativeRadialHerglotzSquaredStep k)).re :=
+    Filter.Tendsto.eventually_lt tendsto_const_nhds hfirstTendsto
+      (by positivity)
+  filter_upwards [hdetQuotient, hfirstPositive] with k hkDet hkFirst
+  have hstep := canonicalCompletedNativeRadialHerglotzSquaredStep_pos k
+  have hdetReal :
+      0 < completedNativeReducedRadialHerglotzTwoRealDeterminant
+        (canonicalCompletedNativeRadialHerglotzSquaredStep k) := by
+    rcases div_pos_iff.mp hkDet with hpositive | hnegative
+    · exact hpositive.1
+    · exact False.elim ((not_lt_of_ge hstep.le) hnegative.2)
+  apply complexFinTwo_posSemidef_of_det
+  · rw [Complex.pos_iff]
+    exact ⟨hkFirst, by
+      simp [completedNativeReducedRadialHerglotzFirstDiagonal]⟩
+  · change 0 ≤ completedNativeReducedRadialHerglotzTwoDeterminant
+      (canonicalCompletedNativeRadialHerglotzSquaredStep k)
+    rw [completedNativeReducedRadialHerglotzTwoDeterminant_eq_ofReal_re]
+    exact Complex.zero_le_real.mpr hdetReal.le
+
+/-! ## Identification with the literal radial Herglotz sample -/
+
+/-- On the canonical two-point radial section, the literal Herglotz kernel
+is eventually exactly the reduced matrix above. -/
+theorem
+    canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_eq_reduced :
+    ∀ᶠ k : ℕ in atTop,
+      canonicalCompletedNativeRadialHerglotzSampleMatrix k 2 =
+        completedNativeReducedRadialHerglotzTwoMatrix
+          (canonicalCompletedNativeRadialHerglotzSquaredStep k) := by
+  have hfirst : ∀ᶠ k : ℕ in atTop,
+      completedNativeOperatorLogDerivative
+          (canonicalCompletedC3RadialTiltPoint k 0) =
+        2 * canonicalCompletedC3RadialTiltPoint k 0 *
+          completedNativeLogDerivative
+            (canonicalCompletedC3RadialTiltPoint k 0 ^ 2) := by
+    exact (canonicalCompletedC3RadialTiltPoint_tendsto_zero 0).eventually
+      completedNativeOperatorLogDerivative_eventuallyEq_evenCoordinate
+  have hsecond : ∀ᶠ k : ℕ in atTop,
+      completedNativeOperatorLogDerivative
+          (canonicalCompletedC3RadialTiltPoint k 1) =
+        2 * canonicalCompletedC3RadialTiltPoint k 1 *
+          completedNativeLogDerivative
+            (canonicalCompletedC3RadialTiltPoint k 1 ^ 2) := by
+    exact (canonicalCompletedC3RadialTiltPoint_tendsto_zero 1).eventually
+      completedNativeOperatorLogDerivative_eventuallyEq_evenCoordinate
+  filter_upwards [hfirst, hsecond] with k hkFirst hkSecond
+  have hstep : canonicalGreenJetStep k ≠ 0 := by
+    unfold canonicalGreenJetStep
+    apply inv_ne_zero
+    exact_mod_cast (by positivity : (k : ℝ) + 1 ≠ 0)
+  ext i j
+  fin_cases i <;> fin_cases j
+  · simp only [canonicalCompletedNativeRadialHerglotzSampleMatrix,
+      Matrix.of_apply, completedNativeLogDerivativeHerglotzKernel,
+      completedNativeLogDerivativeHerglotzCoordinate_eq_operatorLogDerivative]
+    rw [hkFirst]
+    simp [completedNativeReducedRadialHerglotzTwoMatrix,
+      canonicalCompletedC3RadialTiltPoint,
+      canonicalCompletedC3RadialTiltStep,
+      canonicalCompletedNativeRadialHerglotzSquaredStep,
+      completedNativeReducedRadialHerglotzFirstDiagonal,
+      completedNativeReducedRadialHerglotzFirst,
+      ← canonicalGreenJetRealStep_coe, pow_two, map_ofNat]
+    field_simp [hstep]
+    ring_nf
+    rw [Complex.I_sq]
+    simp only [neg_mul, one_mul]
+  · simp only [canonicalCompletedNativeRadialHerglotzSampleMatrix,
+      Matrix.of_apply, completedNativeLogDerivativeHerglotzKernel,
+      completedNativeLogDerivativeHerglotzCoordinate_eq_operatorLogDerivative]
+    rw [hkSecond, hkFirst]
+    simp [completedNativeReducedRadialHerglotzTwoMatrix,
+      canonicalCompletedC3RadialTiltPoint,
+      canonicalCompletedC3RadialTiltStep,
+      canonicalCompletedNativeRadialHerglotzSquaredStep,
+      completedNativeReducedRadialHerglotzOffDiagonal,
+      completedNativeReducedRadialHerglotzFirst,
+      completedNativeReducedRadialHerglotzSecond,
+      ← canonicalGreenJetRealStep_coe, pow_two, map_ofNat]
+    field_simp [hstep]
+    ring_nf
+    rw [Complex.I_sq]
+    simp only [neg_mul, one_mul]
+  · simp only [canonicalCompletedNativeRadialHerglotzSampleMatrix,
+      Matrix.of_apply, completedNativeLogDerivativeHerglotzKernel,
+      completedNativeLogDerivativeHerglotzCoordinate_eq_operatorLogDerivative]
+    rw [hkFirst, hkSecond]
+    simp [completedNativeReducedRadialHerglotzTwoMatrix,
+      canonicalCompletedC3RadialTiltPoint,
+      canonicalCompletedC3RadialTiltStep,
+      canonicalCompletedNativeRadialHerglotzSquaredStep,
+      completedNativeReducedRadialHerglotzOffDiagonal,
+      completedNativeReducedRadialHerglotzFirst,
+      completedNativeReducedRadialHerglotzSecond,
+      ← canonicalGreenJetRealStep_coe, pow_two, map_ofNat]
+    field_simp [hstep]
+    ring_nf
+    rw [Complex.I_sq]
+    simp only [neg_mul, one_mul]
+    ring
+  · simp only [canonicalCompletedNativeRadialHerglotzSampleMatrix,
+      Matrix.of_apply, completedNativeLogDerivativeHerglotzKernel,
+      completedNativeLogDerivativeHerglotzCoordinate_eq_operatorLogDerivative]
+    rw [hkSecond]
+    simp [completedNativeReducedRadialHerglotzTwoMatrix,
+      canonicalCompletedC3RadialTiltPoint,
+      canonicalCompletedC3RadialTiltStep,
+      canonicalCompletedNativeRadialHerglotzSquaredStep,
+      completedNativeReducedRadialHerglotzSecondDiagonal,
+      completedNativeReducedRadialHerglotzSecond,
+      ← canonicalGreenJetRealStep_coe, pow_two, map_ofNat]
+    field_simp [hstep]
+    ring_nf
+    rw [Complex.I_sq]
+    simp only [neg_mul, one_mul]
+
+/-- Positive `h₀` and `h₁` close the literal two-point radial Herglotz
+section. -/
+theorem
+    canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_posSemidef_of_moments
+    (hmomentZero : 0 < canonicalCompletedNativeLogDerivativeMoment 0)
+    (hmomentOne : 0 < canonicalCompletedNativeLogDerivativeMoment 1) :
+    ∀ᶠ k : ℕ in atTop,
+      (canonicalCompletedNativeRadialHerglotzSampleMatrix k 2).PosSemidef := by
+  filter_upwards [
+    canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_eq_reduced,
+    completedNativeReducedRadialHerglotzTwoMatrix_eventually_posSemidef_of_moments
+      hmomentZero hmomentOne] with k hk hpos
+  rw [hk]
+  exact hpos
+
 end
 
 end CarrySelfAdjointOperator
