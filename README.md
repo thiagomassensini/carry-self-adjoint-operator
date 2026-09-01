@@ -412,6 +412,182 @@ projective transformation closes the kernel identification exactly, while
 leaving contractivity visible as the positivity theorem rather than hiding
 it in a normalization.
 
+### 7. Central curvature and the first Pick coefficient
+
+[`CompletedNativeCentralChiralQuotientCurvature.lean`](CarrySelfAdjointOperator/CompletedNativeCentralChiralQuotientCurvature.lean)
+identifies the precise local bridge between the second-order characteristic
+curvature and the first-order chiral/Pick variation.  For
+
+$$
+q(z)=\frac{-F'(z)-iF(z)}{-F'(z)+iF(z)},
+$$
+
+centered evenness gives $q(0)=-1$, while the zeroth completed-native moment
+$h_0$ gives
+
+$$
+q'(0)=-4i h_0,
+\qquad
+\frac{d}{dy}q(iy)\bigg|_{y=0}=4h_0.
+$$
+
+Consequently the norm defect $D(y)=1-|q(iy)|^2$ satisfies
+$D'(0)=8h_0$, and the diagonal Pick kernel has the removable value
+
+$$
+\lim_{y\to0,\,y\ne0}\frac{D(y)}{2y}=4h_0.
+$$
+
+The normalized positive chiral Gram tends to $1/4$ on the same line.  Lean
+therefore proves the exact cancellation
+
+$$
+\boxed{
+\left(\frac14\right)(4h_0)=h_0
+}
+$$
+
+as a limit of the positive-channel Gram times the Pick kernel.  This is the
+correct theorem relating the recurring quarter and four normalizations.  It
+is the one-point, first-coefficient shadow of the next gate; it does not by
+itself prove positive semidefiniteness of every finite Pick matrix, or the
+equivalent all-order chiral-multiplier contractivity.
+Lean also proves that strict positivity of $h_0$ is enough to make the first
+radial multiplier section ($N=1$) eventually contractive.  Sections $N>1$
+retain genuine off-diagonal Pick conditions and remain the all-order gate.
+
+The four-corner results remain complementary rather than silently
+identified with this curvature calculation.
+[`CompletedC3FourCornerGreenCell.lean`](CarrySelfAdjointOperator/CompletedC3FourCornerGreenCell.lean)
+proves both the exact Euler/logarithmic first boundary coefficient and the
+first nonzero centered algebraic moment, which is quadratic and contains the
+factor $1/4$.
+[`CompletedC3FourCornerTaylorGram.lean`](CarrySelfAdjointOperator/CompletedC3FourCornerTaylorGram.lean)
+then completes those cells to the all-order Taylor Gram.  No theorem currently
+equates the Euler coefficient itself with the characteristic curvature; any
+such crosswalk remains a separate identification obligation.
+
+### 8. Cayley--Herglotz form of the remaining gate
+
+[`CompletedNativeChiralCayleyHerglotz.lean`](CarrySelfAdjointOperator/CompletedNativeChiralCayleyHerglotz.lean)
+rewrites the same quotient using the negative logarithmic derivative
+
+$$
+a(z)=-\frac{F'(z)}{F(z)},
+\qquad
+q(z)=\frac{a(z)-i}{a(z)+i}.
+$$
+
+At the center, Lean also proves
+
+$$
+a(0)=0,
+\qquad
+a'(0)=2h_0.
+$$
+
+This is the exact jet crosswalk behind the earlier observation: the first
+local Herglotz/Pick ruler is supplied by the second-order curvature of $F$.
+
+For the divided-difference kernel
+
+$$
+K_a(z,w)=\frac{a(w)-\overline{a(z)}}{w-\overline z}
+$$
+
+and the nonzero diagonal amplitude $c(z)=(a(z)+i)^{-1}$, Lean proves on
+every regular pair the exact Cayley identity
+
+$$
+P_q(z,w)=2\,\overline{c(z)}\,K_a(z,w)\,c(w).
+$$
+
+Consequently every regular finite radial Pick matrix is positive
+semidefinite if and only if the corresponding logarithmic-derivative
+Herglotz matrix is positive semidefinite.  The equivalence is also proved
+for the eventual all-section gates, giving
+
+$$
+\boxed{
+\text{radial multiplier contractivity}
+\iff
+\text{eventual radial Herglotz-kernel positivity}.
+}
+$$
+
+With the separately named finite-section nondegeneracy premise, this new
+spelling feeds the existing Jacobi/HP theorem and implies zero confinement.
+The factorization itself does not assert the Herglotz positivity: that
+all-order positivity statement is now the explicit remaining obligation,
+rather than an untracked normalization or curvature identity.
+
+### 9. Signed-generator Gram realization of the Herglotz kernel
+
+[`CompletedNativeSignedGeneratorHerglotzGram.lean`](CarrySelfAdjointOperator/CompletedNativeSignedGeneratorHerglotzGram.lean)
+polarizes the direct signed-generator resolvent.  If
+
+$$
+x_z-zKx_z=e_0,
+\qquad
+x_w-wKx_w=e_0
+$$
+
+and $K$ is formally self-adjoint, Lean proves the abstract identity
+
+$$
+w\langle e_0,x_w\rangle-
+\overline{z\langle e_0,x_z\rangle}
+=
+(w-\overline z)\langle x_z,x_w\rangle.
+$$
+
+For a completed-native real HP carrier certificate, the already-globalized
+division-free ODE identifies
+
+$$
+a(z)=-\frac{F'(z)}{F(z)}
+=2z\langle e_0,x_z\rangle
+$$
+
+throughout the regular upper height cone.  Hence the complete polarized
+kernel, not just its diagonal, has the exact Gram realization
+
+$$
+\boxed{
+K_a(z,w)=2\langle x_z,x_w\rangle.
+}
+$$
+
+It follows in Lean that every finite restriction in the open upper cone is
+positive semidefinite.  In particular, any real HP carrier certificate closes
+the eventual radial Herglotz gate.  The resulting logical audit is exact:
+
+$$
+\boxed{
+\text{strict Stieltjes positivity}
+\iff
+\text{radial Herglotz semidefiniteness}
+\;\wedge\;
+\text{finite-section nondegeneracy}.
+}
+$$
+
+This does not manufacture the certificate for free.  Its moment-kernel field
+already contains the all-order positive realization, so using it as the input
+to prove Herglotz positivity is a representation theorem, not an independent
+proof of the remaining gate.  The independent low-order result is sharper:
+strict positivity of the central moment $h_0$ alone implies eventual
+Herglotz positivity for the one-point radial section $N=1$.  This is precisely
+the ruler/curvature shadow $a'(0)=2h_0$; sections $N>1$ retain genuinely
+polarized off-diagonal obligations.  The earlier coisometric central gate is
+now composed explicitly with this theorem:
+
+$$
+F_{\mathrm{energy}}''(0)=4\|\nabla_{C3}(1/2)\|^2
+\Longrightarrow h_0>0
+\Longrightarrow \text{eventual radial Herglotz positivity at }N=1.
+$$
+
 ## What Is Not Being Identified
 
 The following objects are deliberately distinct in the formalization:
