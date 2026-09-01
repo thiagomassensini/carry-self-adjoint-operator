@@ -363,6 +363,20 @@ This theorem establishes strict positivity of the canonical ambient kernel.
 It does not identify that kernel with the completed-native `dslope` moment
 kernel; that identification remains a separate typed interface.
 
+The first instance of that interface is now reduced exactly in
+[`CompletedC3CoisometricAmbientMomentGate.lean`](CarrySelfAdjointOperator/CompletedC3CoisometricAmbientMomentGate.lean).
+At the center, normalized ambient Gram equals the zeroth native moment if and
+only if
+
+$$
+\frac{d^2}{dy^2}\left|F(iy)\right|^2\bigg|_{y=0}
+=4\,\|\nabla_{C3}(1/2)\|^2.
+$$
+
+The equivalence is unconditional; the displayed curvature identity is not
+asserted.  If supplied, it already forces strict positivity of the zeroth
+moment because the completed C3 gradient is nonzero.
+
 ## What Is Not Being Identified
 
 The following objects are deliberately distinct in the formalization:
