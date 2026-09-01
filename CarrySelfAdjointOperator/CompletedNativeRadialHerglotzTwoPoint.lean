@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.CompletedNativeCentralCoisometricDefectFlatness
 import CarrySelfAdjointOperator.CompletedNativeEvenCoordinateResolventBridge
+import CarrySelfAdjointOperator.CompletedC3FourCornerTaylorGram
 import Mathlib.Analysis.Calculus.Deriv.Slope
 import Mathlib.Analysis.Matrix.Order
 import Mathlib.Data.Matrix.Auto
@@ -561,6 +562,103 @@ theorem
       hmomentZero hmomentOne] with k hk hpos
   rw [hk]
   exact hpos
+
+/-! ## The first concrete TFVD polarized gate -/
+
+/-- The first genuinely polarized obligation: the positive odd TFVD
+diagonal at raw Taylor order one must equal the analytic moment `h₁`. -/
+def CanonicalCompletedNativeTfvdFirstOddDiagonalMomentIdentification : Prop :=
+  (inner ℂ
+    (canonicalCompletedNativeTfvdEnrichedTaylorRawJet 1)
+    (canonicalCompletedNativeTfvdEnrichedTaylorRawJet 1)).re =
+      canonicalCompletedNativeLogDerivativeMoment 1
+
+/-- The first odd enriched TFVD Gram diagonal is strictly positive before
+any moment identification is imposed. -/
+theorem canonicalCompletedNativeTfvdFirstOddDiagonal_pos :
+    0 < (inner ℂ
+      (canonicalCompletedNativeTfvdEnrichedTaylorRawJet 1)
+      (canonicalCompletedNativeTfvdEnrichedTaylorRawJet 1)).re := by
+  have hdiag :=
+    (canonicalCompletedNativeTfvdEnrichedTaylorOddGram_posDef 1).diag_pos
+      (i := (0 : Fin 1))
+  simpa [canonicalCompletedNativeTfvdEnrichedTaylorOddGram] using hdiag
+
+/-- Consequently the single first-odd diagonal identification already
+forces strict positivity of `h₁`. -/
+theorem canonicalCompletedNativeLogDerivativeMoment_one_pos_of_tfvdFirstOddDiagonal
+    (hidentified :
+      CanonicalCompletedNativeTfvdFirstOddDiagonalMomentIdentification) :
+    0 < canonicalCompletedNativeLogDerivativeMoment 1 := by
+  rw [← hidentified]
+  exact canonicalCompletedNativeTfvdFirstOddDiagonal_pos
+
+/-- Four-corner spelling of the same gate: the real first-odd finite
+prefixes then converge to `h₁`. -/
+theorem nativeGpreFourCornerEnrichedTaylorPrefix_one_one_re_tendsto_moment_one
+    (hidentified :
+      CanonicalCompletedNativeTfvdFirstOddDiagonalMomentIdentification) :
+    Tendsto
+      (fun M : ℕ ↦
+        (nativeGpreFourCornerEnrichedTaylorPrefix M 1 1).re)
+      atTop (nhds (canonicalCompletedNativeLogDerivativeMoment 1)) := by
+  have h := Complex.continuous_re.continuousAt.tendsto.comp
+    (nativeGpreFourCornerEnrichedTaylorPrefix_tendsto_completed 1 1)
+  change Tendsto
+    (fun M : ℕ ↦ (nativeGpreFourCornerEnrichedTaylorPrefix M 1 1).re)
+    atTop
+    (nhds ((inner ℂ
+      (canonicalCompletedNativeTfvdEnrichedTaylorRawJet 1)
+      (canonicalCompletedNativeTfvdEnrichedTaylorRawJet 1)).re)) at h
+  rw [hidentified] at h
+  exact h
+
+/-- Central coisometric flatness supplies `h₀ > 0`; the first odd TFVD
+diagonal identification supplies `h₁ > 0`.  Together they prove the literal
+two-point Herglotz section. -/
+theorem
+    canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_posSemidef_of_centralFlat_and_tfvdFirstOddDiagonal
+    (hflat : deriv canonicalCompletedC3CentralCoisometricEnergyDefect 0 = 0)
+    (hidentified :
+      CanonicalCompletedNativeTfvdFirstOddDiagonalMomentIdentification) :
+    ∀ᶠ k : ℕ in atTop,
+      (canonicalCompletedNativeRadialHerglotzSampleMatrix k 2).PosSemidef := by
+  apply
+    canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_posSemidef_of_moments
+  · exact canonicalCompletedNativeLogDerivativeMoment_zero_pos_of_transverseCurvature
+      (deriv_canonicalCompletedC3CentralCoisometricEnergyDefect_zero_eq_zero_iff.mp
+        hflat)
+  · exact
+      canonicalCompletedNativeLogDerivativeMoment_one_pos_of_tfvdFirstOddDiagonal
+        hidentified
+
+/-- The same two scalar geometric gates therefore close the two-point
+chiral Pick section through the exact Cayley--Herglotz congruence. -/
+theorem
+    canonicalCompletedNativeRadialChiralPickSampleMatrix_two_eventually_posSemidef_of_centralFlat_and_tfvdFirstOddDiagonal
+    (hflat : deriv canonicalCompletedC3CentralCoisometricEnergyDefect 0 = 0)
+    (hidentified :
+      CanonicalCompletedNativeTfvdFirstOddDiagonalMomentIdentification) :
+    ∀ᶠ k : ℕ in atTop,
+      (canonicalCompletedNativeRadialChiralPickSampleMatrix k 2).PosSemidef := by
+  have hregular : ∀ᶠ k : ℕ in atTop, ∀ i : Fin 2,
+      completedNativeOperatorCharacteristic
+          (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 ∧
+        completedNativePositiveHermiteBiehlerCoordinate
+          (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 := by
+    rw [Filter.eventually_all]
+    intro i
+    filter_upwards [
+      (canonicalCompletedC3RadialTiltPoint_tendsto_zero i).eventually
+        completedNativeChiralPickFactorization_eventually_regular] with k hk
+    exact ⟨hk.2.1, hk.2.2⟩
+  filter_upwards [
+    canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_posSemidef_of_centralFlat_and_tfvdFirstOddDiagonal
+      hflat hidentified,
+    hregular] with k hHerglotz hreg
+  exact
+    (canonicalCompletedNativeRadialChiralPickSampleMatrix_posSemidef_iff_herglotz
+      k 2 hreg).mpr hHerglotz
 
 end
 

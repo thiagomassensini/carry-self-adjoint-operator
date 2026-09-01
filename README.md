@@ -631,6 +631,57 @@ separation-normalized coefficient must vanish.  From this flatness statement,
 the one-point radial Herglotz section is eventually positive semidefinite.
 The polarized sections `N > 1` remain a separate higher-order obligation.
 
+### 11. First polarized Herglotz section
+
+[`CompletedNativeRadialHerglotzTwoPoint.lean`](CarrySelfAdjointOperator/CompletedNativeRadialHerglotzTwoPoint.lean)
+opens the first nontrivial section, at the radial points $ih$ and $2ih$.
+Writing $t=h^2$ and $L(u)$ for the reduced logarithmic derivative, the
+literal Herglotz matrix is eventually the exact reduced matrix
+
+$$
+\begin{pmatrix}
+L(-t)+\overline{L(-t)} &
+\frac23\bigl(2L(-4t)+\overline{L(-t)}\bigr)\\
+\frac23\bigl(L(-t)+2\overline{L(-4t)}\bigr) &
+L(-4t)+\overline{L(-4t)}
+\end{pmatrix}.
+$$
+
+Lean proves that its determinant $D(t)$ is real and has the exact central
+jet
+
+$$
+D(0)=0,
+\qquad
+D'(0)=4h_0h_1.
+$$
+
+It follows, without assuming an all-order Herglotz certificate, that
+
+$$
+\boxed{
+h_0>0\ \wedge\ h_1>0
+\Longrightarrow
+\text{eventual radial Herglotz positivity at }N=2.
+}
+$$
+
+The remaining polarized input has also been reduced to one concrete scalar
+crosswalk.  The enriched TFVD odd Gram is already strictly positive at raw
+Taylor order one.  Therefore the single identification
+
+$$
+\operatorname{Re}\langle v_1,v_1\rangle=h_1
+$$
+
+implies $h_1>0$; equivalently, the corresponding finite four-corner
+prefixes converge to $h_1$.  Combining this with central defect flatness
+gives both eventual $N=2$ Herglotz positivity and, through the exact Cayley
+congruence, eventual $N=2$ chiral Pick positivity.  The diagonal equality
+above remains an explicit gate: the strict positivity of its TFVD left side
+is proved, but the equality to the analytic moment is not silently assumed
+or claimed as unconditional.
+
 ## What Is Not Being Identified
 
 The following objects are deliberately distinct in the formalization:
