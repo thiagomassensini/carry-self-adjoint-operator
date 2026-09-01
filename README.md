@@ -377,6 +377,41 @@ The equivalence is unconditional; the displayed curvature identity is not
 asserted.  If supplied, it already forces strict positivity of the zeroth
 moment because the completed C3 gradient is nonzero.
 
+### 6. Projective/chiral carrier transformation
+
+The raw ambient Gram is not renormalized to force the native moments. The
+exact transformation is instead constructed in
+[`CompletedNativeProjectiveChiralCarrier.lean`](CarrySelfAdjointOperator/CompletedNativeProjectiveChiralCarrier.lean).
+For the canonical Cauchy feature $u_n$, it is
+
+$$
+u_n\longmapsto
+A(z_n)\bigl(u_n,q(z_n)u_n\bigr),
+$$
+
+where $A$ is the normalized positive chiral amplitude and $q$ is the
+completed Hermite--Biehler quotient. Keeping both coordinates separate, the
+signed ambient form is
+
+$$
+\mathcal B((u_+,u_-),(v_+,v_-))
+=\frac12\left(\langle u_+,v_+\rangle-\langle u_-,v_-\rangle\right).
+$$
+
+Lean proves entrywise on every regular radial finite section that
+
+$$
+\mathcal B\bigl(A_i(u_i,q_i u_i),A_j(u_j,q_j u_j)\bigr)
+=K_{\mathrm{dslope}}(z_i,z_j).
+$$
+
+The same equality holds eventually on every finite section of the centered
+all-order germ. The resulting matrix is positive semidefinite if and only
+if the concrete chiral multiplier is contractive on that section. Thus the
+projective transformation closes the kernel identification exactly, while
+leaving contractivity visible as the positivity theorem rather than hiding
+it in a normalization.
+
 ## What Is Not Being Identified
 
 The following objects are deliberately distinct in the formalization:
