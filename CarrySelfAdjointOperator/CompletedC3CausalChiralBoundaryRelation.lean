@@ -1,4 +1,6 @@
 import CarrySelfAdjointOperator.CompletedC3CoisometricCameraChiralTransformation
+import CarrySelfAdjointOperator.NativeScalarGenuineIdentification
+import CPFormal.Analytic.CpNativeCarryLogWaveBoundaryEquivalence
 import Mathlib.Tactic
 
 /-!
@@ -22,6 +24,7 @@ open scoped ComplexConjugate InnerProductSpace lp
 namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
+open NativeCarrySpectralWeyl.Camera
 
 noncomputable section
 
@@ -294,6 +297,96 @@ theorem canonicalCompletedC3CausalChiralBoundaryRelation_not_isotropic_of_charac
         (canonicalCompletedC3CausalChiralBoundaryState M z hzStrip.1)
         (canonicalCompletedC3CausalChiralBoundaryState_mem_relation
           M z hzStrip))
+
+/-! ## Native bracket closure audit -/
+
+/-- The complex-time parameter of the native log wave is literally the
+centered-height parameter used by the completed operator. -/
+theorem carryComplexTimeParameter_eq_operatorHeightParameter (z : ℂ) :
+    carryComplexTimeParameter z = operatorHeightParameter z := by
+  unfold carryComplexTimeParameter operatorHeightParameter
+  norm_num
+  ring
+
+/-- Fixed bracket closure of the native log wave forces vanishing of the
+completed operator characteristic at the same centered height.  The
+archimedean factor is only multiplied after the native/Genuine identification;
+no nonvanishing or division is needed. -/
+theorem completedNativeOperatorCharacteristic_eq_zero_of_nativeCarryLogWaveBoundaryCloses
+    {z : ℂ} (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hclose : NativeCarryLogWaveBoundaryCloses z) :
+    completedNativeOperatorCharacteristic z = 0 := by
+  have hcarryStrip : carryComplexTimeParameter z ∈ genuineCriticalStrip := by
+    simpa [carryComplexTimeParameter_eq_operatorHeightParameter] using hzStrip
+  have hres : IsNativeCarryComplexTimeResonance z :=
+    (nativeCarryLogWaveBoundaryCloses_iff_resonance hcarryStrip).1 hclose
+  have hzero : genuineContinuation (carryComplexTimeParameter z) = 0 := by
+    simpa [IsNativeCarryComplexTimeResonance, carryComplexTimeGenuine] using hres
+  have hnative : nativeScalar (operatorHeightParameter z) = 0 := by
+    rw [← carryComplexTimeParameter_eq_operatorHeightParameter,
+      nativeScalar_eq_genuineContinuation_unconditional, hzero]
+  simp [completedNativeOperatorCharacteristic, hnative]
+
+/-- On an upper-half-plane native bracket closure, the actual causal datum has
+strictly positive indefinite energy.  Thus bracket closure does not place this
+particular datum in the isotropic part of the causal relation. -/
+theorem canonicalCompletedC3CausalChiralBoundaryForm_self_pos_of_nativeCarryLogWaveBoundaryCloses
+    (M : ℕ) (z : ℂ) (hzIm : 0 < z.im)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hclose : NativeCarryLogWaveBoundaryCloses z) :
+    0 < canonicalCompletedC3CausalChiralBoundaryForm
+        (canonicalCompletedC3CausalChiralBoundaryState M z hzStrip.1)
+        (canonicalCompletedC3CausalChiralBoundaryState M z hzStrip.1) := by
+  exact canonicalCompletedC3CausalChiralBoundaryForm_self_pos_of_characteristicZero
+    M z hzIm hzStrip
+      (completedNativeOperatorCharacteristic_eq_zero_of_nativeCarryLogWaveBoundaryCloses
+        hzStrip hclose)
+
+/-- Exact direction audit for the proposed handoff: above the real height axis,
+native bracket closure makes the canonical causal datum non-isotropic. -/
+theorem canonicalCompletedC3CausalChiralBoundaryState_not_isotropic_of_nativeCarryLogWaveBoundaryCloses
+    (M : ℕ) (z : ℂ) (hzIm : 0 < z.im)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hclose : NativeCarryLogWaveBoundaryCloses z) :
+    ¬ CanonicalCompletedC3CausalChiralBoundaryStateIsotropic
+        M z hzStrip.1 := by
+  exact canonicalCompletedC3CausalChiralBoundaryState_not_isotropic_of_characteristicZero
+    M z hzIm hzStrip
+      (completedNativeOperatorCharacteristic_eq_zero_of_nativeCarryLogWaveBoundaryCloses
+        hzStrip hclose)
+
+/-- On a bracket-closing native wave in the closed upper height half-plane,
+isotropy of the concrete causal datum is equivalent to reality of the native
+characteristic parameter.  This identifies the remaining handoff exactly:
+bracket closure already supplies the zero, while isotropy supplies `z.im = 0`. -/
+theorem canonicalCompletedC3CausalChiralBoundaryStateIsotropic_iff_im_eq_zero_of_nativeCarryLogWaveBoundaryCloses
+    (M : ℕ) (z : ℂ) (hzIm : 0 ≤ z.im)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hclose : NativeCarryLogWaveBoundaryCloses z) :
+    CanonicalCompletedC3CausalChiralBoundaryStateIsotropic
+        M z hzStrip.1 ↔
+      z.im = 0 := by
+  have hzero : completedNativeOperatorCharacteristic z = 0 :=
+    completedNativeOperatorCharacteristic_eq_zero_of_nativeCarryLogWaveBoundaryCloses
+      hzStrip hclose
+  constructor
+  · intro hisotropic
+    have hbalance :
+        canonicalCompletedC3CoisometricDiagonalWronskianEnergyBalance
+            M z hzStrip.1 = 0 :=
+      (canonicalCompletedC3CausalChiralBoundaryStateIsotropic_iff_energyBalance
+        M z hzIm hzStrip).mp hisotropic
+    by_contra hzNe
+    exact
+      (canonicalCompletedC3CoisometricDiagonalWronskianEnergyBalance_ne_zero_of_characteristicZero
+        M z hzNe hzStrip hzero) hbalance
+  · intro hzZero
+    apply
+      (canonicalCompletedC3CausalChiralBoundaryStateIsotropic_iff_energyBalance
+        M z hzIm hzStrip).mpr
+    rw [canonicalCompletedC3CoisometricDiagonalWronskianEnergyBalance_eq_gradientEnergy_of_characteristicZero
+      M z hzStrip hzero, hzZero]
+    ring
 
 end
 
