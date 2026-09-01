@@ -2,6 +2,7 @@ import CarrySelfAdjointOperator.CompletedNativeXiThetaMoments
 import Mathlib.Analysis.Convex.Deriv
 import Mathlib.Analysis.Real.Pi.Bounds
 import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 import Mathlib.Tactic
 
 /-!
@@ -721,6 +722,443 @@ private theorem completedNativeThetaTailMoment_two_le_firstMode :
         (thetaTail_le_geometric_first hu.le) hpow
       nlinarith)
   simpa [MeasureTheory.integral_const_mul] using hmono
+
+/-- The elementary weight obtained after the substitution `x = exp (2u)`
+and the inequality `u ≤ exp (u/2) - exp (-u/2)`. -/
+private def thetaSecondMomentWeight (x : ℝ) : ℝ :=
+  (Real.sqrt x - 1) ^ 2 / (x * Real.sqrt (Real.sqrt x))
+
+private def thetaRationalProfile (y : ℝ) : ℝ :=
+  (y / (1 + (17 / 20 : ℝ) * y)) ^ 2
+
+private theorem thetaSecondMomentPolynomial {t : ℝ} (ht : 1 ≤ t) :
+    (3 + 17 * t ^ 4) ^ 2 ≤
+      100 * t ^ 5 * (t ^ 2 + 1) ^ 2 := by
+  let s : ℝ := t - 1
+  have hs0 : 0 ≤ s := by
+    dsimp [s]
+    linarith
+  let Q : ℝ :=
+    100 * s ^ 8 + 611 * s ^ 7 + 1488 * s ^ 6 + 1708 * s ^ 5 +
+      716 * s ^ 4 - 232 * s ^ 3 - 192 * s ^ 2 + 96 * s + 80
+  have hQ : 0 ≤ Q := by
+    by_cases hs1 : s ≤ 1
+    · have hbernstein : 0 ≤
+          (80 : ℝ) * (1 - s) ^ 8 +
+          8 * 92 * s * (1 - s) ^ 7 +
+          28 * (680 / 7 : ℝ) * s ^ 2 * (1 - s) ^ 6 +
+          56 * (639 / 7 : ℝ) * s ^ 3 * (1 - s) ^ 5 +
+          70 * (2818 / 35 : ℝ) * s ^ 4 * (1 - s) ^ 4 +
+          56 * (1563 / 14 : ℝ) * s ^ 5 * (1 - s) ^ 3 +
+          28 * (2491 / 7 : ℝ) * s ^ 6 * (1 - s) ^ 2 +
+          8 * (10575 / 8 : ℝ) * s ^ 7 * (1 - s) +
+          4375 * s ^ 8 := by positivity
+      have hbernsteinEq : Q =
+          (80 : ℝ) * (1 - s) ^ 8 +
+          8 * 92 * s * (1 - s) ^ 7 +
+          28 * (680 / 7 : ℝ) * s ^ 2 * (1 - s) ^ 6 +
+          56 * (639 / 7 : ℝ) * s ^ 3 * (1 - s) ^ 5 +
+          70 * (2818 / 35 : ℝ) * s ^ 4 * (1 - s) ^ 4 +
+          56 * (1563 / 14 : ℝ) * s ^ 5 * (1 - s) ^ 3 +
+          28 * (2491 / 7 : ℝ) * s ^ 6 * (1 - s) ^ 2 +
+          8 * (10575 / 8 : ℝ) * s ^ 7 * (1 - s) +
+          4375 * s ^ 8 := by
+        dsimp [Q]
+        ring
+      rw [hbernsteinEq]
+      exact hbernstein
+    · have hs1' : 1 ≤ s := le_of_not_ge hs1
+      have hs23 : s ^ 2 ≤ s ^ 3 := by
+        nlinarith [mul_nonneg (sq_nonneg s) (sub_nonneg.mpr hs1')]
+      have hs34 : s ^ 3 ≤ s ^ 4 := by
+        nlinarith [mul_nonneg (pow_nonneg hs0 3) (sub_nonneg.mpr hs1')]
+      have hcore :
+          0 ≤ 716 * s ^ 4 - 232 * s ^ 3 - 192 * s ^ 2 := by
+        nlinarith
+      dsimp [Q]
+      nlinarith [pow_nonneg hs0 5, pow_nonneg hs0 6,
+        pow_nonneg hs0 7, pow_nonneg hs0 8]
+  have hfactor :
+      100 * t ^ 5 * (t ^ 2 + 1) ^ 2 - (3 + 17 * t ^ 4) ^ 2 =
+        (t - 1) * Q := by
+    dsimp [Q, s]
+    ring
+  nlinarith [mul_nonneg (sub_nonneg.mpr ht) hQ]
+
+private theorem thetaSecondMomentWeight_le_envelope {y : ℝ} (hy : 0 ≤ y) :
+    thetaSecondMomentWeight (1 + y) ≤
+      (1 / 4 : ℝ) * thetaRationalProfile y := by
+  let t : ℝ := Real.sqrt (Real.sqrt (1 + y))
+  have hx : 0 < 1 + y := by linarith
+  have ht : 0 < t := by
+    dsimp [t]
+    exact Real.sqrt_pos.2 (Real.sqrt_pos.2 hx)
+  have ht2 : t ^ 2 = Real.sqrt (1 + y) := by
+    dsimp [t]
+    exact sq_sqrt (Real.sqrt_nonneg (1 + y))
+  have ht4 : t ^ 4 = 1 + y := by
+    rw [show t ^ 4 = (t ^ 2) ^ 2 by ring, ht2, sq_sqrt hx.le]
+  have ht1 : 1 ≤ t := by
+    dsimp [t]
+    exact one_le_sqrt.mpr (one_le_sqrt.mpr (by linarith))
+  have hyform : y = t ^ 4 - 1 := by linarith
+  have hmain := thetaSecondMomentPolynomial ht1
+  have hleftDen : 0 < t ^ 4 * t := mul_pos (pow_pos ht 4) ht
+  have hrightBase : 0 < 1 + (17 / 20 : ℝ) * (t ^ 4 - 1) := by
+    nlinarith [pow_pos ht 4]
+  have hrightDen : 0 < 4 * (1 + (17 / 20 : ℝ) * (t ^ 4 - 1)) ^ 2 := by
+    positivity
+  unfold thetaSecondMomentWeight thetaRationalProfile
+  rw [← ht2, ← ht4, hyform]
+  rw [Real.sqrt_sq_eq_abs, abs_of_pos ht]
+  rw [div_pow]
+  have hrearrange : (1 / 4 : ℝ) *
+      ((t ^ 4 - 1) ^ 2 /
+        (1 + (17 / 20 : ℝ) * (t ^ 4 - 1)) ^ 2) =
+      (t ^ 4 - 1) ^ 2 /
+        (4 * (1 + (17 / 20 : ℝ) * (t ^ 4 - 1)) ^ 2) := by
+    field_simp [hrightBase.ne']
+  rw [hrearrange]
+  apply (div_le_div_iff₀ hleftDen hrightDen).2
+  have hscaled := mul_le_mul_of_nonneg_left hmain
+    (by positivity : 0 ≤ (t ^ 2 - 1) ^ 2 / 100)
+  nlinarith [show
+    ((t ^ 2 - 1) ^ 2 / 100) * (3 + 17 * t ^ 4) ^ 2 =
+      (t ^ 2 - 1) ^ 2 *
+        (4 * (1 + (17 / 20 : ℝ) * (t ^ 4 - 1)) ^ 2) by ring,
+    show
+      ((t ^ 2 - 1) ^ 2 / 100) *
+          (100 * t ^ 5 * (t ^ 2 + 1) ^ 2) =
+        (t ^ 4 - 1) ^ 2 * (t ^ 4 * t) by ring]
+
+private def thetaSecondMomentMajorant (y : ℝ) : ℝ :=
+  thetaSecondMomentWeight (1 + y) *
+    Real.exp (-Real.pi * (1 + y))
+
+private def thetaRationalMomentMajorant (y : ℝ) : ℝ :=
+  (1 / 4 : ℝ) * thetaRationalProfile y *
+    Real.exp (-(6283 / 2000 : ℝ) * (1 + y))
+
+private theorem thetaRationalProfile_le {y : ℝ} (hy : 0 ≤ y) :
+    thetaRationalProfile y ≤ (400 / 289 : ℝ) := by
+  have hden : 0 < 1 + (17 / 20 : ℝ) * y := by positivity
+  have hratio0 : 0 ≤ y / (1 + (17 / 20 : ℝ) * y) :=
+    div_nonneg hy hden.le
+  have hratio : y / (1 + (17 / 20 : ℝ) * y) ≤ 20 / 17 := by
+    apply (div_le_iff₀ hden).2
+    nlinarith
+  unfold thetaRationalProfile
+  nlinarith [mul_nonneg hratio0 (sub_nonneg.mpr hratio)]
+
+private theorem continuousOn_thetaSecondMomentMajorant :
+    ContinuousOn thetaSecondMomentMajorant (Ici (0 : ℝ)) := by
+  intro y hy
+  change 0 ≤ y at hy
+  have hxy : 0 < 1 + y := by linarith
+  unfold thetaSecondMomentMajorant thetaSecondMomentWeight
+  apply ContinuousAt.continuousWithinAt
+  have hroot : ContinuousAt (fun z : ℝ ↦ Real.sqrt (1 + z)) y := by
+    fun_prop
+  have hrootroot :
+      ContinuousAt (fun z : ℝ ↦ Real.sqrt (Real.sqrt (1 + z))) y := by
+    fun_prop
+  have hnum : ContinuousAt (fun z : ℝ ↦ (Real.sqrt (1 + z) - 1) ^ 2) y := by
+    fun_prop
+  have hden : ContinuousAt
+      (fun z : ℝ ↦ (1 + z) * Real.sqrt (Real.sqrt (1 + z))) y := by
+    fun_prop
+  have hdenne : (1 + y) * Real.sqrt (Real.sqrt (1 + y)) ≠ 0 :=
+    mul_ne_zero hxy.ne' (Real.sqrt_pos.2 (Real.sqrt_pos.2 hxy)).ne'
+  exact (hnum.div₀ hden hdenne).mul (by fun_prop)
+
+private theorem continuousOn_thetaRationalMomentMajorant :
+    ContinuousOn thetaRationalMomentMajorant (Ici (0 : ℝ)) := by
+  intro y hy
+  change 0 ≤ y at hy
+  have hden : 0 < 1 + (17 / 20 : ℝ) * y := by positivity
+  unfold thetaRationalMomentMajorant thetaRationalProfile
+  apply ContinuousAt.continuousWithinAt
+  have hquot : ContinuousAt
+      (fun z : ℝ ↦ z / (1 + (17 / 20 : ℝ) * z)) y := by
+    apply continuousAt_id.div₀ (by fun_prop)
+    exact hden.ne'
+  exact (((hquot.pow 2).const_mul (1 / 4 : ℝ)).mul (by fun_prop))
+
+private theorem thetaSecondMomentMajorant_le_rational {y : ℝ} (hy : 0 ≤ y) :
+    thetaSecondMomentMajorant y ≤ thetaRationalMomentMajorant y := by
+  have hweight := thetaSecondMomentWeight_le_envelope hy
+  have hweight0 : 0 ≤ thetaSecondMomentWeight (1 + y) := by
+    unfold thetaSecondMomentWeight
+    positivity
+  have henv0 : 0 ≤ (1 / 4 : ℝ) * thetaRationalProfile y := by
+    unfold thetaRationalProfile
+    positivity
+  have hexp : Real.exp (-Real.pi * (1 + y)) ≤
+      Real.exp (-(6283 / 2000 : ℝ) * (1 + y)) := by
+    apply Real.exp_le_exp.mpr
+    have hpi := Real.pi_gt_d4
+    nlinarith
+  unfold thetaSecondMomentMajorant thetaRationalMomentMajorant
+  calc
+    thetaSecondMomentWeight (1 + y) * Real.exp (-Real.pi * (1 + y)) ≤
+        thetaSecondMomentWeight (1 + y) *
+          Real.exp (-(6283 / 2000 : ℝ) * (1 + y)) :=
+      mul_le_mul_of_nonneg_left hexp hweight0
+    _ ≤ ((1 / 4 : ℝ) * thetaRationalProfile y) *
+          Real.exp (-(6283 / 2000 : ℝ) * (1 + y)) :=
+      mul_le_mul_of_nonneg_right hweight (Real.exp_pos _).le
+
+private theorem integrableOn_thetaRationalMomentMajorant :
+    IntegrableOn thetaRationalMomentMajorant (Ici (0 : ℝ)) := by
+  have hbaseIoi : IntegrableOn
+      (fun y : ℝ ↦ Real.exp (-(6283 / 2000 : ℝ) * y))
+      (Ioi (0 : ℝ)) := by
+    simpa using integrableOn_exp_mul_Ioi
+      (a := (-(6283 / 2000 : ℝ))) (by norm_num) 0
+  have hbase : IntegrableOn
+      (fun y : ℝ ↦ (100 / 289 : ℝ) *
+        Real.exp (-(6283 / 2000 : ℝ) * y))
+      (Ici (0 : ℝ)) := by
+    rw [integrableOn_Ici_iff_integrableOn_Ioi]
+    exact hbaseIoi.const_mul _
+  apply hbase.mono'
+  · exact continuousOn_thetaRationalMomentMajorant.aestronglyMeasurable
+      measurableSet_Ici
+  · filter_upwards [ae_restrict_mem measurableSet_Ici] with y hy
+    change 0 ≤ y at hy
+    have hprofile := thetaRationalProfile_le hy
+    have hprofile0 : 0 ≤ thetaRationalProfile y := by
+      unfold thetaRationalProfile
+      positivity
+    have hexp : Real.exp (-(6283 / 2000 : ℝ) * (1 + y)) ≤
+        Real.exp (-(6283 / 2000 : ℝ) * y) := by
+      apply Real.exp_le_exp.mpr
+      norm_num
+    rw [Real.norm_eq_abs, abs_of_nonneg (by
+      unfold thetaRationalMomentMajorant
+      positivity)]
+    unfold thetaRationalMomentMajorant
+    calc
+      (1 / 4 : ℝ) * thetaRationalProfile y *
+          Real.exp (-(6283 / 2000 : ℝ) * (1 + y)) ≤
+        (1 / 4 : ℝ) * (400 / 289 : ℝ) *
+          Real.exp (-(6283 / 2000 : ℝ) * (1 + y)) := by
+            gcongr
+      _ ≤ (100 / 289 : ℝ) *
+          Real.exp (-(6283 / 2000 : ℝ) * y) := by
+        nlinarith [mul_le_mul_of_nonneg_left hexp
+          (by norm_num : (0 : ℝ) ≤ 100 / 289)]
+
+private theorem integrableOn_thetaSecondMomentMajorant :
+    IntegrableOn thetaSecondMomentMajorant (Ici (0 : ℝ)) := by
+  apply integrableOn_thetaRationalMomentMajorant.mono'
+  · exact continuousOn_thetaSecondMomentMajorant.aestronglyMeasurable
+      measurableSet_Ici
+  · filter_upwards [ae_restrict_mem measurableSet_Ici] with y hy
+    change 0 ≤ y at hy
+    have hxy : 0 < 1 + y := by linarith
+    have hmajorant0 : 0 ≤ thetaSecondMomentMajorant y := by
+      unfold thetaSecondMomentMajorant thetaSecondMomentWeight
+      positivity
+    rw [Real.norm_eq_abs, abs_of_nonneg hmajorant0]
+    exact thetaSecondMomentMajorant_le_rational hy
+
+private theorem thetaSecondMomentMajorant_comp_exp (u : ℝ) :
+    thetaSecondMomentMajorant (Real.exp (2 * u) - 1) *
+        (2 * Real.exp (2 * u)) =
+      thetaFirstMode u *
+        (Real.exp (u / 2) - Real.exp (-u / 2)) ^ 2 := by
+  have htwo : Real.exp (2 * u) = Real.exp u ^ 2 := by
+    rw [show 2 * u = u + u by ring, Real.exp_add, pow_two]
+  have hhalf : Real.exp u = Real.exp (u / 2) ^ 2 := by
+    calc
+      Real.exp u = Real.exp (u / 2 + u / 2) := by congr 1 <;> ring
+      _ = Real.exp (u / 2) * Real.exp (u / 2) := Real.exp_add _ _
+      _ = Real.exp (u / 2) ^ 2 := by ring
+  have hsqrt : Real.sqrt (Real.exp (2 * u)) = Real.exp u := by
+    rw [htwo, Real.sqrt_sq_eq_abs, abs_of_pos (Real.exp_pos u)]
+  have hsqrtexpu : Real.sqrt (Real.exp u) = Real.exp (u / 2) := by
+    rw [hhalf, Real.sqrt_sq_eq_abs,
+      abs_of_pos (Real.exp_pos (u / 2))]
+  have hneg : Real.exp (-u / 2) = (Real.exp (u / 2))⁻¹ := by
+    rw [show -u / 2 = -(u / 2) by ring, Real.exp_neg]
+  unfold thetaSecondMomentMajorant thetaSecondMomentWeight thetaFirstMode
+  rw [show 1 + (Real.exp (2 * u) - 1) = Real.exp (2 * u) by ring,
+    hsqrt, hsqrtexpu, hneg]
+  rw [htwo, hhalf]
+  field_simp [Real.exp_ne_zero]
+
+private theorem self_le_exp_half_sub_exp_neg_half {u : ℝ} (hu : 0 ≤ u) :
+    u ≤ Real.exp (u / 2) - Real.exp (-u / 2) := by
+  have hsinh : u / 2 ≤ Real.sinh (u / 2) :=
+    (Real.self_le_sinh_iff).2 (by linarith)
+  rw [Real.sinh_eq] at hsinh
+  rw [show -(u / 2) = -u / 2 by ring] at hsinh
+  nlinarith
+
+private theorem integrableOn_thetaSecondMomentComposite :
+    IntegrableOn
+      (fun u : ℝ ↦
+        thetaSecondMomentMajorant (Real.exp (2 * u) - 1) *
+          (2 * Real.exp (2 * u))) (Ici (0 : ℝ)) := by
+  have hbaseIoi : IntegrableOn (fun u : ℝ ↦ 2 * Real.exp (-u))
+      (Ioi (0 : ℝ)) := (integrableOn_exp_neg_Ioi 0).const_mul _
+  have hbase : IntegrableOn (fun u : ℝ ↦ 2 * Real.exp (-u))
+      (Ici (0 : ℝ)) := by
+    rw [integrableOn_Ici_iff_integrableOn_Ioi]
+    exact hbaseIoi
+  have hrhs : IntegrableOn
+      (fun u : ℝ ↦ thetaFirstMode u *
+        (Real.exp (u / 2) - Real.exp (-u / 2)) ^ 2)
+      (Ici (0 : ℝ)) := by
+    apply hbase.mono'
+    · exact (by
+        unfold thetaFirstMode
+        fun_prop : Continuous (fun u : ℝ ↦ thetaFirstMode u *
+          (Real.exp (u / 2) - Real.exp (-u / 2)) ^ 2)
+        ).aestronglyMeasurable
+    · filter_upwards [ae_restrict_mem measurableSet_Ici] with u hu
+      change 0 ≤ u at hu
+      let d : ℝ := Real.exp (u / 2) - Real.exp (-u / 2)
+      have hd0 : 0 ≤ d := by
+        dsimp [d]
+        exact sub_nonneg.mpr (Real.exp_le_exp.mpr (by linarith))
+      have hdle : d ≤ Real.exp (u / 2) := by
+        dsimp [d]
+        linarith [Real.exp_pos (-u / 2)]
+      have hdsq : d ^ 2 ≤ Real.exp u := by
+        have hmul := mul_le_mul hdle hdle hd0 (Real.exp_pos _).le
+        rw [← pow_two, ← pow_two] at hmul
+        rw [show Real.exp u = Real.exp (u / 2) ^ 2 by
+          calc
+            Real.exp u = Real.exp (u / 2 + u / 2) := by congr 1 <;> ring
+            _ = Real.exp (u / 2) * Real.exp (u / 2) := Real.exp_add _ _
+            _ = Real.exp (u / 2) ^ 2 := by ring]
+        exact hmul
+      have hexpLower : 1 + 2 * u ≤ Real.exp (2 * u) :=
+        by simpa [add_comm] using Real.add_one_le_exp (2 * u)
+      have hpiLower : 3 * (1 + 2 * u) ≤
+          Real.pi * Real.exp (2 * u) := by
+        calc
+          3 * (1 + 2 * u) ≤ 3 * Real.exp (2 * u) := by nlinarith
+          _ ≤ Real.pi * Real.exp (2 * u) :=
+            mul_le_mul_of_nonneg_right Real.pi_gt_three.le
+              (Real.exp_pos _).le
+      have hexponent :
+          u / 2 + (-Real.pi * Real.exp (2 * u)) + u ≤ -u := by
+        nlinarith
+      have hexpBound :
+          Real.exp (u / 2 + (-Real.pi * Real.exp (2 * u)) + u) ≤
+            Real.exp (-u) := Real.exp_le_exp.mpr hexponent
+      have hfactor0 : 0 ≤
+          2 * Real.exp (u / 2) *
+            Real.exp (-Real.pi * Real.exp (2 * u)) := by positivity
+      rw [Real.norm_eq_abs, abs_of_nonneg (by
+        unfold thetaFirstMode
+        positivity)]
+      unfold thetaFirstMode
+      calc
+        2 * Real.exp (u / 2) * Real.exp (-Real.pi * Real.exp (2 * u)) *
+            d ^ 2 ≤
+          2 * Real.exp (u / 2) * Real.exp (-Real.pi * Real.exp (2 * u)) *
+            Real.exp u := mul_le_mul_of_nonneg_left hdsq hfactor0
+        _ = 2 * Real.exp
+            (u / 2 + (-Real.pi * Real.exp (2 * u)) + u) := by
+          rw [Real.exp_add, Real.exp_add]
+          ring
+        _ ≤ 2 * Real.exp (-u) :=
+          mul_le_mul_of_nonneg_left hexpBound (by norm_num)
+  apply hrhs.congr
+  exact Filter.Eventually.of_forall (fun u ↦
+    (thetaSecondMomentMajorant_comp_exp u).symm)
+
+private theorem firstModeSecondMoment_le_rationalMajorant :
+    (∫ u in Ioi (0 : ℝ), u ^ 2 * thetaFirstMode u) ≤
+      ∫ y in Ioi (0 : ℝ), thetaRationalMomentMajorant y := by
+  let f : ℝ → ℝ := fun u ↦ Real.exp (2 * u) - 1
+  let f' : ℝ → ℝ := fun u ↦ 2 * Real.exp (2 * u)
+  have hf : ContinuousOn f (Ici (0 : ℝ)) := by
+    unfold f
+    fun_prop
+  have hft : Tendsto f atTop atTop := by
+    have hbase : Tendsto (fun u : ℝ ↦ Real.exp (2 * u)) atTop atTop :=
+      Real.tendsto_exp_atTop.comp
+        (tendsto_id.const_mul_atTop (by norm_num : (0 : ℝ) < 2))
+    simpa [f, sub_eq_add_neg] using
+      tendsto_atTop_add_const_right atTop (-1 : ℝ) hbase
+  have hff' : ∀ u ∈ Ioi (0 : ℝ),
+      HasDerivWithinAt f (f' u) (Ioi u) u := by
+    intro u _hu
+    apply HasDerivAt.hasDerivWithinAt
+    unfold f f'
+    have hlinear : HasDerivAt (fun x : ℝ ↦ 2 * x) 2 u := by
+      simpa using (hasDerivAt_id u).const_mul 2
+    have hexpBase := (Real.hasDerivAt_exp (2 * u)).comp u hlinear
+    have hexp : HasDerivAt (fun x : ℝ ↦ Real.exp (2 * x))
+        (2 * Real.exp (2 * u)) u := by
+      refine (hexpBase.congr_of_eventuallyEq ?_).congr_deriv ?_
+      · exact Filter.Eventually.of_forall (fun _x ↦ rfl)
+      · ring
+    exact hexp.sub_const 1
+  have hgcont : ContinuousOn thetaSecondMomentMajorant (f '' Ioi (0 : ℝ)) := by
+    apply continuousOn_thetaSecondMomentMajorant.mono
+    intro y hy
+    rcases hy with ⟨u, hu, rfl⟩
+    change 0 < u at hu
+    change 0 ≤ f u
+    unfold f
+    exact sub_nonneg.mpr (Real.one_le_exp_iff.mpr (by linarith [hu]))
+  have hgint : IntegrableOn thetaSecondMomentMajorant (f '' Ici (0 : ℝ)) := by
+    apply integrableOn_thetaSecondMomentMajorant.mono_set
+    intro y hy
+    rcases hy with ⟨u, hu, rfl⟩
+    change 0 ≤ f u
+    unfold f
+    exact sub_nonneg.mpr (Real.one_le_exp_iff.mpr
+      (mul_nonneg (by norm_num) hu))
+  have hcomp : IntegrableOn
+      (fun u : ℝ ↦ (thetaSecondMomentMajorant ∘ f) u * f' u)
+      (Ici (0 : ℝ)) := by
+    apply integrableOn_thetaSecondMomentComposite.congr
+    exact Filter.Eventually.of_forall (fun u ↦ by
+      simp only [Function.comp_apply]
+      rfl)
+  have hchange := integral_comp_mul_deriv_Ioi hf hft hff' hgcont hgint hcomp
+  have hfzero : f 0 = 0 := by simp [f]
+  rw [hfzero] at hchange
+  have hmono :
+      (∫ u in Ioi (0 : ℝ), u ^ 2 * thetaFirstMode u) ≤
+        ∫ u in Ioi (0 : ℝ),
+          (thetaSecondMomentMajorant ∘ f) u * f' u := by
+    apply integral_mono_ae integrableOn_pow_two_mul_thetaFirstMode
+      (hcomp.mono_set Ioi_subset_Ici_self)
+    filter_upwards [ae_restrict_mem measurableSet_Ioi] with u hu
+    change 0 < u at hu
+    have hudiff := self_le_exp_half_sub_exp_neg_half hu.le
+    have hdiff0 : 0 ≤ Real.exp (u / 2) - Real.exp (-u / 2) := by
+      linarith
+    have husq : u ^ 2 ≤
+        (Real.exp (u / 2) - Real.exp (-u / 2)) ^ 2 := by
+      nlinarith [mul_nonneg hu.le
+        (sub_nonneg.mpr hudiff)]
+    have hfirst0 : 0 ≤ thetaFirstMode u := by
+      unfold thetaFirstMode
+      positivity
+    simp only [Function.comp_apply]
+    unfold f f'
+    rw [thetaSecondMomentMajorant_comp_exp]
+    simpa [mul_comm] using mul_le_mul_of_nonneg_right husq hfirst0
+  calc
+    (∫ u in Ioi (0 : ℝ), u ^ 2 * thetaFirstMode u) ≤
+        ∫ u in Ioi (0 : ℝ),
+          (thetaSecondMomentMajorant ∘ f) u * f' u := hmono
+    _ = ∫ y in Ioi (0 : ℝ), thetaSecondMomentMajorant y := hchange
+    _ ≤ ∫ y in Ioi (0 : ℝ), thetaRationalMomentMajorant y := by
+      apply integral_mono_ae
+        (integrableOn_thetaSecondMomentMajorant.mono_set Ioi_subset_Ici_self)
+        (integrableOn_thetaRationalMomentMajorant.mono_set Ioi_subset_Ici_self)
+      filter_upwards [ae_restrict_mem measurableSet_Ioi] with y hy
+      exact thetaSecondMomentMajorant_le_rational hy.le
 
 end
 
