@@ -1377,6 +1377,156 @@ private theorem thetaRationalProfile_le_threeHalvesTangent {y : ℝ}
   · norm_num at hy ⊢
     linarith
 
+private def thetaRationalTangentSwitch : ℝ :=
+  3970 / 3587
+
+private theorem exp_neg_thetaRationalKnot_one_lt :
+    Real.exp (-(6283 / 2000 : ℝ) * (1 + 9 / 200 : ℝ)) <
+      37521 / 1000000 := by
+  rw [show -(6283 / 2000 : ℝ) * (1 + 9 / 200 : ℝ) =
+      -((6283 / 2000 : ℝ) * (1 + 9 / 200 : ℝ)) by ring]
+  apply exp_neg_lt_of_partial_sum
+    ((6283 / 2000 : ℝ) * (1 + 9 / 200 : ℝ))
+    (37521 / 1000000 : ℝ) 16
+  · norm_num
+  · norm_num
+  · norm_num [Finset.sum_range_succ]
+
+private theorem exp_neg_thetaRationalKnot_two_lt :
+    Real.exp (-(6283 / 2000 : ℝ) * (1 + 2 / 25 : ℝ)) <
+      33614 / 1000000 := by
+  rw [show -(6283 / 2000 : ℝ) * (1 + 2 / 25 : ℝ) =
+      -((6283 / 2000 : ℝ) * (1 + 2 / 25 : ℝ)) by ring]
+  apply exp_neg_lt_of_partial_sum
+    ((6283 / 2000 : ℝ) * (1 + 2 / 25 : ℝ))
+    (33614 / 1000000 : ℝ) 16
+  · norm_num
+  · norm_num
+  · norm_num [Finset.sum_range_succ]
+
+private theorem exp_neg_thetaRationalKnot_three_lt :
+    Real.exp (-(6283 / 2000 : ℝ) * (1 + 1 / 8 : ℝ)) <
+      29183 / 1000000 := by
+  rw [show -(6283 / 2000 : ℝ) * (1 + 1 / 8 : ℝ) =
+      -((6283 / 2000 : ℝ) * (1 + 1 / 8 : ℝ)) by ring]
+  apply exp_neg_lt_of_partial_sum
+    ((6283 / 2000 : ℝ) * (1 + 1 / 8 : ℝ))
+    (29183 / 1000000 : ℝ) 16
+  · norm_num
+  · norm_num
+  · norm_num [Finset.sum_range_succ]
+
+private theorem exp_neg_thetaRationalKnot_four_lt :
+    Real.exp (-(6283 / 2000 : ℝ) * (1 + 9 / 50 : ℝ)) <
+      24552 / 1000000 := by
+  rw [show -(6283 / 2000 : ℝ) * (1 + 9 / 50 : ℝ) =
+      -((6283 / 2000 : ℝ) * (1 + 9 / 50 : ℝ)) by ring]
+  apply exp_neg_lt_of_partial_sum
+    ((6283 / 2000 : ℝ) * (1 + 9 / 50 : ℝ))
+    (24552 / 1000000 : ℝ) 16
+  · norm_num
+  · norm_num
+  · norm_num [Finset.sum_range_succ]
+
+private theorem exp_neg_thetaRationalKnot_five_lt :
+    Real.exp (-(6283 / 2000 : ℝ) * (1 + 13 / 50 : ℝ)) <
+      19096 / 1000000 := by
+  rw [show -(6283 / 2000 : ℝ) * (1 + 13 / 50 : ℝ) =
+      -((6283 / 2000 : ℝ) * (1 + 13 / 50 : ℝ)) by ring]
+  apply exp_neg_lt_of_partial_sum
+    ((6283 / 2000 : ℝ) * (1 + 13 / 50 : ℝ))
+    (19096 / 1000000 : ℝ) 16
+  · norm_num
+  · norm_num
+  · norm_num [Finset.sum_range_succ]
+
+private theorem exp_neg_thetaRationalKnot_six_lt :
+    Real.exp (-(6283 / 2000 : ℝ) * (1 + 7 / 20 : ℝ)) <
+      14393 / 1000000 := by
+  rw [show -(6283 / 2000 : ℝ) * (1 + 7 / 20 : ℝ) =
+      -((6283 / 2000 : ℝ) * (1 + 7 / 20 : ℝ)) by ring]
+  apply exp_neg_lt_of_partial_sum
+    ((6283 / 2000 : ℝ) * (1 + 7 / 20 : ℝ))
+    (14393 / 1000000 : ℝ) 16
+  · norm_num
+  · norm_num
+  · norm_num [Finset.sum_range_succ]
+
+private theorem exp_neg_thetaRationalKnot_seven_lt :
+    Real.exp (-(6283 / 2000 : ℝ) * (1 + 43 / 100 : ℝ)) <
+      11195 / 1000000 := by
+  rw [show -(6283 / 2000 : ℝ) * (1 + 43 / 100 : ℝ) =
+      -((6283 / 2000 : ℝ) * (1 + 43 / 100 : ℝ)) by ring]
+  apply exp_neg_lt_of_partial_sum
+    ((6283 / 2000 : ℝ) * (1 + 43 / 100 : ℝ))
+    (11195 / 1000000 : ℝ) 16
+  · norm_num
+  · norm_num
+  · norm_num [Finset.sum_range_succ]
+
+private theorem exp_neg_thetaRationalInflection_lt :
+    Real.exp (-(6283 / 2000 : ℝ) * (1 + thetaRationalInflection)) <
+      6810 / 1000000 := by
+  rw [show -(6283 / 2000 : ℝ) * (1 + thetaRationalInflection) =
+      -((6283 / 2000 : ℝ) * (1 + thetaRationalInflection)) by ring]
+  apply exp_neg_lt_of_partial_sum
+    ((6283 / 2000 : ℝ) * (1 + thetaRationalInflection))
+    (6810 / 1000000 : ℝ) 16
+  · unfold thetaRationalInflection
+    norm_num
+  · norm_num
+  · unfold thetaRationalInflection
+    norm_num [Finset.sum_range_succ]
+
+private theorem exp_upper_bound_sixth {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
+    Real.exp x ≤
+      (∑ m ∈ Finset.range 6, x ^ m / m.factorial) +
+        x ^ 6 * 7 / (Nat.factorial 6 * 6) :=
+  by
+    convert Real.exp_bound' hx0 hx1 (n := 6) (by norm_num) using 1 <;> norm_num
+
+private theorem exp_neg_thetaRationalTangentSwitch_gt :
+    (1335 / 1000000 : ℝ) <
+      Real.exp (-(6283 / 2000 : ℝ) * (1 + thetaRationalTangentSwitch)) := by
+  let x : ℝ :=
+    (6283 / 2000 : ℝ) * (1 + thetaRationalTangentSwitch)
+  let z : ℝ := x / 8
+  let U : ℝ :=
+    (∑ m ∈ Finset.range 6, z ^ m / m.factorial) +
+      z ^ 6 * 7 / (Nat.factorial 6 * 6)
+  have hz0 : 0 ≤ z := by
+    dsimp [z, x, thetaRationalTangentSwitch]
+    norm_num
+  have hz1 : z ≤ 1 := by
+    dsimp [z, x, thetaRationalTangentSwitch]
+    norm_num
+  have hz : Real.exp z ≤ U := exp_upper_bound_sixth hz0 hz1
+  have hexp : Real.exp x ≤ U ^ 8 := by
+    have hrewrite : x = z * 8 := by
+      dsimp [z]
+      ring
+    rw [hrewrite]
+    calc
+      Real.exp (z * 8) = Real.exp z ^ 8 := by
+        simpa [mul_comm] using Real.exp_nat_mul z 8
+      _ ≤ U ^ 8 := pow_le_pow_left₀ (Real.exp_nonneg z) hz 8
+  have hU : U ^ 8 < (1000000 / 1335 : ℝ) := by
+    dsimp [U, z, x, thetaRationalTangentSwitch]
+    norm_num [Finset.sum_range_succ]
+  have harg :
+      -(6283 / 2000 : ℝ) * (1 + thetaRationalTangentSwitch) = -x := by
+    dsimp [x]
+    ring
+  rw [harg, Real.exp_neg, ← one_div]
+  apply (lt_div_iff₀ (Real.exp_pos x)).2
+  calc
+    (1335 / 1000000 : ℝ) * Real.exp x ≤
+        (1335 / 1000000 : ℝ) * U ^ 8 :=
+      mul_le_mul_of_nonneg_left hexp (by norm_num)
+    _ < (1335 / 1000000 : ℝ) * (1000000 / 1335 : ℝ) :=
+      mul_lt_mul_of_pos_left hU (by norm_num)
+    _ = 1 := by norm_num
+
 end
 
 end CarrySelfAdjointOperator
