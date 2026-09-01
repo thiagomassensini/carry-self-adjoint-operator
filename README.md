@@ -815,12 +815,11 @@ $$
        \mu_0\mu_4<3\mu_2^2.}
 $$
 
-Thus the remaining numerical-analytic obligation involves only the mass and
-second moment of the positive theta tail; no fourth-moment estimate is
-needed.
+Thus the numerical-analytic obligation involves only the mass and second
+moment of the positive theta tail; no fourth-moment estimate is needed.
 
 [`CompletedNativeXiThetaMomentBounds.lean`](CarrySelfAdjointOperator/CompletedNativeXiThetaMomentBounds.lean)
-starts the exact rational discharge of that obligation.  Keeping only the
+completes the exact rational discharge of that obligation.  Keeping only the
 first theta mode, changing variables by $x=e^{2u}$, and placing two rational
 tangent lines below $x^{-3/4}$ gives the audited lower certificate
 
@@ -828,9 +827,32 @@ $$
 \boxed{a_0>\frac{113}{10000}.}
 $$
 
-The exponential comparisons use only $\pi<22/7$ and finite Taylor
-remainders reduced to rational arithmetic.  It remains to certify a matching
-upper bound for $a_2$ strong enough to imply $a_2<2a_0^2$.
+For the upper bound, the full theta tail is dominated by $8000/7999$ times
+its first mode.  After the substitution $y=e^{2u}-1$, the elementary
+envelope is reduced to
+
+$$
+\frac{(\sqrt{1+y}-1)^2}{(1+y)(1+y)^{1/4}}
+\leq \frac14\left(\frac{y}{1+17y/20}\right)^2.
+$$
+
+Lean certifies this algebraically, bounds the rational profile by eight
+convex chords and two tangents, and integrates every affine exponential
+piece exactly.  Finite Taylor bounds at the rational mesh points yield
+
+$$
+\boxed{a_2<\frac{51}{200000}<2a_0^2,}
+$$
+
+and hence the unconditional strict moment inequality
+
+$$
+\boxed{\mu_0\mu_4<3\mu_2^2.}
+$$
+
+All exponential comparisons use finite Taylor remainders reduced to
+rational arithmetic; no numerical root or quadrature oracle enters the
+proof.
 
 [`CompletedNativeXiCosineMomentHerglotzGate.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineMomentHerglotzGate.lean)
 translates that obligation into the standard low moments of an even cosine
@@ -856,10 +878,12 @@ $$
 }
 $$
 
-Lean proves that this low cosine-moment certificate implies the two-point
-Herglotz and Pick conclusions.  Establishing the completed Xi cosine
-representation with this strict fourth-moment bound is now the remaining
-analytic step; the certificate is not asserted unconditionally.
+The theta estimates now instantiate the certificate unconditionally.  Lean
+therefore proves both direct low-order Herglotz curvature signs, eventual
+positive semidefiniteness of the literal two-point radial Herglotz matrix,
+and—through the exact Cayley congruence—the corresponding two-point chiral
+Pick matrix.  This closes the two-point gate; positivity of arbitrary finite
+Herglotz/Pick sections remains a separate higher-order problem.
 
 ## What Is Not Being Identified
 
