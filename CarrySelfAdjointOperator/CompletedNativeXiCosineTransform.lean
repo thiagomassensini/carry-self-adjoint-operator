@@ -931,6 +931,29 @@ theorem norm_thetaTail_le_decay {u : ℝ} (hu : 0 ≤ u) :
       rw [tsum_mul_right]
       ring
 
+/-- The theta tail itself has a fixed exponential envelope on the positive
+half-line.  This public existential form hides the auxiliary mode sum, which
+is useful when polynomially weighted theta moments are developed downstream. -/
+theorem exists_thetaTail_exp_decay :
+    ∃ C : ℝ, 0 ≤ C ∧ ∀ {u : ℝ}, 0 ≤ u →
+      ‖thetaTail u‖ ≤ C * Real.exp (-(3 / 2 : ℝ) * u) := by
+  let C : ℝ := 2 * ∑' n : ℕ, thetaZeroDecayCoefficient n
+  have hC : 0 ≤ C := by
+    dsimp [C]
+    exact mul_nonneg (by norm_num) (tsum_nonneg thetaZeroDecayCoefficient_nonneg)
+  exact ⟨C, hC, fun hu ↦ norm_thetaTail_le_decay hu⟩
+
+/-- The first theta-tail derivative also has a fixed exponential envelope on
+the positive half-line. -/
+theorem exists_thetaTailFirst_exp_decay :
+    ∃ C : ℝ, 0 ≤ C ∧ ∀ {u : ℝ}, 0 ≤ u →
+      ‖thetaTailFirst u‖ ≤ C * Real.exp (-(3 / 2 : ℝ) * u) := by
+  let C : ℝ := 2 * ∑' n : ℕ, thetaFirstDecayCoefficient n
+  have hC : 0 ≤ C := by
+    dsimp [C]
+    exact mul_nonneg (by norm_num) (tsum_nonneg thetaFirstDecayCoefficient_nonneg)
+  exact ⟨C, hC, fun hu ↦ norm_thetaTailFirst_le_decay hu⟩
+
 private theorem tendsto_zero_of_norm_le_exp_decay
     (f : ℝ → ℝ) (C : ℝ)
     (hbound : ∀ {u : ℝ}, 0 ≤ u → ‖f u‖ ≤ C * Real.exp (-(3 / 2 : ℝ) * u)) :

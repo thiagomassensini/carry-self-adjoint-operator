@@ -791,6 +791,34 @@ $$
 Consequently the low-moment certificate is now proved equivalent, in Lean,
 to the single strict inequality $\mu_0\mu_4<3\mu_2^2$.
 
+[`CompletedNativeXiThetaMoments.lean`](CarrySelfAdjointOperator/CompletedNativeXiThetaMoments.lean)
+pushes that last inequality back through the theta precursor.  If
+
+$$
+a_j=\int_0^\infty u^jA(u)\,du,
+$$
+
+then polynomial exponential decay and two weighted integrations by parts
+give the exact identities
+
+$$
+\mu_0=\frac12-\frac{a_0}{4},\qquad
+\mu_2=2a_0-\frac{a_2}{4},\qquad
+\mu_4=12a_2-\frac{a_4}{4}.
+$$
+
+All $a_j$ are nonnegative.  After substitution the mixed $a_0a_2$ terms
+cancel, and Lean proves the sharper reduction
+
+$$
+\boxed{a_2<2a_0^2\quad\Longrightarrow\quad
+       \mu_0\mu_4<3\mu_2^2.}
+$$
+
+Thus the remaining numerical-analytic obligation involves only the mass and
+second moment of the positive theta tail; no fourth-moment estimate is
+needed.
+
 [`CompletedNativeXiCosineMomentHerglotzGate.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineMomentHerglotzGate.lean)
 translates that obligation into the standard low moments of an even cosine
 representation.  With
