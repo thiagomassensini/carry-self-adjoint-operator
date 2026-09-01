@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.CompletedNativeHerglotzFourthOrderGate
+import CarrySelfAdjointOperator.CompletedNativeXiCosineMoments
 import Mathlib.Tactic
 
 /-!
@@ -37,6 +38,44 @@ def CanonicalCompletedNativeXiCosineLowMomentCertificate : Prop :=
       completedNativeRealEvenCharacteristicCoefficient 0 = μ₀ ∧
       completedNativeRealEvenCharacteristicCoefficient 1 = -μ₂ / 2 ∧
       completedNativeRealEvenCharacteristicCoefficient 2 = μ₄ / 24
+
+/-- After the positive cosine representation has been differentiated, the
+canonical low-moment certificate has only one remaining input: the strict
+fourth-moment inequality for the concrete kernel. -/
+theorem canonicalCompletedNativeXiCosineLowMomentCertificate_of_momentInequality
+    (hkurtosis :
+      completedNativeXiCosineMoment 0 * completedNativeXiCosineMoment 2 <
+        3 * completedNativeXiCosineMoment 1 ^ 2) :
+    CanonicalCompletedNativeXiCosineLowMomentCertificate := by
+  refine ⟨completedNativeXiCosineMoment 0,
+    completedNativeXiCosineMoment 1,
+    completedNativeXiCosineMoment 2,
+    completedNativeXiCosineMoment_pos 0,
+    completedNativeXiCosineMoment_pos 1,
+    hkurtosis, ?_, ?_, ?_⟩
+  · exact completedNativeRealEvenCharacteristicCoefficient_zero_eq_xiCosineMoment
+  · exact completedNativeRealEvenCharacteristicCoefficient_one_eq_xiCosineMoment
+  · exact completedNativeRealEvenCharacteristicCoefficient_two_eq_xiCosineMoment
+
+/-- Conversely, coefficient uniqueness forces any low-moment certificate to
+contain the actual three moments of the concrete Xi kernel. -/
+theorem canonicalCompletedNativeXiCosineLowMomentCertificate_iff_momentInequality :
+    CanonicalCompletedNativeXiCosineLowMomentCertificate ↔
+      completedNativeXiCosineMoment 0 * completedNativeXiCosineMoment 2 <
+        3 * completedNativeXiCosineMoment 1 ^ 2 := by
+  constructor
+  · rintro ⟨μ₀, μ₂, μ₄, _hμ₀, _hμ₂, hk, hc0, hc1, hc2⟩
+    have hμ₀ : μ₀ = completedNativeXiCosineMoment 0 :=
+      hc0.symm.trans
+        completedNativeRealEvenCharacteristicCoefficient_zero_eq_xiCosineMoment
+    have hμ₂ : μ₂ = completedNativeXiCosineMoment 1 := by
+      rw [completedNativeRealEvenCharacteristicCoefficient_one_eq_xiCosineMoment] at hc1
+      linarith
+    have hμ₄ : μ₄ = completedNativeXiCosineMoment 2 := by
+      rw [completedNativeRealEvenCharacteristicCoefficient_two_eq_xiCosineMoment] at hc2
+      linarith
+    simpa [hμ₀, hμ₂, hμ₄] using hk
+  · exact canonicalCompletedNativeXiCosineLowMomentCertificate_of_momentInequality
 
 /-- A positive mass and second moment give the direct second-order
 characteristic-curvature sign. -/

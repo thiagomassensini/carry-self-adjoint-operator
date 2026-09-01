@@ -779,6 +779,18 @@ Thus the mass and variance signs in the low Herglotz gate are already
 unconditional; the remaining analytic input is precisely the strict
 fourth-moment inequality below.
 
+The same module differentiates the transform four times under the integral
+and checks the exact Taylor normalization against the completed native
+characteristic:
+
+$$
+c_0=\mu_0,\qquad c_1=-\frac{\mu_2}{2},\qquad
+c_2=\frac{\mu_4}{24}.
+$$
+
+Consequently the low-moment certificate is now proved equivalent, in Lean,
+to the single strict inequality $\mu_0\mu_4<3\mu_2^2$.
+
 [`CompletedNativeXiCosineMomentHerglotzGate.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineMomentHerglotzGate.lean)
 translates that obligation into the standard low moments of an even cosine
 representation.  With
