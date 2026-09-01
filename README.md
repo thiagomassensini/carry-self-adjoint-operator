@@ -708,6 +708,35 @@ chiral Pick positivity, without any cross-carrier normalization premise.
 Proving the two coefficient inequalities from the completed geometry remains
 the next analytic obligation.
 
+[`CompletedNativeXiCosineMomentHerglotzGate.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineMomentHerglotzGate.lean)
+translates that obligation into the standard low moments of an even cosine
+representation.  With
+
+$$
+c_0=\mu_0,
+\qquad
+c_1=-\frac{\mu_2}{2},
+\qquad
+c_2=\frac{\mu_4}{24},
+$$
+
+the exact sufficient criterion becomes
+
+$$
+\boxed{
+\mu_0>0,
+\qquad
+\mu_2>0,
+\qquad
+\mu_0\mu_4<3\mu_2^2.
+}
+$$
+
+Lean proves that this low cosine-moment certificate implies the two-point
+Herglotz and Pick conclusions.  Establishing the completed Xi cosine
+representation with this strict fourth-moment bound is now the remaining
+analytic step; the certificate is not asserted unconditionally.
+
 ## What Is Not Being Identified
 
 The following objects are deliberately distinct in the formalization:
