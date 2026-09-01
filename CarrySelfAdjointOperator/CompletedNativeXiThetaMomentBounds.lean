@@ -1160,6 +1160,223 @@ private theorem firstModeSecondMoment_le_rationalMajorant :
       filter_upwards [ae_restrict_mem measurableSet_Ioi] with y hy
       exact thetaSecondMomentMajorant_le_rational hy.le
 
+private def thetaRationalProfileFirst (y : ℝ) : ℝ :=
+  2 * y / (1 + (17 / 20 : ℝ) * y) ^ 3
+
+private def thetaRationalProfileSecond (y : ℝ) : ℝ :=
+  2 * (1 - 2 * (17 / 20 : ℝ) * y) /
+    (1 + (17 / 20 : ℝ) * y) ^ 4
+
+private theorem hasDerivAt_thetaRationalDenominator (y : ℝ) :
+    HasDerivAt (fun z : ℝ ↦ 1 + (17 / 20 : ℝ) * z)
+      (17 / 20 : ℝ) y := by
+  have hbase := ((hasDerivAt_id y).const_mul (17 / 20 : ℝ)).const_add 1
+  refine (hbase.congr_of_eventuallyEq ?_).congr_deriv ?_
+  · exact Filter.Eventually.of_forall (fun _z ↦ by
+      simp only [id_eq])
+  · ring
+
+private theorem hasDerivAt_thetaRationalProfile (y : ℝ)
+    (hden : 1 + (17 / 20 : ℝ) * y ≠ 0) :
+    HasDerivAt thetaRationalProfile (thetaRationalProfileFirst y) y := by
+  have hquot := (hasDerivAt_id y).div
+    (hasDerivAt_thetaRationalDenominator y) hden
+  have hpow := hquot.pow 2
+  refine (hpow.congr_of_eventuallyEq ?_).congr_deriv ?_
+  · exact Filter.Eventually.of_forall (fun _z ↦ by
+      simp only [thetaRationalProfile, id_eq, Pi.div_apply, Pi.pow_apply])
+  · have halg :
+        (2 : ℝ) * (y / (1 + (17 / 20 : ℝ) * y)) ^ (2 - 1) *
+            ((1 * (1 + (17 / 20 : ℝ) * y) - y * (17 / 20 : ℝ)) /
+              (1 + (17 / 20 : ℝ) * y) ^ 2) =
+          2 * y / (1 + (17 / 20 : ℝ) * y) ^ 3 := by
+      norm_num
+      field_simp [hden]
+      ring
+    unfold thetaRationalProfileFirst
+    simpa only [id_eq, Pi.div_apply, Pi.pow_apply, Nat.cast_ofNat] using halg
+
+private theorem hasDerivAt_thetaRationalProfileFirst (y : ℝ)
+    (hden : 1 + (17 / 20 : ℝ) * y ≠ 0) :
+    HasDerivAt thetaRationalProfileFirst (thetaRationalProfileSecond y) y := by
+  have hnum : HasDerivAt (fun z : ℝ ↦ 2 * z) 2 y := by
+    simpa using (hasDerivAt_id y).const_mul 2
+  have hdenpow := (hasDerivAt_thetaRationalDenominator y).pow 3
+  have hquot := hnum.div hdenpow (pow_ne_zero 3 hden)
+  refine (hquot.congr_of_eventuallyEq ?_).congr_deriv ?_
+  · exact Filter.Eventually.of_forall (fun _z ↦ by
+      simp only [thetaRationalProfileFirst, Pi.div_apply, Pi.pow_apply])
+  · simp only [Pi.pow_apply]
+    unfold thetaRationalProfileSecond
+    have hden20 : 20 + 17 * y ≠ 0 := by
+      intro hzero
+      apply hden
+      norm_num at hzero ⊢
+      linarith
+    field_simp [hden, hden20]
+    ring
+
+private theorem continuousOn_thetaRationalProfile_Ici :
+    ContinuousOn thetaRationalProfile (Ici (0 : ℝ)) := by
+  intro y hy
+  change 0 ≤ y at hy
+  have hden : 0 < 1 + (17 / 20 : ℝ) * y := by positivity
+  exact (hasDerivAt_thetaRationalProfile y hden.ne').continuousAt.continuousWithinAt
+
+private def thetaRationalInflection : ℝ := 10 / 17
+
+private theorem convexOn_thetaRationalProfile :
+    ConvexOn ℝ (Icc (0 : ℝ) thetaRationalInflection)
+      thetaRationalProfile := by
+  apply convexOn_of_hasDerivWithinAt2_nonneg
+    (convex_Icc (0 : ℝ) thetaRationalInflection)
+  · exact continuousOn_thetaRationalProfile_Ici.mono Icc_subset_Ici_self
+  · intro y hy
+    have hyIoo : y ∈ Ioo (0 : ℝ) thetaRationalInflection := by
+      simpa only [interior_Icc] using hy
+    have hy0 : 0 < y := hyIoo.1
+    have hden : 1 + (17 / 20 : ℝ) * y ≠ 0 := by positivity
+    exact (hasDerivAt_thetaRationalProfile y hden).hasDerivWithinAt
+  · intro y hy
+    have hyIoo : y ∈ Ioo (0 : ℝ) thetaRationalInflection := by
+      simpa only [interior_Icc] using hy
+    have hy0 : 0 < y := hyIoo.1
+    have hden : 1 + (17 / 20 : ℝ) * y ≠ 0 := by positivity
+    exact (hasDerivAt_thetaRationalProfileFirst y hden).hasDerivWithinAt
+  · intro y hy
+    have hyIoo : y ∈ Ioo (0 : ℝ) thetaRationalInflection := by
+      simpa only [interior_Icc] using hy
+    have hy' : y < thetaRationalInflection := hyIoo.2
+    unfold thetaRationalProfileSecond
+    unfold thetaRationalInflection at hy'
+    have hden : 0 < (1 + (17 / 20 : ℝ) * y) ^ 4 := by
+      have hy0 : 0 < y := hyIoo.1
+      positivity
+    apply div_nonneg
+    · norm_num at hy' ⊢
+      linarith
+    · exact hden.le
+
+private def thetaRationalChordSlope (a b : ℝ) : ℝ :=
+  (thetaRationalProfile b - thetaRationalProfile a) / (b - a)
+
+private def thetaRationalChordIntercept (a b : ℝ) : ℝ :=
+  thetaRationalProfile a - thetaRationalChordSlope a b * a
+
+private theorem thetaRationalProfile_le_chord {a b y : ℝ}
+    (ha0 : 0 ≤ a) (hab : a < b) (hbR : b ≤ thetaRationalInflection)
+    (hay : a ≤ y) (hyb : y ≤ b) :
+    thetaRationalProfile y ≤
+      thetaRationalChordIntercept a b + thetaRationalChordSlope a b * y := by
+  let leftWeight : ℝ := (b - y) / (b - a)
+  let rightWeight : ℝ := (y - a) / (b - a)
+  have hden : 0 < b - a := sub_pos.mpr hab
+  have hleft0 : 0 ≤ leftWeight := div_nonneg (sub_nonneg.mpr hyb) hden.le
+  have hright0 : 0 ≤ rightWeight := div_nonneg (sub_nonneg.mpr hay) hden.le
+  have hweights : leftWeight + rightWeight = 1 := by
+    dsimp [leftWeight, rightWeight]
+    field_simp [hden.ne']
+    ring
+  have haMem : a ∈ Icc (0 : ℝ) thetaRationalInflection :=
+    ⟨ha0, hab.le.trans hbR⟩
+  have hbMem : b ∈ Icc (0 : ℝ) thetaRationalInflection :=
+    ⟨ha0.trans hab.le, hbR⟩
+  have hconvex := convexOn_thetaRationalProfile.2 haMem hbMem
+    hleft0 hright0 hweights
+  change thetaRationalProfile
+      (leftWeight * a + rightWeight * b) ≤
+        leftWeight * thetaRationalProfile a +
+          rightWeight * thetaRationalProfile b at hconvex
+  have hpoint : leftWeight * a + rightWeight * b = y := by
+    dsimp [leftWeight, rightWeight]
+    field_simp [hden.ne']
+    ring
+  rw [hpoint] at hconvex
+  calc
+    thetaRationalProfile y ≤
+        leftWeight * thetaRationalProfile a +
+          rightWeight * thetaRationalProfile b := hconvex
+    _ = thetaRationalChordIntercept a b +
+        thetaRationalChordSlope a b * y := by
+      unfold thetaRationalChordIntercept thetaRationalChordSlope
+      dsimp [leftWeight, rightWeight]
+      field_simp [hden.ne']
+      ring
+
+private def thetaRationalTangentSlope (q : ℝ) : ℝ :=
+  thetaRationalProfileFirst q
+
+private def thetaRationalTangentIntercept (q : ℝ) : ℝ :=
+  thetaRationalProfile q - thetaRationalTangentSlope q * q
+
+private theorem thetaRationalProfile_le_tangent {q y : ℝ}
+    (hqDen : 0 < 1 + (17 / 20 : ℝ) * q)
+    (hyDen : 0 < 1 + (17 / 20 : ℝ) * y)
+    (hlinear : 0 ≤
+      2 * q * (17 / 20 : ℝ) ^ 2 * y + (17 / 20 : ℝ) * q - 1) :
+    thetaRationalProfile y ≤
+      thetaRationalTangentIntercept q + thetaRationalTangentSlope q * y := by
+  have hfactor :
+      thetaRationalTangentIntercept q + thetaRationalTangentSlope q * y -
+          thetaRationalProfile y =
+        (y - q) ^ 2 *
+          (2 * q * (17 / 20 : ℝ) ^ 2 * y +
+            (17 / 20 : ℝ) * q - 1) /
+          ((1 + (17 / 20 : ℝ) * q) ^ 3 *
+            (1 + (17 / 20 : ℝ) * y) ^ 2) := by
+    have hqDen20 : 20 + 17 * q ≠ 0 := by
+      intro hzero
+      norm_num at hqDen hzero
+      nlinarith
+    have hyDen20 : 20 + 17 * y ≠ 0 := by
+      intro hzero
+      norm_num at hyDen hzero
+      nlinarith
+    have hqDenCube :
+        8000 + q * 20400 + q ^ 2 * 17340 + q ^ 3 * 4913 ≠ 0 := by
+      rw [show 8000 + q * 20400 + q ^ 2 * 17340 + q ^ 3 * 4913 =
+          (20 + 17 * q) ^ 3 by ring]
+      exact pow_ne_zero 3 hqDen20
+    have hqDen20Comm : 20 + q * 17 ≠ 0 := by
+      simpa only [mul_comm] using hqDen20
+    unfold thetaRationalTangentIntercept thetaRationalTangentSlope
+      thetaRationalProfileFirst thetaRationalProfile
+    rw [div_pow, div_pow]
+    field_simp [hqDen.ne', hyDen.ne', hqDen20, hyDen20, hqDenCube]
+    try field_simp [hqDen20Comm]
+    ring
+  have hnonneg : 0 ≤
+      thetaRationalTangentIntercept q + thetaRationalTangentSlope q * y -
+        thetaRationalProfile y := by
+    rw [hfactor]
+    positivity
+  linarith
+
+private theorem thetaRationalProfile_le_inflectionTangent {y : ℝ}
+    (hy : thetaRationalInflection ≤ y) :
+    thetaRationalProfile y ≤
+      thetaRationalTangentIntercept thetaRationalInflection +
+        thetaRationalTangentSlope thetaRationalInflection * y := by
+  apply thetaRationalProfile_le_tangent
+  · unfold thetaRationalInflection
+    norm_num
+  · unfold thetaRationalInflection at hy
+    positivity
+  · unfold thetaRationalInflection at hy ⊢
+    norm_num at hy ⊢
+    nlinarith
+
+private theorem thetaRationalProfile_le_threeHalvesTangent {y : ℝ}
+    (hy : 0 ≤ y) :
+    thetaRationalProfile y ≤
+      thetaRationalTangentIntercept (3 / 2 : ℝ) +
+        thetaRationalTangentSlope (3 / 2 : ℝ) * y := by
+  apply thetaRationalProfile_le_tangent
+  · norm_num
+  · positivity
+  · norm_num at hy ⊢
+    linarith
+
 end
 
 end CarrySelfAdjointOperator
