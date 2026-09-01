@@ -1113,6 +1113,47 @@ theorem integrableOn_completedNativeXiCosineKernel :
   apply hdiff.congr
   exact Filter.Eventually.of_forall (fun u ↦ thetaTailSecond_sub_quarter u)
 
+/-- The concrete Xi kernel has a uniform exponential envelope on the positive
+half-line.  The existential form deliberately hides the auxiliary theta-mode
+constants; downstream moment arguments only need one fixed nonnegative
+constant and the decay rate `3 / 2`. -/
+theorem exists_completedNativeXiCosineKernel_exp_decay :
+    ∃ C : ℝ, 0 ≤ C ∧ ∀ {u : ℝ}, 0 ≤ u →
+      ‖completedNativeXiCosineKernel u‖ ≤
+        C * Real.exp (-(3 / 2 : ℝ) * u) := by
+  let C : ℝ :=
+    2 * ∑' n : ℕ, thetaSecondDecayCoefficient n +
+      (1 / 4 : ℝ) * (2 * ∑' n : ℕ, thetaZeroDecayCoefficient n)
+  have hsecondNonneg :
+      0 ≤ ∑' n : ℕ, thetaSecondDecayCoefficient n :=
+    tsum_nonneg thetaSecondDecayCoefficient_nonneg
+  have hzeroNonneg :
+      0 ≤ ∑' n : ℕ, thetaZeroDecayCoefficient n :=
+    tsum_nonneg thetaZeroDecayCoefficient_nonneg
+  refine ⟨C, by dsimp [C]; positivity, ?_⟩
+  intro u hu
+  have hsecond := norm_thetaTailSecond_le_decay hu
+  have hzero := norm_thetaTail_le_decay hu
+  rw [← thetaTailSecond_sub_quarter u]
+  calc
+    ‖thetaTailSecond u - (1 / 4 : ℝ) * thetaTail u‖ ≤
+        ‖thetaTailSecond u‖ + ‖(1 / 4 : ℝ) * thetaTail u‖ :=
+      norm_sub_le _ _
+    _ = ‖thetaTailSecond u‖ +
+        (1 / 4 : ℝ) * ‖thetaTail u‖ := by
+      rw [norm_mul]
+      norm_num
+    _ ≤
+        (2 * ∑' n : ℕ, thetaSecondDecayCoefficient n) *
+            Real.exp (-(3 / 2 : ℝ) * u) +
+          (1 / 4 : ℝ) *
+            ((2 * ∑' n : ℕ, thetaZeroDecayCoefficient n) *
+              Real.exp (-(3 / 2 : ℝ) * u)) := by
+      exact add_le_add hsecond (mul_le_mul_of_nonneg_left hzero (by norm_num))
+    _ = C * Real.exp (-(3 / 2 : ℝ) * u) := by
+      dsimp [C]
+      ring
+
 theorem integral_completedNativeXiCosineKernel_mul_cos (t : ℝ) :
     (∫ u : ℝ in Ioi 0,
         completedNativeXiCosineKernel u * Real.cos (t * u)) =

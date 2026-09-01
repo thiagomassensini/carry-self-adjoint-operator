@@ -765,6 +765,20 @@ $$
 No Mellin/Fourier normalization, boundary term, or interchange of an
 infinite sum with differentiation is left implicit.
 
+[`CompletedNativeXiCosineMoments.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineMoments.lean)
+extracts the first analytic consequences of that representation.  A public
+exponential envelope for $K$ yields absolute integrability of
+$u^mK(u)$ on $(0,\infty)$ for every natural $m$, and strict positivity of
+every even moment
+
+$$
+\mu_{2j}=\int_0^\infty u^{2j}K(u)\,du>0.
+$$
+
+Thus the mass and variance signs in the low Herglotz gate are already
+unconditional; the remaining analytic input is precisely the strict
+fourth-moment inequality below.
+
 [`CompletedNativeXiCosineMomentHerglotzGate.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineMomentHerglotzGate.lean)
 translates that obligation into the standard low moments of an even cosine
 representation.  With
