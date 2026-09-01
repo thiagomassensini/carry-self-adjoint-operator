@@ -2,6 +2,7 @@ import CarrySelfAdjointOperator.CompletedNativeXiThetaMoments
 import Mathlib.Analysis.Convex.Deriv
 import Mathlib.Analysis.Real.Pi.Bounds
 import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
+import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 import Mathlib.Tactic
 
@@ -1526,6 +1527,183 @@ private theorem exp_neg_thetaRationalTangentSwitch_gt :
     _ < (1335 / 1000000 : ℝ) * (1000000 / 1335 : ℝ) :=
       mul_lt_mul_of_pos_left hU (by norm_num)
     _ = 1 := by norm_num
+
+private def thetaRationalAffinePrimitive (A B y : ℝ) : ℝ :=
+  (1 / 4 : ℝ) * Real.exp (-(6283 / 2000 : ℝ) * (1 + y)) *
+    (-(A + B * y) / (6283 / 2000 : ℝ) -
+      B / (6283 / 2000 : ℝ) ^ 2)
+
+private theorem hasDerivAt_thetaRationalAffinePrimitive (A B y : ℝ) :
+    HasDerivAt (thetaRationalAffinePrimitive A B)
+      ((1 / 4 : ℝ) * (A + B * y) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + y))) y := by
+  have hbase := hasDerivAt_affineExpPrimitive
+    (6283 / 2000 : ℝ) A B y (by norm_num)
+  have hscaled := hbase.const_mul
+    ((1 / 4 : ℝ) * Real.exp (-(6283 / 2000 : ℝ)))
+  refine (hscaled.congr_of_eventuallyEq ?_).congr_deriv ?_
+  · exact Filter.Eventually.of_forall (fun z ↦ by
+      have hexp :
+          Real.exp (-(6283 / 2000 : ℝ)) *
+              Real.exp (-(6283 / 2000 : ℝ) * z) =
+            Real.exp (-(6283 / 2000 : ℝ) * (1 + z)) := by
+        rw [← Real.exp_add]
+        congr 1
+        ring
+      unfold thetaRationalAffinePrimitive affineExpPrimitive
+      rw [← hexp]
+      ring)
+  · have hexp :
+        Real.exp (-(6283 / 2000 : ℝ)) *
+            Real.exp (-(6283 / 2000 : ℝ) * y) =
+          Real.exp (-(6283 / 2000 : ℝ) * (1 + y)) := by
+      rw [← Real.exp_add]
+      congr 1
+      ring
+    rw [← hexp]
+    ring
+
+private theorem integral_thetaRationalAffine (A B a b : ℝ) :
+    (∫ y in a..b, (1 / 4 : ℝ) * (A + B * y) *
+      Real.exp (-(6283 / 2000 : ℝ) * (1 + y))) =
+        thetaRationalAffinePrimitive A B b -
+          thetaRationalAffinePrimitive A B a := by
+  apply intervalIntegral.integral_eq_sub_of_hasDerivAt
+  · intro y _hy
+    exact hasDerivAt_thetaRationalAffinePrimitive A B y
+  · exact (by fun_prop : Continuous (fun y : ℝ ↦
+      (1 / 4 : ℝ) * (A + B * y) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + y)))).intervalIntegrable a b
+
+private theorem integral_thetaRationalMomentMajorant_le_affine
+    {a b A B : ℝ} (ha0 : 0 ≤ a) (hab : a ≤ b)
+    (hprofile : ∀ y ∈ Icc a b, thetaRationalProfile y ≤ A + B * y) :
+    (∫ y in a..b, thetaRationalMomentMajorant y) ≤
+      thetaRationalAffinePrimitive A B b -
+        thetaRationalAffinePrimitive A B a := by
+  have hleft : IntervalIntegrable thetaRationalMomentMajorant volume a b := by
+    rw [intervalIntegrable_iff_integrableOn_Ioc_of_le hab]
+    apply integrableOn_thetaRationalMomentMajorant.mono_set
+    intro y hy
+    exact ha0.trans hy.1.le
+  have hright : IntervalIntegrable
+      (fun y : ℝ ↦ (1 / 4 : ℝ) * (A + B * y) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + y))) volume a b :=
+    (by fun_prop : Continuous (fun y : ℝ ↦
+      (1 / 4 : ℝ) * (A + B * y) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + y)))).intervalIntegrable a b
+  have hmono := intervalIntegral.integral_mono_on hab hleft hright
+    (fun y hy ↦ by
+      have hp := hprofile y hy
+      unfold thetaRationalMomentMajorant
+      exact mul_le_mul_of_nonneg_right
+        (mul_le_mul_of_nonneg_left hp (by norm_num)) (Real.exp_pos _).le)
+  rw [integral_thetaRationalAffine] at hmono
+  exact hmono
+
+private theorem integral_thetaRationalMomentMajorant_le_chord
+    {a b : ℝ} (ha0 : 0 ≤ a) (hab : a < b)
+    (hbR : b ≤ thetaRationalInflection) :
+    (∫ y in a..b, thetaRationalMomentMajorant y) ≤
+      thetaRationalAffinePrimitive (thetaRationalChordIntercept a b)
+          (thetaRationalChordSlope a b) b -
+        thetaRationalAffinePrimitive (thetaRationalChordIntercept a b)
+          (thetaRationalChordSlope a b) a := by
+  apply integral_thetaRationalMomentMajorant_le_affine ha0 hab.le
+  intro y hy
+  exact thetaRationalProfile_le_chord ha0 hab hbR hy.1 hy.2
+
+private theorem tendsto_thetaRationalAffinePrimitive_atTop (A B : ℝ) :
+    Tendsto (thetaRationalAffinePrimitive A B) atTop (nhds 0) := by
+  have hp : (0 : ℝ) < 6283 / 2000 := by norm_num
+  have hexp : Tendsto
+      (fun y : ℝ ↦ Real.exp (-(6283 / 2000 : ℝ) * y)) atTop (nhds 0) := by
+    simpa using tendsto_rpow_mul_exp_neg_mul_atTop_nhds_zero
+      (0 : ℝ) (6283 / 2000 : ℝ) hp
+  have hyexp : Tendsto
+      (fun y : ℝ ↦ y * Real.exp (-(6283 / 2000 : ℝ) * y)) atTop (nhds 0) := by
+    simpa using tendsto_rpow_mul_exp_neg_mul_atTop_nhds_zero
+      (1 : ℝ) (6283 / 2000 : ℝ) hp
+  let C : ℝ := (1 / 4 : ℝ) * Real.exp (-(6283 / 2000 : ℝ)) *
+    (-A / (6283 / 2000 : ℝ) - B / (6283 / 2000 : ℝ) ^ 2)
+  let D : ℝ := (1 / 4 : ℝ) * Real.exp (-(6283 / 2000 : ℝ)) *
+    (-B / (6283 / 2000 : ℝ))
+  have hlim := (hexp.const_mul C).add (hyexp.const_mul D)
+  have hzero : C * 0 + D * 0 = 0 := by ring
+  rw [hzero] at hlim
+  apply hlim.congr'
+  filter_upwards with y
+  have hexpShift :
+      Real.exp (-(6283 / 2000 : ℝ) * (1 + y)) =
+        Real.exp (-(6283 / 2000 : ℝ)) *
+          Real.exp (-(6283 / 2000 : ℝ) * y) := by
+    rw [← Real.exp_add]
+    congr 1
+    ring
+  unfold thetaRationalAffinePrimitive
+  dsimp [C, D]
+  rw [hexpShift]
+  ring
+
+private theorem integral_Ioi_thetaRationalAffine
+    (A B a : ℝ) (hline0 : ∀ y ∈ Ioi a, 0 ≤ A + B * y) :
+    (∫ y in Ioi a, (1 / 4 : ℝ) * (A + B * y) *
+      Real.exp (-(6283 / 2000 : ℝ) * (1 + y))) =
+        -thetaRationalAffinePrimitive A B a := by
+  have h := integral_Ioi_of_hasDerivAt_of_nonneg'
+    (g := thetaRationalAffinePrimitive A B)
+    (g' := fun y : ℝ ↦ (1 / 4 : ℝ) * (A + B * y) *
+      Real.exp (-(6283 / 2000 : ℝ) * (1 + y)))
+    (a := a) (l := 0)
+    (fun y _hy ↦ hasDerivAt_thetaRationalAffinePrimitive A B y)
+    (fun y hy ↦ mul_nonneg
+      (mul_nonneg (by norm_num) (hline0 y hy)) (Real.exp_pos _).le)
+    (tendsto_thetaRationalAffinePrimitive_atTop A B)
+  simpa using h
+
+private theorem integral_Ioi_thetaRationalMomentMajorant_le_affine
+    {a A B : ℝ} (ha0 : 0 ≤ a)
+    (hprofile : ∀ y ∈ Ioi a, thetaRationalProfile y ≤ A + B * y)
+    (hline0 : ∀ y ∈ Ioi a, 0 ≤ A + B * y) :
+    (∫ y in Ioi a, thetaRationalMomentMajorant y) ≤
+      -thetaRationalAffinePrimitive A B a := by
+  have hleft : IntegrableOn thetaRationalMomentMajorant (Ioi a) :=
+    integrableOn_thetaRationalMomentMajorant.mono_set (by
+      intro y hy
+      exact ha0.trans hy.le)
+  have hright : IntegrableOn
+      (fun y : ℝ ↦ (1 / 4 : ℝ) * (A + B * y) *
+        Real.exp (-(6283 / 2000 : ℝ) * (1 + y))) (Ioi a) :=
+    integrableOn_Ioi_deriv_of_nonneg'
+      (g := thetaRationalAffinePrimitive A B)
+      (fun y _hy ↦ hasDerivAt_thetaRationalAffinePrimitive A B y)
+      (fun y hy ↦ mul_nonneg
+        (mul_nonneg (by norm_num) (hline0 y hy)) (Real.exp_pos _).le)
+      (tendsto_thetaRationalAffinePrimitive_atTop A B)
+  have hmono := integral_mono_ae hleft hright (by
+    filter_upwards [ae_restrict_mem measurableSet_Ioi] with y hy
+    unfold thetaRationalMomentMajorant
+    exact mul_le_mul_of_nonneg_right
+      (mul_le_mul_of_nonneg_left (hprofile y hy) (by norm_num))
+      (Real.exp_pos _).le)
+  rw [integral_Ioi_thetaRationalAffine A B a hline0] at hmono
+  exact hmono
+
+private theorem thetaRationalInflectionTangent_eq (y : ℝ) :
+    thetaRationalTangentIntercept thetaRationalInflection +
+        thetaRationalTangentSlope thetaRationalInflection * y =
+      (-400 / 7803 : ℝ) + (160 / 459 : ℝ) * y := by
+  unfold thetaRationalTangentIntercept thetaRationalTangentSlope
+    thetaRationalProfileFirst thetaRationalProfile thetaRationalInflection
+  norm_num
+
+private theorem thetaRationalThreeHalvesTangent_eq (y : ℝ) :
+    thetaRationalTangentIntercept (3 / 2 : ℝ) +
+        thetaRationalTangentSlope (3 / 2 : ℝ) * y =
+      (39600 / 753571 : ℝ) + (192000 / 753571 : ℝ) * y := by
+  unfold thetaRationalTangentIntercept thetaRationalTangentSlope
+    thetaRationalProfileFirst thetaRationalProfile
+  norm_num
 
 end
 
