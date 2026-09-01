@@ -819,6 +819,19 @@ Thus the remaining numerical-analytic obligation involves only the mass and
 second moment of the positive theta tail; no fourth-moment estimate is
 needed.
 
+[`CompletedNativeXiThetaMomentBounds.lean`](CarrySelfAdjointOperator/CompletedNativeXiThetaMomentBounds.lean)
+starts the exact rational discharge of that obligation.  Keeping only the
+first theta mode, changing variables by $x=e^{2u}$, and placing two rational
+tangent lines below $x^{-3/4}$ gives the audited lower certificate
+
+$$
+\boxed{a_0>\frac{113}{10000}.}
+$$
+
+The exponential comparisons use only $\pi<22/7$ and finite Taylor
+remainders reduced to rational arithmetic.  It remains to certify a matching
+upper bound for $a_2$ strong enough to imply $a_2<2a_0^2$.
+
 [`CompletedNativeXiCosineMomentHerglotzGate.lean`](CarrySelfAdjointOperator/CompletedNativeXiCosineMomentHerglotzGate.lean)
 translates that obligation into the standard low moments of an even cosine
 representation.  With
