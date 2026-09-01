@@ -19,9 +19,9 @@ strictly positive boundary defect already proved at an upper-half-plane
 native closure.
 
 The fixed-parameter kernel condition is also audited against the finite
-dimension of the positive trace.  Thirteen independent intrinsic camera
-responses would refute it, so it cannot be promoted to a theorem merely from
-causal-span membership or Naimark coherence.
+dimension of the positive trace.  The concrete thirteen-state independence
+and the resulting unconditional refutation are proved downstream in
+`CompletedC3CausalChiralKernelObstruction`.
 
 No contraction, positivity, zero, spectral, or confinement statement is
 assumed or proved here.
@@ -220,8 +220,8 @@ theorem not_linearIndependent_canonicalCompletedC3CausalPositiveChiralReadout_fi
 
 /-- Concrete finite-rank obstruction to the proposed kernel gate.  Any
 thirteen causal sources whose full camera/chiral responses are independent
-refute fixed-parameter kernel compatibility.  Establishing such a family is
-therefore the precise next test; no Gram or positivity premise is involved. -/
+refute fixed-parameter kernel compatibility.  The required canonical family
+is constructed downstream; no Gram or positivity premise is involved. -/
 theorem not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_fin13_cameraIndependent
     (z : ℂ)
     (source : Fin 13 → CanonicalCompletedC3EnrichedChiralSourceCarrier)
@@ -239,9 +239,8 @@ theorem not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_fin13_c
       (canonicalCompletedC3CausalPositiveChiralReadout_linearIndependent_of_camera
         z source hsource hcompat hcamera)
 
-/-- Intrinsic-camera spelling of the finite-rank obstruction.  Thus the
-remaining concrete audit is only independence of thirteen canonical camera
-responses; neither the negative chirality nor a Gram identity is needed. -/
+/-- Intrinsic-camera spelling of the finite-rank obstruction.  Neither the
+negative chirality nor a Gram identity is needed. -/
 theorem not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_fin13_intrinsicCameraIndependent
     (z : ℂ) (hzIm : 0 < z.im)
     (source : Fin 13 → CanonicalCompletedC3EnrichedChiralSourceCarrier)
@@ -256,9 +255,8 @@ theorem not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_fin13_i
       (canonicalCompletedC3EnrichedCoisometricCameraChiralReadout_linearIndependent_of_camera
         z hzIm source hcamera)
 
-/-- Canonical-source specialization of the obstruction.  It names the exact
-remaining object: thirteen completed symplectic camera states sampled from
-the genuine strip. -/
+/-- Canonical-source specialization of the obstruction for thirteen completed
+symplectic camera states sampled from the genuine strip. -/
 theorem not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_fin13_symplecticCameraIndependent
     (z : ℂ) (hzIm : 0 < z.im)
     (point : Fin 13 → ℂ)

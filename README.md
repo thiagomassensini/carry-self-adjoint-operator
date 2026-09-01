@@ -330,6 +330,18 @@ In particular, `BR2BracketIncidenceJetTransport` is all-order: its even and
 odd identities are indexed by every `n : Nat`, and injectivity transports the
 global bracket-incidence independence to the complete Green-jet families.
 
+### 4. Fixed-parameter causal contraction audit
+
+The proposed factorization of every causal source through one fixed positive
+Wronskian readout is ruled out, rather than assumed. The positive trace has
+real dimension `12`, while thirteen explicit completed C3 symplectic camera
+states are real-linearly independent. Hence both the fixed-parameter kernel
+compatibility and its defect-Gram contraction fail throughout the open upper
+half-plane. This audit is proved in
+[`CompletedC3CausalChiralKernelObstruction.lean`](CarrySelfAdjointOperator/CompletedC3CausalChiralKernelObstruction.lean)
+using Dedekind independence of the underlying Dirichlet characters and the
+existing global camera isometry; it uses no zero or spectral premise.
+
 ## What Is Not Being Identified
 
 The following objects are deliberately distinct in the formalization:
