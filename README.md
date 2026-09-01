@@ -679,8 +679,18 @@ as the preferred next gate: positivity of the raw Gram does not supply the
 displayed equality.
 
 [`CompletedNativeHerglotzFourthOrderGate.lean`](CarrySelfAdjointOperator/CompletedNativeHerglotzFourthOrderGate.lean)
-opens the analytic moment itself.  If $c_n$ denotes the real Taylor
+opens the analytic moments themselves.  If $c_n$ denotes the real Taylor
 coefficient of order $n$ of the reduced even characteristic, Lean proves
+
+$$
+\boxed{
+h_0=-\frac{c_1}{c_0},
+\qquad
+h_0>0\iff c_0c_1<0,
+}
+$$
+
+and
 
 $$
 \boxed{
@@ -690,12 +700,13 @@ h_1>0\iff 2c_0c_2<c_1^2.
 }
 $$
 
-This is the honest fourth-order logarithmic-curvature gate.  It is also
-exactly positivity of the real third variation of the completed chiral
-signature.  Combining this inequality with central coisometric-defect
-flatness gives both eventual $N=2$ Herglotz positivity and, through the exact
-Cayley congruence, eventual $N=2$ chiral Pick positivity.  The fourth-order
-inequality itself remains to be proved from the completed geometry.
+These are the honest second- and fourth-order logarithmic-curvature gates.
+They are exactly positivity of the real first and third variations of the
+completed chiral signature.  Together they give both eventual $N=2$
+Herglotz positivity and, through the exact Cayley congruence, eventual $N=2$
+chiral Pick positivity, without any cross-carrier normalization premise.
+Proving the two coefficient inequalities from the completed geometry remains
+the next analytic obligation.
 
 ## What Is Not Being Identified
 
