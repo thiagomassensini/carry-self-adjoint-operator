@@ -24,6 +24,40 @@ The geometric identifications in the lower three lines predate the theta
 estimate.  `CompletedNativeGeometricLowOrderClosure.lean` now packages their
 unconditional consequences without hiding the theta dependency.
 
+## Relation with the self-adjoint height operator
+
+The two low-order signs are exactly the data needed by the first Jacobi
+section:
+
+```text
+G1 = [h0] > 0,
+K1 = [h1] > 0.
+```
+
+Consequently the canonical LDL whitening constructs, without any additional
+premise,
+
+```text
+J1 = whitening(G1) K1 whitening(G1)^T > 0,
+T1 = J1^(-1/2),
+H_Gamma,1 = T1 ⊕ (-T1).
+```
+
+The Lean module now defines these three concrete objects and proves that
+`T1` and `H_Gamma,1` are exactly symmetric.  It also proves that the canonical
+sector reflection conjugates `H_Gamma,1` to its negative.
+
+This is the precise operator-theoretic gain from the present theorem: the
+first canonical self-adjoint height compression is unconditional.
+
+It does **not** yet instantiate the global operator `J = B* B`.  That
+construction consumes an all-order Green--Wronskian moment-kernel
+realization, global independence of both parity jet families, and, for the
+full rather than reduced reciprocal carrier, the zero-mass/head-in-tail
+gate.  Equivalently on the purely momental route, it needs strict positivity
+of both Hankel towers for every order.  The present theorem proves only the
+`N = 1` member of that tower.
+
 ## What the defect geometry already proves
 
 The formal development contains four genuinely geometric positive objects.
@@ -99,6 +133,14 @@ needs the first two nonzero defect jets.  Their squared norms must realize
 identity would then give the first and third chiral variations, the two
 one-dimensional Loewner defects, and hence the two-point Herglotz/Pick gate
 without using the theta moment inequality.
+
+For the global self-adjoint height operator the same identity must hold to
+all orders.  Its even and shifted jets then supply the complete pair of
+Hankel towers, the closed Green energy factor `B`, the positive maximal
+adjoint square `J = B* B`, and finally the reduced signed reciprocal height
+operator.  Thus the defect identity missing from the independent geometric
+proof is also exactly the missing input for the unconditional global height
+construction.
 
 ## Recommended next attack
 

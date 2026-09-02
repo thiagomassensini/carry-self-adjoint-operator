@@ -1,6 +1,7 @@
 import CarrySelfAdjointOperator.CompletedNativeXiCosineMomentHerglotzGate
 import CarrySelfAdjointOperator.CompletedNativeCentralChiralVariation
 import CarrySelfAdjointOperator.CompletedNativeChiralHankelDominance
+import CarrySelfAdjointOperator.SignedFiniteHeightOperator
 import Mathlib.Tactic
 
 /-!
@@ -79,6 +80,76 @@ theorem
       (canonicalCompletedC3ExpandedStructuralOddLoewnerDefect 0 1).PosDef :=
   canonicalCompletedC3ExpandedStructuralStrictChiralDominance_one_iff.mpr
     canonicalCompletedNativeFirstTwoMoments_pos
+
+/-! ## The first canonical self-adjoint height section -/
+
+/-- The unshifted one-dimensional Hankel section is positive definite. -/
+theorem canonicalCompletedNativeHankelGram_one_posDef :
+    (hankelGram canonicalCompletedNativeLogDerivativeMoment 1).PosDef := by
+  rw [← canonicalCompletedC3ExpandedStructuralEvenLoewnerDefect_eq_hankel
+    0 1]
+  exact canonicalCompletedC3ExpandedStructuralLoewnerDefects_one_posDef.1
+
+/-- The shifted one-dimensional Hankel section is positive definite. -/
+theorem canonicalCompletedNativeShiftedHankel_one_posDef :
+    (shiftedHankel canonicalCompletedNativeLogDerivativeMoment 1).PosDef := by
+  rw [← canonicalCompletedC3ExpandedStructuralOddLoewnerDefect_eq_shiftedHankel
+    0 1]
+  exact canonicalCompletedC3ExpandedStructuralLoewnerDefects_one_posDef.2
+
+/-- First canonical completed-native Jacobi section, selected only from the
+actual moment sequence and the now unconditional `1 × 1` Hankel proof. -/
+def canonicalCompletedNativeGeometricJacobiSectionOne :
+    Matrix (Fin 1) (Fin 1) ℝ :=
+  canonicalFiniteJacobiSection
+    canonicalCompletedNativeLogDerivativeMoment 1
+    canonicalCompletedNativeHankelGram_one_posDef
+
+/-- The first canonical Jacobi section is strictly positive. -/
+theorem canonicalCompletedNativeGeometricJacobiSectionOne_posDef :
+    canonicalCompletedNativeGeometricJacobiSectionOne.PosDef := by
+  unfold canonicalCompletedNativeGeometricJacobiSectionOne
+    canonicalFiniteJacobiSection finiteJacobiSection
+  exact finiteJacobiTransport_posDef
+    canonicalCompletedNativeShiftedHankel_one_posDef
+    (canonicalHankelWhitening
+      canonicalCompletedNativeLogDerivativeMoment 1
+      canonicalCompletedNativeHankelGram_one_posDef).inverseFactor_vecMul_injective
+
+/-- The first positive height section `T₁ = J₁⁻¹ᵐ²`. -/
+def canonicalCompletedNativeGeometricHeightOperatorOne :
+    Matrix (Fin 1) (Fin 1) ℝ :=
+  finiteHeightOperator
+    canonicalCompletedNativeGeometricJacobiSectionOne_posDef
+
+/-- The first positive height section is exactly symmetric, hence
+self-adjoint in finite dimension. -/
+theorem canonicalCompletedNativeGeometricHeightOperatorOne_isSymm :
+    canonicalCompletedNativeGeometricHeightOperatorOne.IsSymm :=
+  finiteHeightOperator_isSymm
+    canonicalCompletedNativeGeometricJacobiSectionOne_posDef
+
+/-- Signed first height section, retaining the two reflection orientations. -/
+def canonicalCompletedNativeGeometricSignedHeightOperatorOne :
+    Matrix (Fin 1 ⊕ Fin 1) (Fin 1 ⊕ Fin 1) ℝ :=
+  signedBlockOperator canonicalCompletedNativeGeometricHeightOperatorOne
+
+/-- The signed first height section is exactly symmetric. -/
+theorem canonicalCompletedNativeGeometricSignedHeightOperatorOne_isSymm :
+    canonicalCompletedNativeGeometricSignedHeightOperatorOne.IsSymm :=
+  signedBlockOperator_isSymm
+    canonicalCompletedNativeGeometricHeightOperatorOne_isSymm
+
+/-- The sector reflection reverses the sign of the first signed height
+section, preserving the direct/reflected geometry. -/
+theorem
+    signedSectorReflection_conj_canonicalCompletedNativeGeometricSignedHeightOperatorOne :
+    signedSectorReflection *
+        canonicalCompletedNativeGeometricSignedHeightOperatorOne *
+        signedSectorReflection =
+      -canonicalCompletedNativeGeometricSignedHeightOperatorOne := by
+  exact signedSectorReflection_conj_signedBlockOperator
+    canonicalCompletedNativeGeometricHeightOperatorOne
 
 /-- Geometric factorization of the already closed analytic gate: positivity
 of the two chiral variations supplies the literal two-point radial Herglotz
