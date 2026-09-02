@@ -193,3 +193,9 @@ which cannot honestly be identified by naming: the raw TFVD/response
 mismatch, completion curvature relative to the C3 chart, and the retained
 carrier residual square.  No new carrier and no finite return solver are
 needed before this balance is addressed.
+
+`docs/central-chart-free-sewing-audit.md` performs the next simplification.
+The C3-chart coefficient cancels exactly, and all existing carrier
+realizations reduce the gate to `E + ||logJet(1/2)||^2 + E^2 = h0`, with
+`E = infiniteReflectedGreenEnergy(1/2)`.  No archived return or current
+boundary identity supplies that remaining scalar equality.

@@ -239,3 +239,18 @@ response Taylor theory determines the sum, but does not assign the raw
 mismatch, completion curvature, and retained residual square to one another.
 The archived returns and the direct Naimark escape do not supply this
 assignment.
+
+The subsequent chart cancellation and directed carrier search are recorded
+in `docs/central-chart-free-sewing-audit.md`.  They reduce this equality
+further to
+
+```text
+E + ||logJet(1/2)||^2 + E^2 = h0,
+E = infiniteReflectedGreenEnergy(1/2).
+```
+
+No existing boundary, head--tail, Green-frame, residual, or product-curvature
+theorem proves this identity.  A high-precision diagnostic also indicates
+that it is false with the current concrete normalizations, so further channel
+opening should wait for a normalization/carrier-readout correction at this
+exact center gate.
