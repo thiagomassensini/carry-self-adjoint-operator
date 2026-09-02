@@ -59,7 +59,7 @@ itself. Building such a state is equivalent to proving the Herglotz gate.
 | 6 | Radial/local germ eventual PSD | `CompletedNativeHerglotzFourthOrderGate` | reduces to positivity of moments `h_n` |
 | 7 | Moment/Hankel direct | `CompletedGreenMomentJets` | needs Gram realization of moment kernel = Green state = gate |
 | 8 | Jacobi/Weyl inverse | `CanonicalFiniteHeight`, `FiniteJacobiTransport` | Jacobi built *from* the same Hankel PSD (circular) |
-| 9 | Coisometry/frame/Naimark | `CompletedC3CoisometricChiralEnergyBlock` | old escape leak is zero; full carrier does not add a legitimate projection |
+| 9 | Coisometry/frame/Naimark | `CompletedC3CoisometricChiralEnergyBlock` | sewing needs `E₊-E₋ = ambient gradient energy`; ambient term is the exact defect at zeros |
 | 10 | Provenance quotient | (primos `CpMinimalProvenanceQuotient`) | quotient preserves data but supplies no positivity |
 | 11 | Hessian / second variation | — | second variation is another signed form, same sign gate |
 | 12 | Clock quotient | `CompletedNativeProductClockQuotientGreenAudit` | different carrier; no genuine intertwiner |
@@ -85,8 +85,40 @@ orthogonal polarizations (all pre-existing). New unconditional theorems:
   replacing the Riesz-normal projection with no chosen scale.
 - `canonicalCompletedC3FullWronskianCentralChiralBalanceVariation_eq_zero_iff`:
   the polarized balance variation vanishes **iff** `h₀ = 0`.
+- `canonicalCompletedNativeLogDerivativeMoment_zero_pos`: `0 < h₀`,
+  unconditionally (theta/cosine low-order closure).
+- `canonicalCompletedC3FullWronskianCentralChiralBalanceVariation_ne_zero`:
+  **unconditional transversality** — the polarized central chiral balance
+  variation is nonzero, so the center is a genuine simple crossing of the two
+  equal positive chiral energies.
 
 Axioms: `[propext, Classical.choice, Quot.sound]` only. `--wfail` clean.
+
+## 3b. What the repository already closed unconditionally (theta route)
+
+Riemann's positive theta density gives, without RH:
+
+- `canonicalCompletedNativeLowOrderHerglotzCurvaturePositive` (`0<h₀`, `0<h₁`);
+- `canonicalCompletedNativeRadialHerglotzSampleMatrix_two_eventually_posSemidef`
+  and the chiral Pick two-point analogue;
+- `canonicalCompletedNativeHankelGram_one_posDef`,
+  `canonicalCompletedNativeShiftedHankel_one_posDef` (the `1×1` sections);
+- the first canonical Jacobi/height section
+  (`canonicalCompletedNativeGeometricJacobiSectionOne_posDef`).
+
+So the **first section `N=1` (two-point) is unconditionally closed**. The
+irreducible gate is the extension to **all orders `N ≥ 2`**
+(`hankelGram canonicalCompletedNativeLogDerivativeMoment N` PosDef for all `N`),
+equivalently full Herglotz of `-F'/F`. As
+`CompletedNativeGeometricLowOrderClosure` states: a genuinely independent proof
+"would still have to realize the signed pre-scalarized difference as a positive
+defect Gram, after the completion/product channels have been dressed."
+
+The repository's own frontier (`UnconditionalLimitConfinementProbe`) records the
+equivalent minimal **sewing seam** `MinimalPublicC3ConfinementSeam`
+(`FiniteC3CompletedGreenWronskianSeam 1`) and the stronger completed
+scalarization seam `CanonicalCompletedC3GammaCauchyScalarizationSeam`; each
+implies `FinalGenuineZeroConfinement`, and neither is asserted unconditionally.
 
 ## 4. The formal obstruction (why ROTA 1 does not close the gate)
 
@@ -103,13 +135,53 @@ This is the same obstruction as the Riesz-normal audit's
 the arbitrary scale identity `‖n‖² = ‖D(0)‖² h₀`: the polarization removes the
 arbitrary scale but not the missing sign.
 
-## 5. Conclusion
+## 5. Sharpest form of the gate (coisometric sewing)
 
-Smallest irreducible remaining gate: **positivity of the diagonal Green energy
-`Im(a(z))/Im z ≥ 0` for `a = -F'/F` = completed native operator logarithmic
-derivative** — equivalently Herglotz of `a`, chiral Pick PSD, or all-order
-moment Hankel PSD. Every internal route reduces to this same signed-difference
-positivity and none supplies it from the existing isometric, symplectic, Gram,
-compression, or quotient structure. Status: **EXHAUSTED with a precise gate**,
-plus a green formalized reorganization (ROTA 1) that canonicalizes the gate as a
-sign of a first variation of a balanced pair of positive chiral energies.
+`CompletedC3CoisometricWronskianEnergyGate` / `CompletedC3CoisometricChiralEnergyBlock`
+give the sharpest scalar form. Define, for off-axis `z` in the strip,
+
+`balance(z) := 2·z.im·(radialCoeff(z)² + 1)·‖DirichletGradientState(z)‖²`
+`           - Im(completedGreenWronskian F (-F') z z)`.
+
+Proved unconditionally:
+
+- `..._diagonal_eq_wronskian_iff_energyBalance`: the coisometric compressed
+  boundary readout equals the true completed Green Wronskian on the diagonal
+  **iff** `balance(z) = 0`.
+- `Im(completedGreenWronskian F (-F') z z) = ‖P₊‖² - ‖P₋‖²` (chiral difference).
+- At a characteristic zero the Wronskian term vanishes, so
+  `balance(z) = 2·z.im·(radialCoeff²+1)·‖DirichletGradientState‖² > 0` off-axis
+  (`..._pos_of_characteristicZero`), hence the sewing **fails** at any
+  hypothetical off-axis zero (`..._ne_wronskian_of_characteristicZero`).
+
+So the single irreducible gate is the **diagonal sewing identity**
+
+`Im(completedGreenWronskian F (-F') z z)`
+`   = 2·z.im·(radialCoeff(z)² + 1)·‖DirichletGradientState(z)‖²`   (off-axis z),
+
+whose left side is the signed chiral difference `E₊ - E₋` and whose right side
+is a manifestly nonnegative ambient gradient energy. This is exactly the
+diagonal Herglotz/Green positivity `Im(a)/Im z ≥ 0`, `a = -F'/F`, realized as an
+energy equality. The ambient gradient energy is precisely the defect by which
+the compressed readout diverges from the confinement-relevant Green Wronskian
+at a zero; no isometric, symplectic, Gram, compression, coisometric, or
+quotient construction in the repository supplies this equality, because
+supplying it is equivalent to the Herglotz property (RH-equivalent for the
+completed zeta).
+
+## 6. Conclusion
+
+Smallest irreducible remaining gate (three equivalent spellings):
+
+- **Herglotz/diagonal**: `Im(-F'/F(z)) / Im z ≥ 0` for off-axis `z`
+  (`a = -F'/F` = completed native operator logarithmic derivative);
+- **Chiral/energy**: `E₊ - E₋ = 2·z.im·(radialCoeff²+1)·‖DirichletGradientState‖²`,
+  i.e. the signed chiral difference equals the ambient gradient energy;
+- **Moment/Hankel**: the log-derivative moment Hankel matrices `(h_{i+j})` are
+  PSD at all orders `N ≥ 2` (the `N = 1` section is already unconditional).
+
+Every internal route (1–14) reduces to this same signed-difference positivity;
+none supplies it. Status: **EXHAUSTED with a precise gate**, plus a green
+formalized reorganization (ROTA 1) canonicalizing the gate as the sign of a
+first variation of a balanced pair of strictly positive chiral energies
+(`E₊ = E₋ = ‖X₀‖²/2 > 0` at the center; sign of the first variation `= sign h₀`).

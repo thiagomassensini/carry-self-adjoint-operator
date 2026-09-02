@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.CompletedC3SymplecticCrossingNormalAudit
+import CarrySelfAdjointOperator.CompletedNativeXiCosineMomentHerglotzGate
 import Mathlib.Tactic
 
 /-!
@@ -217,6 +218,28 @@ theorem canonicalCompletedC3FullWronskianCentralChiralBalanceVariation_eq_zero_i
     · exact_mod_cast h
   · intro h
     exact Or.inr (by exact_mod_cast h)
+
+/-! ## Unconditional transversality from the theta low-order closure -/
+
+/-- The central logarithmic ruler `h₀` is strictly positive, unconditionally.
+This is the first completed-native moment, whose positivity is the theta/cosine
+(Riemann positive density) low-order closure. -/
+theorem canonicalCompletedNativeLogDerivativeMoment_zero_pos :
+    0 < canonicalCompletedNativeLogDerivativeMoment 0 :=
+  (canonicalCompletedNativeLowOrderHerglotzCurvaturePositive_iff_moments.mp
+    canonicalCompletedNativeLowOrderHerglotzCurvaturePositive).1
+
+/-- **Unconditional transversality of the central crossing in polarized
+language.**  Combining the theta low-order closure with the polarized crossing
+identity: the signed chiral balance variation at the center is nonzero.  The
+center is therefore a genuine simple crossing of the two equal chiral energies
+`E₊ = E₋ = ‖X₀‖²/2 > 0`; the first variation tilts the balance by exactly
+`D(0)·h₀` with `h₀ > 0`.  This closes the low-order (first-section) sign, but
+not the all-order Hankel positivity that the downstream confinement requires. -/
+theorem canonicalCompletedC3FullWronskianCentralChiralBalanceVariation_ne_zero :
+    canonicalCompletedC3FullWronskianCentralChiralBalanceVariation ≠ 0 := fun h =>
+  canonicalCompletedNativeLogDerivativeMoment_zero_pos.ne'
+    (canonicalCompletedC3FullWronskianCentralChiralBalanceVariation_eq_zero_iff.mp h)
 
 end
 
