@@ -160,18 +160,32 @@ through the resolvent inside the resolved Gamma correction, where genuine
 Gamma/correction cross terms remain.  Thus Naimark geometry participates in
 the dressing audit but does not by itself supply `D* D`.
 
-## Recommended next attack
+## Result of that attack and next gate
 
-1. Reuse `canonicalCompletedC3RealAxisPositiveState` as the first one-point
-   dressed candidate; do not introduce another carrier yet.
-2. Test only its `(0,0)` and `(1,1)` Gram jets against `h0` and `h1`, before
-   any final scalarization.
-3. Compare those jets channelwise with the recovered two-point completion
-   ledger, retaining completion curvature, the mixed native/completion term,
-   residuals, and cross channels.
-4. If the first equality fails, use the literal missing summand to determine
-   the minimal carrier enlargement.  If it holds, prove the odd jet nonzero.
-5. Promote the same sewing to all orders only after this low-order test.
+The direct low-order test is now formalized in
+`CompletedC3ConcreteDressedLowOrderAudit.lean`.
+
+At `(0,0)`, the concrete dressed Gram is strictly the old enriched TFVD Gram
+plus the squared norm of a nonzero residual.  That residual norm is exactly
+the square of `infiniteReflectedGreenEnergy (1/2)`.  Therefore the old
+two-channel `h0` identification and the new dressed `h0` identification are
+mutually incompatible; closing the dressed equality requires the old
+central defect to be the negative of this residual square.
+
+At `(1,1)`, the same residual coefficient is even and differentiable at the
+center, with derivative zero.  The dressed first odd coefficient jet is
+therefore the isometric image of the old enriched TFVD jet, is nonzero, and
+its `h1` identification is exactly the already named
+`CanonicalCompletedNativeTfvdFirstOddDiagonalMomentIdentification`.
+
+The next honest attack is thus asymmetric:
+
+1. At order zero, compare the recovered two-point ledger's linear and crossed
+   completion/residual channels with the quadratic one-point residual norm.
+2. At order one, prove the existing TFVD `(1,1)=h1` normalization gate; no
+   Naimark escape or residual enlargement is needed there.
+3. Promote to all orders only after those two independent scalar identities
+   close.
 
 This is now the precise remaining geometric problem.  Reusing the naked
 ambient state or proving only that the unregularized ledger tends to zero

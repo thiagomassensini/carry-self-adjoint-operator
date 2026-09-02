@@ -235,6 +235,67 @@ Therefore the current carrier does not close `h0/h1` geometrically without
 theta yet.  It does reduce that problem to two explicit low-order Gram
 equalities in an already constructed carrier.
 
+## Result of the direct coefficient attack
+
+`CompletedC3ConcreteDressedLowOrderAudit.lean` now performs the recommended
+test without assuming the concrete sewing and without using theta.
+
+At `(0,0)` the answer is an exact strict split:
+
+```text
+Re <P(0),P(0)>
+  = Re <rawTFVD(0),rawTFVD(0)> + ||residual(0)||^2,
+
+||residual(0)||^2
+  = infiniteReflectedGreenEnergy(1/2)^2 > 0.
+```
+
+Thus the old ordinary-plus-logarithmic identification and the concrete
+dressed identification cannot both equal `h0`.  Equivalently, the remaining
+dressed central gate is
+
+```text
+Re <rawTFVD(0),rawTFVD(0)> - h0
+  = -||residual(0)||^2.
+```
+
+This does **not** by itself prove that `Re <P(0),P(0)> != h0`: it proves that
+the old two-channel `h0` identification cannot be reused unchanged after the
+residual is installed as a third orthogonal coordinate.  The distinction is
+important.  The one-point carrier makes the residual contribution quadratic,
+whereas the completed two-point ledger also has linear and crossed residual
+channels.  The first equality still to compare is therefore precisely the
+ledger readout against this quadratic residual normalization.
+
+At first odd order the outcome is different.  The residual coefficient is
+proved even on the native line, and termwise differentiation is justified on
+`(-1,1)` by the summable majorant
+
+```text
+36 (n + 1)^(-11/4).
+```
+
+Consequently its derivative at the center vanishes:
+
+```text
+residualJet(1) = 0.
+```
+
+The dressed first-odd coefficient jet is therefore the isometric image of
+the existing enriched TFVD raw jet, and Lean proves
+
+```text
+<dressedJet(1), dressedJet(1)>
+  = <rawTFVD(1), rawTFVD(1)>,
+
+dressedJet(1) != 0.
+```
+
+Its identification with `h1` is literally equivalent to the already named
+`CanonicalCompletedNativeTfvdFirstOddDiagonalMomentIdentification`.  Hence
+there is no missing Naimark escape or residual correction at this order, but
+the scalar equality with `h1` remains open.
+
 ## All-order consequence if the seam closes
 
 If the same sewing holds at all orders, no additional operator carrier is
@@ -258,21 +319,25 @@ oriented BR2 jet.
 
 ## Recommended next proof target
 
-Do not construct another ambient carrier yet.  Test the existing one-point
-state against the completed ledger only at the two required diagonal jet
-orders:
+Do not construct another ambient carrier.  The residual profile has already
+decided where the two orders separate:
 
 ```text
-(p,q) = (0,0)  -> h0,
-(p,q) = (1,1)  -> h1.
+order 0: nonzero quadratic residual correction,
+order 1: zero residual correction; old TFVD h1 gate unchanged.
 ```
 
-The computation must be performed on the channel-complete state before the
-final scalar readout.  It should retain completion curvature, the mixed
-completion/native term, the precompression residual, and every cross
-remainder.  If the `(0,0)` identity fails, the missing summand identifies the
-minimal enlargement of `P`; if it holds, the `(1,1)` identity and nonzero odd
-jet are the complete theta-free low-order gate.
+The next attack should stay at `(0,0)` and open the recovered completed
+two-point ledger until its linear/cross residual and completion-curvature
+terms are compared with
 
-Only after those two identities close is it justified to promote the same
-factorization to all orders.
+```text
+||residual(0)||^2 = infiniteReflectedGreenEnergy(1/2)^2.
+```
+
+If the ledger supplies exactly the negative old-carrier defect recorded
+above, then `P` closes `h0`; otherwise the first failed equality gives the
+required change of normalization or the missing cross coordinate.  In
+parallel, the independent `(1,1)=h1` equality remains the existing named
+TFVD normalization gate.  Promotion to all orders should wait for both
+scalar identities.
