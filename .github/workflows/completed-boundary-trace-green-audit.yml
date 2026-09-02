@@ -46,7 +46,7 @@ jobs:
           build: false
           test: false
           lint: false
-          use-github-cache: true
+          use-github-cache: false
           use-mathlib-cache: true
           mk_all-check: false
           check-reservoir-eligibility: false

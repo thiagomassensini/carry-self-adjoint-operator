@@ -63,7 +63,10 @@ jobs:
           build: false
           test: false
           lint: false
-          use-github-cache: true
+          # The complete `.lake` tree is about 2.65 GB and the action keys it
+          # by commit SHA.  Saving it on every push exhausts the repository
+          # cache quota; the independent Mathlib cache remains enabled below.
+          use-github-cache: false
           use-mathlib-cache: true
 
       - name: Run complete kernel audit

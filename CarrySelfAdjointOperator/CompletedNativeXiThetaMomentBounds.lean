@@ -44,7 +44,8 @@ private theorem exp_upper_bound_fifth {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) 
       (∑ m ∈ Finset.range 5, x ^ m / m.factorial) +
         x ^ 5 * 6 / (Nat.factorial 5 * 5) :=
   by
-    convert Real.exp_bound' hx0 hx1 (n := 5) (by norm_num) using 1 <;> norm_num
+    convert Real.exp_bound' hx0 hx1 (n := 5) (by norm_num) using 1
+    all_goals norm_num
 
 private theorem exp_neg_22_div_7_gt :
     (431 / 10000 : ℝ) < Real.exp (-(22 / 7 : ℝ)) := by
@@ -122,7 +123,7 @@ private theorem exp_neg_thetaMassSecondTangentSwitch_gt :
 private def thetaMassWeight (x : ℝ) : ℝ :=
   (Real.sqrt x * Real.sqrt (Real.sqrt x))⁻¹
 
-private theorem thetaMassWeight_eq_inv_pow {x : ℝ} (hx : 0 < x) :
+private theorem thetaMassWeight_eq_inv_pow {x : ℝ} (_hx : 0 < x) :
     thetaMassWeight x = (Real.sqrt (Real.sqrt x) ^ 3)⁻¹ := by
   let t := Real.sqrt (Real.sqrt x)
   have hsqrt : Real.sqrt x = t ^ 2 := by
@@ -236,7 +237,7 @@ private theorem integrableOn_thetaMassIntegrand_Ici :
         mul_le_mul_of_nonneg_right hweight1 (Real.exp_pos _).le
       _ ≤ Real.exp (-3 * x) := by simpa using hexp
 
-private theorem thetaTail_ge_thetaFirstMode {u : ℝ} (hu : 0 ≤ u) :
+private theorem thetaTail_ge_thetaFirstMode {u : ℝ} (_hu : 0 ≤ u) :
     thetaFirstMode u ≤ thetaTail u := by
   rw [thetaTail_eq_two_mul_tsum]
   have hmode : thetaTailMode 0 u ≤ ∑' n : ℕ, thetaTailMode n u :=
@@ -247,7 +248,8 @@ private theorem thetaTail_ge_thetaFirstMode {u : ℝ} (hu : 0 ≤ u) :
       2 * thetaTailMode 0 u ≤ 2 * ∑' n : ℕ, thetaTailMode n u :=
     mul_le_mul_of_nonneg_left hmode (by norm_num)
   unfold thetaFirstMode thetaTailMode at hscaled' ⊢
-  convert hscaled' using 1 <;> ring
+  convert hscaled' using 1
+  all_goals ring
 
 private theorem integrableOn_thetaFirstMode :
     IntegrableOn thetaFirstMode (Ioi (0 : ℝ)) := by
@@ -267,7 +269,9 @@ private theorem thetaMassIntegrand_comp_exp (u : ℝ) :
       thetaFirstMode u := by
   have hexpdouble : Real.exp (2 * u) = Real.exp u ^ 2 := by
     calc
-      Real.exp (2 * u) = Real.exp (u + u) := by congr 1 <;> ring
+      Real.exp (2 * u) = Real.exp (u + u) := by
+        congr 1
+        ring
       _ = Real.exp u * Real.exp u := Real.exp_add u u
       _ = Real.exp u ^ 2 := by ring
   have hsqrt : Real.sqrt (Real.exp (2 * u)) = Real.exp u := by
@@ -275,7 +279,9 @@ private theorem thetaMassIntegrand_comp_exp (u : ℝ) :
       Real.sqrt_sq_eq_abs, abs_of_pos (Real.exp_pos u)]
   have hexphalf : Real.exp u = Real.exp (u / 2) ^ 2 := by
     calc
-      Real.exp u = Real.exp (u / 2 + u / 2) := by congr 1 <;> ring
+      Real.exp u = Real.exp (u / 2 + u / 2) := by
+        congr 1
+        ring
       _ = Real.exp (u / 2) * Real.exp (u / 2) := Real.exp_add _ _
       _ = Real.exp (u / 2) ^ 2 := by ring
   have hhalf : Real.sqrt (Real.exp u) = Real.exp (u / 2) := by
@@ -284,7 +290,9 @@ private theorem thetaMassIntegrand_comp_exp (u : ℝ) :
   unfold thetaMassIntegrand thetaMassWeight thetaFirstMode
   rw [hsqrt, hhalf]
   field_simp [Real.exp_ne_zero]
-  rw [show Real.exp (u * 2) = Real.exp (2 * u) by congr 1 <;> ring,
+  rw [show Real.exp (u * 2) = Real.exp (2 * u) by
+      congr 1
+      ring,
     hexpdouble, hexphalf]
   ring
 
@@ -368,7 +376,7 @@ private theorem hasDerivAt_affineExpPrimitive
   have hprod := hexp.mul haffine
   refine (hprod.congr_of_eventuallyEq ?_).congr_deriv ?_
   · exact Filter.Eventually.of_forall (fun _y ↦ rfl)
-  · simp only [Function.comp_apply, Pi.mul_apply]
+  · simp only [Function.comp_apply]
     field_simp [hrate]
     ring
 
@@ -392,14 +400,14 @@ private def thetaMassSecondLineRoot : ℝ :=
   15309 / 4096
 
 private theorem thetaMassFirstLine_nonneg {x : ℝ}
-    (hx1 : 1 ≤ x) (hxswitch : x ≤ thetaMassSecondTangentSwitch) :
+    (_hx1 : 1 ≤ x) (hxswitch : x ≤ thetaMassSecondTangentSwitch) :
     0 ≤ thetaMassFirstLine x := by
   dsimp [thetaMassFirstLine, thetaMassSecondTangentSwitch] at *
   norm_num at *
   linarith
 
 private theorem thetaMassSecondLine_nonneg {x : ℝ}
-    (hxswitch : thetaMassSecondTangentSwitch ≤ x)
+    (_hxswitch : thetaMassSecondTangentSwitch ≤ x)
     (hxroot : x ≤ thetaMassSecondLineRoot) :
     0 ≤ thetaMassSecondLine x := by
   dsimp [thetaMassSecondLine, thetaMassSecondLineRoot] at *
@@ -634,7 +642,8 @@ private theorem thetaTailMode_le_geometric {u : ℝ} (hu : 0 ≤ u) (n : ℕ) :
         apply Real.exp_le_exp.mpr
         nlinarith
       _ = Real.exp (-9) ^ n := by
-        convert Real.exp_nat_mul (-9) n using 1 <;> ring
+        convert Real.exp_nat_mul (-9) n using 1
+        all_goals ring
       _ ≤ (1 / 8000 : ℝ) ^ n :=
         pow_le_pow_left₀ (Real.exp_nonneg _) exp_neg_nine_lt.le n
   have hsplit :
@@ -973,7 +982,9 @@ private theorem thetaSecondMomentMajorant_comp_exp (u : ℝ) :
     rw [show 2 * u = u + u by ring, Real.exp_add, pow_two]
   have hhalf : Real.exp u = Real.exp (u / 2) ^ 2 := by
     calc
-      Real.exp u = Real.exp (u / 2 + u / 2) := by congr 1 <;> ring
+      Real.exp u = Real.exp (u / 2 + u / 2) := by
+        congr 1
+        ring
       _ = Real.exp (u / 2) * Real.exp (u / 2) := Real.exp_add _ _
       _ = Real.exp (u / 2) ^ 2 := by ring
   have hsqrt : Real.sqrt (Real.exp (2 * u)) = Real.exp u := by
@@ -1032,7 +1043,9 @@ private theorem integrableOn_thetaSecondMomentComposite :
         rw [← pow_two, ← pow_two] at hmul
         rw [show Real.exp u = Real.exp (u / 2) ^ 2 by
           calc
-            Real.exp u = Real.exp (u / 2 + u / 2) := by congr 1 <;> ring
+            Real.exp u = Real.exp (u / 2 + u / 2) := by
+              congr 1
+              ring
             _ = Real.exp (u / 2) * Real.exp (u / 2) := Real.exp_add _ _
             _ = Real.exp (u / 2) ^ 2 := by ring]
         exact hmul
@@ -1484,7 +1497,8 @@ private theorem exp_upper_bound_sixth {x : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) 
       (∑ m ∈ Finset.range 6, x ^ m / m.factorial) +
         x ^ 6 * 7 / (Nat.factorial 6 * 6) :=
   by
-    convert Real.exp_bound' hx0 hx1 (n := 6) (by norm_num) using 1 <;> norm_num
+    convert Real.exp_bound' hx0 hx1 (n := 6) (by norm_num) using 1
+    all_goals norm_num
 
 private theorem exp_neg_thetaRationalTangentSwitch_gt :
     (1335 / 1000000 : ℝ) <
@@ -1991,7 +2005,7 @@ private theorem integral_thetaRationalMomentMajorant_lt :
     unfold thetaRationalAffinePrimitive thetaRationalInflection
       thetaRationalTangentSwitch
     norm_num
-    <;> ring
+    all_goals ring
   rw [haggregate] at htotal
   have hcertified : certifiedUpper < (254 / 1000000 : ℝ) := by
     dsimp [certifiedUpper]
