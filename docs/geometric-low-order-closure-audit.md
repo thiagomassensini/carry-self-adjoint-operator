@@ -142,17 +142,36 @@ operator.  Thus the defect identity missing from the independent geometric
 proof is also exactly the missing input for the unconditional global height
 construction.
 
+## Follow-up: the dressed carrier already exists in part
+
+The subsequent carrier audit is recorded in
+`docs/existing-dressed-state-identification-audit.md`.  Its conclusion is
+more precise than the original instruction to build a new state.
+
+The repository already contains a canonical one-point positive carrier with
+ordinary TFVD, log-jet TFVD, and retained precompression-residual channels,
+as well as a channel-complete two-point ledger containing the remaining
+completion data.  The open gate is their concrete Gram/readout sewing, named
+`CanonicalCompletedC3ConcreteRealAxisPositiveSewing`.
+
+The direct Naimark escape of the completed response is identically zero, so
+it cannot be the desired nonzero defect.  The nonzero source escape returns
+through the resolvent inside the resolved Gamma correction, where genuine
+Gamma/correction cross terms remain.  Thus Naimark geometry participates in
+the dressing audit but does not by itself supply `D* D`.
+
 ## Recommended next attack
 
-1. Build the completed/product-dressed two-variable chiral state before any
-   diagonal or Taylor readout.
-2. Define the candidate contraction between its negative and positive
-   channels using the coisometric Naimark block.
-3. Compute `I - C* C` through order three at the center, retaining the
-   carrier/cross completion remainder.
-4. Match the two defect jets to the existing first and third chiral signature
-   coefficients.
-5. Prove the second defect jet is nonzero.  This is the strict `h1 > 0` input.
+1. Reuse `canonicalCompletedC3RealAxisPositiveState` as the first one-point
+   dressed candidate; do not introduce another carrier yet.
+2. Test only its `(0,0)` and `(1,1)` Gram jets against `h0` and `h1`, before
+   any final scalarization.
+3. Compare those jets channelwise with the recovered two-point completion
+   ledger, retaining completion curvature, the mixed native/completion term,
+   residuals, and cross channels.
+4. If the first equality fails, use the literal missing summand to determine
+   the minimal carrier enlargement.  If it holds, prove the odd jet nonzero.
+5. Promote the same sewing to all orders only after this low-order test.
 
 This is now the precise remaining geometric problem.  Reusing the naked
 ambient state or proving only that the unregularized ledger tends to zero
