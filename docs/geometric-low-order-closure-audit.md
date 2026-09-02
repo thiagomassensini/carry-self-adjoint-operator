@@ -219,5 +219,23 @@ Re N_M'(0) = Re <P(0),P(0)>
 ```
 
 and Lean reduces it to the negative residual-square balance already isolated
-above.  The first missing result is now channelwise differentiability at the
-collision, not another total scalar identity or another return operator.
+above.
+
+`CompletedC3CentralLedgerChannelDerivative.lean` carries out the next
+channelwise step.  It proves that the radial term vanishes identically on the
+real collision line and that the other four raw channels sum to a holomorphic
+raw-C3 branch whose first derivative is the first raw response coefficient.
+The complementary holomorphic branch is exactly the xi-minus-C3-chart
+replacement coefficient.  Hence the precise remaining equality is
+
+```text
+Re <rawTFVD(0), rawTFVD(0)> - Re(raw-C3 coefficient 1)
+  = Re(xi-completion coefficient 1 - C3-chart coefficient 1)
+      - ||residual(0)||^2.
+```
+
+This is the first place where a genuinely new proof is required.  Total
+response Taylor theory determines the sum, but does not assign the raw
+mismatch, completion curvature, and retained residual square to one another.
+The archived returns and the direct Naimark escape do not supply this
+assignment.

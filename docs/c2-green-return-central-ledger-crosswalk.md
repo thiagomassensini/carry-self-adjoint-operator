@@ -150,19 +150,46 @@ Here the residual square is already known exactly as
 infiniteReflectedGreenEnergy(1/2)^2 > 0.
 ```
 
-## First genuinely missing equality
+## Channel derivative and first genuinely missing equality
 
-The total diagonal closure was previously defined by the derivative of the
-completed normalized response.  Therefore total scalar closure cannot by
-itself identify which channel supplies the negative residual-square balance.
+`CompletedC3CentralLedgerChannelDerivative.lean` now performs the first
+channelwise diagonal extension.  It splits the central ledger into two
+holomorphic blocks before differentiating:
 
-The next theorem must be a channelwise diagonal extension at the center.  In
-particular it must differentiate, before scalar collapse, the five terms
-inside the xi weight and the archimedean chart term, including the derivative
-of the xi weight itself.  That is the precise location of completion
-curvature and mixed native/completion contributions.
+```text
+N_M = raw completed-C3 Wronskian branch + xi-minus-chart branch.
+```
 
-No new carrier and no finite return solver are needed.  The next attack is to
-prove differentiability at zero of those current ledger channels and compare
-their derivative sum with the already fixed value `h0`, isolating the term
-equal to `-||residual(0)||^2`.
+Their center derivatives are exactly the first raw-C3 response coefficient
+and the first chart-replacement coefficient.  On the real collision line the
+finite radial channel vanishes identically.  The surviving raw branch is the
+exact sum
+
+```text
+Green provenance
+  + ordered off-diagonal provenance
+  + height-readout residual
+  + head-tail completion.
+```
+
+This identity holds for every cutoff, and the derivative of that four-channel
+sum is the first raw-C3 response coefficient.  Individual subchannels remain
+real-axis functions because the radial reflection and real-part operations
+are not holomorphic; the proof differentiates their exact sum through the
+holomorphic raw branch rather than imposing false complex analyticity on the
+pieces.
+
+The zeroth dressed sewing is therefore equivalent to the single explicit
+balance
+
+```text
+Re <rawTFVD(0), rawTFVD(0)> - Re(raw-C3 coefficient 1)
+  = Re(xi-completion coefficient 1 - C3-chart coefficient 1)
+      - ||residual(0)||^2.
+```
+
+This is the first genuinely missing equality.  It distinguishes three terms
+which cannot honestly be identified by naming: the raw TFVD/response
+mismatch, completion curvature relative to the C3 chart, and the retained
+carrier residual square.  No new carrier and no finite return solver are
+needed before this balance is addressed.
