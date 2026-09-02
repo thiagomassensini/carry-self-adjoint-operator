@@ -11,7 +11,7 @@ The repository was first rebuilt with
 lake build --wfail
 ```
 
-and all 9175 jobs passed.  The emitted `ring_nf` suggestions are Lean `info`
+and all 9176 jobs passed.  The emitted `ring_nf` suggestions are Lean `info`
 messages, not warnings; `--wfail` reported no warning failure.
 
 The formal results are in
