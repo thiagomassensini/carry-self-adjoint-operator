@@ -190,3 +190,34 @@ The next honest attack is thus asymmetric:
 This is now the precise remaining geometric problem.  Reusing the naked
 ambient state or proving only that the unregularized ledger tends to zero
 cannot close it.
+
+## Follow-up: archived C2 return route and the central collision
+
+The archived Green-return scouts were compared with the current completed
+carrier in `docs/c2-green-return-central-ledger-crosswalk.md`.  They recover
+the correct unreduced skew/chiral architecture, but only as cutoff-dependent
+finite compressed witnesses.  Their exterior endpoint/tail defect is not
+closed, their returns are not compatible between cutoffs, and their direct
+sum lacks a proved physical metric.  More strongly, the natural
+fixed-parameter return on the current completed carrier is already excluded
+by the thirteen-state kernel obstruction.
+
+`CompletedC3CentralLedgerCollisionAudit.lean` therefore opens the current
+ledger instead.  With every radial, provenance, off-diagonal, residual, tail,
+xi, and archimedean term retained, its fixed-center normalized numerator
+`N_M` satisfies
+
+```text
+N_M(0) = 0,
+N_M'(0) = h0.
+```
+
+Consequently the remaining zeroth-order sewing is exactly
+
+```text
+Re N_M'(0) = Re <P(0),P(0)>
+```
+
+and Lean reduces it to the negative residual-square balance already isolated
+above.  The first missing result is now channelwise differentiability at the
+collision, not another total scalar identity or another return operator.
