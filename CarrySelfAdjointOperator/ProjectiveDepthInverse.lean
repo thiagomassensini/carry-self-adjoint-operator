@@ -56,8 +56,9 @@ theorem one_add_X_mul_inverseCoordinate :
     (1 + X) * inverseCoordinate (R := R) = X := by
   rw [inverseCoordinate]
   calc
-    (1 + X) * (X * inverseGeometricSeries) =
-        X * ((1 + X) * inverseGeometricSeries) := by ring
+    ((1 : PowerSeries R) + X) * (X * inverseGeometricSeries) =
+        X * (((1 : PowerSeries R) + X) * inverseGeometricSeries) := by
+      ac_rfl
     _ = X := by
       rw [one_add_X_mul_inverseGeometricSeries, mul_one]
 
@@ -65,9 +66,7 @@ theorem one_add_X_mul_inverseCoordinate :
 theorem one_sub_inverseCoordinate_eq_inverseGeometricSeries :
     1 - inverseCoordinate (R := R) = inverseGeometricSeries := by
   rw [inverseCoordinate]
-  have h := one_add_X_mul_inverseGeometricSeries (R := R)
-  rw [add_mul, one_mul] at h
-  rw [← h]
+  rw [← one_add_X_mul_inverseGeometricSeries (R := R)]
   ring
 
 /-- A coordenada direta admite substituição formal. -/
@@ -88,12 +87,21 @@ theorem coordinate_subst_inverseCoordinate :
   have htransportRaw := congrArg
     (fun F : PowerSeries R => F.subst (inverseCoordinate (R := R)))
     (one_sub_X_mul_coordinate (R := R))
+  have hsubOne : PowerSeries.subst (a := inverseCoordinate (R := R)) (1 : PowerSeries R) =
+      C (1 : R) := by
+    change PowerSeries.subst (a := inverseCoordinate (R := R)) (C (1 : R)) = C (1 : R)
+    simpa using
+      (PowerSeries.subst_C (S := R) (a := inverseCoordinate (R := R)) (r := (1 : R)))
   have htransport :
-      (1 - inverseCoordinate (R := R)) *
+      (C (1 : R) - inverseCoordinate (R := R)) *
           ((coordinate (R := R)).subst (inverseCoordinate (R := R))) =
         inverseCoordinate (R := R) := by
-    simpa [subst_mul hinverse, subst_sub hinverse, subst_X hinverse] using
+    simpa [subst_mul hinverse, subst_sub hinverse, subst_X hinverse, hsubOne] using
       htransportRaw
+  have htransport' : (1 - inverseCoordinate (R := R)) *
+      ((coordinate (R := R)).subst (inverseCoordinate (R := R))) =
+    inverseCoordinate (R := R) := by
+    simpa using htransport
   calc
     (coordinate (R := R)).subst (inverseCoordinate (R := R)) =
         ((1 + X) * (1 - inverseCoordinate (R := R))) *
@@ -105,7 +113,7 @@ theorem coordinate_subst_inverseCoordinate :
           ((coordinate (R := R)).subst (inverseCoordinate (R := R)))) := by
       ring
     _ = (1 + X) * inverseCoordinate (R := R) := by
-      rw [htransport]
+      rw [htransport']
     _ = X := one_add_X_mul_inverseCoordinate
 
 /-- Segundo percurso: `X(Y)` avaliada em `Y = X/(1-X)` devolve `X`. -/
@@ -116,12 +124,21 @@ theorem inverseCoordinate_subst_coordinate :
   have htransportRaw := congrArg
     (fun F : PowerSeries R => F.subst (coordinate (R := R)))
     (one_add_X_mul_inverseCoordinate (R := R))
+  have hsubOne : PowerSeries.subst (a := coordinate (R := R)) (1 : PowerSeries R) =
+      C (1 : R) := by
+    change PowerSeries.subst (a := coordinate (R := R)) (C (1 : R)) = C (1 : R)
+    simpa using
+      (PowerSeries.subst_C (S := R) (a := coordinate (R := R)) (r := (1 : R)))
   have htransport :
-      (1 + coordinate (R := R)) *
+      (C (1 : R) + coordinate (R := R)) *
           ((inverseCoordinate (R := R)).subst (coordinate (R := R))) =
         coordinate (R := R) := by
-    simpa [subst_mul hcoordinate, subst_add hcoordinate, subst_X hcoordinate] using
+    simpa [subst_mul hcoordinate, subst_add hcoordinate, subst_X hcoordinate, hsubOne] using
       htransportRaw
+  have htransport' : (1 + coordinate (R := R)) *
+      ((inverseCoordinate (R := R)).subst (coordinate (R := R))) =
+    coordinate (R := R) := by
+    simpa using htransport
   calc
     (inverseCoordinate (R := R)).subst (coordinate (R := R)) =
         ((1 - X) * (1 + coordinate (R := R))) *
@@ -133,7 +150,7 @@ theorem inverseCoordinate_subst_coordinate :
           ((inverseCoordinate (R := R)).subst (coordinate (R := R)))) := by
       ring
     _ = (1 - X) * coordinate (R := R) := by
-      rw [htransport]
+      rw [htransport']
     _ = X := one_sub_X_mul_coordinate
 
 end CarrySelfAdjointOperator.ProjectiveDepth

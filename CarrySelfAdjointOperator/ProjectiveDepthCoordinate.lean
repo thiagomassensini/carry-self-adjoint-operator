@@ -43,8 +43,9 @@ theorem one_sub_X_mul_coordinate :
     (1 - X) * coordinate (R := R) = X := by
   rw [coordinate]
   calc
-    (1 - X) * (X * geometricSeries) =
-        X * ((1 - X) * geometricSeries) := by ring
+    ((1 : PowerSeries R) - X) * (X * geometricSeries) =
+        X * (((1 : PowerSeries R) - X) * geometricSeries) := by
+      ac_rfl
     _ = X := by
       rw [one_sub_X_mul_geometricSeries, mul_one]
 
@@ -52,13 +53,12 @@ theorem one_sub_X_mul_coordinate :
 theorem one_add_coordinate_eq_geometricSeries :
     1 + coordinate (R := R) = geometricSeries := by
   rw [coordinate]
-  have h := one_sub_X_mul_geometricSeries (R := R)
-  rw [sub_mul, one_mul] at h
   calc
-    1 + X * geometricSeries =
-        (geometricSeries - X * geometricSeries) + X * geometricSeries := by
-      rw [h]
-    _ = geometricSeries := by ring
+    (1 : PowerSeries R) + X * geometricSeries =
+        ((1 : PowerSeries R) - X) * geometricSeries + X * geometricSeries := by
+      rw [one_sub_X_mul_geometricSeries]
+    _ = geometricSeries := by
+      rw [sub_mul, one_mul, sub_add_cancel]
 
 /-- O quadrado da série geométrica é o núcleo de Green. -/
 theorem geometricSeries_mul_self_eq_greenKernelSeries :
@@ -74,7 +74,6 @@ theorem coordinate_derivativeFun :
   ext n
   rw [coeff_derivativeFun, coordinate, coeff_succ_X_mul,
     geometricSeries, coeff_mk, greenKernelSeries, coeff_mk]
-  push_cast
   ring
 
 /-- Campo de velocidade projetivo do operador de profundidade. -/
@@ -115,21 +114,22 @@ campo de velocidade de Green como coeficiente:
 `X * (F ∘ Y)' = greenVelocity * (F' ∘ Y)`.
 -/
 theorem euler_subst_coordinate (F : PowerSeries R) :
-    X * (F.subst (coordinate (R := R))).derivativeFun =
+    X * (d⁄dX R (F.subst (coordinate (R := R)))) =
       greenVelocity *
-        (F.derivativeFun.subst (coordinate (R := R))) := by
+        ((d⁄dX R F).subst (coordinate (R := R))) := by
   have hcoordinate : HasSubst (coordinate (R := R)) :=
     HasSubst.of_constantCoeff_zero' coordinate_constantCoeff
-  have hchain :
-      (F.subst (coordinate (R := R))).derivativeFun =
-        (F.derivativeFun.subst (coordinate (R := R))) *
-          (coordinate (R := R)).derivativeFun := by
-    change d⁄dX R (F.subst (coordinate (R := R))) =
-      (d⁄dX R F).subst (coordinate (R := R)) *
-        d⁄dX R (coordinate (R := R))
-    exact derivative_subst R hcoordinate
-  rw [hchain, coordinate_derivativeFun]
+  rw [derivative_subst R hcoordinate]
+
+  change
+    X *
+        ((d⁄dX R F).subst (coordinate (R := R)) *
+          (coordinate (R := R)).derivativeFun) =
+      greenVelocity *
+        ((d⁄dX R F).subst (coordinate (R := R)))
+
+  rw [coordinate_derivativeFun]
   unfold greenVelocity
-  ring
+  ac_rfl
 
 end CarrySelfAdjointOperator.ProjectiveDepth
