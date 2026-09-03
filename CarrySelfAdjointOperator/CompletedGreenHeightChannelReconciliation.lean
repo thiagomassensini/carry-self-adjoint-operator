@@ -164,6 +164,45 @@ theorem canonicalCompletedNativePolarizedDslopeKernel_posSemidef_of_divisionFree
   rw [hrw]
   exact Matrix.posSemidef_gram ℂ _
 
+/-- **Diagonal equivalence.**  Off the real axis, the diagonal `dslope`
+positivity is *equivalent* to the Herglotz sign of `a = −F'/F` — not merely
+implied by it.  Unconditional. -/
+theorem canonicalCompletedNativePolarizedDslopeKernel_diagonal_re_nonneg_iff_herglotz
+    {z : ℂ}
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hzIm : z.im ≠ 0) :
+    0 ≤ (canonicalCompletedNativePolarizedDslopeKernel z z).re ↔
+      0 ≤ (completedNativeLogDerivativeHerglotzCoordinate z).im / z.im := by
+  rw [canonicalCompletedNativePolarizedDslopeKernel_diagonal_eq_coordinate_im
+      hzStrip hzIm, Complex.ofReal_re,
+    show (completedNativeLogDerivativeHerglotzCoordinate z).im / (2 * z.im) =
+        ((completedNativeLogDerivativeHerglotzCoordinate z).im / z.im) / 2 from by
+      ring]
+  constructor <;> intro h <;> linarith
+
+/-- **Converse aggregation.**  If the sampled polarized `dslope` (height Pick)
+matrix is positive semidefinite on a finite off-axis sample, then the Herglotz
+sign `Im a / Im z ≥ 0` holds at every sample point — read off the diagonal of
+the positive semidefinite matrix.  Together with the forward Gram direction,
+sampled positivity is *equivalent* to pointwise Herglotz positivity. -/
+theorem herglotz_of_sampled_polarizedDslopePosSemidef
+    {ι : Type*} [Fintype ι]
+    (point : ι → ℂ)
+    (hstrip : ∀ i, operatorHeightParameter (point i) ∈ genuineCriticalStrip)
+    (hzIm : ∀ i, (point i).im ≠ 0)
+    (hPSD : (Matrix.of fun i j =>
+      canonicalCompletedNativePolarizedDslopeKernel
+        (point i) (point j)).PosSemidef)
+    (i : ι) :
+    0 ≤ (completedNativeLogDerivativeHerglotzCoordinate (point i)).im /
+      (point i).im := by
+  rw [← canonicalCompletedNativePolarizedDslopeKernel_diagonal_re_nonneg_iff_herglotz
+    (hstrip i) (hzIm i)]
+  have hdiag : (0 : ℂ) ≤
+      canonicalCompletedNativePolarizedDslopeKernel (point i) (point i) := by
+    simpa [Matrix.of_apply] using hPSD.2 (Finsupp.single i (1 : ℂ))
+  simpa using (Complex.le_def.mp hdiag).1
+
 end
 
 end CarrySelfAdjointOperator
