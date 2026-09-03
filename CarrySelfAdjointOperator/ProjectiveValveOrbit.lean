@@ -85,6 +85,7 @@ theorem projectiveValveOrbit_eq_bot_iff
     simpa using hcurv
   · intro hD
     subst D
+    change (projectiveValveFlowHom (0 : PowerSeries K)).range = ⊥
     apply MonoidHom.range_eq_bot_iff.mpr
     ext t
     change projectiveValveFlow (0 : PowerSeries K) t.toAdd = 1
@@ -107,7 +108,7 @@ theorem projectiveValveOrbit_smul_eq
           projectiveValveFlow D ((t * r⁻¹) * r) :=
         projectiveValveFlow_reparameterize D r (t * r⁻¹)
       _ = projectiveValveFlow D t := by
-        rw [mul_assoc, inv_mul_cancel₀ hr, mul_one]
+        simp [mul_assoc, hr]
 
 /-- Duas órbitas coincidem exatamente quando os geradores representam a mesma
 direção projetiva. A hipótese `E ≠ 0` força o escalar de mudança a ser não
