@@ -68,7 +68,9 @@ theorem isLogDerivChannel_greenMassSeries (C : PowerSeries K) :
   unfold greenMassSeries
   have h := isLogDerivChannel_expSeries (greenLogPotential C)
     (greenLogPotential_constantCoeff C)
-  rwa [X_mul_derivative_greenLogPotential C] at h
+  have hgrad := X_mul_derivative_greenLogPotential C
+  change X * (greenLogPotential C).derivativeFun = greenChannelSeries C at hgrad
+  rwa [hgrad] at h
 
 /-- A construção exponencial coincide com a integração recursiva `towerMass`
 do canal de Green. -/
