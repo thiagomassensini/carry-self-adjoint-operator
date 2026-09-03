@@ -36,7 +36,7 @@ theorem canonicalTowerChannel_eq (a : ℕ → R) (n : ℕ) :
         ∑ i ∈ Finset.range n,
           canonicalTowerChannel a i * a (n - i) := by
   rw [canonicalTowerChannel, WellFounded.fix_eq]
-  congr 2
+  refine congrArg (fun s : R => (n : R) * a n - s) ?_
   rw [Finset.sum_fin_eq_sum_range]
   apply Finset.sum_congr rfl
   intro i hi
