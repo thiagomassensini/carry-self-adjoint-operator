@@ -76,6 +76,52 @@ theorem canonicalCompletedNativePolarizedDslopeKernel_eq_herglotzDividedDifferen
   rw [hdslope, canonicalCompletedNativePolarizedResponseNumerator_eq_coordinate,
     div_div]
 
+/-- **Diagonal of the reconciliation.**  Off the real axis, the polarized
+`dslope` kernel on the diagonal is the real ratio `Im a(z) / (2 Im z)` — the
+Herglotz sign, halved.  Unconditional. -/
+theorem canonicalCompletedNativePolarizedDslopeKernel_diagonal_eq_coordinate_im
+    {z : ℂ}
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hzIm : z.im ≠ 0) :
+    canonicalCompletedNativePolarizedDslopeKernel z z =
+      (((completedNativeLogDerivativeHerglotzCoordinate z).im /
+        (2 * z.im) : ℝ) : ℂ) := by
+  have hsep : z ≠ conj z := by
+    intro h
+    apply hzIm
+    have := congrArg Complex.im h
+    simp only [Complex.conj_im] at this
+    linarith
+  rw [canonicalCompletedNativePolarizedDslopeKernel_eq_herglotzDividedDifference
+    hzStrip hsep, Complex.sub_conj, Complex.sub_conj]
+  push_cast
+  field_simp
+
+/-- **Diagonal Herglotz positivity, transported.**  Under a division-free Green
+representation, the polarized `dslope` kernel on the nonreal diagonal has
+nonnegative real part — the height sign gate expressed directly on the build's
+kernel, via the bridge's `Im a / Im z ≥ 0`. -/
+theorem canonicalCompletedNativePolarizedDslopeKernel_diagonal_re_nonneg_of_divisionFreeGreen
+    {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+    {state : ℂ → H}
+    (hgreen : HasDivisionFreeGreenRepresentation
+      completedNativeOperatorCharacteristic
+      completedNativeOperatorBoundaryCompanion state)
+    {z : ℂ}
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hzF : completedNativeOperatorCharacteristic z ≠ 0)
+    (hzIm : z.im ≠ 0) :
+    0 ≤ (canonicalCompletedNativePolarizedDslopeKernel z z).re := by
+  rw [canonicalCompletedNativePolarizedDslopeKernel_diagonal_eq_coordinate_im
+      hzStrip hzIm, Complex.ofReal_re,
+    show (completedNativeLogDerivativeHerglotzCoordinate z).im / (2 * z.im) =
+        ((completedNativeLogDerivativeHerglotzCoordinate z).im / z.im) / 2 by
+      ring]
+  exact div_nonneg
+    (completedNativeLogDerivative_im_div_nonneg_of_divisionFreeGreen
+      hgreen z hzF hzIm)
+    (by norm_num)
+
 end
 
 end CarrySelfAdjointOperator
