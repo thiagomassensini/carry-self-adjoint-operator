@@ -274,3 +274,5 @@ import CarrySelfAdjointOperator.ProjectiveValveFlowRigidity
 import CarrySelfAdjointOperator.ProjectiveValveOrbit
 
 import CarrySelfAdjointOperator.ProjectiveValveOrbitIncidence
+
+import CarrySelfAdjointOperator.ProjectiveValveDirectionSpace
