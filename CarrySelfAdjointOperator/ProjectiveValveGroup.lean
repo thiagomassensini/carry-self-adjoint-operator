@@ -47,7 +47,7 @@ instance : Inv (NormalizedProjectiveMass K) where
     (A * B).1 = A.1 * B.1 := rfl
 
 @[simp] theorem val_inv (A : NormalizedProjectiveMass K) :
-    A⁻¹.1 = A.1⁻¹ := rfl
+    (A⁻¹).1 = A.1⁻¹ := rfl
 
 /-- As massas normalizadas formam um grupo comutativo sob multiplicação de
 séries formais. O inverso é o inverso formal da série. -/
