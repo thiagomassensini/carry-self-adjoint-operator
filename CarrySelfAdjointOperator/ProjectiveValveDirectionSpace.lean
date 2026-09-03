@@ -94,7 +94,8 @@ theorem projectiveValveDirectionOrbit_eq_iff
   constructor
   · exact projectiveValveDirectionOrbit_injective
   · intro hpq
-    exact congrArg projectiveValveDirectionOrbit hpq
+    subst q
+    rfl
 
 /-- O espaço das órbitas projetivas é a imagem do mapa direção--órbita. -/
 abbrev ProjectiveValveOrbitSpace
