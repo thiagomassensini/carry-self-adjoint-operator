@@ -107,7 +107,7 @@ private theorem scalar_eq_zero_of_smul_series_eq_zero
   apply hD
   calc
     D = 1 • D := by simp
-    _ = (t⁻¹ * t) • D := by rw [inv_mul_cancel₀ ht]
+    _ = (t⁻¹ * t) • D := by simpa [inv_mul_cancel₀ ht]
     _ = t⁻¹ • (t • D) := by rw [smul_smul]
     _ = 0 := by rw [htD, smul_zero]
 
