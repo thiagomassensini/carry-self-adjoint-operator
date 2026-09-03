@@ -24,8 +24,10 @@ open PowerSeries
 
 variable {K : Type*} [Field K] [CharZero K]
 
-/-- Subgrupo de massas percorrido pelo fluxo gerado por `D`. -/
-noncomputable def projectiveValveOrbit
+/-- Subgrupo de massas percorrido pelo fluxo gerado por `D`. Esta é uma
+abreviação redutível do `range`, para que o subtipo reutilize literalmente as
+mesmas instâncias de grupo da imagem do homomorfismo. -/
+noncomputable abbrev projectiveValveOrbit
     (D : PowerSeries K) : Subgroup (NormalizedProjectiveMass K) :=
   (projectiveValveFlowHom D).range
 
@@ -65,9 +67,9 @@ aditivo dos escalares. -/
 noncomputable def projectiveValveOrbitEquiv
     (D : PowerSeries K) (hD : D ≠ 0) :
     Multiplicative K ≃* projectiveValveOrbit D := by
-  simpa [projectiveValveOrbit] using
-    (MonoidHom.ofInjective
-      (projectiveValveFlowHom_injective_of_ne D hD))
+  change Multiplicative K ≃* (projectiveValveFlowHom D).range
+  exact MonoidHom.ofInjective
+    (projectiveValveFlowHom_injective_of_ne D hD)
 
 /-- A órbita é trivial exatamente para o gerador nulo. -/
 theorem projectiveValveOrbit_eq_bot_iff
@@ -88,8 +90,8 @@ theorem projectiveValveOrbit_eq_bot_iff
     change (projectiveValveFlowHom (0 : PowerSeries K)).range = ⊥
     apply MonoidHom.range_eq_bot_iff.mpr
     ext t
-    change projectiveValveFlow (0 : PowerSeries K) t.toAdd = 1
-    exact projectiveValveFlow_zero_generator t.toAdd
+    change projectiveValveFlow (0 : PowerSeries K) t = 1
+    exact projectiveValveFlow_zero_generator t
 
 /-- Escalar um gerador por um escalar não nulo não altera sua órbita. -/
 theorem projectiveValveOrbit_smul_eq
@@ -108,7 +110,7 @@ theorem projectiveValveOrbit_smul_eq
           projectiveValveFlow D ((t * r⁻¹) * r) :=
         projectiveValveFlow_reparameterize D r (t * r⁻¹)
       _ = projectiveValveFlow D t := by
-        simp [mul_assoc, hr]
+        simp [hr]
 
 /-- Duas órbitas coincidem exatamente quando os geradores representam a mesma
 direção projetiva. A hipótese `E ≠ 0` força o escalar de mudança a ser não
