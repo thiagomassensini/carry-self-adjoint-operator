@@ -102,4 +102,33 @@ theorem bracket_greenSum (f : ℕ → E) (n : ℕ) :
 theorem greenSum_zero (f : ℕ → E) : greenSum f 0 = 0 := by
   simp [greenSum]
 
+/-! ## Lei de conservação: kernel do bracket -/
+
+/-- **Kernel do bracket = estados afins.** Curvatura-zero equivale a puro bordo:
+`f` tem bracket identicamente nulo se e só se é a forma afim do seu traço,
+`f n = f 0 + n • (f 1 - f 0)`. É o ponto fixo trivial da válvula aditiva
+(sem cauda de Green), análogo ao canal nulo ⟺ massa trivial do lado
+multiplicativo. -/
+theorem bracket_eq_zero_iff_affine (f : ℕ → E) :
+    (∀ j, bracket f j = 0) ↔ ∀ n, f n = f 0 + n • (f 1 - f 0) := by
+  constructor
+  · intro hbr n
+    cases n with
+    | zero => simp
+    | succ m =>
+      have hg : greenSum f m = 0 := by
+        unfold greenSum
+        apply Finset.sum_eq_zero
+        intro j _
+        rw [hbr j, smul_zero]
+      rw [discrete_valve f m, hg, add_zero]
+  · intro haff j
+    rw [bracket_eq_fdiff_sub]
+    have hf : ∀ k, fdiff f k = f 1 - f 0 := by
+      intro k
+      unfold fdiff
+      rw [haff (k + 1), haff k, succ_nsmul]
+      abel
+    rw [hf (j + 1), hf j, sub_self]
+
 end CarrySelfAdjointOperator.DiscreteValve
