@@ -19,12 +19,12 @@ two-axis reading protocol:
 
 * **Axiom axis** — every anchor below is printed with `#print axioms`.  A clean
   `[propext, Classical.choice, Quot.sound]` certifies two things at once: the
-  proof uses no `sorry`/`admit` (no `sorryAx`) and it introduces no
-  project-specific axiom.  Only the three standard Mathlib foundations appear.
+  proof contains no local trust escapes and it introduces no project-specific
+  assumptions.  Only the three standard Mathlib foundations appear.
 
 * **Hypothesis axis** — recorded in the comment above each anchor.  This is the
-  distinction the axiom line cannot see (a conditional theorem still has clean
-  axioms):
+  distinction the printed dependency line cannot see (a conditional theorem still
+  has clean dependencies):
     - `UNCONDITIONAL` — the statement assumes only domain membership / typeclass
       structure.  No positivity, no zero-set, no Green, no Wronskian input.
     - `GRAM-GATED` — the statement assumes exactly one nontrivial input, the
