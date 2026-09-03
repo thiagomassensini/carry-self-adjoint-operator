@@ -92,7 +92,8 @@ theorem projectiveValveDirectionOrbit_eq_iff
         projectiveValveDirectionOrbit q ↔
       p = q := by
   constructor
-  · exact projectiveValveDirectionOrbit_injective (K := K)
+  · intro hpq
+    exact (projectiveValveDirectionOrbit_injective (K := K)) hpq
   · intro hpq
     subst q
     rfl
