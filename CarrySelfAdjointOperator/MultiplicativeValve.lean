@@ -75,4 +75,22 @@ theorem geometric_isTowerChannel (c : R) :
   rw [Finset.sum_congr rfl key, Finset.sum_range_succ']
   simp
 
+/-! ## Aditividade de canais: a completação `F = A · G` -/
+
+/-- Log-derivada de torre em série formal: `B · A = X · A'`, equivalente a
+`B = X·A'/A = 𝓔 log A` onde `A` é unidade. Versão em série formal do canal
+cumulante `IsTowerChannel`. -/
+def IsLogDerivChannel (A B : PowerSeries R) : Prop :=
+  B * A = PowerSeries.X * A.derivativeFun
+
+/-- **Aditividade de canais.** A log-derivada de um produto é a soma das
+log-derivadas: `m_{A·G} = m_A + m_G`. É o `F = A·G ⟹ γ_F = γ_A ⊕ γ_G` da
+completação — fato puramente algébrico (regra de Leibniz), sem análise. -/
+theorem isLogDerivChannel_mul {A₁ A₂ B₁ B₂ : PowerSeries R}
+    (h₁ : IsLogDerivChannel A₁ B₁) (h₂ : IsLogDerivChannel A₂ B₂) :
+    IsLogDerivChannel (A₁ * A₂) (B₁ + B₂) := by
+  unfold IsLogDerivChannel at h₁ h₂ ⊢
+  rw [PowerSeries.derivativeFun_mul]
+  linear_combination h₁ * A₂ + h₂ * A₁
+
 end CarrySelfAdjointOperator.MultiplicativeValve
