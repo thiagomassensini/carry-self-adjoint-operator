@@ -267,3 +267,5 @@ import CarrySelfAdjointOperator.GreenMultiplicativeValveBridge
 import CarrySelfAdjointOperator.GreenMultiplicativeValveMass
 
 import CarrySelfAdjointOperator.ProjectiveValveFundamentalTheorem
+
+import CarrySelfAdjointOperator.ProjectiveValveEquivalence
