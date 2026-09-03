@@ -160,7 +160,7 @@ theorem projectiveValveOrbit_inf_eq_bot_iff_not_nonzero_smul
     (hE : E ≠ 0) :
     projectiveValveOrbit D ⊓ projectiveValveOrbit E = ⊥ ↔
       ¬ ∃ r : K, r ≠ 0 ∧ E = r • D := by
-  rw [projectiveValveOrbit_inf_eq_bot_iff_ne D E hE,
-    projectiveValveOrbit_eq_iff_nonzero_smul D E hE]
+  exact (projectiveValveOrbit_inf_eq_bot_iff_ne D E hE).trans
+    (not_congr (projectiveValveOrbit_eq_iff_nonzero_smul D E hE))
 
 end CarrySelfAdjointOperator.ProjectiveValve
