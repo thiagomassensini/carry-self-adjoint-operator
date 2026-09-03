@@ -268,3 +268,5 @@ import CarrySelfAdjointOperator.ProjectiveValveAlgebra
 import CarrySelfAdjointOperator.ProjectiveValveGroup
 
 import CarrySelfAdjointOperator.ProjectiveValveFlow
+
+import CarrySelfAdjointOperator.ProjectiveValveFlowRigidity
