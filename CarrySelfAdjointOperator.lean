@@ -260,3 +260,4 @@ import CarrySelfAdjointOperator.CanonicalTowerChannel
 
 import CarrySelfAdjointOperator.ProjectiveDepthCoordinate
 import CarrySelfAdjointOperator.ProjectiveDepthInverse
+import CarrySelfAdjointOperator.ProjectiveDepthEquivalence

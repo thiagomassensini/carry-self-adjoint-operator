@@ -27,7 +27,7 @@ variable {R : Type*} [CommRing R]
 theorem subst_X_eq_self (F : PowerSeries R) :
     F.subst (X : PowerSeries R) = F := by
   have h := PowerSeries.map_algebraMap_eq_subst_X (R := R) (S := R) F
-  simpa using h.symm
+  simp [h.symm]
 
 /-- Transporte de uma série da coordenada original `X` para a coordenada
 projetiva `Y`: compor com `X(Y) = Y/(1+Y)`. -/
@@ -127,16 +127,52 @@ theorem inverse_coordinate_jacobian :
 o seu jacobiano. Esta é a identidade que reduz a composição das duas válvulas
 a uma derivada ordinária em `Y`. -/
 theorem greenKernel_subst_inverse_mul_inverseDerivative :
-    (greenKernelSeries.subst (inverseCoordinate (R := R))) *
+    (PowerSeries.subst (a := inverseCoordinate (R := R))
+        (f := (CarrySelfAdjointOperator.DiscreteValve.greenKernelSeries (R := R))) ) *
       d⁄dX R (inverseCoordinate (R := R)) = 1 := by
-  simpa [coordinate_derivativeFun] using
-    (coordinate_inverse_jacobian (R := R))
+  have hcoordDeriv :
+      d⁄dX R (coordinate (R := R)) =
+        (CarrySelfAdjointOperator.DiscreteValve.greenKernelSeries (R := R)) := by
+    calc
+      d⁄dX R (coordinate (R := R)) = (coordinate (R := R)).derivativeFun := rfl
+      _ = (CarrySelfAdjointOperator.DiscreteValve.greenKernelSeries (R := R)) := coordinate_derivativeFun (R := R)
+  have hsub : (PowerSeries.subst (a := inverseCoordinate (R := R))
+      (f := d⁄dX R (coordinate (R := R))) *
+        d⁄dX R (inverseCoordinate (R := R)) = 1) := by
+    simpa using (coordinate_inverse_jacobian (R := R))
+  calc
+    (PowerSeries.subst (a := inverseCoordinate (R := R))
+        (f := (CarrySelfAdjointOperator.DiscreteValve.greenKernelSeries (R := R))) ) *
+        d⁄dX R (inverseCoordinate (R := R))
+        = (PowerSeries.subst (a := inverseCoordinate (R := R))
+            (f := d⁄dX R (coordinate (R := R))) *
+              d⁄dX R (inverseCoordinate (R := R))) := by
+      apply congrArg (fun F => F * d⁄dX R (inverseCoordinate (R := R)))
+      exact congrArg (PowerSeries.subst (a := inverseCoordinate (R := R))) hcoordDeriv.symm
+    _ = 1 := hsub
 
 /-- A identidade jacobiana espelhada na coordenada original. -/
 theorem inverseDerivative_subst_coordinate_mul_greenKernel :
     ((d⁄dX R (inverseCoordinate (R := R))).subst
-        (coordinate (R := R))) * greenKernelSeries = 1 := by
-  simpa [coordinate_derivativeFun] using
-    (inverse_coordinate_jacobian (R := R))
+        (coordinate (R := R))) *
+      (CarrySelfAdjointOperator.DiscreteValve.greenKernelSeries (R := R)) = 1 := by
+  have hcoordDeriv :
+      d⁄dX R (coordinate (R := R)) =
+        (CarrySelfAdjointOperator.DiscreteValve.greenKernelSeries (R := R)) := by
+    calc
+      d⁄dX R (coordinate (R := R)) = (coordinate (R := R)).derivativeFun := rfl
+      _ = (CarrySelfAdjointOperator.DiscreteValve.greenKernelSeries (R := R)) := coordinate_derivativeFun (R := R)
+  have hsub : (d⁄dX R (inverseCoordinate (R := R))).subst
+      (coordinate (R := R)) * (d⁄dX R (coordinate (R := R))) = 1 := by
+    simpa using (inverse_coordinate_jacobian (R := R))
+  calc
+    ((d⁄dX R (inverseCoordinate (R := R))).subst
+        (coordinate (R := R))) *
+      (CarrySelfAdjointOperator.DiscreteValve.greenKernelSeries (R := R))
+      = (d⁄dX R (inverseCoordinate (R := R))).subst
+          (coordinate (R := R)) * (d⁄dX R (coordinate (R := R))) := by
+        exact congrArg (fun F =>
+          (d⁄dX R (inverseCoordinate (R := R))).subst (coordinate (R := R)) * F) hcoordDeriv.symm
+    _ = 1 := hsub
 
 end CarrySelfAdjointOperator.ProjectiveDepth
