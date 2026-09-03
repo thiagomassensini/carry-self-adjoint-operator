@@ -10,6 +10,8 @@ import CarrySelfAdjointOperator.GreenJetMaximalAdjointSquare
 import CarrySelfAdjointOperator.GreenJetReciprocalSignedHeightOperator
 import CarrySelfAdjointOperator.CompletedNativeGreenWeylHeight
 import CarrySelfAdjointOperator.ConditionalCriticalLineConfinement
+import CarrySelfAdjointOperator.CompletedTfvdGreenAllOrderIntertwining
+import CarrySelfAdjointOperator.ZeroIntertwinerEquivalence
 
 /-!
 # Status map audit
@@ -35,11 +37,12 @@ two-axis reading protocol:
     - `GREEN-GATED` — the RH-reduction capstone, which consumes the Green
       off-axis diagonal state hypothesis.
 
-The map is complete in the following sense: Layers 1–4 are `UNCONDITIONAL`; the
-entire self-adjoint operator apparatus (Layer 5) is a *theorem* whose only
-nontrivial premise is the Gram representation; Layer 6 is the conditional
-critical-line conclusion.  Nothing between the geometry and the operator is left
-implicit.
+The map is complete in the following sense: Layers 1–4.5 are `UNCONDITIONAL`
+(including the all-order vector intertwiner spine); the entire self-adjoint
+operator apparatus (Layer 5) is a *theorem* whose only nontrivial premise is the
+Gram representation; Layer 6 is the conditional critical-line conclusion; and the
+closing firewall records that the zero-localized scalar route is provably
+circular.  Nothing between the geometry and the operator is left implicit.
 -/
 
 namespace CarrySelfAdjointOperator.StatusMapAudit
@@ -104,6 +107,19 @@ namespace CarrySelfAdjointOperator.StatusMapAudit
 #print axioms shiftedHankel_completedRaw_le_canonical
 
 /- ======================================================================== -/
+/- LAYER 4.5 — All-order vector intertwiner spine.           UNCONDITIONAL. -/
+/-                                                                          -/
+/- The completed TFVD ledger reconstructs the canonical C3 Green port as an -/
+/- equality of VECTOR-valued functions, surviving every forward difference  -/
+/- and every parity/order component before any scalar readout.  No zero     -/
+/- condition, real-part projection, or spectral hypothesis is used.  This   -/
+/- is the artery carrying carry-geometry to the Green jets; it supplies the -/
+/- port and its exact algebra, NOT the moment-Gram positivity of Layer 5.   -/
+/- ======================================================================== -/
+
+#print axioms canonicalCompletedTfvdGreenPortState_eq_bracketGreenPort
+
+/- ======================================================================== -/
 /- LAYER 5 — Self-adjoint height operator.   GRAM-GATED (one hypothesis).   -/
 /-                                                                          -/
 /- Each theorem below is a genuine self-adjointness statement `H* = H`.     -/
@@ -136,5 +152,17 @@ namespace CarrySelfAdjointOperator.StatusMapAudit
 /- ======================================================================== -/
 
 #print axioms riemannZeta_zero_re_eq_half_of_canonicalGreenState
+
+/- ======================================================================== -/
+/- FIREWALL — circular scalar route (NOT an independent bridge).            -/
+/-                                                                          -/
+/- The zero-localized scalar Green intertwiner is logically EQUIVALENT to   -/
+/- critical-line confinement itself: proving it is proving the conclusion.  -/
+/- It therefore cannot serve as an independent route.  A non-circular       -/
+/- completion must act before scalar projection (the vector spine, Layer    -/
+/- 4.5) or supply the independent infinite Jacobi/Weyl realization.         -/
+/- ======================================================================== -/
+
+#print axioms canonicalEnrichedC3ZeroDiagonalGreenIntertwiner_iff_confinement
 
 end CarrySelfAdjointOperator.StatusMapAudit
