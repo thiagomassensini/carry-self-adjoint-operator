@@ -21,7 +21,7 @@ from the finite native/camera Green identity through to the height spectral
 kernel, the separation is carried, not re-derived.
 -/
 
-open scoped ComplexConjugate
+open scoped ComplexConjugate ComplexOrder
 
 namespace CarrySelfAdjointOperator
 
@@ -121,6 +121,48 @@ theorem canonicalCompletedNativePolarizedDslopeKernel_diagonal_re_nonneg_of_divi
     (completedNativeLogDerivative_im_div_nonneg_of_divisionFreeGreen
       hgreen z hzF hzIm)
     (by norm_num)
+
+/-- **Sampled positive semidefiniteness.**  Under a division-free Green
+representation, the polarized `dslope` (height Pick) kernel is a Gram matrix on
+every finite conjugate-separated sample, hence positive semidefinite.  This is
+the finite face of the Herglotz/Pick positivity, obtained directly from the
+Green representation — a Green-side counterpart of the Schur-product route
+`canonicalCompletedNativePolarizedDslopeKernel_posSemidef_of_chiralPick`.  The
+scaling `1/√2` absorbs the `2F` normalization into the Gram vectors. -/
+theorem canonicalCompletedNativePolarizedDslopeKernel_posSemidef_of_divisionFreeGreen
+    {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+    {state : ℂ → H}
+    (hgreen : HasDivisionFreeGreenRepresentation
+      completedNativeOperatorCharacteristic
+      completedNativeOperatorBoundaryCompanion state)
+    {ι : Type*} [Fintype ι]
+    (point : ι → ℂ)
+    (hstrip : ∀ i, operatorHeightParameter (point i) ∈ genuineCriticalStrip)
+    (hF : ∀ i, completedNativeOperatorCharacteristic (point i) ≠ 0)
+    (hsep : ∀ i j, point i ≠ conj (point j)) :
+    (Matrix.of fun i j =>
+      canonicalCompletedNativePolarizedDslopeKernel
+        (point i) (point j)).PosSemidef := by
+  have hrw : (Matrix.of fun i j =>
+      canonicalCompletedNativePolarizedDslopeKernel (point i) (point j)) =
+      Matrix.gram ℂ (fun i =>
+        (((Real.sqrt 2)⁻¹ : ℝ) : ℂ) •
+          (completedNativeOperatorCharacteristic (point i))⁻¹ •
+            state (point i)) := by
+    ext i j
+    rw [Matrix.of_apply, Matrix.gram_apply,
+      canonicalCompletedNativePolarizedDslopeKernel_eq_herglotzDividedDifference
+        (hstrip i) (hsep j i),
+      inner_smul_left, inner_smul_right, Complex.conj_ofReal,
+      ← completedNativeHerglotzKernel_eq_gram_of_divisionFreeGreen
+        hgreen (point j) (point i) (hF j) (hF i) (hsep j i),
+      ← mul_assoc, ← Complex.ofReal_mul,
+      show ((Real.sqrt 2)⁻¹ * (Real.sqrt 2)⁻¹ : ℝ) = 1 / 2 by
+        rw [← mul_inv, Real.mul_self_sqrt (by norm_num : (0 : ℝ) ≤ 2)]; norm_num,
+      Complex.ofReal_div, Complex.ofReal_one, Complex.ofReal_ofNat,
+      div_mul_div_comm, one_mul]
+  rw [hrw]
+  exact Matrix.posSemidef_gram ℂ _
 
 end
 
