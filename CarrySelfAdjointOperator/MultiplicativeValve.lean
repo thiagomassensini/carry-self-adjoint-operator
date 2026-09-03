@@ -126,6 +126,33 @@ theorem isLogDerivChannel_prod {ι : Type*} (s : Finset ι) (A B : ι → PowerS
       exact isLogDerivChannel_mul (h a (Finset.mem_insert_self a s))
         (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
+/-! ## Ponte: canal-sequência ↔ canal-série -/
+
+/-- **Ponte.** As duas faces do canal são o mesmo objeto: a deconvolução de
+Dirichlet da sequência (`IsTowerChannel a b`) equivale à log-derivada formal
+(`IsLogDerivChannel (mk a) (mk b)`). A recuperação de von Mangoldt (sequência) e
+o homomorfismo (série) vivem numa única identidade. -/
+theorem isTowerChannel_iff_isLogDerivChannel (a b : ℕ → R) :
+    IsTowerChannel a b ↔ IsLogDerivChannel (PowerSeries.mk a) (PowerSeries.mk b) := by
+  have hlhs : ∀ n, (PowerSeries.coeff n) (PowerSeries.mk b * PowerSeries.mk a)
+      = ∑ i ∈ Finset.range (n + 1), b i * a (n - i) := by
+    intro n
+    rw [PowerSeries.coeff_mul, Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk]
+    simp only [PowerSeries.coeff_mk]
+  have hrhs : ∀ n, (PowerSeries.coeff n)
+      (PowerSeries.X * (PowerSeries.mk a).derivativeFun) = (n : R) * a n := by
+    intro n
+    cases n with
+    | zero => simp
+    | succ m =>
+      rw [PowerSeries.coeff_succ_X_mul, PowerSeries.coeff_derivativeFun,
+        PowerSeries.coeff_mk]
+      push_cast
+      ring
+  unfold IsTowerChannel IsLogDerivChannel
+  rw [PowerSeries.ext_iff]
+  exact forall_congr' fun n => by rw [hlhs, hrhs]
+
 /-! ## Integração: reconstrução canônica da massa a partir do canal -/
 
 section Reconstruction
