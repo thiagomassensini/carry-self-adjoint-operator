@@ -332,6 +332,70 @@ theorem isLogDerivChannel_expSeries (K : PowerSeries A) (hK : constantCoeff K = 
   unfold IsLogDerivChannel
   rw [hchain]; ring
 
+/-- A massa `exp K` tem termo constante `1`. -/
+theorem constantCoeff_expSeries (K : PowerSeries A) (hK : constantCoeff K = 0) :
+    constantCoeff (expSeries K) = 1 := by
+  have hsub : HasSubst K := HasSubst.of_constantCoeff_zero' hK
+  rw [← coeff_zero_eq_constantCoeff_apply, expSeries, coeff_subst' hsub,
+    finsum_eq_single _ 0 fun d hd => by
+      rw [coeff_zero_eq_constantCoeff_apply, map_pow, hK, zero_pow hd, smul_zero]]
+  simp
+
 end Exp
+
+/-! ## Fecho multiplicativo: `towerMass` é a exponencial da integral do canal -/
+
+section ExpTowerMass
+
+open PowerSeries
+
+variable {K : Type*} [Field K] [CharZero K]
+
+/-- Integral de log-espaço do canal `b`: `∑_{n≥1} (bₙ/n) Xⁿ`, o log da massa. -/
+noncomputable def logIntegral (b : ℕ → K) : PowerSeries K :=
+  mk fun n => if n = 0 then 0 else b n / n
+
+omit [CharZero K] in
+theorem constantCoeff_logIntegral (b : ℕ → K) :
+    constantCoeff (logIntegral b) = 0 := by
+  rw [logIntegral, ← coeff_zero_eq_constantCoeff_apply, coeff_mk]; simp
+
+/-- `X · (logIntegral b)' = mk b`: a derivada graduada da integral recupera o
+canal (com `b 0 = 0`). -/
+theorem X_mul_derivativeFun_logIntegral (b : ℕ → K) (hb : b 0 = 0) :
+    X * (logIntegral b).derivativeFun = mk b := by
+  ext n
+  cases n with
+  | zero => simp [hb]
+  | succ m =>
+    have hm : (m : K) + 1 ≠ 0 := by exact_mod_cast Nat.succ_ne_zero m
+    rw [coeff_succ_X_mul, coeff_derivativeFun, logIntegral, coeff_mk, coeff_mk,
+      if_neg (Nat.succ_ne_zero m)]
+    push_cast
+    field_simp
+
+/-- **`mk (towerMass b) = exp(∑ bₙ/n Xⁿ)`.** A massa reconstruída pela integração
+`towerMass` é a exponencial formal do log-espaço `∑ bₙ/n Xⁿ` do canal. O `exp`
+(série que construímos) e a integração `towerMass` são a mesma coisa: o lado
+multiplicativo do TFVD, fechado. -/
+theorem mk_towerMass_eq_expSeries (b : ℕ → K) (hb : b 0 = 0) :
+    mk (towerMass b) = expSeries (logIntegral b) := by
+  have hc : constantCoeff (logIntegral b) = 0 := constantCoeff_logIntegral b
+  have h1 : IsLogDerivChannel (expSeries (logIntegral b)) (mk b) := by
+    have h := isLogDerivChannel_expSeries (logIntegral b) hc
+    rwa [X_mul_derivativeFun_logIntegral b hb] at h
+  set A := expSeries (logIntegral b) with hA
+  have hmk : mk (fun n => coeff n A) = A := by ext n; rw [coeff_mk]
+  have hTower : IsTowerChannel (fun n => coeff n A) b :=
+    (isTowerChannel_iff_isLogDerivChannel (fun n => coeff n A) b).mpr (by rw [hmk]; exact h1)
+  have ha0 : (fun n => coeff n A) 0 = 1 := by
+    show coeff 0 A = 1
+    rw [hA, coeff_zero_eq_constantCoeff_apply]
+    exact constantCoeff_expSeries (logIntegral b) hc
+  have huniq := towerMass_unique (towerMass b) (fun n => coeff n A) b
+    (towerMass_zero b) ha0 (isTowerChannel_towerMass b hb) hTower
+  rw [huniq]; exact hmk
+
+end ExpTowerMass
 
 end CarrySelfAdjointOperator.MultiplicativeValve
