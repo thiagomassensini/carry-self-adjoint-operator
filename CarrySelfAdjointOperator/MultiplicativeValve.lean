@@ -126,4 +126,78 @@ theorem isLogDerivChannel_prod {ι : Type*} (s : Finset ι) (A B : ι → PowerS
       exact isLogDerivChannel_mul (h a (Finset.mem_insert_self a s))
         (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
+/-! ## Integração: reconstrução canônica da massa a partir do canal -/
+
+section Reconstruction
+
+variable {K : Type*} [Field K] [CharZero K]
+
+/-- Massa de torre reconstruída a partir do canal `b` (a "integração"
+multiplicativa): resolve `n · aₙ = Σ_{i≥1} bᵢ · a_{n-i}` com `a₀ = 1`. O fator
+`1/n` é a integração que inverte a log-derivada. -/
+noncomputable def towerMass (b : ℕ → K) : ℕ → K
+  | 0 => 1
+  | (n + 1) => (↑(n + 1) : K)⁻¹ *
+      ∑ i ∈ (Finset.range (n + 1)).attach, b (i.1 + 1) * towerMass b (n - i.1)
+  decreasing_by
+    have := Finset.mem_range.mp i.2
+    omega
+
+omit [CharZero K] in
+@[simp] theorem towerMass_zero (b : ℕ → K) : towerMass b 0 = 1 := by
+  rw [towerMass]
+
+/-- **Reconstrução canônica (existência).** A integração `b ↦ towerMass b`
+produz uma massa cujo canal é de fato `b`, desde que `b 0 = 0`. É a válvula
+multiplicativa na direção da integração, análoga a `discrete_valve`. -/
+theorem isTowerChannel_towerMass (b : ℕ → K) (hb : b 0 = 0) :
+    IsTowerChannel (towerMass b) b := by
+  intro n
+  cases n with
+  | zero => simp [hb]
+  | succ m =>
+    have hm : ((m + 1 : ℕ) : K) ≠ 0 := by exact_mod_cast Nat.succ_ne_zero m
+    have hrhs : ((m + 1 : ℕ) : K) * towerMass b (m + 1)
+        = ∑ i ∈ Finset.range (m + 1), b (i + 1) * towerMass b (m - i) := by
+      rw [towerMass, ← mul_assoc, mul_inv_cancel₀ hm, one_mul,
+        Finset.sum_attach (Finset.range (m + 1))
+          (fun i => b (i + 1) * towerMass b (m - i))]
+    rw [hrhs, Finset.sum_range_succ', hb, zero_mul, add_zero]
+    apply Finset.sum_congr rfl
+    intro i _
+    rw [Nat.succ_sub_succ]
+
+/-- **Reconstrução canônica (unicidade).** Sobre um corpo de característica `0`,
+a massa com `a 0 = 1` e canal `b` é única: o canal determina a massa. É a
+integração multiplicativa `b ↦ a` (inversa da log-derivada), análoga a
+`discrete_valve` no lado aditivo. -/
+theorem towerMass_unique (a a' b : ℕ → K) (ha : a 0 = 1) (ha' : a' 0 = 1)
+    (h : IsTowerChannel a b) (h' : IsTowerChannel a' b) : a = a' := by
+  have hb0 : b 0 = 0 := by
+    have h0 := h 0
+    simp only [zero_add, Finset.sum_range_one, Nat.sub_zero, ha, mul_one,
+      Nat.cast_zero] at h0
+    exact h0
+  funext n
+  induction n using Nat.strong_induction_on with
+  | _ n ih =>
+    rcases n with _ | m
+    · rw [ha, ha']
+    · have hn : ((m + 1 : ℕ) : K) ≠ 0 := by exact_mod_cast Nat.succ_ne_zero m
+      have ea := h (m + 1)
+      have ea' := h' (m + 1)
+      rw [Finset.sum_range_succ'] at ea ea'
+      simp only [hb0, zero_mul, add_zero, Nat.sub_zero] at ea ea'
+      have hsum : ∑ i ∈ Finset.range (m + 1), b (i + 1) * a (m + 1 - (i + 1))
+          = ∑ i ∈ Finset.range (m + 1), b (i + 1) * a' (m + 1 - (i + 1)) := by
+        apply Finset.sum_congr rfl
+        intro i hi
+        have hlt : m + 1 - (i + 1) < m + 1 := by
+          have := Finset.mem_range.mp hi; omega
+        rw [ih _ hlt]
+      rw [hsum] at ea
+      exact mul_left_cancel₀ hn (ea.symm.trans ea')
+
+end Reconstruction
+
 end CarrySelfAdjointOperator.MultiplicativeValve
