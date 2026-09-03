@@ -70,9 +70,8 @@ theorem projectiveValveMass_mem_subspaceMasses
         projectiveValveMass_constantCoeff D⟩ :
       NormalizedProjectiveMass K) ∈
         projectiveValveSubspaceMasses U := by
-  rw [mem_projectiveValveSubspaceMasses_iff,
-    projectiveValveCurvature_projectiveValveMass]
-  exact hD
+  change projectiveValveCurvature (projectiveValveMass D) ∈ U
+  simpa using hD
 
 /-- Inclusão de subgrupos de massas reflete e preserva exatamente inclusão de
 subespaços de curvatura. -/
