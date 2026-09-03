@@ -29,7 +29,7 @@ open CarrySelfAdjointOperator.ProjectiveDepth
 open CarrySelfAdjointOperator.DiscreteValve
 open CarrySelfAdjointOperator.MultiplicativeValve
 
-variable {K : Type*} [Field K] [CharZero K]
+variable {K : Type*} [Field K]
 
 /-- Série-canal produzida pela integral de Green a partir de uma curvatura. -/
 noncomputable def greenChannelSeries (C : PowerSeries K) : PowerSeries K :=
@@ -61,6 +61,8 @@ noncomputable def greenLogPotential (C : PowerSeries K) : PowerSeries K :=
     constantCoeff (greenLogPotential C) = 0 := by
   unfold greenLogPotential
   exact constantCoeff_logIntegral (greenChannel C)
+
+variable [CharZero K]
 
 /-- A graduação do potencial recupera exatamente o canal de Green. -/
 theorem X_mul_derivative_greenLogPotential (C : PowerSeries K) :
