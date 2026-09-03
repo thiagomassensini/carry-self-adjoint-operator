@@ -93,4 +93,37 @@ theorem isLogDerivChannel_mul {A₁ A₂ B₁ B₂ : PowerSeries R}
   rw [PowerSeries.derivativeFun_mul]
   linear_combination h₁ * A₂ + h₂ * A₁
 
+/-- A massa trivial `A = 1` tem canal nulo: a unidade do monóide multiplicativo
+vai para o zero do grupo aditivo de canais. -/
+theorem isLogDerivChannel_one : IsLogDerivChannel (1 : PowerSeries R) 0 := by
+  have hd : (1 : PowerSeries R).derivativeFun = 0 := by
+    ext n
+    simp [PowerSeries.coeff_derivativeFun]
+  unfold IsLogDerivChannel
+  rw [zero_mul, hd, mul_zero]
+
+/-- **A log-derivada é homomorfismo `× → +`.** O canal de uma potência é o
+múltiplo do canal: `m_{Aⁿ} = n · m_A`. Repetir uma base `n` vezes escala seu
+canal por `n`. -/
+theorem isLogDerivChannel_pow {A B : PowerSeries R} (h : IsLogDerivChannel A B) :
+    ∀ n : ℕ, IsLogDerivChannel (A ^ n) (n • B)
+  | 0 => by simpa using isLogDerivChannel_one
+  | n + 1 => by
+      rw [pow_succ, succ_nsmul]
+      exact isLogDerivChannel_mul (isLogDerivChannel_pow h n) h
+
+/-- **Homomorfismo em produtos finitos.** O canal de um produto de massas é a
+soma dos canais: `m_{∏ Aᵢ} = ∑ m_{Aᵢ}`. A "Euler product ↦ soma de canais
+locais" da geometria — sem produto de Euler nem zeta como premissa. -/
+theorem isLogDerivChannel_prod {ι : Type*} (s : Finset ι) (A B : ι → PowerSeries R)
+    (h : ∀ i ∈ s, IsLogDerivChannel (A i) (B i)) :
+    IsLogDerivChannel (∏ i ∈ s, A i) (∑ i ∈ s, B i) := by
+  classical
+  induction s using Finset.induction with
+  | empty => simpa using isLogDerivChannel_one
+  | @insert a s ha ih =>
+      rw [Finset.prod_insert ha, Finset.sum_insert ha]
+      exact isLogDerivChannel_mul (h a (Finset.mem_insert_self a s))
+        (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
+
 end CarrySelfAdjointOperator.MultiplicativeValve
