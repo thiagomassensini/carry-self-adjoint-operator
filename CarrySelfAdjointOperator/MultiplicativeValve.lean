@@ -225,6 +225,20 @@ theorem towerMass_unique (a a' b : ℕ → K) (ha : a 0 = 1) (ha' : a' 0 = 1)
       rw [hsum] at ea
       exact mul_left_cancel₀ hn (ea.symm.trans ea')
 
+/-- **Round-trip: integração ∘ diferenciação = identidade.** Integrar o canal de
+uma massa `a` (com `a 0 = 1`) devolve a própria massa: `towerMass b = a`. Fecha
+`towerMass` como inversa exata do canal, o análogo multiplicativo de
+`discrete_valve` reconstruir `f` do seu bracket. -/
+theorem towerMass_eq_of_isTowerChannel (a b : ℕ → K) (ha : a 0 = 1)
+    (h : IsTowerChannel a b) : towerMass b = a := by
+  have hb0 : b 0 = 0 := by
+    have h0 := h 0
+    simp only [zero_add, Finset.sum_range_one, Nat.sub_zero, ha, mul_one,
+      Nat.cast_zero] at h0
+    exact h0
+  exact towerMass_unique (towerMass b) a b (towerMass_zero b) ha
+    (isTowerChannel_towerMass b hb0) h
+
 end Reconstruction
 
 end CarrySelfAdjointOperator.MultiplicativeValve
