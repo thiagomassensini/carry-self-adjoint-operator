@@ -56,8 +56,8 @@ theorem projectiveValveMass_add (D E : PowerSeries K) :
 /-- Uma soma finita de curvaturas integra para o produto finito das massas. -/
 theorem projectiveValveMass_sum
     {ι : Type*} (s : Finset ι) (D : ι → PowerSeries K) :
-    projectiveValveMass (∑ i in s, D i) =
-      ∏ i in s, projectiveValveMass (D i) := by
+    projectiveValveMass (∑ i ∈ s, D i) =
+      ∏ i ∈ s, projectiveValveMass (D i) := by
   classical
   induction s using Finset.induction_on with
   | empty => simp
@@ -78,6 +78,7 @@ theorem projectiveValveMass_sub (D E : PowerSeries K) :
       projectiveValveMass D * (projectiveValveMass E)⁻¹ := by
   rw [sub_eq_add_neg, projectiveValveMass_add, projectiveValveMass_neg]
 
+omit [CharZero K] in
 /-- A massa unidade tem curvatura nula. -/
 @[simp] theorem projectiveValveCurvature_one :
     projectiveValveCurvature (1 : PowerSeries K) = 0 := by
@@ -108,17 +109,13 @@ theorem projectiveValveCurvature_mul
 @[simp] theorem projectiveValveCurvature_inv
     (A : PowerSeries K)
     (hA0 : constantCoeff A = 1) :
-    projectiveValveCurvature A⁻¹ = -projectiveValveCurvature A := by
-  calc
-    projectiveValveCurvature A⁻¹ =
-        projectiveValveCurvature
-          (projectiveValveMass (projectiveValveCurvature A)⁻¹) := by
-      rw [projectiveValveMass_projectiveValveCurvature A hA0]
-    _ = projectiveValveCurvature
-        (projectiveValveMass (-projectiveValveCurvature A)) := by
-      rw [projectiveValveMass_neg]
-    _ = -projectiveValveCurvature A := by
-      rw [projectiveValveCurvature_projectiveValveMass]
+    projectiveValveCurvature (A⁻¹) = -projectiveValveCurvature A := by
+  have hAinv0 : constantCoeff (A⁻¹) = 1 := by
+    simp [hA0]
+  apply projectiveValveMass_injective
+  rw [projectiveValveMass_projectiveValveCurvature (A⁻¹) hAinv0,
+    projectiveValveMass_neg,
+    projectiveValveMass_projectiveValveCurvature A hA0]
 
 /-- Quociente de massas normalizadas subtrai suas curvaturas. -/
 theorem projectiveValveCurvature_div
