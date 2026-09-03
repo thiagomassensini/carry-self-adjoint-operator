@@ -92,7 +92,7 @@ theorem projectiveValveDirectionOrbit_eq_iff
         projectiveValveDirectionOrbit q ↔
       p = q := by
   constructor
-  · exact projectiveValveDirectionOrbit_injective
+  · exact projectiveValveDirectionOrbit_injective (K := K)
   · intro hpq
     subst q
     rfl
@@ -108,7 +108,7 @@ noncomputable def projectiveValveDirectionEquivOrbitSpace :
     ProjectiveValveDirection K ≃ ProjectiveValveOrbitSpace K :=
   Equiv.ofInjective
     (projectiveValveDirectionOrbit (K := K))
-    projectiveValveDirectionOrbit_injective
+    (projectiveValveDirectionOrbit_injective (K := K))
 
 /-- A equivalência direção--órbita tem como valor subjacente o subgrupo da
 órbita correspondente. -/
