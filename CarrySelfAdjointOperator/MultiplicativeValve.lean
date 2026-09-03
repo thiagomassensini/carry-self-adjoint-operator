@@ -153,6 +153,36 @@ theorem isTowerChannel_iff_isLogDerivChannel (a b : ℕ → R) :
   rw [PowerSeries.ext_iff]
   exact forall_congr' fun n => by rw [hlhs, hrhs]
 
+/-! ## Homomorfismo `log`: produto de Dirichlet ↦ soma de canais -/
+
+/-- Convolução de Cauchy (produto de Dirichlet na torre) de duas massas. -/
+def conv (a a' : ℕ → R) (n : ℕ) : R :=
+  ∑ i ∈ Finset.range (n + 1), a i * a' (n - i)
+
+/-- A geradora da convolução é o produto das geradoras. -/
+theorem mk_conv (a a' : ℕ → R) :
+    PowerSeries.mk (conv a a') = PowerSeries.mk a * PowerSeries.mk a' := by
+  ext n
+  rw [PowerSeries.coeff_mul, Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk]
+  simp only [PowerSeries.coeff_mk, conv]
+
+/-- `PowerSeries.mk` é aditivo. -/
+theorem mk_add (b b' : ℕ → R) :
+    PowerSeries.mk (b + b') = PowerSeries.mk b + PowerSeries.mk b' := by
+  ext n
+  simp [PowerSeries.coeff_mk]
+
+/-- **Homomorfismo `log` (nível-sequência).** O canal de um produto de Dirichlet
+de massas é a soma dos canais: `IsTowerChannel (conv a a') (b + b')`. É a "torre
+multiplicativa ↦ torre aditiva" da geometria, no nível aritmético onde vive von
+Mangoldt — transportada da face-série `isLogDerivChannel_mul` pela ponte. -/
+theorem isTowerChannel_conv {a a' b b' : ℕ → R}
+    (h : IsTowerChannel a b) (h' : IsTowerChannel a' b') :
+    IsTowerChannel (conv a a') (b + b') := by
+  rw [isTowerChannel_iff_isLogDerivChannel, mk_conv, mk_add]
+  exact isLogDerivChannel_mul ((isTowerChannel_iff_isLogDerivChannel a b).mp h)
+    ((isTowerChannel_iff_isLogDerivChannel a' b').mp h')
+
 /-! ## Integração: reconstrução canônica da massa a partir do canal -/
 
 section Reconstruction
@@ -258,6 +288,20 @@ theorem isTowerChannel_zero_iff (a : ℕ → K) :
     rcases n with _ | m
     · simp
     · rw [h m]; ring
+
+/-- **Homomorfismo `exp` (a integração intertwina + e ×).** Integrar a soma de
+dois canais dá o produto de Dirichlet das massas reconstruídas:
+`towerMass (b + b') = conv (towerMass b) (towerMass b')`. É o `exp(b+b') =
+exp b · exp b'`, inverso do homomorfismo `log` (`isTowerChannel_conv`). Fecha o
+isomorfismo entre (canais, +) e (massas, ×) — a ponte entre as duas válvulas. -/
+theorem towerMass_add (b b' : ℕ → K) (hb : b 0 = 0) (hb' : b' 0 = 0) :
+    towerMass (b + b') = conv (towerMass b) (towerMass b') := by
+  have hbb : (b + b') 0 = 0 := by simp [hb, hb']
+  refine towerMass_unique (towerMass (b + b')) (conv (towerMass b) (towerMass b'))
+    (b + b') (towerMass_zero (b + b')) ?_ (isTowerChannel_towerMass (b + b') hbb)
+    (isTowerChannel_conv (isTowerChannel_towerMass b hb)
+      (isTowerChannel_towerMass b' hb'))
+  simp [conv, towerMass_zero]
 
 end Reconstruction
 
