@@ -98,6 +98,7 @@ theorem projectiveValveFlow_eq_one_iff
       projectiveValveFlow_eq_iff D t 0
     _ ↔ t • D = 0 := by simp
 
+omit [CharZero K] in
 /-- Sobre um corpo, um escalar que anula uma série não nula é zero. -/
 private theorem scalar_eq_zero_of_smul_series_eq_zero
     (D : PowerSeries K) (hD : D ≠ 0) {t : K}
@@ -107,7 +108,7 @@ private theorem scalar_eq_zero_of_smul_series_eq_zero
   apply hD
   calc
     D = 1 • D := by simp
-    _ = (t⁻¹ * t) • D := by simpa [inv_mul_cancel₀ ht]
+    _ = (t⁻¹ * t) • D := by simp [inv_mul_cancel₀ ht]
     _ = t⁻¹ • (t • D) := by rw [smul_smul]
     _ = 0 := by rw [htD, smul_zero]
 
