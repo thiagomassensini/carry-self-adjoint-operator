@@ -305,4 +305,33 @@ theorem towerMass_add (b b' : ℕ → K) (hb : b 0 = 0) (hb' : b' 0 = 0) :
 
 end Reconstruction
 
+/-! ## A série que o Mathlib não tem: `exp` de série geral e sua log-derivada -/
+
+section Exp
+
+open PowerSeries
+
+variable {A : Type*} [CommRing A] [Algebra ℚ A]
+
+/-- Exponencial formal de uma série `K` sem termo constante: `exp K = ∑ Kⁿ/n!`,
+a massa multiplicativa cujo log-espaço aditivo é `K`. -/
+noncomputable def expSeries (K : PowerSeries A) : PowerSeries A := (exp A).subst K
+
+/-- **`exp` de série geral, com sua log-derivada.** O canal da massa `exp K` é
+`X · K'` — a derivada graduada do log-espaço aditivo `K`. Chain rule via
+`derivative_subst` + `derivative_exp`. É o `exp` que leva a torre aditiva `K` na
+torre multiplicativa `exp K`, com o canal sendo exatamente `X·(log(exp K))'`. -/
+theorem isLogDerivChannel_expSeries (K : PowerSeries A) (hK : constantCoeff K = 0) :
+    IsLogDerivChannel (expSeries K) (X * K.derivativeFun) := by
+  have hsub : HasSubst K := HasSubst.of_constantCoeff_zero' hK
+  have d_eq : ∀ f : PowerSeries A, d⁄dX A f = f.derivativeFun := fun _ => rfl
+  have hchain : (expSeries K).derivativeFun = expSeries K * K.derivativeFun := by
+    rw [← d_eq, ← d_eq]
+    show d⁄dX A ((exp A).subst K) = (exp A).subst K * d⁄dX A K
+    rw [derivative_subst (hg := hsub), derivative_exp A]
+  unfold IsLogDerivChannel
+  rw [hchain]; ring
+
+end Exp
+
 end CarrySelfAdjointOperator.MultiplicativeValve
