@@ -131,4 +131,22 @@ theorem bracket_eq_zero_iff_affine (f : ℕ → E) :
       abel
     rw [hf (j + 1), hf j, sub_self]
 
+/-! ## Linearidade das válvulas -/
+
+/-- O bracket é aditivo. -/
+theorem bracket_add (f g : ℕ → E) (j : ℕ) :
+    bracket (f + g) j = bracket f j + bracket g j := by
+  simp only [bracket, Pi.add_apply]
+  abel
+
+/-- A integral de Green é aditiva: `greenSum` é linear em `f`, o análogo aditivo
+do homomorfismo `× → +` do canal multiplicativo. -/
+theorem greenSum_add (f g : ℕ → E) (n : ℕ) :
+    greenSum (f + g) n = greenSum f n + greenSum g n := by
+  unfold greenSum
+  rw [← Finset.sum_add_distrib]
+  apply Finset.sum_congr rfl
+  intro j _
+  rw [bracket_add, smul_add]
+
 end CarrySelfAdjointOperator.DiscreteValve

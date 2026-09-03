@@ -239,6 +239,26 @@ theorem towerMass_eq_of_isTowerChannel (a b : ℕ → K) (ha : a 0 = 1)
   exact towerMass_unique (towerMass b) a b (towerMass_zero b) ha
     (isTowerChannel_towerMass b hb0) h
 
+/-- **Conservação multiplicativa.** Canal nulo equivale a massa trivial (torre
+constante): `IsTowerChannel a 0 ↔ ∀ n, a (n+1) = 0`. Ponto fixo trivial da
+válvula multiplicativa, espelho de `bracket_eq_zero_iff_affine` (canal de 1ª
+ordem ⇒ núcleo = constantes, como o bracket de 2ª ordem ⇒ núcleo = afins). -/
+theorem isTowerChannel_zero_iff (a : ℕ → K) :
+    IsTowerChannel a 0 ↔ ∀ n, a (n + 1) = 0 := by
+  constructor
+  · intro h n
+    have hh := h (n + 1)
+    simp only [Pi.zero_apply, zero_mul, Finset.sum_const_zero] at hh
+    have hn0 : ((n + 1 : ℕ) : K) ≠ 0 := Nat.cast_ne_zero.mpr (Nat.succ_ne_zero n)
+    rcases mul_eq_zero.mp hh.symm with h1 | h2
+    · exact absurd h1 hn0
+    · exact h2
+  · intro h n
+    simp only [Pi.zero_apply, zero_mul, Finset.sum_const_zero]
+    rcases n with _ | m
+    · simp
+    · rw [h m]; ring
+
 end Reconstruction
 
 end CarrySelfAdjointOperator.MultiplicativeValve
