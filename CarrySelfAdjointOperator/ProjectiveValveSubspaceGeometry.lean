@@ -104,10 +104,10 @@ theorem projectiveValveSubspaceMasses_injective :
   intro U V hUV
   apply le_antisymm
   · exact
-      (projectiveValveSubspaceMasses_le_iff U V).mp
+      (projectiveValveSubspaceMasses_le_iff (K := K) U V).mp
         (le_of_eq hUV)
   · exact
-      (projectiveValveSubspaceMasses_le_iff V U).mp
+      (projectiveValveSubspaceMasses_le_iff (K := K) V U).mp
         (le_of_eq hUV.symm)
 
 /-- O mapa de subespaços de curvatura para subgrupos de massas como uma
@@ -115,11 +115,11 @@ imersão de ordens. -/
 noncomputable def projectiveValveSubspaceOrderEmbedding :
     Submodule K (PowerSeries K) ↪o
       Subgroup (NormalizedProjectiveMass K) where
-  toFun := projectiveValveSubspaceMasses
+  toFun := projectiveValveSubspaceMasses (K := K)
   inj' := projectiveValveSubspaceMasses_injective (K := K)
   map_rel_iff' := by
     intro U V
-    exact projectiveValveSubspaceMasses_le_iff U V
+    exact projectiveValveSubspaceMasses_le_iff (K := K) U V
 
 /-- A construção preserva interseções de subespaços. -/
 @[simp] theorem projectiveValveSubspaceMasses_inf
