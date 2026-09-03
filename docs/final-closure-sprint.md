@@ -169,6 +169,40 @@ quotient construction in the repository supplies this equality, because
 supplying it is equivalent to the Herglotz property (RH-equivalent for the
 completed zeta).
 
+## 5c. Pole atom and the rank-one Hankel decomposition
+
+Numerical reconnaissance (`gitignore/recon_hankel_frontier.py`, dps 120) plus
+the factorization identity resolve why the raw `Lambda` towers behave
+differently from the dressed `xi` towers. In the centered variable,
+
+`(1/2) s (s-1) = -(1 + 4 z^2)/8`,   `xi(z) = -(1+4z^2)/8 · Lambda(1/2+iz)`.
+
+The `Lambda` poles at `s = 0,1` sit at `z = ± i/2`, reciprocal square `-4`. On
+the moment side this is one atom of mass `4` at the point `-4`:
+`h_n^Lambda = h_n^xi + 4(-4)^n`. Since `4(-4)^{i+j} = 4(-4)^i(-4)^j`, it is a
+rank-one perturbation of both towers:
+
+`G_N^Lambda = G_N^xi + 4 v_N v_Nᵀ`,   `K_N^Lambda = K_N^xi - 16 v_N v_Nᵀ`,
+`v_N = (1,-4,16,…,(-4)^{N-1})ᵀ`.
+
+The unshifted tower gains a positive block (`Lambda` stays PSD there); the
+shifted tower loses one (`Lambda` fails PSD there — the atom is at `-4 < 0`).
+Numerically the negative eigenvalues of `K_N^Lambda` are `≈ -16‖v_N‖²`
+(`-16, -272, -4368, -69904, -1118480`), matching `-16(1+16+…+16^{N-1})`.
+Dressing by `s(s-1)` removes the atom exactly; the dressed `xi` moments (with
+`h_0 = 0.023104993…`, the value already used by the ledger/sewing/curvature) are
+the correct positivity target, and both dressed towers are PSD to the tested
+order `N=5` (order 28 in the older lab).
+
+Formalized in `CompletedNativePoleAtomHankelPerturbation.lean` (all axioms
+`[propext, Classical.choice, Quot.sound]`): the scalar factorization
+`completedNativeOperatorCharacteristic_eq_poleFactor_mul_raw`, the pole factor's
+own moment sequence `isLogDerivativeMomentSequence_poleFactor` (`= -4(-4)^n`),
+the rank-one identities `hankelGram_completedRaw_eq` / `shiftedHankel_completedRaw_eq`,
+and the Loewner consequences. This is structural bookkeeping — it identifies the
+correct target sequence and the exact origin of the sign pattern; it does **not**
+prove all-order positivity, which remains the RH-equivalent gate.
+
 ## 6. Conclusion
 
 Smallest irreducible remaining gate (three equivalent spellings):
