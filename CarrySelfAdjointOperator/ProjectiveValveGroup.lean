@@ -29,15 +29,15 @@ variable {K : Type*} [Field K]
 namespace NormalizedProjectiveMass
 
 /-- A massa unidade é normalizada. -/
-instance : One (NormalizedProjectiveMass K) where
+noncomputable instance : One (NormalizedProjectiveMass K) where
   one := ⟨1, by simp⟩
 
 /-- O produto de duas massas normalizadas continua normalizado. -/
-instance : Mul (NormalizedProjectiveMass K) where
+noncomputable instance : Mul (NormalizedProjectiveMass K) where
   mul A B := ⟨A.1 * B.1, by simp [A.2, B.2]⟩
 
 /-- A inversa formal de uma massa normalizada continua normalizada. -/
-instance : Inv (NormalizedProjectiveMass K) where
+noncomputable instance : Inv (NormalizedProjectiveMass K) where
   inv A := ⟨A.1⁻¹, by simp [A.2]⟩
 
 @[simp] theorem val_one :
@@ -51,7 +51,7 @@ instance : Inv (NormalizedProjectiveMass K) where
 
 /-- As massas normalizadas formam um grupo comutativo sob multiplicação de
 séries formais. O inverso é o inverso formal da série. -/
-instance : CommGroup (NormalizedProjectiveMass K) :=
+noncomputable instance : CommGroup (NormalizedProjectiveMass K) :=
   { Group.ofLeftAxioms
       (fun A B C => by
         apply Subtype.ext
