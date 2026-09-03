@@ -257,3 +257,5 @@ import CarrySelfAdjointOperator.DiscreteValve
 import CarrySelfAdjointOperator.MultiplicativeValve
 import CarrySelfAdjointOperator.DiscreteValveSeries
 import CarrySelfAdjointOperator.CanonicalTowerChannel
+
+import CarrySelfAdjointOperator.ProjectiveDepthCoordinate
