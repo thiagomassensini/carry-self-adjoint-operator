@@ -85,6 +85,22 @@ theorem X_mul_greenKernelSeries :
     simp only [greenKernelSeries, coeff_succ_X_mul, coeff_mk]
     push_cast; ring
 
+/-- **A integral de Green é `X/(1-X)²·` na geradora.**
+`mk (greenSum f) = X · greenKernelSeries · mk (bracket f)`, i.e.
+`mk(𝒢 (Bf)) = X/(1-X)² · mk(Bf)`: a soma de Green é convolução com o núcleo. -/
+theorem mk_greenSum (f : ℕ → R) :
+    mk (fun n => greenSum f n) = X * greenKernelSeries * mk (bracket f) := by
+  rw [X_mul_greenKernelSeries]
+  ext n
+  rw [coeff_mk, coeff_mul, Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk]
+  simp only [coeff_mk, greenSum]
+  rw [← Finset.sum_range_reflect (fun i => (i : R) * bracket f (n - i)) (n + 1),
+    Finset.sum_range_succ]
+  simp only [Nat.add_sub_cancel, Nat.sub_self, Nat.cast_zero, zero_mul, add_zero]
+  refine Finset.sum_congr rfl fun i hi => ?_
+  have hi' : i < n := Finset.mem_range.mp hi
+  rw [nsmul_eq_mul, Nat.sub_sub_self (le_of_lt hi')]
+
 /-- **Teorema Fundamental da Válvula Discreta em séries formais.** A reconstrução
 inteira do estado como uma igualdade em `R⟦X⟧`:
 `F = f₀/(1-X) + X·Δf₀/(1-X)² + X²·B(X)/(1-X)²`, os três canais — valor de bordo,
