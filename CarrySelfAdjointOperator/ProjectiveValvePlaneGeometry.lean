@@ -100,9 +100,12 @@ theorem projectiveValvePlaneSubspace_finrank_eq_three
   have hdim :=
     Submodule.finrank_sup_add_finrank_inf_eq
       (projectiveValveLineSubspace p q) r.submodule
-  simpa [projectiveValvePlaneSubspace, hdisjoint.eq_bot,
+  rw [hdisjoint.eq_bot, finrank_bot, add_zero,
     projectiveValveLineSubspace_finrank_eq_two p q hpq,
-    Projectivization.finrank_submodule] using hdim
+    Projectivization.finrank_submodule] at hdim
+  change Module.finrank K
+    (projectiveValveLineSubspace p q ⊔ r.submodule) = 3
+  exact hdim
 
 /-- **Três pontos não colineares determinam um único plano.**
 
