@@ -276,3 +276,5 @@ import CarrySelfAdjointOperator.ProjectiveValveSubspaceGeometry
 import CarrySelfAdjointOperator.ProjectiveValveSubspaceLattice
 
 import CarrySelfAdjointOperator.ProjectiveValveLineGeometry
+
+import CarrySelfAdjointOperator.ProjectiveValveLineIncidence
