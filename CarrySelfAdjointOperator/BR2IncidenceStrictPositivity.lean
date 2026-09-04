@@ -102,55 +102,6 @@ theorem oddPrefix_linearIndependent
   rw [hfamily]
   exact hmapped
 
-/-- Injective incidence transport preserves the complete even family, not
-only each finite prefix. -/
-theorem even_linearIndependent
-    {E : Type*} [AddCommMonoid E] [Module ℝ E]
-    {base radius : ℕ} {jet : (ℕ ⊕ ℕ) → E}
-    (transport : BR2BracketIncidenceJetTransport base radius jet)
-    (hbase : IsSupported base)
-    (hradius : radius ∈ radiusSet base) :
-    LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)) := by
-  have hsource :=
-    evenCameraBracketIncidence_linearIndependent_global hbase hradius
-  have hmapped :
-      LinearIndependent ℝ
-        (transport.toLinearMap ∘
-          (fun n : ℕ => cameraBracketIncidence base radius (2 * n))) :=
-    hsource.map_injOn transport.toLinearMap transport.injective.injOn
-  have hfamily :
-      (fun n : ℕ => jet (Sum.inl n)) =
-        transport.toLinearMap ∘
-          (fun n : ℕ => cameraBracketIncidence base radius (2 * n)) := by
-    funext n
-    exact transport.even_eq n
-  rw [hfamily]
-  exact hmapped
-
-/-- Injective incidence transport preserves the complete odd family. -/
-theorem odd_linearIndependent
-    {E : Type*} [AddCommMonoid E] [Module ℝ E]
-    {base radius : ℕ} {jet : (ℕ ⊕ ℕ) → E}
-    (transport : BR2BracketIncidenceJetTransport base radius jet)
-    (hbase : IsSupported base)
-    (hradius : radius ∈ radiusSet base) :
-    LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)) := by
-  have hsource :=
-    oddCameraBracketIncidence_linearIndependent_global hbase hradius
-  have hmapped :
-      LinearIndependent ℝ
-        (transport.toLinearMap ∘
-          (fun n : ℕ => cameraBracketIncidence base radius (2 * n + 1))) :=
-    hsource.map_injOn transport.toLinearMap transport.injective.injOn
-  have hfamily :
-      (fun n : ℕ => jet (Sum.inr n)) =
-        transport.toLinearMap ∘
-          (fun n : ℕ => cameraBracketIncidence base radius (2 * n + 1)) := by
-    funext n
-    exact transport.odd_eq n
-  rw [hfamily]
-  exact hmapped
-
 end BR2BracketIncidenceJetTransport
 
 section ComplexRealification

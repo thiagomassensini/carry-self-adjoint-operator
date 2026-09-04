@@ -34,18 +34,12 @@ inductive CameraLegSide where
   | right
   deriving DecidableEq
 
-/-- Compatibility name used by the coefficient-recurrence route. -/
-abbrev BR2CameraLegSide := CameraLegSide
-
 /-- Geometric coordinate of the selected bracket leg. -/
 def cameraLegCoordinate
     (side : CameraLegSide) (base index radius : ℕ) : ℕ :=
   match side with
   | .left => cameraLeftLeg base index radius
   | .right => cameraRightLeg base index radius
-
-/-- Compatibility name for the same center--leg coordinate map. -/
-abbrev br2CameraLegCoordinate := cameraLegCoordinate
 
 /-- Arithmetic data assigning one aligned center and one admissible bracket
 leg to every parity-jet index. The center and leg index maps may be different;
@@ -101,18 +95,6 @@ end BR2CameraIncidence
 def parityJetNumber : (ℕ ⊕ ℕ) → ℕ
   | Sum.inl n => 2 * n
   | Sum.inr n => 2 * n + 1
-
-/-- Compatibility presentation used by the all-order coefficient certificate.
-It is intentionally reduced by cases so the older certificate's simplifier
-interface remains stable after the BR2 merge. -/
-def br2ParityJetNumber : (ℕ ⊕ ℕ) → ℕ
-  | Sum.inl n => 2 * n
-  | Sum.inr n => 2 * n + 1
-
-/-- The two parity-jet naming conventions denote the same label. -/
-theorem br2ParityJetNumber_eq_parityJetNumber (i : ℕ ⊕ ℕ) :
-    br2ParityJetNumber i = parityJetNumber i := by
-  cases i <;> rfl
 
 /-- Canonical incidence using the parity-jet number on both roles. Equal
 matrix indices still yield unequal geometric coordinates because the roles

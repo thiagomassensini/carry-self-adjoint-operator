@@ -156,40 +156,6 @@ theorem oddCameraBracketIncidence_linearIndependent
   cameraBracketIncidence_linearIndependent_of_injective
     hbase hradius _ (oddParityCameraIndex_injective N)
 
-/-- The complete even bracket-incidence family is linearly independent.  This
-is the global form needed by the completed Green-jet carrier, obtained by
-checking every finite support with the same unique-center pivot. -/
-theorem evenCameraBracketIncidence_linearIndependent_global
-    {base radius : ℕ}
-    (hbase : IsSupported base)
-    (hradius : radius ∈ radiusSet base) :
-    LinearIndependent ℝ
-      (fun i : ℕ => cameraBracketIncidence base radius (2 * i)) := by
-  rw [linearIndependent_iff_finset_linearIndependent]
-  intro s
-  apply cameraBracketIncidence_linearIndependent_of_injective
-    hbase hradius
-  intro i j hij
-  apply Subtype.ext
-  dsimp only at hij
-  omega
-
-/-- The complete odd bracket-incidence family is linearly independent. -/
-theorem oddCameraBracketIncidence_linearIndependent_global
-    {base radius : ℕ}
-    (hbase : IsSupported base)
-    (hradius : radius ∈ radiusSet base) :
-    LinearIndependent ℝ
-      (fun i : ℕ => cameraBracketIncidence base radius (2 * i + 1)) := by
-  rw [linearIndependent_iff_finset_linearIndependent]
-  intro s
-  apply cameraBracketIncidence_linearIndependent_of_injective
-    hbase hradius
-  intro i j hij
-  apply Subtype.ext
-  dsimp only at hij
-  omega
-
 end
 
 end CarrySelfAdjointOperator
