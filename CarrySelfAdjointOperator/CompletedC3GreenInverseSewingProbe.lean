@@ -79,6 +79,20 @@ theorem canonicalCompletedC3GreenRightInverseAt_of_defectEquation
     ContinuousLinearMap.coe_coe]
   exact sub_eq_iff_eq_add.mpr hequation
 
+/-- Off the real axis there is no second canonical Green right inverse inside
+the current logarithmic maximal domain: resolvent uniqueness forces every such
+candidate to be the Gamma state.  A genuinely new Sun-style construction must
+therefore change the cancellation carrier/operator and then intertwine it with
+this one, rather than search for another state of the same defect operator. -/
+theorem canonicalCompletedC3GreenRightInverseAt_eq_gamma
+    {z : ℂ} (hz : z.im ≠ 0) {candidate : RealifiedLogarithmicDomain}
+    (hgreen : CanonicalCompletedC3GreenRightInverseAt z candidate) :
+    candidate =
+      carryGammaIntoDomain z hz (canonicalCompletedC3SixCameraSource z) :=
+  carryGammaIntoDomain_unique z hz
+    (canonicalCompletedC3SixCameraSource z) candidate
+    (canonicalCompletedC3GreenRightInverseAt_defectEquation hgreen)
+
 /-- A two-point trace-compatible Green realization.
 
 The two candidate states are required to be Green right inverses on the
