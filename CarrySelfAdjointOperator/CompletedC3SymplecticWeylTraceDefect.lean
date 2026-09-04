@@ -70,6 +70,24 @@ def canonicalRealifiedCameraStaticGreenTrace :
       -((2 : ℝ)⁻¹ • u.fst) := by
   simp [canonicalRealifiedCameraStaticGreenTrace, smul_smul]
 
+/-- After the faithful symplectic C3 packing, the static first trace is
+literally one half of the packed intrinsic Weyl quarter-turn.  Thus the
+static Camera boundary chart is not an auxiliary normalization: it is the C3
+Weyl chart transported through the existing packing. -/
+theorem canonicalRealifiedCameraStaticGreenTrace_finiteC3SymplecticCameraPacking
+    (M : ℕ) (x : NativeCarryC3Crosswalk.FiniteC3GreenPortCarrier M) :
+    canonicalRealifiedCameraStaticGreenTrace
+        (finiteC3SymplecticCameraPacking M x) =
+      (2 : ℝ)⁻¹ •
+        finiteC3SymplecticCameraPacking M
+          (weylChartRotation (𝕜 := ℂ) x) := by
+  apply WithLp.ofLp_injective 2
+  apply Prod.ext
+  · simp [finiteC3SymplecticCameraPacking_apply,
+      weylChartRotation_apply]
+  · simp [finiteC3SymplecticCameraPacking_apply,
+      weylChartRotation_apply]
+
 /-- The static half-rotation is exactly the boundary-chart realization of the
 real Green skew on the two-quadrature camera carrier. -/
 theorem greenForm_staticRealifiedCameraBoundary_eq_skew
