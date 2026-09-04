@@ -19,6 +19,11 @@ lake build --wfail CarrySelfAdjointOperator.ExactProjectiveMatrixTower
 # wired into the public aggregator.
 lake build --wfail CarrySelfAdjointOperator.CompletedC3GreenInverseSewingProbe
 
+# Compile the boundary-relation reformulation independently as well.  This
+# makes the six-camera Gamma boundary Green form and the completed scalar
+# Wronskian meet in one typed interface before any aggregator wiring.
+lake build --wfail CarrySelfAdjointOperator.CompletedC3BoundaryRelationSewingBridge
+
 lake build --wfail CarrySelfAdjointOperator
 lake build --wfail CarrySelfAdjointOperator.Audit
 lake build --wfail CarrySelfAdjointOperator.BR2Audit
