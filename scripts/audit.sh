@@ -8,6 +8,9 @@ bash scripts/static_audit.sh
 # Check the discrete-projective capstone before the larger spectral surface.
 lake build --wfail CarrySelfAdjointOperator.DiscreteProjectiveReconstructionAudit
 
+# Check native incidence transport into projective-valve finite spans.
+lake build --wfail CarrySelfAdjointOperator.ProjectiveValveNativeIncidenceAudit
+
 # Check exact camera-to-moment universality before the operator audits.
 lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit
 
