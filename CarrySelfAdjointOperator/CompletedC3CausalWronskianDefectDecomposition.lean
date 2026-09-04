@@ -87,10 +87,9 @@ theorem canonicalCompletedC3NormalizedGreenLimit_eq_wronskian_iff_causalWronskia
           completedNativeOperatorBoundaryCompanion z z ↔
       canonicalCompletedC3CausalWronskianDefect hbase s hs hoff = 0 := by
   dsimp only
-  rw [← sub_eq_zero]
-  exact
+  rw [← sub_eq_zero,
     canonicalCompletedC3NormalizedGreenLimit_sub_wronskian_eq_causalWronskianDefect
-      hbase hs hoff |>.trans Iff.rfl
+      hbase hs hoff]
 
 end
 
