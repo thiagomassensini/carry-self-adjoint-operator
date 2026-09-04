@@ -11,6 +11,9 @@ lake build --wfail CarrySelfAdjointOperator.DiscreteProjectiveReconstructionAudi
 # Check exact camera-to-moment universality before the operator audits.
 lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit
 
+# Check the positive Jacobi point-spectrum converse and its trust footprint.
+lake build --wfail CarrySelfAdjointOperator.CompletedNativeJacobiPointSpectrumConverseAudit
+
 # Cover the scalar boundary trace checked by the focused CI workflows.
 lake build --wfail CarrySelfAdjointOperator.BoundaryTraceAudit
 
