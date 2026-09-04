@@ -56,9 +56,10 @@ theorem scalarBoundaryWedge_sum_eq_pairwiseLedger
     scalarBoundaryWedge (∑ i : ι, value i) (∑ i : ι, logJet i) =
       scalarBoundaryPairwiseLedger value logJet := by
   classical
-  simp [scalarBoundaryWedge, scalarBoundaryPairwiseLedger,
+  simp only [scalarBoundaryWedge, scalarBoundaryPairwiseLedger,
     scalarBoundaryPairCell, Finset.sum_mul, Finset.mul_sum,
-    Finset.sum_sub_distrib]
+    Finset.sum_sub_distrib, map_sum]
+  congr 1 <;> exact Finset.sum_comm
 
 /-- Canonical synthesis formula: global scalar boundary equals the sum of
 cellwise boundaries plus the explicit cross-block provenance channel. -/

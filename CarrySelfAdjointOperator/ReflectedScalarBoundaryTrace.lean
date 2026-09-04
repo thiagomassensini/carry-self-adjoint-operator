@@ -31,6 +31,7 @@ namespace CarrySelfAdjointOperator
 noncomputable section
 
 open NativeCarryC3Crosswalk
+open CPFormal.Analytic.Cp
 
 /-- Scalar wedge is definitionally the reflected four-leg boundary. -/
 theorem scalarBoundaryWedge_eq_reflectedSameSEdgeBoundary

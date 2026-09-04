@@ -21,7 +21,7 @@ namespace CarrySelfAdjointOperator
 
 noncomputable section
 
-open NativeCarryC3Crosswalk
+open CPFormal.Analytic.Cp
 
 /-- One ordered local pair in the four-leg synthesized boundary. -/
 def twoLegBoundaryPairCell
@@ -59,6 +59,7 @@ theorem sameSEdgeBoundaryWedge_sum_eq_pairwiseLedger
   simp [sameSEdgeBoundaryWedge, twoLegBoundaryPairwiseLedger,
     twoLegBoundaryPairCell, Finset.sum_mul, Finset.mul_sum,
     Finset.sum_sub_distrib]
+  rw [Finset.sum_comm, Finset.sum_comm (f := fun i j => left j * jetRight i)]
 
 /-- Four-leg global synthesis equals the sum of local same-edge boundaries
 plus explicit cross provenance. -/

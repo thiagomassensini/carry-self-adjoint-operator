@@ -600,7 +600,7 @@ def HasCanonicalCompletedNativeTfvdGreenCenterLegReadout
     incidence.centerCoordinate i ≠ incidence.legCoordinate j →
       polarizedGreenMomentCoefficient
           canonicalCompletedNativeLogDerivativeMoment
-          (br2ParityJetNumber i) (br2ParityJetNumber j) =
+          (parityJetNumber i) (parityJetNumber j) =
         inner ℂ (jet i) (jet j)
 
 /-- A center--leg readout on the concrete completed TFVD carrier produces the

@@ -23,6 +23,7 @@ namespace CarrySelfAdjointOperator
 noncomputable section
 
 open NativeCarryC3Crosswalk
+open CPFormal.Analytic.Cp
 
 /-- Left value leg of one of the two retained edges in a block. -/
 def enrichedTfvdBoundaryEdgeLeft
@@ -79,6 +80,7 @@ theorem sum_enrichedTfvdBoundaryEdges_eq_cellTotal
     enrichedTfvdBoundaryEdgeJetRight,
     enrichedTfvdSameSBoundaryCells,
     TfvdSameSBoundaryCells.total]
+  rfl
 
 /-- Flattening all blocks and both retained edges recovers literally the
 existing finite enriched TFVD boundary form. -/
