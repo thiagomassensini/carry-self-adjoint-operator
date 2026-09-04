@@ -42,6 +42,10 @@ lake build --wfail CarrySelfAdjointOperator.CompletedC3ValveNaturality
 # and the completed scalar boundary pair (-F',F).
 lake build --wfail CarrySelfAdjointOperator.CompletedC3ValveGreenNaturality
 
+# Rewrite the historical Cauchy-strip scalarization frontier as diagonal
+# naturality between the two boundary charts of that same structured C3 state.
+lake build --wfail CarrySelfAdjointOperator.CompletedC3ValveCauchyNaturalityFrontier
+
 lake build --wfail CarrySelfAdjointOperator
 lake build --wfail CarrySelfAdjointOperator.Audit
 lake build --wfail CarrySelfAdjointOperator.BR2Audit
