@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'CarrySelfAdjointOperator/ScalarBoundaryCrossProvenance.lean'
+      - 'CarrySelfAdjointOperator/CompletedTfvdScalarBoundaryTrace.lean'
       - 'CarrySelfAdjointOperator/TwoLegBoundaryCrossProvenance.lean'
       - 'CarrySelfAdjointOperator/ReflectedScalarBoundaryTrace.lean'
       - 'CarrySelfAdjointOperator/EnrichedTfvdBoundaryEdgeFlattening.lean'

@@ -105,11 +105,7 @@ theorem finiteC3EnrichedTfvdPair_scalarBoundaryTrace_eq_green_iff
   rw [finiteC3EnrichedTfvdPair_scalarBoundaryTrace_eq_green_add_provenance
     M data cells greenFormValue greenProvenance
       hvalue hlogJet hcell hgreen]
-  constructor
-  · intro h
-    exact add_left_cancel h
-  · intro h
-    rw [h, add_zero]
+  simp only [add_eq_left]
 
 end
 
