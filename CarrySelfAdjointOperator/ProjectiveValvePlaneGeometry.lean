@@ -71,11 +71,14 @@ theorem projectiveValveRep_not_mem_lineSubspace_of_not_collinear
   intro hr
   have hrSubmoduleLe :
       r.submodule ≤ projectiveValveLineSubspace p q := by
-    rw [Projectivization.submodule_eq]
-    exact Submodule.span_singleton_le_iff_mem.mpr hr
+    rw [Projectivization.submodule_eq,
+      Submodule.span_singleton_le_iff_mem]
+    exact hr
   have hrOnLine : projectiveValveDirectionOnLine r p q := by
-    rw [Submodule.mem_projectivization_iff_submodule_le]
-    exact hrSubmoduleLe
+    change r ∈ (projectiveValveLineSubspace p q).projectivization
+    exact
+      (Submodule.mem_projectivization_iff_submodule_le
+        (projectiveValveLineSubspace p q) r).2 hrSubmoduleLe
   exact hnotcol
     ((projectiveValveCollinear_iff_directionOnLine p q r hpq).2 hrOnLine)
 
@@ -97,11 +100,9 @@ theorem projectiveValvePlaneSubspace_finrank_eq_three
   have hdim :=
     Submodule.finrank_sup_add_finrank_inf_eq
       (projectiveValveLineSubspace p q) r.submodule
-  rw [hdisjoint.eq_bot,
+  simpa [projectiveValvePlaneSubspace, hdisjoint.eq_bot,
     projectiveValveLineSubspace_finrank_eq_two p q hpq,
-    Projectivization.finrank_submodule,
-    Submodule.finrank_bot] at hdim
-  simpa [projectiveValvePlaneSubspace] using hdim
+    Projectivization.finrank_submodule] using hdim
 
 /-- **Três pontos não colineares determinam um único plano.**
 
@@ -176,11 +177,8 @@ theorem projectiveValveDirectionOrbit_le_plane_iff_mem
     (s p q r : ProjectiveValveDirection K) :
     projectiveValveDirectionOrbit s ≤ projectiveValvePlane p q r ↔
       s ∈ (projectiveValvePlaneSubspace p q r).projectivization := by
-  change
-    projectiveValveSubspaceMasses s.submodule ≤
-        projectiveValveSubspaceMasses
-          (projectiveValvePlaneSubspace p q r) ↔
-      s ∈ (projectiveValvePlaneSubspace p q r).projectivization
+  rw [projectiveValveDirectionOrbit_eq_subspaceMasses (K := K) s]
+  unfold projectiveValvePlane
   rw [projectiveValveSubspaceMasses_le_iff,
     Submodule.mem_projectivization_iff_submodule_le]
 
