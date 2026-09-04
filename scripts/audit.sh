@@ -24,6 +24,12 @@ lake build --wfail CarrySelfAdjointOperator.CompletedC3GreenInverseSewingProbe
 # Wronskian meet in one typed interface before any aggregator wiring.
 lake build --wfail CarrySelfAdjointOperator.CompletedC3BoundaryRelationSewingBridge
 
+# Compile the sharper same-structured-state bridge.  It proves that the
+# Gamma six-camera source and the oriented scalar trace (-F',F) are both
+# projections of one cutoff-one C3 TFVD/Green state, while retaining the
+# existing no-go against treating the packing itself as a Green intertwiner.
+lake build --wfail CarrySelfAdjointOperator.CompletedC3SameStructuredBoundaryState
+
 lake build --wfail CarrySelfAdjointOperator
 lake build --wfail CarrySelfAdjointOperator.Audit
 lake build --wfail CarrySelfAdjointOperator.BR2Audit
