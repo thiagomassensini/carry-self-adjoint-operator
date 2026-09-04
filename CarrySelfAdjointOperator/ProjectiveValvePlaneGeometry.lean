@@ -176,8 +176,12 @@ theorem projectiveValveDirectionOrbit_le_plane_iff_mem
     (s p q r : ProjectiveValveDirection K) :
     projectiveValveDirectionOrbit s ≤ projectiveValvePlane p q r ↔
       s ∈ (projectiveValvePlaneSubspace p q r).projectivization := by
-  rw [projectiveValveDirectionOrbit_eq_subspaceMasses,
-    projectiveValveSubspaceMasses_le_iff,
+  change
+    projectiveValveSubspaceMasses s.submodule ≤
+        projectiveValveSubspaceMasses
+          (projectiveValvePlaneSubspace p q r) ↔
+      s ∈ (projectiveValvePlaneSubspace p q r).projectivization
+  rw [projectiveValveSubspaceMasses_le_iff,
     Submodule.mem_projectivization_iff_submodule_le]
 
 /-- O plano é o menor subgrupo que contém as três órbitas geradoras. -/
@@ -204,8 +208,11 @@ theorem projectiveValveSubspaceMasses_eq_plane_of_finrank_three
     (hqU : q ∈ U.projectivization)
     (hrU : r ∈ U.projectivization) :
     projectiveValveSubspaceMasses U = projectiveValvePlane p q r := by
+  change
+    projectiveValveSubspaceMasses U =
+      projectiveValveSubspaceMasses
+        (projectiveValvePlaneSubspace p q r)
   rw [projectiveValvePlaneSubspace_unique
     p q r hpq hnotcol U hUrank hpU hqU hrU]
-  rfl
 
 end CarrySelfAdjointOperator.ProjectiveValve
