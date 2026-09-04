@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.CompletedC3TfvdResolventTraceBridge
+import CarrySelfAdjointOperator.CompletedC3DirichletGradientBracketSource
 import Mathlib.Tactic
 
 /-!
@@ -17,6 +18,14 @@ The point is deliberately modest and exact:
   existing `CanonicalCompletedC3WronskianResolventRealization`;
 * resolvent uniqueness then closes the raw Gamma--Wronskian defect and, away
   from the usual regularity exclusions, the normalized Gamma--`dslope` sewing.
+
+The second half records a more faithful finite cancellation analogue.  The
+carry-weighted Green operator is already an exact right inverse of the weighted
+centered bracket on the zero-head source channel.  The actual finite TFVD
+bracket source belongs to that channel, and its Green response plus the
+canonical boundary return reconstructs the whole finite prefix.  This is the
+concrete cancellation mechanism to be transported through completion; it is
+not an extra positivity or spectral assumption.
 
 No new positivity, zero hypothesis, spectral list, or confinement statement is
 assumed.  The remaining analytic task is exposed as the construction of a
@@ -187,6 +196,61 @@ theorem canonicalCompletedC3TfvdResolventDomainVector_greenRightInverse
       (canonicalCompletedC3TfvdResolventDomainVector z hz) := by
   apply canonicalCompletedC3GreenRightInverseAt_of_defectEquation
   exact canonicalCompletedC3TfvdResolventDomainVector_canonicalDefectEquation z hz
+
+/-! ## A genuine finite cancellation Green inverse -/
+
+/-- On the zero-head cancellation channel, the weighted causal Green operator
+is an exact right inverse of the weighted centered bracket.  The general
+Green identity returns the zero-head projection; the cancellation condition
+removes precisely that boundary defect. -/
+theorem carryWeightedVerticalCenteredBracket_weightedGreen_eq_self_of_zeroHead
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (x : CarryVerticalL2) (hx : x 0 = 0) :
+    carryWeightedVerticalCenteredBracket q
+        (carryVerticalL2WeightedGreen q x) = x := by
+  rw [carryWeightedVerticalCenteredBracket_weightedGreen q hqpos hq1]
+  ext n
+  by_cases hn : n = 0
+  · subst n
+    simp [carryVerticalL2ZeroHeadProjection_apply, hx]
+  · simp [carryVerticalL2ZeroHeadProjection_apply, hn]
+
+/-- The actual finite completed-C3 bracket source belongs to the zero-head
+cancellation channel, so its causal Green response satisfies the exact inverse
+identity with no auxiliary hypothesis beyond camera support. -/
+theorem canonicalCompletedC3DirichletGradientBracketSource_cancellationGreenInverse
+    {base cutoff : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base) (s : ℂ) :
+    carryWeightedVerticalCenteredBracket
+        (canonicalBR2CarryAmplitudeRatio base)
+        (carryVerticalL2WeightedGreen
+          (canonicalBR2CarryAmplitudeRatio base)
+          (canonicalCompletedC3DirichletGradientBracketSource base cutoff s)) =
+      canonicalCompletedC3DirichletGradientBracketSource base cutoff s := by
+  apply carryWeightedVerticalCenteredBracket_weightedGreen_eq_self_of_zeroHead
+    (canonicalBR2CarryAmplitudeRatio base)
+    (canonicalBR2CarryAmplitudeRatio_pos hbase)
+    (canonicalBR2CarryAmplitudeRatio_lt_one hbase)
+  exact canonicalCompletedC3DirichletGradientBracketSource_zero base cutoff s
+
+/-- The same finite cancellation Green response carries the honest boundary
+return: Green response plus the trace return reconstructs the complete TFVD
+prefix.  This is the finite source/Green/boundary square that a completed
+Sun-style intertwiner would have to preserve. -/
+theorem canonicalCompletedC3DirichletGradient_cancellationGreen_add_boundary_eq_prefix
+    {base cutoff : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base) (s : ℂ) :
+    let q : ℝ := canonicalBR2CarryAmplitudeRatio base
+    let prefixState := canonicalCompletedC3DirichletGradientPrefixState s
+      (NativeCarrySpectralWeyl.Limits.finiteCameraWindow base cutoff + 1)
+    canonicalCompletedC3DirichletGradientBracketGreenResponse base cutoff s +
+        carryWeightedVerticalReturn q
+          (canonicalBR2CarryAmplitudeRatio_pos hbase).le
+          (canonicalBR2CarryAmplitudeRatio_lt_one hbase)
+          (carryWeightedVerticalTrace q prefixState) =
+      prefixState := by
+  exact canonicalCompletedC3DirichletGradient_greenResponse_add_boundary_eq_prefix
+    hbase s
 
 /-! ## Test the already completed ambient trace candidate -/
 
