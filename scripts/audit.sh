@@ -8,6 +8,9 @@ bash scripts/static_audit.sh
 # Check the discrete-projective capstone before the larger spectral surface.
 lake build --wfail CarrySelfAdjointOperator.DiscreteProjectiveReconstructionAudit
 
+# Check exact camera-to-moment universality before the operator audits.
+lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit
+
 # Cover the scalar boundary trace checked by the focused CI workflows.
 lake build --wfail CarrySelfAdjointOperator.BoundaryTraceAudit
 
