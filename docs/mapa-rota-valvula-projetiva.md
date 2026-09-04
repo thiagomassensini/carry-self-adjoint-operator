@@ -246,7 +246,7 @@ bordo até o readout final antes de extrair jets ou alegar positividade.
 ## 10. Tentativa seguinte — a métrica literal C3 não fecha
 
 Em 4 de setembro de 2026, a implementação
-[ProjectiveValveMomentFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/agent/projective-valve-moment-frontier/CarrySelfAdjointOperator/ProjectiveValveMomentFrontier.lean) provou que a realização literal da câmera
+[ProjectiveValveMomentFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c/CarrySelfAdjointOperator/ProjectiveValveMomentFrontier.lean) provou que a realização literal da câmera
 C3, raio 1, fornece `c(0,2)=0` e `c(1,1)=6`, embora os dois coeficientes devam
 ser o mesmo `h₁` no kernel dos momentos. Isso refuta o certificado para esse
 jet específico, preservando os resultados de independência da etapa 1.
@@ -268,13 +268,13 @@ A identificação nativa não foi concluída. Branch da tentativa:
 ## 11. Peso aritmético incorporado e teste do Green ponderado
 
 A origem do peso não ficou como hipótese nova. Em
-[ProjectiveValveCarryEnergyFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/agent/projective-valve-moment-frontier/CarrySelfAdjointOperator/ProjectiveValveCarryEnergyFrontier.lean), o parâmetro do Green foi identificado
+[ProjectiveValveCarryEnergyFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c/CarrySelfAdjointOperator/ProjectiveValveCarryEnergyFrontier.lean), o parâmetro do Green foi identificado
 com a amplitude derivada: `q_b^k = carryAmplitude b k`, com quadrado igual a
 `carryMass b k`. O produto interno TFVD foi decomposto nos quatro canais,
 incluindo os cruzamentos e o retorno de bordo.
 
 A nova realização `canonicalProjectiveCarryGreenMap` é injetiva e usa o
-parâmetro canônico. Porém [ProjectiveValveCarryGreenObstruction.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/agent/projective-valve-moment-frontier/CarrySelfAdjointOperator/ProjectiveValveCarryGreenObstruction.lean) prova que
+parâmetro canônico. Porém [ProjectiveValveCarryGreenObstruction.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c/CarrySelfAdjointOperator/ProjectiveValveCarryGreenObstruction.lean) prova que
 a família de respostas C3 transladadas com sementes zero também não satisfaz
 a recorrência dos momentos, mesmo com esse peso. O resultado não se aplica
 aos jets do estado completado com seus próprios dados de bordo.
@@ -292,3 +292,6 @@ recuperação da origem. Nenhum pin foi alterado nesta tentativa.
 Validação final desta tentativa: 30 declarações novas e a universalidade
 aritmética auditadas, somente axiomas usuais; build específico com 9.106 jobs e
 auditoria completa aprovados. A identidade nativa permanece aberta.
+
+Implementação validada: [22b3f48](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c).
+Commit e push registrados na branch da tentativa; sem merge no `main`.

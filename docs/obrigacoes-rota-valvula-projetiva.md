@@ -12,8 +12,8 @@ mapa Hilbert atual da câmera C3, não a toda realização possível do span.
 Base examinada: `main = 4de44de2341089a29665917ed48cd388c68a85e5`.
 Branch de trabalho: `agent/projective-valve-moment-frontier`.
 
-Implementação: [ProjectiveValveMomentFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/agent/projective-valve-moment-frontier/CarrySelfAdjointOperator/ProjectiveValveMomentFrontier.lean).
-Auditoria: [ProjectiveValveMomentFrontierAudit.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/agent/projective-valve-moment-frontier/CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean).
+Implementação: [ProjectiveValveMomentFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c/CarrySelfAdjointOperator/ProjectiveValveMomentFrontier.lean).
+Auditoria: [ProjectiveValveMomentFrontierAudit.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c/CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean).
 
 ## 1. O teste que impediu a identificação direta
 
@@ -245,7 +245,7 @@ não atribui ao arquivo um teorema adicional de identificação com os momentos.
 
 ### 6.1 A mesma amplitude já aparece no Green efetivamente usado
 
-Em [ProjectiveValveCarryEnergyFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/agent/projective-valve-moment-frontier/CarrySelfAdjointOperator/ProjectiveValveCarryEnergyFrontier.lean), o Lean provou:
+Em [ProjectiveValveCarryEnergyFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c/CarrySelfAdjointOperator/ProjectiveValveCarryEnergyFrontier.lean), o Lean provou:
 
 $$
 q_b^k=\operatorname{carryAmplitude}(b,k),\qquad
@@ -299,7 +299,7 @@ existente e o parâmetro derivado `q_b`, sem parâmetro de peso livre.
 `projectiveIncidenceRawJet_canonicalCarryGreen` identifica seus vetores com as
 respostas efetivas aos brackets.
 
-O Lean provou em [ProjectiveValveCarryGreenObstruction.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/agent/projective-valve-moment-frontier/CarrySelfAdjointOperator/ProjectiveValveCarryGreenObstruction.lean):
+O Lean provou em [ProjectiveValveCarryGreenObstruction.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c/CarrySelfAdjointOperator/ProjectiveValveCarryGreenObstruction.lean):
 
 ```lean
 not_br2C3CausalResponse_coefficientEquation
@@ -337,3 +337,6 @@ para **essa** família de jets.
 A identidade não pode ser substituída pela identificação entre ordem do jet
 e simples translação de um bracket: ambas as realizações transladadas
 examinadas acima falham no teste formal.
+
+Implementação validada: [22b3f48](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c).
+Commit e push registrados na branch da tentativa; sem merge no `main`.
