@@ -75,6 +75,7 @@ theorem completedNativeCameraEvenCoefficient_eq
   unfold completedNativeCameraEvenCoefficient
     completedNativeEvenCharacteristicCoefficient completedGreenTaylorJet
   rw [iteratedDeriv_normalizedCompletedNativeCameraCharacteristic hcamera]
+  simp only [Complex.ofReal_zero]
 
 /-- Real coefficients used by the camera's logarithmic moment recurrence. -/
 def completedNativeCameraRealEvenCoefficient

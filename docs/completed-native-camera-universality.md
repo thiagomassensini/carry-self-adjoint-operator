@@ -81,6 +81,9 @@ lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAud
 bash scripts/audit.sh
 ```
 
-Before a successful Lean build, the source and its proof terms are a proposed
-formalization. Shell syntax, source trust-escape checks, import references,
-and diff checks can be performed independently of that kernel validation.
+Validated on the server on 2026-09-04 with the pinned Lean 4.32.0 toolchain:
+the dedicated audit completed 4,039 jobs and the complete `scripts/audit.sh`
+finished with `kernel audit passed`, including `BoundaryTraceAudit`.
+The coefficient proof explicitly normalizes the real zero coerced into the
+complex Taylor center with `Complex.ofReal_zero`. No theorem statement,
+positivity hypothesis, or dependency pin was changed by that correction.
