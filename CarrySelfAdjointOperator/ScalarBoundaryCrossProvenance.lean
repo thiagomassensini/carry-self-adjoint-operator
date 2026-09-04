@@ -57,7 +57,6 @@ theorem scalarBoundaryWedge_sum_eq_pairwiseLedger
   simp [scalarBoundaryWedge, scalarBoundaryPairwiseLedger,
     scalarBoundaryPairCell, Finset.sum_mul, Finset.mul_sum,
     Finset.sum_sub_distrib]
-  congr 1 <;> exact Finset.sum_comm
 
 /-- Global scalar boundary equals the sum of local diagonal wedges plus the
 explicit cross-coordinate provenance. -/

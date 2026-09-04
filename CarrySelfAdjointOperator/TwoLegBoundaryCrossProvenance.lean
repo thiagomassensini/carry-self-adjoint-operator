@@ -58,7 +58,6 @@ theorem sameSEdgeBoundaryWedge_sum_eq_pairwiseLedger
   simp [sameSEdgeBoundaryWedge, twoLegBoundaryPairwiseLedger,
     twoLegBoundaryPairCell, Finset.sum_mul, Finset.mul_sum,
     Finset.sum_sub_distrib]
-  congr 1 <;> exact Finset.sum_comm
 
 /-- Four-leg global synthesis equals the sum of local same-edge boundaries
 plus explicit cross provenance. -/
