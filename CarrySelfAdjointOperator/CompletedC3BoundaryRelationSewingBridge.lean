@@ -22,6 +22,12 @@ argument order used by the sewing gate.  Therefore the raw
 Gamma--Wronskian defect is literally the difference of two boundary Green
 forms.
 
+The two real quadratures of the Gamma boundary state are also exhibited as
+literal Weyl boundary values of concrete vectors in `carrySourceRelation`.
+Thus the boundary carrier introduced here is not a new ad hoc relation: it is
+the canonical complexification of the already formalized source-extended
+self-adjoint logarithmic boundary relation.
+
 No equality of the two boundary states is asserted here.  The purpose of the
 module is to expose the remaining task as a boundary-relation identification,
 so that a future provenance-preserving C3 boundary map can target the exact
@@ -34,6 +40,7 @@ namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
 open NativeCarrySpectralWeyl.Boundary
+open NativeCarrySpectralWeyl.Infinite
 
 noncomputable section
 
@@ -64,6 +71,72 @@ def canonicalCompletedC3GammaBoundaryState
       carryGammaComplexCauchyReadout z hz
         (canonicalCompletedC3SixCameraSource z) :=
   rfl
+
+/-- First real quadrature of the canonical C3 Gamma defect state, viewed as a
+literal element of the concrete source-extended carry relation. -/
+def canonicalCompletedC3GammaSourceRelationFst
+    (z : ℂ) (hz : z.im ≠ 0) : carrySourceRelation :=
+  carrySourceRelationElement
+    (carryGammaIntoDomain z hz (canonicalCompletedC3SixCameraSource z)).1
+    (canonicalCompletedC3SixCameraSource z).fst
+
+/-- Second real quadrature of the same Gamma defect state in the source
+relation. -/
+def canonicalCompletedC3GammaSourceRelationSnd
+    (z : ℂ) (hz : z.im ≠ 0) : carrySourceRelation :=
+  carrySourceRelationElement
+    (carryGammaIntoDomain z hz (canonicalCompletedC3SixCameraSource z)).2
+    (canonicalCompletedC3SixCameraSource z).snd
+
+/-- The Weyl boundary chart of the first relation quadrature is exactly the
+first quadrature of `(Cauchy trace, source)`. -/
+theorem canonicalCompletedC3GammaSourceRelationFst_weylBoundaryMap
+    (z : ℂ) (hz : z.im ≠ 0) :
+    carryWeylBoundaryMap
+        (canonicalCompletedC3GammaSourceRelationFst z hz) =
+      ((canonicalCompletedC3GammaBoundaryState z hz).2.fst,
+        (canonicalCompletedC3GammaBoundaryState z hz).1.fst) := by
+  rw [canonicalCompletedC3GammaSourceRelationFst,
+    carryWeylBoundaryMap_element]
+  apply Prod.ext
+  · change
+      naimarkAdjoint
+          ((carryGammaIntoDomain z hz
+            (canonicalCompletedC3SixCameraSource z)).1 : NaimarkSpace) =
+        (carryGammaComplexCauchyReadout z hz
+          (canonicalCompletedC3SixCameraSource z)).fst
+    rw [carryGammaIntoDomain_fst_coe]
+    have h := congrArg WithLp.fst
+      (carryDefectGammaZero_apply z hz
+        (canonicalCompletedC3SixCameraSource z))
+    simpa [carryDefectGammaZero, carryGammaComplexCauchyReadout,
+      ContinuousLinearMap.comp_apply] using h
+  · rfl
+
+/-- The Weyl boundary chart of the second relation quadrature is exactly the
+second quadrature of `(Cauchy trace, source)`. -/
+theorem canonicalCompletedC3GammaSourceRelationSnd_weylBoundaryMap
+    (z : ℂ) (hz : z.im ≠ 0) :
+    carryWeylBoundaryMap
+        (canonicalCompletedC3GammaSourceRelationSnd z hz) =
+      ((canonicalCompletedC3GammaBoundaryState z hz).2.snd,
+        (canonicalCompletedC3GammaBoundaryState z hz).1.snd) := by
+  rw [canonicalCompletedC3GammaSourceRelationSnd,
+    carryWeylBoundaryMap_element]
+  apply Prod.ext
+  · change
+      naimarkAdjoint
+          ((carryGammaIntoDomain z hz
+            (canonicalCompletedC3SixCameraSource z)).2 : NaimarkSpace) =
+        (carryGammaComplexCauchyReadout z hz
+          (canonicalCompletedC3SixCameraSource z)).snd
+    rw [carryGammaIntoDomain_snd_coe]
+    have h := congrArg WithLp.snd
+      (carryDefectGammaZero_apply z hz
+        (canonicalCompletedC3SixCameraSource z))
+    simpa [carryDefectGammaZero, carryGammaComplexCauchyReadout,
+      ContinuousLinearMap.comp_apply] using h
+  · rfl
 
 /-- The positive Gamma boundary numerator is literally the Green form of the
 canonical six-camera boundary states.  This places the existing Gamma sewing
