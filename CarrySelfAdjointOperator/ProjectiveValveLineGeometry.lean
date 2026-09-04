@@ -37,6 +37,7 @@ linear subjacente. -/
         (projectiveValveLineSubspace p q) :=
   rfl
 
+omit [CharZero K] in
 /-- O subespaço da linha é o span dos representantes canônicos dos dois
 pontos. -/
 theorem projectiveValveLineSubspace_eq_span_pair
