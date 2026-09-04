@@ -121,7 +121,7 @@ theorem projectiveValveCollinear_swap
       ({p, q, r} : Set (ProjectiveValveDirection K)) =
         ({q, p, r} : Set (ProjectiveValveDirection K)) := by
     ext x
-    simp [or_comm, or_left_comm, or_assoc]
+    simp [or_left_comm]
   change
     Projectivization.IsCollinear
         ({p, q, r} : Set (ProjectiveValveDirection K)) ↔
@@ -138,7 +138,7 @@ theorem projectiveValveCollinear_rotate
       ({p, q, r} : Set (ProjectiveValveDirection K)) =
         ({q, r, p} : Set (ProjectiveValveDirection K)) := by
     ext x
-    simp [or_comm, or_left_comm, or_assoc]
+    simp [or_comm, or_left_comm]
   change
     Projectivization.IsCollinear
         ({p, q, r} : Set (ProjectiveValveDirection K)) ↔
