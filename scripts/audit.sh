@@ -15,36 +15,9 @@ lake build --wfail CarrySelfAdjointOperator.LDLCompatibilityAudit
 lake build --wfail CarrySelfAdjointOperator.JacobiOrderPolynomial
 lake build --wfail CarrySelfAdjointOperator.ExactProjectiveMatrixTower
 
-# Compile the experimental Green-inverse sewing criterion even before it is
-# wired into the public aggregator.
-lake build --wfail CarrySelfAdjointOperator.CompletedC3GreenInverseSewingProbe
-
-# Compile the boundary-relation reformulation independently as well.  This
-# makes the six-camera Gamma boundary Green form and the completed scalar
-# Wronskian meet in one typed interface before any aggregator wiring.
-lake build --wfail CarrySelfAdjointOperator.CompletedC3BoundaryRelationSewingBridge
-
-# Compile the sharper same-structured-state bridge.  It proves that the
-# Gamma six-camera source and the oriented scalar trace (-F',F) are both
-# projections of one cutoff-one C3 TFVD/Green state.
-lake build --wfail CarrySelfAdjointOperator.CompletedC3SameStructuredBoundaryState
-
-# Compile the target-specific valve naturality bridge.  This identifies the
-# weighted native TFVD bracket with the additive valve after the carry
-# amplitude gauge, promotes the concrete Cp ordinary/log-jet split to the
-# original depth-series curvature space, transports it exactly into the
-# projective depth coordinate, and turns the additive split into a product of
-# normalized masses.
-lake build --wfail CarrySelfAdjointOperator.CompletedC3ValveNaturality
-
-# Assemble the one-state naturality capstone from ledger boundary minus
-# provenance, intrinsic C3 Green form, faithful six-camera source, Gamma state,
-# and the completed scalar boundary pair (-F',F).
-lake build --wfail CarrySelfAdjointOperator.CompletedC3ValveGreenNaturality
-
-# Rewrite the historical Cauchy-strip scalarization frontier as diagonal
-# naturality between the two boundary charts of that same structured C3 state.
-lake build --wfail CarrySelfAdjointOperator.CompletedC3ValveCauchyNaturalityFrontier
+# Surface the exact existing objects participating in the remaining scalar
+# boundary trace before attempting any new composition theorem.
+lake build --wfail CarrySelfAdjointOperator.CompletedBoundaryTraceTheoremSurface
 
 lake build --wfail CarrySelfAdjointOperator
 lake build --wfail CarrySelfAdjointOperator.Audit

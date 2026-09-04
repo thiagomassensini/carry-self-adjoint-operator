@@ -6,19 +6,24 @@ import Mathlib.Tactic
 # Scalar trace of an enriched TFVD pair
 
 The enriched TFVD transport retains a synthesized value readout, a synthesized
-log-jet readout, and a local same-parameter boundary.  The local coordinates
-may live on any finite provenance-labelled index, finer than the C3 block
-index when necessary.
+log-jet readout, and the local same-parameter boundary cells from which the C3
+Green form is built.  This file proves the exact algebraic relation between
+those two levels.
 
-If those local coordinates synthesize the two scalar readouts and their local
-wedges sum to the retained TFVD boundary, then
+Once local value and log-jet coordinates synthesize the two scalar readouts,
+and each retained boundary cell is their local scalar wedge, the global scalar
+Wronskian equals
 
-`global scalar boundary = local TFVD boundary + cross provenance`.
+`local TFVD boundary + cross-block scalar provenance`.
 
-Combining this with `local boundary - Green provenance = Green form` reduces
-the remaining scalar seam to one concrete cancellation between two explicit
-provenance channels.  No positivity, zero hypothesis, operator realization,
-or confinement certificate is introduced.
+Combining this with any existing identity
+
+`local TFVD boundary - Green provenance = Green form`
+
+shows that scalar Wronskian equals Green form exactly when the retained Green
+provenance and the newly exposed cross-block provenance cancel.  Thus the
+remaining boundary seam is reduced to a concrete cancellation statement; no
+positivity, zero hypothesis, or operator realization is inserted.
 -/
 
 open scoped BigOperators ComplexConjugate
@@ -29,44 +34,44 @@ noncomputable section
 
 open NativeCarryC3Crosswalk
 
-/-- Arbitrarily fine local scalar coordinates whose sums produce the two
-readouts of an enriched TFVD pair. -/
-structure EnrichedTfvdScalarSynthesisData (ι : Type*) where
-  valueCell : ι → ℂ
-  logJetCell : ι → ℂ
+/-- Abstract synthesis data for the local coordinates retained by one enriched
+TFVD pair transport. -/
+structure EnrichedTfvdScalarSynthesisData (M : ℕ) where
+  valueCell : Fin M → ℂ
+  logJetCell : Fin M → ℂ
 
-/-- Exact scalar trace formula.  The local index `ι` can retain every
-block/residue/edge coordinate required by the existing C3 ledger. -/
+/-- Exact trace formula for an arbitrary enriched TFVD transport data object. -/
 theorem finiteC3EnrichedTfvdPair_scalarBoundaryTrace
-    {ι : Type*} [Fintype ι]
     (M : ℕ) (data : FiniteC3EnrichedTfvdPairTransportData M)
-    (cells : EnrichedTfvdScalarSynthesisData ι)
-    (hvalue : data.valueReadout = ∑ i : ι, cells.valueCell i)
-    (hlogJet : data.logJetReadout = ∑ i : ι, cells.logJetCell i)
-    (hlocal :
-      (∑ i : ι,
-        scalarBoundaryWedge (cells.valueCell i) (cells.logJetCell i)) =
-          finiteC3EnrichedTfvdPairBoundaryForm M data) :
+    (cells : EnrichedTfvdScalarSynthesisData M)
+    (hvalue : data.valueReadout = ∑ m : Fin M, cells.valueCell m)
+    (hlogJet : data.logJetReadout = ∑ m : Fin M, cells.logJetCell m)
+    (hcell : ∀ m : Fin M,
+      (data.boundaryCells m).total =
+        scalarBoundaryWedge (cells.valueCell m) (cells.logJetCell m)) :
     scalarBoundaryWedge data.valueReadout data.logJetReadout =
       finiteC3EnrichedTfvdPairBoundaryForm M data +
         scalarBoundaryCrossProvenance cells.valueCell cells.logJetCell := by
   rw [hvalue, hlogJet,
-    scalarBoundaryWedge_sum_eq_local_add_crossProvenance,
-    hlocal]
+    scalarBoundaryWedge_sum_eq_local_add_crossProvenance]
+  congr 1
+  unfold finiteC3EnrichedTfvdPairBoundaryForm
+  apply Finset.sum_congr rfl
+  intro m _hm
+  exact (hcell m).symm
 
-/-- Substituting a provenance-resolved Green identity gives the complete
-scalar-boundary decomposition. -/
+/-- If the retained TFVD boundary differs from a Green form by an explicit
+provenance channel, then the synthesized scalar trace differs from that Green
+form by exactly Green provenance plus cross-block synthesis provenance. -/
 theorem finiteC3EnrichedTfvdPair_scalarBoundaryTrace_eq_green_add_provenance
-    {ι : Type*} [Fintype ι]
     (M : ℕ) (data : FiniteC3EnrichedTfvdPairTransportData M)
-    (cells : EnrichedTfvdScalarSynthesisData ι)
+    (cells : EnrichedTfvdScalarSynthesisData M)
     (greenFormValue greenProvenance : ℂ)
-    (hvalue : data.valueReadout = ∑ i : ι, cells.valueCell i)
-    (hlogJet : data.logJetReadout = ∑ i : ι, cells.logJetCell i)
-    (hlocal :
-      (∑ i : ι,
-        scalarBoundaryWedge (cells.valueCell i) (cells.logJetCell i)) =
-          finiteC3EnrichedTfvdPairBoundaryForm M data)
+    (hvalue : data.valueReadout = ∑ m : Fin M, cells.valueCell m)
+    (hlogJet : data.logJetReadout = ∑ m : Fin M, cells.logJetCell m)
+    (hcell : ∀ m : Fin M,
+      (data.boundaryCells m).total =
+        scalarBoundaryWedge (cells.valueCell m) (cells.logJetCell m))
     (hgreen :
       finiteC3EnrichedTfvdPairBoundaryForm M data - greenProvenance =
         greenFormValue) :
@@ -75,23 +80,21 @@ theorem finiteC3EnrichedTfvdPair_scalarBoundaryTrace_eq_green_add_provenance
         (greenProvenance +
           scalarBoundaryCrossProvenance cells.valueCell cells.logJetCell) := by
   rw [finiteC3EnrichedTfvdPair_scalarBoundaryTrace
-    M data cells hvalue hlogJet hlocal]
+    M data cells hvalue hlogJet hcell]
   linear_combination hgreen
 
-/-- Exact residual criterion for the boundary seam.  Scalar trace equals the
-Green form iff the explicit Green provenance and synthesis-cross provenance
-cancel. -/
+/-- Exact residual criterion for the boundary seam.  No information has been
+lost: scalar trace equals the Green form iff the two explicit provenance
+channels cancel. -/
 theorem finiteC3EnrichedTfvdPair_scalarBoundaryTrace_eq_green_iff
-    {ι : Type*} [Fintype ι]
     (M : ℕ) (data : FiniteC3EnrichedTfvdPairTransportData M)
-    (cells : EnrichedTfvdScalarSynthesisData ι)
+    (cells : EnrichedTfvdScalarSynthesisData M)
     (greenFormValue greenProvenance : ℂ)
-    (hvalue : data.valueReadout = ∑ i : ι, cells.valueCell i)
-    (hlogJet : data.logJetReadout = ∑ i : ι, cells.logJetCell i)
-    (hlocal :
-      (∑ i : ι,
-        scalarBoundaryWedge (cells.valueCell i) (cells.logJetCell i)) =
-          finiteC3EnrichedTfvdPairBoundaryForm M data)
+    (hvalue : data.valueReadout = ∑ m : Fin M, cells.valueCell m)
+    (hlogJet : data.logJetReadout = ∑ m : Fin M, cells.logJetCell m)
+    (hcell : ∀ m : Fin M,
+      (data.boundaryCells m).total =
+        scalarBoundaryWedge (cells.valueCell m) (cells.logJetCell m))
     (hgreen :
       finiteC3EnrichedTfvdPairBoundaryForm M data - greenProvenance =
         greenFormValue) :
@@ -101,11 +104,10 @@ theorem finiteC3EnrichedTfvdPair_scalarBoundaryTrace_eq_green_iff
           scalarBoundaryCrossProvenance cells.valueCell cells.logJetCell = 0 := by
   rw [finiteC3EnrichedTfvdPair_scalarBoundaryTrace_eq_green_add_provenance
     M data cells greenFormValue greenProvenance
-      hvalue hlogJet hlocal hgreen]
+      hvalue hlogJet hcell hgreen]
   constructor
   · intro h
-    apply add_left_cancel (a := greenFormValue)
-    simpa using h
+    exact add_left_cancel h
   · intro h
     rw [h, add_zero]
 
