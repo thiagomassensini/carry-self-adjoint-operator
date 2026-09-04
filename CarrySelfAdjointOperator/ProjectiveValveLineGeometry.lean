@@ -75,6 +75,7 @@ theorem projectiveValveDirection_mem_lineSubspace_right
   rw [Submodule.mem_projectivization_iff_submodule_le]
   exact le_sup_right
 
+omit [CharZero K] in
 /-- Duas direções distintas geram um subespaço de dimensão exatamente dois. -/
 theorem projectiveValveLineSubspace_finrank_eq_two
     (p q : ProjectiveValveDirection K)
@@ -88,6 +89,7 @@ theorem projectiveValveLineSubspace_finrank_eq_two
   rw [← Matrix.range_cons_cons_empty p.rep q.rep ![]]
   simpa using finrank_span_eq_card hlin
 
+omit [CharZero K] in
 /-- **Dois pontos projetivos distintos determinam uma única linha.**
 
 Todo subespaço de dimensão dois que contém `p` e `q` coincide com o subespaço
