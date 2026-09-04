@@ -5,14 +5,13 @@ import Mathlib.Tactic
 /-!
 # Scalar boundary cross provenance
 
-A synthesized scalar value is a finite sum of local values, and its
-synthesized log jet is a finite sum of local log jets. Their diagonal Green
-Wronskian therefore contains the local diagonal wedges and every ordered
-cross-coordinate pairing.
+A synthesized scalar value is a sum of local values, and its synthesized
+log-jet is a sum of local log-jets.  Their scalar Green wedge therefore
+contains both the diagonal cell wedges and all ordered cross-block pairings.
 
-The local index is arbitrary. It can retain blocks, residues, edges, or a
-finer provenance-labelled coordinate system. No channel is collapsed merely
-to make the formula shorter.
+This module exposes those cross terms canonically from the full pairwise local
+ledger.  No analytic input, zero hypothesis, positivity premise, target
+spectrum, or selected inverse is used.
 -/
 
 open scoped BigOperators ComplexConjugate
@@ -38,16 +37,16 @@ def scalarBoundaryPairwiseLedger
     (value logJet : ι → ℂ) : ℂ :=
   ∑ i : ι, ∑ j : ι, scalarBoundaryPairCell value logJet i j
 
-/-- Cross-coordinate synthesis provenance, obtained from the complete
-ordered-pair ledger after removing its diagonal local wedges. -/
+/-- Cross-block synthesis provenance, obtained from the complete ordered-pair
+ledger after removing its diagonal cell wedges. -/
 def scalarBoundaryCrossProvenance
     {ι : Type*} [Fintype ι]
     (value logJet : ι → ℂ) : ℂ :=
   scalarBoundaryPairwiseLedger value logJet -
     ∑ i : ι, scalarBoundaryWedge (value i) (logJet i)
 
-/-- Expanding the two synthesized sums produces exactly the complete
-ordered-pair ledger. -/
+/-- Expanding the two synthesized sums produces exactly the ordered-pair
+ledger. -/
 theorem scalarBoundaryWedge_sum_eq_pairwiseLedger
     {ι : Type*} [Fintype ι]
     (value logJet : ι → ℂ) :
@@ -58,8 +57,8 @@ theorem scalarBoundaryWedge_sum_eq_pairwiseLedger
     scalarBoundaryPairCell, Finset.sum_mul, Finset.mul_sum,
     Finset.sum_sub_distrib]
 
-/-- Global scalar boundary equals the sum of local diagonal wedges plus the
-explicit cross-coordinate provenance. -/
+/-- Global scalar boundary equals the sum of local cell boundaries plus the
+explicit cross-block provenance. -/
 theorem scalarBoundaryWedge_sum_eq_local_add_crossProvenance
     {ι : Type*} [Fintype ι]
     (value logJet : ι → ℂ) :
@@ -70,7 +69,7 @@ theorem scalarBoundaryWedge_sum_eq_local_add_crossProvenance
   unfold scalarBoundaryCrossProvenance
   ring
 
-/-- Equivalent residual spelling, derived from the pairwise ledger rather
+/-- Equivalent residual spelling, derived from the pairwise definition rather
 than used to define it. -/
 theorem scalarBoundaryCrossProvenance_eq_global_sub_local
     {ι : Type*} [Fintype ι]
