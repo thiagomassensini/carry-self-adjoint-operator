@@ -23,7 +23,7 @@ open scoped LinearAlgebra.Projectivization
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- Subespaço linear subjacente à linha determinada por duas direções. -/
-abbrev projectiveValveLineSubspace
+noncomputable abbrev projectiveValveLineSubspace
     (p q : ProjectiveValveDirection K) :
     Submodule K (PowerSeries K) :=
   p.submodule ⊔ q.submodule
@@ -47,6 +47,8 @@ theorem projectiveValveLineSubspace_eq_span_pair
   calc
     projectiveValveLineSubspace p q =
         (K ∙ p.rep) ⊔ (K ∙ q.rep) := by
+      change p.submodule ⊔ q.submodule =
+        (K ∙ p.rep) ⊔ (K ∙ q.rep)
       rw [Projectivization.submodule_eq,
         Projectivization.submodule_eq]
     _ = Submodule.span K
@@ -56,6 +58,7 @@ theorem projectiveValveLineSubspace_eq_span_pair
         Submodule.span_insert p.rep
           ({q.rep} : Set (PowerSeries K))
 
+omit [CharZero K] in
 /-- A primeira direção pertence à linha determinada pelo par. -/
 theorem projectiveValveDirection_mem_lineSubspace_left
     (p q : ProjectiveValveDirection K) :
@@ -63,6 +66,7 @@ theorem projectiveValveDirection_mem_lineSubspace_left
   rw [Submodule.mem_projectivization_iff_submodule_le]
   exact le_sup_left
 
+omit [CharZero K] in
 /-- A segunda direção pertence à linha determinada pelo par. -/
 theorem projectiveValveDirection_mem_lineSubspace_right
     (p q : ProjectiveValveDirection K) :
