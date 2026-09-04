@@ -11,35 +11,41 @@ import Mathlib.Tactic
 /-!
 # Completed C3 valve naturality
 
-The repository now contains two exact valve formalisms which were built at
-historically different layers:
+The repository contains several exact descriptions of the same native/C3
+geometry which were built at historically different layers:
 
 * the weighted vertical TFVD used by the native/C3 geometry;
-* the additive `DiscreteValve` and multiplicative/projective valve written in
-  formal power series.
+* the additive `DiscreteValve` in the original depth coordinate `X`;
+* the Green channel and logarithmic potential feeding the multiplicative
+  valve;
+* the projective depth coordinate `Y = X/(1-X)` used by `ProjectiveValve`;
+* the concrete ordinary/log-jet completed C3 ledger and its six-camera Gamma
+  source;
+* the completed scalar product whose value/companion are `(F,-F')`.
 
-This module begins the target-specific identification of those layers.  It
-proves three literal compatibility statements.
+This module begins the target-specific naturality theorem tying those layers
+without identifying different coordinate systems by fiat.
 
-1.  Multiplication of a sequence by the carry amplitude `q^n` conjugates the
-    ordinary additive first/second differences to the weighted TFVD
-    differences.  In particular the weighted bracket is the ordinary bracket
-    in amplitude coordinates.
-2.  The concrete Cp log-block identity from `CPFormal` becomes an equality of
-    formal curvature series: the log-block is exactly the sum of a transported
-    log-jet channel and the ordinary radial/log-scale channel.
-3.  The projective valve sends that exact additive split to a multiplicative
-    factorization of the canonical normalized masses.
+1. Multiplication of a sequence by the carry amplitude `q^n` conjugates the
+   ordinary additive first/second differences to the weighted TFVD
+   differences.
+2. The Green reconstruction of the additive valve is literally the
+   `greenChannelSeries` already used by the multiplicative valve.
+3. The concrete Cp log-block identity becomes an equality of curvature series
+   in `X`; transporting all three terms with `toProjective` gives the same
+   equality in `Y`.
+4. `projectiveValveMass_add` then sends that exact additive split to a product
+   of normalized multiplicative masses.  By the fundamental theorem this is
+   the same Green-mass construction as the original `X`-coordinate curvature.
+5. The ordinary and log-jet coefficients are literally the ones stored by the
+   completed C3 ledger; that ledger reconstructs the C3 port packed into the
+   six-camera source used by Gamma.
+6. Independently, the completed characteristic is already the product of the
+   xi-completion factor and the normalized C3 value, and its boundary
+   companion is the corresponding product-rule companion.
 
-Finally the ordinary and log-jet series are identified coefficientwise with
-exactly the two provenance-preserving prefixes stored by the completed C3
-ledger.  The same ledger reconstructs the C3 Green port which is packed into
-the six-camera source used by the Gamma field.
-
-No Gamma--Wronskian sewing identity is assumed here.  The point is to remove a
-change-of-clothes ambiguity: the native weighted bracket, the C3
-ordinary/log-jet ledger, and the additive/multiplicative valve are now tied by
-explicit maps on the concrete canonical family.
+No Gamma--Wronskian sewing identity is assumed here.  The point is to remove
+change-of-clothes ambiguity one commuting square at a time.
 -/
 
 open scoped BigOperators ComplexConjugate
@@ -95,7 +101,20 @@ theorem carryWeightedScalarSecondDifference_gauge
     DiscreteValve.bracket_eq_fdiff_sub, pow_succ]
   ring
 
-/-! ## 2. The concrete Cp log block inside the additive curvature space -/
+/-! ## 2. Additive Green reconstruction is the multiplicative valve channel -/
+
+/-- The Green sum reconstructed by `DiscreteValve` is exactly the formal
+Green channel which the multiplicative-valve layer integrates logarithmically.
+No asymptotic or analytic limit is involved. -/
+theorem mk_discreteValveGreenSum_eq_greenChannelSeries
+    (x : ℕ → ℂ) :
+    mk (fun n => DiscreteValve.greenSum x n) =
+      GreenMultiplicativeValveBridge.greenChannelSeries
+        (mk (DiscreteValve.bracket x)) := by
+  rw [DiscreteValve.mk_greenSum]
+  rfl
+
+/-! ## 3. The concrete Cp log block inside the additive curvature space -/
 
 /-- Infinite ordinary-gradient series whose first three coefficients are the
 ordinary provenance leg of one complete C3 block. -/
@@ -106,8 +125,8 @@ def canonicalCpOrdinaryGradientSeries (s : ℂ) : PowerSeries ℂ :=
 def canonicalCpLogJetGradientSeries (s : ℂ) : PowerSeries ℂ :=
   mk (positiveLogDirichletGradient s)
 
-/-- The actual Cp log-block sequence, promoted coefficientwise to the same
-formal curvature space used by the projective valve. -/
+/-- The actual Cp log-block sequence, promoted coefficientwise to the original
+`X`-coordinate curvature space. -/
 def canonicalCpLogBlockGradientSeries (p : ℕ) (s : ℂ) : PowerSeries ℂ :=
   mk (cpLogBlockGradient p s)
 
@@ -159,23 +178,64 @@ theorem canonicalCpLogJetCommutatorSeries_eq_logScaleOrdinary
     canonicalCpLogScaleOrdinarySeries,
     cpLogJetCommutator_eq_logScale_mul_gradient p hp s n]
 
-/-! ## 3. The same additive split becomes a multiplicative factorization -/
+/-! ## 4. Transport the concrete split into the projective depth chart -/
 
-/-- Projective-valve naturality for the concrete Cp logarithmic block: the
-mass attached to the full block is exactly the product of the masses attached
-to its two additive curvature channels. -/
+/-- Full Cp log-block curvature in the projective depth coordinate `Y`. -/
+def canonicalCpLogBlockProjectiveCurvature
+    (p : ℕ) (s : ℂ) : PowerSeries ℂ :=
+  ProjectiveDepth.toProjective (canonicalCpLogBlockGradientSeries p s)
+
+/-- Transported log-jet curvature in the same `Y` coordinate. -/
+def canonicalCpTransportedLogJetProjectiveCurvature
+    (p : ℕ) (s : ℂ) : PowerSeries ℂ :=
+  ProjectiveDepth.toProjective (canonicalCpTransportedLogJetSeries p s)
+
+/-- Transported ordinary/log-scale curvature in `Y`. -/
+def canonicalCpLogScaleOrdinaryProjectiveCurvature
+    (p : ℕ) (s : ℂ) : PowerSeries ℂ :=
+  ProjectiveDepth.toProjective (canonicalCpLogScaleOrdinarySeries p s)
+
+/-- The additive Cp split survives the exact `X ↔ Y` coordinate change. -/
+theorem canonicalCpLogBlockProjectiveCurvature_eq_add
+    (p : ℕ) (hp : p ≠ 0) (s : ℂ) :
+    canonicalCpLogBlockProjectiveCurvature p s =
+      canonicalCpTransportedLogJetProjectiveCurvature p s +
+        canonicalCpLogScaleOrdinaryProjectiveCurvature p s := by
+  unfold canonicalCpLogBlockProjectiveCurvature
+    canonicalCpTransportedLogJetProjectiveCurvature
+    canonicalCpLogScaleOrdinaryProjectiveCurvature
+  rw [canonicalCpLogBlockGradientSeries_eq_add p hp s,
+    ProjectiveDepth.toProjective_add]
+
+/-- Projective-valve naturality for the concrete Cp logarithmic block: after
+transporting the actual `X`-coordinate curvatures to `Y`, the mass attached to
+the full block is exactly the product of the masses attached to its two
+additive channels. -/
 theorem projectiveValveMass_canonicalCpLogBlock_eq_mul
     (p : ℕ) (hp : p ≠ 0) (s : ℂ) :
     ProjectiveValve.projectiveValveMass
-        (canonicalCpLogBlockGradientSeries p s) =
+        (canonicalCpLogBlockProjectiveCurvature p s) =
       ProjectiveValve.projectiveValveMass
-          (canonicalCpTransportedLogJetSeries p s) *
+          (canonicalCpTransportedLogJetProjectiveCurvature p s) *
         ProjectiveValve.projectiveValveMass
-          (canonicalCpLogScaleOrdinarySeries p s) := by
-  rw [canonicalCpLogBlockGradientSeries_eq_add p hp s,
+          (canonicalCpLogScaleOrdinaryProjectiveCurvature p s) := by
+  rw [canonicalCpLogBlockProjectiveCurvature_eq_add p hp s,
     ProjectiveValve.projectiveValveMass_add]
 
-/-! ## 4. The valve series are the same ordinary/log-jet data stored by C3 -/
+/-- The full projective-valve mass is definitionally the Green-derived
+multiplicative mass of the original Cp curvature after the exact coordinate
+change. -/
+theorem projectiveValveMass_canonicalCpLogBlock_eq_projectiveGreenMass
+    (p : ℕ) (s : ℂ) :
+    ProjectiveValve.projectiveValveMass
+        (canonicalCpLogBlockProjectiveCurvature p s) =
+      GreenMultiplicativeValveBridge.projectiveGreenMass
+        (canonicalCpLogBlockGradientSeries p s) := by
+  unfold canonicalCpLogBlockProjectiveCurvature
+  exact ProjectiveValve.projectiveValveMass_toProjective
+    (canonicalCpLogBlockGradientSeries p s)
+
+/-! ## 5. The valve series are the same ordinary/log-jet data stored by C3 -/
 
 /-- At one complete C3 block, the ordinary ledger edge is literally the
 matching coefficient of the ordinary valve curvature series. -/
@@ -212,12 +272,45 @@ theorem canonicalCompletedC3StructuredGammaSource_eq_ledgerPacking
     canonicalCompletedC3SixCameraSource_eq_completedTfvdGreenCameraState]
   rfl
 
+/-! ## 6. The completed scalar trace is the same multiplicative product -/
+
+/-- The completed characteristic itself is already the product of the
+archimedean completion mass and the normalized C3 value read from the same
+completed TFVD state. -/
+theorem completedNativeOperatorCharacteristic_eq_completion_mul_c3Value
+    {z : ℂ} (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    completedNativeOperatorCharacteristic z =
+      nativeXiCompletionFactor z *
+        canonicalCompletedC3EnrichedTfvdNormalizedValueTailReadout z := by
+  calc
+    completedNativeOperatorCharacteristic z =
+        canonicalCompletedC3EnrichedTfvdCompletedValueTailReadout z :=
+      (canonicalCompletedC3EnrichedTfvdCompletedValueTailReadout_eq_characteristic
+        hs).symm
+    _ = nativeXiCompletionFactor z *
+        canonicalCompletedC3EnrichedTfvdNormalizedValueTailReadout z := rfl
+
+/-- Its canonical companion is the product-rule companion of precisely those
+same two factors. -/
+theorem completedNativeOperatorBoundaryCompanion_eq_productCompanion
+    {z : ℂ} (hs : operatorHeightParameter z ∈ genuineCriticalStrip) :
+    completedNativeOperatorBoundaryCompanion z =
+      productBoundaryCompanion
+        nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion
+        canonicalCompletedC3EnrichedTfvdNormalizedValueTailReadout
+        canonicalCompletedC3EnrichedTfvdNormalizedLogJetTailReadout z := by
+  calc
+    completedNativeOperatorBoundaryCompanion z =
+        canonicalCompletedC3EnrichedTfvdBoundaryCompanion z :=
+      (canonicalCompletedC3EnrichedTfvdBoundaryCompanion_eq_completedNativeOperatorBoundaryCompanion
+        hs).symm
+    _ = _ := rfl
+
 /-- Compact capstone: on the actual completed C3 family, the two first
 provenance channels are coefficient restrictions of the formal valve
-curvatures, while their reconstructed C3 port is exactly the source fed to the
-Gamma field.  Together with `projectiveValveMass_canonicalCpLogBlock_eq_mul`,
-this is the target-specific naturality bridge from the C3 ledger to the
-additive/multiplicative valve. -/
+curvatures, their exact local log-block split survives the projective depth
+change and becomes a product of normalized masses, and their reconstructed C3
+port is exactly the source fed to Gamma. -/
 theorem canonicalCompletedC3ValveNaturality
     (p : ℕ) (hp : p ≠ 0) (s : ℂ) :
     (∀ i : Fin 3,
@@ -226,21 +319,21 @@ theorem canonicalCompletedC3ValveNaturality
     (∀ i : Fin 3,
       (seededCompletedTfvdGreenLedger 1 s).1.2.2 i =
         coeff i.val (canonicalCpLogJetGradientSeries s)) ∧
-    canonicalCpLogBlockGradientSeries p s =
-      canonicalCpTransportedLogJetSeries p s +
-        canonicalCpLogScaleOrdinarySeries p s ∧
+    canonicalCpLogBlockProjectiveCurvature p s =
+      canonicalCpTransportedLogJetProjectiveCurvature p s +
+        canonicalCpLogScaleOrdinaryProjectiveCurvature p s ∧
     ProjectiveValve.projectiveValveMass
-        (canonicalCpLogBlockGradientSeries p s) =
+        (canonicalCpLogBlockProjectiveCurvature p s) =
       ProjectiveValve.projectiveValveMass
-          (canonicalCpTransportedLogJetSeries p s) *
+          (canonicalCpTransportedLogJetProjectiveCurvature p s) *
         ProjectiveValve.projectiveValveMass
-          (canonicalCpLogScaleOrdinarySeries p s) := by
+          (canonicalCpLogScaleOrdinaryProjectiveCurvature p s) := by
   refine ⟨?_, ?_, ?_, ?_⟩
   · intro i
     exact seededCompletedTfvdGreenLedger_ordinary_eq_valveSeriesCoeff s i
   · intro i
     exact seededCompletedTfvdGreenLedger_logJet_eq_valveSeriesCoeff s i
-  · exact canonicalCpLogBlockGradientSeries_eq_add p hp s
+  · exact canonicalCpLogBlockProjectiveCurvature_eq_add p hp s
   · exact projectiveValveMass_canonicalCpLogBlock_eq_mul p hp s
 
 end
