@@ -102,6 +102,66 @@ theorem oddPrefix_linearIndependent
   rw [hfamily]
   exact hmapped
 
+/-- The complete even jet family inherits independence from every finite
+native bracket-incidence subfamily. -/
+theorem even_linearIndependent
+    {E : Type*} [AddCommMonoid E] [Module ℝ E]
+    {base radius : ℕ} {jet : (ℕ ⊕ ℕ) → E}
+    (transport : BR2BracketIncidenceJetTransport base radius jet)
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base) :
+    LinearIndependent ℝ (fun n : ℕ => jet (Sum.inl n)) := by
+  classical
+  rw [linearIndependent_iff_finset_linearIndependent]
+  intro s
+  have hindex : Function.Injective (fun i : s => 2 * (i : ℕ)) := by
+    intro i j hij
+    dsimp only at hij
+    apply Subtype.ext
+    omega
+  have hsource := cameraBracketIncidence_linearIndependent_of_injective
+    hbase hradius (fun i : s => 2 * (i : ℕ)) hindex
+  have hmapped := hsource.map_injOn
+    transport.toLinearMap transport.injective.injOn
+  have hfamily :
+      (fun n : ℕ => jet (Sum.inl n)) ∘ (Subtype.val : s → ℕ) =
+        transport.toLinearMap ∘
+          (fun i : s => cameraBracketIncidence base radius (2 * (i : ℕ))) := by
+    funext i
+    exact transport.even_eq (i : ℕ)
+  rw [hfamily]
+  exact hmapped
+
+/-- The complete odd jet family inherits independence from every finite
+native bracket-incidence subfamily. -/
+theorem odd_linearIndependent
+    {E : Type*} [AddCommMonoid E] [Module ℝ E]
+    {base radius : ℕ} {jet : (ℕ ⊕ ℕ) → E}
+    (transport : BR2BracketIncidenceJetTransport base radius jet)
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base) :
+    LinearIndependent ℝ (fun n : ℕ => jet (Sum.inr n)) := by
+  classical
+  rw [linearIndependent_iff_finset_linearIndependent]
+  intro s
+  have hindex : Function.Injective (fun i : s => 2 * (i : ℕ) + 1) := by
+    intro i j hij
+    dsimp only at hij
+    apply Subtype.ext
+    omega
+  have hsource := cameraBracketIncidence_linearIndependent_of_injective
+    hbase hradius (fun i : s => 2 * (i : ℕ) + 1) hindex
+  have hmapped := hsource.map_injOn
+    transport.toLinearMap transport.injective.injOn
+  have hfamily :
+      (fun n : ℕ => jet (Sum.inr n)) ∘ (Subtype.val : s → ℕ) =
+        transport.toLinearMap ∘
+          (fun i : s => cameraBracketIncidence base radius (2 * (i : ℕ) + 1)) := by
+    funext i
+    exact transport.odd_eq (i : ℕ)
+  rw [hfamily]
+  exact hmapped
+
 end BR2BracketIncidenceJetTransport
 
 section ComplexRealification

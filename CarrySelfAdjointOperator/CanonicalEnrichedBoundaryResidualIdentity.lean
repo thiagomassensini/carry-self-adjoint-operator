@@ -115,7 +115,8 @@ theorem canonicalEnrichedScalarBoundary_eq_green_add_explicitDefects
               legs.left legs.right legs.jetLeft legs.jetRight +
             reflectedBoundaryResidualCorrection
               data.valueReadout data.logJetReadout legs := by
-    rw [scalarBoundaryWedge_eq_localTwoLeg_add_cross_add_residualCorrection,
+    rw [scalarBoundaryWedge_eq_localTwoLeg_add_cross_add_residualCorrection
+      data.valueReadout data.logJetReadout legs,
       hlocal]
   have hgreen :
       finiteC3EnrichedTfvdPairBoundaryForm M data -
@@ -125,6 +126,7 @@ theorem canonicalEnrichedScalarBoundary_eq_green_add_explicitDefects
           (finiteC3GenuineBracketGreenBoundaryPair
             (3 * M) (reflectedParameter s)) := by
     simpa [data, pair,
+      finiteC3CanonicalEnrichedTfvdCorrectedPairBoundary,
       canonicalBoundaryResidualData,
       canonicalBoundaryResidualPair] using
       (finiteC3CanonicalEnrichedTfvdCorrectedPairBoundary_eq_greenForm
@@ -153,12 +155,7 @@ theorem canonicalEnrichedScalarBoundary_eq_green_iff_explicitDefects_cancel
         canonicalBoundaryReadoutResidualCorrection M kappa omega s = 0 := by
   rw [canonicalEnrichedScalarBoundary_eq_green_add_explicitDefects
     M hkappa omega homega s]
-  constructor
-  · intro h
-    apply add_left_cancel
-    simpa using h
-  · intro h
-    rw [h, add_zero]
+  simp only [add_eq_left]
 
 end
 

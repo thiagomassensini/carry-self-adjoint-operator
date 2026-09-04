@@ -5,6 +5,9 @@ cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
 
+# Check the discrete-projective capstone before the larger spectral surface.
+lake build --wfail CarrySelfAdjointOperator.DiscreteProjectiveReconstructionAudit
+
 # Fail fast on the new ORDER layer before rebuilding the full import surface.
 lake build --wfail CarrySelfAdjointOperator.JacobiOrderPolynomial
 lake build --wfail CarrySelfAdjointOperator.ExactProjectiveMatrixTower

@@ -1,0 +1,12 @@
+import CarrySelfAdjointOperator.DiscreteProjectiveReconstruction
+
+/-! Focused kernel dependency audit for the discrete-projective capstone. -/
+
+#print axioms CarrySelfAdjointOperator.DiscreteProjective.mk_reconstruct_eq_green
+#print axioms CarrySelfAdjointOperator.DiscreteProjective.stateMass_eq_projectiveGreenMass
+#print axioms CarrySelfAdjointOperator.DiscreteProjective.stateMass_eq_iff_bracket_eq
+#print axioms CarrySelfAdjointOperator.DiscreteProjective.eq_iff_boundary_and_stateMass_eq
+#print axioms CarrySelfAdjointOperator.DiscreteProjective.reconstruct_encode
+#print axioms CarrySelfAdjointOperator.DiscreteProjective.encode_reconstruct
+#print axioms CarrySelfAdjointOperator.DiscreteProjective.reconstructionEquiv
+#print axioms CarrySelfAdjointOperator.DiscreteProjective.existsUnique_state_of_boundary_and_mass

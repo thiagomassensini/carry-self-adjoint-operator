@@ -31,6 +31,7 @@ namespace CarrySelfAdjointOperator
 noncomputable section
 
 open NativeCarryC3Crosswalk
+open CPFormal.Analytic.Cp
 open NativeCarrySpectralWeyl.Boundary
 
 /-- Canonical arithmetic enriched pair. -/
@@ -130,6 +131,8 @@ theorem canonicalEnrichedTfvdScalarTrace_eq_green_add_provenance
     finiteC3CanonicalEnrichedTfvdCorrectedPairBoundary_eq_greenForm
       M hkappa omega homega s
   unfold finiteC3CanonicalEnrichedTfvdCorrectedPairBoundary at hgreen
+  change finiteC3EnrichedTfvdPairBoundaryForm M data -
+    finiteCanonicalTfvdSameSGreenProvenanceDefect 3 M s = _ at hgreen
   unfold canonicalEnrichedTfvdScalarCrossProvenance
   dsimp only
   change scalarBoundaryWedge data.valueReadout data.logJetReadout = _
@@ -154,12 +157,7 @@ theorem canonicalEnrichedTfvdScalarTrace_eq_green_iff_provenance_cancel
         canonicalEnrichedTfvdScalarCrossProvenance M kappa omega s = 0 := by
   rw [canonicalEnrichedTfvdScalarTrace_eq_green_add_provenance
     M hkappa omega homega s hsynth]
-  constructor
-  · intro h
-    apply add_left_cancel
-    simpa using h
-  · intro h
-    rw [h, add_zero]
+  simp only [add_eq_left]
 
 end
 

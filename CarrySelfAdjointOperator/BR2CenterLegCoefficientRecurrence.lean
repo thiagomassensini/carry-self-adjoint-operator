@@ -34,7 +34,7 @@ structure BR2CenterLegCoefficientCertificate
     IsPolarizedGreenCoefficientEquation moments coeff
   greenOffDiagonalReadout : ∀ i j : ℕ ⊕ ℕ,
     incidence.centerCoordinate i ≠ incidence.legCoordinate j →
-      coeff (br2ParityJetNumber i) (br2ParityJetNumber j) =
+      coeff (parityJetNumber i) (parityJetNumber j) =
         inner ℂ (jet i) (jet j)
 
 namespace BR2CenterLegCoefficientCertificate
@@ -65,7 +65,7 @@ theorem toComplexMomentKernel
               certificate.coeff (2 * i) (2 * j) := by
                 simpa [greenWronskianMomentKernel] using hcoeff.symm
             _ = inner ℂ (jet (Sum.inl i)) (jet (Sum.inl j)) := by
-              simpa [br2ParityJetNumber] using hgreen
+              simpa [parityJetNumber] using hgreen
       | inr j =>
           have hcoeff := polarizedGreenCoefficient_unique
             certificate.coefficientEquation (2 * i) (2 * j + 1)
@@ -75,7 +75,7 @@ theorem toComplexMomentKernel
               certificate.coeff (2 * i) (2 * j + 1) := by
                 simpa [greenWronskianMomentKernel] using hcoeff.symm
             _ = inner ℂ (jet (Sum.inl i)) (jet (Sum.inr j)) := by
-              simpa [br2ParityJetNumber] using hgreen
+              simpa [parityJetNumber] using hgreen
   | inr i =>
       cases j with
       | inl j =>
@@ -87,7 +87,7 @@ theorem toComplexMomentKernel
               certificate.coeff (2 * i + 1) (2 * j) := by
                 simpa [greenWronskianMomentKernel] using hcoeff.symm
             _ = inner ℂ (jet (Sum.inr i)) (jet (Sum.inl j)) := by
-              simpa [br2ParityJetNumber] using hgreen
+              simpa [parityJetNumber] using hgreen
       | inr j =>
           have hcoeff := polarizedGreenCoefficient_unique
             certificate.coefficientEquation (2 * i + 1) (2 * j + 1)
@@ -97,7 +97,7 @@ theorem toComplexMomentKernel
               certificate.coeff (2 * i + 1) (2 * j + 1) := by
                 simpa [greenWronskianMomentKernel] using hcoeff.symm
             _ = inner ℂ (jet (Sum.inr i)) (jet (Sum.inr j)) := by
-              simpa [br2ParityJetNumber] using hgreen
+              simpa [parityJetNumber] using hgreen
 
 /-- Finite Hankel positivity follows from one off-diagonal Green readout plus
 the already-proved all-order coefficient recurrence. -/
