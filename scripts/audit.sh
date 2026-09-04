@@ -15,6 +15,10 @@ lake build --wfail CarrySelfAdjointOperator.LDLCompatibilityAudit
 lake build --wfail CarrySelfAdjointOperator.JacobiOrderPolynomial
 lake build --wfail CarrySelfAdjointOperator.ExactProjectiveMatrixTower
 
+# Compile the experimental Green-inverse sewing criterion even before it is
+# wired into the public aggregator.
+lake build --wfail CarrySelfAdjointOperator.CompletedC3GreenInverseSewingProbe
+
 lake build --wfail CarrySelfAdjointOperator
 lake build --wfail CarrySelfAdjointOperator.Audit
 lake build --wfail CarrySelfAdjointOperator.BR2Audit
