@@ -10,7 +10,7 @@ The scalar diagonal Wronskian
 
 `conj(value) * logJet - conj(logJet) * value`
 
-is exactly the native four-leg same-edge boundary under the canonical
+is exactly the native four-leg same-edge boundary after the canonical
 reflection assignment
 
 * `left = conj(logJet)`;
@@ -18,9 +18,10 @@ reflection assignment
 * `jetLeft = logJet`;
 * `jetRight = value`.
 
-This module isolates the four synthesis equalities that a concrete completed
-TFVD ledger must supply. No Green identity, positivity statement, or spectral
-claim is inserted into those equalities.
+This module combines that identification with the four-leg cross-provenance
+formula. It isolates the four synthesis equalities that the concrete completed
+TFVD ledger must supply; no analytic or spectral statement is smuggled into
+the assignment.
 -/
 
 open scoped BigOperators ComplexConjugate
@@ -29,7 +30,6 @@ namespace CarrySelfAdjointOperator
 
 noncomputable section
 
-open CPFormal.Analytic.Cp
 open NativeCarryC3Crosswalk
 
 /-- Scalar wedge is definitionally the reflected four-leg boundary. -/
@@ -50,7 +50,7 @@ structure ReflectedBoundarySynthesisData (ι : Type*) where
   jetRight : ι → ℂ
 
 /-- Once the four local sums recover the reflected scalar legs, the scalar
-Wronskian is the sum of local same-edge boundaries plus exact cross
+Wronskian is the sum of local same-edge boundaries plus the exact cross
 provenance. -/
 theorem scalarBoundaryWedge_eq_localTwoLeg_add_crossProvenance
     {ι : Type*} [Fintype ι]
@@ -72,8 +72,7 @@ theorem scalarBoundaryWedge_eq_localTwoLeg_add_crossProvenance
   exact sameSEdgeBoundaryWedge_sum_eq_local_add_crossProvenance
     legs.left legs.right legs.jetLeft legs.jetRight
 
-/-- Adapter from the reflected local ledger to an existing enriched TFVD pair
-boundary form. -/
+/-- Adapter to an existing enriched TFVD pair boundary form. -/
 theorem scalarBoundaryWedge_eq_enrichedTfvdBoundary_add_crossProvenance
     {ι : Type*} [Fintype ι]
     (M : ℕ) (data : FiniteC3EnrichedTfvdPairTransportData M)

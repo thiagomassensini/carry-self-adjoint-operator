@@ -9,9 +9,10 @@ The native same-edge boundary has four scalar legs:
 `right * jetLeft - left * jetRight`.
 
 After global synthesis, each product of sums contains every ordered pair of
-local coordinates. The retained cellwise TFVD boundary contains the diagonal
-pairs. This module exposes all remaining ordered cross pairs at exactly the
-arity used by the enriched TFVD transport.
+local coordinates.  The retained cellwise TFVD boundary contains only the
+diagonal pairs.  This module exposes the remaining ordered cross pairs as an
+explicit provenance channel at exactly the arity used by the enriched TFVD
+transport.
 -/
 
 open scoped BigOperators ComplexConjugate
@@ -20,7 +21,7 @@ namespace CarrySelfAdjointOperator
 
 noncomputable section
 
-open CPFormal.Analytic.Cp
+open NativeCarryC3Crosswalk
 
 /-- One ordered local pair in the four-leg synthesized boundary. -/
 def twoLegBoundaryPairCell

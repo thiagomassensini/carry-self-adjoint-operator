@@ -6,7 +6,7 @@ import Mathlib.Tactic
 # Exact edge flattening of the enriched TFVD boundary
 
 Each enriched angular TFVD block decodes to three ordered coordinates
-`first`, `second`, and `dormant`. Its retained same-parameter boundary is the
+`first`, `second`, and `dormant`.  Its retained same-parameter boundary is the
 sum of the two actual edges
 
 `first → second` and `second → dormant`.
@@ -22,7 +22,6 @@ namespace CarrySelfAdjointOperator
 
 noncomputable section
 
-open CPFormal.Analytic.Cp
 open NativeCarryC3Crosswalk
 
 /-- Left value leg of one of the two retained edges in a block. -/
@@ -98,9 +97,8 @@ theorem sum_enrichedTfvdBoundaryEdges_eq_pairBoundaryForm
   unfold finiteC3EnrichedTfvdPairBoundaryForm
   apply Finset.sum_congr rfl
   intro m _hm
-  simpa [finiteC3EnrichedTfvdPairTransport] using
-    (sum_enrichedTfvdBoundaryEdges_eq_cellTotal
-      M kappa omega pair m)
+  exact sum_enrichedTfvdBoundaryEdges_eq_cellTotal
+    M kappa omega pair m
 
 end
 
