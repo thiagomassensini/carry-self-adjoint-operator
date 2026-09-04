@@ -32,9 +32,15 @@ lake build --wfail CarrySelfAdjointOperator.CompletedC3SameStructuredBoundarySta
 # Compile the target-specific valve naturality bridge.  This identifies the
 # weighted native TFVD bracket with the additive valve after the carry
 # amplitude gauge, promotes the concrete Cp ordinary/log-jet split to the
-# common power-series curvature space, and transports that sum through the
-# projective valve to a product of normalized masses.
+# original depth-series curvature space, transports it exactly into the
+# projective depth coordinate, and turns the additive split into a product of
+# normalized masses.
 lake build --wfail CarrySelfAdjointOperator.CompletedC3ValveNaturality
+
+# Assemble the one-state naturality capstone from ledger boundary minus
+# provenance, intrinsic C3 Green form, faithful six-camera source, Gamma state,
+# and the completed scalar boundary pair (-F',F).
+lake build --wfail CarrySelfAdjointOperator.CompletedC3ValveGreenNaturality
 
 lake build --wfail CarrySelfAdjointOperator
 lake build --wfail CarrySelfAdjointOperator.Audit
