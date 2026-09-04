@@ -19,7 +19,6 @@ fi
 python3 -m json.tool audit/theorem-registry.json >/dev/null
 python3 -m json.tool audit/br2-theorem-registry.json >/dev/null
 python3 -m json.tool audit/order-theorem-registry.json >/dev/null
-python3 -m json.tool audit/ldl-compatibility-theorem-registry.json >/dev/null
 bash -n scripts/audit.sh scripts/static_audit.sh
 
 echo "static audit passed"
