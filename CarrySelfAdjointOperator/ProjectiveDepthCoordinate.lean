@@ -114,20 +114,16 @@ campo de velocidade de Green como coeficiente:
 `X * (F ∘ Y)' = greenVelocity * (F' ∘ Y)`.
 -/
 theorem euler_subst_coordinate (F : PowerSeries R) :
-    X * (d⁄dX R (F.subst (coordinate (R := R)))) =
+    X * d⁄dX R (F.subst (coordinate (R := R))) =
       greenVelocity *
         ((d⁄dX R F).subst (coordinate (R := R))) := by
   have hcoordinate : HasSubst (coordinate (R := R)) :=
     HasSubst.of_constantCoeff_zero' coordinate_constantCoeff
   rw [derivative_subst R hcoordinate]
-
   change
-    X *
-        ((d⁄dX R F).subst (coordinate (R := R)) *
+      X * ((d⁄dX R F).subst (coordinate (R := R)) *
           (coordinate (R := R)).derivativeFun) =
-      greenVelocity *
-        ((d⁄dX R F).subst (coordinate (R := R)))
-
+        greenVelocity * ((d⁄dX R F).subst (coordinate (R := R)))
   rw [coordinate_derivativeFun]
   unfold greenVelocity
   ac_rfl
