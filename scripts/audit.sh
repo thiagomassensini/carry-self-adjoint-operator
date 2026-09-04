@@ -11,6 +11,9 @@ lake build --wfail CarrySelfAdjointOperator.DiscreteProjectiveReconstructionAudi
 # Check native incidence transport into projective-valve finite spans.
 lake build --wfail CarrySelfAdjointOperator.ProjectiveValveNativeIncidenceAudit
 
+# Check the moment obligations, derived carry energy and the two C3 obstructions.
+lake build --wfail CarrySelfAdjointOperator.ProjectiveValveMomentFrontierAudit
+
 # Check exact camera-to-moment universality before the operator audits.
 lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit
 
