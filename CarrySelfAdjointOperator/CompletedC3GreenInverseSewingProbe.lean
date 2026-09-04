@@ -70,7 +70,8 @@ theorem canonicalCompletedC3GreenRightInverseAt_defectEquation
   unfold realifiedLambdaMinusLogarithmicMultiplication at hgreen
   simp only [LinearMap.sub_apply, LinearMap.coe_comp, Function.comp_apply,
     ContinuousLinearMap.coe_coe] at hgreen
-  exact sub_eq_iff_eq_add.mp hgreen
+  rw [← hgreen]
+  abel
 
 /-- Conversely, every canonical same-source resolvent state is a right inverse
 of `z - Y` on the completed C3 source. -/
@@ -86,7 +87,8 @@ theorem canonicalCompletedC3GreenRightInverseAt_of_defectEquation
   unfold realifiedLambdaMinusLogarithmicMultiplication
   simp only [LinearMap.sub_apply, LinearMap.coe_comp, Function.comp_apply,
     ContinuousLinearMap.coe_coe]
-  exact sub_eq_iff_eq_add.mpr hequation
+  rw [hequation]
+  abel
 
 /-- Off the real axis there is no second canonical Green right inverse inside
 the current logarithmic maximal domain: resolvent uniqueness forces every such
