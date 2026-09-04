@@ -26,9 +26,15 @@ lake build --wfail CarrySelfAdjointOperator.CompletedC3BoundaryRelationSewingBri
 
 # Compile the sharper same-structured-state bridge.  It proves that the
 # Gamma six-camera source and the oriented scalar trace (-F',F) are both
-# projections of one cutoff-one C3 TFVD/Green state, while retaining the
-# existing no-go against treating the packing itself as a Green intertwiner.
+# projections of one cutoff-one C3 TFVD/Green state.
 lake build --wfail CarrySelfAdjointOperator.CompletedC3SameStructuredBoundaryState
+
+# Compile the target-specific valve naturality bridge.  This identifies the
+# weighted native TFVD bracket with the additive valve after the carry
+# amplitude gauge, promotes the concrete Cp ordinary/log-jet split to the
+# common power-series curvature space, and transports that sum through the
+# projective valve to a product of normalized masses.
+lake build --wfail CarrySelfAdjointOperator.CompletedC3ValveNaturality
 
 lake build --wfail CarrySelfAdjointOperator
 lake build --wfail CarrySelfAdjointOperator.Audit
