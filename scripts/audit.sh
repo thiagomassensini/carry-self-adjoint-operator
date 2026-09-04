@@ -15,10 +15,6 @@ lake build --wfail CarrySelfAdjointOperator.LDLCompatibilityAudit
 lake build --wfail CarrySelfAdjointOperator.JacobiOrderPolynomial
 lake build --wfail CarrySelfAdjointOperator.ExactProjectiveMatrixTower
 
-# Surface the exact existing objects participating in the remaining scalar
-# boundary trace before attempting any new composition theorem.
-lake build --wfail CarrySelfAdjointOperator.CompletedBoundaryTraceTheoremSurface
-
 lake build --wfail CarrySelfAdjointOperator
 lake build --wfail CarrySelfAdjointOperator.Audit
 lake build --wfail CarrySelfAdjointOperator.BR2Audit
