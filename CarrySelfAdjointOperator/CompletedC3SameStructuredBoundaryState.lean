@@ -19,10 +19,15 @@ value/log-jet projection is completed and oriented as `(-F',F)`.
 
 The point is not to assume their Green forms agree.  Instead, the remaining
 sewing defect is rewritten as the difference of the two Green forms attached
-to these two projections of one structured state.  We also retain the existing
-no-go theorem showing that the six-camera packing by itself is not an
-intrinsic Green intertwiner: the source-extended Cauchy boundary chart is an
-essential part of any successful identification.
+to these two projections of one structured state.
+
+We also retain one older no-go theorem, but only in its exact scope: the bare
+six-camera coordinate packing is not, by itself, an intrinsic Green
+intertwiner on the whole C3 port carrier.  This predates and does not rule out
+the later additive--multiplicative/projective-valve structure, nor any
+source-locus-specific enriched boundary transform built from it.  In
+particular, the present target is a structured boundary-chart identification,
+not a claim that raw packing preserves the Green form globally.
 -/
 
 open scoped ComplexConjugate InnerProductSpace RealInnerProductSpace
@@ -171,10 +176,9 @@ theorem CanonicalCompletedC3SameStructuredBoundaryCompatibility.normalizedGammaK
   unfold canonicalCompletedC3RawGammaWronskianDefect at hzero
   exact sub_eq_zero.mp hzero
 
-/-- Guardrail: the faithful six-camera packing is not itself an intrinsic
-Green intertwiner on the whole C3 port carrier.  Any successful sewing map
-must use the source-extended Cauchy boundary chart (or an equivalently enriched
-relation), rather than identify the two Green forms through packing alone. -/
+/-- Bare-packing no-go only: the faithful six-camera coordinate packing is not
+itself an intrinsic Green intertwiner on the whole C3 port carrier.  This does
+not exclude a later valve-enriched or source-relation boundary transform. -/
 theorem no_global_intrinsicGreenIntertwiner_from_sixCameraPacking :
     ¬ (∀ x y : FiniteC3GreenPortCarrier 3,
       (greenForm (𝕜 := ℂ) x y).re =
