@@ -78,14 +78,14 @@ theorem canonicalCompletedC3EnrichedTfvdCauchyTraceCompatibility_iff_sameStructu
     unfold CanonicalCompletedC3SameStructuredBoundaryCompatibility
     rw [← canonicalCompletedC3CauchySkew_eq_structuredGammaGreenForm z hz,
       ← canonicalCompletedC3EnrichedWronskian_eq_structuredScalarGreenForm hs]
-    exact htrace z hs hz
+    exact (htrace z hs hz).symm
   · intro hnatural z hs hz
     have h := hnatural z hs hz
     unfold CanonicalCompletedC3SameStructuredBoundaryCompatibility at h
     rw [← canonicalCompletedC3CauchySkew_eq_structuredGammaGreenForm z hz,
       ← canonicalCompletedC3EnrichedWronskian_eq_structuredScalarGreenForm hs]
       at h
-    exact h
+    exact h.symm
 
 /-- Consequently the historical Gamma Cauchy strip scalarization frontier is
 literally the same-state boundary naturality frontier. -/
