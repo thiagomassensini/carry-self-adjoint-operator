@@ -1,4 +1,4 @@
-import CarrySelfAdjointOperator.CanonicalCompletedC3UniversalResolventDefect
+import CarrySelfAdjointOperator.CompletedC3TfvdResolventTraceBridge
 import Mathlib.Tactic
 
 /-!
@@ -173,6 +173,55 @@ theorem canonicalCompletedC3TfvdResolventDomainVector_greenRightInverse
       (canonicalCompletedC3TfvdResolventDomainVector z hz) := by
   apply canonicalCompletedC3GreenRightInverseAt_of_defectEquation
   exact canonicalCompletedC3TfvdResolventDomainVector_canonicalDefectEquation z hz
+
+/-! ## Test the already completed ambient trace candidate -/
+
+/-- The ambient completed response is a Green right inverse for the canonical
+C3 source exactly when its induced ambient source agrees with the canonical
+TFVD/Gamma source.  Thus the pre-existing source correction is not ancillary:
+it is precisely the obstruction to using the exact `(F,-F')` trace carrier as
+the required Green realization without further cancellation. -/
+theorem canonicalCompletedC3AmbientResolventDomainVector_greenRightInverse_iff_source
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hs : 0 < (operatorHeightParameter z).re) :
+    CanonicalCompletedC3GreenRightInverseAt z
+        (canonicalCompletedC3AmbientResolventDomainVector z hz hs) ↔
+      canonicalCompletedC3AmbientInducedSourceLimit z hs =
+        realifiedNaimarkPort (canonicalCompletedC3TfvdCameraSource z) := by
+  unfold CanonicalCompletedC3GreenRightInverseAt
+  unfold canonicalCompletedC3AmbientResolventDomainVector
+  rw [realifiedLambdaMinusLogarithmicMultiplication_apply_resolvent,
+    canonicalCompletedC3TfvdCameraSource_eq_canonicalSource]
+
+/-- Equivalently, the ambient exact-trace candidate works precisely when the
+ambient-to-TFVD source correction vanishes. -/
+theorem canonicalCompletedC3AmbientResolventDomainVector_greenRightInverse_iff_correction_zero
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hs : 0 < (operatorHeightParameter z).re) :
+    CanonicalCompletedC3GreenRightInverseAt z
+        (canonicalCompletedC3AmbientResolventDomainVector z hz hs) ↔
+      canonicalCompletedC3AmbientTfvdSourceCorrection z hs = 0 := by
+  rw [canonicalCompletedC3AmbientResolventDomainVector_greenRightInverse_iff_source
+    z hz hs]
+  unfold canonicalCompletedC3AmbientTfvdSourceCorrection
+  exact sub_eq_zero.symm
+
+/-- The established leak witness rules out the naive choice of the already
+completed ambient exact-trace response as the Green right inverse.  Therefore
+any successful Sun-style route must genuinely modify/quotient/intertwine the
+source correction rather than merely relabel the existing ambient state. -/
+theorem canonicalCompletedC3AmbientResolventDomainVector_not_greenRightInverse_at_witness
+    {base : ℕ} (hbase : FiniteNativeCarryOperator.Camera.IsSupported base) :
+    ¬ CanonicalCompletedC3GreenRightInverseAt noLeakWitnessHeight
+        (canonicalCompletedC3AmbientResolventDomainVector
+          noLeakWitnessHeight
+          (by rw [noLeakWitnessHeight_im]; norm_num)
+          (by rw [operatorHeightParameter_noLeakWitnessHeight_re]; norm_num)) := by
+  rw [canonicalCompletedC3AmbientResolventDomainVector_greenRightInverse_iff_source]
+  rcases
+      exists_canonicalCompletedC3AmbientInducedSourceLimit_ne_tfvdSource_at_witness
+        hbase with ⟨_, _, hne⟩
+  exact hne
 
 end
 
