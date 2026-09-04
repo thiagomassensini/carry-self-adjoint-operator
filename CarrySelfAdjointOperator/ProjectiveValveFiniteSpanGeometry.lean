@@ -125,7 +125,8 @@ theorem projectiveValveSubspaceMasses_iSup_fintype
     map_finset_sup
       (projectiveValveSubspaceSupBotHom (K := K))
       Finset.univ U
-  simpa only [Finset.sup_univ_eq_iSup, Function.comp_apply] using h
+  simpa only [projectiveValveSubspaceSupBotHom,
+    Finset.sup_univ_eq_iSup, Function.comp_apply] using h
 
 /-- Subgrupo multiplicativo associado ao span finito de uma família de
 direções projetivas. -/
