@@ -282,3 +282,5 @@ import CarrySelfAdjointOperator.ProjectiveValveLineIncidence
 import CarrySelfAdjointOperator.ProjectiveValveCollinearity
 
 import CarrySelfAdjointOperator.ProjectiveValvePlaneGeometry
+
+import CarrySelfAdjointOperator.ProjectiveValvePlaneIncidence
