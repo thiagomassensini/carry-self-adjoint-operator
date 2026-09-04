@@ -38,7 +38,7 @@ estado geométrico específico exige ainda compatibilidade entre os transportes.
 
 | Etapa | Entrega concreta | Estado atual |
 | --- | --- | --- |
-| 1 | Transporte linear injetivo das incidências de suporte finito às curvaturas projetivas; recuperação dos coeficientes; independência e dimensão dos spans; ligação ao carrier Hilbert existente. | Concluída e compilada em [ProjectiveValveNativeIncidence.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/main/CarrySelfAdjointOperator/ProjectiveValveNativeIncidence.lean); ver registro na seção 9. |
+| 1 | Transporte linear injetivo das incidências de suporte finito às curvaturas projetivas; recuperação dos coeficientes; independência e dimensão dos spans; ligação ao carrier Hilbert existente. | Concluída e compilada em [ProjectiveValveNativeIncidence.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/891853d810135669d871ab6f0ecd2420ac1d204c/CarrySelfAdjointOperator/ProjectiveValveNativeIncidence.lean); ver registro na seção 9. |
 | 2 | Identificar quais combinações dessas curvaturas e quais dados de bordo dão o estado nativo que produz os momentos de `F`. | Aberta: a naturalidade dos canais já existe; a igualdade da forma final ainda precisa de prova. |
 | 3 | Demonstrar as identidades Gram polarizadas para `G_N` e `K_N`, conservando normalizações, cruzamentos e bordos. | Obrigação central aberta. |
 | 4 | Usar a independência transportada para obter positividade estrita para todo `N` e construir o certificado. | Mecanismo formal existente; depende das etapas 2–3. |
@@ -191,8 +191,8 @@ fica com Motta após a validação no servidor e a integração autorizada.
 
 ## 9. Registro da etapa 1
 
-Implementação: [ProjectiveValveNativeIncidence.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/main/CarrySelfAdjointOperator/ProjectiveValveNativeIncidence.lean). Auditoria de dependências:
-[ProjectiveValveNativeIncidenceAudit.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/main/CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean). O módulo entrou no import raiz e a
+Implementação: [ProjectiveValveNativeIncidence.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/891853d810135669d871ab6f0ecd2420ac1d204c/CarrySelfAdjointOperator/ProjectiveValveNativeIncidence.lean). Auditoria de dependências:
+[ProjectiveValveNativeIncidenceAudit.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/891853d810135669d871ab6f0ecd2420ac1d204c/CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean). O módulo entrou no import raiz e a
 auditoria específica entrou em `scripts/audit.sh`.
 
 | Declarações novas | Resultado verificado |
@@ -227,6 +227,8 @@ Validação no servidor em 4 de setembro de 2026:
 - Log específico: `/tmp/carry-native-incidence-focused.log` no servidor.
 - Log completo: `/tmp/carry-native-incidence-full-audit.log` no servidor.
 - Branch de implementação: `agent/projective-valve-native-incidence`.
+- Commit da implementação validada: [891853d](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/891853d810135669d871ab6f0ecd2420ac1d204c).
+- Integração: [PR #50](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/50).
 
 **Próxima obrigação concreta:** escolher, a partir do ledger e dos dados de
 bordo, a família que produz os coeficientes de `-F′/(2F)` e provar a igualdade
@@ -235,7 +237,7 @@ independência e um diagrama Hilbert comutativo. A identificação dessa métric
 com os momentos nativos permanece aberta; é a etapa 2 seguida da etapa 3.
 
 Para começar a próxima sessão, abrir conjuntamente
-[ProjectiveValveNativeIncidence.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/main/CarrySelfAdjointOperator/ProjectiveValveNativeIncidence.lean), [CompletedC3ValveGreenNaturality.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/351ec74cc40f7d12d6f31e9450372f223dabb2bd/CarrySelfAdjointOperator/CompletedC3ValveGreenNaturality.lean),
+[ProjectiveValveNativeIncidence.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/891853d810135669d871ab6f0ecd2420ac1d204c/CarrySelfAdjointOperator/ProjectiveValveNativeIncidence.lean), [CompletedC3ValveGreenNaturality.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/351ec74cc40f7d12d6f31e9450372f223dabb2bd/CarrySelfAdjointOperator/CompletedC3ValveGreenNaturality.lean),
 [CompletedC3ValveCauchyNaturalityFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/351ec74cc40f7d12d6f31e9450372f223dabb2bd/CarrySelfAdjointOperator/CompletedC3ValveCauchyNaturalityFrontier.lean) e
 [CompletedC3CausalGreenGramSewing.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/351ec74cc40f7d12d6f31e9450372f223dabb2bd/CarrySelfAdjointOperator/CompletedC3CausalGreenGramSewing.lean). Rastrear o mesmo estado e seus dados de
 bordo até o readout final antes de extrair jets ou alegar positividade.
