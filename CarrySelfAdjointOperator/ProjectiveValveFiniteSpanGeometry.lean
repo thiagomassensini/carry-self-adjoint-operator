@@ -114,6 +114,14 @@ noncomputable def projectiveValveSubspaceSupBotHom :
   map_sup' := projectiveValveSubspaceMasses_sup (K := K)
   map_bot' := projectiveValveSubspaceMasses_bot (K := K)
 
+/-- Aplicar o `SupBotHom` canônico é definicionalmente a mesma coisa que
+aplicar `projectiveValveSubspaceMasses`. -/
+@[simp] theorem projectiveValveSubspaceSupBotHom_apply
+    (U : Submodule K (PowerSeries K)) :
+    projectiveValveSubspaceSupBotHom (K := K) U =
+      projectiveValveSubspaceMasses U :=
+  rfl
+
 /-- A correspondência de subespaços preserva supremos indexados por qualquer
 tipo finito. -/
 theorem projectiveValveSubspaceMasses_iSup_fintype
@@ -125,8 +133,8 @@ theorem projectiveValveSubspaceMasses_iSup_fintype
     map_finset_sup
       (projectiveValveSubspaceSupBotHom (K := K))
       Finset.univ U
-  simpa only [projectiveValveSubspaceSupBotHom,
-    Finset.sup_univ_eq_iSup, Function.comp_apply] using h
+  simpa only [Finset.sup_univ_eq_iSup, Function.comp_apply,
+    projectiveValveSubspaceSupBotHom_apply] using h
 
 /-- Subgrupo multiplicativo associado ao span finito de uma família de
 direções projetivas. -/
