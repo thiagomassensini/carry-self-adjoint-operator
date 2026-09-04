@@ -87,7 +87,6 @@ theorem carryWeightedScalarFirstDifference_gauge
     DiscreteValve.fdiff
   rw [pow_succ]
   field_simp [hq]
-  ring
 
 /-- The weighted second difference/bracket is exactly the ordinary additive
 bracket, conjugated by one extra carry amplitude. -/

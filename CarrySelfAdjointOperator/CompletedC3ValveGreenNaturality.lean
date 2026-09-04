@@ -34,6 +34,7 @@ namespace CarrySelfAdjointOperator
 open CPFormal.Analytic.Cp
 open NativeCarryC3Crosswalk
 open NativeCarrySpectralWeyl.Boundary
+open NativeCarrySpectralWeyl.Infinite
 
 noncomputable section
 

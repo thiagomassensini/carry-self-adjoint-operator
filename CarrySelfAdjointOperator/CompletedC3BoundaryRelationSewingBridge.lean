@@ -177,7 +177,6 @@ theorem completedC3Wronskian_eq_scalarBoundaryGreenForm
         (canonicalCompletedC3ScalarBoundaryPair w) := by
   simp [completedGreenWronskian, greenForm,
     canonicalCompletedC3ScalarBoundaryPair]
-  ring
 
 /-- The raw sewing defect is exactly the difference between two Green forms:
 the six-camera Gamma boundary form and the completed scalar TFVD boundary

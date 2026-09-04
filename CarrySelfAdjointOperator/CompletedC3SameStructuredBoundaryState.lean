@@ -144,15 +144,19 @@ theorem canonicalCompletedC3RawGammaWronskianDefect_eq_sameStructuredGreenForm_s
 /-- The same-state boundary compatibility is exactly the vanishing of the
 existing raw sewing defect.  No global symplectic extension is required. -/
 theorem canonicalCompletedC3SameStructuredBoundaryCompatibility_iff_rawDefect_zero
-    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
-    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
-    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip) :
-    CanonicalCompletedC3SameStructuredBoundaryCompatibility z w hz hw ↔
-      canonicalCompletedC3RawGammaWronskianDefect z w hz hw = 0 := by
+  (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+  (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+  (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip) :
+  CanonicalCompletedC3SameStructuredBoundaryCompatibility z w hz hw ↔
+    canonicalCompletedC3RawGammaWronskianDefect z w hz hw = 0 := by
   unfold CanonicalCompletedC3SameStructuredBoundaryCompatibility
   rw [canonicalCompletedC3RawGammaWronskianDefect_eq_sameStructuredGreenForm_sub
     z w hz hw hzStrip hwStrip]
-  exact eq_comm.trans sub_eq_zero.symm
+  constructor
+  · intro h
+    exact sub_eq_zero.mpr h
+  · intro h
+    exact sub_eq_zero.mp h
 
 /-- A pointwise same-state boundary compatibility closes the already
 formalized normalized Gamma--`dslope` sewing at that pair. -/
