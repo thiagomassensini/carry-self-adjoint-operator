@@ -1,0 +1,43 @@
+2026-09-05T09:29:55.9608092Z ✔ [2997/2999] Built CarrySelfAdjointOperator.ObservableJetQuotient (11s)
+2026-09-05T09:30:02.1667701Z ✔ [2998/2999] Built CarrySelfAdjointOperator.C3TraceDynamics (6.2s)
+2026-09-05T09:30:03.5677468Z ℹ [2999/2999] Built CarrySelfAdjointOperator.ObservableJetCoreAudit (1.4s)
+2026-09-05T09:30:03.5678413Z info: CarrySelfAdjointOperator/ObservableJetCoreAudit.lean:3:0: 'CarrySelfAdjointOperator.ObservableJet.invisible_invariant' depends on axioms: [propext, Quot.sound]
+2026-09-05T09:30:03.5679696Z info: CarrySelfAdjointOperator/ObservableJetCoreAudit.lean:4:0: 'CarrySelfAdjointOperator.ObservableJet.invariant_submodule_le_invisible' depends on axioms: [propext, Quot.sound]
+2026-09-05T09:30:03.5680681Z info: CarrySelfAdjointOperator/ObservableJetCoreAudit.lean:5:0: 'CarrySelfAdjointOperator.ObservableJet.invisible_eq_ker_iff' depends on axioms: [propext, Quot.sound]
+2026-09-05T09:30:03.5681736Z info: CarrySelfAdjointOperator/ObservableJetCoreAudit.lean:6:0: 'CarrySelfAdjointOperator.ObservableJet.generator_mkQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+2026-09-05T09:30:03.5682857Z info: CarrySelfAdjointOperator/ObservableJetCoreAudit.lean:7:0: 'CarrySelfAdjointOperator.ObservableJet.observation_mkQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+2026-09-05T09:30:03.5683958Z info: CarrySelfAdjointOperator/ObservableJetCoreAudit.lean:8:0: 'CarrySelfAdjointOperator.C3TraceDynamics.clock_intertwines' depends on axioms: [propext, Classical.choice, Quot.sound]
+2026-09-05T09:30:03.5684851Z info: CarrySelfAdjointOperator/ObservableJetCoreAudit.lean:9:0: 'CarrySelfAdjointOperator.C3TraceDynamics.three_observations_separate' depends on axioms: [propext,
+2026-09-05T09:30:03.5685379Z  Classical.choice,
+2026-09-05T09:30:03.5685538Z  Quot.sound]
+2026-09-05T09:30:03.5686016Z info: CarrySelfAdjointOperator/ObservableJetCoreAudit.lean:10:0: 'CarrySelfAdjointOperator.C3TraceDynamics.native_log_trace_gap_neg' depends on axioms: [propext,
+2026-09-05T09:30:03.5686684Z  Classical.choice,
+2026-09-05T09:30:03.5686840Z  Quot.sound]
+2026-09-05T09:30:03.5687343Z info: CarrySelfAdjointOperator/ObservableJetCoreAudit.lean:11:0: 'CarrySelfAdjointOperator.C3TraceDynamics.native_three_observations_separate' depends on axioms: [propext,
+2026-09-05T09:30:03.5687886Z  Classical.choice,
+2026-09-05T09:30:03.5688040Z  Quot.sound]
+2026-09-05T09:30:03.5766145Z Build completed successfully (2999 jobs).
+2026-09-05T09:30:52.2160988Z ✔ [3430/3431] Built CarrySelfAdjointOperator.C3NativeTraceDynamics (1.7s)
+2026-09-05T09:30:53.7177493Z ℹ [3431/3431] Built CarrySelfAdjointOperator.ObservableJetAudit (1.5s)
+2026-09-05T09:30:53.7178459Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:3:0: 'CarrySelfAdjointOperator.ObservableJet.invisible_invariant' depends on axioms: [propext, Quot.sound]
+2026-09-05T09:30:53.7179644Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:4:0: 'CarrySelfAdjointOperator.ObservableJet.invariant_submodule_le_invisible' depends on axioms: [propext, Quot.sound]
+2026-09-05T09:30:53.7180869Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:5:0: 'CarrySelfAdjointOperator.ObservableJet.invisible_eq_ker_iff' depends on axioms: [propext, Quot.sound]
+2026-09-05T09:30:53.7182369Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:6:0: 'CarrySelfAdjointOperator.ObservableJet.generator_mkQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+2026-09-05T09:30:53.7184289Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:7:0: 'CarrySelfAdjointOperator.ObservableJet.observation_mkQ' depends on axioms: [propext, Classical.choice, Quot.sound]
+2026-09-05T09:30:53.7196945Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:8:0: 'CarrySelfAdjointOperator.C3TraceDynamics.clock_intertwines' depends on axioms: [propext, Classical.choice, Quot.sound]
+2026-09-05T09:30:53.7197932Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:9:0: 'CarrySelfAdjointOperator.C3TraceDynamics.three_observations_separate' depends on axioms: [propext,
+2026-09-05T09:30:53.7198603Z  Classical.choice,
+2026-09-05T09:30:53.7198927Z  Quot.sound]
+2026-09-05T09:30:53.7199569Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:10:0: 'CarrySelfAdjointOperator.C3TraceDynamics.native_log_trace_gap_neg' depends on axioms: [propext,
+2026-09-05T09:30:53.7200202Z  Classical.choice,
+2026-09-05T09:30:53.7200489Z  Quot.sound]
+2026-09-05T09:30:53.7201095Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:11:0: 'CarrySelfAdjointOperator.C3TraceDynamics.native_three_observations_separate' depends on axioms: [propext,
+2026-09-05T09:30:53.7201747Z  Classical.choice,
+2026-09-05T09:30:53.7202031Z  Quot.sound]
+2026-09-05T09:30:53.7202622Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:12:0: 'CarrySelfAdjointOperator.nativeC3LogGradientTriple_eq_affine_clock' depends on axioms: [propext,
+2026-09-05T09:30:53.7203257Z  Classical.choice,
+2026-09-05T09:30:53.7203541Z  Quot.sound]
+2026-09-05T09:30:53.7209792Z info: CarrySelfAdjointOperator/ObservableJetAudit.lean:13:0: 'CarrySelfAdjointOperator.nativeC3_consistent_initialPulse_logTrace_ne_zero' depends on axioms: [propext,
+2026-09-05T09:30:53.7210810Z  Classical.choice,
+2026-09-05T09:30:53.7211104Z  Quot.sound]
+2026-09-05T09:30:53.7298667Z Build completed successfully (3431 jobs).

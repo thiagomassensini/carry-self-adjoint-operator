@@ -1,0 +1,115 @@
+{
+  "axiom_checks": [
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.ObservableJet.invisible_invariant"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.ObservableJet.invariant_submodule_le_invisible"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.ObservableJet.invisible_eq_ker_iff"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.ObservableJet.generator_mkQ"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.ObservableJet.observation_mkQ"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.C3TraceDynamics.clock_intertwines"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.C3TraceDynamics.three_observations_separate"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.C3TraceDynamics.native_log_trace_gap_neg"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.C3TraceDynamics.native_three_observations_separate"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.nativeC3LogGradientTriple_eq_affine_clock"
+    },
+    {
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "theorem": "CarrySelfAdjointOperator.nativeC3_consistent_initialPulse_logTrace_ne_zero"
+    }
+  ],
+  "core_audit": {
+    "jobs": 2999,
+    "status": "success"
+  },
+  "exact_polynomial_checks": 11,
+  "job_id": 101284652021,
+  "native_audit": {
+    "jobs": 3431,
+    "status": "success"
+  },
+  "new_module_lean_warnings": 0,
+  "new_theorems": 25,
+  "scope": "All newly introduced theorem modules and their imports compiled; this receipt does not claim the repository-wide audit completed.",
+  "source_static_audit": "success",
+  "tested_commit": "2121841618abc6bfee691686b77921cf236b65bc",
+  "toolchain": "leanprover/lean4:v4.32.0",
+  "wfail": true,
+  "workflow_run_id": 33957965375,
+  "workflow_url": "https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/33957965375",
+  "verified_source_sha256": {
+    "CarrySelfAdjointOperator/ObservableJetQuotient.lean": "1a4b2c0567f1842dd41868a620abc45f73a3af4c347542facb5281dff795c250",
+    "CarrySelfAdjointOperator/C3TraceDynamics.lean": "8f715d415cc1c167ea8cf1586584e9b1de8f4b1ef95e1971b558d4017d6ca543",
+    "CarrySelfAdjointOperator/C3NativeTraceDynamics.lean": "3993f0e21058e130b5121bf12326e25a97b0fbd34a94edefa7f229c9f50e5a4f",
+    "CarrySelfAdjointOperator/ObservableJetCoreAudit.lean": "c76ce194f2422b730d20a3fec0c17a40691ae97a8786b01f37211ea0a2df8334",
+    "CarrySelfAdjointOperator/ObservableJetAudit.lean": "ba7c7eff1942a1e6e8e9c0a604b1e80e355c84af12a5daeefc1c8d9d3b852dac"
+  }
+}

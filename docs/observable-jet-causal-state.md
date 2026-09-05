@@ -183,13 +183,26 @@ Fontes especialmente relevantes no repositório:
 - `CarrySelfAdjointOperator/CompletedC3DirichletGradientBracketSource.lean`;
 - `CPFormal/Analytic/CpFiniteLogJetCommutator.lean` no crosswalk.
 
-O script `research/observable-jet-2026-09-05/exact_check.py` verifica 11
-identidades por aritmética polinomial racional exata e grava `exact_check.json`.
-Ele não valida a elaboração ou o kernel Lean. Não há toolchain Lean instalada
-no ambiente local desta sessão. Os arquivos Lean são submetidos ao workflow
-existente do repositório, com `--wfail` e impressão dos axiomas dos resultados
-centrais via `ObservableJetAudit`. Até haver uma execução bem-sucedida desse
-workflow, a formalização deve ser tratada como proposta pendente de compilação.
+**Validação concluída para os 25 enunciados novos**, no commit
+`2121841618abc6bfee691686b77921cf236b65bc`, pelo
+[workflow de auditoria](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/33957965375).
+`ObservableJetCoreAudit` passou com 2999 jobs e `ObservableJetAudit`, incluindo
+a identidade nativa, passou com 3431 jobs. Ambos usam `--wfail`. Não houve
+avisos Lean nos módulos novos. Os 11 resultados centrais cuja dependência foi
+impressa usam somente subconjuntos de `propext`, `Classical.choice` e
+`Quot.sound`.
+
+O recibo `research/observable-jet-2026-09-05/verification.json` registra o
+commit testado e os hashes dos cinco arquivos Lean. O trecho literal relevante
+do log está em `kernel_audit_excerpt.log`. As correções de elaboração não
+alteraram os enunciados matemáticos. A checagem completa da biblioteca é um
+workflow separado; este recibo não afirma que ela tenha concluído.
+
+O script `research/observable-jet-2026-09-05/exact_check.py` também verificou
+11 identidades por aritmética polinomial racional exata e gravou
+`exact_check.json`. Essa auditoria algébrica é independente da compilação Lean.
+A compilação foi feita no GitHub, pois não havia toolchain Lean instalada
+no ambiente local desta sessão.
 
 Há ainda um workflow separado, `Observable jet core audit`, que compila
 `ObservableJetCoreAudit` para dar retorno rápido sobre os dois módulos
