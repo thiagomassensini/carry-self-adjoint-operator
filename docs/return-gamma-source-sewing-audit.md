@@ -4,6 +4,8 @@ Data: 2026-09-05. Repositório: `thiagomassensini/carry-self-adjoint-operator`.
 Base exata: `225a85d9e8e3e0a3b659c5b6ad821458770b3195`.
 Branch: `agent/return-gamma-source-sewing`.
 
+> Continuação: o [teste da câmera 5 sobre o Gamma completo](c3-gamma-camera-five-trace-no-go.md) prova que o defeito bruto é não nulo perto do centro e nega a scalarization canônica. O texto abaixo conserva o estado da investigação na base desta primeira redução.
+
 **Resultado: identificação da fonte e redução exata formalizadas; sewing Gamma–Wronskiano aberto.** A projeção mista do source existente não é o readout misto do vetor de resultantes da nota dinâmica. O complemento do próprio source fornece um testemunho não nulo de bordo invisível ao readout misto. Isso exclui uma fatoração universal do bordo apenas por esse readout; não exclui uma compensação dos cruzamentos na família canônica.
 
 Nenhum operador, Gamma, Jacobi ou momento nativo foi reconstruído. Nenhum pin foi alterado. Não se assumiu positividade nativa, RH, zeros, alturas espectrais ou Herglotz. A variável `operatorHeightParameter z` aparece por sua definição existente; não se introduziu uma identificação entre altura e resolvente.
