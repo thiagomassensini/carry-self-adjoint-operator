@@ -168,7 +168,7 @@ private theorem thetaMass_tangent_le (q x : ℝ) (hq : 0 < q) (hx : 0 < x) :
   field_simp [hq.ne'] at hmain ⊢
   nlinarith
 
-private def thetaFirstMode (u : ℝ) : ℝ :=
+def thetaFirstMode (u : ℝ) : ℝ :=
   2 * Real.exp (u / 2) * Real.exp (-Real.pi * Real.exp (2 * u))
 
 private def thetaMassIntegrand (x : ℝ) : ℝ :=
@@ -237,7 +237,7 @@ private theorem integrableOn_thetaMassIntegrand_Ici :
         mul_le_mul_of_nonneg_right hweight1 (Real.exp_pos _).le
       _ ≤ Real.exp (-3 * x) := by simpa using hexp
 
-private theorem thetaTail_ge_thetaFirstMode {u : ℝ} (_hu : 0 ≤ u) :
+theorem thetaTail_ge_thetaFirstMode {u : ℝ} (_hu : 0 ≤ u) :
     thetaFirstMode u ≤ thetaTail u := by
   rw [thetaTail_eq_two_mul_tsum]
   have hmode : thetaTailMode 0 u ≤ ∑' n : ℕ, thetaTailMode n u :=
@@ -678,7 +678,7 @@ private theorem thetaTailMode_le_geometric {u : ℝ} (hu : 0 ≤ u) (n : ℕ) :
         Real.exp (-Real.pi * (((0 + 1 : ℕ) : ℝ) ^ 2) * Real.exp (2 * u)) *
           (1 / 8000 : ℝ) ^ n := by norm_num
 
-private theorem thetaTail_le_geometric_first {u : ℝ} (hu : 0 ≤ u) :
+theorem thetaTail_le_geometric_first {u : ℝ} (hu : 0 ≤ u) :
     thetaTail u ≤ (8000 / 7999 : ℝ) * thetaFirstMode u := by
   rw [thetaTail_eq_two_mul_tsum]
   have hgeom : Summable (fun n : ℕ ↦

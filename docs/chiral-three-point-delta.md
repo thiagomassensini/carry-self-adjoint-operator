@@ -1,5 +1,7 @@
 # Três pontos radiais e o segundo determinante Hankel nativo
 
+> Atualização de 2026-09-05: as cinco cotas e o sinal de Delta₂ foram provados no Lean em [Fechamento das cotas theta](theta-five-bounds.md). O texto abaixo registra a fronteira histórica do commit `9d009af`.
+
 Data: 2026-09-05. Base: `97da9f43a37b56627e0e46b26e76f00bf6e13689`.
 Branch: `agent/chiral-three-point-delta`.
 
