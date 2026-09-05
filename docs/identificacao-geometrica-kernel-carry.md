@@ -419,3 +419,7 @@ As rotinas de candidatos conservam os momentos brutos e marcam explicitamente qu
 ## Continuidade em 2026-09-05: realização Hilbert e readout
 
 Integração dos três módulos R/B recuperados e construção do [kernel Hilbert R/B e readout completado](c3-projective-hilbert-readout-kernel.md): produto interno polarizado preservado no limite, readout com cauda exata igual à característica nativa e massa formal identificada. A métrica do estado original tem massa central diferente de $h_0$; a construção do observável e da fonte que realizem a massa nativa continua explícita. O mapa registra o alcance exato e a interface Lean para o certificado.
+
+## Pista adicional de 2026-09-05: retorno universal
+
+O grep das notas levou ao [defeito de retorno e fonte geométrica](camera-return-defect-source-map.md). A nova fatorização Lean prova que o complemento da variância de câmeras é um quadrado positivo; o resíduo da câmera 6 fornece uma direção explícita de fonte. O mapa registra as transpostas, a medida do modo misto e a distinção entre selecionar essa fonte e identificar o Gram nativo.

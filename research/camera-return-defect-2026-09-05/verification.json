@@ -1,0 +1,107 @@
+{
+  "date": "2026-09-05",
+  "branch": "agent/projective-valve-moment-frontier",
+  "working_base": "2054a1c3b86546f19844948a77265fd3272ef49e",
+  "module": "CarrySelfAdjointOperator/CameraReturnVarianceDefect.lean",
+  "module_sha256": "7ebfb356d3c3e752de6f1712749858290fc1629832e071bf349dca3f7c059ecd",
+  "declarations": [
+    {
+      "name": "CarrySelfAdjointOperator.camera_secondMoment_sub_gram_eq_slope_identity",
+      "line": 29,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.camera_varianceDefect_factorization",
+      "line": 55,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.one_sub_varianceOperator_eq_returnCompression_square",
+      "line": 75,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.camera_one_sub_variance_eq_return_square",
+      "line": 104,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCamera_one_sub_variance_posSemidef",
+      "line": 121,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraGram_mul_mixedReturnRay",
+      "line": 138,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraMixedReturnRay_gram_norm_sq",
+      "line": 145,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "specific_build": "passed with --wfail",
+  "full_audit": "passed",
+  "successful_lake_build_calls": 14,
+  "static_audit": "passed",
+  "audit_log_sha256": "837b507a6b03aa5c99d4c8ef24c19a6a0761a65321f68a51d714c1c4ae5b30b2",
+  "exact_symbolic_checks_passed": 14,
+  "symbolic_script_sha256": "06963b43f19407faeaf56328e41472730bcf19cc967ea639dba1207e55577edc",
+  "symbolic_result_sha256": "a114c8f9480049f9487c836d1397303f0e22b48d9721b90ac049f2bfbd6deece",
+  "dependency_pins_unchanged": true,
+  "dependency_pins": {
+    "NativeCarryC3Crosswalk": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+    "CarryGeometry": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+    "NativeCarrySpectralWeyl": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "CPFormal": "65d50f6db1208708e109982ba97e1d51d3039956",
+    "mathlib": "81a5d257c8e410db227a6665ed08f64fea08e997",
+    "FiniteNativeCarryOperator": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+    "GreenFrame": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+    "plausible": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+    "LeanSearchClient": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+    "importGraph": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+    "proofwidgets": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+    "aesop": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+    "Qq": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+    "batteries": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+    "Cli": "88679d088c9720c27ebdf2ba4dafe17341747f94"
+  },
+  "github_ci_monitored": false,
+  "native_height_gram_identification": "open",
+  "proved_scope": "Finite camera moment slope identity and positive-square variance complement; explicit six-camera residual Gram identities.",
+  "not_claimed": [
+    "infinite-atlas operator convergence",
+    "Hardy-Cayley dilation formalization",
+    "rank-one identification in Lean",
+    "native moment identification for the selected return source"
+  ]
+}

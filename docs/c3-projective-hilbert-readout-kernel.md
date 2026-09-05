@@ -167,3 +167,7 @@ bash scripts/audit.sh
 O build específico e as 14 etapas de `scripts/audit.sh` passaram com `--wfail`. As 45 declarações usam apenas `propext`, `Classical.choice` e `Quot.sound`. O resultado de cada etapa, os hashes, as declarações e os axiomas transitivos estão na [evidência desta rodada](../research/projective-hilbert-readout-2026-09-05/verification.json). O log completo fica arquivado junto dela. Os pins das dependências foram mantidos. Não foram usados zeros conhecidos nem ajuste numérico; o teste do candidato é uma desigualdade provada em Lean.
 
 Continuidade: [mapa das notas HP](mapa-notas-hp-jets-retorno-atualizado.md), [ponte da válvula](ponte-valvula-momentos-nativos.md), [busca geométrica anterior](identificacao-geometrica-kernel-carry.md).
+
+## Pista adicional de 2026-09-05: retorno universal
+
+O grep das notas levou ao [defeito de retorno e fonte geométrica](camera-return-defect-source-map.md). A nova fatorização Lean prova que o complemento da variância de câmeras é um quadrado positivo; o resíduo da câmera 6 fornece uma direção explícita de fonte. O mapa registra as transpostas, a medida do modo misto e a distinção entre selecionar essa fonte e identificar o Gram nativo.

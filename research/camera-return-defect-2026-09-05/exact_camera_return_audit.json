@@ -1,0 +1,48 @@
+{
+  "evidence_type": "exact rational and symbolic algebra in SymPy; distinct from Lean checking",
+  "sympy_version": "1.14.0",
+  "checks": {
+    "source_moment_slope_identity": true,
+    "return_factorization": true,
+    "raw_defect_rank_one_formula": true,
+    "gram_ray": true,
+    "gram_norm_squared": true,
+    "raw_source_direction": true,
+    "defect_trace": true,
+    "right_factor_annihilates_pure_axes": true,
+    "left_factor_counterexample_e3": true,
+    "density_at_3/2": true,
+    "density_at_7/2": true,
+    "density_at_9/2": true,
+    "density_at_13/2": true,
+    "mixed_probability_mass": true
+  },
+  "checks_passed": 14,
+  "ray": [
+    "-6",
+    "-3",
+    "2",
+    "0",
+    "3",
+    "0"
+  ],
+  "gram_norm_squared": "278",
+  "Q": "457*log2**2 - 512*log2*log3 + 304*log3**2",
+  "Q_matrix_determinant": "73392",
+  "delta_formula": "8226*log2**2/19321 - 9216*log2*log3/19321 + 5472*log3**2/19321",
+  "delta_numeric": "0.18315030847460431049852232228671686",
+  "mixed_density_interval_values": [
+    "16/139",
+    "25/139",
+    "33/139",
+    "0"
+  ],
+  "mixed_density_intervals": [
+    "(0,3]",
+    "(3,4]",
+    "(4,6]",
+    "(6,infinity)"
+  ],
+  "orientation_correction": "The raw universal axes are annihilated by G*T-H, not T*G-H.",
+  "scope": "Six cameras, exact source Gram. Native height Gram and infinite-atlas convergence not identified."
+}
