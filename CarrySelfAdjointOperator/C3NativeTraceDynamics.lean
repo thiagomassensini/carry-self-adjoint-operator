@@ -40,7 +40,7 @@ theorem nativeC3LogGradientTriple_eq_affine_clock (s : ℂ) :
   fin_cases i <;>
     simp [nativeC3LogGradientTriple, nativeC3GradientTriple, gradientClock,
       positiveLogDirichletGradient, positiveLogDirichletValue,
-      positiveDirichletGradient] <;> ring
+      positiveDirichletGradient, natDirichletTerm, dirichletTerm] <;> ring
 
 /-- In the actual readout orientation the log trace is the last gradient
 minus the middle one. The clock forces its variation under the initial pulse. -/
