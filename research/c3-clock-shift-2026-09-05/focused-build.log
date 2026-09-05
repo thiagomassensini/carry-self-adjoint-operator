@@ -1,0 +1,227 @@
+ℹ [3766/3908] Replayed NativeCarrySpectralWeyl.Finite.StepDensity
+info: NativeCarrySpectralWeyl/Finite/StepDensity.lean:68:4: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3781/3908] Replayed NativeCarrySpectralWeyl.Infinite.WeylUnbounded
+info: NativeCarrySpectralWeyl/Infinite/WeylUnbounded.lean:649:14: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: NativeCarrySpectralWeyl/Infinite/WeylUnbounded.lean:693:14: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: NativeCarrySpectralWeyl/Infinite/WeylUnbounded.lean:701:16: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3795/3908] Replayed CPFormal.Analytic.CpGenuineSecondDifferenceIdentity
+info: CPFormal/Analytic/CpGenuineSecondDifferenceIdentity.lean:114:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3796/3908] Replayed CPFormal.Analytic.CpGenuineTiltProductRule
+info: CPFormal/Analytic/CpGenuineTiltProductRule.lean:285:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3835/3908] Replayed CPFormal.Analytic.CpFiniteScalarSynthesis
+info: CPFormal/Analytic/CpFiniteScalarSynthesis.lean:133:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3872/3908] Replayed CPFormal.Analytic.CpGenuineGprePrimeAmplitudeUpgrade
+info: CPFormal/Analytic/CpGenuineGprePrimeAmplitudeUpgrade.lean:46:14: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: CPFormal/Analytic/CpGenuineGprePrimeAmplitudeUpgrade.lean:46:14: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3946/4028] Replayed CPFormal.Analytic.CpNativeGpreTfvdCommutatorTowerSource
+info: CPFormal/Analytic/CpNativeGpreTfvdCommutatorTowerSource.lean:135:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3996/4028] Replayed CPFormal.Analytic.CpNativeGpreTfvdGenuineCompression
+info: CPFormal/Analytic/CpNativeGpreTfvdGenuineCompression.lean:311:4: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: CPFormal/Analytic/CpNativeGpreTfvdGenuineCompression.lean:328:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [9030/9136] Replayed CarrySelfAdjointOperator.CompletedNativeDslopeSamplePositivity
+info: CarrySelfAdjointOperator/CompletedNativeDslopeSamplePositivity.lean:208:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [9038/9212] Replayed CarrySelfAdjointOperator.CompletedNativeXiThetaCosineRepresentation
+info: CarrySelfAdjointOperator/CompletedNativeXiThetaCosineRepresentation.lean:79:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: CarrySelfAdjointOperator/CompletedNativeXiThetaCosineRepresentation.lean:250:8: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [9042/9212] Replayed CarrySelfAdjointOperator.CompletedNativeXiThetaMomentBounds
+info: CarrySelfAdjointOperator/CompletedNativeXiThetaMomentBounds.lean:252:12: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: CarrySelfAdjointOperator/CompletedNativeXiThetaMomentBounds.lean:579:4: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: CarrySelfAdjointOperator/CompletedNativeXiThetaMomentBounds.lean:646:18: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [9100/9212] Replayed CarrySelfAdjointOperator.CompletedNativeTfvdCoefficientJets
+info: CarrySelfAdjointOperator/CompletedNativeTfvdCoefficientJets.lean:495:4: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [9116/9212] Replayed CarrySelfAdjointOperator.CompletedNativeTfvdCoefficientJetHPCarrier
+info: CarrySelfAdjointOperator/CompletedNativeTfvdCoefficientJetHPCarrier.lean:284:8: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: CarrySelfAdjointOperator/CompletedNativeTfvdCoefficientJetHPCarrier.lean:306:8: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [9149/9212] Replayed CarrySelfAdjointOperator.CompletedNativeCentralFiniteGreenVariation
+info: CarrySelfAdjointOperator/CompletedNativeCentralFiniteGreenVariation.lean:241:4: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [9155/9212] Replayed CarrySelfAdjointOperator.CompletedNativeChiralPickHankel
+info: CarrySelfAdjointOperator/CompletedNativeChiralPickHankel.lean:232:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [9161/9212] Replayed CarrySelfAdjointOperator.CompletedNativeCentralCoisometricDefectFlatness
+info: CarrySelfAdjointOperator/CompletedNativeCentralCoisometricDefectFlatness.lean:373:6: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+✔ [9211/9212] Built CarrySelfAdjointOperator.BR2CausalTfvdMetricShift (9.0s)
+ℹ [9212/9212] Built CarrySelfAdjointOperator.C3ClockShiftAudit (7.8s)
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:6:0: 'CarrySelfAdjointOperator.C3TraceDynamics.seededRecover_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:7:0: 'CarrySelfAdjointOperator.C3TraceDynamics.seededRecover_clock_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:8:0: 'CarrySelfAdjointOperator.C3TraceDynamics.seededRecover_clock_iterate_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:9:0: 'CarrySelfAdjointOperator.C3TraceDynamics.inner_seededRecover_clock_iterate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:10:0: 'CarrySelfAdjointOperator.C3TraceDynamics.seededClock_inner_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:11:0: 'CarrySelfAdjointOperator.C3TraceDynamics.seededRecover_nativeBlockSeededData' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:12:0: 'CarrySelfAdjointOperator.C3TraceDynamics.seededClock_nativeBlockSeededData_snd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:13:0: 'CarrySelfAdjointOperator.C3TraceDynamics.seededClock_nativeBlockSeededData_fst' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:14:0: 'CarrySelfAdjointOperator.C3TraceDynamics.nativeSeededC3Clock_inner_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:15:0: 'CarrySelfAdjointOperator.C3TraceDynamics.nativeBlockSeededData_zero_energy_ge_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:16:0: 'CarrySelfAdjointOperator.C3TraceDynamics.nativeBlockSeededData_zero_energy_ne_nativeMoment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:17:0: 'CarrySelfAdjointOperator.C3TraceDynamics.seededClockTaylorCoefficient_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:18:0: 'CarrySelfAdjointOperator.C3TraceDynamics.seededClockTaylorCoefficient_weighted_inner_shift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:19:0: 'CarrySelfAdjointOperator.C3TraceDynamics.nativeSeededClockTaylorCoefficient_slope_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:20:0: 'CarrySelfAdjointOperator.br2C3CausalResponse_zero_ne_two' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:21:0: 'CarrySelfAdjointOperator.br2C3CausalResponse_firstShiftDefect_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:22:0: 'CarrySelfAdjointOperator.br2C3CausalResponse_firstShiftDefect_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:23:0: 'CarrySelfAdjointOperator.br2C3CausalResponse_firstShift_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:24:0: 'CarrySelfAdjointOperator.ProjectiveValve.canonicalProjectiveCarryGreen_firstShiftDefect_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:25:0: 'CarrySelfAdjointOperator.br2C3CausalResponse_head_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:26:0: 'CarrySelfAdjointOperator.br2C3CausalResponse_trace_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:27:0: 'CarrySelfAdjointOperator.br2C3CausalTfvdMetric_inner_eq_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:28:0: 'CarrySelfAdjointOperator.br2C3CausalTfvdMetric_firstShiftDefect_eq_neg_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/C3ClockShiftAudit.lean:29:0: 'CarrySelfAdjointOperator.br2C3CausalProjectiveReturn_firstShiftDefect_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (9212 jobs).

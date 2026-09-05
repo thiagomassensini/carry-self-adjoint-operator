@@ -1,0 +1,235 @@
+[
+  {
+    "local": "/home/thlinux/Downloads/Garimpo_kernel_carry_2026-09-04/fontes_lean/ReturnMetricPolarizedKernel.lean",
+    "basename": "ReturnMetricPolarizedKernel.lean",
+    "sha256": "0c1f66c779fa4e58e2f1a8f6daa7b6da5962ce004e38079ce52df0f1f5de84d4",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/ReturnMetricPolarizedKernel.lean",
+        "sha256": "0c1f66c779fa4e58e2f1a8f6daa7b6da5962ce004e38079ce52df0f1f5de84d4",
+        "identical": true
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Garimpo_kernel_carry_2026-09-04/fontes_lean/PositiveObservableParityKernel.lean",
+    "basename": "PositiveObservableParityKernel.lean",
+    "sha256": "75689c847f2ae23411d1774081934f3b87c5db4a766fa249f22a4cd58c3cb394",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/PositiveObservableParityKernel.lean",
+        "sha256": "75689c847f2ae23411d1774081934f3b87c5db4a766fa249f22a4cd58c3cb394",
+        "identical": true
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Garimpo_kernel_carry_2026-09-04/fontes_lean/PositiveObservableNativeMomentBridge.lean",
+    "basename": "PositiveObservableNativeMomentBridge.lean",
+    "sha256": "5470e32d5cbbd7b2fe56b3430491b5682e0432f8dfb56527656034e40ce499ab",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/PositiveObservableNativeMomentBridge.lean",
+        "sha256": "5470e32d5cbbd7b2fe56b3430491b5682e0432f8dfb56527656034e40ce499ab",
+        "identical": true
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Garimpo_kernel_carry_2026-09-04/fontes_lean/PositiveObservableKernelSeries.lean",
+    "basename": "PositiveObservableKernelSeries.lean",
+    "sha256": "ad01ff6daeb461d1177a36b933581ee7a42da889e0736f589b98e66723096542",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/PositiveObservableKernelSeries.lean",
+        "sha256": "ad01ff6daeb461d1177a36b933581ee7a42da889e0736f589b98e66723096542",
+        "identical": true
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Garimpo_kernel_carry_2026-09-04/fontes_lean/PositiveObservableKernelDiagonal.lean",
+    "basename": "PositiveObservableKernelDiagonal.lean",
+    "sha256": "d88a9fa308e97f03359a0c2bb1136aa0ceae832cca5d98f37d1ca21084fb43cf",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/PositiveObservableKernelDiagonal.lean",
+        "sha256": "d88a9fa308e97f03359a0c2bb1136aa0ceae832cca5d98f37d1ca21084fb43cf",
+        "identical": true
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Garimpo_kernel_carry_2026-09-04/fontes_lean/KernelConstructionAudit.lean",
+    "basename": "KernelConstructionAudit.lean",
+    "sha256": "e7ebe85c32d66347d5596864ceb9fa5e9c255fafe493d95bd2a2f7c5b8759db1",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/KernelConstructionAudit.lean",
+        "sha256": "f08afff95643fc22f5e1a09ea501447cd4995301b3789e33ba915d42c41a9653",
+        "identical": false
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Garimpo_kernel_carry_2026-09-04/fontes_lean/CompletedC3KernelMetricCalibration.lean",
+    "basename": "CompletedC3KernelMetricCalibration.lean",
+    "sha256": "b56f172daef156db2894ac6047fd028eb30b125f202a22ab2fc5e15518cba7b4",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/CompletedC3KernelMetricCalibration.lean",
+        "sha256": "b56f172daef156db2894ac6047fd028eb30b125f202a22ab2fc5e15518cba7b4",
+        "identical": true
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Garimpo_kernel_carry_2026-09-04/fontes_lean/CarryTfvdTraceMetricKernel.lean",
+    "basename": "CarryTfvdTraceMetricKernel.lean",
+    "sha256": "536d76c96a1faae99afa8ed3fef32a294d2ed7c2d3e62b9b55ea92d772c253af",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/CarryTfvdTraceMetricKernel.lean",
+        "sha256": "536d76c96a1faae99afa8ed3fef32a294d2ed7c2d3e62b9b55ea92d772c253af",
+        "identical": true
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Auditoria_notas_hp_2026-09-04/original-lean/FiniteStencilCutoffRefinement.lean",
+    "basename": "FiniteStencilCutoffRefinement.lean",
+    "sha256": "445c2af926bec69841fc3c730c56b0efe4ad237c1b6d5f5eb0ba77ebd6889cd4",
+    "matches": []
+  },
+  {
+    "local": "/home/thlinux/Downloads/Auditoria_notas_hp_2026-09-04/original-lean/FiniteEnrichedCameraState.lean",
+    "basename": "FiniteEnrichedCameraState.lean",
+    "sha256": "d83a2b833f56b33c4398a4ede3c0c8f5e7520e76ba211eba0bc4a55ab85983bf",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/FiniteEnrichedCameraState.lean",
+        "sha256": "458f923f9e113d40cdf49c4ee38c4e0e808694a62f2d3ac8b9040f0231100ecb",
+        "identical": false
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Auditoria_notas_hp_2026-09-04/original-lean/FiniteCanonicalCameraReadout.lean",
+    "basename": "FiniteCanonicalCameraReadout.lean",
+    "sha256": "fa2d5936214360690101591196a2c13997f9cf56a2cd47becc599bff48b81d51",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/FiniteCanonicalCameraReadout.lean",
+        "sha256": "a6d7dc50615a293750dfe37a49b831e8e068b8e587f46ee625bcd0a8bac3fad8",
+        "identical": false
+      },
+      {
+        "current": ".lake/packages/NativeCarryC3Crosswalk/NativeCarryC3Crosswalk/FiniteCanonicalCameraReadout.lean",
+        "sha256": "9b67f66137a75f480b86e2547a5f6a927c026290a9309d143e06ff63e6050652",
+        "identical": false
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Auditoria_notas_hp_2026-09-04/original-lean/ExactCutoffCameraGram.lean",
+    "basename": "ExactCutoffCameraGram.lean",
+    "sha256": "98c052a51444c5085df81cccbffdb26160616abae3e2606234f91fa67534a1be",
+    "matches": [
+      {
+        "current": ".lake/packages/NativeCarryC3Crosswalk/NativeCarryC3Crosswalk/ExactCutoffCameraGram.lean",
+        "sha256": "8562fc35aed4548cf0aa87e041a8f29178968939ee50af8e4a316016ee70bc80",
+        "identical": false
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Auditoria_notas_hp_2026-09-04/original-lean/CanonicalNaimarkStateReadout.lean",
+    "basename": "CanonicalNaimarkStateReadout.lean",
+    "sha256": "e890523b07c6116bcf197d29c23390cf2a1b7951517567840ccc44ba1e1c8eb2",
+    "matches": [
+      {
+        "current": ".lake/packages/NativeCarryC3Crosswalk/NativeCarryC3Crosswalk/CanonicalNaimarkStateReadout.lean",
+        "sha256": "3116631cb89d2d209e65b091243b7aa96ace54efb2c3b1138ed469509b91f8b2",
+        "identical": false
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Auditoria_notas_hp_2026-09-04/original-lean/C3TwoVariableGreenGamma.lean",
+    "basename": "C3TwoVariableGreenGamma.lean",
+    "sha256": "6b1fdda93ef4236a65f01694b9c7085e4c8f033515ed4a2bc567c5fbf27164ca",
+    "matches": [
+      {
+        "current": ".lake/packages/NativeCarryC3Crosswalk/NativeCarryC3Crosswalk/C3TwoVariableGreenGamma.lean",
+        "sha256": "1c39de60815679c54e1a6a0770b97cab2a078ee184a25c51b7ff133ba704bf1e",
+        "identical": false
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Auditoria_notas_hp_2026-09-04/original-lean/C3ProjectiveHilbertRBBridge.lean",
+    "basename": "C3ProjectiveHilbertRBBridge.lean",
+    "sha256": "69615047a1c3af4655654082b1903c218d0221e1e197a26e690f00cd5bb8d637",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/C3ProjectiveHilbertRBBridge.lean",
+        "sha256": "0f00a7dc99b00288950dd34a8c259cb7edbb235df0fc65e4e3ab62877106edb7",
+        "identical": false
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Auditoria_notas_hp_2026-09-04/original-lean/C3ProjectiveCompletedJetBridge.lean",
+    "basename": "C3ProjectiveCompletedJetBridge.lean",
+    "sha256": "36bec78cdbabf983bb410af0114655e0f45ba2240809730d9b7a0f5c5898a197",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/C3ProjectiveCompletedJetBridge.lean",
+        "sha256": "30dd28d5ecc80f8a80474b153ada13e63b62ba6013fe04f31e7d0993c6d66516",
+        "identical": false
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Auditoria_notas_hp_2026-09-04/original-lean/C3CameraStencilEscapeClosure.lean",
+    "basename": "C3CameraStencilEscapeClosure.lean",
+    "sha256": "1df0ffa8ce48f3e3dd1c37e57bbe260af95cd143f791733d99c77a41fbad0798",
+    "matches": []
+  },
+  {
+    "local": "/home/thlinux/Downloads/Identificacao_geometrica_kernel_carry_2026-09-04/lean/KernelConstructionAudit.lean",
+    "basename": "KernelConstructionAudit.lean",
+    "sha256": "53a14e4f4f8f0b858c22dd1cee877ab88da04f6cd4bab1e3ac6ab1783c49dfcf",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/KernelConstructionAudit.lean",
+        "sha256": "f08afff95643fc22f5e1a09ea501447cd4995301b3789e33ba915d42c41a9653",
+        "identical": false
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Identificacao_geometrica_kernel_carry_2026-09-04/lean/CompletedNativeAtomicMultiplicity.lean",
+    "basename": "CompletedNativeAtomicMultiplicity.lean",
+    "sha256": "beca171fee106e5dbcdc05359fda4a7383804da71e2deadbf78d0a9b6b8dff7a",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/CompletedNativeAtomicMultiplicity.lean",
+        "sha256": "beca171fee106e5dbcdc05359fda4a7383804da71e2deadbf78d0a9b6b8dff7a",
+        "identical": true
+      }
+    ]
+  },
+  {
+    "local": "/home/thlinux/Downloads/Identificacao_geometrica_kernel_carry_2026-09-04/lean/AtomicLogDerivativeResidue.lean",
+    "basename": "AtomicLogDerivativeResidue.lean",
+    "sha256": "631f7e90f8d95222018b03bcd765a6dc2f22c432235d5a8868210dd804ad95d8",
+    "matches": [
+      {
+        "current": "CarrySelfAdjointOperator/AtomicLogDerivativeResidue.lean",
+        "sha256": "631f7e90f8d95222018b03bcd765a6dc2f22c432235d5a8868210dd804ad95d8",
+        "identical": true
+      }
+    ]
+  }
+]
