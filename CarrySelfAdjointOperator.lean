@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.C3ReturnCompletedTraceChannels
+import CarrySelfAdjointOperator.C3NativeTraceDynamics
 import CarrySelfAdjointOperator.NativeLogEvolution
 import CarrySelfAdjointOperator.CausalBracketStateUniqueness
 import CarrySelfAdjointOperator.DiscreteProjectiveReconstruction
