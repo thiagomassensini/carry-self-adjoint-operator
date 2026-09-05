@@ -1,0 +1,132 @@
+{
+  "date": "2026-09-05",
+  "branch": "agent/projective-valve-moment-frontier",
+  "working_base": "225a85d9e8e3e0a3b659c5b6ad821458770b3195",
+  "module": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+  "module_sha256": "7712ed4f8e9a2d5293b59526880e241bbb2d27adaa82b5f8e79634b0080cef86",
+  "declarations": [
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_eq_four_cameras",
+      "line": 32,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturn_cameraFactor_identity",
+      "line": 45,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_eq_nativeScalar",
+      "line": 66,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_eq_modalAmplitude",
+      "line": 82,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_cutoff_independent",
+      "line": 91,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_normalized_energy",
+      "line": 100,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedHeightCharacteristic_eq",
+      "line": 121,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.iteratedDeriv_mixedReturnCompletedHeightCharacteristic",
+      "line": 139,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnEvenCoefficient_eq_native",
+      "line": 151,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnReciprocalMass_eq_native",
+      "line": 165,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "specific_build": "passed with --wfail",
+  "full_audit": "passed",
+  "successful_lake_build_calls": 14,
+  "static_audit": "passed",
+  "audit_log_sha256": "f36ba209c77794417223d2bb8647c02d6525e1ef8f6a16b0bc95e3276ffa5954",
+  "specific_log_sha256": "fba5fd08d0bd50e78e914f204b93e5bc4ed2e6a3b84db262de8808fe5156b998",
+  "dependency_pins_unchanged": true,
+  "dependency_pins": {
+    "NativeCarryC3Crosswalk": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+    "CarryGeometry": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+    "NativeCarrySpectralWeyl": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "CPFormal": "65d50f6db1208708e109982ba97e1d51d3039956",
+    "mathlib": "81a5d257c8e410db227a6665ed08f64fea08e997",
+    "FiniteNativeCarryOperator": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+    "GreenFrame": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+    "plausible": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+    "LeanSearchClient": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+    "importGraph": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+    "proofwidgets": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+    "aesop": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+    "Qq": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+    "batteries": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+    "Cli": "88679d088c9720c27ebdf2ba4dafe17341747f94"
+  },
+  "github_ci_monitored": false,
+  "native_height_gram_identification": "open",
+  "proved_scope": "Actual mixed return ray applied to independently completed camera characteristics; exact factor, modal energy normalization, native characteristic, all derivatives, even coefficients and reciprocal formal mass.",
+  "not_claimed": [
+    "native response-kernel realization",
+    "positive observable native moment identity",
+    "all-order independence for a native return orbit",
+    "uniform bounded readout recovering analytic tails from finite heads"
+  ]
+}

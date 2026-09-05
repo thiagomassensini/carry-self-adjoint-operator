@@ -1,0 +1,111 @@
+{
+  "date": "2026-09-05",
+  "input_note": {
+    "original_path": "/home/thlinux/Downloads/hp/ATLAS_RELACIONAL_MESTRE_PERSISTENCIA_ESTRUTURAL.md",
+    "snapshot_date": "2026-08-17",
+    "sha256": "4eba40aad77fd6b6c246b767218bc2801035e1c2e31cc339b2df9b1613e275df",
+    "original_edited": false,
+    "read_scope": "complete note (1395 lines)",
+    "anchors": [
+      {
+        "lines": [
+          30,
+          55
+        ],
+        "topic": "structural persistence and missing typed readout map"
+      },
+      {
+        "lines": [
+          298,
+          310
+        ],
+        "topic": "coherent gluing by the same integer"
+      },
+      {
+        "lines": [
+          359,
+          370
+        ],
+        "topic": "camera factor formula; even-camera discrepancy corrected in new map"
+      },
+      {
+        "lines": [
+          1237,
+          1242
+        ],
+        "topic": "global integer gluing"
+      },
+      {
+        "lines": [
+          1268,
+          1295
+        ],
+        "topic": "remaining intertwiners and measure/response maps"
+      }
+    ]
+  },
+  "source_files": [
+    {
+      "path": ".lake/packages/CPFormal/CPFormal/Logic/StructuralPersistence.lean",
+      "sha256": "fa528961272d8a18f660eac77f2c5e6c6108153bfbf66b103ca75cd85696e305"
+    },
+    {
+      "path": ".lake/packages/CPFormal/CPFormal/Analytic/CpUniversalCarryStructuralPersistence.lean",
+      "sha256": "745356371f41c21b2fbf8c6f93dcb5ea1e1a309ec026775897e9ca7f8ec65d8f"
+    },
+    {
+      "path": ".lake/packages/NativeCarrySpectralWeyl/NativeCarrySpectralWeyl/Camera/Factors.lean",
+      "sha256": "f99869c33445521edca0f4cb09bf9c74d8ec1742fad847e4b07fb99cc807af41"
+    },
+    {
+      "path": ".lake/packages/NativeCarrySpectralWeyl/NativeCarrySpectralWeyl/Camera/ModalEnergy.lean",
+      "sha256": "a36246e28a0919cdc3f4de9cd27eaa48291034d1d8b070dbbe6c400145cb2393"
+    },
+    {
+      "path": ".lake/packages/NativeCarrySpectralWeyl/NativeCarrySpectralWeyl/Boundary/GreenCameraCoupling.lean",
+      "sha256": "5a24094f12f59fb45b21c5352b4785b40fcf2805a883fdb7021bee9921967c2b"
+    },
+    {
+      "path": ".lake/packages/NativeCarryC3Crosswalk/NativeCarryC3Crosswalk/CanonicalNaimarkStateReadout.lean",
+      "sha256": "3116631cb89d2d209e65b091243b7aa96ace54efb2c3b1138ed469509b91f8b2"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedNativeCharacteristic.lean",
+      "sha256": "10d02d056ea759575b4338a4a24c002308eb6b78551bbd68dc576fe5eae7e86a"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3ValveGreenNaturality.lean",
+      "sha256": "ef9471dce975bbc61df09b6c3ffaed4223661d9d31407cfa8ce02f497f193631"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3ValveCauchyNaturalityFrontier.lean",
+      "sha256": "cab2e16c05a61a8c4482b8a288f770bbce22f2dd9c7a79ef96644d37bb850be0"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CameraReturnVarianceDefect.lean",
+      "sha256": "7ebfb356d3c3e752de6f1712749858290fc1629832e071bf349dca3f7c059ecd"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/NativeMomentProjectiveValveBridge.lean",
+      "sha256": "1ea183a49fd57959fb12555ad6eb7415a08663cf44c9d7e8b360350cae9eb4b0"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/C3ProjectiveHilbertReadoutKernel.lean",
+      "sha256": "c37093e174d5932a0577a358346964cdce32b463b1bfd207319f0aa5ddb65c59"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/PositiveObservableNativeMomentBridge.lean",
+      "sha256": "5470e32d5cbbd7b2fe56b3430491b5682e0432f8dfb56527656034e40ce499ab"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/ReturnMetricPolarizedKernel.lean",
+      "sha256": "0c1f66c779fa4e58e2f1a8f6daa7b6da5962ce004e38079ce52df0f1f5de84d4"
+    },
+    {
+      "path": "research/geometric-kernel-search-2026-09-04/graph/source_labs/native_carry_residual_native_return_identification_lab.py",
+      "sha256": "d2bf9ea9e189e27bb7683df4295a7864641c39262b241122ce24aacc1711eded"
+    }
+  ],
+  "previous_numerical_lab_status": "Source already archived in the September 4 manifest; no new execution in this round and prior execution summary does not list this specific lab among executed tasks.",
+  "old_pr_ci_status": "Not reused as current status; consumed source pins recorded in verification.json."
+}
