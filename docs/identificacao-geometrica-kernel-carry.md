@@ -413,3 +413,5 @@ python3 target_constraints.py
 As rotinas de candidatos conservam os momentos brutos e marcam explicitamente qualquer normalização usada apenas para comparação. Os comandos detalhados de cada laboratório estão nos dossiês.
 
 **Estado da obrigação principal:** aberta. Não tratar as provas dos kernels candidatos, os testes positivos dos Grams ou a nova condição de multiplicidades como prova de $D_n=0$ para o operador nativo.
+
+**Auditoria posterior de coordenadas e cortes:** [operador de altura, variável dos momentos, rotação real–complexa e centros completos](auditoria-coordenadas-altura-cortes-c3.md). Distingue o Jacobi dos momentos, o operador de altura obtido por raiz quadrada inversa e o gerador geométrico logarítmico; reavalia a política de admissão de câmeras.
