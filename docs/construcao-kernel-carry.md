@@ -1,5 +1,7 @@
 # Construção do kernel carry — resultado da tentativa
 
+Continuação: [identificação geométrica do par, testes e multiplicidade atômica](identificacao-geometrica-kernel-carry.md), com dois novos módulos Lean e a obrigação de identificação ainda aberta.
+
 **4 de setembro de 2026.** Continuação do mapa dos repositórios e das notas. Base de trabalho: `07d5821803c2093e7c9d205ceac1156634daeea4`; implementação desta rodada: `7c778e4a49409f51fd6742fc30ffe2d5045c300a`. Branch `agent/projective-valve-moment-frontier`.
 
 ## 1. Resultado

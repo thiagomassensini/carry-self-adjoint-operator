@@ -1,0 +1,398 @@
+{
+  "asymptotic_z_universality_audit": [
+    {
+      "rows": [
+        {
+          "ambient_dimension": 899,
+          "cutoff": 128,
+          "maximum_eigenvalue": 36.42971879118039,
+          "minimum_eigenvalue": 0.8060502387921835,
+          "operator_norm_error_to_unique_limit": 11.222326700298474,
+          "resolvent_mass": 2.503245280719419
+        },
+        {
+          "ambient_dimension": 3587,
+          "cutoff": 512,
+          "maximum_eigenvalue": 36.02725521294983,
+          "minimum_eigenvalue": 0.7933873365640002,
+          "operator_norm_error_to_unique_limit": 11.552702034695193,
+          "resolvent_mass": 8.118403929768666
+        },
+        {
+          "ambient_dimension": 14339,
+          "cutoff": 2048,
+          "maximum_eigenvalue": 36.12141559009405,
+          "minimum_eigenvalue": 0.7934734764723319,
+          "operator_norm_error_to_unique_limit": 11.454665923256181,
+          "resolvent_mass": 25.971919549139848
+        },
+        {
+          "ambient_dimension": 57347,
+          "cutoff": 8192,
+          "maximum_eigenvalue": 36.50666395919045,
+          "minimum_eigenvalue": 0.8003627213960367,
+          "operator_norm_error_to_unique_limit": 11.062595676415585,
+          "resolvent_mass": 83.0994070633411
+        }
+      ],
+      "z": [
+        0.0,
+        6.0
+      ]
+    },
+    {
+      "rows": [
+        {
+          "ambient_dimension": 899,
+          "cutoff": 128,
+          "maximum_eigenvalue": 16.073294872949166,
+          "minimum_eigenvalue": 0.37184569497477904,
+          "operator_norm_error_to_unique_limit": 32.10280277664844,
+          "resolvent_mass": 44.625127652700655
+        },
+        {
+          "ambient_dimension": 3587,
+          "cutoff": 512,
+          "maximum_eigenvalue": 18.504801425741487,
+          "minimum_eigenvalue": 0.4265466021999114,
+          "operator_norm_error_to_unique_limit": 29.37251282968873,
+          "resolvent_mass": 72.39204339516577
+        },
+        {
+          "ambient_dimension": 14339,
+          "cutoff": 2048,
+          "maximum_eigenvalue": 22.217997039618393,
+          "minimum_eigenvalue": 0.5062027046443035,
+          "operator_norm_error_to_unique_limit": 25.510079401907923,
+          "resolvent_mass": 131.47701361935412
+        },
+        {
+          "ambient_dimension": 57347,
+          "cutoff": 8192,
+          "maximum_eigenvalue": 26.239565100651646,
+          "minimum_eigenvalue": 0.5905028732325747,
+          "operator_norm_error_to_unique_limit": 21.413566137687884,
+          "resolvent_mass": 277.7013676943202
+        }
+      ],
+      "z": [
+        2.0,
+        0.75
+      ]
+    },
+    {
+      "rows": [
+        {
+          "ambient_dimension": 899,
+          "cutoff": 128,
+          "maximum_eigenvalue": 29.545459103729833,
+          "minimum_eigenvalue": 0.6728063139896279,
+          "operator_norm_error_to_unique_limit": 18.113547966499663,
+          "resolvent_mass": 4.135722822170144
+        },
+        {
+          "ambient_dimension": 3587,
+          "cutoff": 512,
+          "maximum_eigenvalue": 31.19422005623099,
+          "minimum_eigenvalue": 0.6980927852417064,
+          "operator_norm_error_to_unique_limit": 16.41632468866239,
+          "resolvent_mass": 11.303556607187321
+        },
+        {
+          "ambient_dimension": 14339,
+          "cutoff": 2048,
+          "maximum_eigenvalue": 32.81078322775535,
+          "minimum_eigenvalue": 0.7275768006675952,
+          "operator_norm_error_to_unique_limit": 14.786928153465407,
+          "resolvent_mass": 32.05273206531408
+        },
+        {
+          "ambient_dimension": 57347,
+          "cutoff": 8192,
+          "maximum_eigenvalue": 34.26190698928069,
+          "minimum_eigenvalue": 0.7555363334036135,
+          "operator_norm_error_to_unique_limit": 13.3227854433064,
+          "resolvent_mass": 94.52512118545057
+        }
+      ],
+      "z": [
+        -1.0,
+        3.0
+      ]
+    }
+  ],
+  "configuration": {
+    "cameras": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "covariance_cutoffs": [
+      128,
+      512,
+      2048,
+      8192
+    ],
+    "identity_cutoffs": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "identity_parameter": [
+      0.0,
+      6.0
+    ],
+    "times": [
+      0.0,
+      1.0,
+      2.0
+    ],
+    "z_universality_parameters": [
+      [
+        0.0,
+        6.0
+      ],
+      [
+        2.0,
+        0.75
+      ],
+      [
+        -1.0,
+        3.0
+      ]
+    ]
+  },
+  "finite_exact_identity_audit": [
+    {
+      "ambient_dimension": 59,
+      "cutoff": 8,
+      "endpoint_dimension": 327,
+      "exact_covariance_identity_error": 1.0992655058762893e-14,
+      "metric_minus_raw_covariance_norm": 2.6821458212395433,
+      "normalized_covariance_error_to_limit_gram": 9.665760871111061,
+      "normalized_metric_covariance_max_eigenvalue": 39.262594636101575,
+      "normalized_metric_covariance_min_eigenvalue": 0.9120687178882615,
+      "normalized_raw_covariance_max_eigenvalue": 38.8856078300293,
+      "normalized_raw_covariance_min_eigenvalue": 0.8236327195963148,
+      "return_metric_isometry_error": 5.809592321377428e-15,
+      "times": [
+        {
+          "instantaneous_limit_gram_quadratic": 812.564272900203,
+          "native_energy": 20.84119279921697,
+          "observable_difference": 186.84570761322482,
+          "return_metric_probe_observable": 625.7185652869782,
+          "t": 0.0
+        },
+        {
+          "instantaneous_limit_gram_quadratic": 807.6145366021974,
+          "native_energy": 21.19361161920593,
+          "observable_difference": 185.44080684110827,
+          "return_metric_probe_observable": 622.1737297610891,
+          "t": 1.0
+        },
+        {
+          "instantaneous_limit_gram_quadratic": 647.1378539771504,
+          "native_energy": 18.75958560652085,
+          "observable_difference": 146.57858869914492,
+          "return_metric_probe_observable": 500.55926527800546,
+          "t": 2.0
+        }
+      ]
+    },
+    {
+      "ambient_dimension": 115,
+      "cutoff": 16,
+      "endpoint_dimension": 785,
+      "exact_covariance_identity_error": 2.4454143878645192e-14,
+      "metric_minus_raw_covariance_norm": 2.025391198812751,
+      "normalized_covariance_error_to_limit_gram": 9.942854203970146,
+      "normalized_metric_covariance_max_eigenvalue": 38.77264273633237,
+      "normalized_metric_covariance_min_eigenvalue": 0.876829029794783,
+      "normalized_raw_covariance_max_eigenvalue": 38.41245588745112,
+      "normalized_raw_covariance_min_eigenvalue": 0.8180342367222133,
+      "return_metric_isometry_error": 7.564889442845861e-15,
+      "times": [
+        {
+          "instantaneous_limit_gram_quadratic": 813.7704754098991,
+          "native_energy": 20.871836387073838,
+          "observable_difference": 183.96013867460488,
+          "return_metric_probe_observable": 629.8103367352942,
+          "t": 0.0
+        },
+        {
+          "instantaneous_limit_gram_quadratic": 806.096653984913,
+          "native_energy": 21.155866922297974,
+          "observable_difference": 180.74321862519537,
+          "return_metric_probe_observable": 625.3534353597177,
+          "t": 1.0
+        },
+        {
+          "instantaneous_limit_gram_quadratic": 649.6335294306211,
+          "native_energy": 18.81838270257355,
+          "observable_difference": 140.61602789232677,
+          "return_metric_probe_observable": 509.01750153829437,
+          "t": 2.0
+        }
+      ]
+    },
+    {
+      "ambient_dimension": 227,
+      "cutoff": 32,
+      "endpoint_dimension": 1829,
+      "exact_covariance_identity_error": 1.3984818670212517e-14,
+      "metric_minus_raw_covariance_norm": 1.5762082364210814,
+      "normalized_covariance_error_to_limit_gram": 10.824737695442572,
+      "normalized_metric_covariance_max_eigenvalue": 37.63231561538277,
+      "normalized_metric_covariance_min_eigenvalue": 0.8409146405123947,
+      "normalized_raw_covariance_max_eigenvalue": 37.33624771016232,
+      "normalized_raw_covariance_min_eigenvalue": 0.7916771521165048,
+      "return_metric_isometry_error": 8.585403382295365e-15,
+      "times": [
+        {
+          "instantaneous_limit_gram_quadratic": 814.2230245019946,
+          "native_energy": 20.883333801630346,
+          "observable_difference": 196.19022527067943,
+          "return_metric_probe_observable": 618.0327992313152,
+          "t": 0.0
+        },
+        {
+          "instantaneous_limit_gram_quadratic": 805.0124690173333,
+          "native_energy": 21.12806063098282,
+          "observable_difference": 192.6121655917775,
+          "return_metric_probe_observable": 612.4003034255558,
+          "t": 1.0
+        },
+        {
+          "instantaneous_limit_gram_quadratic": 652.1037936768805,
+          "native_energy": 18.887309090833583,
+          "observable_difference": 151.4724953262616,
+          "return_metric_probe_observable": 500.6312983506189,
+          "t": 2.0
+        }
+      ]
+    },
+    {
+      "ambient_dimension": 451,
+      "cutoff": 64,
+      "endpoint_dimension": 4239,
+      "exact_covariance_identity_error": 4.423634632743248e-14,
+      "metric_minus_raw_covariance_norm": 1.2410160345800307,
+      "normalized_covariance_error_to_limit_gram": 10.739518882756354,
+      "normalized_metric_covariance_max_eigenvalue": 36.96271318713615,
+      "normalized_metric_covariance_min_eigenvalue": 0.8213004487215854,
+      "normalized_raw_covariance_max_eigenvalue": 36.70152448101938,
+      "normalized_raw_covariance_min_eigenvalue": 0.7815154568126953,
+      "return_metric_isometry_error": 1.057154684192706e-14,
+      "times": [
+        {
+          "instantaneous_limit_gram_quadratic": 814.3878721246215,
+          "native_energy": 20.8875219469681,
+          "observable_difference": 188.5736024249902,
+          "return_metric_probe_observable": 625.8142696996313,
+          "t": 0.0
+        },
+        {
+          "instantaneous_limit_gram_quadratic": 804.6004688123426,
+          "native_energy": 21.117329381239795,
+          "observable_difference": 185.47474470389693,
+          "return_metric_probe_observable": 619.1257241084456,
+          "t": 1.0
+        },
+        {
+          "instantaneous_limit_gram_quadratic": 652.1604638792993,
+          "native_energy": 18.890371621792422,
+          "observable_difference": 147.78889374098293,
+          "return_metric_probe_observable": 504.3715701383164,
+          "t": 2.0
+        }
+      ]
+    }
+  ],
+  "metric_equivalence": {
+    "consequence": "return-metric weighting is uniformly equivalent to Euclidean source weighting and does not introduce or remove zeros",
+    "endpoint_lower_constant": 0.04610258216068504,
+    "raw_euclidean_covariance_status": "S_MS_M*/A_M remains uniformly noncollapsing, but its unique operator limit is not proved by this argument",
+    "uniform_metric_bounds": "I <= G_E,M <= c_E^(-1) I"
+  },
+  "schema": "org.native-carry.defect-return-metric-covariance-limit/v1",
+  "status": "UNIQUE_RETURN_METRIC_DEFECT_COVARIANCE_LIMIT_PROVED_AND_AUDITED",
+  "theorem": {
+    "exact_covariance_reduction": "Sigma_M^ret(z)=C_M W_M(z) C_M*",
+    "exact_metric_isometry": "E_M* G_E,M E_M=I",
+    "normalization": "A_M(z)=sum_{n<=M}|z-log n|^-2",
+    "observable_limit": "if chi_M(t)->chi(t), then <chi_M,Sigma_M^ret/A_M chi_M> -> <chi,G_camera chi>",
+    "return_metric": "G_E,M=I+M_MB,M* M_MB,M",
+    "return_metric_covariance": "Sigma_M^ret(z)=S_M(z) G_E,M S_M(z)*",
+    "source_probe": "S_M(z)=C_M(z-L_M)^(-1)E_M*",
+    "unique_limit": "Sigma_M^ret(z)/A_M(z) -> G_camera in operator norm",
+    "z_universality": "the same G_camera occurs for every fixed z in C\\R",
+    "zero_detection": "G_camera>0 implies limiting observable=0 iff chi(t)=0"
+  },
+  "unique_limit_gram": {
+    "eigenvalues": [
+      1.009414174926293,
+      5.058219859114465,
+      20.0,
+      24.476173498045583,
+      42.0,
+      47.45619246791368
+    ],
+    "exact": [
+      [
+        "6",
+        "0",
+        "10",
+        "0",
+        "16/3",
+        "0"
+      ],
+      [
+        "0",
+        "6",
+        "0",
+        "0",
+        "6",
+        "0"
+      ],
+      [
+        "10",
+        "0",
+        "22",
+        "0",
+        "16/3",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "20",
+        "0",
+        "0"
+      ],
+      [
+        "16/3",
+        "6",
+        "16/3",
+        "0",
+        "44",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "42"
+      ]
+    ],
+    "maximum_eigenvalue": 47.45619246791368,
+    "minimum_eigenvalue": 1.009414174926293,
+    "positive_definite": true
+  }
+}

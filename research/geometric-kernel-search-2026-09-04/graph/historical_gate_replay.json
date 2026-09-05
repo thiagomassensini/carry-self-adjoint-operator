@@ -1,0 +1,76 @@
+{
+  "divisor": {
+    "P_ell_div_constructed": false,
+    "Qtilde_constructed": false,
+    "activation_condition": "a complete native witness in K_native with nonzero A_even_pre image",
+    "activation_condition_met": false,
+    "eta_ell_d_frame_claimed": false,
+    "minimal_A_observable_provenance_computed": false,
+    "mobius_moment_sufficiency_tested": false,
+    "not_confused_with_Haar_Mangoldt": true,
+    "not_emitted": [
+      "PASS_CANONICAL_DIVISOR_HAAR_PROVENANCE_FRAME",
+      "PASS_MINIMAL_A_OBSERVABLE_PROVENANCE"
+    ],
+    "phase_executed": false,
+    "reason": "the task permits this enrichment only after a native witness; free-module mu_ell is insufficient",
+    "schema": "c2.green.divisor_haar.conditional_gate.v1"
+  },
+  "graph": {
+    "Qtilde_number_intertwiner_tested": false,
+    "closed_native_endpoint_graph_lift_constructed": false,
+    "current_frontier": "NEEDS_NATIVE_PRET0_GENERATOR_PERSISTENCE",
+    "enriched_scales_constructed": false,
+    "native_A_descent_to_enriched_graph_tested": false,
+    "not_emitted": [
+      "PASS_NATIVE_A_DESCENDS_TO_ENRICHED_GRAPH",
+      "PASS_PROVENANCE_ENRICHED_GRAPH_RELATION",
+      "PASS_CLOSED_NATIVE_ENDPOINT_GRAPH_LIFT"
+    ],
+    "post_T0_closed_relation_preserved": true,
+    "previous_frontier": "NEEDS_PROVENANCE_ENRICHED_GRAPH_RELATION",
+    "previous_frontier_definitively_activated": false,
+    "reason": "minimal enrichment is downstream of native-range classification; the range is unavailable because the forward pre-T0 generator was not persisted",
+    "schema": "c2.green.provenance_enriched_graph.gate.v1",
+    "tower_number_descent_preserved": true
+  },
+  "native": {
+    "E_native_preT0_constructed": false,
+    "K_native_classified": false,
+    "K_native_defined": false,
+    "R_native_defined": false,
+    "checkpoint": "STOP_NATIVE_PRET0_GENERATOR_NOT_PERSISTED",
+    "ell_2_native_preimage_of_mu": "not determined",
+    "mu_mode_native_realizable": "not determined",
+    "mu_mode_not_in_native_range_proved": false,
+    "native_A_descends_on_restricted_quotient": false,
+    "native_witness_constructed": false,
+    "not_emitted": [
+      "PASS_NATIVE_PRET0_RANGE_CONSTRUCTED",
+      "PASS_NATIVE_RANGE_COEQUALIZER_KERNEL_CLASSIFIED",
+      "PASS_MOBIUS_MODE_NATIVE_REALIZABLE",
+      "STOP_MOBIUS_MODE_NOT_IN_NATIVE_RANGE",
+      "PASS_NATIVE_RANGE_ELIMINATES_FREE_JH_GAUGE",
+      "PASS_NATIVE_A_DESCENDS_ON_RESTRICTED_QUOTIENT",
+      "STOP_NATIVE_A_NONZERO_ON_NATIVE_COEQUALIZER_KERNEL"
+    ],
+    "reason": "R_native cannot be formed from the persisted constructors without inventing the missing join",
+    "restricted_kernel_inclusion_tested": false,
+    "schema": "c2.green.native_pret0.range_gate.v1"
+  },
+  "new_global_no_go": false,
+  "uses_historical_inventory": true,
+  "validation": {
+    "all_passed": true,
+    "checks": {
+      "all_exact_mobius_checks_zero": true,
+      "conditional_enrichment_not_run": true,
+      "ell2_A_mu_nonzero": true,
+      "ell2_Q_mu_zero": true,
+      "enriched_graph_not_overclaimed": true,
+      "native_range_not_fabricated": true,
+      "no_complete_forward_constructor": true
+    },
+    "schema": "c2.green.native_range_provenance.validation.v1"
+  }
+}

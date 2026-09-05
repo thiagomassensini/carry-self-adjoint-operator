@@ -1,0 +1,188 @@
+[
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/manifest.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/manifest.json",
+    "sha256": "439f9b9dc4e1a4933c0ea0a5bb441687661aadd1da7a36890391931013b08ddf",
+    "bytes": 32387
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/summary.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/summary.json",
+    "sha256": "b379d22ed2374fb74a8db038f3eca23d59791dfe707b202a5c4d30eb26151272",
+    "bytes": 1580
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/a_descent.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/a_descent.json",
+    "sha256": "c659fbf8419657a13b5afda4c46a3653bb888d6178ccb9b04dc1a21c85d9e3ba",
+    "bytes": 1287
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/hilbert_scale.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/hilbert_scale.json",
+    "sha256": "44da913d0a7b20c4df884d032201558f3136679a9e08617d0e5cc33dd91f5116",
+    "bytes": 9016
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/global_odd_convolution.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/global_odd_convolution.json",
+    "sha256": "50674b0e2863c905b2914e6b7f745851ac38467e4bff7667ea22f0fbe32ef175",
+    "bytes": 27307
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/test_c2_green_closed_native_endpoint_graph.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/test_c2_green_closed_native_endpoint_graph.py",
+    "sha256": "17f1bf8ea045635dc5229dca6906d5edbfd099988ebd4de7d9a5669c25ec8ef8",
+    "bytes": 9040
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/integrity.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/integrity.json",
+    "sha256": "18664e4c8d2dd2780f427c282846bdbc88c647af9b49b5b89370ffae80685ef7",
+    "bytes": 15104
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/endpoint_support.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/endpoint_support.json",
+    "sha256": "c2e1798817a09a5e93f05ccf63a0ba4f99ccfd17849ed1ac9f8cb5907598aa17",
+    "bytes": 1703
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/c2_green_closed_native_endpoint_graph.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/c2_green_closed_native_endpoint_graph.py",
+    "sha256": "610022b7f1d0f29755b9abd52f4ea23da12e2d71cba4c0f61ea6b5ebf058d140",
+    "bytes": 45750
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/C2_GREEN_C2_PRIME_POWER_LOGJET_GRAPH.md",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/C2_GREEN_C2_PRIME_POWER_LOGJET_GRAPH.md",
+    "sha256": "1e030f9922eeecf1311483add2b37821d74939de9e45fc270a4bc30043544160",
+    "bytes": 2823
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/prime_power_logjet.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/prime_power_logjet.json",
+    "sha256": "cc82395f93545b75d75045e1c78f62f1a3f0098188255145a07b756e8ee5270d",
+    "bytes": 12844
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/C2_GREEN_CLOSED_NATIVE_ENDPOINT_GRAPH_LIFT.md",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/C2_GREEN_CLOSED_NATIVE_ENDPOINT_GRAPH_LIFT.md",
+    "sha256": "05d6ee4f6e2994188128d5639667fe206a8c3bc7d290ae55d92ffbd8c95660c3",
+    "bytes": 1638
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/native_comparison.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/native_comparison.json",
+    "sha256": "f1215dbef49cd40610a473ae32ccabf8feeee7442d70673bebb05b8628c0c26e",
+    "bytes": 1460
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/C2_GREEN_JH_COEQUALIZER_GRAPH_RELATION.md",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/C2_GREEN_JH_COEQUALIZER_GRAPH_RELATION.md",
+    "sha256": "409a40105d20adb94af7d0b65d4ac04944bb90684062b041a7716a00b413bab1",
+    "bytes": 1482
+  },
+  {
+    "source": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/coequalizer_relation.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_closed/coequalizer_relation.json",
+    "sha256": "9fd547c886b52aa17cb5a56f5862c215f291cf1082166acc2511b059e5c55448",
+    "bytes": 4407
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/manifest.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/manifest.json",
+    "sha256": "c4076c0042caa5ac0df11c091206775c6d876bdb32d6a3eae6f1584f55c17c68",
+    "bytes": 3028
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/summary.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/summary.json",
+    "sha256": "f1fe7c1e865bfedfff2c6dfc97372995141f29e0b867244328f303b5586601a0",
+    "bytes": 1993
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/test_c2_green_native_range_provenance_graph.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/test_c2_green_native_range_provenance_graph.py",
+    "sha256": "168bf9d01a3e686864e41c5acc91e47e72dcd3b889c432520f44c909eec31d97",
+    "bytes": 7720
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/integrity.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/integrity.json",
+    "sha256": "3b5a1f36d8b27dc0bbf2b92064f7c6939b08c8ed787e6ad353a8724c257401b2",
+    "bytes": 11240
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/native_range_gate.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/native_range_gate.json",
+    "sha256": "e8369a8a7d1cc403ce0b9c10e8a553e4073f60d188f34a010012782141a3ea7e",
+    "bytes": 1006
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/free_module_witness.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/free_module_witness.json",
+    "sha256": "54ae51b16fe5eb0f4e59e8b4e5a248e6fbcc49331ddcccbcfd6b522d4a122ed7",
+    "bytes": 33692
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/validation.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/validation.json",
+    "sha256": "e234cba8656481253f566b054b2980358fc53d5f0d3f4b92298ae08e64e116a4",
+    "bytes": 380
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/C2_GREEN_DIVISOR_HAAR_PROVENANCE_PORT.md",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/C2_GREEN_DIVISOR_HAAR_PROVENANCE_PORT.md",
+    "sha256": "c72c12364a388b59218860b9f6d94ee666add274c037ea6212c6bab7a17aadd1",
+    "bytes": 762
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/enriched_graph_gate.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/enriched_graph_gate.json",
+    "sha256": "72079fd64a9f49b11f2ed0f185a62b27e73b2dd8d7ed69af844a7395b699da71",
+    "bytes": 855
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/C2_GREEN_NATIVE_PRET0_RANGE.md",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/C2_GREEN_NATIVE_PRET0_RANGE.md",
+    "sha256": "7c909c09cd8f054bfb9df217aad89eff78e9713b3113ecc4140101948482b5ba",
+    "bytes": 2291
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/c2_green_native_range_provenance_graph.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/c2_green_native_range_provenance_graph.py",
+    "sha256": "a63138f1386a0851aa4283afe4301e3c1b61839bbba337c21ba37935a9f2647f",
+    "bytes": 29180
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/constructor_inventory.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/constructor_inventory.json",
+    "sha256": "2ed129ea9c5a87f71b13f14015e9f70da9c7626347468b7b232e5e64589b9ad7",
+    "bytes": 4904
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/C2_GREEN_PROVENANCE_ENRICHED_GRAPH_RELATION.md",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/C2_GREEN_PROVENANCE_ENRICHED_GRAPH_RELATION.md",
+    "sha256": "c1b34a2c743903091fd660cf63cfa76d46094101d89fe0e218c95097a567d461",
+    "bytes": 1051
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/mobius_kernel.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/mobius_kernel.json",
+    "sha256": "9a4e60a7c0eaade75dff6ef79827376f1ea696571705929c74c4f67cb9a8d64e",
+    "bytes": 34441
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/C2_GREEN_MOBIUS_JORDAN_KERNEL_AUDIT.md",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/C2_GREEN_MOBIUS_JORDAN_KERNEL_AUDIT.md",
+    "sha256": "a2546a8fa3ba7d1d3c5358dd403fcc062a1362dd3ba0ccb58326c817c0f7d32e",
+    "bytes": 1043
+  },
+  {
+    "source": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/divisor_haar_gate.json",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_provenance/divisor_haar_gate.json",
+    "sha256": "f58bca7064d5b520638a59d15f88d439c8c80cd8f2b78c0b7d3e16e469650980",
+    "bytes": 694
+  }
+]

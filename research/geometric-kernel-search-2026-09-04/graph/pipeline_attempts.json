@@ -1,0 +1,51 @@
+{
+  "closed": {
+    "full_historical_pipeline_completed": false,
+    "full_pipeline_error": "FileNotFoundError(\"missing mandatory canonical inputs: ['C2_GREEN_NATIVE_A_PRET0_TYPE_REGISTRY.md', 'C2_GREEN_NATIVE_A_COMMON_CODOMAIN.md', 'C2_GREEN_NATIVE_A_ENDPOINT_LIFT.md', 'C2_GREEN_UNIT_MASS_RESIDUE_INTERTWINER.md', 'C2_GREEN_ALL_ODD_FIBRE_DYADIC_GATE.md', 'C2_GREEN_NATIVE_A_COEFFICIENT_QUOTIENT.md', 'C2_GREEN_MELLIN_LOGJET_ENDPOINT.md', 'C2_GREEN_CENTERED_JORDAN_KREIN_REPORT.md', 'C2_GREEN_MOLECULE_GCD_COMPATIBILITY_ADDENDUM.md', 'docs/c2_lambda_cutoff_peneira.md', 'docs/c2_formula_reduzida_canal_lambda.md', 'script/c2_green_native_a_endpoint_all_fibres.py', 'script/c2_green_unit_mass_tail_boundary.py', 'script/c2_green_molecule_gcd_laplace_jordan.py', 'script/c2_green_centered_jordan_krein.py', 'result/c2_green_native_a_endpoint_all_fibres/summary.json', 'result/c2_green_native_a_endpoint_all_fibres/manifest.json', 'result/c2_green_centered_jordan_krein/quotient_coequalizer.json', 'result/c2_green_centered_jordan_krein/mellin_logjet.json', 'result/c2_green_unit_mass_tail_boundary/cumulant_tail_current.json']\")",
+    "missing_canonical_inputs": [
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_NATIVE_A_PRET0_TYPE_REGISTRY.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_NATIVE_A_COMMON_CODOMAIN.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_NATIVE_A_ENDPOINT_LIFT.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_UNIT_MASS_RESIDUE_INTERTWINER.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_ALL_ODD_FIBRE_DYADIC_GATE.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_NATIVE_A_COEFFICIENT_QUOTIENT.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_MELLIN_LOGJET_ENDPOINT.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_CENTERED_JORDAN_KREIN_REPORT.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_MOLECULE_GCD_COMPATIBILITY_ADDENDUM.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/docs/c2_lambda_cutoff_peneira.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/docs/c2_formula_reduzida_canal_lambda.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/script/c2_green_native_a_endpoint_all_fibres.py",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/script/c2_green_unit_mass_tail_boundary.py",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/script/c2_green_molecule_gcd_laplace_jordan.py",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/script/c2_green_centered_jordan_krein.py",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/result/c2_green_native_a_endpoint_all_fibres/summary.json",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/result/c2_green_native_a_endpoint_all_fibres/manifest.json",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/result/c2_green_centered_jordan_krein/quotient_coequalizer.json",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/result/c2_green_centered_jordan_krein/mellin_logjet.json",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/result/c2_green_unit_mass_tail_boundary/cumulant_tail_current.json"
+    ]
+  },
+  "provenance": {
+    "full_historical_pipeline_completed": false,
+    "full_pipeline_error": "FileNotFoundError(\"missing canonical inputs: ['C2_GREEN_C2_PRIME_POWER_LOGJET_GRAPH.md', 'C2_GREEN_CLOSED_NATIVE_ENDPOINT_GRAPH_LIFT.md', 'C2_GREEN_JH_COEQUALIZER_GRAPH_RELATION.md', 'C2_GREEN_NATIVE_A_PRET0_TYPE_REGISTRY.md', 'C2_GREEN_NATIVE_A_COMMON_CODOMAIN.md', 'C2_GREEN_NATIVE_A_ENDPOINT_LIFT.md', 'script/c2_green_closed_native_endpoint_graph.py', 'script/c2_green_native_a_endpoint_all_fibres.py', 'script/c2_green_centered_b_contextual_endpoint.py', 'script/c2_green_centered_jordan_krein.py', 'script/c2_green_molecule_gcd_laplace_jordan.py', 'script/c2_green_full_even_hodge_endpoint.py', 'result/c2_green_closed_native_endpoint_graph/a_descent.json', 'result/c2_green_closed_native_endpoint_graph/coequalizer_relation.json', 'result/c2_green_centered_b_contextual_endpoint/pre_sigma0_endpoint.json', 'result/c2_green_centered_b_contextual_endpoint/combined_jh_endpoint.json', 'result/c2_green_molecule_gcd_laplace_jordan/laplace_jordan_lift.json']\")",
+    "missing_canonical_inputs": [
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_C2_PRIME_POWER_LOGJET_GRAPH.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_CLOSED_NATIVE_ENDPOINT_GRAPH_LIFT.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_JH_COEQUALIZER_GRAPH_RELATION.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_NATIVE_A_PRET0_TYPE_REGISTRY.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_NATIVE_A_COMMON_CODOMAIN.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/C2_GREEN_NATIVE_A_ENDPOINT_LIFT.md",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/script/c2_green_closed_native_endpoint_graph.py",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/script/c2_green_native_a_endpoint_all_fibres.py",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/script/c2_green_centered_b_contextual_endpoint.py",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/script/c2_green_centered_jordan_krein.py",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/script/c2_green_molecule_gcd_laplace_jordan.py",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/script/c2_green_full_even_hodge_endpoint.py",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/result/c2_green_closed_native_endpoint_graph/a_descent.json",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/result/c2_green_closed_native_endpoint_graph/coequalizer_relation.json",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/result/c2_green_centered_b_contextual_endpoint/pre_sigma0_endpoint.json",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/result/c2_green_centered_b_contextual_endpoint/combined_jh_endpoint.json",
+      "/home/thlinux/carry-kernel-geometric-search-20260904/graph/result/c2_green_molecule_gcd_laplace_jordan/laplace_jordan_lift.json"
+    ]
+  }
+}

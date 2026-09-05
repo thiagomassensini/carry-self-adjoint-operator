@@ -1,0 +1,50 @@
+{
+  "Genuine_First": true,
+  "Green_to_zero_claimed": false,
+  "claims_not_emitted": [
+    "PASS_NATIVE_PRET0_RANGE_CONSTRUCTED",
+    "PASS_NATIVE_RANGE_COEQUALIZER_KERNEL_CLASSIFIED",
+    "PASS_MOBIUS_MODE_NATIVE_REALIZABLE",
+    "STOP_MOBIUS_MODE_NOT_IN_NATIVE_RANGE",
+    "PASS_NATIVE_RANGE_ELIMINATES_FREE_JH_GAUGE",
+    "PASS_NATIVE_A_DESCENDS_ON_RESTRICTED_QUOTIENT",
+    "STOP_NATIVE_A_NONZERO_ON_NATIVE_COEQUALIZER_KERNEL",
+    "PASS_CANONICAL_DIVISOR_HAAR_PROVENANCE_FRAME",
+    "PASS_MINIMAL_A_OBSERVABLE_PROVENANCE",
+    "PASS_NATIVE_A_DESCENDS_TO_ENRICHED_GRAPH",
+    "PASS_PROVENANCE_ENRICHED_GRAPH_RELATION",
+    "PASS_CLOSED_NATIVE_ENDPOINT_GRAPH_LIFT"
+  ],
+  "complete_forward_constructor_count": 0,
+  "definitive_native_A_stop_emitted": false,
+  "divisor_haar_phase_executed": false,
+  "enriched_graph_constructed": false,
+  "free_module_witness_exact": true,
+  "free_module_witness_is_native": false,
+  "frontier": "NEEDS_NATIVE_PRET0_GENERATOR_PERSISTENCE",
+  "frozen_passes_preserved": [
+    "PASS_C2_PRIME_POWER_LOGJET_CORE",
+    "PASS_POSITIVE_TAU_LOGJET_GRAPH",
+    "PASS_ZERO_TIME_LOGJET_IN_HMINUS1",
+    "PASS_TOWER_NUMBER_DESCENDS_THROUGH_JH_COEQUALIZER",
+    "PASS_CLOSED_POST_T0_TOWER_BOUNDARY_RELATION"
+  ],
+  "mobius_native_membership": "not determined",
+  "native_kernel_classified": false,
+  "native_range_constructed": false,
+  "native_witness_constructed": false,
+  "phase_status": {
+    "divisor_Haar": "conditional phase not activated",
+    "enriched_graph": "not constructed",
+    "forward_native_range": "stopped: generator not persisted",
+    "free_module_witness": "qualified exactly",
+    "minimal_provenance": "not tested",
+    "native_kernel": "not defined",
+    "restricted_descent": "not tested"
+  },
+  "qualification": "QUALIFY_STOP_NATIVE_A_AS_FREE_MODULE_ONLY",
+  "result": "STOP_NATIVE_PRET0_GENERATOR_NOT_PERSISTED",
+  "reverse_section_used": false,
+  "schema": "c2.green.native_range_provenance.summary.v1",
+  "source_constructor_count": 4
+}

@@ -1,0 +1,1254 @@
+{
+  "cutoffs": {
+    "mass_high": 800,
+    "mass_low": 400,
+    "output": 200
+  },
+  "interpretation": "the persisted (p_T,j) jet is exactly the prime-power restriction of the global odd convolution; mixed cumulants require a separate provenance axis in any enriched relation",
+  "mass_comparison": {
+    "high_all_odd_equal": true,
+    "high_odd_core_count": 399,
+    "low_all_odd_equal": true,
+    "low_odd_core_count": 199
+  },
+  "mixed_channels": {
+    "not_identified_with_d_J": true,
+    "not_part_of_the_single_prime_tower_jet": true,
+    "records": [
+      {
+        "factorization": {
+          "3": 1,
+          "5": 1
+        },
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 4096,
+              "numerator": 1,
+              "text": "1/4096"
+            },
+            "prime": 3
+          },
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 4096,
+              "numerator": 1,
+              "text": "1/4096"
+            },
+            "prime": 5
+          }
+        ],
+        "integer": 15,
+        "is_prime_power": false
+      },
+      {
+        "factorization": {
+          "3": 1,
+          "7": 1
+        },
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 2048,
+              "numerator": 1,
+              "text": "1/2048"
+            },
+            "prime": 3
+          },
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 2048,
+              "numerator": 1,
+              "text": "1/2048"
+            },
+            "prime": 7
+          }
+        ],
+        "integer": 21,
+        "is_prime_power": false
+      },
+      {
+        "factorization": {
+          "5": 1,
+          "7": 1
+        },
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1024,
+              "numerator": 1,
+              "text": "1/1024"
+            },
+            "prime": 5
+          },
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1024,
+              "numerator": 1,
+              "text": "1/1024"
+            },
+            "prime": 7
+          }
+        ],
+        "integer": 35,
+        "is_prime_power": false
+      },
+      {
+        "factorization": {
+          "3": 2,
+          "5": 1
+        },
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 262144,
+              "numerator": 707,
+              "text": "707/262144"
+            },
+            "prime": 3
+          },
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 524288,
+              "numerator": 707,
+              "text": "707/524288"
+            },
+            "prime": 5
+          }
+        ],
+        "integer": 45,
+        "is_prime_power": false
+      },
+      {
+        "factorization": {
+          "3": 2,
+          "7": 1
+        },
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 131072,
+              "numerator": 483,
+              "text": "483/131072"
+            },
+            "prime": 3
+          },
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 262144,
+              "numerator": 483,
+              "text": "483/262144"
+            },
+            "prime": 7
+          }
+        ],
+        "integer": 63,
+        "is_prime_power": false
+      },
+      {
+        "factorization": {
+          "3": 1,
+          "5": 1,
+          "7": 1
+        },
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 65536,
+              "numerator": 291,
+              "text": "291/65536"
+            },
+            "prime": 3
+          },
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 65536,
+              "numerator": 291,
+              "text": "291/65536"
+            },
+            "prime": 5
+          },
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 65536,
+              "numerator": 291,
+              "text": "291/65536"
+            },
+            "prime": 7
+          }
+        ],
+        "integer": 105,
+        "is_prime_power": false
+      }
+    ],
+    "retained_by_global_inversion": true
+  },
+  "prime_power_restriction": {
+    "all_exact": true,
+    "record_count": 53,
+    "records": [
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 3
+          }
+        ],
+        "integer": 3,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 3
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 5
+          }
+        ],
+        "integer": 5,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 5
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 7
+          }
+        ],
+        "integer": 7,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 7
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 8192,
+              "numerator": 8193,
+              "text": "8193/8192"
+            },
+            "prime": 3
+          }
+        ],
+        "integer": 9,
+        "j": 2,
+        "local_P_j_R": {
+          "denominator": 8192,
+          "numerator": 8193,
+          "text": "8193/8192"
+        },
+        "p_T": 3
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 11
+          }
+        ],
+        "integer": 11,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 11
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 13
+          }
+        ],
+        "integer": 13,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 13
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 17
+          }
+        ],
+        "integer": 17,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 17
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 19
+          }
+        ],
+        "integer": 19,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 19
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 23
+          }
+        ],
+        "integer": 23,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 23
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 2048,
+              "numerator": 2049,
+              "text": "2049/2048"
+            },
+            "prime": 5
+          }
+        ],
+        "integer": 25,
+        "j": 2,
+        "local_P_j_R": {
+          "denominator": 2048,
+          "numerator": 2049,
+          "text": "2049/2048"
+        },
+        "p_T": 5
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1048576,
+              "numerator": 1049731,
+              "text": "1049731/1048576"
+            },
+            "prime": 3
+          }
+        ],
+        "integer": 27,
+        "j": 3,
+        "local_P_j_R": {
+          "denominator": 1048576,
+          "numerator": 1049731,
+          "text": "1049731/1048576"
+        },
+        "p_T": 3
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 29
+          }
+        ],
+        "integer": 29,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 29
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 31
+          }
+        ],
+        "integer": 31,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 31
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 37
+          }
+        ],
+        "integer": 37,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 37
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 41
+          }
+        ],
+        "integer": 41,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 41
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 43
+          }
+        ],
+        "integer": 43,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 43
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 47
+          }
+        ],
+        "integer": 47,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 47
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 512,
+              "numerator": 513,
+              "text": "513/512"
+            },
+            "prime": 7
+          }
+        ],
+        "integer": 49,
+        "j": 2,
+        "local_P_j_R": {
+          "denominator": 512,
+          "numerator": 513,
+          "text": "513/512"
+        },
+        "p_T": 7
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 53
+          }
+        ],
+        "integer": 53,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 53
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 59
+          }
+        ],
+        "integer": 59,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 59
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 61
+          }
+        ],
+        "integer": 61,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 61
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 67
+          }
+        ],
+        "integer": 67,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 67
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 71
+          }
+        ],
+        "integer": 71,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 71
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 73
+          }
+        ],
+        "integer": 73,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 73
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 79
+          }
+        ],
+        "integer": 79,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 79
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 134217728,
+              "numerator": 135303687,
+              "text": "135303687/134217728"
+            },
+            "prime": 3
+          }
+        ],
+        "integer": 81,
+        "j": 4,
+        "local_P_j_R": {
+          "denominator": 134217728,
+          "numerator": 135303687,
+          "text": "135303687/134217728"
+        },
+        "p_T": 3
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 83
+          }
+        ],
+        "integer": 83,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 83
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 89
+          }
+        ],
+        "integer": 89,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 89
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 97
+          }
+        ],
+        "integer": 97,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 97
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 101
+          }
+        ],
+        "integer": 101,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 101
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 103
+          }
+        ],
+        "integer": 103,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 103
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 107
+          }
+        ],
+        "integer": 107,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 107
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 109
+          }
+        ],
+        "integer": 109,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 109
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 113
+          }
+        ],
+        "integer": 113,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 113
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 512,
+              "numerator": 513,
+              "text": "513/512"
+            },
+            "prime": 11
+          }
+        ],
+        "integer": 121,
+        "j": 2,
+        "local_P_j_R": {
+          "denominator": 512,
+          "numerator": 513,
+          "text": "513/512"
+        },
+        "p_T": 11
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 131072,
+              "numerator": 132035,
+              "text": "132035/131072"
+            },
+            "prime": 5
+          }
+        ],
+        "integer": 125,
+        "j": 3,
+        "local_P_j_R": {
+          "denominator": 131072,
+          "numerator": 132035,
+          "text": "132035/131072"
+        },
+        "p_T": 5
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 127
+          }
+        ],
+        "integer": 127,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 127
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 131
+          }
+        ],
+        "integer": 131,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 131
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 137
+          }
+        ],
+        "integer": 137,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 137
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 139
+          }
+        ],
+        "integer": 139,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 139
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 149
+          }
+        ],
+        "integer": 149,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 149
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 151
+          }
+        ],
+        "integer": 151,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 151
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 157
+          }
+        ],
+        "integer": 157,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 157
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 163
+          }
+        ],
+        "integer": 163,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 163
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 167
+          }
+        ],
+        "integer": 167,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 167
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 128,
+              "numerator": 129,
+              "text": "129/128"
+            },
+            "prime": 13
+          }
+        ],
+        "integer": 169,
+        "j": 2,
+        "local_P_j_R": {
+          "denominator": 128,
+          "numerator": 129,
+          "text": "129/128"
+        },
+        "p_T": 13
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 173
+          }
+        ],
+        "integer": 173,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 173
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 179
+          }
+        ],
+        "integer": 179,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 179
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 181
+          }
+        ],
+        "integer": 181,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 181
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 191
+          }
+        ],
+        "integer": 191,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 191
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 193
+          }
+        ],
+        "integer": 193,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 193
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 197
+          }
+        ],
+        "integer": 197,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 197
+      },
+      {
+        "global_log_basis": [
+          {
+            "coefficient_of_log_prime": {
+              "denominator": 1,
+              "numerator": 1,
+              "text": "1"
+            },
+            "prime": 199
+          }
+        ],
+        "integer": 199,
+        "j": 1,
+        "local_P_j_R": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "p_T": 199
+      }
+    ]
+  },
+  "schema": "c2.green.c2_prime_power_logjet.global_odd_regression.v1",
+  "source_algorithm": "exact Fraction transcription of accumulate_c2_mass_exato, extract_geometria_c2 and 2*b_800-b_400 supplied by the user"
+}
