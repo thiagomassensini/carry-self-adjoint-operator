@@ -1,0 +1,19 @@
+Date UTC: 2026-09-05T18:25:50.083651+00:00
+Base: 9a87c27553fc08832415cc42946a8d5356ec418f
+Branch: agent/all-order-logjet-ledger
+New declarations: 13
+Focused build with --wfail: PASS
+Focused audit with --wfail: PASS
+Direct lake env lean AllOrderLogJetAudit.lean: PASS
+All 13 new declarations: propext, Classical.choice, Quot.sound only
+Full bash -x scripts/audit.sh: PASS, 15 lake build --wfail stages
+Full audit transitive axiom reports: 6070; all within standard set
+Full audit: no warning/error diagnostics
+Final static audit after registry update: PASS
+git diff --check: PASS
+Dependency pins and lean-toolchain: unchanged
+All-order native Gram positivity: NOT established by this change
+No merge; no CI monitoring
+Full raw audit log retained on llm: /tmp/all-order-logjet-full-audit.log
+Raw audit SHA256: a4a269b7526f6f3db4a21df565647d92d6b32fa8d1bae6f02c6a1503787dd5df
+Tracked audit-stages.log contains only stage/status lines from the full log.

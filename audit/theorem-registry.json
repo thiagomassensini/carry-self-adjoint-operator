@@ -266,6 +266,19 @@
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.opposite_endpoint_flux"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_one_eq_native_quadratic"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.native_quotient_two_samples_ne_eventually"},
-    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.two_point_storage_nonnegative_but_endpoint_flux_negative"}
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.two_point_storage_nonnegative_but_endpoint_flux_negative"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.unit_logJet_succ"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.unit_logJet_mul"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.finiteFactor_logDeriv_eventually"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.finiteFactor_logDeriv_iterated"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.finiteFactor_logJet_iterated"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.quotient_logDeriv_eventually"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.quotient_logDeriv_iterated"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.nativeMoment_eq_finiteFactors_add_remainder"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.reciprocalLedger_split"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.reciprocalGap_parity"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.reflectedNeighborCorrection_pos"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.reflectedNeighborCorrection_six"},
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.reflectedNeighborCorrection_seven"}
   ]
 }

@@ -1,0 +1,35 @@
+'CarrySelfAdjointOperator.AllOrderLogJet.unit_logJet_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.unit_logJet_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.finiteFactor_logDeriv_eventually' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.finiteFactor_logDeriv_iterated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.finiteFactor_logJet_iterated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.quotient_logDeriv_eventually' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.quotient_logDeriv_iterated' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.nativeMoment_eq_finiteFactors_add_remainder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.reciprocalLedger_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.reciprocalGap_parity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.reflectedNeighborCorrection_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.reflectedNeighborCorrection_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.AllOrderLogJet.reflectedNeighborCorrection_seven' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,32 @@
+static audit passed
++ lake build --wfail CarrySelfAdjointOperator.ObservableJetAudit
+Build completed successfully (9213 jobs).
++ lake build --wfail CarrySelfAdjointOperator.DiscreteProjectiveReconstructionAudit
+Build completed successfully (8699 jobs).
++ lake build --wfail CarrySelfAdjointOperator.ProjectiveValveNativeIncidenceAudit
+Build completed successfully (8911 jobs).
++ lake build --wfail CarrySelfAdjointOperator.ProjectiveValveMomentFrontierAudit
+Build completed successfully (9213 jobs).
++ lake build --wfail CarrySelfAdjointOperator.KernelConstructionAudit
+Build completed successfully (9273 jobs).
++ lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit
+Build completed successfully (4039 jobs).
++ lake build --wfail CarrySelfAdjointOperator.CompletedNativeJacobiPointSpectrumConverseAudit
+Build completed successfully (4093 jobs).
++ lake build --wfail CarrySelfAdjointOperator.BoundaryTraceAudit
+Build completed successfully (3676 jobs).
++ lake build --wfail CarrySelfAdjointOperator.JacobiOrderPolynomial
+Build completed successfully (2997 jobs).
++ lake build --wfail CarrySelfAdjointOperator.ExactProjectiveMatrixTower
+Build completed successfully (3239 jobs).
++ lake build --wfail CarrySelfAdjointOperator.CanonicalProjectiveJacobiTower
+Build completed successfully (3247 jobs).
++ lake build --wfail CarrySelfAdjointOperator
+Build completed successfully (9290 jobs).
++ lake build --wfail CarrySelfAdjointOperator.Audit
+Build completed successfully (9313 jobs).
++ lake build --wfail CarrySelfAdjointOperator.BR2Audit
+Build completed successfully (9215 jobs).
++ lake build --wfail CarrySelfAdjointOperator.OrderAudit
+Build completed successfully (3249 jobs).
+kernel audit passed
