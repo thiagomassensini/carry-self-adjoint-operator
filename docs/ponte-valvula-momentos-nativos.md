@@ -121,3 +121,7 @@ O módulo novo foi incluído no import geral e em `KernelConstructionAudit`, com
 Evidência desta rodada: [auditoria](../research/native-moment-valve-bridge-2026-09-05/verification.json). Os snapshots principais continuam `main=4de44de2341089a29665917ed48cd388c68a85e5` e base de trabalho `e176afaa6e5b9226c8f222e57a22f31e27a279df`, antes deste acréscimo. Os pins não foram alterados. Não foi acompanhado CI do GitHub.
 
 Relacionados: [mapa HP](mapa-notas-hp-jets-retorno-atualizado.md), [rota projetiva](mapa-rota-valvula-projetiva.md), [identificação geométrica](identificacao-geometrica-kernel-carry.md).
+
+## Continuidade em 2026-09-05: realização Hilbert e readout
+
+Integração dos três módulos R/B recuperados e construção do [kernel Hilbert R/B e readout completado](c3-projective-hilbert-readout-kernel.md): produto interno polarizado preservado no limite, readout com cauda exata igual à característica nativa e massa formal identificada. A métrica do estado original tem massa central diferente de $h_0$; a construção do observável e da fonte que realizem a massa nativa continua explícita. O mapa registra o alcance exato e a interface Lean para o certificado.

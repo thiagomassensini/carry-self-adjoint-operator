@@ -278,3 +278,7 @@ Os snapshots abaixo foram lidos diretamente de Git após atualizar `origin/main`
 | carry-geometry | `3a64ccebfa3849251b2d564432d693ed19a4b74b` | `1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4` |
 
 Verificação: os nove fontes históricos recompilaram; o módulo recuperado passou com `--wfail`; as 14 chamadas de build de `scripts/audit.sh` passaram, incluindo o import geral e a auditoria de axiomas. A recuperação não acrescenta `sorry` nem axiomas novos. Compilar esses resultados condicionais não prova que suas hipóteses já foram satisfeitas pela realização geométrica final.
+
+## Continuidade em 2026-09-05: realização Hilbert e readout
+
+Integração dos três módulos R/B recuperados e construção do [kernel Hilbert R/B e readout completado](c3-projective-hilbert-readout-kernel.md): produto interno polarizado preservado no limite, readout com cauda exata igual à característica nativa e massa formal identificada. A métrica do estado original tem massa central diferente de $h_0$; a construção do observável e da fonte que realizem a massa nativa continua explícita. O mapa registra o alcance exato e a interface Lean para o certificado.

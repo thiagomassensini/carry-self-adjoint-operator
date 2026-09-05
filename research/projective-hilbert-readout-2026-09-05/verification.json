@@ -1,0 +1,515 @@
+{
+  "date": "2026-09-05",
+  "branch": "agent/projective-valve-moment-frontier",
+  "working_base": "643b917046891f9a119b2e05bd2ecb197bc4bce2",
+  "lean_toolchain": "leanprover/lean4:v4.32.0",
+  "dependency_pins": {
+    "NativeCarryC3Crosswalk": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+    "CarryGeometry": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+    "NativeCarrySpectralWeyl": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "CPFormal": "65d50f6db1208708e109982ba97e1d51d3039956",
+    "mathlib": "81a5d257c8e410db227a6665ed08f64fea08e997",
+    "FiniteNativeCarryOperator": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+    "GreenFrame": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+    "plausible": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+    "LeanSearchClient": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+    "importGraph": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+    "proofwidgets": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+    "aesop": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+    "Qq": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+    "batteries": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+    "Cli": "88679d088c9720c27ebdf2ba4dafe17341747f94"
+  },
+  "dependencies_unchanged": true,
+  "recovered_sources": [
+    {
+      "module": "FiniteCanonicalCameraReadout",
+      "original_sha256": "fa2d5936214360690101591196a2c13997f9cf56a2cd47becc599bff48b81d51",
+      "integrated_sha256": "a6d7dc50615a293750dfe37a49b831e8e068b8e587f46ee625bcd0a8bac3fad8",
+      "equal_after_removing_imports_axiom_prints_unused_instance_omits_and_blank_lines": true
+    },
+    {
+      "module": "FiniteEnrichedCameraState",
+      "original_sha256": "d83a2b833f56b33c4398a4ede3c0c8f5e7520e76ba211eba0bc4a55ab85983bf",
+      "integrated_sha256": "458f923f9e113d40cdf49c4ee38c4e0e808694a62f2d3ac8b9040f0231100ecb",
+      "equal_after_removing_imports_axiom_prints_unused_instance_omits_and_blank_lines": true
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "original_sha256": "69615047a1c3af4655654082b1903c218d0221e1e197a26e690f00cd5bb8d637",
+      "integrated_sha256": "0f00a7dc99b00288950dd34a8c259cb7edbb235df0fc65e4e3ab62877106edb7",
+      "equal_after_removing_imports_axiom_prints_unused_instance_omits_and_blank_lines": true
+    }
+  ],
+  "new_module_sha256": "c37093e174d5932a0577a358346964cdce32b463b1bfd207319f0aa5ddb65c59",
+  "recovered_theorem_count": 32,
+  "new_theorem_count": 13,
+  "declarations": [
+    {
+      "module": "FiniteCanonicalCameraReadout",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalCameraReadout_transpose",
+      "line": 49,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteCanonicalCameraReadout",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalCameraReadout_mul_transpose",
+      "line": 65,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteCanonicalCameraReadout",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalCameraSynthesis_transpose_mul",
+      "line": 83,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteCanonicalCameraReadout",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalCameraReadout_synthesis",
+      "line": 93,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteEnrichedCameraState",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalCameraProjection_eq_transpose_mul",
+      "line": 47,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteEnrichedCameraState",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalCameraProjection_transpose",
+      "line": 57,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteEnrichedCameraState",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalCameraProjection_mul_self",
+      "line": 67,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteEnrichedCameraState",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalCameraBlindProjection_transpose",
+      "line": 82,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteEnrichedCameraState",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalCameraBlindProjection_mul_self",
+      "line": 91,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteEnrichedCameraState",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalEnrichedCamera_parseval",
+      "line": 110,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteEnrichedCameraState",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalEnrichedCamera_reconstruct",
+      "line": 125,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "FiniteEnrichedCameraState",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalEnrichedCamera_greenDecomposition",
+      "line": 148,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveHilbertRecovery_realization",
+      "line": 53,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.nativeGpreTfvdProjectivePulledBackInner_realization",
+      "line": 74,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.nativeGpreTfvdFiniteHilbertPort_restrict",
+      "line": 96,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.nativeGpreFiniteTfvdReconstruction_comp_finiteHilbertPort",
+      "line": 106,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.nativeGpreProjectiveFiniteRealState_realization",
+      "line": 131,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.nativeGpreProjectiveFiniteImagState_realization",
+      "line": 144,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.norm_carryWeightedUndressedEval_single",
+      "line": 159,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.not_exists_uniform_carryWeightedUndressedEval_bound",
+      "line": 171,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.carryWeightedRedressedAllDepthPort_apply",
+      "line": 195,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.carryWeightedRedressedAllDepthPort_coordinate",
+      "line": 201,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "CPFormal.Analytic.Cp.norm_carryWeightedRedressedAllDepthPort",
+      "line": 212,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalEnrichedCamera_reconstruct_vector",
+      "line": 232,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalEnrichedCameraTotal_eq",
+      "line": 251,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "NativeCarryC3Crosswalk.finiteCanonicalEnrichedCamera_total_restrict",
+      "line": 265,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "NativeCarryC3Crosswalk.nativeGpreProjectiveFiniteRealState_rb_reconstruct",
+      "line": 295,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "NativeCarryC3Crosswalk.nativeGpreProjectiveFiniteImagState_rb_reconstruct",
+      "line": 313,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "NativeCarryC3Crosswalk.nativeGpreProjectiveFiniteRealState_restrict",
+      "line": 339,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "NativeCarryC3Crosswalk.nativeGpreProjectiveFiniteImagState_restrict",
+      "line": 350,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "NativeCarryC3Crosswalk.nativeGpreProjectiveFiniteRealState_rb_total_cutoff_intertwines",
+      "line": 362,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertRBBridge",
+      "name": "NativeCarryC3Crosswalk.nativeGpreProjectiveFiniteImagState_rb_total_cutoff_intertwines",
+      "line": 383,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.completedProjectiveHilbertKernel_eq_inner",
+      "line": 37,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.completedProjectiveHilbertKernel_finiteSection_posSemidef",
+      "line": 45,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.finiteWeightedState_inner_tendsto_completedProjectiveHilbertKernel",
+      "line": 55,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.one_le_norm_nativeCarryWeightedRealSpectralState",
+      "line": 67,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.one_le_completedProjectiveHilbertKernel_diagonal",
+      "line": 75,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.completedProjectiveHilbertKernel_zero_ne_nativeMoment",
+      "line": 86,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.completedProjectiveStateCharacteristic_eq",
+      "line": 108,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.iteratedDeriv_completedProjectiveStateCharacteristic",
+      "line": 134,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.completedProjectiveStateEvenCoefficient_eq_native",
+      "line": 147,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.completedProjectiveStateReciprocalMass_eq_native",
+      "line": 166,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.completedProjectiveStateReciprocalMass_eq_valveNativeMoments",
+      "line": 180,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.positiveObservable_isNativeMomentSequence_iff_completedProjectiveReadoutMass",
+      "line": 190,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "module": "C3ProjectiveHilbertReadoutKernel",
+      "name": "CarrySelfAdjointOperator.completedNativeRealHPCarrierCertificate_of_positiveObservable_readoutMass",
+      "line": 203,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "specific_build": "passed with --wfail",
+  "full_audit": "passed",
+  "successful_lake_build_calls": 14,
+  "static_audit": "passed",
+  "full_audit_log_sha256": "dfe0a9ace7a736f030d70ff18305ccf708e0c516b34a1faf196fe3660ad277da",
+  "specific_build_log_sha256": "154cf0e03245dcf91cae44dc1ecd2ab08b4f781f5b6cce726cf1d5bd31c67799",
+  "github_ci_monitored": false,
+  "numerical_fitting_used": false,
+  "native_gram_identification": "open; raw transported Hilbert kernel differs already at (0,0)",
+  "conditional_endpoint_inputs": [
+    "symmetric bounded real operator S",
+    "source u",
+    "independence of n -> S^n u",
+    "valve mass of observable moments equals completed readout reciprocal mass"
+  ],
+  "post_audit_change": "Removed one extra blank line at EOF; declarations and proof text unchanged."
+}

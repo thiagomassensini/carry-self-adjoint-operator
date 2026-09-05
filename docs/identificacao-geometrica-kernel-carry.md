@@ -415,3 +415,7 @@ As rotinas de candidatos conservam os momentos brutos e marcam explicitamente qu
 **Estado da obrigação principal:** aberta. Não tratar as provas dos kernels candidatos, os testes positivos dos Grams ou a nova condição de multiplicidades como prova de $D_n=0$ para o operador nativo.
 
 **Auditoria posterior de coordenadas e cortes:** [operador de altura, variável dos momentos, rotação real–complexa e centros completos](auditoria-coordenadas-altura-cortes-c3.md). Distingue o Jacobi dos momentos, o operador de altura obtido por raiz quadrada inversa e o gerador geométrico logarítmico; reavalia a política de admissão de câmeras.
+
+## Continuidade em 2026-09-05: realização Hilbert e readout
+
+Integração dos três módulos R/B recuperados e construção do [kernel Hilbert R/B e readout completado](c3-projective-hilbert-readout-kernel.md): produto interno polarizado preservado no limite, readout com cauda exata igual à característica nativa e massa formal identificada. A métrica do estado original tem massa central diferente de $h_0$; a construção do observável e da fonte que realizem a massa nativa continua explícita. O mapa registra o alcance exato e a interface Lean para o certificado.
