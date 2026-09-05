@@ -1,0 +1,90 @@
+{
+  "base": "3674c8feeb0e2b2ef26afe6a0cd9df786ce790fe",
+  "dependency_pins": [
+    {
+      "name": "NativeCarryC3Crosswalk",
+      "rev": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "CarryGeometry",
+      "rev": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "NativeCarrySpectralWeyl",
+      "rev": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "CPFormal",
+      "rev": "65d50f6db1208708e109982ba97e1d51d3039956",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "mathlib",
+      "rev": "81a5d257c8e410db227a6665ed08f64fea08e997",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "FiniteNativeCarryOperator",
+      "rev": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "GreenFrame",
+      "rev": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "plausible",
+      "rev": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "LeanSearchClient",
+      "rev": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "importGraph",
+      "rev": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "proofwidgets",
+      "rev": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "aesop",
+      "rev": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "Qq",
+      "rev": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "batteries",
+      "rev": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+      "tracked_worktree_clean": true
+    },
+    {
+      "name": "Cli",
+      "rev": "88679d088c9720c27ebdf2ba4dafe17341747f94",
+      "tracked_worktree_clean": true
+    }
+  ],
+  "unchanged_base_inputs_sha256": {
+    "lake-manifest.json": "93e2199cd60475eb40a261a0204afb68c729316d69adfe11d5230136d65828e5",
+    "lean-toolchain": "2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e",
+    "lakefile.toml": "5df9555ff84cedc918025e11d5ef252d0e7b446e15fc899b4a30b7993c7eef9b",
+    "scripts/audit.sh": "e127b076c59a342246785ede6b11c9f7e65ece43cca18fe9bb9fcaff594b3a97",
+    "scripts/static_audit.sh": "6a4eee04deb80749f18958380fa34a3724b04161913b5fd108f9be09c6cbee59",
+    "CarrySelfAdjointOperator/CameraReturnVarianceDefect.lean": "7ebfb356d3c3e752de6f1712749858290fc1629832e071bf349dca3f7c059ecd",
+    "CarrySelfAdjointOperator/C3ReturnCompletedTraceChannels.lean": "7e07b6f36c118f83bbe3b84d86eb1d4a35a0c062d1002939cdc6f4e49e95c6b9",
+    "CarrySelfAdjointOperator/CanonicalC3SixCameraSource.lean": "febcb63cf02b97f9e05d2a1cc04ab38cae6e50109e49a9facea561afe39820ad"
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "base": "3674c8feeb0e2b2ef26afe6a0cd9df786ce790fe",
+  "branch": "agent/camera-return-variance-geometry",
+  "new_module": "CarrySelfAdjointOperator/CameraReturnVarianceEnergyBalance.lean",
+  "new_theorems": 20,
+  "private_helper_theorems": 2,
+  "new_module_sha256": "ee54df9ec10f5db4a8bb23307f4b3c292dfff81aa3e02b4eb933dd0a3aedf87d",
+  "full_audit": {
+    "command": "PATH=/home/thlinux/.elan/bin:$PATH bash scripts/audit.sh",
+    "exit_code": 0,
+    "stages_passed": 14,
+    "stage_job_counts": [
+      8699,
+      8911,
+      9106,
+      9184,
+      4039,
+      4093,
+      3676,
+      2997,
+      3239,
+      3247,
+      9230,
+      9255,
+      3946,
+      3249
+    ],
+    "warnings": 0
+  },
+  "new_theorem_axiom_command": "PATH=/home/thlinux/.elan/bin:$PATH lake env lean /tmp/camera-geometry-axioms.lean",
+  "new_theorem_axiom_exit_code": 0,
+  "new_theorem_axioms": {
+    "camera_boundaryCentered_momentGram_eq_gram": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_return_variance_partition": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_variance_sqrt_gram": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_return_variance_sqrt_partition": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_return_variance_reconstruction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_return_variance_polarization": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_return_variance_energy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_return_variance_pair_injective": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_variance_fixes_return_kernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_variance_energy_on_return_kernel": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3LastPulse_variance_fixed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3InitialPulse_variance_fixed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_return_variance_source_gram": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_valueTrace_dual_equation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_valueTrace_dual_decomposition": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_valueTrace_dual_norm_sq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "sixCamera_valueTrace_dual_readout": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "cameras2368_returnNumerator_minor": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "cameras2368_returnNumerator_minor_ne_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "cameras2368_returnNumerator_not_rank_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "dependency_pins_verified": 15,
+  "new_mathematical_hypotheses": [],
+  "local_conditional_statement": "Return-kernel consequences explicitly take A u = 0; the partition and concrete trace/minor identities are unconditional.",
+  "new_operators_moments_or_kernels": false,
+  "gamma_native_gram_identified": false,
+  "merge": false,
+  "remaining_lean_goals_in_new_module": [],
+  "scope": "Intrinsic finite camera energy conservation, the metric dual of the finite value trace, and a nonzero raw return minor for cameras 2,3,6,8.",
+  "not_claimed": [
+    "Gamma/native sewing",
+    "complex polarized extension of the new real coefficient identities",
+    "unbounded camera rank",
+    "infinite jet independence",
+    "new global Naimark centered-profile extension"
+  ],
+  "git_diff_check": "passed before and after staging"
+}

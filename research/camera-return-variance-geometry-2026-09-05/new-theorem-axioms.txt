@@ -1,0 +1,194 @@
+CarrySelfAdjointOperator.camera_boundaryCentered_momentGram_eq_gram.{u_1} {ι : Type u_1} [Fintype ι] [DecidableEq ι]
+  (period : ℕ) (camera : ι → ℕ) :
+  NativeCarrySpectralWeyl.Finite.secondCenteredMomentMatrix period camera -
+          NativeCarrySpectralWeyl.Finite.firstMomentMatrix period camera *
+            CarrySelfAdjointOperator.cameraLogSlopeDiagonal camera -
+        CarrySelfAdjointOperator.cameraLogSlopeDiagonal camera *
+          NativeCarrySpectralWeyl.Finite.firstMomentMatrix period camera +
+      CarrySelfAdjointOperator.cameraLogSlopeDiagonal camera *
+          NativeCarrySpectralWeyl.Finite.periodicGramMatrix period camera *
+        CarrySelfAdjointOperator.cameraLogSlopeDiagonal camera =
+    NativeCarrySpectralWeyl.Finite.periodicGramMatrix period camera
+'CarrySelfAdjointOperator.camera_boundaryCentered_momentGram_eq_gram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCamera_return_variance_partition :
+  (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+            NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+            (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).conjTranspose *
+        CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+          NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+          (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera) +
+      NativeCarrySpectralWeyl.Finite.sixCameraVariance =
+    1
+'CarrySelfAdjointOperator.sixCamera_return_variance_partition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCamera_variance_sqrt_gram :
+  (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).conjTranspose *
+      CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance =
+    NativeCarrySpectralWeyl.Finite.sixCameraVariance
+'CarrySelfAdjointOperator.sixCamera_variance_sqrt_gram' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.sixCamera_return_variance_sqrt_partition :
+  (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+            NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+            (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).conjTranspose *
+        CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+          NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+          (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera) +
+      (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).conjTranspose *
+        CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance =
+    1
+'CarrySelfAdjointOperator.sixCamera_return_variance_sqrt_partition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCamera_return_variance_reconstruction (u : Fin 6 → ℝ) :
+  (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+              NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+              (CarrySelfAdjointOperator.cameraLogSlopeDiagonal
+                NativeCarrySpectralWeyl.Finite.sixCamera)).conjTranspose.mulVec
+        ((CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+              NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+              (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+          u) +
+      (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).conjTranspose.mulVec
+        ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec u) =
+    u
+'CarrySelfAdjointOperator.sixCamera_return_variance_reconstruction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCamera_return_variance_polarization (u v : Fin 6 → ℝ) :
+  (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+              NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+              (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+          u ⬝ᵥ
+        (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+              NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+              (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+          v +
+      (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec u ⬝ᵥ
+        (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec v =
+    u ⬝ᵥ v
+'CarrySelfAdjointOperator.sixCamera_return_variance_polarization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCamera_return_variance_energy (u : Fin 6 → ℝ) :
+  ∑ i,
+        (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+                NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+                (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+            u i ^
+          2 +
+      ∑ i, (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec u i ^ 2 =
+    ∑ i, u i ^ 2
+'CarrySelfAdjointOperator.sixCamera_return_variance_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.sixCamera_return_variance_pair_injective :
+  Function.Injective fun u =>
+    ((CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+            NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+            (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+        u,
+      (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec u)
+'CarrySelfAdjointOperator.sixCamera_return_variance_pair_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCamera_variance_fixes_return_kernel (u : Fin 6 → ℝ)
+  (hu :
+    (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+            NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+            (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+        u =
+      0) :
+  NativeCarrySpectralWeyl.Finite.sixCameraVariance.mulVec u = u
+'CarrySelfAdjointOperator.sixCamera_variance_fixes_return_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCamera_variance_energy_on_return_kernel (u : Fin 6 → ℝ)
+  (hu :
+    (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+            NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+            (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+        u =
+      0) :
+  ∑ i, (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec u i ^ 2 = ∑ i, u i ^ 2
+'CarrySelfAdjointOperator.sixCamera_variance_energy_on_return_kernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.c3LastPulse_variance_fixed (s : ℂ) (a : ℝ) :
+  NativeCarrySpectralWeyl.Finite.sixCameraVariance.mulVec
+      ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec
+        ![0, 0, 3 ^ (-CPFormal.Analytic.Cp.criticalDisplacement s.re) * a, 0, 0, a]) =
+    (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec
+      ![0, 0, 3 ^ (-CPFormal.Analytic.Cp.criticalDisplacement s.re) * a, 0, 0, a]
+'CarrySelfAdjointOperator.c3LastPulse_variance_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3InitialPulse_variance_fixed (s : ℂ) (a : ℝ) :
+  NativeCarrySpectralWeyl.Finite.sixCameraVariance.mulVec
+      ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec
+        ![3 ^ (-CPFormal.Analytic.Cp.criticalDisplacement s.re) * a, 0, 0, a, 0, 0]) =
+    (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec
+      ![3 ^ (-CPFormal.Analytic.Cp.criticalDisplacement s.re) * a, 0, 0, a, 0, 0]
+'CarrySelfAdjointOperator.c3InitialPulse_variance_fixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.sixCamera_return_variance_source_gram (c d : Fin 6 → ℝ) :
+  (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+              NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+              (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+          ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec c) ⬝ᵥ
+        (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+              NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+              (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+          ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec d) +
+      (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec
+          ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec c) ⬝ᵥ
+        (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec
+          ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec d) =
+    c ⬝ᵥ NativeCarrySpectralWeyl.Finite.sixCameraGram.mulVec d
+'CarrySelfAdjointOperator.sixCamera_return_variance_source_gram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCamera_valueTrace_dual_equation :
+  NativeCarrySpectralWeyl.Finite.sixCameraGram.mulVec ![9 / 139, 9 / 278, -3 / 139, 0, -9 / 278, 1 / 42] =
+    ![0, 0, 0, 0, -1, 1]
+'CarrySelfAdjointOperator.sixCamera_valueTrace_dual_equation' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.sixCamera_valueTrace_dual_decomposition :
+  ![9 / 139, 9 / 278, -3 / 139, 0, -9 / 278, 1 / 42] =
+    (-3 / 278) • CarrySelfAdjointOperator.sixCameraMixedReturnRay + (1 / 42) • ![0, 0, 0, 0, 0, 1]
+'CarrySelfAdjointOperator.sixCamera_valueTrace_dual_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCamera_valueTrace_dual_norm_sq :
+  ![9 / 139, 9 / 278, -3 / 139, 0, -9 / 278, 1 / 42] ⬝ᵥ
+      NativeCarrySpectralWeyl.Finite.sixCameraGram.mulVec ![9 / 139, 9 / 278, -3 / 139, 0, -9 / 278, 1 / 42] =
+    164 / 2919
+'CarrySelfAdjointOperator.sixCamera_valueTrace_dual_norm_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.sixCamera_valueTrace_dual_readout (c : Fin 6 → ℝ) :
+  ![9 / 139, 9 / 278, -3 / 139, 0, -9 / 278, 1 / 42] ⬝ᵥ NativeCarrySpectralWeyl.Finite.sixCameraGram.mulVec c =
+    c 5 - c 4
+'CarrySelfAdjointOperator.sixCamera_valueTrace_dual_readout' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.cameras2368_returnNumerator_minor :
+  have camera := ![2, 3, 6, 8];
+  have D :=
+    NativeCarrySpectralWeyl.Finite.firstMomentMatrix 24 camera -
+      NativeCarrySpectralWeyl.Finite.periodicGramMatrix 24 camera *
+        CarrySelfAdjointOperator.cameraLogSlopeDiagonal camera;
+  D 0 2 * D 1 3 - D 0 3 * D 1 2 = -48 * Real.log 2 ^ 2
+'CarrySelfAdjointOperator.cameras2368_returnNumerator_minor' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.cameras2368_returnNumerator_minor_ne_zero :
+  have camera := ![2, 3, 6, 8];
+  have D :=
+    NativeCarrySpectralWeyl.Finite.firstMomentMatrix 24 camera -
+      NativeCarrySpectralWeyl.Finite.periodicGramMatrix 24 camera *
+        CarrySelfAdjointOperator.cameraLogSlopeDiagonal camera;
+  D 0 2 * D 1 3 - D 0 3 * D 1 2 ≠ 0
+'CarrySelfAdjointOperator.cameras2368_returnNumerator_minor_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.cameras2368_returnNumerator_not_rank_one :
+  have camera := ![2, 3, 6, 8];
+  have D :=
+    NativeCarrySpectralWeyl.Finite.firstMomentMatrix 24 camera -
+      NativeCarrySpectralWeyl.Finite.periodicGramMatrix 24 camera *
+        CarrySelfAdjointOperator.cameraLogSlopeDiagonal camera;
+  ¬∃ u v, D = Matrix.vecMulVec u v
+'CarrySelfAdjointOperator.cameras2368_returnNumerator_not_rank_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
