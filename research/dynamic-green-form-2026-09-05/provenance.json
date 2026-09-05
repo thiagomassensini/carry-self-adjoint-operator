@@ -1,0 +1,195 @@
+{
+  "timestamp_utc": "2026-09-05T11:41:05.327964+00:00",
+  "branch": "agent/dynamic-completed-green-form",
+  "trace_base_commit": "9e106f8ac2a70382cfcf67cb38005232e2a765d2",
+  "pr51_commit": "fe3312b063509ad2e52a4efa2f8657a967f29b05",
+  "local_history_integration_commit": "92059e4265a588fceb2a53f9f326ca70cb5cacb4",
+  "requested_base_is_ancestor": true,
+  "new_module_sha256": "e1b7b634600df49372cf41a4741b4afb78eda8e793fe1adfcf65d7000d000e53",
+  "pr51_lean_sources_unchanged": {
+    "CarrySelfAdjointOperator/C3NativeTraceDynamics.lean": "3993f0e21058e130b5121bf12326e25a97b0fbd34a94edefa7f229c9f50e5a4f",
+    "CarrySelfAdjointOperator/C3TraceDynamics.lean": "8f715d415cc1c167ea8cf1586584e9b1de8f4b1ef95e1971b558d4017d6ca543",
+    "CarrySelfAdjointOperator/ObservableJetQuotient.lean": "1a4b2c0567f1842dd41868a620abc45f73a3af4c347542facb5281dff795c250",
+    "CarrySelfAdjointOperator/ObservableJetAudit.lean": "ba7c7eff1942a1e6e8e9c0a604b1e80e355c84af12a5daeefc1c8d9d3b852dac",
+    "CarrySelfAdjointOperator/ObservableJetCoreAudit.lean": "c76ce194f2422b730d20a3fec0c17a40691ae97a8786b01f37211ea0a2df8334"
+  },
+  "lake_manifest_sha256": "93e2199cd60475eb40a261a0204afb68c729316d69adfe11d5230136d65828e5",
+  "dependency_pins": {
+    "NativeCarryC3Crosswalk": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+    "CarryGeometry": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+    "NativeCarrySpectralWeyl": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "CPFormal": "65d50f6db1208708e109982ba97e1d51d3039956",
+    "mathlib": "81a5d257c8e410db227a6665ed08f64fea08e997",
+    "FiniteNativeCarryOperator": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+    "GreenFrame": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+    "plausible": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+    "LeanSearchClient": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+    "importGraph": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+    "proofwidgets": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+    "aesop": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+    "Qq": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+    "batteries": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+    "Cli": "88679d088c9720c27ebdf2ba4dafe17341747f94"
+  },
+  "lean_toolchain": "leanprover/lean4:v4.32.0",
+  "new_theorem_count": 28,
+  "new_coordinate_readout_polynomial_definitions": 6,
+  "axioms_by_theorem": {
+    "nativeC3BlockDynamicLogJet_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3Block_seed_eq_prefix": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3BlockGradient_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3BlockDynamicLogJet_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3AffineClock_trace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3AffineClock_boundary": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3DynamicLogHead_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3DynamicLogHead_eq_returnVariance": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3Dynamic_completedTrace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "canonicalC3BoundaryCells_eq_dynamic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "canonicalC3PairBoundary_eq_dynamic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "canonicalC3ResidualLegs_eq_dynamic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "canonicalC3ResidualSums_eq_dynamic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "canonicalC3GreenProvenance_eq_dynamic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "canonicalC3CrossProvenance_eq_dynamic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "canonicalC3ReadoutCorrection_eq_dynamic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "canonicalC3ThreeResiduals_eq_dynamic": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3Block_logTraceGap_neg": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3DynamicBoundaryPolynomial_sign_witnesses": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "scalarBoundaryWedge_real_part_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "canonicalC3Dynamic_threeResiduals_ne_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "scalarBoundaryWedge_add_tails": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3RotatedTrace_greenForm_with_tails": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3Dynamic_completedTrace_greenForm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "canonicalC3Dynamic_threeResiduals_quarter_ne_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3Dynamic_completedScalarBoundary_ledger": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3Dynamic_threeResidue_totals": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "nativeC3Dynamic_sums_add_omittedResidues": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "module_build_command": "lake build --wfail CarrySelfAdjointOperator.C3DynamicCompletedGreenForm",
+  "module_build_exit_code": 0,
+  "individual_checks_command": "lake env lean /tmp/DynamicGreenNewTheorems.lean",
+  "individual_checks_exit_code": 0,
+  "full_audit_command": "bash scripts/audit.sh",
+  "full_audit_exit_code": 0,
+  "successful_lake_stages": 15,
+  "static_audit_passed": true,
+  "stage_note": "The previous 14 stages plus ObservableJetAudit from PR 51.",
+  "numerical_experiments_this_round": false,
+  "sign_tests": "Kernel-checked opposite-sign real finite dynamic graph states, at every C3 block.",
+  "canonical_residual_witness": "s = 1/4, M = 1, unit TFVD normalization; sum of the original three finite residuals is nonzero.",
+  "new_mathematical_hypotheses_for_canonical_family": [],
+  "native_gamma_gram_identified": false,
+  "main_merge_performed": false,
+  "remote_ci_monitored": false
+}

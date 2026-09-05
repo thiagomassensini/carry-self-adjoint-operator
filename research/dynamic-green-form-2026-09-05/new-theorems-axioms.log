@@ -1,0 +1,248 @@
+CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet_eq (m : ℕ) (s : ℂ) :
+  CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet m s =
+    ![CPFormal.Analytic.Cp.positiveLogDirichletGradient s (3 * m),
+      CPFormal.Analytic.Cp.positiveLogDirichletGradient s (3 * m + 1),
+      CPFormal.Analytic.Cp.positiveLogDirichletGradient s (3 * m + 2)]
+'CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.nativeC3Block_seed_eq_prefix (m : ℕ) (s : ℂ) :
+  CPFormal.Analytic.Cp.positiveDirichletValue s (3 * m) =
+    CPFormal.Analytic.Cp.positiveDirichletValue s 0 +
+      ∑ n ∈ Finset.range (3 * m), CPFormal.Analytic.Cp.positiveDirichletGradient s n
+'CarrySelfAdjointOperator.nativeC3Block_seed_eq_prefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.nativeC3BlockGradient_zero (s : ℂ) :
+  CarrySelfAdjointOperator.nativeC3BlockGradient 0 s = CarrySelfAdjointOperator.nativeC3GradientTriple s
+'CarrySelfAdjointOperator.nativeC3BlockGradient_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet_zero (s : ℂ) :
+  CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet 0 s = CarrySelfAdjointOperator.nativeC3LogGradientTriple s
+'CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3AffineClock_trace (a b c d f : ℂ) (g : Fin 3 → ℂ) :
+  CarrySelfAdjointOperator.C3TraceDynamics.trace
+      (CarrySelfAdjointOperator.C3TraceDynamics.gradientClock a b c g + f • ![a - d, b - a, c - b]) =
+    (a - 2 * b + c) * (g 0 + f) + (c - 2 * b) * g 1 + c * g 2
+'CarrySelfAdjointOperator.c3AffineClock_trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3AffineClock_boundary (a b c d f : ℂ) (g : Fin 3 → ℂ) :
+  have j := CarrySelfAdjointOperator.C3TraceDynamics.gradientClock a b c g + f • ![a - d, b - a, c - b];
+  CPFormal.Analytic.Cp.sameSEdgeBoundaryWedge (g 0) (g 1) (j 0) (j 1) +
+      CPFormal.Analytic.Cp.sameSEdgeBoundaryWedge (g 1) (g 2) (j 1) (j 2) =
+    CarrySelfAdjointOperator.c3DynamicBoundaryPolynomial a b c d f g
+'CarrySelfAdjointOperator.c3AffineClock_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.nativeC3DynamicLogHead_eq (M : ℕ) (s : ℂ) :
+  CarrySelfAdjointOperator.nativeC3DynamicLogHead M s = CPFormal.Analytic.Cp.finiteCanonicalLogBracketChart M s
+'CarrySelfAdjointOperator.nativeC3DynamicLogHead_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.nativeC3DynamicLogHead_eq_returnVariance (M : ℕ) (s : ℂ) :
+  CarrySelfAdjointOperator.nativeC3DynamicLogHead M s =
+    CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s
+      (CarrySelfAdjointOperator.canonicalCompletedC3HilbertPrefixState s (3 * M)).2
+'CarrySelfAdjointOperator.nativeC3DynamicLogHead_eq_returnVariance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.nativeC3Dynamic_completedTrace (M : ℕ) {z : ℂ}
+  (hz : CarrySelfAdjointOperator.operatorHeightParameter z ∈ CPFormal.Analytic.Cp.genuineCriticalStrip) :
+  have s := CarrySelfAdjointOperator.operatorHeightParameter z;
+  (Complex.I *
+        (CarrySelfAdjointOperator.nativeC3DynamicLogHead M s +
+          CarrySelfAdjointOperator.canonicalC3LogJetCutoffTail M s),
+      1 +
+          CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s
+            (CarrySelfAdjointOperator.canonicalCompletedC3HilbertPrefixState s (3 * M)).1 +
+        CPFormal.Analytic.Cp.realCpBracketCutoffTail 3 M s) =
+    (CarrySelfAdjointOperator.canonicalCompletedC3RawHeightCompanion z,
+      CarrySelfAdjointOperator.canonicalCompletedC3RawHeightValue z)
+'CarrySelfAdjointOperator.nativeC3Dynamic_completedTrace' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.canonicalC3BoundaryCells_eq_dynamic (m : ℕ) {kappa : ℂ} (hkappa : kappa ≠ 0) (omega : ℕ → ℂ)
+  (homega : omega m ≠ 0) (s : ℂ) :
+  (CPFormal.Analytic.Cp.canonicalEnrichedTfvdSameSBoundaryCells kappa omega m s).total =
+    CarrySelfAdjointOperator.c3DynamicBoundaryPolynomial (↑(Real.log ↑(3 * m + 2))) (↑(Real.log ↑(3 * m + 3)))
+      (↑(Real.log ↑(3 * m + 4))) (↑(Real.log ↑(3 * m + 1))) (CPFormal.Analytic.Cp.positiveDirichletValue s (3 * m))
+      (CarrySelfAdjointOperator.nativeC3BlockGradient m s)
+'CarrySelfAdjointOperator.canonicalC3BoundaryCells_eq_dynamic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.canonicalC3PairBoundary_eq_dynamic (M : ℕ) {kappa : ℂ} (hkappa : kappa ≠ 0) (omega : ℕ → ℂ)
+  (homega : ∀ (m : ℕ), omega m ≠ 0) (s : ℂ) :
+  NativeCarryC3Crosswalk.finiteC3EnrichedTfvdPairBoundaryForm M
+      (CarrySelfAdjointOperator.canonicalBoundaryResidualData M kappa omega s) =
+    CarrySelfAdjointOperator.nativeC3DynamicLocalBoundary M s
+'CarrySelfAdjointOperator.canonicalC3PairBoundary_eq_dynamic' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.canonicalC3ResidualLegs_eq_dynamic (M : ℕ) {kappa : ℂ} (hkappa : kappa ≠ 0) (omega : ℕ → ℂ)
+  (homega : ∀ (m : ℕ), omega m ≠ 0) (s : ℂ) (mr : Fin M × Fin 2) :
+  have legs := CarrySelfAdjointOperator.canonicalBoundaryResidualLegs M kappa omega s;
+  ![legs.left mr, legs.right mr, legs.jetLeft mr, legs.jetRight mr] =
+    ![Fin.cases (CarrySelfAdjointOperator.nativeC3BlockGradient (↑mr.1) s 0)
+        (fun x => CarrySelfAdjointOperator.nativeC3BlockGradient (↑mr.1) s 1) mr.2,
+      Fin.cases (CarrySelfAdjointOperator.nativeC3BlockGradient (↑mr.1) s 1)
+        (fun x => CarrySelfAdjointOperator.nativeC3BlockGradient (↑mr.1) s 2) mr.2,
+      Fin.cases (CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet (↑mr.1) s 0)
+        (fun x => CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet (↑mr.1) s 1) mr.2,
+      Fin.cases (CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet (↑mr.1) s 1)
+        (fun x => CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet (↑mr.1) s 2) mr.2]
+'CarrySelfAdjointOperator.canonicalC3ResidualLegs_eq_dynamic' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.canonicalC3ResidualSums_eq_dynamic (M : ℕ) {kappa : ℂ} (hkappa : kappa ≠ 0) (omega : ℕ → ℂ)
+  (homega : ∀ (m : ℕ), omega m ≠ 0) (s : ℂ) :
+  have legs := CarrySelfAdjointOperator.canonicalBoundaryResidualLegs M kappa omega s;
+  ![∑ i, legs.left i, ∑ i, legs.right i, ∑ i, legs.jetLeft i, ∑ i, legs.jetRight i] =
+    CarrySelfAdjointOperator.nativeC3DynamicSynthesisSums M s
+'CarrySelfAdjointOperator.canonicalC3ResidualSums_eq_dynamic' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.canonicalC3GreenProvenance_eq_dynamic (M : ℕ) {kappa : ℂ} (hkappa : kappa ≠ 0) (omega : ℕ → ℂ)
+  (homega : ∀ (m : ℕ), omega m ≠ 0) (s : ℂ) :
+  CPFormal.Analytic.Cp.finiteCanonicalTfvdSameSGreenProvenanceDefect 3 M s =
+    CarrySelfAdjointOperator.nativeC3DynamicLocalBoundary M s -
+      NativeCarrySpectralWeyl.Boundary.greenForm
+        (NativeCarryC3Crosswalk.finiteC3GenuineBracketGreenBoundaryPair (3 * M) s)
+        (NativeCarryC3Crosswalk.finiteC3GenuineBracketGreenBoundaryPair (3 * M)
+          (CPFormal.Analytic.Cp.reflectedParameter s))
+'CarrySelfAdjointOperator.canonicalC3GreenProvenance_eq_dynamic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.canonicalC3CrossProvenance_eq_dynamic (M : ℕ) {kappa : ℂ} (hkappa : kappa ≠ 0) (omega : ℕ → ℂ)
+  (homega : ∀ (m : ℕ), omega m ≠ 0) (s : ℂ) :
+  have S := CarrySelfAdjointOperator.nativeC3DynamicSynthesisSums M s;
+  CarrySelfAdjointOperator.canonicalBoundaryCrossProvenance M kappa omega s =
+    S 1 * S 2 - S 0 * S 3 - CarrySelfAdjointOperator.nativeC3DynamicLocalBoundary M s
+'CarrySelfAdjointOperator.canonicalC3CrossProvenance_eq_dynamic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.canonicalC3ReadoutCorrection_eq_dynamic (M : ℕ) {kappa : ℂ} (hkappa : kappa ≠ 0)
+  (omega : ℕ → ℂ) (homega : ∀ (m : ℕ), omega m ≠ 0) (s : ℂ) :
+  have S := CarrySelfAdjointOperator.nativeC3DynamicSynthesisSums M s;
+  CarrySelfAdjointOperator.canonicalBoundaryReadoutResidualCorrection M kappa omega s =
+    (starRingEnd ℂ) (CPFormal.Analytic.Cp.finiteBracketedDirichletChart 3 M s) *
+          CarrySelfAdjointOperator.nativeC3DynamicLogHead M s -
+        (starRingEnd ℂ) (CarrySelfAdjointOperator.nativeC3DynamicLogHead M s) *
+          CPFormal.Analytic.Cp.finiteBracketedDirichletChart 3 M s -
+      (S 1 * S 2 - S 0 * S 3)
+'CarrySelfAdjointOperator.canonicalC3ReadoutCorrection_eq_dynamic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.canonicalC3ThreeResiduals_eq_dynamic (M : ℕ) {kappa : ℂ} (hkappa : kappa ≠ 0) (omega : ℕ → ℂ)
+  (homega : ∀ (m : ℕ), omega m ≠ 0) (s : ℂ) :
+  CPFormal.Analytic.Cp.finiteCanonicalTfvdSameSGreenProvenanceDefect 3 M s +
+        CarrySelfAdjointOperator.canonicalBoundaryCrossProvenance M kappa omega s +
+      CarrySelfAdjointOperator.canonicalBoundaryReadoutResidualCorrection M kappa omega s =
+    (starRingEnd ℂ) (CPFormal.Analytic.Cp.finiteBracketedDirichletChart 3 M s) *
+          CarrySelfAdjointOperator.nativeC3DynamicLogHead M s -
+        (starRingEnd ℂ) (CarrySelfAdjointOperator.nativeC3DynamicLogHead M s) *
+          CPFormal.Analytic.Cp.finiteBracketedDirichletChart 3 M s -
+      NativeCarrySpectralWeyl.Boundary.greenForm
+        (NativeCarryC3Crosswalk.finiteC3GenuineBracketGreenBoundaryPair (3 * M) s)
+        (NativeCarryC3Crosswalk.finiteC3GenuineBracketGreenBoundaryPair (3 * M)
+          (CPFormal.Analytic.Cp.reflectedParameter s))
+'CarrySelfAdjointOperator.canonicalC3ThreeResiduals_eq_dynamic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.nativeC3Block_logTraceGap_neg (m : ℕ) :
+  Real.log ↑(3 * m + 2) - 2 * Real.log ↑(3 * m + 3) + Real.log ↑(3 * m + 4) < 0
+'CarrySelfAdjointOperator.nativeC3Block_logTraceGap_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3DynamicBoundaryPolynomial_sign_witnesses (m : ℕ) :
+  CarrySelfAdjointOperator.c3DynamicBoundaryPolynomial (Real.log ↑(3 * m + 2)) (Real.log ↑(3 * m + 3))
+        (Real.log ↑(3 * m + 4)) (Real.log ↑(3 * m + 1)) 0 ![1, 0, 0] <
+      0 ∧
+    0 <
+      CarrySelfAdjointOperator.c3DynamicBoundaryPolynomial (Real.log ↑(3 * m + 2)) (Real.log ↑(3 * m + 3))
+        (Real.log ↑(3 * m + 4)) (Real.log ↑(3 * m + 1)) 0 ![1, 0, 2]
+'CarrySelfAdjointOperator.c3DynamicBoundaryPolynomial_sign_witnesses' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.scalarBoundaryWedge_real_part_zero (V J : ℂ) :
+  (CarrySelfAdjointOperator.scalarBoundaryWedge V J).re = 0
+'CarrySelfAdjointOperator.scalarBoundaryWedge_real_part_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.canonicalC3Dynamic_threeResiduals_ne_zero {s : ℂ}
+  (hs : s ∈ CPFormal.Analytic.Cp.genuineCriticalStrip) (hoff : s.re ≠ 1 / 2) :
+  CPFormal.Analytic.Cp.finiteCanonicalTfvdSameSGreenProvenanceDefect 3 1 s +
+        CarrySelfAdjointOperator.canonicalBoundaryCrossProvenance 1 1 (fun x => 1) s +
+      CarrySelfAdjointOperator.canonicalBoundaryReadoutResidualCorrection 1 1 (fun x => 1) s ≠
+    0
+'CarrySelfAdjointOperator.canonicalC3Dynamic_threeResiduals_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.scalarBoundaryWedge_add_tails (V J v j : ℂ) :
+  CarrySelfAdjointOperator.scalarBoundaryWedge (V + v) (J + j) =
+    CarrySelfAdjointOperator.scalarBoundaryWedge V J +
+        ((starRingEnd ℂ) V * j + (starRingEnd ℂ) v * J - (starRingEnd ℂ) J * v - (starRingEnd ℂ) j * V) +
+      CarrySelfAdjointOperator.scalarBoundaryWedge v j
+'CarrySelfAdjointOperator.scalarBoundaryWedge_add_tails' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3RotatedTrace_greenForm_with_tails (V J W K v j w k : ℂ) :
+  NativeCarrySpectralWeyl.Boundary.greenForm (Complex.I * (J + j), V + v) (Complex.I * (K + k), W + w) =
+    Complex.I *
+      ((starRingEnd ℂ) V * K + (starRingEnd ℂ) J * W +
+          ((starRingEnd ℂ) V * k + (starRingEnd ℂ) v * K + (starRingEnd ℂ) J * w + (starRingEnd ℂ) j * W) +
+        ((starRingEnd ℂ) v * k + (starRingEnd ℂ) j * w))
+'CarrySelfAdjointOperator.c3RotatedTrace_greenForm_with_tails' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.nativeC3Dynamic_completedTrace_greenForm (M N : ℕ) {z w : ℂ}
+  (hz : CarrySelfAdjointOperator.operatorHeightParameter z ∈ CPFormal.Analytic.Cp.genuineCriticalStrip)
+  (hw : CarrySelfAdjointOperator.operatorHeightParameter w ∈ CPFormal.Analytic.Cp.genuineCriticalStrip) :
+  have s := CarrySelfAdjointOperator.operatorHeightParameter z;
+  have t := CarrySelfAdjointOperator.operatorHeightParameter w;
+  have V := CPFormal.Analytic.Cp.finiteBracketedDirichletChart 3 M s;
+  have W := CPFormal.Analytic.Cp.finiteBracketedDirichletChart 3 N t;
+  have J := CarrySelfAdjointOperator.nativeC3DynamicLogHead M s;
+  have K := CarrySelfAdjointOperator.nativeC3DynamicLogHead N t;
+  have v := CPFormal.Analytic.Cp.realCpBracketCutoffTail 3 M s;
+  have q := CPFormal.Analytic.Cp.realCpBracketCutoffTail 3 N t;
+  have j := CarrySelfAdjointOperator.canonicalC3LogJetCutoffTail M s;
+  have k := CarrySelfAdjointOperator.canonicalC3LogJetCutoffTail N t;
+  NativeCarrySpectralWeyl.Boundary.greenForm
+      (CarrySelfAdjointOperator.canonicalCompletedC3RawHeightCompanion z,
+        CarrySelfAdjointOperator.canonicalCompletedC3RawHeightValue z)
+      (CarrySelfAdjointOperator.canonicalCompletedC3RawHeightCompanion w,
+        CarrySelfAdjointOperator.canonicalCompletedC3RawHeightValue w) =
+    Complex.I *
+      ((starRingEnd ℂ) V * K + (starRingEnd ℂ) J * W +
+          ((starRingEnd ℂ) V * k + (starRingEnd ℂ) v * K + (starRingEnd ℂ) J * q + (starRingEnd ℂ) j * W) +
+        ((starRingEnd ℂ) v * k + (starRingEnd ℂ) j * q))
+'CarrySelfAdjointOperator.nativeC3Dynamic_completedTrace_greenForm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.canonicalC3Dynamic_threeResiduals_quarter_ne_zero :
+  CPFormal.Analytic.Cp.finiteCanonicalTfvdSameSGreenProvenanceDefect 3 1 (1 / 4) +
+        CarrySelfAdjointOperator.canonicalBoundaryCrossProvenance 1 1 (fun x => 1) (1 / 4) +
+      CarrySelfAdjointOperator.canonicalBoundaryReadoutResidualCorrection 1 1 (fun x => 1) (1 / 4) ≠
+    0
+'CarrySelfAdjointOperator.canonicalC3Dynamic_threeResiduals_quarter_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.nativeC3Dynamic_completedScalarBoundary_ledger (M : ℕ) (s : ℂ) :
+  have V := CPFormal.Analytic.Cp.finiteBracketedDirichletChart 3 M s;
+  have J := CarrySelfAdjointOperator.nativeC3DynamicLogHead M s;
+  have v := CPFormal.Analytic.Cp.realCpBracketCutoffTail 3 M s;
+  have j := CarrySelfAdjointOperator.canonicalC3LogJetCutoffTail M s;
+  CarrySelfAdjointOperator.scalarBoundaryWedge (V + v) (J + j) =
+    NativeCarrySpectralWeyl.Boundary.greenForm
+            (NativeCarryC3Crosswalk.finiteC3GenuineBracketGreenBoundaryPair (3 * M) s)
+            (NativeCarryC3Crosswalk.finiteC3GenuineBracketGreenBoundaryPair (3 * M)
+              (CPFormal.Analytic.Cp.reflectedParameter s)) +
+          (CPFormal.Analytic.Cp.finiteCanonicalTfvdSameSGreenProvenanceDefect 3 M s +
+              CarrySelfAdjointOperator.canonicalBoundaryCrossProvenance M 1 (fun x => 1) s +
+            CarrySelfAdjointOperator.canonicalBoundaryReadoutResidualCorrection M 1 (fun x => 1) s) +
+        ((starRingEnd ℂ) V * j + (starRingEnd ℂ) v * J - (starRingEnd ℂ) J * v - (starRingEnd ℂ) j * V) +
+      CarrySelfAdjointOperator.scalarBoundaryWedge v j
+'CarrySelfAdjointOperator.nativeC3Dynamic_completedScalarBoundary_ledger' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.nativeC3Dynamic_threeResidue_totals (M : ℕ) (s : ℂ) :
+  ∑ m,
+        (CarrySelfAdjointOperator.nativeC3BlockGradient (↑m) s 0 +
+            CarrySelfAdjointOperator.nativeC3BlockGradient (↑m) s 1 +
+          CarrySelfAdjointOperator.nativeC3BlockGradient (↑m) s 2) =
+      CPFormal.Analytic.Cp.positiveDirichletValue s (3 * M) - CPFormal.Analytic.Cp.positiveDirichletValue s 0 ∧
+    ∑ m,
+        (CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet (↑m) s 0 +
+            CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet (↑m) s 1 +
+          CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet (↑m) s 2) =
+      ↑(Real.log ↑(3 * M + 1)) * CPFormal.Analytic.Cp.positiveDirichletValue s (3 * M)
+'CarrySelfAdjointOperator.nativeC3Dynamic_threeResidue_totals' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.nativeC3Dynamic_sums_add_omittedResidues (M : ℕ) (s : ℂ) :
+  have S := CarrySelfAdjointOperator.nativeC3DynamicSynthesisSums M s;
+  have E := CPFormal.Analytic.Cp.positiveDirichletValue s (3 * M) - CPFormal.Analytic.Cp.positiveDirichletValue s 0;
+  have L := ↑(Real.log ↑(3 * M + 1)) * CPFormal.Analytic.Cp.positiveDirichletValue s (3 * M);
+  S 0 + ∑ m, CarrySelfAdjointOperator.nativeC3BlockGradient (↑m) s 2 = E ∧
+    S 1 + ∑ m, CarrySelfAdjointOperator.nativeC3BlockGradient (↑m) s 0 = E ∧
+      S 2 + ∑ m, CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet (↑m) s 2 = L ∧
+        S 3 + ∑ m, CarrySelfAdjointOperator.nativeC3BlockDynamicLogJet (↑m) s 0 = L
+'CarrySelfAdjointOperator.nativeC3Dynamic_sums_add_omittedResidues' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
