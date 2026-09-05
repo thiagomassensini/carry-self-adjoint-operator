@@ -1,5 +1,7 @@
 # Mapa — rota da válvula projetiva para o carrier nativo
 
+> Atualização de 2026-09-05: [a válvula aplicada aos momentos nativos](ponte-valvula-momentos-nativos.md) identifica exatamente a massa recíproca normalizada da característica, com sinal e índices explícitos.
+
 Este é o mapa de trabalho da rota proposta por Motta em 4 de setembro de 2026.
 A base de partida é `main` em `351ec74cc40f7d12d6f31e9450372f223dabb2bd`, após as
 PRs #48 e #49. O objetivo é usar as incidências nativas, a geometria projetiva e

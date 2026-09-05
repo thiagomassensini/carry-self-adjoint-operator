@@ -1,5 +1,7 @@
 # Mapa das notas HP: jets completos, métrica de retorno e identificação nativa
 
+> Atualização de 2026-09-05: [a válvula aplicada aos momentos nativos](ponte-valvula-momentos-nativos.md) identifica exatamente a massa recíproca normalizada da característica, com sinal e índices explícitos.
+
 Data da conferência: 2026-09-04. Repositório de trabalho: `carry-self-adjoint-operator`, branch `agent/projective-valve-moment-frontier`, base `62f69205a5f80554d576b4969d658674c670efc4`. Este documento complementa os seis mapas anteriores; os rótulos de situação nas notas antigas não foram tomados como conclusões atuais.
 
 ## 1. Resultado e alcance
