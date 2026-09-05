@@ -122,4 +122,3 @@ Arquivo remoto: `CarrySelfAdjointOperator/CompletedC3KernelMetricCalibration.lea
 Logs remotos: `/tmp/carry-kernel-calibration-build.log`, `/tmp/carry-kernel-calibration-lake-build.log`; script de axiomas `/tmp/carry-kernel-calibration-axioms.lean`.
 
 SHA-256 do módulo: `b56f172daef156db2894ac6047fd028eb30b125f202a22ab2fc5e15518cba7b4`.
-
