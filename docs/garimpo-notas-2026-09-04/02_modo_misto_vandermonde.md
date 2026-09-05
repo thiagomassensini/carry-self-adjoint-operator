@@ -1,5 +1,7 @@
 # Garimpo: modo misto 3–4–6, tau, Vandermonde e mudança de observável
 
+> **Atualização após a tentativa de construção do kernel (04/09/2026).** O kernel de resolvente positivo, sua diagonal, séries e Grams foram formalizados. A costura do estado C3 concreto com a métrica ortogonal padrão foi **refutada no Lean**: seu Gram central excede o momento nativo. A igualdade dessa realização específica deixou de ser uma meta aberta. A rota com outra métrica/observável permanece em investigação. Veja [a construção e a obrigação atual](../construcao-kernel-carry.md), commit `7c778e4`. O conteúdo abaixo registra o estado anterior desse mapeamento.
+
 Data da inspeção: 2026-09-04. Escopo: notas locais em `/home/thlinux/Downloads`, comparação com os fontes já copiados em `/tmp/carry-garimpo-local/self-adjoint`. Nenhuma nota ou arquivo Lean foi modificado. As deduções novas abaixo são argumentos matemáticos escritos e cálculos inteiros reproduzidos nesta sessão; não são teoremas Lean já verificados.
 
 ## Resultado útil para a costura

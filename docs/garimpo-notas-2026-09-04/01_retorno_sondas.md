@@ -1,5 +1,7 @@
 # Garimpo das notas: retorno, sondas e Green em duas variáveis
 
+> **Atualização após a tentativa de construção do kernel (04/09/2026).** O kernel de resolvente positivo, sua diagonal, séries e Grams foram formalizados. A costura do estado C3 concreto com a métrica ortogonal padrão foi **refutada no Lean**: seu Gram central excede o momento nativo. A igualdade dessa realização específica deixou de ser uma meta aberta. A rota com outra métrica/observável permanece em investigação. Veja [a construção e a obrigação atual](../construcao-kernel-carry.md), commit `7c778e4`. O conteúdo abaixo registra o estado anterior desse mapeamento.
+
 Auditoria de fontes em 2026-09-04. Notas originais preservadas. `Lean` abaixo significa declaração/prova localizada no snapshot indicado; não foi executado um novo build nesta auditoria. `Derivação` identifica álgebra conferida neste trabalho, ainda sem novo lema Lean. As palavras “fechado” das notas não foram usadas como prova automática nem as palavras “STOP” como proibição geral.
 
 ## Resultado que muda a próxima etapa

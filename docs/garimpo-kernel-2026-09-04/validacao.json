@@ -1,0 +1,27 @@
+{
+  "build_command": "PATH=/home/thlinux/.elan/bin:$PATH bash scripts/audit.sh",
+  "result": "kernel audit passed",
+  "public_theorems_audited": 68,
+  "allowed_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "full_library_build_jobs": 9205,
+  "full_main_audit_build_jobs": 9233,
+  "warnings": 0,
+  "source_hashes": {
+    "CarryTfvdTraceMetricKernel.lean": "536d76c96a1faae99afa8ed3fef32a294d2ed7c2d3e62b9b55ea92d772c253af",
+    "CompletedC3KernelMetricCalibration.lean": "b56f172daef156db2894ac6047fd028eb30b125f202a22ab2fc5e15518cba7b4",
+    "KernelConstructionAudit.lean": "e7ebe85c32d66347d5596864ceb9fa5e9c255fafe493d95bd2a2f7c5b8759db1",
+    "PositiveObservableKernelDiagonal.lean": "d88a9fa308e97f03359a0c2bb1136aa0ceae832cca5d98f37d1ca21084fb43cf",
+    "PositiveObservableKernelSeries.lean": "ad01ff6daeb461d1177a36b933581ee7a42da889e0736f589b98e66723096542",
+    "PositiveObservableNativeMomentBridge.lean": "5470e32d5cbbd7b2fe56b3430491b5682e0432f8dfb56527656034e40ce499ab",
+    "PositiveObservableParityKernel.lean": "75689c847f2ae23411d1774081934f3b87c5db4a766fa249f22a4cd58c3cb394",
+    "ReturnMetricPolarizedKernel.lean": "0c1f66c779fa4e58e2f1a8f6daa7b6da5962ce004e38079ce52df0f1f5de84d4"
+  },
+  "source_revision": "7c778e4a49409f51fd6742fc30ffe2d5045c300a",
+  "report_source_links_checked": 15,
+  "report_local_links_checked": 2,
+  "report_validation": "Static Markdown and source line bounds checked; no visual preview."
+}
