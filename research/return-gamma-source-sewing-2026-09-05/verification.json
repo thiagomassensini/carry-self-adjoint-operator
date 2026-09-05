@@ -1,0 +1,486 @@
+{
+  "date": "2026-09-05",
+  "branch": "agent/return-gamma-source-sewing",
+  "base_commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195",
+  "new_theorems": 27,
+  "reused_theorems": 10,
+  "reused_from_commit": "6468bbede9e1ffcd4f4a1fb260b55ec970968077",
+  "specific_builds": "passed with --wfail",
+  "full_audit": "passed",
+  "full_audit_exit_code": 0,
+  "command": "PATH=/home/thlinux/.elan/bin:$PATH bash scripts/audit.sh",
+  "successful_lake_build_calls": 14,
+  "targets": [
+    "CarrySelfAdjointOperator.DiscreteProjectiveReconstructionAudit",
+    "CarrySelfAdjointOperator.ProjectiveValveNativeIncidenceAudit",
+    "CarrySelfAdjointOperator.ProjectiveValveMomentFrontierAudit",
+    "CarrySelfAdjointOperator.KernelConstructionAudit",
+    "CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit",
+    "CarrySelfAdjointOperator.CompletedNativeJacobiPointSpectrumConverseAudit",
+    "CarrySelfAdjointOperator.BoundaryTraceAudit",
+    "CarrySelfAdjointOperator.JacobiOrderPolynomial",
+    "CarrySelfAdjointOperator.ExactProjectiveMatrixTower",
+    "CarrySelfAdjointOperator.CanonicalProjectiveJacobiTower",
+    "CarrySelfAdjointOperator",
+    "CarrySelfAdjointOperator.Audit",
+    "CarrySelfAdjointOperator.BR2Audit",
+    "CarrySelfAdjointOperator.OrderAudit"
+  ],
+  "static_audit": "passed",
+  "audit_log_sha256": "80dfc664a6739a348c33294ccc9ce552b92ce7247c5e143c5f88d2298c96eed7",
+  "dependency_pins_unchanged": true,
+  "configuration_sha256": {
+    "lake-manifest.json": "93e2199cd60475eb40a261a0204afb68c729316d69adfe11d5230136d65828e5",
+    "lakefile.toml": "5df9555ff84cedc918025e11d5ef252d0e7b446e15fc899b4a30b7993c7eef9b",
+    "lean-toolchain": "2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e"
+  },
+  "dependency_pins": {
+    "NativeCarryC3Crosswalk": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+    "CarryGeometry": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+    "NativeCarrySpectralWeyl": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "CPFormal": "65d50f6db1208708e109982ba97e1d51d3039956",
+    "mathlib": "81a5d257c8e410db227a6665ed08f64fea08e997",
+    "FiniteNativeCarryOperator": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+    "GreenFrame": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+    "plausible": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+    "LeanSearchClient": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+    "importGraph": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+    "proofwidgets": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+    "aesop": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+    "Qq": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+    "batteries": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+    "Cli": "88679d088c9720c27ebdf2ba4dafe17341747f94"
+  },
+  "new_module_sha256": {
+    "C3MixedReturnSourceTrace": "25b32bb2346c00d85d72c13346109c213531396801a87df3b29749e1183e7c55",
+    "C3MixedReturnTraceObstruction": "4dd0c77ec7cee285e73c1ace297c7245df7cdb0679a2d59f40be4f5acd37473a",
+    "MixedReturnNativeReadout": "7712ed4f8e9a2d5293b59526880e241bbb2d27adaa82b5f8e79634b0080cef86"
+  },
+  "declarations": [
+    {
+      "name": "CarrySelfAdjointOperator.inner_sixCameraReturnVector_first",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean",
+      "line": 46,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.inner_sixCameraReturnVector_second",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean",
+      "line": 61,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.inner_sixCameraReturnVector_sourceMap_fst",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean",
+      "line": 77,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.inner_sixCameraReturnVector_sourceMap_snd",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean",
+      "line": 95,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraReturnReadout_sourceMap",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean",
+      "line": 115,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraReturnReadout_canonicalSource",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean",
+      "line": 130,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraReturnVector_norm_sq",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean",
+      "line": 141,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraReturnUnitVector_norm_sq",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean",
+      "line": 157,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraReturnReadout_canonicalSource_eq_powers",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean",
+      "line": 164,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3ReturnReadout_sub_dynamicAmplitude",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 23,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_zeroExponent",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 40,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3ReturnReadout_ne_dynamic_at_zeroExponent",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 49,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3SixCameraSourceMap_add",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 62,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraMixedReturnPortPart_sourceMap",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 93,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraReturnReadout_portPart",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 116,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraReturnReadout_portRemainder",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 124,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3ReturnPortRemainder_cameraFive",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 133,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalCompletedC3Source_eq_returnPart_add_remainder",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 152,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3ReturnSourceRemainder_ne_zero",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 161,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3ReturnGammaRemainder_energy_pos",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 174,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3GammaState_eq_returnPart_add_remainder",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 188,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3RawGammaWronskianDefect_eq_returnFourTerms",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 202,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraSlopeDefect_mulVec",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 227,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.sixCameraReturnCompression_annihilates_cameraSixZero",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 241,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3ReturnRemainder_boundary_ne_zero",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 265,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.not_gammaBoundary_factors_through_sixCameraReturnReadout",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 282,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3RawGammaWronskianDefect_eq_zero_iff_returnBalance",
+      "file": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "line": 305,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "new"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_eq_four_cameras",
+      "file": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+      "line": 32,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "reused unchanged"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturn_cameraFactor_identity",
+      "file": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+      "line": 45,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "reused unchanged"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_eq_nativeScalar",
+      "file": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+      "line": 66,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "reused unchanged"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_eq_modalAmplitude",
+      "file": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+      "line": 82,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "reused unchanged"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_cutoff_independent",
+      "file": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+      "line": 91,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "reused unchanged"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedCameraReadout_normalized_energy",
+      "file": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+      "line": 100,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "reused unchanged"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnCompletedHeightCharacteristic_eq",
+      "file": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+      "line": 121,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "reused unchanged"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.iteratedDeriv_mixedReturnCompletedHeightCharacteristic",
+      "file": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+      "line": 139,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "reused unchanged"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnEvenCoefficient_eq_native",
+      "file": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+      "line": 151,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "reused unchanged"
+    },
+    {
+      "name": "CarrySelfAdjointOperator.mixedReturnReciprocalMass_eq_native",
+      "file": "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean",
+      "line": 165,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "status": "reused unchanged"
+    }
+  ],
+  "new_mathematical_assumptions": [],
+  "domain_conditions": "Existing off-axis Gamma domain and Genuine/native scalar strip where stated.",
+  "gamma_native_gram_identification": "open",
+  "proved_scope": "Exact actual-source return projection; explicit mismatch with dynamic resultants; nonzero canonical remainder invisible to mixed readout; no universal Gamma-boundary factorization through that readout; exact raw sewing return balance.",
+  "not_claimed": [
+    "canonical Gamma-Wronskian sewing is impossible",
+    "positive remainder energy rules out cross cancellation",
+    "new HP carrier certificate",
+    "new Jacobi operator"
+  ],
+  "residual_goal_diagnostic": {
+    "exit_code": 1,
+    "expected": true,
+    "reason": "An intentionally incomplete example outside the project records the remaining goal; it is archived as .lean.txt, not built as a proof."
+  },
+  "github_ci_monitored": false,
+  "merge_performed": false,
+  "git_diff_check": "passed, including all staged new files"
+}

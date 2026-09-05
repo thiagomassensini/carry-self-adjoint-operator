@@ -1,0 +1,115 @@
+{
+  "CarrySelfAdjointOperator/CameraReturnVarianceDefect.lean": {
+    "sha256": "7ebfb356d3c3e752de6f1712749858290fc1629832e071bf349dca3f7c059ecd",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CanonicalC3SixCameraSource.lean": {
+    "sha256": "febcb63cf02b97f9e05d2a1cc04ab38cae6e50109e49a9facea561afe39820ad",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedGammaTwoParameterGreenIdentity.lean": {
+    "sha256": "421822a32d31c828f2c697ae712101e043312e149b7c42aa29b689357d8dcc79",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CanonicalCompletedC3GammaDslopeGram.lean": {
+    "sha256": "cf68d06d1193e0fcfec6865fc60f5677faac7784ab21ff565db8db739bb9475d",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CanonicalCompletedC3NormalizedGammaSewing.lean": {
+    "sha256": "556ed2453ac471c9339feff9fc1a2d900f6c76fdd35aedbfa7755e6386f022d9",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CanonicalCompletedC3GammaLedgerNumerator.lean": {
+    "sha256": "cf8d3f1ef8b2a986737e6e87e91f9a3fe33f8fb9877d2bab3be743bcea6ea54f",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CanonicalCompletedC3GammaLedgerBoundaryDefect.lean": {
+    "sha256": "f2a32da183e69c645bbd5cd4dff4919a60c0e9a2b6ed285d6e754f8c836d884c",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3GreenInverseSewingProbe.lean": {
+    "sha256": "98735ca3999012c148510c544c9d3a80ad961df7653de3caac13e3125e4c294b",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3BoundaryRelationSewingBridge.lean": {
+    "sha256": "3be3a21609860739808658c6c32862f96197ab745fb846362f3db2b9755b8eec",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CanonicalCompletedC3UniversalResolventDefect.lean": {
+    "sha256": "95a9a3b6701e891db40282e4e7f5e6a5ee6781f459dd4b024b408aab646aedc3",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CanonicalCompletedC3TfvdResolventDomain.lean": {
+    "sha256": "4ac3bbef464ab41e344d45a0f799a5ef9205dfc4a30064e34f8ad5185a398fea",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3TfvdResolventTraceBridge.lean": {
+    "sha256": "ce17a745f281af7e6dc587a5403c37c707cf58cfc50cb104e88151b0644b0eb4",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3FinalReadoutKernelBridge.lean": {
+    "sha256": "a1c5d3713f29170bc72a7dedbf0b50322961437c2bb87b97801b9ac559b5b5f2",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedNativeTfvdWronskianMoments.lean": {
+    "sha256": "3dd797895e8da20c202f3982fa89c0a64cd453273dd2374376493c6225a55567",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3RawGreenGamma.lean": {
+    "sha256": "3dc0de582fc841d3dfce17cd1bea6b287ff6a17fa18fb0a3768309ba5084def9",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3CausalGreenGramSewing.lean": {
+    "sha256": "4487f5a1e892254ffca0dfb63781c9368def0dab71fa93db394924e3dbf15292",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3FullWronskianOperatorCarrier.lean": {
+    "sha256": "a1381460abce7d769e71deffe9b008d7720924568a256a70d73dc9e28ec5783e",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3FullWronskianPolarization.lean": {
+    "sha256": "9f07748f24424a517928f2bcd1f1d2b29cc0e024b4bb3b102912810dda7cb5fa",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3ConcreteRealAxisKernelCarrier.lean": {
+    "sha256": "d4106eb2b2691985af872a17a4b706da02b69455f7070e7d73ce73faf463104d",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedNativeTfvdCoefficientJetHPCarrier.lean": {
+    "sha256": "674b50d47c93ce0ec192b50d31dd42d17c3d7990706c2fed199099092ba47d0d",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedNativeCameraUniversality.lean": {
+    "sha256": "9732e164c676fe5702d14cdc68290f169a967fd892f67edc30000e51b43efdad",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3ValveNaturality.lean": {
+    "sha256": "ed49652e076dcaf6393fda9cbf526c752b453b7204b3bdb6e773c0f5283226f1",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3ValveGreenNaturality.lean": {
+    "sha256": "ef9471dce975bbc61df09b6c3ffaed4223661d9d31407cfa8ce02f497f193631",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/DiscreteProjectiveReconstruction.lean": {
+    "sha256": "8b92b37c1bb664fda675f8bf080aa892b457d75a8ccad46f9408f5de7ad699a7",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CompletedC3CompressedLogarithmicOperator.lean": {
+    "sha256": "0a88ea0210cbebcff1188b32078aec36aea8e51fefa7c91b943e3891ec05d5c3",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CanonicalC3GreenIntertwiner.lean": {
+    "sha256": "ac218414b40105f04d4938b45d1d0c89c90446237ee8bf3a72eb0f558e11c318",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/CanonicalC3GammaEnergyNormalization.lean": {
+    "sha256": "aa175417bf475fa6421f412b06bb7ebb64fc47287641e2d8e5e754f10ccc0990",
+    "commit": "225a85d9e8e3e0a3b659c5b6ad821458770b3195"
+  },
+  "CarrySelfAdjointOperator/MixedReturnNativeReadout.lean": {
+    "sha256": "7712ed4f8e9a2d5293b59526880e241bbb2d27adaa82b5f8e79634b0080cef86",
+    "commit": "6468bbede9e1ffcd4f4a1fb260b55ec970968077",
+    "status": "reused unchanged; ten existing theorems"
+  }
+}
