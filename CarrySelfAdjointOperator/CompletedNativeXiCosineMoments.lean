@@ -521,6 +521,126 @@ theorem completedNativeRealEvenCharacteristicCoefficient_two_eq_xiCosineMoment :
   norm_num [smul_eq_mul]
   ring
 
+/-! ## Sixth-order coefficient in the same cosine representation -/
+
+private def completedNativeXiCosineTransformFifth (t : ℝ) : ℝ :=
+  ∫ u in Ioi (0 : ℝ),
+    -(u ^ 5 * completedNativeXiCosineKernel u) * Real.sin (t * u)
+
+private def completedNativeXiCosineTransformSixth (t : ℝ) : ℝ :=
+  ∫ u in Ioi (0 : ℝ),
+    -(u ^ 6 * completedNativeXiCosineKernel u) * Real.cos (t * u)
+
+private theorem hasDerivAt_completedNativeXiCosineTransformFourth (t : ℝ) :
+    HasDerivAt completedNativeXiCosineTransformFourth
+      (completedNativeXiCosineTransformFifth t) t := by
+  have hf := integrableOn_pow_mul_completedNativeXiCosineKernel 4
+  have huf : IntegrableOn
+      (fun u : ℝ ↦ u * (u ^ 4 * completedNativeXiCosineKernel u))
+      (Ioi (0 : ℝ)) := by
+    apply (integrableOn_pow_mul_completedNativeXiCosineKernel 5).congr
+    exact Filter.Eventually.of_forall (fun u ↦ by ring)
+  have h := hasDerivAt_integral_mul_cos hf huf t
+  refine (h.congr_of_eventuallyEq ?_).congr_deriv ?_
+  · exact Filter.Eventually.of_forall (fun _ ↦ rfl)
+  · unfold completedNativeXiCosineTransformFifth
+    apply integral_congr_ae
+    exact Filter.Eventually.of_forall (fun u ↦ by ring)
+
+private theorem hasDerivAt_completedNativeXiCosineTransformFifth (t : ℝ) :
+    HasDerivAt completedNativeXiCosineTransformFifth
+      (completedNativeXiCosineTransformSixth t) t := by
+  have hf := (integrableOn_pow_mul_completedNativeXiCosineKernel 5).neg
+  have huf : IntegrableOn
+      (fun u : ℝ ↦ u * (-(u ^ 5 * completedNativeXiCosineKernel u)))
+      (Ioi (0 : ℝ)) := by
+    apply (integrableOn_pow_mul_completedNativeXiCosineKernel 6).neg.congr
+    exact Filter.Eventually.of_forall (fun u ↦ by
+      simp only [Pi.neg_apply]
+      ring)
+  have h := hasDerivAt_integral_mul_sin hf huf t
+  refine (h.congr_of_eventuallyEq ?_).congr_deriv ?_
+  · exact Filter.Eventually.of_forall (fun _ ↦ rfl)
+  · unfold completedNativeXiCosineTransformSixth
+    apply integral_congr_ae
+    exact Filter.Eventually.of_forall (fun u ↦ by
+      simp only [Pi.neg_apply]
+      ring)
+
+private theorem iteratedDeriv_six_completedNativeXiCosineTransform_ofReal_zero :
+    iteratedDeriv 6
+        (fun t : ℝ ↦ (completedNativeXiCosineTransformReal t : ℂ)) 0 =
+      ((-completedNativeXiCosineMoment 3 : ℝ) : ℂ) := by
+  have hfirst : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformReal t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformFirst t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformReal t).ofReal_comp.deriv
+  have hsecond : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformFirst t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformSecond t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformFirst t).ofReal_comp.deriv
+  have hthird : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformSecond t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformThird t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformSecond t).ofReal_comp.deriv
+  have hfourth : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformThird t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformFourth t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformThird t).ofReal_comp.deriv
+  have hfifth : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformFourth t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformFifth t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformFourth t).ofReal_comp.deriv
+  rw [show 6 = Nat.succ 5 by norm_num, iteratedDeriv_succ,
+    show 5 = Nat.succ 4 by norm_num, iteratedDeriv_succ,
+    show 4 = Nat.succ 3 by norm_num, iteratedDeriv_succ,
+    show 3 = Nat.succ 2 by norm_num, iteratedDeriv_succ,
+    show 2 = Nat.succ 1 by norm_num, iteratedDeriv_succ,
+    iteratedDeriv_one, hfirst, hsecond, hthird, hfourth, hfifth]
+  rw [(hasDerivAt_completedNativeXiCosineTransformFifth 0).ofReal_comp.deriv]
+  congr 1
+  unfold completedNativeXiCosineTransformSixth completedNativeXiCosineMoment
+  rw [← integral_neg]
+  apply integral_congr_ae
+  exact Filter.Eventually.of_forall (fun u ↦ by simp)
+
+/-- The same cosine kernel determines the sixth native derivative, with
+the alternating cosine sign and the original moment normalization. -/
+theorem iteratedDeriv_six_completedNativeOperatorCharacteristic_zero :
+    iteratedDeriv 6 completedNativeOperatorCharacteristic 0 =
+      ((-completedNativeXiCosineMoment 3 : ℝ) : ℂ) := by
+  have haxis :
+      (fun t : ℝ ↦ completedNativeOperatorCharacteristic (t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformReal t : ℂ) := by
+    funext t
+    simpa [completedNativeXiCosineTransformReal] using
+      XiThetaCosine.completedNative_eq_xiCosineKernel t
+  calc
+    iteratedDeriv 6 completedNativeOperatorCharacteristic (0 : ℂ) =
+        iteratedDeriv 6
+          (fun t : ℝ ↦ completedNativeOperatorCharacteristic (t : ℂ)) 0 :=
+      (iteratedDeriv_completedNativeOperatorCharacteristic_comp_ofReal 6 0).symm
+    _ = iteratedDeriv 6
+          (fun t : ℝ ↦ (completedNativeXiCosineTransformReal t : ℂ)) 0 := by rw [haxis]
+    _ = ((-completedNativeXiCosineMoment 3 : ℝ) : ℂ) :=
+      iteratedDeriv_six_completedNativeXiCosineTransform_ofReal_zero
+
+/-- The sextic coefficient is exactly `-μ₆/720`; no moment is redefined. -/
+theorem completedNativeRealEvenCharacteristicCoefficient_three_eq_xiCosineMoment :
+    completedNativeRealEvenCharacteristicCoefficient 3 =
+      -completedNativeXiCosineMoment 3 / 720 := by
+  unfold completedNativeRealEvenCharacteristicCoefficient
+    completedNativeEvenCharacteristicCoefficient completedGreenTaylorJet
+  rw [show 2 * 3 = 6 by norm_num,
+    iteratedDeriv_six_completedNativeOperatorCharacteristic_zero]
+  norm_num [smul_eq_mul]
+  ring
+
 end
 
 end CarrySelfAdjointOperator

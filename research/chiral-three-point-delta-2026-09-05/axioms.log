@@ -1,0 +1,78 @@
+'CarrySelfAdjointOperator.iteratedDeriv_six_completedNativeOperatorCharacteristic_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.completedNativeRealEvenCharacteristicCoefficient_three_eq_xiCosineMoment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.integral_pow_add_two_mul_thetaTailSecond' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.completedNativeXiCosineMoment_succ_eq_thetaTailMoments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.completedNativeXiCosineMoment_three_eq_thetaTailMoments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeLogDerivativeMoment_two_eq_sixthOrderRatio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeHankel_two_det_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeHankel_two_det_eq_sixthOrderRatio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeHankel_two_det_eq_xiCosineMoments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeHankel_two_det_pos_iff_xiSixthMoment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeHankel_two_det_pos_iff_schur' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeHankel_two_det_pos_iff_thetaTail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.xiSixthMoment_numerator_lower_bound_of_box' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.completedNativeXiCosineMoment_zero_lt_249_div_500' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeHankel_two_det_pos_of_xiMoment_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.xiFourthMoment_sign_does_not_imply_sixthNumerator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.thetaTail_coarse_bounds_do_not_imply_sixthNumerator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.completedGreenThreePointDifference_congruence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.completedGreenThreePointDifferenceTransform_det' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeRadialThreePointDifferenceMatrix_eq_congruence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.polarizedGreenMomentCoefficient_three_det' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeRadialThreePointDifferenceMatrix_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeRadialThreePointDifferenceMatrix_det_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeRadialThreePointDifferenceMatrix_det_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeRadialThreePointDeterminant_div_sixthStep_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalCompletedNativeRadialThreePointDeterminant_eventually_re_pos_of_delta' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

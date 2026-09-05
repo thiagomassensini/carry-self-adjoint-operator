@@ -1,0 +1,23 @@
+Intentional diagnostic outside the library/audit. The temporary Lean file
+contains two unfinished examples to expose obligations; exit 1 is expected.
+The full project audit independently passed. No incomplete example is imported.
+
+/tmp/three-point-residual.lean:6:80: error: unsolved goals
+⊢ 10 * completedNativeXiCosineMoment 0 * completedNativeXiCosineMoment 2 ^ 2 <
+    15 * completedNativeXiCosineMoment 1 ^ 2 * completedNativeXiCosineMoment 2 +
+      3 * completedNativeXiCosineMoment 0 * completedNativeXiCosineMoment 1 * completedNativeXiCosineMoment 3
+/tmp/three-point-residual.lean:10:80: error: unsolved goals
+case h₀lo
+⊢ 497 / 1000 ≤ completedNativeXiCosineMoment 0
+
+case h₂lo
+⊢ 287 / 12500 ≤ completedNativeXiCosineMoment 1
+
+case h₄lo
+⊢ 37 / 12500 ≤ completedNativeXiCosineMoment 2
+
+case h₄hi
+⊢ completedNativeXiCosineMoment 2 ≤ 593 / 200000
+
+case h₆lo
+⊢ 299 / 500000 ≤ completedNativeXiCosineMoment 3

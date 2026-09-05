@@ -1,0 +1,59 @@
+{
+  "python_flint_version": "0.9.0",
+  "precision_bits": 128,
+  "modes": 3,
+  "x_cutoff": 16,
+  "analytic_branch_flag_forwarded": true,
+  "is_lean_certificate": false,
+  "trust_boundary": "Arb ball integration plus the stated analytic tail envelopes; not imported into Lean.",
+  "tail_moments": [
+    {
+      "power": 0,
+      "finite_integral": "[0.01151688724674356034889634127972376739 +/- 3.25e-39]",
+      "spatial_tail_upper_ball": "[4.707913402686825367123084443259023368e-23 +/- 5.41e-60]",
+      "omitted_modes_upper_ball": "[2.942445876680812252520537507777038198e-24 +/- 3.96e-61]",
+      "infinite_moment_enclosure": "[0.0115168872467435603489 +/- 5.37e-23]"
+    },
+    {
+      "power": 2,
+      "finite_integral": "[0.000247320713366732650229521296532380976 +/- 4.55e-40]",
+      "spatial_tail_upper_ball": "[3.135335664861588393969079774525062926e-21 +/- 4.74e-58]",
+      "omitted_modes_upper_ball": "[7.65462808804501016840802998177935654e-25 +/- 3.92e-61]",
+      "infinite_moment_enclosure": "[0.00024732071336673265 +/- 3.37e-21]"
+    },
+    {
+      "power": 4,
+      "finite_integral": "[2.0000506852638550064331262555940903e-5 +/- 7.53e-40]",
+      "spatial_tail_upper_ball": "[2.091345726208650366818917183482189838e-19 +/- 3.30e-56]",
+      "omitted_modes_upper_ball": "[1.994462705812215300049893533133412029e-25 +/- 3.94e-62]",
+      "infinite_moment_enclosure": "[2.0000506852639e-5 +/- 6.60e-19]"
+    },
+    {
+      "power": 6,
+      "finite_integral": "[2.87703592630804294651662696080331e-6 +/- 5.00e-39]",
+      "spatial_tail_upper_ball": "[1.397359526956618555006716630158210252e-17 +/- 4.93e-54]",
+      "omitted_modes_upper_ball": "[5.205569889237556365261466075952166207e-26 +/- 8.79e-63]",
+      "infinite_moment_enclosure": "[2.8770359263e-6 +/- 2.21e-17]"
+    }
+  ],
+  "cosine_moment_enclosures": [
+    "[0.4971207781883141099128 +/- 3.66e-23]",
+    "[0.02297194431514543754 +/- 5.65e-21]",
+    "[0.002962848433687632 +/- 2.56e-19]",
+    "[0.0005992959465976 +/- 3.03e-17]"
+  ],
+  "rational_box_checks": {
+    "mu0_lower": true,
+    "mu0_upper": true,
+    "mu2_lower": true,
+    "mu4_lower": true,
+    "mu4_upper": true,
+    "mu6_lower": true
+  },
+  "numerator_enclosure": "[3.44853663102e-7 +/- 4.63e-19]",
+  "delta2_enclosure": "[1.94933555482e-9 +/- 2.77e-21]",
+  "delta2_rational_interval": [
+    "19/10000000000",
+    "2/1000000000"
+  ]
+}
