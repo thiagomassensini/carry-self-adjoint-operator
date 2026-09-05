@@ -1,0 +1,15 @@
+'CPFormal.Analytic.Cp.nativeGpreFiniteWeightedRealSpectralState_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveAnalysis_finiteWeightedState_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.c3CompletedIteratedJet_cutoff_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.finiteC3CanonicalEnrichedTfvdPairTailReadout_cutoff_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.finiteC3EnrichedTfvdPairTailDefect_cutoff_invariant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

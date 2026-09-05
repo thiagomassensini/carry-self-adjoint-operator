@@ -1,5 +1,7 @@
 # Auditoria das coordenadas, do operador de altura e dos cortes C3
 
+> Atualização da conferência das notas HP: [jets completos, retorno e identificação nativa](mapa-notas-hp-jets-retorno-atualizado.md). Inclui fontes Lean locais recompilados e a ponte C3 recuperada.
+
 **Data da pesquisa:** 4 de setembro de 2026. **Servidor:** `llm`.
 **Base inspecionada:** `carry-self-adjoint-operator`, branch `agent/projective-valve-moment-frontier`, commit `a52230c5cba4918fb5f05d00c8f31b27bc828d09`.
 **Dependências consumidas:** CPFormal/primos `65d50f6db1208708e109982ba97e1d51d3039956`; NativeCarryC3Crosswalk `150cfc7fb08da96bf8117f15869cc2b819d593c2`.

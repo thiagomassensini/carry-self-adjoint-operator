@@ -1,0 +1,12 @@
+'NativeCarryC3Crosswalk.literalFiniteCameraGram_eq_linear_add_residue' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.normalizedLiteralFiniteCameraGram_eq_periodicGram_add_residue_div' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.tendsto_normalizedLiteralFiniteCameraGram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.tendsto_normalizedLiteralSixCameraGram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

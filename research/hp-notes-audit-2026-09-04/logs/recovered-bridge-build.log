@@ -1,0 +1,44 @@
+ℹ [3559/3702] Replayed NativeCarrySpectralWeyl.Finite.StepDensity
+info: NativeCarrySpectralWeyl/Finite/StepDensity.lean:68:4: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3581/3702] Replayed CPFormal.Analytic.CpGenuineSecondDifferenceIdentity
+info: CPFormal/Analytic/CpGenuineSecondDifferenceIdentity.lean:114:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3582/3702] Replayed CPFormal.Analytic.CpGenuineTiltProductRule
+info: CPFormal/Analytic/CpGenuineTiltProductRule.lean:285:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3632/3702] Replayed CPFormal.Analytic.CpFiniteScalarSynthesis
+info: CPFormal/Analytic/CpFiniteScalarSynthesis.lean:133:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+✔ [3823/3825] Built CPFormal.Analytic.CpNativeGpreTfvdVisiblePencil (8.2s)
+ℹ [3824/3825] Built CPFormal.Analytic.CpNativeGpreTfvdGenuineCompression (6.4s)
+info: CPFormal/Analytic/CpNativeGpreTfvdGenuineCompression.lean:311:4: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: CPFormal/Analytic/CpNativeGpreTfvdGenuineCompression.lean:328:2: Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+✔ [3825/3825] Built CarrySelfAdjointOperator.C3ProjectiveCompletedJetBridge (5.3s)
+Build completed successfully (3825 jobs).

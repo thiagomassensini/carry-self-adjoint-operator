@@ -1,0 +1,6 @@
+'NativeCarrySpectralWeyl.Camera.FiniteBridge.finiteStencil_double' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarrySpectralWeyl.Camera.FiniteBridge.finiteCoefficient_double' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

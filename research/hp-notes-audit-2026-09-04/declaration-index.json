@@ -1,0 +1,147 @@
+[
+  {
+    "declaration": "IsSeededTfvdGpreMomentCollapseAt",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpTfvdGpreCollapseInterface.lean",
+    "line": 54
+  },
+  {
+    "declaration": "NativeCarrySelfAdjointBoundaryPencilRealization",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpNativeCarrySelfAdjointBoundaryPencil.lean",
+    "line": 123
+  },
+  {
+    "declaration": "c2GpreCameraPairCompression_zero_with_positive_carryEnergy",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpC2GpreGreenActivationGuard.lean",
+    "line": 65
+  },
+  {
+    "declaration": "c3CompletedIteratedJet_cutoff_invariant",
+    "source": "../../CarrySelfAdjointOperator/C3ProjectiveCompletedJetBridge.lean",
+    "line": 156
+  },
+  {
+    "declaration": "c3CompletedIteratedJet_eq",
+    "source": "../../CarrySelfAdjointOperator/C3ProjectiveCompletedJetBridge.lean",
+    "line": 135
+  },
+  {
+    "declaration": "canonicalEnrichedPrimeCarryDefectProvenanceState_norm_sq_eq_finiteSeededTfvdBesselEnergy",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpTfvdSeededFiniteBesselConservation.lean",
+    "line": 87
+  },
+  {
+    "declaration": "canonicalProvenanceState_pythagoras_seededTfvdBesselLedger_of_realizesOn",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpTfvdSeededFiniteBesselConservation.lean",
+    "line": 112
+  },
+  {
+    "declaration": "closedGreenJetEnergyAdjointSquare_finiteCompression_eq_canonicalSection",
+    "source": "../../CarrySelfAdjointOperator/GreenJetMaximalAdjointSquare.lean",
+    "line": 506
+  },
+  {
+    "declaration": "closedGreenJetEnergyAdjointSquare_isMaximalRealSelfAdjoint",
+    "source": "../../CarrySelfAdjointOperator/GreenJetMaximalAdjointSquare.lean",
+    "line": 603
+  },
+  {
+    "declaration": "completedNativeRealHPCarrierCertificate_of_positiveObservable",
+    "source": "../../CarrySelfAdjointOperator/PositiveObservableNativeMomentBridge.lean",
+    "line": 110
+  },
+  {
+    "declaration": "compressedReadout_sub_adjoint_eq_separation_smul_covariance",
+    "source": "../../CarrySelfAdjointOperator/ReturnMetricPolarizedKernel.lean",
+    "line": 159
+  },
+  {
+    "declaration": "exists_seededTfvdNativeMomentSource_iff_re_eq_half",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpTfvdSeededNativeMomentSourceAudit.lean",
+    "line": 47
+  },
+  {
+    "declaration": "finiteC3CanonicalEnrichedTfvdPairTailReadout_cutoff_invariant",
+    "source": "../../CarrySelfAdjointOperator/C3ProjectiveCompletedJetBridge.lean",
+    "line": 165
+  },
+  {
+    "declaration": "finiteC3EnrichedTfvdPairTailDefect_cutoff_invariant",
+    "source": "../../CarrySelfAdjointOperator/C3ProjectiveCompletedJetBridge.lean",
+    "line": 178
+  },
+  {
+    "declaration": "finiteCanonicalSeededTfvdGreen_identity",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpFiniteSeededTfvdGreenIdentity.lean",
+    "line": 256
+  },
+  {
+    "declaration": "finiteCanonicalSeededTfvdGreen_signed_identity",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpFiniteSeededTfvdGreenIdentity.lean",
+    "line": 272
+  },
+  {
+    "declaration": "minimalProvenance_factorization",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpMinimalProvenanceQuotient.lean",
+    "line": 93
+  },
+  {
+    "declaration": "nativeCarryLogDilationExpression_wave_eq",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpNativeCarryLogWaveBoundaryEquivalence.lean",
+    "line": 51
+  },
+  {
+    "declaration": "nativeCarryLogWave_log_nat_eq_dirichletTerm",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpNativeCarryLogWaveBoundaryEquivalence.lean",
+    "line": 88
+  },
+  {
+    "declaration": "nativeGpreFiniteWeightedRealSpectralState_eq_partialSum",
+    "source": "../../CarrySelfAdjointOperator/C3ProjectiveCompletedJetBridge.lean",
+    "line": 35
+  },
+  {
+    "declaration": "nativeGpreFiniteWeightedRealSpectralState_tendsto",
+    "source": "../../CarrySelfAdjointOperator/C3ProjectiveCompletedJetBridge.lean",
+    "line": 58
+  },
+  {
+    "declaration": "nativeGpreHilbertGluedGreenDefect_eq_verticalWronskian",
+    "source": "https://github.com/thiagomassensini/primos/blob/e2a723b4ec3e645539de0b9ca881951d93259cda/CPFormal/Analytic/CpNativeGpreHilbertGluedGreenDefect.lean",
+    "line": 86
+  },
+  {
+    "declaration": "nativeGpreTfvdProjectiveAnalysis_completedState_compatible",
+    "source": "../../CarrySelfAdjointOperator/C3ProjectiveCompletedJetBridge.lean",
+    "line": 108
+  },
+  {
+    "declaration": "nativeGpreTfvdProjectiveAnalysis_finiteWeightedState_tendsto",
+    "source": "../../CarrySelfAdjointOperator/C3ProjectiveCompletedJetBridge.lean",
+    "line": 93
+  },
+  {
+    "declaration": "polarizedCovariance_eq_direct",
+    "source": "../../CarrySelfAdjointOperator/ReturnMetricPolarizedKernel.lean",
+    "line": 40
+  },
+  {
+    "declaration": "polarizedCovariance_eq_inv_separation_smul_readoutDifference",
+    "source": "../../CarrySelfAdjointOperator/ReturnMetricPolarizedKernel.lean",
+    "line": 188
+  },
+  {
+    "declaration": "polarizedCovariance_finiteSection_posSemidef",
+    "source": "../../CarrySelfAdjointOperator/ReturnMetricPolarizedKernel.lean",
+    "line": 78
+  },
+  {
+    "declaration": "positiveObservableMoment_eq_native_of_defect_zero",
+    "source": "../../CarrySelfAdjointOperator/PositiveObservableNativeMomentBridge.lean",
+    "line": 91
+  },
+  {
+    "declaration": "positiveObservable_isNativeMomentSequence_iff_defect_zero",
+    "source": "../../CarrySelfAdjointOperator/PositiveObservableNativeMomentBridge.lean",
+    "line": 54
+  }
+]

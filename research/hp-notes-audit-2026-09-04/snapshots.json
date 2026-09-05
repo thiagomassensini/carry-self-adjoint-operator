@@ -1,0 +1,44 @@
+{
+  "carry-self-adjoint-operator": {
+    "sha": "4de44de2341089a29665917ed48cd388c68a85e5",
+    "origin": "git@github.com:thiagomassensini/carry-self-adjoint-operator.git",
+    "files": 361,
+    "snapshot_path": "/home/thlinux/carry-hp-notes-audit-20260904/snapshots/carry-self-adjoint-operator"
+  },
+  "primos": {
+    "sha": "e2a723b4ec3e645539de0b9ca881951d93259cda",
+    "origin": "https://github.com/thiagomassensini/primos.git",
+    "files": 392,
+    "snapshot_path": "/home/thlinux/carry-hp-notes-audit-20260904/snapshots/primos"
+  },
+  "native-carry-c3-crosswalk": {
+    "sha": "1e9e06e1d51d176a909c187828f7c880e5d1207d",
+    "origin": "https://github.com/thiagomassensini/native-carry-c3-crosswalk.git",
+    "files": 72,
+    "snapshot_path": "/home/thlinux/carry-hp-notes-audit-20260904/snapshots/native-carry-c3-crosswalk"
+  },
+  "native-carry-spectral-weyl": {
+    "sha": "248249ce098491f4194209d8e698dc5965f1405d",
+    "origin": "https://github.com/thiagomassensini/native-carry-spectral-weyl.git",
+    "files": 82,
+    "snapshot_path": "/home/thlinux/carry-hp-notes-audit-20260904/snapshots/native-carry-spectral-weyl"
+  },
+  "green-frame-theorem-limit": {
+    "sha": "12445c08087fa0c5fc5b2350f3455e09bc6b8b42",
+    "origin": "https://github.com/thiagomassensini/green-frame-theorem.git",
+    "files": 128,
+    "snapshot_path": "/home/thlinux/carry-hp-notes-audit-20260904/snapshots/green-frame-theorem-limit"
+  },
+  "genuine-zero-uniform-atlas-energy": {
+    "sha": "2f5c38321d63752f891ef99622ff0685bc62c0ce",
+    "origin": "https://github.com/thiagomassensini/genuine-zero-uniform-atlas-energy.git",
+    "files": 92,
+    "snapshot_path": "/home/thlinux/carry-hp-notes-audit-20260904/snapshots/genuine-zero-uniform-atlas-energy"
+  },
+  "carry-geometry": {
+    "sha": "3a64ccebfa3849251b2d564432d693ed19a4b74b",
+    "origin": "https://github.com/thiagomassensini/carry-geometry.git",
+    "files": 18,
+    "snapshot_path": "/home/thlinux/carry-hp-notes-audit-20260904/snapshots/carry-geometry"
+  }
+}

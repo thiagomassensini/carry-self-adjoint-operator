@@ -1,0 +1,6 @@
+'NativeCarryC3Crosswalk.finiteCanonicalCameraReadout_mul_transpose' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.finiteCanonicalCameraSynthesis_transpose_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

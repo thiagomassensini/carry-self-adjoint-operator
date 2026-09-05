@@ -1,0 +1,649 @@
+[
+  {
+    "file": ".native_carry_height_moment_jacobi_operator_lab.py.swp",
+    "bytes": 16384,
+    "sha256": "44bb5ccaa2871604573acbdff1143d7998b3aec3a01df2db998875243ece5bc9"
+  },
+  {
+    "file": "ATLAS_RELACIONAL_MESTRE_PERSISTENCIA_ESTRUTURAL.md",
+    "bytes": 48421,
+    "sha256": "4eba40aad77fd6b6c246b767218bc2801035e1c2e31cc339b2df9b1613e275df",
+    "lines": 1395,
+    "headings": [
+      "## O que permanece quando os objetos trocam de roupa",
+      "## 1. Veredito",
+      "## 2. Escala de evidência usada neste atlas",
+      "## 3. O teorema mestre já existente",
+      "## 4. O segundo teorema mestre: completar antes de comprimir",
+      "## 5. Famílias de relações invariantes",
+      "## 6. O achado lógico mais importante dos PRs atuais",
+      "## 7. Dicionário de roupas: o que é alias, o que é papel comum e o que é diferente",
+      "## 8. Rupturas e falsos amigos encontrados",
+      "## 9. Genealogia relacional dos repositórios",
+      "## 10. Auditoria de proveniência e duplicatas",
+      "## 11. Extensões em outras roupas",
+      "## 12. O que realmente é novo nesta investigação",
+      "## 13. Pontes ainda abertas, agora formuladas relacionalmente",
+      "## 14. Protocolo recomendado para futuras investigações",
+      "## 15. Fontes centrais",
+      "## 16. Síntese final"
+    ],
+    "title": "# Atlas relacional mestre da pesquisa"
+  },
+  {
+    "file": "C2_C3_ESTADO_ENRIQUECIDO_PARSEVAL_E_LIMITE_MOVEL.md",
+    "bytes": 12858,
+    "sha256": "fa87e4ccfa2534f138782e15b8119186a14625a7d5208e23b1f8cb0ef261c27d",
+    "lines": 481,
+    "headings": [
+      "## Resultado curto",
+      "## A relação que reaparece com nomes diferentes",
+      "## 1. Construção finita canônica",
+      "## 2. Todos os log-jets já são preservados no cutoff finito",
+      "## 3. Decomposição exata de Green",
+      "## 4. Como isto recupera a intuição do C2 pós-`T₀`",
+      "## 5. A sutileza do limite: Gram não nulo e limite fraco zero",
+      "## 6. Forma correta do próximo objeto",
+      "## 7. O que foi formalizado nesta tentativa",
+      "## 8. Auditoria numérica em 80 dígitos",
+      "## 9. Estatuto honesto",
+      "## 10. Arquivos e comandos"
+    ],
+    "title": "# C2–C3: estado enriquecido de câmera, Green e o limite móvel do cutoff"
+  },
+  {
+    "file": "C2_DISCRETE_JACOBIAN_HEIGHT_JACOBI_BRIDGE.before-github-vscode.bak.md",
+    "bytes": 7543,
+    "sha256": "3b42e9ada5b3513f51213f141cd67f4072afed1c8078445e49d154f615e73a19",
+    "lines": 303,
+    "headings": [
+      "## Veredito",
+      "## 1. O jacobiano discreto já contém uma medida espectral",
+      "## 2. A Jacobi C2 explícita é Meixner",
+      "## 3. Do pushforward C2 ao canal aritmético da Weyl de alturas",
+      "## 4. Por que as duas Jacobi não são a mesma",
+      "## 5. Relação com Green e com a formalização independente",
+      "## 6. Auditoria numérica e algébrica"
+    ],
+    "title": "# Ponte entre o jacobiano discreto C2 e a Jacobi de alturas"
+  },
+  {
+    "file": "C2_DISCRETE_JACOBIAN_HEIGHT_JACOBI_BRIDGE.md",
+    "bytes": 7462,
+    "sha256": "a8f54b6b0ac8798aa1b4538bd68365911e456d5ee39238b825ba093a5dc6affb",
+    "lines": 302,
+    "headings": [
+      "## Veredito",
+      "## 1. O jacobiano discreto já contém uma medida espectral",
+      "## 2. A Jacobi C2 explícita é Meixner",
+      "## 3. Do pushforward C2 ao canal aritmético da Weyl de alturas",
+      "## 4. Por que as duas Jacobi não são a mesma",
+      "## 5. Relação com Green e com a formalização independente",
+      "## 6. Auditoria numérica e algébrica"
+    ],
+    "title": "# Ponte entre o jacobiano discreto C2 e a Jacobi de alturas"
+  },
+  {
+    "file": "C3CameraStencilEscapeClosure.lean",
+    "bytes": 13033,
+    "sha256": "1df0ffa8ce48f3e3dd1c37e57bbe260af95cd143f791733d99c77a41fbad0798"
+  },
+  {
+    "file": "C3CameraStencilEscapeClosure.olean",
+    "bytes": 247648,
+    "sha256": "a94bb0e0ceff7dea8f1f72836c419f1217a05e436fab3b2915bd37d536a98737"
+  },
+  {
+    "file": "C3ProjectiveCompletedJetBridge.lean",
+    "bytes": 8393,
+    "sha256": "36bec78cdbabf983bb410af0114655e0f45ba2240809730d9b7a0f5c5898a197"
+  },
+  {
+    "file": "C3ProjectiveCompletedJetBridge.olean",
+    "bytes": 168632,
+    "sha256": "18763705da289574be0a18c38df7497b14058e5c66b4f65807a62a547b2aa73b"
+  },
+  {
+    "file": "C3ProjectiveHilbertRBBridge.lean",
+    "bytes": 19085,
+    "sha256": "69615047a1c3af4655654082b1903c218d0221e1e197a26e690f00cd5bb8d637"
+  },
+  {
+    "file": "C3ProjectiveHilbertRBBridge.olean",
+    "bytes": 242608,
+    "sha256": "566fa6947b341fd5d15d1c01b5ae3d7e744f448b138c3e2c47b8405aa2c8f4e0"
+  },
+  {
+    "file": "C3TwoVariableGreenGamma.lean",
+    "bytes": 7894,
+    "sha256": "6b1fdda93ef4236a65f01694b9c7085e4c8f033515ed4a2bc567c5fbf27164ca"
+  },
+  {
+    "file": "C3_CAMERA_STENCIL_ESCAPE_E_FECHAMENTO_RIGGED.md",
+    "bytes": 5900,
+    "sha256": "73dd0297a54e7d3caa3d6c9a34dba1d5b6bfe9f840ef6443b5074899ee8f2140",
+    "lines": 242,
+    "headings": [
+      "## Pergunta",
+      "## Resposta",
+      "## 1. O stencil como vetor finito",
+      "## 2. A normalização é forçada pelo Gram",
+      "## 3. Cada coordenada fixa desaparece",
+      "## 4. Contradição com um limite forte",
+      "## 5. Onde o limite vive",
+      "## 6. O que ficou fechado e o que ainda é uma ponte separada",
+      "## 7. Auditoria exata no laboratório",
+      "## 8. Registro Lean"
+    ],
+    "title": "# C3: escape do stencil, sobrevivência do Gram e fechamento correto"
+  },
+  {
+    "file": "C3_CANONICO_FECHAMENTO_ANALITICO_TODAS_AS_ORDENS.md",
+    "bytes": 8315,
+    "sha256": "e9f17b5cb89ad0fb35175fb5ddfa7a957226199704ce54b4fc849078fb8fa0c3",
+    "lines": 350,
+    "headings": [
+      "## Correção central",
+      "## 1. Todos os jets também são canônicos",
+      "## 2. A redução par da característica C3",
+      "## 3. Identidade exata de paridade",
+      "## 4. Um único teorema C3 fecha todas as ordens",
+      "## 5. O que o repositório C3 já fornece para esse teorema",
+      "## 6. O elo que resta, agora reduzido corretamente",
+      "## 7. Conclusão da auditoria"
+    ],
+    "title": "# C3 canônico e fechamento analítico de todas as ordens"
+  },
+  {
+    "file": "C3_CROSSWALK_COMPLETION_PROJETIVA_E_JETS_TODAS_ORDENS.md",
+    "bytes": 6154,
+    "sha256": "ccaf579b027d0e794a7b93f7a22196dacdb103dcec316d8e8dc7f93629f15bcc",
+    "lines": 229,
+    "headings": [
+      "## Objetivo desta nota",
+      "## 1. Um único estado está por trás de todos os cutoffs",
+      "## 2. O limite sobrevive à análise TFVD de todos os atlas",
+      "## 3. A completude cabeça–cauda já é exata em cada cutoff",
+      "## 4. A relação que permanece a mesma",
+      "## 5. O que não foi identificado à força",
+      "## 6. O próximo passo preciso",
+      "## 7. Estatuto da verificação"
+    ],
+    "title": "# C3 crosswalk: completude projetiva e jets de todas as ordens"
+  },
+  {
+    "file": "C3_GREEN_GAMMA_IDENTIDADE_DUAS_VARIAVEIS.md",
+    "bytes": 15329,
+    "sha256": "e8c8e62ad78535f7c881630ae55e67fff92534947256b52d968c7ce82970cbf1",
+    "lines": 606,
+    "headings": [
+      "## Resultado da investigação",
+      "## 1. As quatro pontes já verificadas",
+      "## 2. Polarização holomorfa da porta C3",
+      "## 3. Por que a normalização radial anterior não serve para esta etapa",
+      "## 4. A identidade escalar sem divisão prematura",
+      "## 5. Derivação exata da identidade desejada a partir de uma única cola",
+      "## 6. O que as peças atuais já fornecem para essa cola",
+      "## 7. A única seta ainda não provada",
+      "## 8. Por que essa seta não pode ser apagada por álgebra",
+      "## 9. Auditoria numérica dos sinais",
+      "## 10. Conclusão",
+      "## 11. Rastreabilidade da auditoria",
+      "## 12. Próximo passo executado: formalização Lean",
+      "## 13. Correção importante após auditar o lado operatorial",
+      "## 14. A cola ficou menor e recebeu um tipo concreto",
+      "## 15. Guarda de não circularidade"
+    ],
+    "title": "# Porta C3 polarizada e identidade Green--gamma em duas variáveis"
+  },
+  {
+    "file": "C3_HILBERT_RB_CROSSWALK_E_OBSTRUCAO_UNIFORME.md",
+    "bytes": 10186,
+    "sha256": "7d891335c58cb9463e1a76680f49571b2f6d2377edc4e59d739916a246b490c8",
+    "lines": 363,
+    "headings": [
+      "## Resultado",
+      "## 1. Carrier Hilbert canônico da imagem projetiva",
+      "## 2. Todas as câmeras finitas saem do mesmo Hilbert",
+      "## 3. Crosswalk exato com (R/B)",
+      "## 4. Por que o readout cru não possui majorante uniforme",
+      "## 5. A normalização que fecha",
+      "## 6. Estatuto da constante 128",
+      "## 7. A seta para o Hilbert Gram/Naimark: decisão exata",
+      "## 8. Verificação"
+    ],
+    "title": "# C3: carrier Hilbert, crosswalk R/B e a normalização uniforme correta"
+  },
+  {
+    "file": "C3_READOUT_CANONICO_E_COMPLETION_DO_CUTOFF.md",
+    "bytes": 10009,
+    "sha256": "c1cee2c7d3042d3be75c94a44c979a222aa1801599948e71f80a35bd28f504e9",
+    "lines": 410,
+    "headings": [
+      "## Natureza desta nota",
+      "## 1. A relação que permaneceu invariável",
+      "## 2. A identidade exata do Gram em todo cutoff",
+      "## 3. A passagem ao limite está fechada",
+      "## 4. Certificado exato do laboratório para seis câmeras",
+      "## 5. O mesmo readout na completion infinita",
+      "## 6. O que a atualização C3 acrescentou",
+      "## 7. O que está fechado e o que ainda não está",
+      "## 8. Consequência para o operador de alturas",
+      "## 9. Comandos de verificação"
+    ],
+    "title": "# Readout canônico C3 e completion exata do cutoff"
+  },
+  {
+    "file": "CARRY_GEOMETRY_TFVD_GREEN_WEYL_CAUSAL_CHRONOLOGY.md",
+    "bytes": 20462,
+    "sha256": "843ac41edb91feb42e0093bc73c664280eb1d6932701ad482444ccd5455a5c4a",
+    "lines": 655,
+    "headings": [
+      "## Correção de leitura",
+      "## Elo recuperado: Green vira frame, e o frame vira porta espectral",
+      "## Entrada forçada do gerador logarítmico",
+      "## Weyl como complemento de Schur da mesma porta",
+      "## O que os arquivos locais permitem verificar",
+      "## Consequência para o operador de alturas",
+      "## Releitura dos jets encontrados",
+      "## Teorema de identificação que deve ser extraído",
+      "## Estado honesto",
+      "## Atualização de 17 de agosto de 2026: o elo frame--secular foi encontrado"
+    ],
+    "title": "# Cronologia causal: geometria do carry, TFVD, Green e Weyl"
+  },
+  {
+    "file": "CanonicalNaimarkStateReadout.lean",
+    "bytes": 5518,
+    "sha256": "e890523b07c6116bcf197d29c23390cf2a1b7951517567840ccc44ba1e1c8eb2"
+  },
+  {
+    "file": "ExactCutoffCameraGram.lean",
+    "bytes": 13095,
+    "sha256": "98c052a51444c5085df81cccbffdb26160616abae3e2606234f91fa67534a1be"
+  },
+  {
+    "file": "ExactCutoffCameraGram.olean",
+    "bytes": 346488,
+    "sha256": "711a61e26bbda0b35fe44fddfcf3396662227ad0f19898f06fcf333a99389730"
+  },
+  {
+    "file": "FiniteCanonicalCameraReadout.lean",
+    "bytes": 3828,
+    "sha256": "fa2d5936214360690101591196a2c13997f9cf56a2cd47becc599bff48b81d51"
+  },
+  {
+    "file": "FiniteCanonicalCameraReadout.olean",
+    "bytes": 74376,
+    "sha256": "d601b8379f1f1f51c7331815621cddd5d4805f6c79d0ba7e93b9184c41fbca7d"
+  },
+  {
+    "file": "FiniteEnrichedCameraState.lean",
+    "bytes": 7513,
+    "sha256": "d83a2b833f56b33c4398a4ede3c0c8f5e7520e76ba211eba0bc4a55ab85983bf"
+  },
+  {
+    "file": "FiniteEnrichedCameraState.olean",
+    "bytes": 189592,
+    "sha256": "05b1411d7f772f673d85c4363482378999405bfec0220cca5f3d23034e145ef0"
+  },
+  {
+    "file": "FiniteStencilCutoffRefinement.lean",
+    "bytes": 2137,
+    "sha256": "445c2af926bec69841fc3c730c56b0efe4ad237c1b6d5f5eb0ba77ebd6889cd4"
+  },
+  {
+    "file": "GREEN_FRAME_REFLECTION_HEIGHT_WEYL_BRIDGE.md",
+    "bytes": 17295,
+    "sha256": "4aa33e17f2ace4a7601ff900b257daebdbb3afeb23d7cc7b04a5d8867c5269b8",
+    "lines": 598,
+    "headings": [
+      "## 1. Conclusão em uma linha",
+      "## 2. O que a formalização Lean já construiu",
+      "## 3. Fatorização fiel do operador finito",
+      "## 4. A nova escalarização multibase em Hilbert--Schmidt",
+      "## 5. Por que a construção sobrevive ao frame de Green",
+      "## 6. Do Gram refletido à função canônica $m_\\Xi$",
+      "## 7. O último gate: derivar Pick diretamente de Green",
+      "## 8. Auditorias numéricas",
+      "## 9. Livro-caixa: novo, já existente e aberto",
+      "## 10. Próxima sequência de teoremas recomendada",
+      "## 11. Reprodução"
+    ],
+    "title": "# Ponte Green--frame--reflexão--Weyl para as alturas"
+  },
+  {
+    "file": "IDENTIDADE_PROJETIVA_EXATA_LIMITE_OPERADOR_ALTURAS.md",
+    "bytes": 12409,
+    "sha256": "fd21d38f00fcec1220213381ed769b8ece618a7ea99b8b6263bc0e221a510b8b",
+    "lines": 520,
+    "headings": [
+      "## Resultado principal",
+      "## 1. Torre Hankel",
+      "## 2. Por que o limite não deve ser tomado diretamente em $T_N$",
+      "## 3. Jets e aproximação racional exata",
+      "## 4. Identidade exata entre níveis consecutivos",
+      "## 5. Passagem ao infinito que essa identidade reduz",
+      "## 6. A identidade Wronskiana exata sugerida pelo TFVD",
+      "## 7. O único elo estrutural ainda decisivo",
+      "## 8. Auditoria computacional",
+      "## 9. Checkpoints formais conferidos"
+    ],
+    "title": "# Identidade projetiva exata e rota ao operador infinito"
+  },
+  {
+    "file": "MEMORIA_DERIVACAO_OPERADOR_AUTOADJUNTO_GENUINE.md",
+    "bytes": 16934,
+    "sha256": "34795f511e809c099f343151f14a7d80a020c01152ea1a058af66807bffce5b3",
+    "lines": 758,
+    "headings": [
+      "## 1. O resultado em uma linha",
+      "## 2. Como a pergunta surgiu",
+      "## 3. A genealogia geométrica que já existia",
+      "## 4. Quando Green virou frame",
+      "## 5. O operador logarítmico intermediário e a lição que ele deu",
+      "## 6. A identidade exata que retirou o cutoff da definição do objeto",
+      "## 7. Da característica fechada aos momentos",
+      "## 8. Os dois Hankels são as duas formas de Green em jets",
+      "## 9. O fechamento de bordo não foi escolhido",
+      "## 10. Branqueamento: da autoadjunção métrica à Jacobi real simétrica",
+      "## 11. Recuperação dos jets dos estados de defeito",
+      "## 12. Por que apareceu a potência (-1/2)",
+      "## 13. A reflexão produziu o operador assinado",
+      "## 14. Por que esta derivação não foi força bruta",
+      "## 15. Resultado concreto registrado no laboratório",
+      "## 16. O que realmente mudou na nossa leitura",
+      "## 17. Resumo final para recordar",
+      "## 18. Artefatos que preservam esta memória"
+    ],
+    "title": "# Memória da derivação do operador autoadjunto de alturas do Genuine"
+  },
+  {
+    "file": "NATIVE_CARRY_CANONICAL_HEIGHT_WEYL_GATE_LOG.md",
+    "bytes": 12936,
+    "sha256": "6409b56267ca5c1e17c3dcc098d33292c7a5aa710aecf627588543151c1ae30f",
+    "lines": 449,
+    "headings": [
+      "## 1. Resultado desta rodada",
+      "## 2. Redução multibase exata, sem escolher alturas",
+      "## 3. Por que $\\log n$ e $t$ não podem ser identificados",
+      "## 4. A característica inteira e a candidata de Weyl",
+      "## 5. O gate de Green/Pick",
+      "## 6. Operador condicional produzido pela teoria de Weyl",
+      "## 7. Entrada do PR 47: ledger primo dentro da mesma Weyl",
+      "## 8. Auditoria multiprecisão",
+      "## 9. Livro-caixa de canonicidade",
+      "## 10. O que é novo e o que não foi provado",
+      "## 11. Reprodução"
+    ],
+    "title": "# Gate de Weyl para um operador canônico de alturas"
+  },
+  {
+    "file": "NATIVE_CARRY_CUTOFF_MANGOLDT_EXPLICIT_FORMULA_LOG.md",
+    "bytes": 26788,
+    "sha256": "0cce36ccdabef0b9b8df6cbfe8677ec0df4abbc262fd0bfd86e685b5b8bad68d",
+    "lines": 869,
+    "headings": [
+      "## Estado do caderno",
+      "## Fontes cruzadas",
+      "## 1. Convenção complexa do operador real",
+      "## 2. Oráculos finitos exatos",
+      "## 3. Continuação e identidade exata do cutoff",
+      "## 4. Camada assintótica, separada da identidade",
+      "## 5. Protocolo da campanha",
+      "## 6. Rodada 1 — primeiro zero",
+      "## 7. Rodadas 2–5 — zeros superiores",
+      "## 8. Primeira correção universal e escala de ponto médio",
+      "## 9. Ponte exata de profundidade prima e Mangoldt",
+      "## 10. Canal derivativo exato",
+      "## 11. Relação com a fórmula explícita",
+      "## 12. Consequência para localização de zeros",
+      "## 13. Gates de regressão",
+      "## 14. Próximas rodadas",
+      "## 15. Port multiprecisão fiel ao operador",
+      "## 16. Valor, primeira e segunda derivadas da cauda midpoint",
+      "## 17. Ruptura do limite float64 sem Newton",
+      "## 18. Convergência independente das seis câmeras",
+      "## Registro cronológico"
+    ],
+    "title": "# Native carry: cutoff exato, ledger de Mangoldt e fórmula explícita"
+  },
+  {
+    "file": "NATIVE_CARRY_HEIGHT_MOMENT_JACOBI_OPERATOR_LOG.md",
+    "bytes": 21422,
+    "sha256": "6d5fe573f942d69c3550dbcd02f6413aea36f580f5616c8a2eca185eea707c6a",
+    "lines": 788,
+    "headings": [
+      "## Resultado principal",
+      "## 1. Entrada multibase",
+      "## 2. Da Weyl de altura a um problema de momentos",
+      "## 3. O operador canônico",
+      "## 4. Truncamento finito por Hankel e Jacobi",
+      "## 5. Como os momentos foram obtidos sem zeros",
+      "## 6. Gate de positividade na ordem 24",
+      "## 7. Convergência espectral observada",
+      "## 8. Onde entram Green, TFVD e Weyl",
+      "## 9. Firewall lógico",
+      "## 10. Posicionamento bibliográfico e novidade local",
+      "## 11. Artefatos e reprodução"
+    ],
+    "title": "# Operador de alturas por momentos e matriz de Jacobi"
+  },
+  {
+    "file": "NATIVE_CARRY_HEIGHT_SPECTRAL_PENCIL_LOG.md",
+    "bytes": 6798,
+    "sha256": "33939b28f582b63fd409ce771214925df2f130c27d547b241c06c65a8660384b",
+    "lines": 232,
+    "headings": [
+      "## 1. Pergunta",
+      "## 2. Primeiro gate: pencil autoadjunto não linear",
+      "## 3. A cauda como perturbação do pencil",
+      "## 4. Validação multiprecisão",
+      "## 5. O que foi fechado e o que permanece aberto",
+      "## 6. Reprodução"
+    ],
+    "title": "# Pencil espectral autoadjunto para as alturas do native carry"
+  },
+  {
+    "file": "NATIVE_CARRY_HILBERT_POLYA_OPERATOR.md",
+    "bytes": 8914,
+    "sha256": "d3bbdb5363ddaf105d35129bbc8f23972b5279aef5c4d687a5953169d55c83f7",
+    "lines": 413,
+    "headings": [
+      "## 0. Status of the PR14 input",
+      "## 1. Exact native characteristic",
+      "## 2. The PR14-to-positivity bridge",
+      "## 3. The canonical infinite Jacobi operator",
+      "## 4. Positive Hilbert–Pólya height operator",
+      "## 5. Signed Hilbert–Pólya operator",
+      "## 6. Multiplicity-preserving realization",
+      "## 7. Finite operator already executable now",
+      "## 8. Exact logical dependency"
+    ],
+    "title": "# Native-Carry Hilbert–Pólya Operator"
+  },
+  {
+    "file": "TFVD_DEFECT_JETS_GREEN_POSITIVE_CARRY_OPERATOR_AUDIT.md",
+    "bytes": 13753,
+    "sha256": "19bf87506f3ba5e46fdcd84c5453da2114af9dbbf0590ba3786ef098d122d73a",
+    "lines": 521,
+    "headings": [
+      "## Adendo de cronologia causal",
+      "## Conclusão curta",
+      "## 1. Dados de momentos",
+      "## 2. Por que as colunas de $X_N$ são jets",
+      "## 3. As duas identidades de Weyl/Green",
+      "## 4. Derivação direta de $Y_N\\geq0$",
+      "## 5. O que já está em Lean",
+      "## 6. Lema de crosswalk que falta",
+      "## 7. Auditoria numérica independente de zeros",
+      "## 8. Links primários"
+    ],
+    "title": "# Jets de defeito TFVD, mapa $X_N$ e positividade de $Y_{\\mathrm{carry}}$"
+  },
+  {
+    "file": "audit.json",
+    "bytes": 22568,
+    "sha256": "eaf607b08f18426f40d161ab4521e381326e9a4856aff063f526caa7256679f7"
+  },
+  {
+    "file": "jacobi.zip",
+    "bytes": 180796,
+    "sha256": "29111e72a3cb6faddb05d38ac2d222210ff5323eb1ea7978ad5c65ebe39c2b25"
+  },
+  {
+    "file": "native_autoadjunto.py",
+    "bytes": 9042,
+    "sha256": "38100a3c6731cb79d85cd8903c02b2f61c667026303683ae5f99073c91e4d8d3"
+  },
+  {
+    "file": "native_carry_c3_two_variable_green_identity_audit.json",
+    "bytes": 5873,
+    "sha256": "33996d5f83f1269c730eee96150dece9be893d2a25be1a86b8d079e393647f94"
+  },
+  {
+    "file": "native_carry_c3_two_variable_green_identity_audit.py",
+    "bytes": 6736,
+    "sha256": "43ea9fe39a423b992ed627f4d63ae3b60408d99c1b4693eb3ec3d4783a16df47"
+  },
+  {
+    "file": "native_carry_camera_stencil_escape_audit.py",
+    "bytes": 4237,
+    "sha256": "9f711e69165cb34a63b2dd798336b788255e91858b747cb9c622fe7f65642c8d"
+  },
+  {
+    "file": "native_carry_canonical_height_weyl_gate_audit.json",
+    "bytes": 12861,
+    "sha256": "4e445e7847856edc1958b976d02b77d5f1d7392ad7747a51bed143d6ffb12ff4"
+  },
+  {
+    "file": "native_carry_canonical_height_weyl_gate_lab.py",
+    "bytes": 20120,
+    "sha256": "3a862d4c51fff37ca5a9a260b1bb4f83759e66a11998844972cddcbb9f1d81ca"
+  },
+  {
+    "file": "native_carry_enriched_camera_limit_audit.py",
+    "bytes": 9820,
+    "sha256": "84b7754f6e1e21890f3ff306a679f428d41c93db011d07d95eddb6e2f4188310"
+  },
+  {
+    "file": "native_carry_exact_cutoff_gram_audit.py",
+    "bytes": 10173,
+    "sha256": "edcc37ea831833d3da8e64b24de99f7282491784baac92a0e0b580db28e49be3"
+  },
+  {
+    "file": "native_carry_green_frame_reflection_secular_lift_lab.py",
+    "bytes": 24300,
+    "sha256": "1ed83540b4c46d00fb6c42933cf5745ee9a3dc32887af173d4731e5ea8b5e14b"
+  },
+  {
+    "file": "native_carry_height_defect_jet_green_order12_audit.json",
+    "bytes": 10934,
+    "sha256": "642989619bae2d63e058f04c7dbae61b8c86cab927695bbedd704d71430f3f24"
+  },
+  {
+    "file": "native_carry_height_moment_jacobi_operator_audit.json",
+    "bytes": 37107,
+    "sha256": "9d737a1fd11a4d8dd89cfb11e3f73727f668ad351e75626a90cfced06a34dc03"
+  },
+  {
+    "file": "native_carry_height_moment_jacobi_operator_lab.py",
+    "bytes": 24219,
+    "sha256": "e82e9ff9efe98991f38f5dd50ace0a12a124253f8d6ec61355c1654541eaf929"
+  },
+  {
+    "file": "native_carry_height_moment_jacobi_operator_order24_audit.json",
+    "bytes": 19976,
+    "sha256": "c6c6bc83f5f2cee0287b2dce07f9d9f4da99055b5d9be5a552ebfd73fc1d0401"
+  },
+  {
+    "file": "native_carry_height_moment_jacobi_operator_order28_audit.json",
+    "bytes": 35218,
+    "sha256": "03b9961eff736a999897d9b9dd264e50b417b4f8a0e26b9a7a1124858a2dbfeb"
+  },
+  {
+    "file": "native_carry_height_spectral_factor_selfadjoint_limit_lab.py",
+    "bytes": 10567,
+    "sha256": "cfe793f984fc5b85623baaf391e6c86fd41261a2582fc5dcd13143930aab56c3"
+  },
+  {
+    "file": "native_carry_height_spectral_pencil_lab.py",
+    "bytes": 12814,
+    "sha256": "c3db50846649f4a2624e4be00072a41961af601a69e290b8b08121c4fd68117e"
+  },
+  {
+    "file": "native_carry_hilbert_polya_operator_lab.py",
+    "bytes": 12869,
+    "sha256": "a538009d0fe5cea75224b0b6953916920d15e745dfe0f87004f40b32ac65ea85"
+  },
+  {
+    "file": "native_carry_hilbert_polya_operator_order8_audit.json",
+    "bytes": 24652,
+    "sha256": "265b66e1e2dc6b573a4e41e033103e632cae2525ce2bc4b15bf284fbfe74cb27"
+  },
+  {
+    "file": "native_carry_jacobi_camera_cutoff_crosscheck_audit.json",
+    "bytes": 12498,
+    "sha256": "dcbd7dc9431d95535d521083743200f5e1f2c9f4c582ccb127796ff18eb43b91"
+  },
+  {
+    "file": "native_carry_jacobi_projective_limit_audit.json",
+    "bytes": 19298,
+    "sha256": "e1240cb38c2310d24cf83c709cf972f4e02fe813aea642a4ec99bc77fea0a85b"
+  },
+  {
+    "file": "native_carry_jacobi_projective_limit_lab.py",
+    "bytes": 15987,
+    "sha256": "4789f3edea746c07392c281be0ee1a860404585d1241a38b68135a25ac6f107d"
+  },
+  {
+    "file": "native_carry_primitive_real_operator_all_bases_fixed.py",
+    "bytes": 66780,
+    "sha256": "c68d4bb274f36eb4dc5572afe64394787876f64bc8f2e50573654f2ab712ecee"
+  },
+  {
+    "file": "native_carry_primitive_real_operator_all_bases_mpmath.py",
+    "bytes": 36096,
+    "sha256": "106016cebfddf008d63061ee0c8df947ed9f333e1d74dcb1cb6b0b358a83000c"
+  },
+  {
+    "file": "native_carry_r2_height_operator.py",
+    "bytes": 8302,
+    "sha256": "e150941f5fd4a37b3e56c7f047c600ff2262af1961eb4a91033a0b5b2c47b51c"
+  },
+  {
+    "file": "native_carry_registro_pesquisa_sondas_defeito_pt.md",
+    "bytes": 44482,
+    "sha256": "c10240222be41d909db5e6cf3fd45078eeaef5a5d3fc82998598d104b4c436ed",
+    "lines": 1262,
+    "headings": [
+      "## Sumário",
+      "## 1. Readout de Bordo como Observável Fixo",
+      "## 2. Defect States como Sondas do Readout",
+      "## 3. Observabilidade Não-Colapsante dos Defect States (Gate — Fechado)",
+      "## 4. Limite Único da Covariância de Métrica de Retorno (Gate — Fechado)",
+      "## 5. Par Espectral de Câmeras: $G_C$, $H_C$, $L_C$",
+      "## 6. Segundo Momento Centrado e o POVM de Câmeras",
+      "## 7. Limite Funcional: Hierarquia Polinomial → POVM Analítico",
+      "## 8. Transformada de Cauchy/Stieltjes e a Família de Weyl Emergente das Câmeras",
+      "## 9. Redução do Modo Misto às Três Escalas (3, 4, 6)",
+      "## 10. Realização Jacobi do Modo Misto",
+      "## 11. Sistema Coupled-$P_V$ de Dois Jumps",
+      "## 12. Ponte Pushforward $C_2$ → Tau/Sigma",
+      "## 13. Derivação Sigma/Tau e Toda Radial",
+      "## 14. Anulador Mínimo da Tau (Gate — Fechado)",
+      "## 15. Compatibilidade Toda–Holonômica Triangular",
+      "## 16. Álgebra Holonômica de Criação de Três Cores",
+      "## 17. Dressing por Resultantes em Pares / Yang–Baxter Abeliano",
+      "## 18. Registro de Status",
+      "## 19. Próximos Passos em Aberto",
+      "## 20. Ramo de Alturas: Weyl Completada e Operador de Jacobi Fixo"
+    ],
+    "title": "# Sondas de Defeito Native-Carry, POVM de Cauchy–Stieltjes e Estrutura Tau Holonômica"
+  },
+  {
+    "file": "native_carry_signed_height_operator_standalone.py",
+    "bytes": 39077,
+    "sha256": "e6e8a664aa83a81861ff44eb1fc7d11070c514449470a879b317504fc8625ea4"
+  }
+]

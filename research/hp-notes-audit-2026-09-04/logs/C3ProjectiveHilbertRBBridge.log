@@ -1,0 +1,27 @@
+'CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveHilbertRecovery_realization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CPFormal.Analytic.Cp.nativeGpreTfvdProjectivePulledBackInner_realization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CPFormal.Analytic.Cp.nativeGpreTfvdFiniteHilbertPort_restrict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CPFormal.Analytic.Cp.not_exists_uniform_carryWeightedUndressedEval_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CPFormal.Analytic.Cp.carryWeightedRedressedAllDepthPort_coordinate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.finiteCanonicalEnrichedCamera_total_restrict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.nativeGpreProjectiveFiniteRealState_rb_reconstruct' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.nativeGpreProjectiveFiniteRealState_restrict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.nativeGpreProjectiveFiniteRealState_rb_total_cutoff_intertwines' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
