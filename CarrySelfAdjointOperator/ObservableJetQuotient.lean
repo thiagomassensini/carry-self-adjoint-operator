@@ -50,7 +50,7 @@ theorem invariant_submodule_le_invisible
   intro x hx n
   induction n generalizing x with
   | zero => exact hzero hx
-  | succ n ih => exact ih (L x) (hstable x hx)
+  | succ n ih => exact ih (hstable x hx)
 
 /-- A static quotient preserves the evolution precisely when its kernel is stable. -/
 theorem invisible_eq_ker_iff (L : X →ₗ[K] X) (Q : X →ₗ[K] Y) :
