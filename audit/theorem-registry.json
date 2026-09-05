@@ -256,6 +256,16 @@
     {"qualified": "CarrySelfAdjointOperator.br2C3CausalResponse_trace_zero"},
     {"qualified": "CarrySelfAdjointOperator.br2C3CausalTfvdMetric_inner_eq_source"},
     {"qualified": "CarrySelfAdjointOperator.br2C3CausalTfvdMetric_firstShiftDefect_eq_neg_six"},
-    {"qualified": "CarrySelfAdjointOperator.br2C3CausalProjectiveReturn_firstShiftDefect_neg"}
+    {"qualified": "CarrySelfAdjointOperator.br2C3CausalProjectiveReturn_firstShiftDefect_neg"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.degree_mul_defect_entry"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_eq_quadratic"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_re_eq_norm_balance"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_zero"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.hasDerivAt_storage"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.integral_flux_eq_storage"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.opposite_endpoint_flux"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_one_eq_native_quadratic"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.native_quotient_two_samples_ne_eventually"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.two_point_storage_nonnegative_but_endpoint_flux_negative"}
   ]
 }
