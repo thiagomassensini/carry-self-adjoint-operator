@@ -32,6 +32,14 @@
     {"qualified": "CarrySelfAdjointOperator.BR2BracketIncidenceJetTransport.oddPrefix_linearIndependent"},
     {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.toRealMomentKernel"},
     {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.hankelPair_posDef_of_incidenceTransport"},
-    {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.exists_canonicalFiniteHeightOperator_isSymm_of_incidenceTransport"}
+    {"qualified": "CarrySelfAdjointOperator.BR2CenterLegGreenMomentCertificate.exists_canonicalFiniteHeightOperator_isSymm_of_incidenceTransport"},
+    {"qualified": "CarrySelfAdjointOperator.carryWeightedVerticalCenteredBracket_norm_apply_le"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalBR2CarryAmplitudeRatio_three_bracket_bound"},
+    {"qualified": "CarrySelfAdjointOperator.br2C3CenterPivot_norm_ge_two_fifths"},
+    {"qualified": "CarrySelfAdjointOperator.br2C3SourceSolution_norm_ge_two_fifths"},
+    {"qualified": "CarrySelfAdjointOperator.nativeMassCalibratedState_br2C3CenterSourceDefect_ne_zero"},
+    {"qualified": "CarrySelfAdjointOperator.br2C3SourceSolution_nativeMassDefect_gt"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalBR2C3CausalResponseWithBoundary_nativeMassDefect_gt"},
+    {"qualified": "CarrySelfAdjointOperator.not_nonempty_canonicalBR2C3BoundaryResponse_momentCertificate"}
   ]
 }

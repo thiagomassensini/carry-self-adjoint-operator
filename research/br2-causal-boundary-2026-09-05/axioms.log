@@ -1,0 +1,8 @@
+'CarrySelfAdjointOperator.carryWeightedVerticalCenteredBracket_norm_apply_le' depends on axioms: [Classical.choice, Quot.sound, propext]
+'CarrySelfAdjointOperator.canonicalBR2CarryAmplitudeRatio_three_bracket_bound' depends on axioms: [Classical.choice, Quot.sound, propext]
+'CarrySelfAdjointOperator.br2C3CenterPivot_norm_ge_two_fifths' depends on axioms: [Classical.choice, Quot.sound, propext]
+'CarrySelfAdjointOperator.br2C3SourceSolution_norm_ge_two_fifths' depends on axioms: [Classical.choice, Quot.sound, propext]
+'CarrySelfAdjointOperator.nativeMassCalibratedState_br2C3CenterSourceDefect_ne_zero' depends on axioms: [Classical.choice, Quot.sound, propext]
+'CarrySelfAdjointOperator.br2C3SourceSolution_nativeMassDefect_gt' depends on axioms: [Classical.choice, Quot.sound, propext]
+'CarrySelfAdjointOperator.canonicalBR2C3CausalResponseWithBoundary_nativeMassDefect_gt' depends on axioms: [Classical.choice, Quot.sound, propext]
+'CarrySelfAdjointOperator.not_nonempty_canonicalBR2C3BoundaryResponse_momentCertificate' depends on axioms: [Classical.choice, Quot.sound, propext]

@@ -1,0 +1,13 @@
+Base: cbbd049a2f9ccffad691dd946c6241e36ae46cd1
+Branch: agent/br2-causal-boundary-calibration
+Focused mathematical module build --wfail: PASS (9139 jobs)
+Focused audit module build --wfail: PASS (9140 jobs)
+scripts/static_audit.sh: PASS (included in full workflow)
+scripts/audit.sh: PASS (15/15 lake build --wfail stages)
+New declarations: 8; all checked by #print axioms
+Trust set: propext, Classical.choice, Quot.sound; no other axioms
+Dependency pins and Lean toolchain: unchanged from base
+Logs: only trailing whitespace normalized for git diff --check
+General native Gram identification / BR2 readouts: still open
+Scope: literal C3 source, canonical carry ratio, current vertical metric, arbitrary boundary seeds
+git diff --cached --check: PASS
