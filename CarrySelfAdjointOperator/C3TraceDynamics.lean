@@ -25,11 +25,11 @@ def recover (g : Fin 3 → K) : Fin 3 → K :=
 
 theorem recover_gradient (x : Fin 3 → K) : recover (gradient x) = x := by
   funext i
-  fin_cases i <;> simp [recover, gradient] <;> ring
+  fin_cases i <;> simp [recover, gradient]
 
 theorem gradient_recover (g : Fin 3 → K) : gradient (recover g) = g := by
   funext i
-  fin_cases i <;> simp [recover, gradient] <;> ring
+  fin_cases i <;> simp [recover, gradient]
 
 def trace (g : Fin 3 → K) : K := g 2 - g 1
 
@@ -107,12 +107,13 @@ theorem three_observations_separate
   have hy := recover_middle_from_observations a b c x
   have hz := recover_last_from_observations a b c x
   rw [h0, h1, h2] at hx hy hz
-  have hx0 : x 0 = 0 := (mul_eq_zero.mp (by simpa using hx.symm)).resolve_left
+  simp only [mul_zero, sub_zero, zero_add] at hx hy hz
+  have hx0 : x 0 = 0 := (mul_eq_zero.mp hx.symm).resolve_left
     (mul_ne_zero (sub_ne_zero.mpr hab) (sub_ne_zero.mpr hac))
-  have hx1 : x 1 = 0 := (mul_eq_zero.mp (by simpa using hy.symm)).resolve_left
+  have hx1 : x 1 = 0 := (mul_eq_zero.mp hy.symm).resolve_left
     (mul_ne_zero (mul_ne_zero (by norm_num) (sub_ne_zero.mpr hab.symm))
       (sub_ne_zero.mpr hbc))
-  have hx2 : x 2 = 0 := (mul_eq_zero.mp (by simpa using hz.symm)).resolve_left
+  have hx2 : x 2 = 0 := (mul_eq_zero.mp hz.symm).resolve_left
     (mul_ne_zero (sub_ne_zero.mpr hac.symm) (sub_ne_zero.mpr hbc.symm))
   funext i
   fin_cases i <;> assumption
