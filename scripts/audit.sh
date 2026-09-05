@@ -14,6 +14,9 @@ lake build --wfail CarrySelfAdjointOperator.ProjectiveValveNativeIncidenceAudit
 # Check the moment obligations, derived carry energy and the two C3 obstructions.
 lake build --wfail CarrySelfAdjointOperator.ProjectiveValveMomentFrontierAudit
 
+# Check the constructed kernels and the exact native metric calibration.
+lake build --wfail CarrySelfAdjointOperator.KernelConstructionAudit
+
 # Check exact camera-to-moment universality before the operator audits.
 lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit
 
