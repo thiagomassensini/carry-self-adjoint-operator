@@ -1,0 +1,228 @@
+CarrySelfAdjointOperator.sixCamera_return_variance_valueTrace (c : Fin 6 → ℝ) :
+  (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+              NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+              (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+          ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec
+            ![9 / 139, 9 / 278, -3 / 139, 0, -9 / 278, 1 / 42]) ⬝ᵥ
+        (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+              NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+              (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+          ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec c) +
+      (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec
+          ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec
+            ![9 / 139, 9 / 278, -3 / 139, 0, -9 / 278, 1 / 42]) ⬝ᵥ
+        (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec
+          ((CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraGram).mulVec c) =
+    c 5 - c 4
+'CarrySelfAdjointOperator.sixCamera_return_variance_valueTrace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCameraReturnVarianceTrace_eq (c : Fin 6 → ℂ) :
+  CarrySelfAdjointOperator.sixCameraReturnVarianceTrace c = c 5 - c 4
+'CarrySelfAdjointOperator.sixCameraReturnVarianceTrace_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.sixCameraReturnVarianceTrace_greenPort (s : ℂ)
+  (state : CarrySelfAdjointOperator.CanonicalCompletedC3HilbertState) :
+  have p := CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.greenPort 3 s state;
+  CarrySelfAdjointOperator.sixCameraReturnVarianceTrace
+      ![p.1.ofLp 0, p.1.ofLp 1, p.1.ofLp 2, p.2.ofLp 0, p.2.ofLp 1, p.2.ofLp 2] =
+    ↑state.1 2 - ↑state.1 1
+'CarrySelfAdjointOperator.sixCameraReturnVarianceTrace_greenPort' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout_eq (M : ℕ) (s : ℂ) (f : ↥CPFormal.Analytic.Cp.CarryVerticalL2) :
+  CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s f = ∑ m ∈ Finset.range M, (↑f (3 * m + 2) - ↑f (3 * m + 1))
+'CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3ReturnVariance_valueHead (M : ℕ) (s : ℂ)
+  (state : CarrySelfAdjointOperator.CanonicalCompletedC3HilbertState) :
+  1 + CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s state.1 =
+    CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout M state
+'CarrySelfAdjointOperator.c3ReturnVariance_valueHead' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3ReturnVariance_logJetHead (M : ℕ) (s : ℂ)
+  (state : CarrySelfAdjointOperator.CanonicalCompletedC3HilbertState) :
+  CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s state.2 =
+    CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout M state
+'CarrySelfAdjointOperator.c3ReturnVariance_logJetHead' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3CanonicalPrefix_returnVarianceCompletedTrace (M : ℕ) {z : ℂ}
+  (hz : CarrySelfAdjointOperator.operatorHeightParameter z ∈ CPFormal.Analytic.Cp.genuineCriticalStrip) :
+  have s := CarrySelfAdjointOperator.operatorHeightParameter z;
+  have state := CarrySelfAdjointOperator.canonicalCompletedC3HilbertPrefixState s (3 * M);
+  (Complex.I *
+        (CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s state.2 +
+          CarrySelfAdjointOperator.canonicalC3LogJetCutoffTail M s),
+      1 + CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s state.1 +
+        CPFormal.Analytic.Cp.realCpBracketCutoffTail 3 M s) =
+    (CarrySelfAdjointOperator.canonicalCompletedC3RawHeightCompanion z,
+      CarrySelfAdjointOperator.canonicalCompletedC3RawHeightValue z)
+'CarrySelfAdjointOperator.c3CanonicalPrefix_returnVarianceCompletedTrace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.c3GreenPort_add_logJet (N : ℕ) (s : ℂ)
+  (state : CarrySelfAdjointOperator.CanonicalCompletedC3HilbertState) (jet : ↥CPFormal.Analytic.Cp.CarryVerticalL2) :
+  CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.greenPort N s (state + (0, jet)) =
+    CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.greenPort N s state
+'CarrySelfAdjointOperator.c3GreenPort_add_logJet' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3ValueHead_add_logJet (M : ℕ)
+  (state : CarrySelfAdjointOperator.CanonicalCompletedC3HilbertState) (jet : ↥CPFormal.Analytic.Cp.CarryVerticalL2) :
+  CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout M (state + (0, jet)) =
+    CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout M state
+'CarrySelfAdjointOperator.c3ValueHead_add_logJet' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3LogJetHead_add_lastLogJet (M : ℕ) (hM : 0 < M)
+  (state : CarrySelfAdjointOperator.CanonicalCompletedC3HilbertState) (a : ℂ) :
+  CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout M (state + (0, lp.single 2 2 a)) =
+    CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout M state + a
+'CarrySelfAdjointOperator.c3LogJetHead_add_lastLogJet' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.c3CompletedTrace_add_lastLogJet (M : ℕ) (hM : 0 < M)
+  (state : CarrySelfAdjointOperator.CanonicalCompletedC3HilbertState) (a valueTail logTail : ℂ) :
+  (Complex.I *
+        (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout M
+            (state + (0, lp.single 2 2 a)) +
+          logTail),
+      CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout M
+          (state + (0, lp.single 2 2 a)) +
+        valueTail) =
+    (Complex.I * (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout M state + logTail),
+        CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout M state + valueTail) +
+      (Complex.I * a, 0)
+'CarrySelfAdjointOperator.c3CompletedTrace_add_lastLogJet' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.not_c3CompletedCompanion_factors_through_processed_source.{u_1} {D : Type u_1}
+  (T : NativeCarrySpectralWeyl.Infinite.RealifiedCameraComplexification → D) (s : ℂ) (M : ℕ) (hM : 0 < M)
+  (logTail : ℂ) :
+  ¬∃ B,
+      ∀ (state : CarrySelfAdjointOperator.CanonicalCompletedC3HilbertState),
+        Complex.I *
+            (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout M state + logTail) =
+          B
+            (T
+              (CarrySelfAdjointOperator.canonicalC3SixCameraSourceMap
+                (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.greenPort 3 s state)))
+'CarrySelfAdjointOperator.not_c3CompletedCompanion_factors_through_processed_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.c3CompletedTrace_lastLogJet_boundaryDifference (M N : ℕ) (hM : 0 < M) (hN : 0 < N)
+  (x y : CarrySelfAdjointOperator.CanonicalCompletedC3HilbertState) (a b vx vy jx jy : ℂ) :
+  Complex.I *
+            (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout M
+                (x + (0, lp.single 2 2 a)) +
+              jx) *
+          (starRingEnd ℂ)
+            (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout N
+                (y + (0, lp.single 2 2 b)) +
+              vy) -
+        (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout M (x + (0, lp.single 2 2 a)) +
+            vx) *
+          (starRingEnd ℂ)
+            (Complex.I *
+              (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout N
+                  (y + (0, lp.single 2 2 b)) +
+                jy)) -
+      (Complex.I * (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout M x + jx) *
+          (starRingEnd ℂ) (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout N y + vy) -
+        (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout M x + vx) *
+          (starRingEnd ℂ)
+            (Complex.I *
+              (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout N y + jy))) =
+    Complex.I * a *
+        (starRingEnd ℂ) (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout N y + vy) +
+      Complex.I * (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.valueHeadReadout M x + vx) *
+        (starRingEnd ℂ) b
+'CarrySelfAdjointOperator.c3CompletedTrace_lastLogJet_boundaryDifference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.hasDerivAt_c3ReturnVariance_valueHead_eq_neg_logJet (M : ℕ) (s : ℂ) :
+  HasDerivAt
+    (fun u =>
+      1 +
+        CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M u
+          (CarrySelfAdjointOperator.canonicalCompletedC3HilbertPrefixState u (3 * M)).1)
+    (-CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s
+        (CarrySelfAdjointOperator.canonicalCompletedC3HilbertPrefixState s (3 * M)).2)
+    s
+'CarrySelfAdjointOperator.hasDerivAt_c3ReturnVariance_valueHead_eq_neg_logJet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.hasDerivAt_c3ReturnVariance_completedValue_eq_neg_logJet (M : ℕ) {s : ℂ}
+  (hs : s ∈ CPFormal.Analytic.Cp.bracketHalfPlane) :
+  HasDerivAt
+    (fun u =>
+      1 +
+          CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M u
+            (CarrySelfAdjointOperator.canonicalCompletedC3HilbertPrefixState u (3 * M)).1 +
+        CPFormal.Analytic.Cp.realCpBracketCutoffTail 3 M u)
+    (-(CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s
+          (CarrySelfAdjointOperator.canonicalCompletedC3HilbertPrefixState s (3 * M)).2 +
+        CarrySelfAdjointOperator.canonicalC3LogJetCutoffTail M s))
+    s
+'CarrySelfAdjointOperator.hasDerivAt_c3ReturnVariance_completedValue_eq_neg_logJet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.c3ReturnVariance_completedReadouts_eq_bracketTfvd (M : ℕ) (s : ℂ) :
+  (1 +
+          CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s
+            (CarrySelfAdjointOperator.canonicalCompletedC3HilbertPrefixState s (3 * M)).1 +
+        CPFormal.Analytic.Cp.realCpBracketCutoffTail 3 M s,
+      CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s
+          (CarrySelfAdjointOperator.canonicalCompletedC3HilbertPrefixState s (3 * M)).2 +
+        CarrySelfAdjointOperator.canonicalC3LogJetCutoffTail M s) =
+    ((CarrySelfAdjointOperator.canonicalC3BracketTfvdCompletionState M s).valueReadout,
+      (CarrySelfAdjointOperator.canonicalC3BracketTfvdCompletionState M s).logJetReadout)
+'CarrySelfAdjointOperator.c3ReturnVariance_completedReadouts_eq_bracketTfvd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.c3LogJetPulse_sameSource_differentCompanion (s : ℂ) :
+  CarrySelfAdjointOperator.canonicalC3SixCameraSourceMap
+        (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.greenPort 3 s (0 + (0, lp.single 2 2 1))) =
+      CarrySelfAdjointOperator.canonicalC3SixCameraSourceMap
+        (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.greenPort 3 s 0) ∧
+    Complex.I *
+          CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout 1
+            (0 + (0, lp.single 2 2 1)) -
+        Complex.I * CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout 1 0 =
+      Complex.I
+'CarrySelfAdjointOperator.c3LogJetPulse_sameSource_differentCompanion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.c3ReturnVariance_dressedTrace_eq_F_negFprime (M : ℕ) {z : ℂ}
+  (hz : CarrySelfAdjointOperator.operatorHeightParameter z ∈ CPFormal.Analytic.Cp.genuineCriticalStrip) :
+  have s := CarrySelfAdjointOperator.operatorHeightParameter z;
+  have state := CarrySelfAdjointOperator.canonicalCompletedC3HilbertPrefixState s (3 * M);
+  have r :=
+    (1 + CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s state.1 +
+        CPFormal.Analytic.Cp.realCpBracketCutoffTail 3 M s,
+      CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout M s state.2 +
+        CarrySelfAdjointOperator.canonicalC3LogJetCutoffTail M s);
+  (CarrySelfAdjointOperator.nativeXiCompletionFactor z * (r.1 / CPFormal.Analytic.Cp.cpChartFactor 3 s),
+      CarrySelfAdjointOperator.nativeXiCompletionBoundaryCompanion z * (r.1 / CPFormal.Analytic.Cp.cpChartFactor 3 s) +
+        CarrySelfAdjointOperator.nativeXiCompletionFactor z *
+          (Complex.I *
+            ((r.2 * CPFormal.Analytic.Cp.cpChartFactor 3 s + r.1 * deriv (CPFormal.Analytic.Cp.cpChartFactor 3) s) /
+              CPFormal.Analytic.Cp.cpChartFactor 3 s ^ 2))) =
+    (CarrySelfAdjointOperator.completedNativeOperatorCharacteristic z,
+      -deriv CarrySelfAdjointOperator.completedNativeOperatorCharacteristic z)
+'CarrySelfAdjointOperator.c3ReturnVariance_dressedTrace_eq_F_negFprime' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.c3LogJetPulse_sameGamma_differentCompanion (s lambda : ℂ) (hlambda : lambda.im ≠ 0) :
+  (NativeCarrySpectralWeyl.Boundary.carryGammaSource lambda hlambda)
+        (CarrySelfAdjointOperator.canonicalC3SixCameraSourceMap
+          (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.greenPort 3 s (0 + (0, lp.single 2 2 1)))) =
+      (NativeCarrySpectralWeyl.Boundary.carryGammaSource lambda hlambda)
+        (CarrySelfAdjointOperator.canonicalC3SixCameraSourceMap
+          (CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.greenPort 3 s 0)) ∧
+    Complex.I *
+          CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout 1
+            (0 + (0, lp.single 2 2 1)) -
+        Complex.I * CarrySelfAdjointOperator.CanonicalC3AllCutoffMixedSourceHilbert.logJetHeadReadout 1 0 =
+      Complex.I
+'CarrySelfAdjointOperator.c3LogJetPulse_sameGamma_differentCompanion' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.canonicalC3Gamma_isometricTransport_ne_native_diagonal.{u_1} {E : Type u_1}
+  [NormedAddCommGroup E] [InnerProductSpace ℂ E] :
+  ∀ᶠ (t : ℝ) in nhds 0,
+    ∀ (hz : (Complex.I * ↑t).im ≠ 0) (U : CarrySelfAdjointOperator.CarryGammaComplexNaimark →ₗᵢ[ℂ] E),
+      inner ℂ (U (CarrySelfAdjointOperator.canonicalCompletedC3NormalizedPolarizedGammaState (Complex.I * ↑t) hz))
+          (U (CarrySelfAdjointOperator.canonicalCompletedC3NormalizedPolarizedGammaState (Complex.I * ↑t) hz)) ≠
+        CarrySelfAdjointOperator.canonicalCompletedNativePolarizedDslopeKernel (Complex.I * ↑t) (Complex.I * ↑t)
+'CarrySelfAdjointOperator.canonicalC3Gamma_isometricTransport_ne_native_diagonal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

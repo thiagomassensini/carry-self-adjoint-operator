@@ -1,3 +1,4 @@
+import CarrySelfAdjointOperator.CovariantCameraTraceTransport
 import CarrySelfAdjointOperator.CenteredCameraCutoffConvergence
 import CarrySelfAdjointOperator.CameraReturnVarianceEnergyBalance
 import CarrySelfAdjointOperator.C3ReturnCompletedTraceChannels
