@@ -1,0 +1,198 @@
+{
+  "base": "ea750d0629f25963c195db27972e415c3c02a01a",
+  "requested_original_base": "225a85d9e8e3e0a3b659c5b6ad821458770b3195",
+  "inputs": [
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3FullWronskianOperatorCarrier.lean",
+      "sha256": "a1381460abce7d769e71deffe9b008d7720924568a256a70d73dc9e28ec5783e",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3EnrichedSymplecticNoLeakBridge.lean",
+      "sha256": "0c0cab0b20abe38f6962450afca20e0d4697cab64f06cfd79aee64cb72900482",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3AllCutoffHilbertState.lean",
+      "sha256": "b626017245b8bc2251189c731a1e17a06dd6c1bc67a561ac11da37c38a5ca2cc",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean",
+      "sha256": "25b32bb2346c00d85d72c13346109c213531396801a87df3b29749e1183e7c55",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean",
+      "sha256": "4dd0c77ec7cee285e73c1ace297c7245df7cdb0679a2d59f40be4f5acd37473a",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CameraReturnVarianceDefect.lean",
+      "sha256": "7ebfb356d3c3e752de6f1712749858290fc1629832e071bf349dca3f7c059ecd",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CanonicalC3SixCameraSource.lean",
+      "sha256": "febcb63cf02b97f9e05d2a1cc04ab38cae6e50109e49a9facea561afe39820ad",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/C3GammaCameraMomentBound.lean",
+      "sha256": "31c6d80e3f288eec13f701a04931424e3b991728132af7c814ba6ab357cd80fa",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "sha256": "64ba4b2401d0149c2cd04a5ffa83906cbe9709172de9bb6987c7ac7b282c00a1",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedGammaTwoParameterGreenIdentity.lean",
+      "sha256": "421822a32d31c828f2c697ae712101e043312e149b7c42aa29b689357d8dcc79",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3TfvdResolventTraceBridge.lean",
+      "sha256": "ce17a745f281af7e6dc587a5403c37c707cf58cfc50cb104e88151b0644b0eb4",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3BoundaryRelationSewingBridge.lean",
+      "sha256": "3be3a21609860739808658c6c32862f96197ab745fb846362f3db2b9755b8eec",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3ValveGreenNaturality.lean",
+      "sha256": "ef9471dce975bbc61df09b6c3ffaed4223661d9d31407cfa8ce02f497f193631",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3GlobalGreenOperatorCarrier.lean",
+      "sha256": "760ae54417b1edad2294796d1eedaabbba503f69f81b739024b9789a20d1a6de",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3FullWronskianPolarization.lean",
+      "sha256": "9f07748f24424a517928f2bcd1f1d2b29cc0e024b4bb3b102912810dda7cb5fa",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3EnrichedChiralReadoutTransformation.lean",
+      "sha256": "3ca2c9c0e13a7ed782b5ca6129d41c320fdabd2919b64c2221b9cfb903694aa5",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedC3SymplecticNaimarkVectorLimit.lean",
+      "sha256": "b0cf8dfbadae7dc64445b42dc1f59761605766444fa1a153839f7b4ae9237943",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CarryTfvdTraceMetricKernel.lean",
+      "sha256": "536d76c96a1faae99afa8ed3fef32a294d2ed7c2d3e62b9b55ea92d772c253af",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "lake-manifest.json",
+      "sha256": "93e2199cd60475eb40a261a0204afb68c729316d69adfe11d5230136d65828e5",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "lakefile.toml",
+      "sha256": "5df9555ff84cedc918025e11d5ef252d0e7b446e15fc899b4a30b7993c7eef9b",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "lean-toolchain",
+      "sha256": "2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "scripts/audit.sh",
+      "sha256": "e127b076c59a342246785ede6b11c9f7e65ece43cca18fe9bb9fcaff594b3a97",
+      "unchanged_from_base": true
+    },
+    {
+      "path": "scripts/static_audit.sh",
+      "sha256": "6a4eee04deb80749f18958380fa34a3724b04161913b5fd108f9be09c6cbee59",
+      "unchanged_from_base": true
+    }
+  ],
+  "dependency_pins": [
+    {
+      "name": "NativeCarryC3Crosswalk",
+      "commit": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+      "tracked_clean": true
+    },
+    {
+      "name": "CarryGeometry",
+      "commit": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+      "tracked_clean": true
+    },
+    {
+      "name": "NativeCarrySpectralWeyl",
+      "commit": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+      "tracked_clean": true
+    },
+    {
+      "name": "CPFormal",
+      "commit": "65d50f6db1208708e109982ba97e1d51d3039956",
+      "tracked_clean": true
+    },
+    {
+      "name": "mathlib",
+      "commit": "81a5d257c8e410db227a6665ed08f64fea08e997",
+      "tracked_clean": true
+    },
+    {
+      "name": "FiniteNativeCarryOperator",
+      "commit": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+      "tracked_clean": true
+    },
+    {
+      "name": "GreenFrame",
+      "commit": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+      "tracked_clean": true
+    },
+    {
+      "name": "plausible",
+      "commit": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+      "tracked_clean": true
+    },
+    {
+      "name": "LeanSearchClient",
+      "commit": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+      "tracked_clean": true
+    },
+    {
+      "name": "importGraph",
+      "commit": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+      "tracked_clean": true
+    },
+    {
+      "name": "proofwidgets",
+      "commit": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+      "tracked_clean": true
+    },
+    {
+      "name": "aesop",
+      "commit": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+      "tracked_clean": true
+    },
+    {
+      "name": "Qq",
+      "commit": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+      "tracked_clean": true
+    },
+    {
+      "name": "batteries",
+      "commit": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+      "tracked_clean": true
+    },
+    {
+      "name": "Cli",
+      "commit": "88679d088c9720c27ebdf2ba4dafe17341747f94",
+      "tracked_clean": true
+    }
+  ]
+}
