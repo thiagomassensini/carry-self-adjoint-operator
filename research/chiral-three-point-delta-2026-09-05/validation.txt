@@ -1,0 +1,26 @@
+Validation UTC: 2026-09-05T13:42:05.000832+00:00
+Base: 97da9f43a37b56627e0e46b26e76f00bf6e13689
+Branch: agent/chiral-three-point-delta
+Focused lake build --wfail: PASS (9185 jobs)
+bash scripts/audit.sh: PASS, exit 0
+Static audit: PASS
+Lake build stages: 15/15 PASS
+New public theorem #print axioms entries: 26/26 checked
+All footprints are subsets of: propext, Classical.choice, Quot.sound
+Principal: CarrySelfAdjointOperator.canonicalCompletedNativeRadialThreePointDeterminant_div_sixthStep_tendsto
+Principal footprint: ['Classical.choice', 'Quot.sound', 'propext']
+No sorryAx in focused build, axiom audit or full audit
+Dependency pins, mathlib revision, lake configuration and Lean toolchain: unchanged from base
+lake-manifest.json sha256=93e2199cd60475eb40a261a0204afb68c729316d69adfe11d5230136d65828e5
+lean-toolchain sha256=2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e
+lakefile.toml sha256=5df9555ff84cedc918025e11d5ef252d0e7b446e15fc899b4a30b7993c7eef9b
+git diff --check: PASS
+Saved build logs: trailing whitespace removed only
+Diagnostic residual probe: expected exit 1, stored outside source/audit
+Arb external interval checks: 128 bits N=3 B=16 PASS; 192 bits N=4 B=24 PASS
+python-flint=0.9.0; isolated venv /tmp/carry-three-point-interval-venv
+mpmath=1.3.0 sympy=1.14.0
+mpmath diagnostic: dps45 N=8 B=32; dps65 N=12 B=48; exact SymPy polynomial diagnostic PASS
+Lean proof of native Delta2 > 0: OPEN (five sufficient integral estimates; exact scalar goal recorded)
+All-order Gamma/native Gram identification: OPEN
+Main merge: NOT performed; CI monitoring: NOT requested

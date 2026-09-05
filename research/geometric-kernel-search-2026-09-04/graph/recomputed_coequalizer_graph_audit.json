@@ -1,0 +1,198 @@
+{
+  "checkpoints": [
+    "PASS_TOWER_NUMBER_DESCENDS_THROUGH_JH_COEQUALIZER",
+    "PASS_CLOSED_POST_T0_TOWER_BOUNDARY_RELATION"
+  ],
+  "closed_relation": {
+    "closed": true,
+    "definition": "R_Q=Graph(Nbar) subset H_Q_0 direct_sum H_Q_minus1",
+    "multivalued_part": "{0}",
+    "representative_minimized": false,
+    "section_chosen": false,
+    "single_valued": true
+  },
+  "coequalizer": "Q=Q_JH tensor I_tower; Q_JH sums d_J contributions only",
+  "commutation": "QN=Nbar Q",
+  "exact_checks": [
+    {
+      "NbarQ": [
+        {
+          "coefficient": {
+            "denominator": 7,
+            "numerator": 15,
+            "text": "15/7"
+          },
+          "j": 3
+        }
+      ],
+      "QN": [
+        {
+          "coefficient": {
+            "denominator": 7,
+            "numerator": 15,
+            "text": "15/7"
+          },
+          "j": 3
+        }
+      ],
+      "equal": true,
+      "input": [
+        {
+          "coefficient": {
+            "denominator": 3,
+            "numerator": 2,
+            "text": "2/3"
+          },
+          "d_J": 1,
+          "j": 1
+        },
+        {
+          "coefficient": {
+            "denominator": 7,
+            "numerator": 5,
+            "text": "5/7"
+          },
+          "d_J": 1,
+          "j": 3
+        },
+        {
+          "coefficient": {
+            "denominator": 3,
+            "numerator": -2,
+            "text": "-2/3"
+          },
+          "d_J": 2,
+          "j": 1
+        }
+      ]
+    },
+    {
+      "NbarQ": [
+        {
+          "coefficient": {
+            "denominator": 55,
+            "numerator": -18,
+            "text": "-18/55"
+          },
+          "j": 2
+        },
+        {
+          "coefficient": {
+            "denominator": 13,
+            "numerator": 12,
+            "text": "12/13"
+          },
+          "j": 4
+        }
+      ],
+      "QN": [
+        {
+          "coefficient": {
+            "denominator": 55,
+            "numerator": -18,
+            "text": "-18/55"
+          },
+          "j": 2
+        },
+        {
+          "coefficient": {
+            "denominator": 13,
+            "numerator": 12,
+            "text": "12/13"
+          },
+          "j": 4
+        }
+      ],
+      "equal": true,
+      "input": [
+        {
+          "coefficient": {
+            "denominator": 5,
+            "numerator": -4,
+            "text": "-4/5"
+          },
+          "d_J": 1,
+          "j": 2
+        },
+        {
+          "coefficient": {
+            "denominator": 11,
+            "numerator": 7,
+            "text": "7/11"
+          },
+          "d_J": 3,
+          "j": 2
+        },
+        {
+          "coefficient": {
+            "denominator": 13,
+            "numerator": 3,
+            "text": "3/13"
+          },
+          "d_J": 9,
+          "j": 4
+        }
+      ]
+    },
+    {
+      "NbarQ": [],
+      "QN": [],
+      "equal": true,
+      "input": [
+        {
+          "coefficient": {
+            "denominator": 1,
+            "numerator": 1,
+            "text": "1"
+          },
+          "d_J": 1,
+          "j": 1
+        },
+        {
+          "coefficient": {
+            "denominator": 1,
+            "numerator": -1,
+            "text": "-1"
+          },
+          "d_J": 2,
+          "j": 1
+        }
+      ]
+    }
+  ],
+  "forward_carrier": "D_JH^fin tensor D_tower^fin with indices (p_A,tau,d_J,flags,role) tensor (p_T,j)",
+  "kernel_invariance": "N(D(N) intersect ker Q) subset ker Q",
+  "kernel_witness": {
+    "QNx": [],
+    "Qx": [],
+    "input": [
+      {
+        "coefficient": {
+          "denominator": 7,
+          "numerator": 5,
+          "text": "5/7"
+        },
+        "d_J": 1,
+        "j": 3
+      },
+      {
+        "coefficient": {
+          "denominator": 7,
+          "numerator": -5,
+          "text": "-5/7"
+        },
+        "d_J": 2,
+        "j": 3
+      }
+    ]
+  },
+  "number": "N=I_JH tensor diag(j)",
+  "quotient_scale": {
+    "H_Q_0": "completion of QD_fin in the quotient H0 norm",
+    "H_Q_minus1": "completion in the quotient Hminus1 norm",
+    "Nbar_norm": 1,
+    "proof": "N is an isometry H0->Hminus1 and N^-1 is defined on every j>=1; taking infima over Q-cosets gives equality of quotient norms"
+  },
+  "schema": "c2.green.jh_coequalizer.number_graph.v1",
+  "typing_warning": "summing the tower levels j would be S0-like scalar synthesis, not Q_JH; that forbidden conflation would manufacture a multivalued relation"
+}

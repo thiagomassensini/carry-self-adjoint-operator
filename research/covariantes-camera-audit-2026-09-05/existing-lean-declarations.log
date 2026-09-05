@@ -1,0 +1,98 @@
+GreenFrame.Concrete.canonicalCarryElementaryAtlas_isometry (f : ↥GreenFrame.Concrete.State) :
+  ‖GreenFrame.Concrete.elementaryAtlas GreenFrame.Concrete.canonicalCarryInfinitePartition f‖ = ‖f‖
+'GreenFrame.Concrete.canonicalCarryElementaryAtlas_isometry' depends on axioms: [propext, Classical.choice, Quot.sound]
+CPFormal.Carry.Cp.isCompl_cameraVertical_horizontal (p : ℕ) :
+  IsCompl (CPFormal.Carry.Cp.cameraVerticalLine p) (CPFormal.Carry.Cp.cameraHorizontalSpace p)
+'CPFormal.Carry.Cp.isCompl_cameraVertical_horizontal' depends on axioms: [propext, Classical.choice, Quot.sound]
+CPFormal.Carry.Cp.logEval_not_injective : ¬Function.Injective ⇑CPFormal.Carry.Cp.logEval
+'CPFormal.Carry.Cp.logEval_not_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+NativeCarrySpectralWeyl.Infinite.inner_naimarkCameraVector
+  (camera₁ camera₂ : NativeCarrySpectralWeyl.Infinite.CameraIndex) :
+  inner ℝ (NativeCarrySpectralWeyl.Infinite.naimarkCameraVector camera₁)
+      (NativeCarrySpectralWeyl.Infinite.naimarkCameraVector camera₂) =
+    NativeCarrySpectralWeyl.Infinite.gramKernel camera₁ camera₂
+'NativeCarrySpectralWeyl.Infinite.inner_naimarkCameraVector' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.centeredCameraIsometry_readout (q x : NativeCarrySpectralWeyl.Infinite.CameraHilbert) :
+  inner ℝ (CarrySelfAdjointOperator.centeredCameraIsometry q) (CarrySelfAdjointOperator.centeredCameraIsometry x) =
+    inner ℝ q x
+'CarrySelfAdjointOperator.centeredCameraIsometry_readout' depends on axioms: [propext, Classical.choice, Quot.sound]
+CarrySelfAdjointOperator.finiteCamera_normalizedPhysicalCutoff_pairwise_tendsto {b c : ℕ} (hb : 2 ≤ b) (hc : 2 ≤ c)
+  (t : ℝ) :
+  Filter.Tendsto
+    (fun N =>
+      NativeCarrySpectralWeyl.Camera.finiteBracketCharacteristic b
+            ((N - NativeCarrySpectralWeyl.Limits.cameraBoundaryWidth b) / NativeCarrySpectralWeyl.Camera.cameraSlope b)
+            (NativeCarrySpectralWeyl.Camera.nativeLine t) /
+          NativeCarrySpectralWeyl.Camera.factor b (NativeCarrySpectralWeyl.Camera.nativeLine t) -
+        NativeCarrySpectralWeyl.Camera.finiteBracketCharacteristic c
+            ((N - NativeCarrySpectralWeyl.Limits.cameraBoundaryWidth c) / NativeCarrySpectralWeyl.Camera.cameraSlope c)
+            (NativeCarrySpectralWeyl.Camera.nativeLine t) /
+          NativeCarrySpectralWeyl.Camera.factor c (NativeCarrySpectralWeyl.Camera.nativeLine t))
+    Filter.atTop (nhds 0)
+'CarrySelfAdjointOperator.finiteCamera_normalizedPhysicalCutoff_pairwise_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.finiteCamera_three_five_unitSeparation_tendsto {z : ℂ} (hz : z.im ≠ 0) :
+  Filter.Tendsto
+    (fun M =>
+      2 -
+        2 *
+            NativeCarrySpectralWeyl.Limits.finiteCoefficientCovariance
+              (NativeCarrySpectralWeyl.Limits.resolventWeight z) M NativeCarrySpectralWeyl.Finite.sixCamera 1 3 /
+          √(NativeCarrySpectralWeyl.Limits.finiteCoefficientCovariance
+                (NativeCarrySpectralWeyl.Limits.resolventWeight z) M NativeCarrySpectralWeyl.Finite.sixCamera 1 1 *
+              NativeCarrySpectralWeyl.Limits.finiteCoefficientCovariance
+                (NativeCarrySpectralWeyl.Limits.resolventWeight z) M NativeCarrySpectralWeyl.Finite.sixCamera 3 3))
+    Filter.atTop (nhds 2)
+'CarrySelfAdjointOperator.finiteCamera_three_five_unitSeparation_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.sixCamera_return_variance_polarization (u v : Fin 6 → ℝ) :
+  (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+              NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+              (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+          u ⬝ᵥ
+        (CarrySelfAdjointOperator.cameraReturnCompression NativeCarrySpectralWeyl.Finite.sixCameraGram
+              NativeCarrySpectralWeyl.Finite.sixCameraFirstMoment
+              (CarrySelfAdjointOperator.cameraLogSlopeDiagonal NativeCarrySpectralWeyl.Finite.sixCamera)).mulVec
+          v +
+      (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec u ⬝ᵥ
+        (CFC.sqrt NativeCarrySpectralWeyl.Finite.sixCameraVariance).mulVec v =
+    u ⬝ᵥ v
+'CarrySelfAdjointOperator.sixCamera_return_variance_polarization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+NativeCarryC3Crosswalk.finiteCanonicalEnrichedCamera_greenDecomposition.{u_1, u_2} {camera : Type u_1}
+  {state : Type u_2} [Fintype camera] [DecidableEq camera] [Fintype state] [DecidableEq state]
+  {C : Matrix camera state ℝ} (hG : (NativeCarryC3Crosswalk.finiteCameraRowGram C).PosDef) (L : Matrix state state ℝ) :
+  L - L.transpose =
+    (NativeCarryC3Crosswalk.finiteCanonicalCameraReadout C).transpose *
+            (NativeCarryC3Crosswalk.finiteCanonicalCameraReadout C * L) -
+          (NativeCarryC3Crosswalk.finiteCanonicalCameraReadout C * L).transpose *
+            NativeCarryC3Crosswalk.finiteCanonicalCameraReadout C +
+        (NativeCarryC3Crosswalk.finiteCanonicalCameraBlindProjection C).transpose *
+          (NativeCarryC3Crosswalk.finiteCanonicalCameraBlindProjection C * L) -
+      (NativeCarryC3Crosswalk.finiteCanonicalCameraBlindProjection C * L).transpose *
+        NativeCarryC3Crosswalk.finiteCanonicalCameraBlindProjection C
+'NativeCarryC3Crosswalk.finiteCanonicalEnrichedCamera_greenDecomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.c3CanonicalRawValue_eq_return_add_cameraSeven_tail {z : ℂ}
+  (hz : CarrySelfAdjointOperator.operatorHeightParameter z ∈ CPFormal.Analytic.Cp.genuineCriticalStrip) :
+  CarrySelfAdjointOperator.canonicalCompletedC3RawHeightValue z =
+    1 -
+          ↑(3 / √278) *
+            CarrySelfAdjointOperator.sixCameraReturnReadout
+              (CarrySelfAdjointOperator.canonicalCompletedC3SixCameraSource z) +
+        CPFormal.Analytic.Cp.positiveDirichletGradient (CarrySelfAdjointOperator.operatorHeightParameter z) 2 +
+      CPFormal.Analytic.Cp.realCpBracketCutoffTail 3 1 (CarrySelfAdjointOperator.operatorHeightParameter z)
+'CarrySelfAdjointOperator.c3CanonicalRawValue_eq_return_add_cameraSeven_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+CarrySelfAdjointOperator.normalizedCompletedNativeCameraCharacteristic_eq {camera : ℕ} (hcamera : 2 ≤ camera)
+  (cutoff : ℕ) :
+  CarrySelfAdjointOperator.normalizedCompletedNativeCameraCharacteristic camera cutoff = fun time =>
+    CarrySelfAdjointOperator.completedNativeOperatorCharacteristic ↑time
+'CarrySelfAdjointOperator.normalizedCompletedNativeCameraCharacteristic_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

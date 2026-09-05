@@ -1,0 +1,13 @@
+{
+  "all_passed": true,
+  "checks": {
+    "all_exact_mobius_checks_zero": true,
+    "conditional_enrichment_not_run": true,
+    "ell2_A_mu_nonzero": true,
+    "ell2_Q_mu_zero": true,
+    "enriched_graph_not_overclaimed": true,
+    "native_range_not_fabricated": true,
+    "no_complete_forward_constructor": true
+  },
+  "schema": "c2.green.native_range_provenance.validation.v1"
+}

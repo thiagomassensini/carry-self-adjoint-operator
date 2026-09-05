@@ -1,0 +1,399 @@
+{
+  "Green_to_zero_claimed": false,
+  "analysis_value_divisibility_proved": false,
+  "arithmetic_gate": {
+    "A_descends_through_Q": false,
+    "A_even_pre": [
+      "1/2",
+      "sqrt(3)/2"
+    ],
+    "A_even_pre_gauge": "1/2-1/2*sqrt(3)",
+    "Q": [
+      [
+        1,
+        1
+      ]
+    ],
+    "Q_gauge": [
+      {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      }
+    ],
+    "checkpoint": "STOP_NATIVE_A_NONZERO_ON_COEQUALIZER_KERNEL",
+    "frontier": "NEEDS_PROVENANCE_ENRICHED_VALVE_GRAPH_RELATION",
+    "gauge": [
+      1,
+      -1
+    ],
+    "kernel_inclusion": false,
+    "nonzero_proof": "(1-sqrt(3))/2 != 0 because 1^2 != 3",
+    "why_tfvd_does_not_erase_it": "the C2 valve is an invertible change of coordinates before Q; an invertible return cannot turn a nonzero A-value on ker Q into zero"
+  },
+  "decision": "PASS finite/native geometric boundary return; STOP arithmetic A descent through the current J/H quotient",
+  "dimension_statement": "for J cells, rank(B_C2)=J and dim ker(B_C2)=J+1; a p-only valve therefore needs J+1 independent trace coordinates. A cutoff-independent two-scalar trace requires the full second difference or an equivalent bracket-plus-carry bulk completion.",
+  "external_completion_used": false,
+  "finite_valve": [
+    {
+      "J": 1,
+      "bulk_kernel_dimension": 2,
+      "bulk_rank": 1,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 2,
+      "vertex_dimension": 3
+    },
+    {
+      "J": 2,
+      "bulk_kernel_dimension": 3,
+      "bulk_rank": 2,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 3,
+      "vertex_dimension": 5
+    },
+    {
+      "J": 3,
+      "bulk_kernel_dimension": 4,
+      "bulk_rank": 3,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 4,
+      "vertex_dimension": 7
+    },
+    {
+      "J": 4,
+      "bulk_kernel_dimension": 5,
+      "bulk_rank": 4,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 5,
+      "vertex_dimension": 9
+    },
+    {
+      "J": 5,
+      "bulk_kernel_dimension": 6,
+      "bulk_rank": 5,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 6,
+      "vertex_dimension": 11
+    },
+    {
+      "J": 6,
+      "bulk_kernel_dimension": 7,
+      "bulk_rank": 6,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 7,
+      "vertex_dimension": 13
+    },
+    {
+      "J": 7,
+      "bulk_kernel_dimension": 8,
+      "bulk_rank": 7,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 8,
+      "vertex_dimension": 15
+    },
+    {
+      "J": 8,
+      "bulk_kernel_dimension": 9,
+      "bulk_rank": 8,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 9,
+      "vertex_dimension": 17
+    },
+    {
+      "J": 9,
+      "bulk_kernel_dimension": 10,
+      "bulk_rank": 9,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 10,
+      "vertex_dimension": 19
+    },
+    {
+      "J": 10,
+      "bulk_kernel_dimension": 11,
+      "bulk_rank": 10,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 11,
+      "vertex_dimension": 21
+    },
+    {
+      "J": 11,
+      "bulk_kernel_dimension": 12,
+      "bulk_rank": 11,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 12,
+      "vertex_dimension": 23
+    },
+    {
+      "J": 12,
+      "bulk_kernel_dimension": 13,
+      "bulk_rank": 12,
+      "edge_reconstruction_residual_zero": true,
+      "endpoint_formula": "f_(2J+1)=a-sqrt(2) sum_(j<=J)o_j",
+      "endpoint_residual_zero": true,
+      "flags": {
+        "bulk_green_identity": true,
+        "bulk_return_zero": true,
+        "identity_factorization": true,
+        "trace_green_zero": true,
+        "trace_return_identity": true,
+        "two_sided_coordinate_inverse": true
+      },
+      "trace_rank_on_bulk_kernel_required": 13,
+      "vertex_dimension": 25
+    }
+  ],
+  "full_native_endpoint_graph_lift_constructed": false,
+  "green_identity": {
+    "boundary_form": "<Gamma0 f,Gamma1 g>-<Gamma1 f,Gamma0 g>",
+    "checkpoint": "PASS_TFVD_C2_LOCAL_GREEN_WEDGE",
+    "flags": {
+      "boundary_to_haar": true,
+      "boundary_to_interior": true,
+      "odd_channel_cancellation": true,
+      "q_equals_omega_o": true
+    },
+    "haar_form": "u_f p_g-p_f u_g",
+    "homogeneous_in_omega": true,
+    "interior_form": "(Delta_C2 f)_C g_C-f_C(Delta_C2 g)_C"
+  },
+  "next_object": "an enriched graph relation that keeps the A-side indices (p_A,tau,d_J,cell,corner,orientation,flags,role) before Q, while quotienting only the tower value/flux side",
+  "passes": [
+    "PASS_TFVD_C2_FINITE_VALVE_FACTORIZATION",
+    "PASS_TFVD_C2_EDGE_PAIR_RETURN",
+    "PASS_TFVD_C2_MOVING_ENDPOINT_LEDGER",
+    "PASS_TFVD_C2_LOCAL_GREEN_WEDGE",
+    "PASS_TFVD_C2_ENDPOINT_TRACE_UNIFORMLY_BOUNDED"
+  ],
+  "qualified_stops": [
+    "STOP_FIXED_FINITE_TRACE_FOR_P_ONLY_BULK",
+    "STOP_FULL_CUMULATIVE_RETURN_UNBOUNDED_IN_VERTEX_L2",
+    "STOP_NATIVE_A_NONZERO_ON_COEQUALIZER_KERNEL"
+  ],
+  "regime": "GENUINE FIRST",
+  "return_topology": {
+    "cumulative_return_l2_lower_bounds": [
+      {
+        "edge_energy": 0.1797619609908213,
+        "operator_ratio_lower_bound": 0.7806955423921421,
+        "seed_squared": 0.03231436261926556,
+        "start": 4,
+        "stop": 16,
+        "vertex_l2_norm_squared_lower_bound": 0.12925745047706225
+      },
+      {
+        "edge_energy": 0.13800290943289076,
+        "operator_ratio_lower_bound": 0.9849573572094855,
+        "seed_squared": 0.019044803011942647,
+        "start": 8,
+        "stop": 64,
+        "vertex_l2_norm_squared_lower_bound": 0.15235842409554118
+      },
+      {
+        "edge_energy": 0.11456194806360037,
+        "operator_ratio_lower_bound": 1.2824134975991577,
+        "seed_squared": 0.01312443994412707,
+        "start": 16,
+        "stop": 256,
+        "vertex_l2_norm_squared_lower_bound": 0.20999103910603312
+      },
+      {
+        "edge_energy": 0.09864441307386464,
+        "operator_ratio_lower_bound": 1.6950505720254774,
+        "seed_squared": 0.009730720230687237,
+        "start": 32,
+        "stop": 1024,
+        "vertex_l2_norm_squared_lower_bound": 0.3113830473819916
+      },
+      {
+        "edge_energy": 0.08681456163757732,
+        "operator_ratio_lower_bound": 2.2610415904230057,
+        "seed_squared": 0.007536768112324712,
+        "start": 64,
+        "stop": 4096,
+        "vertex_l2_norm_squared_lower_bound": 0.4823531591887816
+      },
+      {
+        "edge_energy": 0.07757290413381958,
+        "operator_ratio_lower_bound": 3.03554502482099,
+        "seed_squared": 0.006017555455754763,
+        "start": 128,
+        "stop": 16384,
+        "vertex_l2_norm_squared_lower_bound": 0.7702470983366096
+      },
+      {
+        "edge_energy": 0.07011937061202313,
+        "operator_ratio_lower_bound": 4.095650361102579,
+        "seed_squared": 0.004916726135026253,
+        "start": 256,
+        "stop": 65536,
+        "vertex_l2_norm_squared_lower_bound": 1.2586818905667208
+      },
+      {
+        "edge_energy": 0.06396975282914776,
+        "operator_ratio_lower_bound": 5.548271131914072,
+        "seed_squared": 0.0040921292770222575,
+        "start": 512,
+        "stop": 262144,
+        "vertex_l2_norm_squared_lower_bound": 2.095170189835396
+      }
+    ],
+    "cumulative_return_uniformly_bounded_into_vertex_l2": false,
+    "endpoint_dual_partial_sums": [
+      {
+        "N": 1,
+        "sum_inverse_h": 1.0
+      },
+      {
+        "N": 2,
+        "sum_inverse_h": 1.1744136941935304
+      },
+      {
+        "N": 4,
+        "sum_inverse_h": 1.2940022552899846
+      },
+      {
+        "N": 8,
+        "sum_inverse_h": 1.3744014084766423
+      },
+      {
+        "N": 16,
+        "sum_inverse_h": 1.4298614405981216
+      },
+      {
+        "N": 64,
+        "sum_inverse_h": 1.4992227799456461
+      },
+      {
+        "N": 256,
+        "sum_inverse_h": 1.5400320079187921
+      },
+      {
+        "N": 1024,
+        "sum_inverse_h": 1.566698456540136
+      },
+      {
+        "N": 4096,
+        "sum_inverse_h": 1.5854502462137603
+      },
+      {
+        "N": 16384,
+        "sum_inverse_h": 1.5993484758932572
+      }
+    ],
+    "endpoint_functional_bounded": true,
+    "endpoint_uniform_bound": "sum_n 1/[n(1+log n)^2] <= 2",
+    "interpretation": "the outer boundary value is continuous on the weighted edge energy, while reconstruction of the whole vertex sequence is a closed/unbounded return unless the target graph norm is strengthened"
+  },
+  "schema": "c2.green.tfvd_return_audit.v1",
+  "solver_used": false
+}

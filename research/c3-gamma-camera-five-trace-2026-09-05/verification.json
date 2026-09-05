@@ -1,0 +1,388 @@
+{
+  "date": "2026-09-05",
+  "branch": "agent/c3-gamma-camera-five-trace",
+  "base_commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+  "original_requested_base": "225a85d9e8e3e0a3b659c5b6ad821458770b3195",
+  "new_theorems": 24,
+  "declarations": [
+    {
+      "name": "CarrySelfAdjointOperator.norm_logarithmic_camera_sq",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraMomentBound.lean",
+      "line": 30,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.carryGammaSource_camera_test_bound",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraMomentBound.lean",
+      "line": 65,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.inner_cameraFive_firstC3",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraMomentBound.lean",
+      "line": 114,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.inner_cameraFive_secondC3",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraMomentBound.lean",
+      "line": 125,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.cameraFive_gram_diagonal",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraMomentBound.lean",
+      "line": 134,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.norm_naimark_cameraFive_le_five",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraMomentBound.lean",
+      "line": 142,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.norm_logarithmic_cameraFive_le_ten",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraMomentBound.lean",
+      "line": 148,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3CameraFive_source_test",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraMomentBound.lean",
+      "line": 169,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3Gamma_energy_gt_sixteenth_of_cameraFive",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraMomentBound.lean",
+      "line": 196,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.completedNativeGreenResponse_eventually_odd",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 23,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.completedNativePolarizedDslope_imaginaryAxis_eventuallyEq_slope",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 40,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.completedNativePolarizedDslope_imaginaryAxis_tendsto",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 70,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.completedNativeCharacteristic_zero_norm_le_half",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 85,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3CameraFive_central_coordinate_gt_quarter",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 100,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.continuousAt_canonicalC3CameraFive_coordinate",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 120,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3NormalizedGamma_diagonal_re_eq_energy",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 129,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3NormalizedGamma_diagonal_gt_sixteenth",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 140,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3NormalizedGamma_diagonal_eventually_gt_sixteenth",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 158,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.completedNativePolarizedDslope_imaginaryAxis_eventually_lt_sixteenth",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 180,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3NormalizedGamma_ne_native_near_imaginary_center",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 192,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3RawGammaWronskianDefect_ne_zero_near_imaginary_center",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 209,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3GreenInverseTraceRealization_empty_near_imaginary_center",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 236,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.canonicalC3RawDefect_counterexamples_arbitrarily_close",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 247,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "CarrySelfAdjointOperator.not_canonicalCompletedC3GammaCauchyScalarization_cameraFive",
+      "file": "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean",
+      "line": 283,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "specific_build": "passed with --wfail before final explicit strip witness",
+  "full_audit": "passed, including final explicit strip witness",
+  "full_audit_exit_code": 0,
+  "command": "PATH=/home/thlinux/.elan/bin:$PATH bash scripts/audit.sh",
+  "successful_lake_build_calls": 14,
+  "static_audit": "passed",
+  "targets": [
+    "CarrySelfAdjointOperator.DiscreteProjectiveReconstructionAudit",
+    "CarrySelfAdjointOperator.ProjectiveValveNativeIncidenceAudit",
+    "CarrySelfAdjointOperator.ProjectiveValveMomentFrontierAudit",
+    "CarrySelfAdjointOperator.KernelConstructionAudit",
+    "CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit",
+    "CarrySelfAdjointOperator.CompletedNativeJacobiPointSpectrumConverseAudit",
+    "CarrySelfAdjointOperator.BoundaryTraceAudit",
+    "CarrySelfAdjointOperator.JacobiOrderPolynomial",
+    "CarrySelfAdjointOperator.ExactProjectiveMatrixTower",
+    "CarrySelfAdjointOperator.CanonicalProjectiveJacobiTower",
+    "CarrySelfAdjointOperator",
+    "CarrySelfAdjointOperator.Audit",
+    "CarrySelfAdjointOperator.BR2Audit",
+    "CarrySelfAdjointOperator.OrderAudit"
+  ],
+  "audit_log_sha256": "8d4059ddf04503080509d6f8f336275dfb258fffa0105a3b08c4a40023497ea6",
+  "dependency_pins_unchanged": true,
+  "configuration_sha256": {
+    "lake-manifest.json": "93e2199cd60475eb40a261a0204afb68c729316d69adfe11d5230136d65828e5",
+    "lakefile.toml": "5df9555ff84cedc918025e11d5ef252d0e7b446e15fc899b4a30b7993c7eef9b",
+    "lean-toolchain": "2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e",
+    "scripts/audit.sh": "e127b076c59a342246785ede6b11c9f7e65ece43cca18fe9bb9fcaff594b3a97",
+    "scripts/static_audit.sh": "6a4eee04deb80749f18958380fa34a3724b04161913b5fd108f9be09c6cbee59"
+  },
+  "dependency_pins": {
+    "NativeCarryC3Crosswalk": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+    "CarryGeometry": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+    "NativeCarrySpectralWeyl": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "CPFormal": "65d50f6db1208708e109982ba97e1d51d3039956",
+    "mathlib": "81a5d257c8e410db227a6665ed08f64fea08e997",
+    "FiniteNativeCarryOperator": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+    "GreenFrame": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+    "plausible": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+    "LeanSearchClient": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+    "importGraph": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+    "proofwidgets": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+    "aesop": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+    "Qq": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+    "batteries": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+    "Cli": "88679d088c9720c27ebdf2ba4dafe17341747f94"
+  },
+  "module_sha256": {
+    "C3GammaCameraMomentBound": "31c6d80e3f288eec13f701a04931424e3b991728132af7c814ba6ab357cd80fa",
+    "C3GammaCameraTraceObstruction": "64ba4b2401d0149c2cd04a5ffa83906cbe9709172de9bb6987c7ac7b282c00a1"
+  },
+  "new_mathematical_assumptions": [],
+  "proved_scope": "The actual normalized canonical Gamma diagonal exceeds 1/16 near the center; the native diagonal along imaginary points is below 1/16. Hence the raw Gamma-Wronskian defect is nonzero arbitrarily close to zero inside the Genuine strip at nonzero F. The existing canonical Gamma/Cauchy scalarization is false.",
+  "kernel_identification": "disproved locally for the currently defined canonical source and Gamma",
+  "native_HP_carrier_constructed": false,
+  "numerical_experiments_used": false,
+  "witness_kind": "Kernel-checked existence in every positive radius, not a selected numeral.",
+  "github_ci_monitored": false,
+  "merge_performed": false,
+  "dependency_checkouts": {
+    "NativeCarryC3Crosswalk": {
+      "head": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "CarryGeometry": {
+      "head": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "NativeCarrySpectralWeyl": {
+      "head": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "CPFormal": {
+      "head": "65d50f6db1208708e109982ba97e1d51d3039956",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "mathlib": {
+      "head": "81a5d257c8e410db227a6665ed08f64fea08e997",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "FiniteNativeCarryOperator": {
+      "head": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "GreenFrame": {
+      "head": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "plausible": {
+      "head": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "LeanSearchClient": {
+      "head": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "importGraph": {
+      "head": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "proofwidgets": {
+      "head": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "aesop": {
+      "head": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "Qq": {
+      "head": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "batteries": {
+      "head": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    },
+    "Cli": {
+      "head": "88679d088c9720c27ebdf2ba4dafe17341747f94",
+      "matches_pin": true,
+      "tracked_files_clean": true
+    }
+  },
+  "theorem_statement_check": "passed; no implicit propositions; emitted types and axioms archived",
+  "git_diff_check": "passed, including all staged new files"
+}

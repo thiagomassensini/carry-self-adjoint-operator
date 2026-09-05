@@ -1,0 +1,90 @@
+{
+  "working_branch": "agent/projective-valve-moment-frontier",
+  "base_commit": "62f69205a5f80554d576b4969d658674c670efc4",
+  "toolchain": "leanprover/lean4:v4.32.0",
+  "dependency_pins": {
+    "NativeCarryC3Crosswalk": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+    "CarryGeometry": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+    "NativeCarrySpectralWeyl": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "CPFormal": "65d50f6db1208708e109982ba97e1d51d3039956",
+    "mathlib": "81a5d257c8e410db227a6665ed08f64fea08e997",
+    "FiniteNativeCarryOperator": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+    "GreenFrame": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+    "plausible": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+    "LeanSearchClient": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+    "importGraph": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+    "proofwidgets": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+    "aesop": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+    "Qq": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+    "batteries": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+    "Cli": "88679d088c9720c27ebdf2ba4dafe17341747f94"
+  },
+  "recovered_theorems": [
+    "nativeGpreFiniteWeightedRealSpectralState_eq_partialSum",
+    "nativeGpreFiniteWeightedRealSpectralState_tendsto",
+    "nativeGpreTfvdProjectiveAnalysis_finiteWeightedState_tendsto",
+    "nativeGpreTfvdProjectiveAnalysis_completedState_compatible",
+    "c3CompletedIteratedJet_eq",
+    "c3CompletedIteratedJet_cutoff_invariant",
+    "finiteC3CanonicalEnrichedTfvdPairTailReadout_cutoff_invariant",
+    "finiteC3EnrichedTfvdPairTailDefect_cutoff_invariant"
+  ],
+  "proof_bodies_identical_to_original": true,
+  "original_files": [
+    {
+      "file": "original-lean/FiniteCanonicalCameraReadout.lean",
+      "sha256": "fa2d5936214360690101591196a2c13997f9cf56a2cd47becc599bff48b81d51",
+      "matches_downloads_inventory": true
+    },
+    {
+      "file": "original-lean/CanonicalNaimarkStateReadout.lean",
+      "sha256": "e890523b07c6116bcf197d29c23390cf2a1b7951517567840ccc44ba1e1c8eb2",
+      "matches_downloads_inventory": true
+    },
+    {
+      "file": "original-lean/C3CameraStencilEscapeClosure.lean",
+      "sha256": "1df0ffa8ce48f3e3dd1c37e57bbe260af95cd143f791733d99c77a41fbad0798",
+      "matches_downloads_inventory": true
+    },
+    {
+      "file": "original-lean/ExactCutoffCameraGram.lean",
+      "sha256": "98c052a51444c5085df81cccbffdb26160616abae3e2606234f91fa67534a1be",
+      "matches_downloads_inventory": true
+    },
+    {
+      "file": "original-lean/C3ProjectiveCompletedJetBridge.lean",
+      "sha256": "36bec78cdbabf983bb410af0114655e0f45ba2240809730d9b7a0f5c5898a197",
+      "matches_downloads_inventory": true
+    },
+    {
+      "file": "original-lean/FiniteStencilCutoffRefinement.lean",
+      "sha256": "445c2af926bec69841fc3c730c56b0efe4ad237c1b6d5f5eb0ba77ebd6889cd4",
+      "matches_downloads_inventory": true
+    },
+    {
+      "file": "original-lean/C3TwoVariableGreenGamma.lean",
+      "sha256": "6b1fdda93ef4236a65f01694b9c7085e4c8f033515ed4a2bc567c5fbf27164ca",
+      "matches_downloads_inventory": true
+    },
+    {
+      "file": "original-lean/C3ProjectiveHilbertRBBridge.lean",
+      "sha256": "69615047a1c3af4655654082b1903c218d0221e1e197a26e690f00cd5bb8d637",
+      "matches_downloads_inventory": true
+    },
+    {
+      "file": "original-lean/FiniteEnrichedCameraState.lean",
+      "sha256": "d83a2b833f56b33c4398a4ede3c0c8f5e7520e76ba211eba0bc4a55ab85983bf",
+      "matches_downloads_inventory": true
+    },
+    {
+      "file": "original-notes/native_carry_registro_pesquisa_sondas_defeito_pt.md",
+      "sha256": "c10240222be41d909db5e6cf3fd45078eeaef5a5d3fc82998598d104b4c436ed",
+      "matches_downloads_inventory": true
+    },
+    {
+      "file": "original-notes/TFVD_DEFECT_JETS_GREEN_POSITIVE_CARRY_OPERATOR_AUDIT.md",
+      "sha256": "19bf87506f3ba5e46fdcd84c5453da2114af9dbbf0590ba3786ef098d122d73a",
+      "matches_downloads_inventory": true
+    }
+  ]
+}

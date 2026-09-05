@@ -1,0 +1,15 @@
+'NativeCarryC3Crosswalk.norm_sq_normalizedLiteralFiniteCameraStencil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.tendsto_normalizedLiteralFiniteCameraStencil_apply_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.tendsto_norm_sq_normalizedLiteralFiniteCameraStencil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.tendsto_normalizedLiteralFiniteCameraGram_cameraVector' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.not_exists_strong_limit_normalizedLiteralFiniteCameraStencil' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,26 @@
+{
+  "material_fiber": 12,
+  "clock_symbols": {
+    "a": "log 2",
+    "b": "log 3"
+  },
+  "scope": "Exact rational/symbolic identities on their nonzero-denominator domains, not a Lean proof or native readout identification.",
+  "checks": {
+    "coisometry": true,
+    "clock_intertwining": true,
+    "source_multiplicity": true,
+    "source_norm_preserved": true,
+    "off_diagonal_kernel": true,
+    "diagonal_kernel": true,
+    "characteristic_log_derivative": true,
+    "hidden_determinant_factor": true,
+    "vector_trace": true,
+    "compressed_source_readout": true
+  },
+  "full_determinant": "-(-a + t)**2*(a + t)**2*(-b + t)*(b + t)/(a**4*b**2)",
+  "compressed_determinant": "(-a + t)*(a + t)*(-b + t)*(b + t)/(a**2*b**2)",
+  "compressed_source": [
+    "sqrt(2)/a",
+    "1/b"
+  ]
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "original": "/home/thlinux/carry-lab/foda/native_carry_defect_return_metric_covariance_limit_lab.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_labs/native_carry_defect_return_metric_covariance_limit_lab.py",
+    "sha256": "ba0803715a0de5e3ff3fae63eefae6878573f3f9d6c8aef36aa138ed57a2bd1f"
+  },
+  {
+    "original": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_pythagorean_green_measure_lab.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_labs/native_carry_pythagorean_green_measure_lab.py",
+    "sha256": "5993b476eb9c5f2c63f664cdd9f305a222432fc3cb7ac58afbaa3e81a183a3ef"
+  },
+  {
+    "original": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/c2_green_discrete_valve_return_audit.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_labs/c2_green_discrete_valve_return_audit.py",
+    "sha256": "f7b4786f09dc42a1e72df55065243a7aa2d8a1450df8ee5dff3ce567072651c0"
+  },
+  {
+    "original": "/home/thlinux/carry-lab/Wayl/native_carry_defect_source_probe_asymptotic_frame_lab.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_labs/native_carry_defect_source_probe_asymptotic_frame_lab.py",
+    "sha256": "bfa526bac6cc6a6c7652a79b2208dd260910c2cd009af8b98397722954ffe79d"
+  },
+  {
+    "original": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_collective_operator_lab.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_labs/native_carry_collective_operator_lab.py",
+    "sha256": "006180ccfd317daebd1fd8003666d758c9f456a951dd096e88f61769fed2743b"
+  },
+  {
+    "original": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_primitive_real_operator_all_bases_fixed.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_labs/native_carry_primitive_real_operator_all_bases_fixed.py",
+    "sha256": "c68d4bb274f36eb4dc5572afe64394787876f64bc8f2e50573654f2ab712ecee"
+  },
+  {
+    "original": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_pythagorean_node_weyl_colligation_lab.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_labs/native_carry_pythagorean_node_weyl_colligation_lab.py",
+    "sha256": "754c9e8f8fd8e285b7d916d122ef240fd517092c3f21e6fc871694d98ec18f35"
+  },
+  {
+    "original": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_conservative_all_bases_atlas_lab.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_labs/native_carry_conservative_all_bases_atlas_lab.py",
+    "sha256": "895d26701831c179f41a1f3b81512973eb2592fc847fd4bf4935e4d7cb2ef738"
+  },
+  {
+    "original": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_quadratic_weighted_green_atlas_lab.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_labs/native_carry_quadratic_weighted_green_atlas_lab.py",
+    "sha256": "feeb57037b592584c9520d1e3563eb0fc0270a7f033fcb0762e8e4c5a2d1157c"
+  },
+  {
+    "original": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_residual_native_return_identification_lab.py",
+    "copy": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_labs/native_carry_residual_native_return_identification_lab.py",
+    "sha256": "d2bf9ea9e189e27bb7683df4295a7864641c39262b241122ce24aacc1711eded"
+  }
+]

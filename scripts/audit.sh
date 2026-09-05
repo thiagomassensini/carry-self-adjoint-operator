@@ -5,11 +5,20 @@ cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
 
+# Check the observable quotient and native C3 clock/readout graph.
+lake build --wfail CarrySelfAdjointOperator.ObservableJetAudit
+
 # Check the discrete-projective capstone before the larger spectral surface.
 lake build --wfail CarrySelfAdjointOperator.DiscreteProjectiveReconstructionAudit
 
 # Check native incidence transport into projective-valve finite spans.
 lake build --wfail CarrySelfAdjointOperator.ProjectiveValveNativeIncidenceAudit
+
+# Check the moment obligations, derived carry energy and the two C3 obstructions.
+lake build --wfail CarrySelfAdjointOperator.ProjectiveValveMomentFrontierAudit
+
+# Check the constructed kernels and the exact native metric calibration.
+lake build --wfail CarrySelfAdjointOperator.KernelConstructionAudit
 
 # Check exact camera-to-moment universality before the operator audits.
 lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit

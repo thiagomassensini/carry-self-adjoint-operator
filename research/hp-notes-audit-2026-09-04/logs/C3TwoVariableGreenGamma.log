@@ -1,0 +1,9 @@
+'NativeCarryC3Crosswalk.greenForm_finiteCpHolomorphicGreenBoundaryPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.greenForm_finiteC3HolomorphicGenuineGreenBoundaryPair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'NativeCarryC3Crosswalk.scalarBoundaryResponse_kernel_eq_gram_of_greenWronskian' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

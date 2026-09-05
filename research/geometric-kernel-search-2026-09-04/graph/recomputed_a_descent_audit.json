@@ -1,0 +1,56 @@
+{
+  "A_even_pre_descends_to_Q_quotient": false,
+  "checkpoint": "STOP_NATIVE_A_NONZERO_ON_COEQUALIZER_KERNEL",
+  "frontier": "NEEDS_PROVENANCE_ENRICHED_GRAPH_RELATION",
+  "graph_bound_after_descent_tested": false,
+  "interpretation": "the tower number respects the erased J/H gauge, but the separated one-leg A coordinate still detects it",
+  "kernel_inclusion": false,
+  "reason_graph_bound_not_tested": "a quotient map is not well-defined before kernel inclusion",
+  "required_enrichment": [
+    "p_A",
+    "tau",
+    "d_J",
+    "cell",
+    "corner",
+    "orientation",
+    "flags",
+    "role"
+  ],
+  "schema": "c2.green.closed_native_endpoint.a_descent.v1",
+  "test_space": "pre-coequalizer d_J module at fixed p_A,tau,flag,cell,corner,orientation,role",
+  "witness": {
+    "A_even_pre_gauge": "1/2 - sqrt(3)/2",
+    "A_even_pre_weights": [
+      [
+        "1/2"
+      ],
+      [
+        "sqrt(3)/2"
+      ]
+    ],
+    "J_(2tau)(1)": "1",
+    "J_(2tau)(2)": "3",
+    "Q_gauge": [
+      [
+        "0"
+      ]
+    ],
+    "d_J_coordinates": [
+      1,
+      2
+    ],
+    "ell": 2,
+    "gauge_vector": [
+      [
+        "1"
+      ],
+      [
+        "-1"
+      ]
+    ],
+    "leg_n": "2",
+    "nonzero_proof": "(1-sqrt(3))/2 is nonzero because 1^2 != 3",
+    "p_A": 3,
+    "tau": "1"
+  }
+}

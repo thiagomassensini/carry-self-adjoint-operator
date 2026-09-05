@@ -1,0 +1,19 @@
+import CarrySelfAdjointOperator.C3MixedReturnTraceObstruction
+open scoped ComplexConjugate InnerProductSpace
+open CarrySelfAdjointOperator
+open NativeCarrySpectralWeyl.Boundary
+
+-- Diagnostic only: intentionally leave the existing sewing goal open.
+-- This file is outside the project and is not a proof declaration delivered by it.
+example (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) :
+    canonicalCompletedC3RawGammaWronskianDefect z w hz hw = 0 := by
+  apply (canonicalC3RawGammaWronskianDefect_eq_zero_iff_returnBalance z w hz hw).2
+  let mZ := carryGammaComplexState z hz (canonicalC3ReturnSourcePart z)
+  let mW := carryGammaComplexState w hw (canonicalC3ReturnSourcePart w)
+  let rZ := carryGammaComplexState z hz (canonicalC3ReturnSourceRemainder z)
+  let rW := carryGammaComplexState w hw (canonicalC3ReturnSourceRemainder w)
+  change (w - conj z) *
+    (inner ℂ mZ rW + inner ℂ rZ mW + inner ℂ rZ rW) =
+    completedGreenWronskian completedNativeOperatorCharacteristic
+      completedNativeOperatorBoundaryCompanion w z -
+      (w - conj z) * inner ℂ mZ mW

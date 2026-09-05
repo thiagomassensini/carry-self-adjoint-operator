@@ -1,0 +1,208 @@
+{
+  "candidate_constructors": [
+    {
+      "arguments": [
+        "center"
+      ],
+      "axes_carried": [
+        "K",
+        "m",
+        "cell",
+        "corner",
+        "orientation",
+        "flags",
+        "p_T",
+        "j"
+      ],
+      "axes_missing": [
+        "p_A",
+        "tau",
+        "d_J",
+        "role"
+      ],
+      "decisive_fact": "d_Jordan is a collapsed marker supplied by endpoint_pair_record",
+      "function": "contextual_flags_for_native_cell",
+      "layer": "native C2 -> rational pair flags -> post-T0 endpoint record",
+      "line_span": [
+        708,
+        740
+      ],
+      "path": "script/c2_green_full_even_hodge_endpoint.py",
+      "source_sha256": "1b224e5b885765a8dac8e4d1869d87867aefef8659c13f36beca33b17a85aa32",
+      "source_size": 1673
+    },
+    {
+      "arguments": [
+        "maximum_ell"
+      ],
+      "axes_carried": [
+        "p_A",
+        "tau",
+        "d_J",
+        "orientation"
+      ],
+      "axes_missing": [
+        "p_T",
+        "j",
+        "K",
+        "m",
+        "cell",
+        "corner",
+        "flags",
+        "role"
+      ],
+      "decisive_fact": {
+        "Euler_feature": "psi_(p,t,d)(n)=N_p(n)phi_(t,d)(n)",
+        "base_feature": "phi_(t,d)(n)=1_(d|n)n^-t",
+        "indices": [
+          "prime p",
+          "time t",
+          "common divisor d",
+          "orientation"
+        ],
+        "kernel_per_channel": "J_(2t)(d)[psi(u)phi(v)+phi(u)psi(v)]-2H_(p,t)(d)phi(u)phi(v)",
+        "literal_separation": true
+      },
+      "function": "laplace_jordan_lift_audit",
+      "layer": "unreduced J/H one-leg feature contract",
+      "line_span": [
+        757,
+        872
+      ],
+      "path": "script/c2_green_molecule_gcd_laplace_jordan.py",
+      "source_sha256": "1f0f453a83692bce4aef6caa7dd4f12cd0ba6dad6e1c320e7baa5c971e7e60fc",
+      "source_size": 4514
+    },
+    {
+      "arguments": [
+        "divisor",
+        "prime",
+        "time",
+        "phi",
+        "psi"
+      ],
+      "axes_carried": [
+        "p_A",
+        "tau",
+        "d_J"
+      ],
+      "axes_missing": [
+        "p_T",
+        "j",
+        "K",
+        "m",
+        "cell",
+        "corner",
+        "orientation",
+        "flags",
+        "role"
+      ],
+      "decisive_fact": "returns only the numeric pair (A,B); it does not attach native provenance",
+      "function": "centered_coordinates",
+      "layer": "separated centered A/B coordinate",
+      "line_span": [
+        334,
+        347
+      ],
+      "path": "script/c2_green_centered_jordan_krein.py",
+      "source_sha256": "9a887e92d34224f9949f5a787e5064daf9a09025cc684c13a984476ce4de7b5e",
+      "source_size": 424
+    },
+    {
+      "arguments": [
+        "maximum_cell"
+      ],
+      "axes_carried": [
+        "p_T",
+        "j",
+        "cell",
+        "corner",
+        "orientation",
+        "flags"
+      ],
+      "axes_missing": [
+        "p_A",
+        "tau",
+        "d_J",
+        "K",
+        "m",
+        "role"
+      ],
+      "decisive_fact": "selected_complete_flags retain pair geometry but not raw J/H coordinates",
+      "function": "pre_sigma0_endpoint_audit",
+      "layer": "completed endpoint after J/H coequalizer and tau=0",
+      "line_span": [
+        542,
+        588
+      ],
+      "path": "script/c2_green_centered_b_contextual_endpoint.py",
+      "source_sha256": "cce403092905df7d49b89f767257851a1de09e767e448d445e0f2e3765db02fd",
+      "source_size": 2077
+    }
+  ],
+  "canonical_join_constructor_persisted": false,
+  "checkpoint": "STOP_NATIVE_PRET0_GENERATOR_NOT_PERSISTED",
+  "collapsed_d_J_marker_verified": true,
+  "complete_generator_candidates": [],
+  "missing_join_data": {
+    "JH_feature_side": [
+      "native cell/corner/flag role",
+      "K=k_eff",
+      "odd fibre m",
+      "tower p_T,j"
+    ],
+    "native_flag_side": [
+      "p_A",
+      "tau",
+      "raw d_J",
+      "J/H role"
+    ],
+    "post_T0_side": [
+      "p_A",
+      "tau",
+      "raw d_J",
+      "J/H role"
+    ]
+  },
+  "p_A_retained": false,
+  "post_t0_flag_count": 40,
+  "post_t0_used_to_fabricate_tau_or_d_J": false,
+  "raw_d_J_retained": false,
+  "required_forward_axes": [
+    "p_A",
+    "tau",
+    "d_J",
+    "p_T",
+    "j",
+    "K",
+    "m",
+    "cell",
+    "corner",
+    "orientation",
+    "flags",
+    "role"
+  ],
+  "retained_post_t0_flag_fields": [
+    "Sigma0_applications",
+    "candidate_residual",
+    "cell",
+    "coefficient",
+    "corner",
+    "d_Jordan",
+    "d_Mangoldt",
+    "ell",
+    "endpoint_vector",
+    "leg",
+    "orientation",
+    "q",
+    "r",
+    "u",
+    "u0",
+    "v",
+    "v0"
+  ],
+  "reverse_endpoint_used": false,
+  "schema": "c2.green.native_pret0.constructor_inventory.v1",
+  "tau_retained": false,
+  "why_formulas_do_not_supply_the_map": "composing the separate formulas would require a new choice of how p_A,tau,d_J,J/H role attach to each native flag and tower level; no original constructor persists that join"
+}

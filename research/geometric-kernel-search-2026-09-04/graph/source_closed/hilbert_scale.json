@@ -1,0 +1,271 @@
+{
+  "checkpoints": [
+    "PASS_POSITIVE_TAU_LOGJET_GRAPH",
+    "PASS_ZERO_TIME_LOGJET_IN_HMINUS1"
+  ],
+  "number_operator": {
+    "exact_checks": [
+      {
+        "H0_norm_squared": {
+          "denominator": 12100,
+          "numerator": 12281,
+          "text": "12281/12100"
+        },
+        "N_image_Hminus1_norm_squared": {
+          "denominator": 12100,
+          "numerator": 12281,
+          "text": "12281/12100"
+        },
+        "vector": [
+          {
+            "denominator": 2,
+            "numerator": 1,
+            "text": "1/2"
+          },
+          {
+            "denominator": 5,
+            "numerator": -3,
+            "text": "-3/5"
+          },
+          {
+            "denominator": 11,
+            "numerator": 7,
+            "text": "7/11"
+          }
+        ]
+      },
+      {
+        "H0_norm_squared": {
+          "denominator": 74529,
+          "numerator": 106870,
+          "text": "106870/74529"
+        },
+        "N_image_Hminus1_norm_squared": {
+          "denominator": 74529,
+          "numerator": 106870,
+          "text": "106870/74529"
+        },
+        "vector": [
+          {
+            "denominator": 3,
+            "numerator": -2,
+            "text": "-2/3"
+          },
+          {
+            "denominator": 7,
+            "numerator": 5,
+            "text": "5/7"
+          },
+          {
+            "denominator": 1,
+            "numerator": 0,
+            "text": "0"
+          },
+          {
+            "denominator": 13,
+            "numerator": 9,
+            "text": "9/13"
+          }
+        ]
+      }
+    ],
+    "isometry_identity": "||Ny||_(Hminus1)=||y||_(H0)",
+    "map": "N:H0->Hminus1",
+    "operator_norm": 1
+  },
+  "positive_tau": {
+    "blowup_norm": "sqrt(log(p_T)/(2 Re(tau)))(1+o(1))",
+    "blowup_squared": "log(p_T)/(2 Re(tau))+O(1)",
+    "domain": "Re(tau)=tau_re>0; Im(tau) contributes only unit phases to the norm",
+    "flow_H0_norm_squared": "log(p_T)^2/[p_T^(2 Re(tau))-1]",
+    "flow_coefficients": "log(p_T)p_T^(-j tau)",
+    "h_coefficients": "p_T^(-j tau)/j",
+    "records": [
+      {
+        "flow_H0_norm_squared": "log(3)**2/2",
+        "p_T": 3,
+        "rational_geometric_ratio_when_integral": null,
+        "tau": {
+          "denominator": 2,
+          "numerator": 1,
+          "text": "1/2"
+        }
+      },
+      {
+        "flow_H0_norm_squared": "log(3)**2/8",
+        "p_T": 3,
+        "rational_geometric_ratio_when_integral": {
+          "denominator": 9,
+          "numerator": 1,
+          "text": "1/9"
+        },
+        "tau": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        }
+      },
+      {
+        "flow_H0_norm_squared": "log(5)**2/4",
+        "p_T": 5,
+        "rational_geometric_ratio_when_integral": null,
+        "tau": {
+          "denominator": 2,
+          "numerator": 1,
+          "text": "1/2"
+        }
+      }
+    ],
+    "scaled_limit": "log(p)/2"
+  },
+  "scale": {
+    "H0": "l2({j>=1})",
+    "H1": "{y:sum j^2|y_j|^2<infinity}",
+    "Hminus1": "completion for sum |y_j|^2/j^2",
+    "continuous_inclusions": "H1 subset H0 subset Hminus1"
+  },
+  "schema": "c2.green.c2_prime_power_logjet.hilbert_scale.v1",
+  "zero_time": {
+    "Nh_in_Hminus1": true,
+    "Nh_not_in_H0": true,
+    "h_in_H0": true,
+    "partial_records": [
+      {
+        "J": 1,
+        "norm_h0_Nh_partial_squared": 1,
+        "norm_h0_h_partial_squared": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "norm_hminus1_Nh_partial_squared": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "upper_bound_inverse_square": {
+          "denominator": 1,
+          "numerator": 2,
+          "text": "2"
+        }
+      },
+      {
+        "J": 2,
+        "norm_h0_Nh_partial_squared": 2,
+        "norm_h0_h_partial_squared": {
+          "denominator": 4,
+          "numerator": 5,
+          "text": "5/4"
+        },
+        "norm_hminus1_Nh_partial_squared": {
+          "denominator": 4,
+          "numerator": 5,
+          "text": "5/4"
+        },
+        "upper_bound_inverse_square": {
+          "denominator": 1,
+          "numerator": 2,
+          "text": "2"
+        }
+      },
+      {
+        "J": 4,
+        "norm_h0_Nh_partial_squared": 4,
+        "norm_h0_h_partial_squared": {
+          "denominator": 144,
+          "numerator": 205,
+          "text": "205/144"
+        },
+        "norm_hminus1_Nh_partial_squared": {
+          "denominator": 144,
+          "numerator": 205,
+          "text": "205/144"
+        },
+        "upper_bound_inverse_square": {
+          "denominator": 1,
+          "numerator": 2,
+          "text": "2"
+        }
+      },
+      {
+        "J": 8,
+        "norm_h0_Nh_partial_squared": 8,
+        "norm_h0_h_partial_squared": {
+          "denominator": 705600,
+          "numerator": 1077749,
+          "text": "1077749/705600"
+        },
+        "norm_hminus1_Nh_partial_squared": {
+          "denominator": 705600,
+          "numerator": 1077749,
+          "text": "1077749/705600"
+        },
+        "upper_bound_inverse_square": {
+          "denominator": 1,
+          "numerator": 2,
+          "text": "2"
+        }
+      },
+      {
+        "J": 16,
+        "norm_h0_Nh_partial_squared": 16,
+        "norm_h0_h_partial_squared": {
+          "denominator": 519437318400,
+          "numerator": 822968714749,
+          "text": "822968714749/519437318400"
+        },
+        "norm_hminus1_Nh_partial_squared": {
+          "denominator": 519437318400,
+          "numerator": 822968714749,
+          "text": "822968714749/519437318400"
+        },
+        "upper_bound_inverse_square": {
+          "denominator": 1,
+          "numerator": 2,
+          "text": "2"
+        }
+      },
+      {
+        "J": 64,
+        "norm_h0_Nh_partial_squared": 64,
+        "norm_h0_h_partial_squared": {
+          "denominator": 25413727004476294175336659010085214676345183380992000,
+          "numerator": 41409901935572392721815151397221689468404267553321859,
+          "text": "41409901935572392721815151397221689468404267553321859/25413727004476294175336659010085214676345183380992000"
+        },
+        "norm_hminus1_Nh_partial_squared": {
+          "denominator": 25413727004476294175336659010085214676345183380992000,
+          "numerator": 41409901935572392721815151397221689468404267553321859,
+          "text": "41409901935572392721815151397221689468404267553321859/25413727004476294175336659010085214676345183380992000"
+        },
+        "upper_bound_inverse_square": {
+          "denominator": 1,
+          "numerator": 2,
+          "text": "2"
+        }
+      },
+      {
+        "J": 256,
+        "norm_h0_Nh_partial_squared": 256,
+        "norm_h0_h_partial_squared": {
+          "denominator": 2417727336254382351488728439039155634297678173092536133523812540401853583172614598647583257933812693681187773331100508816294109053807149756373113643530768668025230534221824355145414820811689770047123867009208934400000,
+          "numerator": 3967576234125634328975650682419918312219890419705158672199909218741960929850463443702955479737458623902785158006872963100193212797553080662572690839044355045611963761261313968139271266610037198566631470264862998669727,
+          "text": "3967576234125634328975650682419918312219890419705158672199909218741960929850463443702955479737458623902785158006872963100193212797553080662572690839044355045611963761261313968139271266610037198566631470264862998669727/2417727336254382351488728439039155634297678173092536133523812540401853583172614598647583257933812693681187773331100508816294109053807149756373113643530768668025230534221824355145414820811689770047123867009208934400000"
+        },
+        "norm_hminus1_Nh_partial_squared": {
+          "denominator": 2417727336254382351488728439039155634297678173092536133523812540401853583172614598647583257933812693681187773331100508816294109053807149756373113643530768668025230534221824355145414820811689770047123867009208934400000,
+          "numerator": 3967576234125634328975650682419918312219890419705158672199909218741960929850463443702955479737458623902785158006872963100193212797553080662572690839044355045611963761261313968139271266610037198566631470264862998669727,
+          "text": "3967576234125634328975650682419918312219890419705158672199909218741960929850463443702955479737458623902785158006872963100193212797553080662572690839044355045611963761261313968139271266610037198566631470264862998669727/2417727336254382351488728439039155634297678173092536133523812540401853583172614598647583257933812693681187773331100508816294109053807149756373113643530768668025230534221824355145414820811689770047123867009208934400000"
+        },
+        "upper_bound_inverse_square": {
+          "denominator": 1,
+          "numerator": 2,
+          "text": "2"
+        }
+      }
+    ],
+    "proof_Nh_in_Hminus1": "sum |1|^2/j^2<2",
+    "proof_Nh_not_in_H0": "the squared partial norm equals J",
+    "proof_h_in_H0": "sum 1/j^2 <= 1+integral_1^infinity x^-2 dx=2"
+  }
+}

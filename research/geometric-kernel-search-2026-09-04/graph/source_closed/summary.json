@@ -1,0 +1,42 @@
+{
+  "Genuine_First": true,
+  "axis_firewall_preserved": true,
+  "endpoint_support_audited": 12,
+  "forced_same_Hilbert_synthesis_used": false,
+  "frontier": "NEEDS_PROVENANCE_ENRICHED_GRAPH_RELATION",
+  "frozen_results_preserved": [
+    "PASS_NATIVE_C2_A_BULK_TYPED_PULLBACK",
+    "STOP_PRE_T0_PROVENANCE_INSUFFICIENT_FOR_A_LIFT",
+    "STOP_NATIVE_C2_ENDPOINT_NOT_IN_A_FIBRE",
+    "NEEDS_CLOSED_NATIVE_ENDPOINT_GRAPH_LIFT"
+  ],
+  "full_native_endpoint_graph_lift_constructed": false,
+  "global_mixed_channels_retained": true,
+  "global_prime_power_agreements": 53,
+  "no_Green_to_zero_claim": true,
+  "passes": [
+    "PASS_C2_PRIME_POWER_LOGJET_CORE",
+    "PASS_POSITIVE_TAU_LOGJET_GRAPH",
+    "PASS_ZERO_TIME_LOGJET_IN_HMINUS1",
+    "PASS_TOWER_NUMBER_DESCENDS_THROUGH_JH_COEQUALIZER",
+    "PASS_CLOSED_POST_T0_TOWER_BOUNDARY_RELATION"
+  ],
+  "phase_status": {
+    "A_descent": "stop with exact kernel witness",
+    "C2_prime_power_logjet": "pass",
+    "JH_number_descent": "pass",
+    "full_native_endpoint_graph_lift": "not emitted",
+    "global_odd_convolution_regression": "pass; local jet is the exact prime-power restriction",
+    "native_channel_comparison": "blocked after A descent",
+    "positive_tau_graph": "pass",
+    "post_T0_closed_relation": "pass",
+    "zero_time_rigged_graph": "pass"
+  },
+  "post_t0_relation_multivalued_part": "{0}",
+  "result": "STOP_NATIVE_A_NONZERO_ON_COEQUALIZER_KERNEL",
+  "reverse_section_used": false,
+  "schema": "c2.green.closed_native_endpoint_graph.summary.v1",
+  "stops": [
+    "STOP_NATIVE_A_NONZERO_ON_COEQUALIZER_KERNEL"
+  ]
+}

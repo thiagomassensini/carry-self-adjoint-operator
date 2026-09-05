@@ -1,0 +1,592 @@
+{
+  "Newton_recurrence": "P_j=j a(p^j)-sum_(i=1)^(j-1)a(p^i)P_(j-i)",
+  "Richardson_coefficients": "kappa_(M,p,j)=P_j^R(M)/j",
+  "Richardson_object": "A_red=A_(2M,p)^2/A_(M,p)",
+  "axis_firewall": {
+    "K": "C2 carry depth k_eff, not j",
+    "d_J": "Jordan divisor of gcd ell, not p_T^j",
+    "identifications": "none before a literal endpoint-support identity",
+    "j": "v_(p_T)(d), acted on by N",
+    "p_A": "analysis-A camera prime",
+    "p_T": "native odd prime-power tower prime",
+    "tau": "Euler-Laplace time"
+  },
+  "checkpoint": "PASS_C2_PRIME_POWER_LOGJET_CORE",
+  "finite_exact_records": [
+    {
+      "M": 64,
+      "P_j_R": {
+        "denominator": 1,
+        "numerator": 1,
+        "text": "1"
+      },
+      "a_2M_pj": {
+        "denominator": 16,
+        "numerator": 15,
+        "text": "15/16"
+      },
+      "a_M_pj": {
+        "denominator": 8,
+        "numerator": 7,
+        "text": "7/8"
+      },
+      "j": 1,
+      "kappa_j_R": {
+        "denominator": 1,
+        "numerator": 1,
+        "text": "1"
+      },
+      "number_identity_residual": "0",
+      "p_T": 3,
+      "rho_from_JH": "3**(-tau)"
+    },
+    {
+      "M": 64,
+      "P_j_R": {
+        "denominator": 128,
+        "numerator": 129,
+        "text": "129/128"
+      },
+      "a_2M_pj": {
+        "denominator": 4,
+        "numerator": 3,
+        "text": "3/4"
+      },
+      "a_M_pj": {
+        "denominator": 2,
+        "numerator": 1,
+        "text": "1/2"
+      },
+      "j": 2,
+      "kappa_j_R": {
+        "denominator": 256,
+        "numerator": 129,
+        "text": "129/256"
+      },
+      "number_identity_residual": "0",
+      "p_T": 3,
+      "rho_from_JH": "3**(-2*tau)"
+    },
+    {
+      "M": 64,
+      "P_j_R": {
+        "denominator": 2048,
+        "numerator": 2195,
+        "text": "2195/2048"
+      },
+      "a_2M_pj": {
+        "denominator": 2,
+        "numerator": 1,
+        "text": "1/2"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 3,
+      "kappa_j_R": {
+        "denominator": 6144,
+        "numerator": 2195,
+        "text": "2195/6144"
+      },
+      "number_identity_residual": "0",
+      "p_T": 3,
+      "rho_from_JH": "3**(-3*tau)"
+    },
+    {
+      "M": 64,
+      "P_j_R": {
+        "denominator": 32768,
+        "numerator": -89017,
+        "text": "-89017/32768"
+      },
+      "a_2M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 4,
+      "kappa_j_R": {
+        "denominator": 131072,
+        "numerator": -89017,
+        "text": "-89017/131072"
+      },
+      "number_identity_residual": "0",
+      "p_T": 3,
+      "rho_from_JH": "3**(-4*tau)"
+    },
+    {
+      "M": 64,
+      "P_j_R": {
+        "denominator": 524288,
+        "numerator": 657823,
+        "text": "657823/524288"
+      },
+      "a_2M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 5,
+      "kappa_j_R": {
+        "denominator": 2621440,
+        "numerator": 657823,
+        "text": "657823/2621440"
+      },
+      "number_identity_residual": "0",
+      "p_T": 3,
+      "rho_from_JH": "3**(-5*tau)"
+    },
+    {
+      "M": 64,
+      "P_j_R": {
+        "denominator": 8388608,
+        "numerator": 4526079,
+        "text": "4526079/8388608"
+      },
+      "a_2M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 6,
+      "kappa_j_R": {
+        "denominator": 16777216,
+        "numerator": 1508693,
+        "text": "1508693/16777216"
+      },
+      "number_identity_residual": "0",
+      "p_T": 3,
+      "rho_from_JH": "3**(-6*tau)"
+    },
+    {
+      "M": 96,
+      "P_j_R": {
+        "denominator": 1,
+        "numerator": 1,
+        "text": "1"
+      },
+      "a_2M_pj": {
+        "denominator": 16,
+        "numerator": 15,
+        "text": "15/16"
+      },
+      "a_M_pj": {
+        "denominator": 8,
+        "numerator": 7,
+        "text": "7/8"
+      },
+      "j": 1,
+      "kappa_j_R": {
+        "denominator": 1,
+        "numerator": 1,
+        "text": "1"
+      },
+      "number_identity_residual": "0",
+      "p_T": 5,
+      "rho_from_JH": "5**(-tau)"
+    },
+    {
+      "M": 96,
+      "P_j_R": {
+        "denominator": 128,
+        "numerator": 129,
+        "text": "129/128"
+      },
+      "a_2M_pj": {
+        "denominator": 2,
+        "numerator": 1,
+        "text": "1/2"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 2,
+      "kappa_j_R": {
+        "denominator": 256,
+        "numerator": 129,
+        "text": "129/256"
+      },
+      "number_identity_residual": "0",
+      "p_T": 5,
+      "rho_from_JH": "5**(-2*tau)"
+    },
+    {
+      "M": 96,
+      "P_j_R": {
+        "denominator": 2048,
+        "numerator": -3757,
+        "text": "-3757/2048"
+      },
+      "a_2M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 3,
+      "kappa_j_R": {
+        "denominator": 6144,
+        "numerator": -3757,
+        "text": "-3757/6144"
+      },
+      "number_identity_residual": "0",
+      "p_T": 5,
+      "rho_from_JH": "5**(-3*tau)"
+    },
+    {
+      "M": 96,
+      "P_j_R": {
+        "denominator": 32768,
+        "numerator": 51015,
+        "text": "51015/32768"
+      },
+      "a_2M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 4,
+      "kappa_j_R": {
+        "denominator": 131072,
+        "numerator": 51015,
+        "text": "51015/131072"
+      },
+      "number_identity_residual": "0",
+      "p_T": 5,
+      "rho_from_JH": "5**(-4*tau)"
+    },
+    {
+      "M": 96,
+      "P_j_R": {
+        "denominator": 524288,
+        "numerator": -440737,
+        "text": "-440737/524288"
+      },
+      "a_2M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 5,
+      "kappa_j_R": {
+        "denominator": 2621440,
+        "numerator": -440737,
+        "text": "-440737/2621440"
+      },
+      "number_identity_residual": "0",
+      "p_T": 5,
+      "rho_from_JH": "5**(-5*tau)"
+    },
+    {
+      "M": 128,
+      "P_j_R": {
+        "denominator": 1,
+        "numerator": 1,
+        "text": "1"
+      },
+      "a_2M_pj": {
+        "denominator": 16,
+        "numerator": 15,
+        "text": "15/16"
+      },
+      "a_M_pj": {
+        "denominator": 8,
+        "numerator": 7,
+        "text": "7/8"
+      },
+      "j": 1,
+      "kappa_j_R": {
+        "denominator": 1,
+        "numerator": 1,
+        "text": "1"
+      },
+      "number_identity_residual": "0",
+      "p_T": 7,
+      "rho_from_JH": "7**(-tau)"
+    },
+    {
+      "M": 128,
+      "P_j_R": {
+        "denominator": 128,
+        "numerator": 129,
+        "text": "129/128"
+      },
+      "a_2M_pj": {
+        "denominator": 2,
+        "numerator": 1,
+        "text": "1/2"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 2,
+      "kappa_j_R": {
+        "denominator": 256,
+        "numerator": 129,
+        "text": "129/256"
+      },
+      "number_identity_residual": "0",
+      "p_T": 7,
+      "rho_from_JH": "7**(-2*tau)"
+    },
+    {
+      "M": 128,
+      "P_j_R": {
+        "denominator": 2048,
+        "numerator": -3757,
+        "text": "-3757/2048"
+      },
+      "a_2M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 3,
+      "kappa_j_R": {
+        "denominator": 6144,
+        "numerator": -3757,
+        "text": "-3757/6144"
+      },
+      "number_identity_residual": "0",
+      "p_T": 7,
+      "rho_from_JH": "7**(-3*tau)"
+    },
+    {
+      "M": 128,
+      "P_j_R": {
+        "denominator": 32768,
+        "numerator": 51015,
+        "text": "51015/32768"
+      },
+      "a_2M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "a_M_pj": {
+        "denominator": 1,
+        "numerator": 0,
+        "text": "0"
+      },
+      "j": 4,
+      "kappa_j_R": {
+        "denominator": 131072,
+        "numerator": 51015,
+        "text": "51015/131072"
+      },
+      "number_identity_residual": "0",
+      "p_T": 7,
+      "rho_from_JH": "7**(-4*tau)"
+    }
+  ],
+  "logarithmic_series": "B_(M,p)(x)=x partial_x log A_(M,p)(x)",
+  "native_local_series": "A_(M,p)(x)=sum_(j>=0)a_M(p^j)x^j, a_M(1)=1",
+  "rho_provenance": {
+    "frozen_one_leg_feature": "phi_(tau,d_J)(n)=1_(d_J|n)n^(-tau)",
+    "literal_specialization": "n=p_T^j gives rho_(p_T,j)(tau)=p_T^(-j tau)",
+    "not_used": [
+      "p_T^(-2j tau)",
+      "a fitted normalization"
+    ]
+  },
+  "schema": "c2.green.c2_prime_power_logjet.core.v1",
+  "unit_mass_limit": {
+    "formal_local_series": "sum_(j>=0)x^j",
+    "h_(p,0)": "sum_(j>=1)j^(-1)e_(p,j)",
+    "logp_N_h": "sum_(j>=1)log(p)e_(p,j), a rigged vector rather than an l2 vector",
+    "records": [
+      {
+        "N_h_coefficient_at_tau_0": 1,
+        "P_j": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "h_coefficient_at_tau_0": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "j": 1,
+        "kappa_j": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        }
+      },
+      {
+        "N_h_coefficient_at_tau_0": 1,
+        "P_j": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "h_coefficient_at_tau_0": {
+          "denominator": 2,
+          "numerator": 1,
+          "text": "1/2"
+        },
+        "j": 2,
+        "kappa_j": {
+          "denominator": 2,
+          "numerator": 1,
+          "text": "1/2"
+        }
+      },
+      {
+        "N_h_coefficient_at_tau_0": 1,
+        "P_j": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "h_coefficient_at_tau_0": {
+          "denominator": 3,
+          "numerator": 1,
+          "text": "1/3"
+        },
+        "j": 3,
+        "kappa_j": {
+          "denominator": 3,
+          "numerator": 1,
+          "text": "1/3"
+        }
+      },
+      {
+        "N_h_coefficient_at_tau_0": 1,
+        "P_j": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "h_coefficient_at_tau_0": {
+          "denominator": 4,
+          "numerator": 1,
+          "text": "1/4"
+        },
+        "j": 4,
+        "kappa_j": {
+          "denominator": 4,
+          "numerator": 1,
+          "text": "1/4"
+        }
+      },
+      {
+        "N_h_coefficient_at_tau_0": 1,
+        "P_j": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "h_coefficient_at_tau_0": {
+          "denominator": 5,
+          "numerator": 1,
+          "text": "1/5"
+        },
+        "j": 5,
+        "kappa_j": {
+          "denominator": 5,
+          "numerator": 1,
+          "text": "1/5"
+        }
+      },
+      {
+        "N_h_coefficient_at_tau_0": 1,
+        "P_j": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "h_coefficient_at_tau_0": {
+          "denominator": 6,
+          "numerator": 1,
+          "text": "1/6"
+        },
+        "j": 6,
+        "kappa_j": {
+          "denominator": 6,
+          "numerator": 1,
+          "text": "1/6"
+        }
+      },
+      {
+        "N_h_coefficient_at_tau_0": 1,
+        "P_j": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "h_coefficient_at_tau_0": {
+          "denominator": 7,
+          "numerator": 1,
+          "text": "1/7"
+        },
+        "j": 7,
+        "kappa_j": {
+          "denominator": 7,
+          "numerator": 1,
+          "text": "1/7"
+        }
+      },
+      {
+        "N_h_coefficient_at_tau_0": 1,
+        "P_j": {
+          "denominator": 1,
+          "numerator": 1,
+          "text": "1"
+        },
+        "h_coefficient_at_tau_0": {
+          "denominator": 8,
+          "numerator": 1,
+          "text": "1/8"
+        },
+        "j": 8,
+        "kappa_j": {
+          "denominator": 8,
+          "numerator": 1,
+          "text": "1/8"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "A": "Matrix([[1/2, sqrt(3)/2]])",
+  "Q": "Matrix([[1, 1]])",
+  "gauge_energy": "1 - sqrt(3)/2",
+  "inverse_reconstruction_residual": "Matrix([[0, 0], [0, 0]])",
+  "joint": "Matrix([[1, 1], [1/2, sqrt(3)/2]])",
+  "joint_number_intertwiner_residual_zero": true,
+  "metric_determinant": "1 - sqrt(3)/2",
+  "new_joint_gauge": "Matrix([[0], [1/2 - sqrt(3)/2]])",
+  "normalized_moments_unchanged_by_tensor_enrichment": true,
+  "number_symmetric_in_pullback_metric": true,
+  "old_Q_gauge": "Matrix([[0]])",
+  "pullback_metric": "Matrix([[5/4, sqrt(3)/4 + 1], [sqrt(3)/4 + 1, 7/4]])",
+  "reciprocal_number_symmetric_after_joint_transport": true,
+  "scope": "Exact free divisor module ell=2; not asserted to be the native range",
+  "source_preserved": true,
+  "tower_J": 4
+}

@@ -1,0 +1,24 @@
+{
+  "E_native_preT0_constructed": false,
+  "K_native_classified": false,
+  "K_native_defined": false,
+  "R_native_defined": false,
+  "checkpoint": "STOP_NATIVE_PRET0_GENERATOR_NOT_PERSISTED",
+  "ell_2_native_preimage_of_mu": "not determined",
+  "mu_mode_native_realizable": "not determined",
+  "mu_mode_not_in_native_range_proved": false,
+  "native_A_descends_on_restricted_quotient": false,
+  "native_witness_constructed": false,
+  "not_emitted": [
+    "PASS_NATIVE_PRET0_RANGE_CONSTRUCTED",
+    "PASS_NATIVE_RANGE_COEQUALIZER_KERNEL_CLASSIFIED",
+    "PASS_MOBIUS_MODE_NATIVE_REALIZABLE",
+    "STOP_MOBIUS_MODE_NOT_IN_NATIVE_RANGE",
+    "PASS_NATIVE_RANGE_ELIMINATES_FREE_JH_GAUGE",
+    "PASS_NATIVE_A_DESCENDS_ON_RESTRICTED_QUOTIENT",
+    "STOP_NATIVE_A_NONZERO_ON_NATIVE_COEQUALIZER_KERNEL"
+  ],
+  "reason": "R_native cannot be formed from the persisted constructors without inventing the missing join",
+  "restricted_kernel_inclusion_tested": false,
+  "schema": "c2.green.native_pret0.range_gate.v1"
+}

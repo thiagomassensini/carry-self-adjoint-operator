@@ -1,0 +1,148 @@
+{
+  "base": "ea750d0629f25963c195db27972e415c3c02a01a",
+  "branch": "agent/c3-return-completed-trace",
+  "new_module": "CarrySelfAdjointOperator/C3ReturnCompletedTraceChannels.lean",
+  "new_theorems": 22,
+  "full_audit": {
+    "command": "PATH=/home/thlinux/.elan/bin:$PATH bash scripts/audit.sh",
+    "exit_code": 0,
+    "stages_passed": 14,
+    "stage_job_counts": [
+      8699,
+      8911,
+      9106,
+      9183,
+      4039,
+      4093,
+      3676,
+      2997,
+      3239,
+      3247,
+      9229,
+      9254,
+      3946,
+      3249
+    ],
+    "warnings": 0
+  },
+  "new_theorem_axioms": {
+    "c3ValueHead_add_blockInitial": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3LogJetHead_add_blockInitial": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3ValueHead_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3LogJetHead_one": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3GreenPort_returnReadout": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3GreenPort_canonicalPrefix_source": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3ValueHead_add_lastPulse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3LogJetHead_add_ordinaryPulse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3GreenPort_returnReadout_add_pulse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "not_c3CompletedValue_factors_through_mixedReturn": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3GreenPort_lastPulse_coordinates": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3LastPulse_returnCompression_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3CompletedTrace_add_lastPulse": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3CanonicalPrefix_completedTrace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3CanonicalPrefix_initialPulse_completedTrace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3CanonicalRawValue_eq_return_add_cameraSeven_tail": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3CompletedTrace_lastPulse_boundaryDifference": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "not_c3TraceVariation_bounded_by_returnEnergy": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3GreenPort_initialPulse_coordinates": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3InitialPulse_gamma_energy_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3CanonicalInitialPulse_gamma_energy_pos": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "c3CanonicalCameraSeven_traceMismatch": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "dependency_pins_verified": 15,
+  "new_mathematical_hypotheses": [],
+  "new_operators_moments_or_kernels": false,
+  "gamma_native_gram_identified": false,
+  "merge": false,
+  "remaining_lean_goals_in_new_module": [],
+  "limit": "Ambient return-to-trace control is refuted; no no-go for every causal-family coupling is claimed.",
+  "git_diff_check": "passed before and after staging"
+}

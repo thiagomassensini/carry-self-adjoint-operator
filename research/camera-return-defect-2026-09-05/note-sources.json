@@ -1,0 +1,52 @@
+[
+  {
+    "path": "/home/thlinux/Downloads/Wayl/WEYL_RETURN_DEFECT_CANONICAL_STATE.md",
+    "sha256": "a1f75410109ea66448725a041e90ca8099e35f5fdf654b52aa09b6407e6bf1e1",
+    "scope_read": "return ray and global Weyl-defect characterization"
+  },
+  {
+    "path": "/home/thlinux/Downloads/WEYL_RETURN_DEFECT_CANONICAL_STATE.md",
+    "sha256": "20452b9e3a5a0e14b60b4c30ed8ffcf4ecb157bfb85c7cc096aca81aac511c17",
+    "scope_read": "root copy, same mathematical subject with damaged delimiters"
+  },
+  {
+    "path": "/home/thlinux/Downloads/hp/native_carry_registro_pesquisa_sondas_defeito_pt.md",
+    "sha256": "c10240222be41d909db5e6cf3fd45078eeaef5a5d3fc82998598d104b4c436ed",
+    "scope_read": "sections 5 and 6: six-camera moments, variance and measure"
+  },
+  {
+    "path": "/home/thlinux/Downloads/INVARIANCIA_C2_HAAR_DUPLO_LOG4.md",
+    "sha256": "a0ef895be9007dc52b090551e6f745cbbf3d52ed32af43f2e4326c0d8ec58a30",
+    "scope_read": "matched cutoff slopes and representation covariance"
+  },
+  {
+    "path": "/home/thlinux/Downloads/COMPOSITE_NONUNIVERSAL_DEFECT_FACTORIZATION_GATE.md",
+    "sha256": "ebf9fc69b84a21467ed379ad6f3d0718034af5edfbb54657f275123571030b8c",
+    "scope_read": "moment identity, variance factorization and Hardy interpretation"
+  },
+  {
+    "path": "/home/thlinux/Downloads/NATIVE_CARRY_PRIMITIVE_TO_SPECTRAL_BRIDGE_AUDIT.md",
+    "sha256": "c051b786def972e737dd36d898665d17659cfc208cee5f2e527fdd609be117bc",
+    "scope_read": "finite primitive source and numerical convergence evidence"
+  },
+  {
+    "path": "/home/thlinux/Downloads/FOURIER_GALOIS_DEFEITO_CENTRADO_RODAS_CARRY.md",
+    "sha256": "0b15767bdd1e5bb9aea1c97a3f3ce4ff593ec7dfb1991968e88d544ec55a7083",
+    "scope_read": "centered periodic profile"
+  },
+  {
+    "path": "/home/thlinux/Downloads/teoria_defeitos_c2_unificada.md",
+    "sha256": "540cbf3648731ce11a975ba6b85c37ecebc6efc2f1a08b5bb5b162bf93ce7e7c",
+    "scope_read": "multiindices in the grep refer to integer factorization"
+  },
+  {
+    "path": "/home/thlinux/Downloads/ONTOLOGIA_DA_PRESENCA_CAUSAL.md",
+    "sha256": "767b3f59b8c02fd7d85e122b6dea9be025ef522cd8a4b71cfd8306ed9a509f95",
+    "scope_read": "grep occurrence is a conceptual profile"
+  },
+  {
+    "path": "/home/thlinux/Downloads/FULL_ATLAS_NONUNIVERSAL_SOFT_EDGE_THEOREM.md",
+    "sha256": "9470af256364c76221554da3ab55c2046ca7ef700756e676d5ebea5a635d05a1",
+    "scope_read": "opening and construction inspected; not fully audited"
+  }
+]

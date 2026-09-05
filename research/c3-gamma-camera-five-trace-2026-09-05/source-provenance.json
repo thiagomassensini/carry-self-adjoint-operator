@@ -1,0 +1,92 @@
+{
+  "CarrySelfAdjointOperator/CanonicalC3SixCameraSource.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "febcb63cf02b97f9e05d2a1cc04ab38cae6e50109e49a9facea561afe39820ad"
+  },
+  "CarrySelfAdjointOperator/CanonicalC3GreenIntertwiner.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "ac218414b40105f04d4938b45d1d0c89c90446237ee8bf3a72eb0f558e11c318"
+  },
+  "CarrySelfAdjointOperator/CompletedC3CompressedLogarithmicOperator.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "0a88ea0210cbebcff1188b32078aec36aea8e51fefa7c91b943e3891ec05d5c3"
+  },
+  "CarrySelfAdjointOperator/CanonicalCompletedC3NormalizedGammaSewing.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "556ed2453ac471c9339feff9fc1a2d900f6c76fdd35aedbfa7755e6386f022d9"
+  },
+  "CarrySelfAdjointOperator/CanonicalC3GammaEnergyNormalization.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "aa175417bf475fa6421f412b06bb7ebb64fc47287641e2d8e5e754f10ccc0990"
+  },
+  "CarrySelfAdjointOperator/CompletedGammaTwoParameterGreenIdentity.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "421822a32d31c828f2c697ae712101e043312e149b7c42aa29b689357d8dcc79"
+  },
+  "CarrySelfAdjointOperator/CompletedC3GreenInverseSewingProbe.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "98735ca3999012c148510c544c9d3a80ad961df7653de3caac13e3125e4c294b"
+  },
+  "CarrySelfAdjointOperator/CanonicalC3HeightClosureAudit.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "2c2614838a099793f84dcd01530360836f784b33e8feec3f2d31d6ca4712ed94"
+  },
+  "CarrySelfAdjointOperator/CompletedC3KernelMetricCalibration.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "b56f172daef156db2894ac6047fd028eb30b125f202a22ab2fc5e15518cba7b4"
+  },
+  "CarrySelfAdjointOperator/CompletedGreenDiagonalClosure.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "2c8dcc5f143a0cdd34ebb6c2aa8aef5ca15081e11dc39c281ecd1a247fb8891a"
+  },
+  "CarrySelfAdjointOperator/CompletedNativeXiThetaMoments.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "b777be8770c64b3d0cea60bae9bdff2ea79a1373f4c3340bf4dad6d6106e08fb"
+  },
+  "CarrySelfAdjointOperator/CompletedNativeXiCosineMoments.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "5126ce269cbea9a0c5ddba76ef8fda5a6d2b327ba0a0952f6d2a89243b1413b1"
+  },
+  "CarrySelfAdjointOperator/CompletedNativeCausalCellChiralLedger.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "b2ed9d0b4502cece4050e1919ef7fe345731cdb91b2afaa2f132029c0cd4e143"
+  },
+  "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "25b32bb2346c00d85d72c13346109c213531396801a87df3b29749e1183e7c55"
+  },
+  "CarrySelfAdjointOperator/C3MixedReturnTraceObstruction.lean": {
+    "commit": "b2f2fb9f23fcad3724d774e5187dffa99fd8c13a",
+    "sha256": "4dd0c77ec7cee285e73c1ace297c7245df7cdb0679a2d59f40be4f5acd37473a"
+  },
+  ".lake/packages/NativeCarrySpectralWeyl/NativeCarrySpectralWeyl/Infinite/Naimark.lean": {
+    "dependency": "NativeCarrySpectralWeyl",
+    "pin": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "sha256": "ddd8c73b7e7116ccd1d5e3f7b62d371d31578ed554cf859bcf7b5019563c9eeb"
+  },
+  ".lake/packages/NativeCarrySpectralWeyl/NativeCarrySpectralWeyl/Infinite/Kolmogorov.lean": {
+    "dependency": "NativeCarrySpectralWeyl",
+    "pin": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "sha256": "d3e3a270f8e362a2cbdb259492d85caf76695fb9ec857fd19f13ec3703c4056f"
+  },
+  ".lake/packages/NativeCarrySpectralWeyl/NativeCarrySpectralWeyl/Infinite/LogarithmicMultiplication.lean": {
+    "dependency": "NativeCarrySpectralWeyl",
+    "pin": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "sha256": "618a1198c22ef298e95daf9dae2364582e7314ee566f62e3d697f0874bf04b9d"
+  },
+  ".lake/packages/NativeCarrySpectralWeyl/NativeCarrySpectralWeyl/Boundary/GammaField.lean": {
+    "dependency": "NativeCarrySpectralWeyl",
+    "pin": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "sha256": "a28dd0879e4dd78ed7c4527e5c960e0c57fe80ea41b3bd2ed24de4273e5935a2"
+  },
+  ".lake/packages/NativeCarrySpectralWeyl/NativeCarrySpectralWeyl/Finite/StepDensity.lean": {
+    "dependency": "NativeCarrySpectralWeyl",
+    "pin": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "sha256": "0eafa896c0ce05b0bd0c8fa928413d4b8b8cee6af8a88a1bda80f31f9a96fccb"
+  },
+  ".lake/packages/NativeCarrySpectralWeyl/NativeCarrySpectralWeyl/Finite/Moments.lean": {
+    "dependency": "NativeCarrySpectralWeyl",
+    "pin": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "sha256": "262de2bb9a87bc9f54f067e0db36a505b64e06c76e5b763f8160833275cda7b4"
+  }
+}

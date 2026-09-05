@@ -1,0 +1,19 @@
+{
+  "source_baseline": "a52230c5cba4918fb5f05d00c8f31b27bc828d09",
+  "files": {
+    "README.md": "cad7c775e5b4600bb72e071e3a5a859bf3f41c67f6ba372ce68b0eea17464de9",
+    "audit_height_coordinates.py": "8ab0a80d52a5b3c035a04f169faa1fa58a8ff74449714cf35d158dd796706d72",
+    "camera_completeness.json": "0c5c6e6c65298165b813182954f1917cc331d75a73a2ca288bc571056511b793",
+    "height_coordinates.json": "15afeb6b02cfa91d4934c8b578e29ed0e60768912a6fb70d7eda8b4ef81e94ea",
+    "height_coordinates.log": "95e03837d6797b1b72641e04b623768079c635bf8aae0d7d3eb8b926bec8a1bc",
+    "lean-audit.log": "813a35a797c70b23fff29e2ac41a65ee420ca8fc72e11d4a7d25e4fed7b91081",
+    "source/native_carry_all_bases_uniform_endpoint_bound_lab.py": "165c6acf1c2aeec1efcc12c4296df75000900da8fd7b884b3a18c10cccee5d9d",
+    "source/native_carry_camera_completeness_audit.py": "be7c5867ba34bcca5da3f91e0d98a87f091540ba12686fffc2236ab64a1e8bfe",
+    "source/native_carry_collective_operator_lab.py": "006180ccfd317daebd1fd8003666d758c9f456a951dd096e88f61769fed2743b",
+    "source/native_carry_conservative_all_bases_atlas_lab.py": "895d26701831c179f41a1f3b81512973eb2592fc847fd4bf4935e4d7cb2ef738",
+    "source/native_carry_height_moment_jacobi_operator_lab.py": "e82e9ff9efe98991f38f5dd50ace0a12a124253f8d6ec61355c1654541eaf929",
+    "source/native_carry_primitive_real_operator_all_bases_fixed.py": "c68d4bb274f36eb4dc5572afe64394787876f64bc8f2e50573654f2ab712ecee",
+    "source/native_carry_pythagorean_green_measure_lab.py": "5993b476eb9c5f2c63f664cdd9f305a222432fc3cb7ac58afbaa3e81a183a3ef",
+    "source/native_carry_quadratic_weighted_green_atlas_lab.py": "feeb57037b592584c9520d1e3563eb0fc0270a7f033fcb0762e8e4c5a2d1157c"
+  }
+}

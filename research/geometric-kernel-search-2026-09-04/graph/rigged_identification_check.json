@@ -1,0 +1,7 @@
+{
+  "J": 4,
+  "N": "diag(j)",
+  "U_minus1": "diag(1/j)",
+  "U_minus1_N": "I",
+  "consequence": "The normalized cross-space number map alone has constant cyclic powers; it is not an infinite-rank moment observable."
+}

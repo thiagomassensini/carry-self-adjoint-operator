@@ -407,6 +407,123 @@ theorem completedNativeXiCosineMoment_inequality_of_thetaTailMoment_two_lt
     linarith
   nlinarith
 
+/-! ## The same integration-by-parts mechanism at every higher order -/
+
+/-- Two integrations by parts at an arbitrary polynomial degree. All
+boundary limits and integrability estimates are the existing theta ones. -/
+theorem integral_pow_add_two_mul_thetaTailSecond (n : ℕ) :
+    (∫ u in Ioi (0 : ℝ), u ^ (n+2) * thetaTailSecond u) =
+      ((n+2 : ℕ) : ℝ) * ((n+1 : ℕ) : ℝ) * completedNativeThetaTailMoment n := by
+  have hfirst := integral_Ioi_mul_deriv_eq_deriv_mul
+    (a := (0 : ℝ)) (a' := (0 : ℝ)) (b' := (0 : ℝ))
+    (u := thetaTailFirst) (u' := thetaTailSecond)
+    (v := fun u : ℝ ↦ u ^ (n+2))
+    (v' := fun u : ℝ ↦ ((n+2 : ℕ) : ℝ) * u ^ (n+1))
+    (fun u _hu ↦ hasDerivAt_thetaTailFirst u)
+    (fun u _hu ↦ by
+      refine (((hasDerivAt_id u).pow (n+2)).congr_of_eventuallyEq ?_).congr_deriv ?_
+      · exact Filter.Eventually.of_forall (fun _ ↦ rfl)
+      · simp only [id_eq, mul_one]
+        congr 1)
+    (by
+      apply (integrableOn_pow_mul_thetaTailFirst (n+1)).const_mul
+        ((n+2 : ℕ) : ℝ) |>.congr
+      exact Filter.Eventually.of_forall (fun u ↦ by
+        simp only [Pi.mul_apply]
+        ring))
+    (by
+      apply (integrableOn_pow_mul_thetaTailSecond (n+2)).congr
+      exact Filter.Eventually.of_forall (fun u ↦ by
+        simp only [Pi.mul_apply]
+        ring))
+    (thetaTailFirst_mul_pow_tendsto_zero_right (n+2) (by omega))
+    (thetaTailFirst_mul_pow_tendsto_zero (n+2))
+  have hsecond := integral_Ioi_mul_deriv_eq_deriv_mul
+    (a := (0 : ℝ)) (a' := (0 : ℝ)) (b' := (0 : ℝ))
+    (u := thetaTail) (u' := thetaTailFirst)
+    (v := fun u : ℝ ↦ ((n+2 : ℕ) : ℝ) * u ^ (n+1))
+    (v' := fun u : ℝ ↦ (((n+2 : ℕ) : ℝ) * ((n+1 : ℕ) : ℝ)) * u ^ n)
+    (fun u _hu ↦ hasDerivAt_thetaTail u)
+    (fun u _hu ↦ by
+      convert ((hasDerivAt_id u).pow (n+1)).const_mul ((n+2 : ℕ) : ℝ) using 1 <;> simp [mul_assoc])
+    (by
+      apply (integrableOn_pow_mul_thetaTail n).const_mul
+        (((n+2 : ℕ) : ℝ) * ((n+1 : ℕ) : ℝ)) |>.congr
+      exact Filter.Eventually.of_forall (fun u ↦ by
+        simp only [Pi.mul_apply]
+        ring))
+    (by
+      apply (integrableOn_pow_mul_thetaTailFirst (n+1)).const_mul
+        ((n+2 : ℕ) : ℝ) |>.congr
+      exact Filter.Eventually.of_forall (fun u ↦ by
+        simp only [Pi.mul_apply]
+        ring))
+    (by
+      have h := thetaTail_mul_pow_tendsto_zero_right (n+1) (by omega)
+      have hscaled : Tendsto
+          (fun u : ℝ ↦ ((n+2 : ℕ) : ℝ) * (thetaTail u * u ^ (n+1)))
+          (nhdsWithin 0 (Ioi 0)) (nhds 0) := by
+        simpa only [mul_zero] using h.const_mul ((n+2 : ℕ) : ℝ)
+      refine hscaled.congr' ?_
+      exact Filter.Eventually.of_forall (fun u ↦ by
+        simp only [Pi.mul_apply]
+        ring))
+    (by
+      have h := thetaTail_mul_pow_tendsto_zero (n+1)
+      have hscaled : Tendsto
+          (fun u : ℝ ↦ ((n+2 : ℕ) : ℝ) * (thetaTail u * u ^ (n+1)))
+          atTop (nhds 0) := by
+        simpa only [mul_zero] using h.const_mul ((n+2 : ℕ) : ℝ)
+      refine hscaled.congr' ?_
+      exact Filter.Eventually.of_forall (fun u ↦ by
+        simp only [Pi.mul_apply]
+        ring))
+  rw [show (fun u : ℝ ↦ thetaTailFirst u * (((n+2 : ℕ) : ℝ) * u ^ (n+1))) =
+      fun u : ℝ ↦ ((n+2 : ℕ) : ℝ) * (u ^ (n+1) * thetaTailFirst u) by
+        funext u; ring, integral_const_mul] at hfirst hsecond
+  rw [show (fun u : ℝ ↦ thetaTail u *
+      ((((n+2 : ℕ) : ℝ) * ((n+1 : ℕ) : ℝ)) * u ^ n)) =
+      fun u : ℝ ↦ (((n+2 : ℕ) : ℝ) * ((n+1 : ℕ) : ℝ)) *
+        (u ^ n * thetaTail u) by funext u; ring, integral_const_mul] at hsecond
+  unfold completedNativeThetaTailMoment
+  rw [show (fun u : ℝ ↦ u ^ (n+2) * thetaTailSecond u) =
+      fun u : ℝ ↦ thetaTailSecond u * u ^ (n+2) by funext u; ring]
+  linarith
+
+/-- Every positive even Xi order is expressed through the same theta-tail
+moments. This generalizes the existing orders one and two without changing
+their definitions or their proofs. -/
+theorem completedNativeXiCosineMoment_succ_eq_thetaTailMoments (n : ℕ) :
+    completedNativeXiCosineMoment (n+1) =
+      ((2*n+2 : ℕ) : ℝ) * ((2*n+1 : ℕ) : ℝ) * completedNativeThetaTailMoment (2*n) -
+        (1/4 : ℝ) * completedNativeThetaTailMoment (2*n+2) := by
+  unfold completedNativeXiCosineMoment
+  rw [show 2*(n+1) = 2*n+2 by omega]
+  have hsplit :
+      (∫ u in Ioi (0 : ℝ), u ^ (2*n+2) * completedNativeXiCosineKernel u) =
+        (∫ u in Ioi (0 : ℝ), u ^ (2*n+2) * thetaTailSecond u) -
+          (1/4 : ℝ) * ∫ u in Ioi (0 : ℝ), u ^ (2*n+2) * thetaTail u := by
+    rw [← integral_const_mul, ← integral_sub
+      (integrableOn_pow_mul_thetaTailSecond (2*n+2))
+      ((integrableOn_pow_mul_thetaTail (2*n+2)).const_mul (1/4 : ℝ))]
+    apply integral_congr_ae
+    exact Filter.Eventually.of_forall (fun u ↦ by
+      change u ^ (2*n+2) * completedNativeXiCosineKernel u =
+        u ^ (2*n+2) * thetaTailSecond u - (1/4 : ℝ) * (u ^ (2*n+2) * thetaTail u)
+      rw [← thetaTailSecond_sub_quarter u]
+      ring)
+  rw [integral_pow_add_two_mul_thetaTailSecond] at hsplit
+  simpa [completedNativeThetaTailMoment] using hsplit
+
+/-- The new sixth-order term retains the subtraction of the sixth tail
+moment, which cannot be dropped in a lower-bound argument. -/
+theorem completedNativeXiCosineMoment_three_eq_thetaTailMoments :
+    completedNativeXiCosineMoment 3 =
+      30 * completedNativeThetaTailMoment 4 -
+        (1/4 : ℝ) * completedNativeThetaTailMoment 6 := by
+  convert completedNativeXiCosineMoment_succ_eq_thetaTailMoments 2 using 1
+  norm_num
+
 end
 
 end CarrySelfAdjointOperator

@@ -1,0 +1,81 @@
+{
+  "convolution": "H_(p,0)=mu*(N_p id^0)",
+  "identity": "H_(p_A,0)(d_J)=log(p_A) iff d_J=p_A^a, and 0 otherwise",
+  "literal_identification_scope": "only on a nonzero support channel may p_A be identified with p_T; the axes remain distinct elsewhere",
+  "records": [
+    {
+      "H_p0_over_logp": 0,
+      "d_J": 1,
+      "p_A": 3,
+      "prime_power_support": false
+    },
+    {
+      "H_p0_over_logp": 1,
+      "d_J": 3,
+      "p_A": 3,
+      "prime_power_support": true
+    },
+    {
+      "H_p0_over_logp": 1,
+      "d_J": 9,
+      "p_A": 3,
+      "prime_power_support": true
+    },
+    {
+      "H_p0_over_logp": 1,
+      "d_J": 27,
+      "p_A": 3,
+      "prime_power_support": true
+    },
+    {
+      "H_p0_over_logp": 0,
+      "d_J": 15,
+      "p_A": 3,
+      "prime_power_support": false
+    },
+    {
+      "H_p0_over_logp": 0,
+      "d_J": 45,
+      "p_A": 3,
+      "prime_power_support": false
+    },
+    {
+      "H_p0_over_logp": 0,
+      "d_J": 1,
+      "p_A": 5,
+      "prime_power_support": false
+    },
+    {
+      "H_p0_over_logp": 1,
+      "d_J": 5,
+      "p_A": 5,
+      "prime_power_support": true
+    },
+    {
+      "H_p0_over_logp": 1,
+      "d_J": 25,
+      "p_A": 5,
+      "prime_power_support": true
+    },
+    {
+      "H_p0_over_logp": 1,
+      "d_J": 125,
+      "p_A": 5,
+      "prime_power_support": true
+    },
+    {
+      "H_p0_over_logp": 0,
+      "d_J": 15,
+      "p_A": 5,
+      "prime_power_support": false
+    },
+    {
+      "H_p0_over_logp": 0,
+      "d_J": 75,
+      "p_A": 5,
+      "prime_power_support": false
+    }
+  ],
+  "schema": "c2.green.closed_native_endpoint.endpoint_support.v1",
+  "top_2adic_source": "k_eff/unit-mass carry, not the odd material logjet"
+}

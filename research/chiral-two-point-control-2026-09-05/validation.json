@@ -1,0 +1,157 @@
+{
+  "date_utc": "2026-09-05T12:13:11.218194+00:00",
+  "repository": "thiagomassensini/carry-self-adjoint-operator",
+  "base_commit": "d3681d0dbd915e6b92d5123b8bb88ceb1b9166b6",
+  "investigation_anchor": "225a85d9e8e3e0a3b659c5b6ad821458770b3195",
+  "branch": "agent/chiral-two-point-control",
+  "source_sha256": "dbd01e8acff61dfdc2d4d1bb7c2a09d5f8a188e667b1096b2f54671c273bdaf9",
+  "new_theorems": 19,
+  "main_theorem": "nativeC3Dynamic_chiralTwoPointTraceMargin_allCutoff_eventually",
+  "new_mathematical_hypotheses": [],
+  "main_theorem_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "axioms_by_theorem": {
+    "chiralTwoPoint_cross_normSq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "canonicalCompletedNativeRadialChiralPickSampleMatrix_two_det": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "canonicalCompletedNativeRadialChiralPickSampleMatrix_two_det_nonneg_iff": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "canonicalCompletedNativeChiralTwoPoint_variation_eventually": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "canonicalCompletedNativeChiralTwoPoint_diagonals_eventually": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "canonicalCompletedNativeChiralTwoPoint_contractive_eventually": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "canonicalCompletedNativeChiralTwoPoint_projective_energy_eventually": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "canonicalCompletedNativeChiralTwoPoint_native_posSemidef_eventually": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "chiralTwoPoint_trace_cross": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "chiralTwoPoint_trace_diagonal": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "chiralTwoPoint_trace_margin_numerator": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "chiralTwoPoint_quotient_margin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "chiralTwoPoint_variation_iff_trace_margin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "completedNativeChiralTwoPoint_variation_iff_trace_margin": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "canonicalCompletedNativeChiralTwoPoint_trace_margin_eventually": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "nativeC3Dynamic_completedTracePair_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "nativeC3Dynamic_chiralTwoPointTraceMargin_eq": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "nativeC3Dynamic_chiralTwoPointTraceMargin_allCutoff_eventually": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "chiralTwoPoint_diagonals_do_not_control_cross": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "focused_build": {
+    "command": "lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralTwoPointControl",
+    "exit_code": 0
+  },
+  "full_audit": {
+    "command": "bash scripts/audit.sh",
+    "exit_code": 0,
+    "static_audit": "passed",
+    "successful_build_stages": 15,
+    "jobs_per_stage": [
+      3431,
+      8699,
+      8911,
+      9106,
+      9193,
+      4039,
+      4093,
+      3676,
+      2997,
+      3239,
+      3247,
+      9239,
+      9262,
+      3946,
+      3249
+    ]
+  },
+  "git_diff_check": "passed",
+  "unchanged_dependency_files_sha256": {
+    "lake-manifest.json": "93e2199cd60475eb40a261a0204afb68c729316d69adfe11d5230136d65828e5",
+    "lean-toolchain": "2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e",
+    "lakefile.toml": "5df9555ff84cedc918025e11d5ef252d0e7b446e15fc899b4a30b7993c7eef9b"
+  },
+  "scope": "Two radial points i/(k+1), 2i/(k+1), eventually as k tends to infinity; simultaneous for all completed head cutoffs M,N.",
+  "remaining_gate": "CarrySelfAdjointOperator.CanonicalCompletedNativeRadialChiralMultiplierEventuallyContractive",
+  "all_order_sewing_proved": false,
+  "main_merge_performed": false,
+  "numerical_tests_run": false,
+  "log_normalization": "Trailing whitespace removed; mathematical and build output preserved.",
+  "raw_log_sha256_before_whitespace_normalization": {
+    "axioms.log": "a59de8832129b1051e563fed66b804927d0c7a12d7add57f948887daf8285659",
+    "full-audit.log": "0f175afb814bf1204c2ef8985abe1d1ee1c631a93a7f4455a7f3996382c53122",
+    "module-build.log": "d0c9e6b48e15f99ee39a441c56ba4dc2fd827d93a5cea3b54c43b394e4565fc6"
+  }
+}

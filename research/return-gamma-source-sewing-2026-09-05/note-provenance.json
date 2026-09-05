@@ -1,0 +1,52 @@
+[
+  {
+    "path": "/home/thlinux/Downloads/Mapa_defeito_retorno_Weyl_fonte_geometrica_2026-09-05.md",
+    "sha256": "7cf9230d766244f94742da1f969665e4decb694fa0543c0d1e5c70ebd2549350",
+    "role": "research guidance; only corresponding checked Lean declarations are proof"
+  },
+  {
+    "path": "/home/thlinux/Downloads/Mapa_kernel_Hilbert_RB_readout_completo_2026-09-05.md",
+    "sha256": "6da582ab3eb0eeece0ded7ce8646f9f073cbc4c666058b6bb3c210f0355fa897",
+    "role": "research guidance; only corresponding checked Lean declarations are proof"
+  },
+  {
+    "path": "/home/thlinux/Downloads/NATIVE_CARRY_DYNAMIC_SECTOR_LIMIT_THEOREM.md",
+    "sha256": "0e8a6b1008fe34405e1991a46e13a2a52183089826fbd44e4c9198053d6255de",
+    "role": "research guidance; only corresponding checked Lean declarations are proof"
+  },
+  {
+    "path": "/home/thlinux/Downloads/WEYL_RETURN_DEFECT_CANONICAL_STATE.md",
+    "sha256": "20452b9e3a5a0e14b60b4c30ed8ffcf4ecb157bfb85c7cc096aca81aac511c17",
+    "role": "research guidance; only corresponding checked Lean declarations are proof"
+  },
+  {
+    "path": "/home/thlinux/Downloads/hp/C3_GREEN_GAMMA_IDENTIDADE_DUAS_VARIAVEIS.md",
+    "sha256": "e8c8e62ad78535f7c881630ae55e67fff92534947256b52d968c7ce82970cbf1",
+    "role": "research guidance; only corresponding checked Lean declarations are proof"
+  },
+  {
+    "path": "/home/thlinux/Downloads/hp/C3_CROSSWALK_COMPLETION_PROJETIVA_E_JETS_TODAS_ORDENS.md",
+    "sha256": "ccaf579b027d0e794a7b93f7a22196dacdb103dcec316d8e8dc7f93629f15bcc",
+    "role": "research guidance; only corresponding checked Lean declarations are proof"
+  },
+  {
+    "path": "/home/thlinux/Downloads/hp/C3_CANONICO_FECHAMENTO_ANALITICO_TODAS_AS_ORDENS.md",
+    "sha256": "e9f17b5cb89ad0fb35175fb5ddfa7a957226199704ce54b4fc849078fb8fa0c3",
+    "role": "research guidance; only corresponding checked Lean declarations are proof"
+  },
+  {
+    "path": "/home/thlinux/Downloads/hp/C3_CAMERA_STENCIL_ESCAPE_E_FECHAMENTO_RIGGED.md",
+    "sha256": "73dd0297a54e7d3caa3d6c9a34dba1d5b6bfe9f840ef6443b5074899ee8f2140",
+    "role": "research guidance; only corresponding checked Lean declarations are proof"
+  },
+  {
+    "path": "/home/thlinux/Downloads/hp/C2_C3_ESTADO_ENRIQUECIDO_PARSEVAL_E_LIMITE_MOVEL.md",
+    "sha256": "fa87e4ccfa2534f138782e15b8119186a14625a7d5208e23b1f8cb0ef261c27d",
+    "role": "research guidance; only corresponding checked Lean declarations are proof"
+  },
+  {
+    "path": "/home/thlinux/Downloads/hp/ATLAS_RELACIONAL_MESTRE_PERSISTENCIA_ESTRUTURAL.md",
+    "sha256": "4eba40aad77fd6b6c246b767218bc2801035e1c2e31cc339b2df9b1613e275df",
+    "role": "research guidance; only corresponding checked Lean declarations are proof"
+  }
+]

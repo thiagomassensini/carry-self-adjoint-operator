@@ -1,0 +1,71 @@
+[
+  {
+    "cameras": [
+      2,
+      3,
+      5,
+      7,
+      11,
+      13
+    ],
+    "centers_per_camera": 8,
+    "seed": 20260905,
+    "vertices": 109,
+    "edges": 288,
+    "maximum_n": 110,
+    "max_partition_error": 2.220446049250313e-16,
+    "parseval_relative_error": 0.0,
+    "max_covariant_intertwining_error": 5.013320832966251e-16,
+    "max_edge_synthesis_error": 4.965068306494546e-16,
+    "full_bracket_synthesis_error": 7.944109290391274e-15,
+    "max_flatness_error": 5.874748045952207e-16,
+    "max_naive_commutator_identity_error": 2.118352371637509e-16,
+    "naive_commutator_to_covariant_energy_ratio": 0.8680089817853442
+  },
+  {
+    "cameras": [
+      2,
+      3,
+      5,
+      7,
+      11,
+      13
+    ],
+    "centers_per_camera": 64,
+    "seed": 20260905,
+    "vertices": 837,
+    "edges": 2304,
+    "maximum_n": 838,
+    "max_partition_error": 3.3306690738754696e-16,
+    "parseval_relative_error": 0.0,
+    "max_covariant_intertwining_error": 5.013320832966251e-16,
+    "max_edge_synthesis_error": 7.021666937153402e-16,
+    "full_bracket_synthesis_error": 3.552713678800501e-14,
+    "max_flatness_error": 5.093356098968151e-16,
+    "max_naive_commutator_identity_error": 2.3055512673781017e-16,
+    "naive_commutator_to_covariant_energy_ratio": 0.9511249847766936
+  },
+  {
+    "cameras": [
+      2,
+      3,
+      5,
+      7,
+      11,
+      13
+    ],
+    "centers_per_camera": 256,
+    "seed": 20260905,
+    "vertices": 3333,
+    "edges": 9216,
+    "maximum_n": 3334,
+    "max_partition_error": 3.3306690738754696e-16,
+    "parseval_relative_error": 0.0,
+    "max_covariant_intertwining_error": 5.013320832966251e-16,
+    "max_edge_synthesis_error": 8.005932084973442e-16,
+    "full_bracket_synthesis_error": 4.263256414560601e-14,
+    "max_flatness_error": 4.775249788392736e-16,
+    "max_naive_commutator_identity_error": 2.5589376332604516e-16,
+    "naive_commutator_to_covariant_energy_ratio": 0.9504866518350776
+  }
+]

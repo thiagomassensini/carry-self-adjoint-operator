@@ -1,0 +1,127 @@
+{
+  "checks": 15,
+  "records": [
+    {
+      "M": 64,
+      "P": "1",
+      "formal_log_residual": "0",
+      "j": 1,
+      "kappa": "1",
+      "p_T": 3
+    },
+    {
+      "M": 64,
+      "P": "129/128",
+      "formal_log_residual": "0",
+      "j": 2,
+      "kappa": "129/256",
+      "p_T": 3
+    },
+    {
+      "M": 64,
+      "P": "2195/2048",
+      "formal_log_residual": "0",
+      "j": 3,
+      "kappa": "2195/6144",
+      "p_T": 3
+    },
+    {
+      "M": 64,
+      "P": "-89017/32768",
+      "formal_log_residual": "0",
+      "j": 4,
+      "kappa": "-89017/131072",
+      "p_T": 3
+    },
+    {
+      "M": 64,
+      "P": "657823/524288",
+      "formal_log_residual": "0",
+      "j": 5,
+      "kappa": "657823/2621440",
+      "p_T": 3
+    },
+    {
+      "M": 64,
+      "P": "4526079/8388608",
+      "formal_log_residual": "0",
+      "j": 6,
+      "kappa": "1508693/16777216",
+      "p_T": 3
+    },
+    {
+      "M": 96,
+      "P": "1",
+      "formal_log_residual": "0",
+      "j": 1,
+      "kappa": "1",
+      "p_T": 5
+    },
+    {
+      "M": 96,
+      "P": "129/128",
+      "formal_log_residual": "0",
+      "j": 2,
+      "kappa": "129/256",
+      "p_T": 5
+    },
+    {
+      "M": 96,
+      "P": "-3757/2048",
+      "formal_log_residual": "0",
+      "j": 3,
+      "kappa": "-3757/6144",
+      "p_T": 5
+    },
+    {
+      "M": 96,
+      "P": "51015/32768",
+      "formal_log_residual": "0",
+      "j": 4,
+      "kappa": "51015/131072",
+      "p_T": 5
+    },
+    {
+      "M": 96,
+      "P": "-440737/524288",
+      "formal_log_residual": "0",
+      "j": 5,
+      "kappa": "-440737/2621440",
+      "p_T": 5
+    },
+    {
+      "M": 128,
+      "P": "1",
+      "formal_log_residual": "0",
+      "j": 1,
+      "kappa": "1",
+      "p_T": 7
+    },
+    {
+      "M": 128,
+      "P": "129/128",
+      "formal_log_residual": "0",
+      "j": 2,
+      "kappa": "129/256",
+      "p_T": 7
+    },
+    {
+      "M": 128,
+      "P": "-3757/2048",
+      "formal_log_residual": "0",
+      "j": 3,
+      "kappa": "-3757/6144",
+      "p_T": 7
+    },
+    {
+      "M": 128,
+      "P": "51015/32768",
+      "formal_log_residual": "0",
+      "j": 4,
+      "kappa": "51015/131072",
+      "p_T": 7
+    }
+  ],
+  "unit_mass_orders_checked": 64,
+  "upstream_feature_source_check": "not rerun: original upstream script absent from delivery"
+}

@@ -1,0 +1,135 @@
+{
+  "date": "2026-09-05",
+  "branch": "agent/projective-valve-moment-frontier",
+  "working_base": "e176afaa6e5b9226c8f222e57a22f31e27a279df",
+  "inspected_main": "4de44de2341089a29665917ed48cd388c68a85e5",
+  "pr_23": {
+    "state": "MERGED",
+    "merge_commit": "696bb93ce8ce951555af52894d3fae2a12e5ee0c",
+    "merged_at": "2026-09-03T20:06:01Z",
+    "url": "https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/23"
+  },
+  "commits": [
+    {
+      "sha": "8641438c4a6ee29b94193f9c35b01f1012d42faa",
+      "title": "Add log/exp bridge: (channels, +) \u2245 (masses, \u00d7)",
+      "ancestor_of_working_base": true
+    },
+    {
+      "sha": "f65d04452f51f338f5764a350e662524aff25d19",
+      "title": "Add exp of a general power series with its log-derivative channel",
+      "ancestor_of_working_base": true
+    },
+    {
+      "sha": "64aa034458d63afb021f42356bde033865f97796",
+      "title": "Connect the bracket to the series ring: additive difference is (1-X)^k",
+      "ancestor_of_working_base": true
+    },
+    {
+      "sha": "d672b04717fabf6664fa83880e28dded1d6ad759",
+      "title": "Add Green series theorem and the TFVD in formal series (capstone)",
+      "ancestor_of_working_base": true
+    },
+    {
+      "sha": "6309b0e615bc25dc0230a141155d8abd5d4a1704",
+      "title": "Add mk_greenSum: the Green sum is X/(1-X)\u00b2 convolution in the series ring",
+      "ancestor_of_working_base": true
+    },
+    {
+      "sha": "a31761286c22ce691fd461bf6efeeddc2ae235b2",
+      "title": "Close the multiplicative TFVD: towerMass b = exp(\u2211 b\u2099/n X\u207f)",
+      "ancestor_of_working_base": true
+    },
+    {
+      "sha": "a50ddd77e6ae73df6613f3c42a83761bf6551c19",
+      "title": "Merge projective depth geometry and canonical tower channel",
+      "ancestor_of_working_base": true
+    },
+    {
+      "sha": "696bb93ce8ce951555af52894d3fae2a12e5ee0c",
+      "title": "Merge Green-multiplicative valve potential bridge",
+      "ancestor_of_working_base": true
+    }
+  ],
+  "new_theorems": [
+    {
+      "name": "normalizedCompletedNativeEvenFormalSeries_constantCoeff",
+      "line": 35,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "derivative_completedNativeEvenFormalSeries",
+      "line": 42,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "derivative_normalizedCompletedNativeEvenFormalSeries",
+      "line": 57,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "normalizedCompletedNativeEvenFormalSeries_eq_valveMass_neg",
+      "line": 71,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "projectiveValveMass_nativeMoments_eq_reciprocal",
+      "line": 81,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "projectiveValveCurvature_nativeReciprocal_eq_moments",
+      "line": 92,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "isNativeMomentSequence_iff_valveMass_eq_nativeReciprocal",
+      "line": 100,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    },
+    {
+      "name": "projectiveGreenMass_eq_nativeReciprocal_iff",
+      "line": 122,
+      "axioms": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ]
+    }
+  ],
+  "module_sha256": "1ea183a49fd57959fb12555ad6eb7415a08663cf44c9d7e8b360350cae9eb4b0",
+  "full_audit": "passed",
+  "github_ci_monitored": false,
+  "successful_lake_build_calls": 14,
+  "static_audit": "passed",
+  "specific_build": "lake build --wfail CarrySelfAdjointOperator.NativeMomentProjectiveValveBridge: passed",
+  "audit_log_sha256": "4ebeb831e38957fbc172711df205a3b9fe78716ed918c375b6505859c2d77145"
+}

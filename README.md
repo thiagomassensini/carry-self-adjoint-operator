@@ -885,6 +885,24 @@ and—through the exact Cayley congruence—the corresponding two-point chiral
 Pick matrix.  This closes the two-point gate; positivity of arbitrary finite
 Herglotz/Pick sections remains a separate higher-order problem.
 
+## Second native Hankel determinant
+
+[`CompletedNativeSixthOrderThetaPositivity.lean`](CarrySelfAdjointOperator/CompletedNativeSixthOrderThetaPositivity.lean)
+now proves all five remaining cosine-moment estimates from the existing theta
+representation, using convex weighted quadrature and explicit mode/tail bounds.
+Consequently, the native determinant satisfies
+
+$$
+\Delta_2=h_0h_2-h_1^2>5.46\cdot10^{-10}.
+$$
+
+The previous three-point limit with remainder then gives eventual positivity
+of the real part of the determinant at the canonical radial triples. All
+rational certificates are checked by Lean; no external numerical bound is an
+assumption. This proves the second Schur complement is positive. The all-order
+Gamma/native Gram and BR2 readout obligations remain open.
+See [the proof map and validation](docs/theta-five-bounds.md).
+
 ## What Is Not Being Identified
 
 The following objects are deliberately distinct in the formalization:

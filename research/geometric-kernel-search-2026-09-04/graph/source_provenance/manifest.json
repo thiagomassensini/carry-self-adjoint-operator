@@ -1,0 +1,76 @@
+{
+  "Green_to_zero_claimed": false,
+  "Householder_used": false,
+  "LP_or_solver_used": false,
+  "frozen_witness_count": 54,
+  "generated_files": {
+    "C2_GREEN_DIVISOR_HAAR_PROVENANCE_PORT.md": {
+      "sha256": "c72c12364a388b59218860b9f6d94ee666add274c037ea6212c6bab7a17aadd1",
+      "size": 762
+    },
+    "C2_GREEN_MOBIUS_JORDAN_KERNEL_AUDIT.md": {
+      "sha256": "a2546a8fa3ba7d1d3c5358dd403fcc062a1362dd3ba0ccb58326c817c0f7d32e",
+      "size": 1043
+    },
+    "C2_GREEN_NATIVE_PRET0_RANGE.md": {
+      "sha256": "7c909c09cd8f054bfb9df217aad89eff78e9713b3113ecc4140101948482b5ba",
+      "size": 2291
+    },
+    "C2_GREEN_PROVENANCE_ENRICHED_GRAPH_RELATION.md": {
+      "sha256": "c1b34a2c743903091fd660cf63cfa76d46094101d89fe0e218c95097a567d461",
+      "size": 1051
+    },
+    "result/c2_green_native_range_provenance_graph/constructor_inventory.json": {
+      "sha256": "2ed129ea9c5a87f71b13f14015e9f70da9c7626347468b7b232e5e64589b9ad7",
+      "size": 4904
+    },
+    "result/c2_green_native_range_provenance_graph/divisor_haar_gate.json": {
+      "sha256": "f58bca7064d5b520638a59d15f88d439c8c80cd8f2b78c0b7d3e16e469650980",
+      "size": 694
+    },
+    "result/c2_green_native_range_provenance_graph/enriched_graph_gate.json": {
+      "sha256": "72079fd64a9f49b11f2ed0f185a62b27e73b2dd8d7ed69af844a7395b699da71",
+      "size": 855
+    },
+    "result/c2_green_native_range_provenance_graph/free_module_witness.json": {
+      "sha256": "54ae51b16fe5eb0f4e59e8b4e5a248e6fbcc49331ddcccbcfd6b522d4a122ed7",
+      "size": 33692
+    },
+    "result/c2_green_native_range_provenance_graph/integrity.json": {
+      "sha256": "3b5a1f36d8b27dc0bbf2b92064f7c6939b08c8ed787e6ad353a8724c257401b2",
+      "size": 11240
+    },
+    "result/c2_green_native_range_provenance_graph/mobius_kernel.json": {
+      "sha256": "9a4e60a7c0eaade75dff6ef79827376f1ea696571705929c74c4f67cb9a8d64e",
+      "size": 34441
+    },
+    "result/c2_green_native_range_provenance_graph/native_range_gate.json": {
+      "sha256": "e8369a8a7d1cc403ce0b9c10e8a553e4073f60d188f34a010012782141a3ea7e",
+      "size": 1006
+    },
+    "result/c2_green_native_range_provenance_graph/summary.json": {
+      "sha256": "f1fe7c1e865bfedfff2c6dfc97372995141f29e0b867244328f303b5586601a0",
+      "size": 1993
+    },
+    "result/c2_green_native_range_provenance_graph/validation.json": {
+      "sha256": "e234cba8656481253f566b054b2980358fc53d5f0d3f4b92298ae08e64e116a4",
+      "size": 380
+    },
+    "script/c2_green_native_range_provenance_graph.py": {
+      "sha256": "a63138f1386a0851aa4283afe4301e3c1b61839bbba337c21ba37935a9f2647f",
+      "size": 29180
+    },
+    "tests/test_c2_green_native_range_provenance_graph.py": {
+      "sha256": "168bf9d01a3e686864e41c5acc91e47e72dcd3b889c432520f44c909eec31d97",
+      "size": 7720
+    }
+  },
+  "historical_integrity": {
+    "all_preserved": true,
+    "mismatches": {},
+    "tracked_count": 71
+  },
+  "pseudoinverse_used": false,
+  "reverse_section_used": false,
+  "schema": "c2.green.native_range_provenance.manifest.v1"
+}

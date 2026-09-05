@@ -1,0 +1,11 @@
+/tmp/C3ReturnResidualGoal.lean:9:65: error: unsolved goals
+z w : ℂ
+hz : z.im ≠ 0
+hw : w.im ≠ 0
+mZ : CarryGammaComplexNaimark := carryGammaComplexState z hz (canonicalC3ReturnSourcePart z)
+mW : CarryGammaComplexNaimark := carryGammaComplexState w hw (canonicalC3ReturnSourcePart w)
+rZ : CarryGammaComplexNaimark := carryGammaComplexState z hz (canonicalC3ReturnSourceRemainder z)
+rW : CarryGammaComplexNaimark := carryGammaComplexState w hw (canonicalC3ReturnSourceRemainder w)
+⊢ (w - (starRingEnd ℂ) z) * (⟪mZ, rW⟫_ℂ + ⟪rZ, mW⟫_ℂ + ⟪rZ, rW⟫_ℂ) =
+    completedGreenWronskian completedNativeOperatorCharacteristic completedNativeOperatorBoundaryCompanion w z -
+      (w - (starRingEnd ℂ) z) * ⟪mZ, mW⟫_ℂ

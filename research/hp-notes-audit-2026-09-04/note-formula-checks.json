@@ -1,0 +1,53 @@
+{
+  "arithmetic": "integer basis action, no numerical rank tolerance",
+  "defect": "C_0^* C_1 - C_1 C_0^* (color names immaterial by symmetry)",
+  "ranks": [
+    {
+      "n": 1,
+      "computed": 0,
+      "printed": 0
+    },
+    {
+      "n": 2,
+      "computed": 2,
+      "printed": 4
+    },
+    {
+      "n": 3,
+      "computed": 10,
+      "printed": 16
+    },
+    {
+      "n": 4,
+      "computed": 26,
+      "printed": 40
+    },
+    {
+      "n": 5,
+      "computed": 54,
+      "printed": 80
+    },
+    {
+      "n": 6,
+      "computed": 96,
+      "printed": 140
+    },
+    {
+      "n": 7,
+      "computed": 156,
+      "printed": 224
+    },
+    {
+      "n": 8,
+      "computed": 236,
+      "printed": 336
+    }
+  ],
+  "camera_generator": {
+    "measure": "dSigma_bc = M0_bc 1_(0,ell_bc] dx; y=1+log(x)",
+    "derived": "G_bc exp(s*(1+log(ell_bc)))/(1+s)",
+    "domain": "Re(s)>-1; ell_bc>0; G_bc=M0_bc*ell_bc",
+    "at_s_zero": "derived=G_bc; printed=M0_bc",
+    "method": "integrate exp(s)*x^s exactly; algebraic derivation, not Lean"
+  }
+}

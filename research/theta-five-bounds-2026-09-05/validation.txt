@@ -1,0 +1,22 @@
+Validation UTC: 2026-09-05T14:39:23.774722+00:00
+Base: 9d009afb133fdc120effde352e2a3ae3d8e86dec
+Branch: agent/chiral-three-point-delta
+Focused build --wfail CompletedNativeSixthOrderThetaPositivityAudit: PASS (9223 jobs), exit 0
+Full bash scripts/audit.sh: PASS, exit 0
+Static audit: PASS
+Lake build stages: 15/15 PASS
+New/exposed public declarations audited with #print axioms: 1449/1449
+Allowed axiom set: propext, Classical.choice, Quot.sound
+No sorryAx; no new mathematical premise in the native positivity theorem
+Five native cosine moment bounds: PROVED
+Native Delta2 > 0: PROVED
+Native Delta2 > 546/1000000000000: PROVED
+Second native Schur complement > 0: PROVED
+Canonical radial three-point determinant real part eventually > 0: PROVED
+All-order Gamma/native Gram and BR2 readout identification: still open
+Exact Fraction generators: PASS; 34 generated Lean files reproduced byte for byte
+Existing thetaFirstMode and full-mode comparison bodies: unchanged; visibility only
+Dependency pins/mathlib/toolchain: unchanged from base
+Git diff --check: PASS
+Evidence logs: trailing whitespace removed only
+CI monitoring: delegated to user as requested

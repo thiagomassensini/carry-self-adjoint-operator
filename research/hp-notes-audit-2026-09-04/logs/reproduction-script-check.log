@@ -1,0 +1,10 @@
+FiniteCanonicalCameraReadout 0
+FiniteEnrichedCameraState 0
+FiniteStencilCutoffRefinement 0
+CanonicalNaimarkStateReadout 0
+ExactCutoffCameraGram 0
+C3ProjectiveCompletedJetBridge 0
+C3ProjectiveHilbertRBBridge 0
+C3CameraStencilEscapeClosure 0
+C3TwoVariableGreenGamma 0
+Results: /tmp/carry-hp-lean-recheck-x3f0bwo_

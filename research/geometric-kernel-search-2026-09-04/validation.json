@@ -1,0 +1,20 @@
+{
+  "code_revision": "c42501803e88f2af8516f2dee87a891b42eddcc3",
+  "lean_version": "4.32.0",
+  "lean_command": "PATH=/home/thlinux/.elan/bin:$PATH bash scripts/audit.sh",
+  "lean_success": true,
+  "build_calls": 14,
+  "new_theorems": 9,
+  "kernel_audit_declarations": 77,
+  "new_trust_dependencies": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "native_identification": "OPEN: geometric kernels and atomic mass condition do not prove D_n=0 for a native geometric pair",
+  "quadrature": "reference/quadrature_validation.json",
+  "candidate_records": 525,
+  "historical_graph_pipeline": "Selected self-contained audits reproduced; complete historical pipelines have missing dependencies. See graph/pipeline_attempts.json.",
+  "finite_numerics_scope": "Floating-point experiments; analytic tail bounds where indicated are not interval arithmetic or a Lean proof.",
+  "archival_whitespace": "Original source Markdown hard breaks and raw Lean log whitespace are preserved. Whitespace checks on the research archive ignore trailing spaces and final blank lines; the new Lean files and docs pass the default check."
+}

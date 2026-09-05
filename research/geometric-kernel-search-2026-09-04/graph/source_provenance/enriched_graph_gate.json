@@ -1,0 +1,18 @@
+{
+  "Qtilde_number_intertwiner_tested": false,
+  "closed_native_endpoint_graph_lift_constructed": false,
+  "current_frontier": "NEEDS_NATIVE_PRET0_GENERATOR_PERSISTENCE",
+  "enriched_scales_constructed": false,
+  "native_A_descent_to_enriched_graph_tested": false,
+  "not_emitted": [
+    "PASS_NATIVE_A_DESCENDS_TO_ENRICHED_GRAPH",
+    "PASS_PROVENANCE_ENRICHED_GRAPH_RELATION",
+    "PASS_CLOSED_NATIVE_ENDPOINT_GRAPH_LIFT"
+  ],
+  "post_T0_closed_relation_preserved": true,
+  "previous_frontier": "NEEDS_PROVENANCE_ENRICHED_GRAPH_RELATION",
+  "previous_frontier_definitively_activated": false,
+  "reason": "minimal enrichment is downstream of native-range classification; the range is unavailable because the forward pre-T0 generator was not persisted",
+  "schema": "c2.green.provenance_enriched_graph.gate.v1",
+  "tower_number_descent_preserved": true
+}

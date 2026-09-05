@@ -1,0 +1,363 @@
+{
+  "source_count": 41,
+  "all_sources_unchanged": true,
+  "source_checks": [
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/manifest.json",
+      "sha256": "439f9b9dc4e1a4933c0ea0a5bb441687661aadd1da7a36890391931013b08ddf",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/summary.json",
+      "sha256": "b379d22ed2374fb74a8db038f3eca23d59791dfe707b202a5c4d30eb26151272",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/a_descent.json",
+      "sha256": "c659fbf8419657a13b5afda4c46a3653bb888d6178ccb9b04dc1a21c85d9e3ba",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/hilbert_scale.json",
+      "sha256": "44da913d0a7b20c4df884d032201558f3136679a9e08617d0e5cc33dd91f5116",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/global_odd_convolution.json",
+      "sha256": "50674b0e2863c905b2914e6b7f745851ac38467e4bff7667ea22f0fbe32ef175",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/test_c2_green_closed_native_endpoint_graph.py",
+      "sha256": "17f1bf8ea045635dc5229dca6906d5edbfd099988ebd4de7d9a5669c25ec8ef8",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/integrity.json",
+      "sha256": "18664e4c8d2dd2780f427c282846bdbc88c647af9b49b5b89370ffae80685ef7",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/endpoint_support.json",
+      "sha256": "c2e1798817a09a5e93f05ccf63a0ba4f99ccfd17849ed1ac9f8cb5907598aa17",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/c2_green_closed_native_endpoint_graph.py",
+      "sha256": "610022b7f1d0f29755b9abd52f4ea23da12e2d71cba4c0f61ea6b5ebf058d140",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/C2_GREEN_C2_PRIME_POWER_LOGJET_GRAPH.md",
+      "sha256": "1e030f9922eeecf1311483add2b37821d74939de9e45fc270a4bc30043544160",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/prime_power_logjet.json",
+      "sha256": "cc82395f93545b75d75045e1c78f62f1a3f0098188255145a07b756e8ee5270d",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/C2_GREEN_CLOSED_NATIVE_ENDPOINT_GRAPH_LIFT.md",
+      "sha256": "05d6ee4f6e2994188128d5639667fe206a8c3bc7d290ae55d92ffbd8c95660c3",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/native_comparison.json",
+      "sha256": "f1215dbef49cd40610a473ae32ccabf8feeee7442d70673bebb05b8628c0c26e",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/C2_GREEN_JH_COEQUALIZER_GRAPH_RELATION.md",
+      "sha256": "409a40105d20adb94af7d0b65d4ac04944bb90684062b041a7716a00b413bab1",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documents/c2_green_closed_native_endpoint_graph_delivery_LR2Col/coequalizer_relation.json",
+      "sha256": "9fd547c886b52aa17cb5a56f5862c215f291cf1082166acc2511b059e5c55448",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/manifest.json",
+      "sha256": "c4076c0042caa5ac0df11c091206775c6d876bdb32d6a3eae6f1584f55c17c68",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/summary.json",
+      "sha256": "f1fe7c1e865bfedfff2c6dfc97372995141f29e0b867244328f303b5586601a0",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/test_c2_green_native_range_provenance_graph.py",
+      "sha256": "168bf9d01a3e686864e41c5acc91e47e72dcd3b889c432520f44c909eec31d97",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/integrity.json",
+      "sha256": "3b5a1f36d8b27dc0bbf2b92064f7c6939b08c8ed787e6ad353a8724c257401b2",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/native_range_gate.json",
+      "sha256": "e8369a8a7d1cc403ce0b9c10e8a553e4073f60d188f34a010012782141a3ea7e",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/free_module_witness.json",
+      "sha256": "54ae51b16fe5eb0f4e59e8b4e5a248e6fbcc49331ddcccbcfd6b522d4a122ed7",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/validation.json",
+      "sha256": "e234cba8656481253f566b054b2980358fc53d5f0d3f4b92298ae08e64e116a4",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/C2_GREEN_DIVISOR_HAAR_PROVENANCE_PORT.md",
+      "sha256": "c72c12364a388b59218860b9f6d94ee666add274c037ea6212c6bab7a17aadd1",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/enriched_graph_gate.json",
+      "sha256": "72079fd64a9f49b11f2ed0f185a62b27e73b2dd8d7ed69af844a7395b699da71",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/C2_GREEN_NATIVE_PRET0_RANGE.md",
+      "sha256": "7c909c09cd8f054bfb9df217aad89eff78e9713b3113ecc4140101948482b5ba",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/c2_green_native_range_provenance_graph.py",
+      "sha256": "a63138f1386a0851aa4283afe4301e3c1b61839bbba337c21ba37935a9f2647f",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/constructor_inventory.json",
+      "sha256": "2ed129ea9c5a87f71b13f14015e9f70da9c7626347468b7b232e5e64589b9ad7",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/C2_GREEN_PROVENANCE_ENRICHED_GRAPH_RELATION.md",
+      "sha256": "c1b34a2c743903091fd660cf63cfa76d46094101d89fe0e218c95097a567d461",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/mobius_kernel.json",
+      "sha256": "9a4e60a7c0eaade75dff6ef79827376f1ea696571705929c74c4f67cb9a8d64e",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/C2_GREEN_MOBIUS_JORDAN_KERNEL_AUDIT.md",
+      "sha256": "a2546a8fa3ba7d1d3c5358dd403fcc062a1362dd3ba0ccb58326c817c0f7d32e",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/Documentos/C2_GREEN_NATIVE_RANGE_PROVENANCE_GRAPH_ENTREGA_20260719/divisor_haar_gate.json",
+      "sha256": "f58bca7064d5b520638a59d15f88d439c8c80cd8f2b78c0b7d3e16e469650980",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/carry-lab/foda/native_carry_defect_return_metric_covariance_limit_lab.py",
+      "sha256": "ba0803715a0de5e3ff3fae63eefae6878573f3f9d6c8aef36aa138ed57a2bd1f",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_pythagorean_green_measure_lab.py",
+      "sha256": "5993b476eb9c5f2c63f664cdd9f305a222432fc3cb7ac58afbaa3e81a183a3ef",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/c2_green_discrete_valve_return_audit.py",
+      "sha256": "f7b4786f09dc42a1e72df55065243a7aa2d8a1450df8ee5dff3ce567072651c0",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/carry-lab/Wayl/native_carry_defect_source_probe_asymptotic_frame_lab.py",
+      "sha256": "bfa526bac6cc6a6c7652a79b2208dd260910c2cd009af8b98397722954ffe79d",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_collective_operator_lab.py",
+      "sha256": "006180ccfd317daebd1fd8003666d758c9f456a951dd096e88f61769fed2743b",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_primitive_real_operator_all_bases_fixed.py",
+      "sha256": "c68d4bb274f36eb4dc5572afe64394787876f64bc8f2e50573654f2ab712ecee",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_pythagorean_node_weyl_colligation_lab.py",
+      "sha256": "754c9e8f8fd8e285b7d916d122ef240fd517092c3f21e6fc871694d98ec18f35",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_conservative_all_bases_atlas_lab.py",
+      "sha256": "895d26701831c179f41a1f3b81512973eb2592fc847fd4bf4935e4d7cb2ef738",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_quadratic_weighted_green_atlas_lab.py",
+      "sha256": "feeb57037b592584c9520d1e3563eb0fc0270a7f033fcb0762e8e4c5a2d1157c",
+      "unchanged": true
+    },
+    {
+      "path": "/home/thlinux/carry-lab/native_carry_transverse_coercivity_cutoff_bundle_20260815/native_carry_residual_native_return_identification_lab.py",
+      "sha256": "d2bf9ea9e189e27bb7683df4295a7864641c39262b241122ce24aacc1711eded",
+      "unchanged": true
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/pythagorean_green.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/run_labs.py",
+      "sha256": "8eff1c09168932f090406c13fa042484e554342504d5e11076aa5b1f37547edb",
+      "bytes": 1661
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/recomputed_free_module_mobius_1024.json",
+      "sha256": "2c871a07fc39f32168f11d5fb82d50bd0117f9357045ed854e458df24bfcdf40",
+      "bytes": 321689
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/recomputed_coequalizer_graph_audit.json",
+      "sha256": "9fd547c886b52aa17cb5a56f5862c215f291cf1082166acc2511b059e5c55448",
+      "bytes": 4407
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/recomputed_global_odd_convolution_audit.json",
+      "sha256": "50674b0e2863c905b2914e6b7f745851ac38467e4bff7667ea22f0fbe32ef175",
+      "bytes": 27307
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/rigged_identification_check.json",
+      "sha256": "b16a52b3a85579efa0b6805b953d22cfce6c58b4e9fa791a508aa5b929a3f71d",
+      "bytes": 217
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/historical_gate_replay.json",
+      "sha256": "946850d8a5296d901a11e792b62ce300fe7353cf95ca7f7b561fa55c34549d80",
+      "bytes": 3196
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/geometric_operator_checks.json",
+      "sha256": "48d3c18aa047db0cf513d4205e70b1bca8c6df11ab896e95ff04ac210c6428c7",
+      "bytes": 21439
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/return_metric_covariance.json",
+      "sha256": "ac009553d73666e91dc317d96aa82814053edec6ef7d4da1066d4ab1db6f2c9a",
+      "bytes": 12577
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/discrete_valve.stdout",
+      "sha256": "2cc4ff7435c3d020a05bc75f70ec1cdd70a09d0aa805ac376909ed18134d7811",
+      "bytes": 12704
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/labs_execution_summary.json",
+      "sha256": "6101226ea0ade8f461e568adf80b0f5a1780001e3c82362bb41bbb3fcdd41f1e",
+      "bytes": 4495
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/geometric_diagonal_candidates.json",
+      "sha256": "04b57a4547f6b431ec963752d37ca13bb4ee549b904c4b05d0bbe38f5385b337",
+      "bytes": 30115
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/labs_source_manifest.json",
+      "sha256": "49093606a9bac916cc95bcc5875c6be594460f0966748182164ed11152c237b4",
+      "bytes": 3685
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/recomputed_hilbert_scale_audit.json",
+      "sha256": "44da913d0a7b20c4df884d032201558f3136679a9e08617d0e5cc33dd91f5116",
+      "bytes": 9016
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/return_metric_covariance.stdout",
+      "sha256": "ac009553d73666e91dc317d96aa82814053edec6ef7d4da1066d4ab1db6f2c9a",
+      "bytes": 12577
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/recomputed_a_descent_audit.json",
+      "sha256": "c659fbf8419657a13b5afda4c46a3653bb888d6178ccb9b04dc1a21c85d9e3ba",
+      "bytes": 1287
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/source_manifest.json",
+      "sha256": "f5c565d3ef066959cf41ac6488ed1f2cc055befd24ba8aba993ee7920b2bc593",
+      "bytes": 10893
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/run_graph_reaudit.py",
+      "sha256": "c4930ed3e5acba161eb91735dbcc62001a40a9ed432645bbb5dc013dae89ea53",
+      "bytes": 6486
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/discrete_valve.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/recomputed_logjet_core.json",
+      "sha256": "e1b4845bcfb3f2e355e163b147683f8cc7e46b44e36b840f3f4fb8e9dffb9861",
+      "bytes": 2310
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/pythagorean_green.stdout",
+      "sha256": "ca27708be3539b5334e3a709345f4fee79ca1891cf12e5b60c96165bb12eac4c",
+      "bytes": 10464
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/graph_geometric_operator_checks.py",
+      "sha256": "2651b314b7f9f2d6527f4cb9032223bf2fd6e5ebf3e24279dd22e16f989e897d",
+      "bytes": 4925
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/graph_moment_candidates.py",
+      "sha256": "f173d3637c4f0aa331236f106bf70147f2b7eaf087d8cc6cdc049995b2903ead",
+      "bytes": 6603
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/recomputed_endpoint_support_audit.json",
+      "sha256": "c2e1798817a09a5e93f05ccf63a0ba4f99ccfd17849ed1ac9f8cb5907598aa17",
+      "bytes": 1703
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/pythagorean_green.json",
+      "sha256": "ca27708be3539b5334e3a709345f4fee79ca1891cf12e5b60c96165bb12eac4c",
+      "bytes": 10464
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/historical_dependency_search.json",
+      "sha256": "2e2d081aec40bc65d7ffc4c5f404eacccce28e08c54c7ff09a69d1b59a1c5420",
+      "bytes": 2549
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/pipeline_attempts.json",
+      "sha256": "2345ed4404658472d99c1a3ce5c2f333ed84b118466072b08cd8b86112684d4e",
+      "bytes": 6580
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/execution_summary.json",
+      "sha256": "017b223a2e26a26735d1d0d70cec054a8ef5ca8bb6c15d736ecbb4ee8b9b9f9e",
+      "bytes": 7780
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/exact_joint_provenance_repair.json",
+      "sha256": "b1273cdb6d5b369c178159404c3fe544bf3fe4c216740331aa961d621c7d33f8",
+      "bytes": 771
+    },
+    {
+      "path": "/home/thlinux/carry-kernel-geometric-search-20260904/graph/return_metric_covariance.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "timestamp_utc": "2026-09-05T10:49:48Z",
+  "base_commit": "f31b38744491fd0f77620f498d2b69beca8f7224",
+  "requested_base_is_ancestor": true,
+  "branch": "agent/covariant-completed-trace-test",
+  "new_module_sha256": "e9d08f64dbd693e5ec83732e012ac6af3a64f3d7554a8dd365f70c4882b8c964",
+  "lake_manifest_sha256": "93e2199cd60475eb40a261a0204afb68c729316d69adfe11d5230136d65828e5",
+  "dependency_pins": {
+    "NativeCarryC3Crosswalk": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+    "CarryGeometry": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+    "NativeCarrySpectralWeyl": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+    "CPFormal": "65d50f6db1208708e109982ba97e1d51d3039956",
+    "mathlib": "81a5d257c8e410db227a6665ed08f64fea08e997",
+    "FiniteNativeCarryOperator": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+    "GreenFrame": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+    "plausible": "e12c1910fe855cbfc38803cd4e55543906d5fa62",
+    "LeanSearchClient": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+    "importGraph": "7e9612bf0b9ee66db3cb5b9988a35afc706f5a12",
+    "proofwidgets": "6e311e2a844da9b2cc3971187df2fe0066947b93",
+    "aesop": "a7dbf0c63b694e47f425f3dcddbc0e178bb432d3",
+    "Qq": "38d591e778f100aec9762bb582f9c7f55f50e9dc",
+    "batteries": "023ce7d62a0531e22a5331e20b587817a80d49ff",
+    "Cli": "88679d088c9720c27ebdf2ba4dafe17341747f94"
+  },
+  "lean_toolchain": "leanprover/lean4:v4.32.0",
+  "reused_sources_unchanged": {
+    "CarrySelfAdjointOperator/CameraReturnVarianceEnergyBalance.lean": "ee54df9ec10f5db4a8bb23307f4b3c292dfff81aa3e02b4eb933dd0a3aedf87d",
+    "CarrySelfAdjointOperator/C3ReturnCompletedTraceChannels.lean": "7e07b6f36c118f83bbe3b84d86eb1d4a35a0c062d1002939cdc6f4e49e95c6b9",
+    "CarrySelfAdjointOperator/C3MixedReturnSourceTrace.lean": "25b32bb2346c00d85d72c13346109c213531396801a87df3b29749e1183e7c55",
+    "CarrySelfAdjointOperator/CompletedC3EnrichedSymplecticNoLeakBridge.lean": "0c0cab0b20abe38f6962450afca20e0d4697cab64f06cfd79aee64cb72900482",
+    "CarrySelfAdjointOperator/CompletedEnrichedTfvdBoundaryCompanion.lean": "3b1f466cbfd03c9e4f8ca51d80b19493875865e83c77c2cb9b3020d60618edeb",
+    "CarrySelfAdjointOperator/CompletedC3BracketTfvdGreenFactorization.lean": "154e2e57de0201e43522519cd76e9125db11e5efead4afd6799e0c1fc37d9408",
+    "CarrySelfAdjointOperator/CanonicalCompletedC3NormalizedGammaSewing.lean": "556ed2453ac471c9339feff9fc1a2d900f6c76fdd35aedbfa7755e6386f022d9",
+    "CarrySelfAdjointOperator/C3GammaCameraTraceObstruction.lean": "64ba4b2401d0149c2cd04a5ffa83906cbe9709172de9bb6987c7ac7b282c00a1",
+    "CarrySelfAdjointOperator/CenteredCameraCutoffConvergence.lean": "85ff0692c22e53f3925f01e21e46e070152e32cb712222b9eaa1cc62aced5e11"
+  },
+  "new_theorem_count": 20,
+  "new_readout_definitions": 2,
+  "axioms_by_theorem": {
+    "CarrySelfAdjointOperator.sixCamera_return_variance_valueTrace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.sixCameraReturnVarianceTrace_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.sixCameraReturnVarianceTrace_greenPort": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3ReturnVarianceHeadReadout_eq": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3ReturnVariance_valueHead": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3ReturnVariance_logJetHead": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3CanonicalPrefix_returnVarianceCompletedTrace": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3GreenPort_add_logJet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3ValueHead_add_logJet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3LogJetHead_add_lastLogJet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3CompletedTrace_add_lastLogJet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.not_c3CompletedCompanion_factors_through_processed_source": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3CompletedTrace_lastLogJet_boundaryDifference": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.hasDerivAt_c3ReturnVariance_valueHead_eq_neg_logJet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.hasDerivAt_c3ReturnVariance_completedValue_eq_neg_logJet": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3ReturnVariance_completedReadouts_eq_bracketTfvd": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3LogJetPulse_sameSource_differentCompanion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3ReturnVariance_dressedTrace_eq_F_negFprime": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.c3LogJetPulse_sameGamma_differentCompanion": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.canonicalC3Gamma_isometricTransport_ne_native_diagonal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "module_build_command": "lake build --wfail CarrySelfAdjointOperator.CovariantCameraTraceTransport",
+  "module_build_exit_code": 0,
+  "full_audit_command": "bash scripts/audit.sh",
+  "final_full_audit_exit_code": 0,
+  "successful_lake_stages": 14,
+  "static_audit_passed": true,
+  "new_theorems_check_exit_code": 0,
+  "numerical_experiments_this_round": false,
+  "new_mathematical_hypotheses_for_canonical_trace": [],
+  "native_gamma_gram_identification": false,
+  "merge_performed": false
+}

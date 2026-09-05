@@ -1,0 +1,47 @@
+CarrySelfAdjointOperator.carryGammaSource_camera_test_bound (z : ℂ) (hz : z.im ≠ 0)
+  (u : NativeCarrySpectralWeyl.Infinite.RealifiedCameraComplexification)
+  (v : ↥NativeCarrySpectralWeyl.Infinite.logarithmicMultiplication.domain) :
+  |inner ℝ (↑v) (NativeCarrySpectralWeyl.Infinite.naimarkIsometry (WithLp.fst u))| ≤
+    (|z.re| * ‖↑v‖ + |z.im| * ‖↑v‖ + ‖↑NativeCarrySpectralWeyl.Infinite.logarithmicMultiplication v‖) *
+      ‖CarrySelfAdjointOperator.carryGammaComplexState z hz u‖
+CarrySelfAdjointOperator.canonicalC3NormalizedGamma_diagonal_eventually_gt_sixteenth :
+  ∀ᶠ (z : ℂ) in nhds 0,
+    ∀ (hz : z.im ≠ 0),
+      1 / 16 < (CarrySelfAdjointOperator.canonicalCompletedC3NormalizedPolarizedGammaKernel z z hz hz).re
+CarrySelfAdjointOperator.completedNativePolarizedDslope_imaginaryAxis_eventually_lt_sixteenth :
+  ∀ᶠ (t : ℝ) in nhds 0,
+    (CarrySelfAdjointOperator.canonicalCompletedNativePolarizedDslopeKernel (Complex.I * ↑t) (Complex.I * ↑t)).re <
+      1 / 16
+CarrySelfAdjointOperator.canonicalC3RawGammaWronskianDefect_ne_zero_near_imaginary_center :
+  ∀ᶠ (t : ℝ) in nhds 0,
+    ∀ (hz : (Complex.I * ↑t).im ≠ 0),
+      CarrySelfAdjointOperator.canonicalCompletedC3RawGammaWronskianDefect (Complex.I * ↑t) (Complex.I * ↑t) hz hz ≠ 0
+CarrySelfAdjointOperator.canonicalC3RawDefect_counterexamples_arbitrarily_close (ε : ℝ) (hε : 0 < ε) :
+  ∃ t,
+    0 < t ∧
+      t < ε ∧
+        t < 1 / 2 ∧
+          CarrySelfAdjointOperator.operatorHeightParameter (Complex.I * ↑t) ∈
+              CPFormal.Analytic.Cp.genuineCriticalStrip ∧
+            CarrySelfAdjointOperator.completedNativeOperatorCharacteristic (Complex.I * ↑t) ≠ 0 ∧
+              ∀ (hz : (Complex.I * ↑t).im ≠ 0),
+                CarrySelfAdjointOperator.canonicalCompletedC3RawGammaWronskianDefect (Complex.I * ↑t) (Complex.I * ↑t)
+                    hz hz ≠
+                  0
+CarrySelfAdjointOperator.canonicalC3GreenInverseTraceRealization_empty_near_imaginary_center :
+  ∀ᶠ (t : ℝ) in nhds 0,
+    ∀ (hz : (Complex.I * ↑t).im ≠ 0),
+      IsEmpty
+        (CarrySelfAdjointOperator.CanonicalCompletedC3GreenInverseTraceRealization (Complex.I * ↑t) (Complex.I * ↑t) hz
+          hz)
+CarrySelfAdjointOperator.not_canonicalCompletedC3GammaCauchyScalarization_cameraFive :
+  ¬CarrySelfAdjointOperator.CanonicalCompletedC3GammaCauchyScalarization
+'CarrySelfAdjointOperator.not_canonicalCompletedC3GammaCauchyScalarization_cameraFive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalC3RawGammaWronskianDefect_ne_zero_near_imaginary_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalC3RawDefect_counterexamples_arbitrarily_close' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,17 @@
+{
+  "P_ell_div_constructed": false,
+  "Qtilde_constructed": false,
+  "activation_condition": "a complete native witness in K_native with nonzero A_even_pre image",
+  "activation_condition_met": false,
+  "eta_ell_d_frame_claimed": false,
+  "minimal_A_observable_provenance_computed": false,
+  "mobius_moment_sufficiency_tested": false,
+  "not_confused_with_Haar_Mangoldt": true,
+  "not_emitted": [
+    "PASS_CANONICAL_DIVISOR_HAAR_PROVENANCE_FRAME",
+    "PASS_MINIMAL_A_OBSERVABLE_PROVENANCE"
+  ],
+  "phase_executed": false,
+  "reason": "the task permits this enrichment only after a native witness; free-module mu_ell is insufficient",
+  "schema": "c2.green.divisor_haar.conditional_gate.v1"
+}

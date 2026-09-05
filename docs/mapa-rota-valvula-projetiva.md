@@ -1,5 +1,7 @@
 # Mapa — rota da válvula projetiva para o carrier nativo
 
+> Atualização de 2026-09-05: [a válvula aplicada aos momentos nativos](ponte-valvula-momentos-nativos.md) identifica exatamente a massa recíproca normalizada da característica, com sinal e índices explícitos.
+
 Este é o mapa de trabalho da rota proposta por Motta em 4 de setembro de 2026.
 A base de partida é `main` em `351ec74cc40f7d12d6f31e9450372f223dabb2bd`, após as
 PRs #48 e #49. O objetivo é usar as incidências nativas, a geometria projetiva e
@@ -39,7 +41,7 @@ estado geométrico específico exige ainda compatibilidade entre os transportes.
 | Etapa | Entrega concreta | Estado atual |
 | --- | --- | --- |
 | 1 | Transporte linear injetivo das incidências de suporte finito às curvaturas projetivas; recuperação dos coeficientes; independência e dimensão dos spans; ligação ao carrier Hilbert existente. | Concluída e compilada em [ProjectiveValveNativeIncidence.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/891853d810135669d871ab6f0ecd2420ac1d204c/CarrySelfAdjointOperator/ProjectiveValveNativeIncidence.lean); ver registro na seção 9. |
-| 2 | Identificar quais combinações dessas curvaturas e quais dados de bordo dão o estado nativo que produz os momentos de `F`. | Aberta: a naturalidade dos canais já existe; a igualdade da forma final ainda precisa de prova. |
+| 2 | Identificar quais combinações dessas curvaturas e quais dados de bordo dão o estado nativo que produz os momentos de `F`. | Aberta: a realização Hilbert literal C3 foi refutada para o Gram dos momentos; uma nova realização é necessária. Ver seção 10. |
 | 3 | Demonstrar as identidades Gram polarizadas para `G_N` e `K_N`, conservando normalizações, cruzamentos e bordos. | Obrigação central aberta. |
 | 4 | Usar a independência transportada para obter positividade estrita para todo `N` e construir o certificado. | Mecanismo formal existente; depende das etapas 2–3. |
 | 5 | Aplicar a equivalência espectral da #49; identificar a realização geométrica com o carrier completado e estudar o transporte inverso à altura assinada. | Equivalência de Jacobi pronta sob certificado; identificação concreta e demais questões dependem dos passos anteriores. |
@@ -241,3 +243,57 @@ Para começar a próxima sessão, abrir conjuntamente
 [CompletedC3ValveCauchyNaturalityFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/351ec74cc40f7d12d6f31e9450372f223dabb2bd/CarrySelfAdjointOperator/CompletedC3ValveCauchyNaturalityFrontier.lean) e
 [CompletedC3CausalGreenGramSewing.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/351ec74cc40f7d12d6f31e9450372f223dabb2bd/CarrySelfAdjointOperator/CompletedC3CausalGreenGramSewing.lean). Rastrear o mesmo estado e seus dados de
 bordo até o readout final antes de extrair jets ou alegar positividade.
+
+
+## 10. Tentativa seguinte — a métrica literal C3 não fecha
+
+Em 4 de setembro de 2026, a implementação
+[ProjectiveValveMomentFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c/CarrySelfAdjointOperator/ProjectiveValveMomentFrontier.lean) provou que a realização literal da câmera
+C3, raio 1, fornece `c(0,2)=0` e `c(1,1)=6`, embora os dois coeficientes devam
+ser o mesmo `h₁` no kernel dos momentos. Isso refuta o certificado para esse
+jet específico, preservando os resultados de independência da etapa 1.
+
+A continuação exige uma nova realização do span e duas provas explícitas:
+
+1. `c(p,0) = oddMomentResponseCoefficient h (p+1)`;
+2. `c(p,q+1) = c(p+1,q)`.
+
+A equivalência com a recorrência e o construtor do certificado sob essas
+obrigações já estão formalizados. O diagnóstico completo está em
+[Obrigações Lean da rota](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/agent/projective-valve-moment-frontier/docs/obrigacoes-rota-valvula-projetiva.md), com nomes das
+declarações, metas efetivamente impressas e comandos de reprodução.
+
+A identificação nativa não foi concluída. Branch da tentativa:
+`agent/projective-valve-moment-frontier`; sem merge no `main`.
+
+
+## 11. Peso aritmético incorporado e teste do Green ponderado
+
+A origem do peso não ficou como hipótese nova. Em
+[ProjectiveValveCarryEnergyFrontier.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c/CarrySelfAdjointOperator/ProjectiveValveCarryEnergyFrontier.lean), o parâmetro do Green foi identificado
+com a amplitude derivada: `q_b^k = carryAmplitude b k`, com quadrado igual a
+`carryMass b k`. O produto interno TFVD foi decomposto nos quatro canais,
+incluindo os cruzamentos e o retorno de bordo.
+
+A nova realização `canonicalProjectiveCarryGreenMap` é injetiva e usa o
+parâmetro canônico. Porém [ProjectiveValveCarryGreenObstruction.lean](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c/CarrySelfAdjointOperator/ProjectiveValveCarryGreenObstruction.lean) prova que
+a família de respostas C3 transladadas com sementes zero também não satisfaz
+a recorrência dos momentos, mesmo com esse peso. O resultado não se aplica
+aos jets do estado completado com seus próprios dados de bordo.
+
+Próxima construção: usar o estado nativo dependente da altura, transportar sua
+energia ponderada completa e provar as identidades da seção 10 para seus jets.
+A seção 6 do diagnóstico registra os teoremas, o teste e seu alcance.
+
+`CarryGeometry.arithmeticCarryUniversality` já está no pin consumido e foi
+incluído na auditoria. O `WeightedTransform.lean` consultado está no `main`
+`3a64ccebfa3849251b2d564432d693ed19a4b74b` do `carry-geometry`, posterior ao pin
+consumido; seu transporte preserva a energia comprimida, o bracket e a
+recuperação da origem. Nenhum pin foi alterado nesta tentativa.
+
+Validação final desta tentativa: 30 declarações novas e a universalidade
+aritmética auditadas, somente axiomas usuais; build específico com 9.106 jobs e
+auditoria completa aprovados. A identidade nativa permanece aberta.
+
+Implementação validada: [22b3f48](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/22b3f48f97d1c8e6c39511698eb86c4c6875ea5c).
+Commit e push registrados na branch da tentativa; sem merge no `main`.

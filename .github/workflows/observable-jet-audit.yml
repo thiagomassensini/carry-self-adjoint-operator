@@ -1,0 +1,51 @@
+name: Observable jet core audit
+
+on:
+  pull_request:
+    paths:
+      - 'CarrySelfAdjointOperator/ObservableJet*.lean'
+      - 'CarrySelfAdjointOperator/C3TraceDynamics.lean'
+      - 'CarrySelfAdjointOperator/C3NativeTraceDynamics.lean'
+      - '.github/workflows/observable-jet-audit.yml'
+
+permissions:
+  contents: read
+
+env:
+  AUDITED_SHA: ${{ github.event.pull_request.head.sha }}
+
+concurrency:
+  group: observable-jet-core-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  core:
+    name: Observable quotient and finite C3 kernel audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Check out the exact audited commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ env.AUDITED_SHA }}
+          persist-credentials: false
+      - name: Check source identity and static audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$AUDITED_SHA"
+          test -z "$(git status --porcelain --untracked-files=all)"
+          bash scripts/static_audit.sh
+      - name: Set up pinned Lean and Mathlib cache
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-github-cache: false
+          use-mathlib-cache: true
+      - name: Check the observable core and its axioms
+        run: lake build --wfail CarrySelfAdjointOperator.ObservableJetCoreAudit
+      - name: Check the native gradient adapter and its axioms
+        run: lake build --wfail CarrySelfAdjointOperator.ObservableJetAudit
