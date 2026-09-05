@@ -5,6 +5,9 @@ cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
 
+# Check the observable quotient and native C3 clock/readout graph.
+lake build --wfail CarrySelfAdjointOperator.ObservableJetAudit
+
 # Check the discrete-projective capstone before the larger spectral surface.
 lake build --wfail CarrySelfAdjointOperator.DiscreteProjectiveReconstructionAudit
 

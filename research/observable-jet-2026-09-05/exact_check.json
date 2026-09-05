@@ -1,0 +1,20 @@
+{
+  "method": "exact rational polynomial arithmetic in independent a,b,c",
+  "checks": {
+    "gradient_roundtrip": true,
+    "clock_conjugacy": true,
+    "value_trace": true,
+    "pulse_instantaneous_invisible": true,
+    "pulse_log_trace": true,
+    "observability_determinant": true,
+    "inverse_identity_0": true,
+    "inverse_identity_1": true,
+    "inverse_identity_2": true,
+    "affine_seed": true,
+    "consistent_log_trace": true
+  },
+  "passed": true,
+  "native_gap_float_for_orientation_only": -0.1177830356563836,
+  "native_gap_exact": "log(8/9) < 0 since 0 < 8 < 9",
+  "lean_compilation": "not performed by this Python audit"
+}

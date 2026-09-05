@@ -1,0 +1,87 @@
+{
+  "date": "2026-09-05",
+  "base_commit": "3674c8feeb0e2b2ef26afe6a0cd9df786ce790fe",
+  "scope": "16 supplied attachments, with targeted repository source checks; not an exhaustive read of all historical original notes",
+  "attachments": [
+    {
+      "file": "Mapa_ponte_valvula_momentos_nativos_2026-09-05.md",
+      "lines": 125,
+      "sha256": "8817dfb2ce820efb75056aaed3eaf1da84473ae2537de20cbf084c695c62c0ea"
+    },
+    {
+      "file": "Mapa_coordenadas_altura_cortes_C3_2026-09-04.md",
+      "lines": 223,
+      "sha256": "2e22268f66480783b5d0919e1c77c29cf0037558e59720b4ea04fa445812fc90"
+    },
+    {
+      "file": "native_carry_defect_probe_research_log.md",
+      "lines": 1091,
+      "sha256": "1086d4dc67a135ce46faf318523c84679920a2a03111b2bc4e110e4be89a9f97"
+    },
+    {
+      "file": "Mapa_notas_hp_jets_retorno_2026-09-04.md",
+      "lines": 280,
+      "sha256": "5442173260aa3c9f2f5feb4e92a61fc85b29022d0c6f0ff99b91863f9edc5c95"
+    },
+    {
+      "file": "Construcao_kernel_carry_2026-09-04.md",
+      "lines": 215,
+      "sha256": "aaac1211b2b8731c57989da643a3fafa0922bfb48810d34e40efbe952d5c5972"
+    },
+    {
+      "file": "Mapa_atlas_retorno_misto_readout_nativo_2026-09-05.md",
+      "lines": 176,
+      "sha256": "68e8495519c22be4b4734a6ae02b67469c088af860b1f8325dede9f623601520"
+    },
+    {
+      "file": "Mapa_no_go_Gamma_fonte_C3_camera5_2026-09-05.md",
+      "lines": 230,
+      "sha256": "e56e54c1e13d7decfcb074c726b6a5396becb1035d053a747c51245d7f9f9323"
+    },
+    {
+      "file": "Mapa_defeito_retorno_Weyl_fonte_geometrica_2026-09-05.md",
+      "lines": 168,
+      "sha256": "7cf9230d766244f94742da1f969665e4decb694fa0543c0d1e5c70ebd2549350"
+    },
+    {
+      "file": "Mapa_costuras_carry_2026-09-04.md",
+      "lines": 314,
+      "sha256": "8581c696c5f915ffee5836895a85e75f92f18c9d88d4b553cb6f386a13e2b85b"
+    },
+    {
+      "file": "Obrigacoes_Lean_rota_valvula_projetiva_2026-09-04.md",
+      "lines": 342,
+      "sha256": "588ddb98c2d963900afb9e21d1f95133f234f66fdfdfb6796086d247be89c460"
+    },
+    {
+      "file": "Atualizacao_costuras_carry_2026-09-04.md",
+      "lines": 159,
+      "sha256": "b3852c774db1b4070fcbc61df13a600a2bd3db919053a31473479f3ceb350498"
+    },
+    {
+      "file": "Mapa_identificacao_geometrica_kernel_carry_2026-09-04.md",
+      "lines": 415,
+      "sha256": "c8cc49b028b34cbf97d96c855963487a775ea6377ae7b58e4f758f112f3f7bc3"
+    },
+    {
+      "file": "Mapa_notas_costura_energia_momentos_carry_2026-09-04.md",
+      "lines": 367,
+      "sha256": "235cd61e23747001655fb6b39aa6d6a129afe4f3a62fb715ba10a2cb4f358468"
+    },
+    {
+      "file": "Mapa_garimpo_repositorios_obrigacoes_carry_2026-09-04.md",
+      "lines": 444,
+      "sha256": "dffc9d83e0cb48fe54a3c0af60f63a7ff8485c5f40e238208eb3e2363315dabc"
+    },
+    {
+      "file": "Mapa_rota_valvula_projetiva_carry_2026-09-04.md",
+      "lines": 297,
+      "sha256": "1b0aac66da559c52fdb6a8bd5d7ee40e39380c0e21cd2592dc944d337637e4f7"
+    },
+    {
+      "file": "Mapa_retorno_trace_completado_cameras5_7_2026-09-05.md",
+      "lines": 222,
+      "sha256": "eb46d2b89771c89fcf9807ed2f0334a338cbc18a2a442dbc6807542c1981a722"
+    }
+  ]
+}
