@@ -1,0 +1,198 @@
+{
+  "base": "dba85c68854b3c351a5848af286eff04f2df1235",
+  "branch": "agent/camera-centered-cutoff-convergence",
+  "new_module": "CarrySelfAdjointOperator/CenteredCameraCutoffConvergence.lean",
+  "new_theorems": 19,
+  "isometric_analysis_definitions": [
+    "centeredCameraCoreMap",
+    "centeredCameraCoreIsometry",
+    "centeredCameraExtension",
+    "centeredCameraIsometry"
+  ],
+  "new_module_sha256": "85ff0692c22e53f3925f01e21e46e070152e32cb712222b9eaa1cc62aced5e11",
+  "full_audit": {
+    "command": "PATH=/home/thlinux/.elan/bin:$PATH bash scripts/audit.sh",
+    "exit_code": 0,
+    "stages_passed": 14,
+    "stage_job_counts": [
+      8699,
+      8911,
+      9106,
+      9185,
+      4039,
+      4093,
+      3676,
+      2997,
+      3239,
+      3247,
+      9231,
+      9256,
+      3946,
+      3249
+    ],
+    "warnings": 0
+  },
+  "new_theorem_axiom_command": "PATH=/home/thlinux/.elan/bin:$PATH lake env lean research/camera-centered-cutoff-2026-09-05/new-theorem-axioms.lean",
+  "new_theorem_axiom_exit_code": 0,
+  "new_theorem_axioms": {
+    "integral_centeredLog_cross_min": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "inner_centeredNaimarkCameraVector": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "finiteCamera_normalizedResultant_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "centeredCameraCoreMap_inner": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "centeredCameraCoreMap_norm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "centeredCameraExtension_cameraEmbedding": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "centeredCameraExtension_norm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "centeredCameraIsometry_cameraVector": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "centeredCameraIsometry_readout": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "finiteCamera_normalizedResultant_pairwise_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "finiteCamera_three_five_separation_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "completeCameraCenterCount_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "finiteCamera_normalizedPhysicalCutoff_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "finiteCamera_normalizedPhysicalCutoff_pairwise_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "finiteSixCamera_covariance_entry_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "finiteCamera_three_five_unitSeparation_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "completeCameraCenterCount_initialPlateau": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "centeredCameraIsometry_twoQuadrature_readout": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "finiteCamera_rawDifference_tendsto": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "dependency_pins_verified": 15,
+  "new_mathematical_hypotheses": [],
+  "parameters": "Supported fixed camera b >= 2; angular t arbitrary; resolvent z is non-real for the existing covariance limits.",
+  "new_spectral_operators_moments_or_Jacobi": false,
+  "new_Hilbert_space": false,
+  "gamma_native_gram_identified": false,
+  "merge": false,
+  "remaining_lean_goals_in_new_module": [],
+  "numerical_run": {
+    "command": "OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 /home/thlinux/miniforge3/bin/python research/camera-centered-cutoff-2026-09-05/camera_cutoff_convergence.py",
+    "exit_code": 0,
+    "workers": 12,
+    "cameras": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      32,
+      64
+    ],
+    "t": [
+      0.0,
+      1.0,
+      7.0,
+      25.0
+    ],
+    "max_physical_cutoff": 1048576,
+    "max_centers_per_camera_covariance": 262144,
+    "covariance_parameters": [
+      [
+        0,
+        1
+      ],
+      [
+        3,
+        2
+      ]
+    ],
+    "original_coefficient_checks": 68,
+    "high_precision_checks": 6,
+    "max_error_to_60_digit_calculation": 3.7678589592991316e-14,
+    "results_sha256": "3f0e4d5ceb52f943d00fa80273fdcb81320fa99e1664ccc5bddb2e1acd431c54",
+    "no_external_scalar_target": true,
+    "status": "finite numerical evidence; theorems audited separately"
+  },
+  "figure_validation": "PNG viewed; labels, legends and plotted trends checked.",
+  "scope_limits": [
+    "No uniform convergence over cameras growing with the cutoff",
+    "No identification of camera vectors via equality of scalar readouts",
+    "No Gamma/native sewing",
+    "No claim that the full covariance is numerically converged at the tested cutoff"
+  ],
+  "git_diff_check": "passed before and after staging"
+}
