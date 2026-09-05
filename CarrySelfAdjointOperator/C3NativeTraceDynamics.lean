@@ -1,5 +1,5 @@
 import CarrySelfAdjointOperator.C3TraceDynamics
-import CarrySelfAdjointOperator.C3ReturnCompletedTraceChannels
+import CPFormal.Analytic.CpFiniteLogJetCommutator
 
 /-!
 # The native ordinary/log-jet prefix lies on an affine graph

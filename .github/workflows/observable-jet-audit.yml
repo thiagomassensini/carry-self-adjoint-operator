@@ -5,6 +5,7 @@ on:
     paths:
       - 'CarrySelfAdjointOperator/ObservableJet*.lean'
       - 'CarrySelfAdjointOperator/C3TraceDynamics.lean'
+      - 'CarrySelfAdjointOperator/C3NativeTraceDynamics.lean'
       - '.github/workflows/observable-jet-audit.yml'
 
 permissions:
@@ -46,3 +47,5 @@ jobs:
           use-mathlib-cache: true
       - name: Check the observable core and its axioms
         run: lake build --wfail CarrySelfAdjointOperator.ObservableJetCoreAudit
+      - name: Check the native gradient adapter and its axioms
+        run: lake build --wfail CarrySelfAdjointOperator.ObservableJetAudit

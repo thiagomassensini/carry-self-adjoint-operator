@@ -193,5 +193,7 @@ workflow, a formalização deve ser tratada como proposta pendente de compilaç�
 
 Há ainda um workflow separado, `Observable jet core audit`, que compila
 `ObservableJetCoreAudit` para dar retorno rápido sobre os dois módulos
-algébricos. Ele não substitui a auditoria completa nem valida por si só a
-integração `C3NativeTraceDynamics`.
+algébricos e depois compila `ObservableJetAudit`, incluindo a integração com
+as definições nativas. Essa integração importa diretamente o módulo CPFormal
+que fornece os gradientes, sem puxar toda a cadeia do autoadjunto. O workflow
+completo do repositório continua verificando a integração da biblioteca inteira.
