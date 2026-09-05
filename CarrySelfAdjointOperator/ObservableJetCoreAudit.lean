@@ -1,0 +1,11 @@
+import CarrySelfAdjointOperator.C3TraceDynamics
+
+#print axioms CarrySelfAdjointOperator.ObservableJet.invisible_invariant
+#print axioms CarrySelfAdjointOperator.ObservableJet.invariant_submodule_le_invisible
+#print axioms CarrySelfAdjointOperator.ObservableJet.invisible_eq_ker_iff
+#print axioms CarrySelfAdjointOperator.ObservableJet.generator_mkQ
+#print axioms CarrySelfAdjointOperator.ObservableJet.observation_mkQ
+#print axioms CarrySelfAdjointOperator.C3TraceDynamics.clock_intertwines
+#print axioms CarrySelfAdjointOperator.C3TraceDynamics.three_observations_separate
+#print axioms CarrySelfAdjointOperator.C3TraceDynamics.native_log_trace_gap_neg
+#print axioms CarrySelfAdjointOperator.C3TraceDynamics.native_three_observations_separate

@@ -52,6 +52,12 @@ Essa equivalência explicita quando é lícito esquecer tudo que uma leitura
 instantânea não vê, mantendo uma evolução bem definida. No caso geral, é
 necessário conservar parte dessa informação para prever leituras posteriores.
 
+Esse estado observável é relativo ao par (L,Q). Ele não redefine o zero nativo
+nem identifica o estado completo com sua resultante. Uma direção descartada
+pelo quociente pode continuar tendo energia no espaço original. A escolha de
+um atlas conjunto de leituras, e de uma eventual norma no quociente, exige
+informação adicional.
+
 `ObservableJetQuotient.lean` contém a definição, a maximalidade, a invariância
 e os mapas induzidos. Tudo é algébrico sobre um domínio invariante fornecido.
 Para um gerador ilimitado, a escolha desse domínio e o controle analítico
@@ -104,6 +110,10 @@ Assim, conhecer o valor e os dois primeiros log-jets basta para recuperar
 as três variações nodais. Isso é um resultado de dimensão três, não uma
 afirmação de recuperação do estado infinito por três números.
 
+Como corolário matemático, esse cálculo identifica o subespaço invisível
+da construção geral: nesse bloco, U={0}. Esquecer as direções apagadas apenas pelo valor
+perderia informação que os jets subsequentes recuperam.
+
 ## A ligação com as definições nativas e o papel do bordo
 
 No código existente, fₙ=(n+1)^(−s), gₙ=fₙ₊₁−fₙ e
@@ -136,6 +146,15 @@ câmeras. O quociente observável registra a informação indispensável à evol
 das leituras. Depois disso se pode perguntar quais formas de Green, normas e
 completações são compatíveis com esse objeto.
 
+Isso continua duas peças já presentes. O dossiê
+`carry-geometric-graph-investigation.md` preserva duas leituras para reparar
+uma perda de proveniência num pequeno módulo livre; a nota do coequalizador
+J/H verifica a descida de um operador que atua num fator tensorial diferente.
+Aqui a segunda leitura não é acrescentada livremente: ela é QL, imposta pelo
+relógio do mesmo estado C3. A independência de famílias de jets por Vandermonde
+também já aparece em `CompletedNativeTfvdCoefficientJets.lean`. O cálculo
+presente a aplica a uma leitura C3 concreta e explicita seu quociente observável.
+
 No caso infinito, a sequência logarítmica exige domínio, convergência e caudas.
 No caso multibase, é preciso verificar que as mudanças de câmera transportam
 também os jets e o bordo. Uma realização positiva dos momentos nativos exige
@@ -149,6 +168,9 @@ os módulos e notas pertinentes nos repositórios. O inventário do autoadjunto
 na base acima contém 73 arquivos Markdown. Não se afirma leitura integral de
 todas as centenas de notas originais e ZIPs mencionados pelos mapas; os anexos
 incluem auditorias desse acervo, mas não são o acervo inteiro.
+
+Os nomes e hashes SHA-256 dos 16 anexos constam de
+`research/observable-jet-2026-09-05/source_manifest.json`.
 
 Fontes especialmente relevantes no repositório:
 
@@ -168,3 +190,8 @@ no ambiente local desta sessão. Os arquivos Lean são submetidos ao workflow
 existente do repositório, com `--wfail` e impressão dos axiomas dos resultados
 centrais via `ObservableJetAudit`. Até haver uma execução bem-sucedida desse
 workflow, a formalização deve ser tratada como proposta pendente de compilação.
+
+Há ainda um workflow separado, `Observable jet core audit`, que compila
+`ObservableJetCoreAudit` para dar retorno rápido sobre os dois módulos
+algébricos. Ele não substitui a auditoria completa nem valida por si só a
+integração `C3NativeTraceDynamics`.
