@@ -1,0 +1,166 @@
+import CarrySelfAdjointOperator.CompletedNativeThetaExponentialBounds
+
+namespace CarrySelfAdjointOperator
+set_option maxHeartbeats 4000000
+
+theorem thetaFirstMode_refined_node_1152 :
+    (111724691/50000000000000:ℝ) ≤ thetaFirstMode (3/4:ℝ) ∧ thetaFirstMode (3/4:ℝ) ≤ (44690077/20000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (3/4:ℝ) (2240844535169/500000000000:ℝ) (4481689070339/1000000000000:ℝ) (111724691/50000000000000:ℝ) (44690077/20000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1153 :
+    (211675683/100000000000000:ℝ) ≤ thetaFirstMode (385/512:ℝ) ∧ thetaFirstMode (385/512:ℝ) ≤ (211676637/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (385/512:ℝ) (8787558409/1953125000:ℝ) (4499229905409/1000000000000:ℝ) (211675683/100000000000000:ℝ) (211676637/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1154 :
+    (52913951/25000000000000:ℝ) ≤ thetaFirstMode (85600515/113837056:ℝ) ∧ thetaFirstMode (85600515/113837056:ℝ) ≤ (105828379/50000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (85600515/113837056:ℝ) (899852067709/200000000000:ℝ) (2249630169273/500000000000:ℝ) (52913951/25000000000000:ℝ) (105828379/50000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1155 :
+    (211635927/100000000000000:ℝ) ≤ thetaFirstMode (7930210043525/10546054596096:ℝ) ∧ thetaFirstMode (7930210043525/10546054596096:ℝ) ≤ (2645461/1250000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (7930210043525/10546054596096:ℝ) (89985815429/20000000000:ℝ) (4499290771451/1000000000000:ℝ) (211635927/100000000000000:ℝ) (2645461/1250000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1156 :
+    (52904013/25000000000000:ℝ) ≤ thetaFirstMode (548559415042533895/729502937539807232:ℝ) ∧ thetaFirstMode (548559415042533895/729502937539807232:ℝ) ≤ (105808503/50000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (548559415042533895/729502937539807232:ℝ) (2249660601897/500000000000:ℝ) (899864240759/200000000000:ℝ) (52904013/25000000000000:ℝ) (105808503/50000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1157 :
+    (10579809/5000000000000:ℝ) ≤ thetaFirstMode (6534077305948613955765/8689317914228980285952:ℝ) ∧ thetaFirstMode (6534077305948613955765/8689317914228980285952:ℝ) ≤ (211597133/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (6534077305948613955765/8689317914228980285952:ℝ) (17997406541/4000000000:ℝ) (4499351635251/1000000000000:ℝ) (10579809/5000000000000:ℝ) (211597133/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1158 :
+    (40095821/20000000000000:ℝ) ≤ thetaFirstMode (193/256:ℝ) ∧ thetaFirstMode (193/256:ℝ) ≤ (50120003/25000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (193/256:ℝ) (903367878673/200000000000:ℝ) (2258419696683/500000000000:ℝ) (40095821/20000000000000:ℝ) (50120003/25000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1159 :
+    (189833661/100000000000000:ℝ) ≤ thetaFirstMode (387/512:ℝ) ∧ thetaFirstMode (387/512:ℝ) ≤ (189834523/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (387/512:ℝ) (453451780291/100000000000:ℝ) (4534517802911/1000000000000:ℝ) (189833661/100000000000000:ℝ) (189834523/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1160 :
+    (23726973/12500000000000:ℝ) ≤ thetaFirstMode (86941485/115022848:ℝ) ∧ thetaFirstMode (86941485/115022848:ℝ) ≤ (94908323/50000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (86941485/115022848:ℝ) (4534548316227/1000000000000:ℝ) (1133637079057/250000000000:ℝ) (23726973/12500000000000:ℝ) (94908323/50000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1161 :
+    (47449477/25000000000000:ℝ) ≤ thetaFirstMode (2712779610345/3588968463872:ℝ) ∧ thetaFirstMode (2712779610345/3588968463872:ℝ) ≤ (18979877/10000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (2712779610345/3588968463872:ℝ) (2267289414657/500000000000:ℝ) (906915765863/200000000000:ℝ) (47449477/25000000000000:ℝ) (18979877/10000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1162 :
+    (37956007/20000000000000:ℝ) ≤ thetaFirstMode (568820330690682105/752537778572097536:ℝ) ∧ thetaFirstMode (568820330690682105/752537778572097536:ℝ) ≤ (5930653/3125000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (568820330690682105/752537778572097536:ℝ) (2267304670923/500000000000:ℝ) (4534609341847/1000000000000:ℝ) (37956007/20000000000000:ℝ) (5930653/3125000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1163 :
+    (47440541/25000000000000:ℝ) ≤ thetaFirstMode (34229931486855451316343/45285304621504058652160:ℝ) ∧ thetaFirstMode (34229931486855451316343/45285304621504058652160:ℝ) ≤ (7590521/4000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (34229931486855451316343/45285304621504058652160:ℝ) (4534639853497/1000000000000:ℝ) (2267319926749/500000000000:ℝ) (47440541/25000000000000:ℝ) (7590521/4000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1164 :
+    (89857211/50000000000000:ℝ) ≤ thetaFirstMode (97/128:ℝ) ∧ thetaFirstMode (97/128:ℝ) ≤ (179715241/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (97/128:ℝ) (4552265403793/1000000000000:ℝ) (2276132701897/500000000000:ℝ) (89857211/50000000000000:ℝ) (179715241/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1165 :
+    (85048737/50000000000000:ℝ) ≤ thetaFirstMode (389/512:ℝ) ∧ thetaFirstMode (389/512:ℝ) ≤ (42524563/25000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (389/512:ℝ) (4570082466823/1000000000000:ℝ) (571260308353/125000000000:ℝ) (85048737/50000000000000:ℝ) (42524563/25000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1166 :
+    (17008141/10000000000000:ℝ) ≤ thetaFirstMode (88296387/116214784:ℝ) ∧ thetaFirstMode (88296387/116214784:ℝ) ≤ (42520547/25000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (88296387/116214784:ℝ) (4570113061347/1000000000000:ℝ) (1142528265337/250000000000:ℝ) (17008141/10000000000000:ℝ) (42520547/25000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1167 :
+    (42516337/25000000000000:ℝ) ≤ thetaFirstMode (8350814750845/10991206887936:ℝ) ∧ thetaFirstMode (8350814750845/10991206887936:ℝ) ≤ (85033063/50000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (8350814750845/10991206887936:ℝ) (914028731129/200000000000:ℝ) (2285071827823/500000000000:ℝ) (42516337/25000000000000:ℝ) (85033063/50000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1168 :
+    (21256161/12500000000000:ℝ) ≤ thetaFirstMode (589719320504220263/776175582409545728:ℝ) ∧ thetaFirstMode (589719320504220263/776175582409545728:ℝ) ≤ (85025033/50000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (589719320504220263/776175582409545728:ℝ) (4570174249393/1000000000000:ℝ) (2285087124697/500000000000:ℝ) (21256161/12500000000000:ℝ) (85025033/50000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1169 :
+    (17003323/10000000000000:ℝ) ≤ thetaFirstMode (35855303234927171773041/47191752594083278773760:ℝ) ∧ thetaFirstMode (35855303234927171773041/47191752594083278773760:ℝ) ≤ (21254251/12500000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (35855303234927171773041/47191752594083278773760:ℝ) (1142551210567/250000000000:ℝ) (4570204842269/1000000000000:ℝ) (17003323/10000000000000:ℝ) (21254251/12500000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1170 :
+    (32191977/20000000000000:ℝ) ≤ thetaFirstMode (195/256:ℝ) ∧ thetaFirstMode (195/256:ℝ) ≤ (257537/160000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (195/256:ℝ) (917593852773/200000000000:ℝ) (2293984631933/500000000000:ℝ) (32191977/20000000000000:ℝ) (257537/160000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1171 :
+    (15227967/10000000000000:ℝ) ≤ thetaFirstMode (391/512:ℝ) ∧ thetaFirstMode (391/512:ℝ) ≤ (152280373/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (391/512:ℝ) (4605926067851/1000000000000:ℝ) (1151481516963/250000000000:ℝ) (15227967/10000000000000:ℝ) (152280373/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1172 :
+    (152265249/100000000000000:ℝ) ≤ thetaFirstMode (89665293/117412864:ℝ) ∧ thetaFirstMode (89665293/117412864:ℝ) ≤ (152265951/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (89665293/117412864:ℝ) (4605956744611/1000000000000:ℝ) (1151489186153/250000000000:ℝ) (152265249/100000000000000:ℝ) (152265951/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1173 :
+    (152250829/100000000000000:ℝ) ≤ thetaFirstMode (8567705548355/11218994843136:ℝ) ∧ thetaFirstMode (8567705548355/11218994843136:ℝ) ≤ (152251531/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (8567705548355/11218994843136:ℝ) (2302993710573/500000000000:ℝ) (4605987421147/1000000000000:ℝ) (152250829/100000000000000:ℝ) (152251531/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1174 :
+    (15223641/10000000000000:ℝ) ≤ thetaFirstMode (611273043037863577/800428910102816768:ℝ) ∧ thetaFirstMode (611273043037863577/800428910102816768:ℝ) ≤ (19029639/12500000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (611273043037863577/800428910102816768:ℝ) (4606018097137/1000000000000:ℝ) (2303009048569/500000000000:ℝ) (15223641/10000000000000:ℝ) (19029639/12500000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1175 :
+    (152221993/100000000000000:ℝ) ≤ thetaFirstMode (37548920246270157404559/49168060985435061199360:ℝ) ∧ thetaFirstMode (37548920246270157404559/49168060985435061199360:ℝ) ≤ (19027837/12500000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (37548920246270157404559/49168060985435061199360:ℝ) (2303024386131/500000000000:ℝ) (4606048772263/1000000000000:ℝ) (152221993/100000000000000:ℝ) (19027837/12500000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1176 :
+    (28807151/20000000000000:ℝ) ≤ thetaFirstMode (49/64:ℝ) ∧ thetaFirstMode (49/64:ℝ) ≤ (72018211/50000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (49/64:ℝ) (2311976576391/500000000000:ℝ) (4623953152783/1000000000000:ℝ) (28807151/20000000000000:ℝ) (72018211/50000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1177 :
+    (68103971/50000000000000:ℝ) ≤ thetaFirstMode (393/512:ℝ) ∧ thetaFirstMode (393/512:ℝ) ≤ (5448343/4000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (393/512:ℝ) (4642050793727/1000000000000:ℝ) (18133010913/3906250000:ℝ) (68103971/50000000000000:ℝ) (5448343/4000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1178 :
+    (68097503/50000000000000:ℝ) ≤ thetaFirstMode (91048275/118617088:ℝ) ∧ thetaFirstMode (91048275/118617088:ℝ) ≤ (136195639/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (91048275/118617088:ℝ) (4642081553747/1000000000000:ℝ) (1160520388437/250000000000:ℝ) (68097503/50000000000000:ℝ) (136195639/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1179 :
+    (136182071/100000000000000:ℝ) ≤ thetaFirstMode (2929693223055/3816768399872:ℝ) ∧ thetaFirstMode (2929693223055/3816768399872:ℝ) ≤ (8511419/6250000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (2929693223055/3816768399872:ℝ) (2321056156773/500000000000:ℝ) (4642112313547/1000000000000:ℝ) (136182071/100000000000000:ℝ) (8511419/6250000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1180 :
+    (136169137/100000000000000:ℝ) ≤ thetaFirstMode (633498502977313575/825310517945133056:ℝ) ∧ thetaFirstMode (633498502977313575/825310517945133056:ℝ) ≤ (136169771/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (633498502977313575/825310517945133056:ℝ) (2321071536403/500000000000:ℝ) (4642143072807/1000000000000:ℝ) (136169137/100000000000000:ℝ) (136169771/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1181 :
+    (68078103/50000000000000:ℝ) ≤ thetaFirstMode (39313276758463040392257/51216412690723244700160:ℝ) ∧ thetaFirstMode (39313276758463040392257/51216412690723244700160:ℝ) ≤ (136156839/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (39313276758463040392257/51216412690723244700160:ℝ) (4642173831207/1000000000000:ℝ) (580271728901/125000000000:ℝ) (68078103/50000000000000:ℝ) (136156839/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1182 :
+    (128776883/100000000000000:ℝ) ≤ thetaFirstMode (197/256:ℝ) ∧ thetaFirstMode (197/256:ℝ) ≤ (32194371/25000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (197/256:ℝ) (4660219266837/1000000000000:ℝ) (2330109633419/500000000000:ℝ) (128776883/100000000000000:ℝ) (32194371/25000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+theorem thetaFirstMode_refined_node_1183 :
+    (121724043/100000000000000:ℝ) ≤ thetaFirstMode (395/512:ℝ) ∧ thetaFirstMode (395/512:ℝ) ≤ (121724613/100000000000000:ℝ) := by
+  apply thetaFirstMode_node_bounds (395/512:ℝ) (233922942467/50000000000:ℝ) (4678458849341/1000000000000:ℝ) (121724043/100000000000000:ℝ) (121724613/100000000000000:ℝ)
+  all_goals norm_num [thetaExpLower, thetaExpUpper, Finset.sum_range_succ]
+
+end CarrySelfAdjointOperator

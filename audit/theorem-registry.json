@@ -279,6 +279,12 @@
     {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.reciprocalGap_parity"},
     {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.reflectedNeighborCorrection_pos"},
     {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.reflectedNeighborCorrection_six"},
-    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.reflectedNeighborCorrection_seven"}
+    {"qualified": "CarrySelfAdjointOperator.AllOrderLogJet.reflectedNeighborCorrection_seven"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeRealEvenCharacteristicCoefficient_four_eq_xiCosineMoment"},
+    {"qualified": "CarrySelfAdjointOperator.xiEighthMoment_numerator_lower_bound_of_refined_box"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeShiftedHankel_two_det_eq"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeShiftedHankel_two_det_eq_eighthOrderRatio"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeShiftedHankel_two_det_eq_xiCosineMoments"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeShiftedHankel_two_det_pos"}
   ]
 }
