@@ -1,0 +1,25 @@
+import CarrySelfAdjointOperator.C2AlignedBoxOddCoreCrosswalk
+
+namespace CarrySelfAdjointOperator
+
+#print axioms c2AlignedIndex_factorization
+#print axioms c2AlignedCenter_eq_oddCoreCenter
+#print axioms c2AlignedCenter_eq_c2Fiber_center
+#print axioms c2AlignedIndexCore_pos
+#print axioms c2AlignedIndexCore_odd
+#print axioms c2AlignedCenter_padicDepth_eq_fiberDepth
+#print axioms c2LeftIncidence_eq_oddCoreMinus
+#print axioms c2RightIncidence_eq_oddCorePlus
+#print axioms c2LeftIncidence_effectiveDepth_eq_fiberDepth
+#print axioms c2RightIncidence_effectiveDepth_eq_fiberDepth
+#print axioms c2AlignedCenter_log_eq_fiberDepthLog
+#print axioms c2AlignedCenter_log_amplitude_eq_green_and_seed
+#print axioms c2AlignedLeftLeg_eq_c2FiberPoint_minus
+#print axioms c2AlignedRightLeg_eq_c2FiberPoint_plus
+#print axioms c2AlignedLeftLeg_log_center_defect
+#print axioms c2AlignedRightLeg_log_center_defect
+#print axioms c2LeftIncidenceTerm_eq_fiber
+#print axioms c2RightIncidenceTerm_eq_fiber
+#print axioms weighted_reindex_alignedBox_fiber_terms
+
+end CarrySelfAdjointOperator
