@@ -1,6 +1,15 @@
 {
   "schema_version": 1,
   "theorems": [
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.pow_eq_sum_stirlingSecond_descFactorial"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.pow_mul_amplitude_eq_sum_newtonJet"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.tower_log_power_criticalAmplitude_eq_stirling_newtonJet"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.factorial_mul_newtonJet_eq_power_sub_lower"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.mk_power_amplitude_eq_stirling_projective"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.stirlingNewtonMatrix_det"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.stirlingNewtonMatrix_det_ne_zero"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.stirlingNewtonMatrix_mulVec_bijective"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.stirlingNewtonMatrix_mulVec_newtonJet"},
     {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.weightedCoordinate_relation"},
     {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.euler_weightedCoordinate"},
     {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.mk_choose_eq_projective"},

@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.NewtonProjectiveDepthAudit
+import CarrySelfAdjointOperator.NewtonStirlingTransportAudit
 import CarrySelfAdjointOperator.AllOrderLogJetAudit
 import CarrySelfAdjointOperator.CompletedNativeChiralReturnAudit
 import CarrySelfAdjointOperator.C3ClockShiftAudit
