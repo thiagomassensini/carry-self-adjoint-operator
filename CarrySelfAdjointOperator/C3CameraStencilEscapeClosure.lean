@@ -1,5 +1,5 @@
 import CarrySelfAdjointOperator.C3ProjectiveHilbertRBBridge
-import NativeCarryC3Crosswalk.ExactCutoffCameraGram
+import CarrySelfAdjointOperator.ExactCutoffCameraGram
 import NativeCarrySpectralWeyl.Infinite.CameraCompletion
 
 /-!

@@ -1,6 +1,9 @@
 {
   "schema_version": 1,
   "theorems": [
+    {"qualified": "CarrySelfAdjointOperator.finiteLiteralCameraMatrix_rowGram_apply_eq_literalFiniteCameraGram"},
+    {"qualified": "CarrySelfAdjointOperator.finiteLiteralSixCameraMatrix_rowGram_apply_eq_literalFiniteCameraGram"},
+    {"qualified": "CarrySelfAdjointOperator.tendsto_normalizedFiniteLiteralSixCameraRowGram"},
     {"qualified": "CarrySelfAdjointOperator.finiteDepthShift_index_commutator"},
     {"qualified": "CarrySelfAdjointOperator.finiteDepthDifference_index_commutator"},
     {"qualified": "CarrySelfAdjointOperator.finiteDepthDifference_logMultiplication_commutator"},
