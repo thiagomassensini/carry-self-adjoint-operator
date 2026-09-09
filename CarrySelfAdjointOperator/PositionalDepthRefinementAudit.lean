@@ -1,0 +1,7 @@
+import CarrySelfAdjointOperator.PositionalDepthRefinement
+
+#print axioms CarrySelfAdjointOperator.residueAtDepth_succ_eq_refinedResidue
+#print axioms CarrySelfAdjointOperator.quotientAtDepth_succ_eq_refinedQuotient
+#print axioms CarrySelfAdjointOperator.positionalDepthCoordinates_succ_eq_refinement
+#print axioms CarrySelfAdjointOperator.positionalDepthRefinement_reconstructs
+#print axioms CarrySelfAdjointOperator.refinedResidue_lt_placeValue_succ

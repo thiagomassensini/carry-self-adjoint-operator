@@ -1,6 +1,11 @@
 {
   "schema_version": 1,
   "theorems": [
+    {"qualified": "CarrySelfAdjointOperator.residueAtDepth_succ_eq_refinedResidue"},
+    {"qualified": "CarrySelfAdjointOperator.quotientAtDepth_succ_eq_refinedQuotient"},
+    {"qualified": "CarrySelfAdjointOperator.positionalDepthCoordinates_succ_eq_refinement"},
+    {"qualified": "CarrySelfAdjointOperator.positionalDepthRefinement_reconstructs"},
+    {"qualified": "CarrySelfAdjointOperator.refinedResidue_lt_placeValue_succ"},
     {"qualified": "CarrySelfAdjointOperator.finiteLiteralCameraMatrix_rowGram_apply_eq_literalFiniteCameraGram"},
     {"qualified": "CarrySelfAdjointOperator.finiteLiteralSixCameraMatrix_rowGram_apply_eq_literalFiniteCameraGram"},
     {"qualified": "CarrySelfAdjointOperator.tendsto_normalizedFiniteLiteralSixCameraRowGram"},
