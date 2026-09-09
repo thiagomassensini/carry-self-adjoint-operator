@@ -1,0 +1,18 @@
+import CarrySelfAdjointOperator.C2LiteralCameraFiberBracketCrosswalk
+
+namespace CarrySelfAdjointOperator
+
+#print axioms c2CameraAlignedCenter_eq_oddCoreCenter
+#print axioms c2CameraAlignedCenter_eq_c2FiberCenter
+#print axioms c2CenterStencil_eq_fiberBracketStencil
+#print axioms c2CenterStencil_eq_fiberAtomBracket
+#print axioms c2CenterCoefficient_eq_fiberCoefficient
+#print axioms c2CenterStencil_eval_eq_fiberBracket
+#print axioms c2FiberLogBracket_eq_legDefectSum
+#print axioms c2FiberLogBracket_eq_legDefectSum_expanded
+#print axioms c2AlignedCameraLogBracket_eq_legDefectSum
+#print axioms c2AlignedCameraLogBracket_mul_criticalAmplitude_eq_legDefectSum_mul
+#print axioms c2FiniteCameraCenterStencil_sum_eq_fiber
+#print axioms c2FiniteCameraStencil_eq_seed_add_fiberSum
+
+end CarrySelfAdjointOperator
