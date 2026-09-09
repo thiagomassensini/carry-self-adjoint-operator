@@ -1,6 +1,12 @@
 {
   "schema_version": 1,
   "theorems": [
+    {"qualified": "CarrySelfAdjointOperator.finiteDepthShift_index_commutator"},
+    {"qualified": "CarrySelfAdjointOperator.finiteDepthDifference_index_commutator"},
+    {"qualified": "CarrySelfAdjointOperator.finiteDepthDifference_logMultiplication_commutator"},
+    {"qualified": "CarrySelfAdjointOperator.finiteNativeDepthCommutator_eq_log_scale"},
+    {"qualified": "CarrySelfAdjointOperator.finiteEnrichedCamera_operator_decomposition"},
+    {"qualified": "CarrySelfAdjointOperator.finiteNativeDepthCommutator_visible_blind_decomposition"},
     {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.nativeDirichletTower_zero"},
     {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.nativeDirichletTower_succ"},
     {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.nativeDepthShiftEigenvalue_eq_cpow"},
