@@ -458,5 +458,18 @@
     ,{"qualified": "CarrySelfAdjointOperator.c2Center_cameraTwo_logContribution_eq_depth"}
     ,{"qualified": "CarrySelfAdjointOperator.c2Center_otherCameraLogContribution_synthesis_eq_primeCoreLedger"}
     ,{"qualified": "CarrySelfAdjointOperator.c2Fiber_center_log_eq_cameraTwo_add_otherCamera"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteHilbertMatrixSynthesis_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteHilbertMatrixSynthesis_comp"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteHilbertMatrixSynthesis_inner_gram"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteHilbertMatrixSynthesis_one"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraHilbertRawSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraHilbertRawSynthesis_single_channel"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraHilbertSynthesis_isometry"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraHilbertReadout_synthesis"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalEnrichedCameraHilbert_parseval"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteLiteralCameraHilbertRawSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.restrictCameraResolvedCarryVertical_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteLiteralWhitenedCameraResolvedLogSlopePrefixState_isometry"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteHilbertMatrixSynthesis_map_linearMap_commutes"}
   ]
 }
