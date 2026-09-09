@@ -412,5 +412,13 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeShiftedHankel_two_det_eq_eighthOrderRatio"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeShiftedHankel_two_det_eq_xiCosineMoments"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeShiftedHankel_two_det_pos"}
+    ,{"qualified": "CarrySelfAdjointOperator.evalFormalStencil_atom"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2CenterStencil_eval_logPower_eq_fiberAllOrderBracket"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2CenterStencil_nativeTaylorCoefficient_eq_fiberBracket"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2Tower_logPower_criticalAmplitude_eq_stirling_newtonJet"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2FiniteCamera_allOrderReadout_eq_seed_add_fiberBracketSum"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2FiniteCamera_allOrderLogPowerReadout_eq_seed_add_fiberBracketSum"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2FiniteCamera_nativeTaylorCoefficient_eq_seed_add_fiberBracketSum"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2AlignedCamera_allOrderBracket_eq_fiber"}
   ]
 }
