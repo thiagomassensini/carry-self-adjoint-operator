@@ -420,5 +420,22 @@
     ,{"qualified": "CarrySelfAdjointOperator.c2FiniteCamera_allOrderLogPowerReadout_eq_seed_add_fiberBracketSum"}
     ,{"qualified": "CarrySelfAdjointOperator.c2FiniteCamera_nativeTaylorCoefficient_eq_seed_add_fiberBracketSum"}
     ,{"qualified": "CarrySelfAdjointOperator.c2AlignedCamera_allOrderBracket_eq_fiber"}
+    ,{"qualified": "CarrySelfAdjointOperator.positionalDepth_eq_cameraVertical"}
+    ,{"qualified": "CarrySelfAdjointOperator.primeDepthLogLedger_eq_log"}
+    ,{"qualified": "CarrySelfAdjointOperator.primeDepthLogLedger_eq_factorizationLedger"}
+    ,{"qualified": "CarrySelfAdjointOperator.primeDepthLogLedger_eq_cameraVerticalLedger"}
+    ,{"qualified": "CarrySelfAdjointOperator.positiveLogDirichletValue_eq_primeDepthLogLedger_mul"}
+    ,{"qualified": "CarrySelfAdjointOperator.natLogDirichletTerm_eq_primeDepthLogLedger_mul"}
+    ,{"qualified": "CarrySelfAdjointOperator.positiveLogDirichletGradient_eq_primeDepthSlope"}
+    ,{"qualified": "CarrySelfAdjointOperator.positiveLogDirichletGradient_nativeLine_eq_primeDepthPackagedNativeLogSlope"}
+    ,{"qualified": "CarrySelfAdjointOperator.nativeLogDirichletSlopeTaylorCoefficient_eq_primeDepthLedger_form"}
+    ,{"qualified": "CarrySelfAdjointOperator.finitePrimeDepthGeneratedLogSlopePrefixState_eq_nativeLogSlope"}
+    ,{"qualified": "CarrySelfAdjointOperator.finitePrimeDepthGeneratedLogSlopePrefixState_eq_completedTfvdLogJetPrefix"}
+    ,{"qualified": "CarrySelfAdjointOperator.finitePrimeDepthGeneratedC3HilbertPrefixState_eq_completedTfvd"}
+    ,{"qualified": "CarrySelfAdjointOperator.primeDepthLogJetPrefix_readout_eq_canonical"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2Fiber_centeredLog_eq_depth_add_primeCoreLedger"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2Fiber_center_log_eq_depth_add_primeCoreLedger"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2AlignedCenter_log_eq_currentDepth_add_primeCoreLedger"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2Fiber_centeredLog_amplitude_eq_green_and_primeDepthSeed"}
   ]
 }
