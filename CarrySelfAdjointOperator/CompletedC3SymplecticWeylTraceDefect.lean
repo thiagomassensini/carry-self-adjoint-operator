@@ -36,6 +36,7 @@ def canonicalRealifiedCameraQuarterTurn :
   map_add' u v := by
     apply WithLp.ofLp_injective 2
     ext <;> simp
+    all_goals abel
   map_smul' r u := by
     apply WithLp.ofLp_injective 2
     ext <;> simp
@@ -62,13 +63,13 @@ def canonicalRealifiedCameraStaticGreenTrace :
     (u : RealifiedCameraComplexification) :
     (canonicalRealifiedCameraStaticGreenTrace u).fst =
       (2 : ℝ)⁻¹ • u.snd := by
-  simp [canonicalRealifiedCameraStaticGreenTrace, smul_smul]
+  simp [canonicalRealifiedCameraStaticGreenTrace]
 
 @[simp] theorem canonicalRealifiedCameraStaticGreenTrace_snd
     (u : RealifiedCameraComplexification) :
     (canonicalRealifiedCameraStaticGreenTrace u).snd =
       -((2 : ℝ)⁻¹ • u.fst) := by
-  simp [canonicalRealifiedCameraStaticGreenTrace, smul_smul]
+  simp [canonicalRealifiedCameraStaticGreenTrace]
 
 /-- After the faithful symplectic C3 packing, the static first trace is
 literally one half of the packed intrinsic Weyl quarter-turn.  Thus the
@@ -96,11 +97,18 @@ theorem greenForm_staticRealifiedCameraBoundary_eq_skew
         (canonicalRealifiedCameraStaticGreenTrace u, u)
         (canonicalRealifiedCameraStaticGreenTrace v, v) =
       NativeCarryC3Crosswalk.realifiedGreenSkew u v := by
-  simp only [greenForm,
-    canonicalRealifiedCameraStaticGreenTrace_fst,
-    canonicalRealifiedCameraStaticGreenTrace_snd,
-    NativeCarryC3Crosswalk.realifiedGreenSkew,
-    WithLp.prod_inner_apply,
+  have hfst (w : RealifiedCameraComplexification) :
+      (canonicalRealifiedCameraStaticGreenTrace w).ofLp.1 =
+        (2 : ℝ)⁻¹ • w.snd := by
+    change (canonicalRealifiedCameraStaticGreenTrace w).fst = _
+    exact canonicalRealifiedCameraStaticGreenTrace_fst w
+  have hsnd (w : RealifiedCameraComplexification) :
+      (canonicalRealifiedCameraStaticGreenTrace w).ofLp.2 =
+        -((2 : ℝ)⁻¹ • w.fst) := by
+    change (canonicalRealifiedCameraStaticGreenTrace w).snd = _
+    exact canonicalRealifiedCameraStaticGreenTrace_snd w
+  simp only [greenForm, WithLp.prod_inner_apply, WithLp.fst, WithLp.snd,
+    hfst, hsnd, NativeCarryC3Crosswalk.realifiedGreenSkew,
     real_inner_smul_left, real_inner_smul_right,
     inner_neg_left, inner_neg_right]
   ring

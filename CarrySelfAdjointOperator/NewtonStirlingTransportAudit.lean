@@ -1,0 +1,13 @@
+import CarrySelfAdjointOperator.NewtonStirlingTransport
+
+/-! Trust footprint of the exact Stirling/Newton/logarithmic crosswalk. -/
+
+#print axioms CarrySelfAdjointOperator.ProjectiveDepth.pow_eq_sum_stirlingSecond_descFactorial
+#print axioms CarrySelfAdjointOperator.ProjectiveDepth.pow_mul_amplitude_eq_sum_newtonJet
+#print axioms CarrySelfAdjointOperator.ProjectiveDepth.tower_log_power_criticalAmplitude_eq_stirling_newtonJet
+#print axioms CarrySelfAdjointOperator.ProjectiveDepth.factorial_mul_newtonJet_eq_power_sub_lower
+#print axioms CarrySelfAdjointOperator.ProjectiveDepth.mk_power_amplitude_eq_stirling_projective
+#print axioms CarrySelfAdjointOperator.ProjectiveDepth.stirlingNewtonMatrix_det
+#print axioms CarrySelfAdjointOperator.ProjectiveDepth.stirlingNewtonMatrix_det_ne_zero
+#print axioms CarrySelfAdjointOperator.ProjectiveDepth.stirlingNewtonMatrix_mulVec_bijective
+#print axioms CarrySelfAdjointOperator.ProjectiveDepth.stirlingNewtonMatrix_mulVec_newtonJet

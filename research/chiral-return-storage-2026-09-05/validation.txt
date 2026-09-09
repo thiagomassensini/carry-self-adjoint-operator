@@ -1,0 +1,19 @@
+Base commit: 4ee40cae252f70d5acd6b1589a48ec75771292e3
+Branch: agent/chiral-return-storage
+Focused build: lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnAudit
+Focused build exit: 0
+New theorems: 10
+New theorem axiom sets: propext, Classical.choice, Quot.sound
+Full workflow: bash scripts/audit.sh
+Full workflow exit: 0
+Full workflow: 15/15 stages passed
+Full workflow printed axiom reports checked: 6057
+All printed axiom reports use only the standard set.
+No errors, warnings, or sorryAx.
+Static audit passed.
+git diff --check passed.
+Dependency pins, toolchain, and package configuration unchanged.
+No new mathematical premises in the main witness theorem.
+Regularity premises in the scalar kernel identification are inherited from the existing congruence.
+All-order contractivity remains open; no merge.
+Log cleanup: trailing whitespace only; original logs retained in /tmp/chiral-return-*.log.raw on llm.

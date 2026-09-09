@@ -32,6 +32,7 @@ theorem canonicalCompletedC3GlobalBoundaryGreenTrace_eq_polarizedGammaBoundaryRe
   rw [canonicalCompletedC3PolarizedGammaBoundaryReadout_diagonal_eq_cauchySkew]
   unfold canonicalCompletedC3GlobalBoundaryGreenTrace
   rw [canonicalCompletedC3GlobalCauchyBoundarySkew_eq_gammaCauchySkew]
+  rw [canonicalCompletedC3GlobalCameraSource_eq_source]
 
 /-- Pointwise final defect written as the sum of its two canonical seams:
 causal Green versus Gamma energy, and Gamma boundary versus completed
