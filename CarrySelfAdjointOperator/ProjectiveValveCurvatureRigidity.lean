@@ -1,6 +1,8 @@
 import CarrySelfAdjointOperator.ProjectiveValveAlgebra
 import Mathlib.Tactic
 
+set_option linter.unusedSectionVars false
+
 /-!
 # Curvature rigidity for normalized projective-valve germs
 
@@ -46,10 +48,13 @@ theorem derivative_projectiveValveNormalize
     d⁄dX K (projectiveValveNormalize A) =
       projectiveValveCurvature A * projectiveValveNormalize A := by
   have hA := projectiveValveCurvature_mul_self_of_constantCoeff_ne_zero A hA0
-  change A.derivativeFun = projectiveValveCurvature A * A at hA
+  change projectiveValveCurvature A * A = A.derivativeFun at hA
+  change (projectiveValveNormalize A).derivativeFun =
+      projectiveValveCurvature A * projectiveValveNormalize A
   unfold projectiveValveNormalize
-  rw [PowerSeries.derivativeFun_smul, hA]
-  simp only [smul_eq_mul]
+  rw [PowerSeries.derivativeFun_smul]
+  rw [← hA]
+  simp only [PowerSeries.smul_eq_C_mul]
   ring
 
 /-- Normalizing a nonzero germ does not change its logarithmic curvature. -/

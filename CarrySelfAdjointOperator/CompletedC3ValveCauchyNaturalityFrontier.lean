@@ -49,6 +49,7 @@ theorem canonicalCompletedC3EnrichedWronskian_eq_structuredScalarGreenForm
         (canonicalCompletedC3StructuredScalarBoundaryPair z) := by
   rw [canonicalCompletedC3StructuredScalarBoundaryPair_eq_canonical hs]
   rw [← completedC3Wronskian_eq_scalarBoundaryGreenForm z z]
+  simp only [completedGreenWronskian]
   rw [canonicalCompletedC3EnrichedTfvdCompletedValueTailReadout_eq_characteristic
       hs,
     canonicalCompletedC3EnrichedTfvdBoundaryCompanion_eq_completedNativeOperatorBoundaryCompanion
