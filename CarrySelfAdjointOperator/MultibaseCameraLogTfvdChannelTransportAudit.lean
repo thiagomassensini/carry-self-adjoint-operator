@@ -1,0 +1,33 @@
+import CarrySelfAdjointOperator.MultibaseCameraLogTfvdChannelTransport
+
+namespace CarrySelfAdjointOperator
+
+/-!
+Trust audit for the multibase camera-resolved logarithmic TFVD crosswalk.
+
+The outer finitely-supported index is a camera label.  Its values are the
+existing `CarryVerticalL2` states; no identification of the two natural
+`ℕ`-indices is introduced here.
+-/
+
+#print axioms cameraLogContributionSynthesis_eq_primeDepthLogLedger
+#print axioms cameraLogContributionSynthesis_eq_log
+#print axioms cameraComplexSynthesis_cameraLogContributionVectorComplex
+#print axioms cameraComplexSynthesis_cameraResolvedLogDirichletValue
+#print axioms cameraComplexSynthesis_cameraResolvedLogDirichletGradient
+#print axioms cameraLogVerticalContribution_mem
+#print axioms cameraLogHorizontalContribution_mem
+#print axioms cameraLogContributionVector_eq_vertical_add_horizontal
+#print axioms cameraAtlas_blind_direction_survives
+#print axioms finiteCameraResolvedLogSlopePrefixState_synthesis_eq_primeDepth
+#print axioms finiteCameraResolvedLogSlopePrefixState_synthesis_eq_completedTfvd
+#print axioms finsupp_synthesis_mapRange_commutes
+#print axioms cameraChannelAnalysisSynthesis_tfvdAnalysis_commutes
+#print axioms cameraChannelSynthesis_tfvdReconstruction_commutes
+#print axioms cameraChannelTfvdReconstruction_analysis_synthesis
+#print axioms c2Core_cameraTwo_coordinate_eq_zero
+#print axioms c2Center_cameraTwo_logContribution_eq_depth
+#print axioms c2Center_otherCameraLogContribution_synthesis_eq_primeCoreLedger
+#print axioms c2Fiber_center_log_eq_cameraTwo_add_otherCamera
+
+end CarrySelfAdjointOperator

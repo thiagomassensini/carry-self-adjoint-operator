@@ -437,5 +437,26 @@
     ,{"qualified": "CarrySelfAdjointOperator.c2Fiber_center_log_eq_depth_add_primeCoreLedger"}
     ,{"qualified": "CarrySelfAdjointOperator.c2AlignedCenter_log_eq_currentDepth_add_primeCoreLedger"}
     ,{"qualified": "CarrySelfAdjointOperator.c2Fiber_centeredLog_amplitude_eq_green_and_primeDepthSeed"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraLogContributionVector_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraLogContributionSynthesis_eq_primeDepthLogLedger"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraLogContributionSynthesis_eq_log"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraLogContributionVectorComplex_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraComplexSynthesis_cameraLogContributionVectorComplex"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraComplexSynthesis_cameraResolvedLogDirichletValue"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraComplexSynthesis_cameraResolvedLogDirichletGradient"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraLogVerticalContribution_mem"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraLogHorizontalContribution_mem"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraLogContributionVector_eq_vertical_add_horizontal"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraAtlas_blind_direction_survives"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraResolvedLogSlopePrefixState_synthesis_eq_primeDepth"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraResolvedLogSlopePrefixState_synthesis_eq_completedTfvd"}
+    ,{"qualified": "CarrySelfAdjointOperator.finsupp_synthesis_mapRange_commutes"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraChannelAnalysisSynthesis_tfvdAnalysis_commutes"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraChannelSynthesis_tfvdReconstruction_commutes"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraChannelTfvdReconstruction_analysis_synthesis"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2Core_cameraTwo_coordinate_eq_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2Center_cameraTwo_logContribution_eq_depth"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2Center_otherCameraLogContribution_synthesis_eq_primeCoreLedger"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2Fiber_center_log_eq_cameraTwo_add_otherCamera"}
   ]
 }
