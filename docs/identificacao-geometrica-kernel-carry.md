@@ -423,3 +423,7 @@ Integração dos três módulos R/B recuperados e construção do [kernel Hilber
 ## Pista adicional de 2026-09-05: retorno universal
 
 O grep das notas levou ao [defeito de retorno e fonte geométrica](camera-return-defect-source-map.md). A nova fatorização Lean prova que o complemento da variância de câmeras é um quadrado positivo; o resíduo da câmera 6 fornece uma direção explícita de fonte. O mapa registra as transpostas, a medida do modo misto e a distinção entre selecionar essa fonte e identificar o Gram nativo.
+
+## Continuidade: atlas relacional e readout misto efetivo
+
+O [novo mapa do atlas e retorno misto](atlas-mixed-return-native-readout.md) registra dez teoremas adicionais: o raio residual aplicado às características de câmera com caudas exatas produz o fator calculado `-4 * binaryDefectFactor * factor 3`, recupera a energia modal com coeficiente `8/139` e, após normalização e completude, identifica a característica nativa, todos os jets e a massa formal. A identificação da resposta resolvente positiva com a log derivada permanece a obrigação explícita.
