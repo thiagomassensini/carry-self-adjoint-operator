@@ -1,3 +1,4 @@
+import CarrySelfAdjointOperator.NewtonStirlingOperatorIntertwiningAudit
 import CarrySelfAdjointOperator.NewtonProjectiveDepthAudit
 import CarrySelfAdjointOperator.NewtonStirlingTransportAudit
 import CarrySelfAdjointOperator.CompletedNativeChiralReturnAudit

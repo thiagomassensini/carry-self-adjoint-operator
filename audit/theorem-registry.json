@@ -1,6 +1,18 @@
 {
   "schema_version": 1,
   "theorems": [
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.powerDepthJet_eq_stirling_newton"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.carryWeightedScalarFirstDifference_powerDepthJet_apply"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.carryWeightedScalarFirstDifference_powerDepthJet"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.weightedDepthDifference_depthMultiplication_commutator"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.towerLogMultiplication_apply"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.weightedDepthDifference_towerLogMultiplication_commutator"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.nativeDepthDifference_logMultiplication_commutator"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.powerDifferenceMatrix_mulVec_powerDepthJet"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.newtonDifferenceMatrix_mulVec_newtonJet"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.carryWeightedScalarFirstDifference_mulVec"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.powerDifferenceMatrix_mul_stirlingNewtonMatrix"},
+    {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.powerDifferenceMatrix_eq_stirling_conjugate"},
     {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.pow_eq_sum_stirlingSecond_descFactorial"},
     {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.pow_mul_amplitude_eq_sum_newtonJet"},
     {"qualified": "CarrySelfAdjointOperator.ProjectiveDepth.tower_log_power_criticalAmplitude_eq_stirling_newtonJet"},
