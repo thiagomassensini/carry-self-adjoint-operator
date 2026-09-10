@@ -471,5 +471,16 @@
     ,{"qualified": "CarrySelfAdjointOperator.restrictCameraResolvedCarryVertical_apply"}
     ,{"qualified": "CarrySelfAdjointOperator.finiteLiteralWhitenedCameraResolvedLogSlopePrefixState_isometry"}
     ,{"qualified": "CarrySelfAdjointOperator.finiteHilbertMatrixSynthesis_map_linearMap_commutes"}
+    ,{"qualified": "CarrySelfAdjointOperator.br2CameraBracketVerticalState_norm_ge_two"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeGreenFrame_evenZero_anchor_impossible"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeGreenFrame_evenZero_defect_tendsto_explicit"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeGreenFrame_evenZero_defect_limit_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeGreenFrame_evenZero_defect_not_tendsto_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeGreenFrameDslopeJet_ne_br2_of_kernel"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2CanonicalBase_isSupported"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2CanonicalRadius_one_mem"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2CanonicalNativeGreenFrame_evenZero_anchor_impossible"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2CanonicalNativeGreenFrameDslopeJet_ne_br2_of_kernel"}
+    ,{"qualified": "CarrySelfAdjointOperator.c2CanonicalNativeGreenFrame_evenZero_defect_not_tendsto_zero"}
   ]
 }

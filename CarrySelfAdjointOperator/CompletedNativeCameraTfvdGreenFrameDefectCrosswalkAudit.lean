@@ -1,0 +1,25 @@
+import CarrySelfAdjointOperator.CompletedNativeCameraTfvdGreenFrameDefectCrosswalk
+
+namespace CarrySelfAdjointOperator
+
+/-!
+Trust audit for the completed native camera/TFVD Green-frame crosswalk.
+
+The audited declarations are an order-zero obstruction.  They use the
+already proved native diagonal calibration and BR2 center pivot; they do not
+introduce a kernel, a phase choice, a new metric, or a spectral assumption.
+-/
+
+#print axioms br2CameraBracketVerticalState_norm_ge_two
+#print axioms canonicalCompletedNativeGreenFrame_evenZero_anchor_impossible
+#print axioms canonicalCompletedNativeGreenFrame_evenZero_defect_tendsto_explicit
+#print axioms canonicalCompletedNativeGreenFrame_evenZero_defect_limit_ne_zero
+#print axioms canonicalCompletedNativeGreenFrame_evenZero_defect_not_tendsto_zero
+#print axioms canonicalCompletedNativeGreenFrameDslopeJet_ne_br2_of_kernel
+#print axioms c2CanonicalBase_isSupported
+#print axioms c2CanonicalRadius_one_mem
+#print axioms c2CanonicalNativeGreenFrame_evenZero_anchor_impossible
+#print axioms c2CanonicalNativeGreenFrameDslopeJet_ne_br2_of_kernel
+#print axioms c2CanonicalNativeGreenFrame_evenZero_defect_not_tendsto_zero
+
+end CarrySelfAdjointOperator
