@@ -176,7 +176,7 @@ theorem canonicalCompletedNativeGreenMomentGramDefect_eq_forwardDifferenceResidu
           canonicalCompletedNativeLogDerivativeMoment i j : ℂ) =
         ((inner ℂ (limitJet i) (limitJet j)).re : ℂ) := by
     exact_mod_cast h
-  simpa [canonicalCompletedNativeGreenMomentGramDefect,
+  simp [canonicalCompletedNativeGreenMomentGramDefect,
     canonicalCompletedNativeGreenForwardDifferenceGramResidual, limitJet,
     hcast]
 

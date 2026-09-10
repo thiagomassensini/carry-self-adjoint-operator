@@ -719,5 +719,20 @@
     ,{"qualified": "CarrySelfAdjointOperator.hasCanonicalCompletedNativeGreenMomentJets_iff_defect_zero_of_factors"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeGreenMomentGramDefect_eq_forwardDifferenceResidual"}
     ,{"qualified": "CarrySelfAdjointOperator.hasCanonicalCompletedNativeGreenMomentJets_of_forwardDifferenceResidual_zero"}
+
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingDefect_eq_zero_iff"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcreteRealAxisPositiveSewing_iff_defect_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingDefect_eq_dslope_sub_positiveKernel"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingDefect_cutoff_independent"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingDefect_eq_readout_sub_sourceChannelSum"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingChannelResidual_eq_defect"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingChannelResidual_eq_dslope_sub_sourceChannelSum"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcreteRealAxisPositiveSewing_iff_channelResidual_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingDefect_zero_zero_re_eq_neg_centralMomentDefect"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingChannelResidual_zero_zero_re_eq_neg_centralMomentDefect"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingChannelResidual_zero_zero_re_neg"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingDefect_zero_zero_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.not_canonicalCompletedC3ConcreteRealAxisPositiveSewing_of_defect"}
+    ,{"qualified": "CarrySelfAdjointOperator.not_hasCompletedNativeRealAxisNormalizedGreenKernel_concreteC3_of_defect"}
   ]
 }
