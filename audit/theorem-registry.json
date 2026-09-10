@@ -712,5 +712,12 @@
     ,{"qualified": "CarrySelfAdjointOperator.finiteCameraComplexStructure_realifiedMatrixOperator_comm"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraIntrinsicWeylBlock_eq_normalizedWeyl_comp_scale"}
     ,{"qualified": "CarrySelfAdjointOperator.finiteCameraScaledSecondOrder_cancel"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraFreeTfvdWronskianMoment_eq_canonical"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraFreeTfvdGreenPort_vector_intertwiner"}
+    ,{"qualified": "CarrySelfAdjointOperator.cameraFreeTfvdGreenNaimark_forwardDifference_intertwiner"}
+    ,{"qualified": "CarrySelfAdjointOperator.isComplexGreenMomentKernel_iff_canonicalGreenMomentGramDefect_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.hasCanonicalCompletedNativeGreenMomentJets_iff_defect_zero_of_factors"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeGreenMomentGramDefect_eq_forwardDifferenceResidual"}
+    ,{"qualified": "CarrySelfAdjointOperator.hasCanonicalCompletedNativeGreenMomentJets_of_forwardDifferenceResidual_zero"}
   ]
 }
