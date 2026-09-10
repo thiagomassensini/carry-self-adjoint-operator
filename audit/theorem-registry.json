@@ -599,5 +599,30 @@
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjection_witness_ne_zero"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjectionCLM_witness_ne_zero"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjectionCLM_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCamera_slope_le_seven"}
+    ,{"qualified": "CarrySelfAdjointOperator.external_camera_slope_ge_eight"}
+    ,{"qualified": "CarrySelfAdjointOperator.externalCamera_inner_sixCameraCenteredLogNaimarkSynthesis_eq_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.externalCamera_inner_sixCameraWhitenedCenteredLogNaimarkSynthesis_eq_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.externalCamera_inner_centeredHalo_eq_neg_sixProjection"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraProjection_centeredLog_eq_returnSynthesis"}
+    ,{"qualified": "CarrySelfAdjointOperator.externalCameraWhitenedReadout_eq_dotProduct"}
+    ,{"qualified": "CarrySelfAdjointOperator.externalCameraWhitenedReadout_centeredHalo_eq_neg_returnReadout"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraExternalEightGramRow"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraExternalEightDual_mul_gram"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCamera_whitening_mul_sqrt_mulVec"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedCrossGram_mul_centeredGlobalHaloWitness"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraExternalEightDual_dot_inverse_mulVec"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCamera_centeredSlopeDefect_e4"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraExternalEightDual_dot_centeredSlopeDefect"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraExternalEightDual_log_combination_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraExternalEightDual_dot_centeredSlopeDefect_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.externalCamera8WhitenedReadout_centeredWitness"}
+    ,{"qualified": "CarrySelfAdjointOperator.externalCamera8WhitenedReadout_centeredHalo_witness_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCenteredGlobalHaloProjection_centeredWitness_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.externalCamera8WhitenedReadout_cameraReturnCompression_witness"}
+    ,{"qualified": "CarrySelfAdjointOperator.externalCamera8WhitenedReadout_cameraReturnCompression_witness_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjection_centeredLog_not_forall_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjection_centeredLog_exists_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraProjection_centeredLog_eq_cameraReturnCompression_synthesis"}
   ]
 }
