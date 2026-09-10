@@ -558,5 +558,46 @@
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkEscape_centeredLog_inner"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkEscape_centeredLog_norm_sq"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedCenteredLog_variance_sqrt_pair"}
+    ,{"qualified": "CarrySelfAdjointOperator.naimarkIsometry_sixCameraWhitenedCameraHilbertEmbedding"}
+    ,{"qualified": "CarrySelfAdjointOperator.centeredCameraIsometry_sixCameraWhitenedCameraHilbertEmbedding"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraProjection_idempotent"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraProjection_idempotent_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraProjection_range"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraProjection_isSymmetric"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraProjection_isStarProjection"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraProjection_fixes_sixCamera"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraProjection_fixes_sixCameraProjection"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraProjection_globalNaimarkProjection"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraEscape_isSymmetric"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraEscape_idempotent"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraEscape_isStarProjection"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkSynthesis_adjoint_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkSynthesis_adjoint_synthesis"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkProjectionCLM_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkProjectionCLM_idempotent"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkProjectionCLM_isSymmetric"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkProjectionCLM_isStarProjection"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraProjection_sixCameraProjectionCLM"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraProjectionCLM_globalNaimarkProjection"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjection_idempotent"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjection_isSymmetric"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjectionCLM_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjectionCLM_idempotent"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjectionCLM_isSymmetric"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjectionCLM_isStarProjection"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraProjection_fixes_halo"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkProjection_annihilates_halo"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraEscape_inner_halo_eq_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraEscape_inner_halo_eq_zero'"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraEscape_eq_halo_add_globalEscape"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraEscape_inner_eq_globalHalo_add_globalEscape"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraEscape_norm_sq_eq_globalHalo_add_globalEscape"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraVariance_eq_globalHaloGram_add_globalNaimarkEscapeGram"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraVariance_norm_sq_eq_globalHalo_add_globalNaimarkEscape"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraVariance_sqrt_norm_sq_eq_globalHalo_add_globalNaimarkEscape"}
+    ,{"qualified": "CarrySelfAdjointOperator.globalNaimarkCameraProjection_fixes_naimarkCameraVector"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjection_witness_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjectionCLM_witness_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjectionCLM_ne_zero"}
   ]
 }
