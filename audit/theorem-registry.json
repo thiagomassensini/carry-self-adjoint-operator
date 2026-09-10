@@ -638,5 +638,34 @@
     ,{"qualified": "CarrySelfAdjointOperator.scalar_resolvent_third_order_of_offReal"}
     ,{"qualified": "CarrySelfAdjointOperator.scalar_logarithmicCoordinate_resolvent_third_order_of_offReal"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraCauchy_globalWeyl_domain"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraNaimarkSynthesis_mem_logarithmicMultiplicationDomain"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraNaimarkDomainSynthesis_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.inner_naimarkCameraVector_logarithmicMultiplication"}
+    ,{"qualified": "CarrySelfAdjointOperator.inner_logarithmicMultiplication_cameraLogDomainVector"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraNaimarkSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraNaimarkSynthesis_log_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraLogarithmicSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraNaimarkGramMatrix_eq_periodicGramMatrix"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraNaimarkFirstMomentMatrix_eq_firstMomentMatrix"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraNaimarkSecondMomentMatrix_eq_secondCenteredMomentMatrix"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraWhitenedNaimarkSynthesis_inner_matrix"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraWhitenedNaimarkSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraWhitenedNaimarkSynthesis_log_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraWhitenedLogarithmicSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraWhitenedNaimarkSynthesis_mem_domain"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraWhitenedLogarithmicSynthesis_eq_logarithmicMultiplication"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraWhitenedLogarithmicCompression"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraWhitenedSecondMomentCompression"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCamera_periodicGram_eq_gramKernel"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraNaimarkGramMatrix_six_eq"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraNaimarkFirstMomentMatrix_six_eq"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraNaimarkSecondMomentMatrix_six_eq"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkSynthesis_log_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedLogarithmicSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkSynthesis_inner_eq_identity"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraLogarithmicVariance_eq_compression_defect"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraVariance_eq_logarithmic_compression_defect"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraVariance_eq_centered_logarithmic_form"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraLogarithmicCompressionDefect_eq_centeredNaimarkEscape"}
   ]
 }
