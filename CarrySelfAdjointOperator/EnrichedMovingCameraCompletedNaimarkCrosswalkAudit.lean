@@ -1,0 +1,30 @@
+import CarrySelfAdjointOperator.EnrichedMovingCameraCompletedNaimarkCrosswalk
+
+namespace CarrySelfAdjointOperator
+
+/-!
+Trust audit for the enriched moving-camera / completed Naimark crosswalk.
+
+The finite theorems are consequences of the existing matrix whitening and
+Hilbert-valued lift.  The completed roundtrip is the existing concrete
+Naimark-port identity.  No theorem here identifies a cutoff-dependent blind
+projection with Gpre provenance or identifies finite Gram whitening with a
+matrix limit.
+-/
+
+#print axioms finiteEnrichedMovingCameraTfvdState_visible
+#print axioms finiteEnrichedMovingCameraTfvdState_blind
+#print axioms finiteEnrichedMovingCameraTfvdState_parseval
+#print axioms finiteEnrichedMovingCameraTfvdState_reconstruct
+#print axioms finiteEnrichedMovingCameraTfvdState_raw_gram
+#print axioms finiteEnrichedMovingCameraTfvdState_raw_single_channel
+#print axioms finiteEnrichedMovingCameraTfvdState_whitened_synthesis_isometry
+#print axioms finiteEnrichedMovingCameraTfvdState_whitened_roundtrip
+#print axioms finiteEnrichedMovingCameraTfvdState_pairing
+#print axioms finiteEnrichedMovingCameraTfvdState_internal_map_commutes
+#print axioms canonicalCompletedC3NaimarkState_camera_roundtrip
+#print axioms canonicalCompletedC3State_camera_readout_roundtrip
+#print axioms canonicalCompletedTfvdGreenAllCutoffNaimarkState_fixed_carrier_tendsto
+#print axioms canonicalCameraStateReadout_coherent_roundtrip
+
+end CarrySelfAdjointOperator

@@ -482,5 +482,19 @@
     ,{"qualified": "CarrySelfAdjointOperator.c2CanonicalNativeGreenFrame_evenZero_anchor_impossible"}
     ,{"qualified": "CarrySelfAdjointOperator.c2CanonicalNativeGreenFrameDslopeJet_ne_br2_of_kernel"}
     ,{"qualified": "CarrySelfAdjointOperator.c2CanonicalNativeGreenFrame_evenZero_defect_not_tendsto_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteEnrichedMovingCameraTfvdState_visible"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteEnrichedMovingCameraTfvdState_blind"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteEnrichedMovingCameraTfvdState_parseval"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteEnrichedMovingCameraTfvdState_reconstruct"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteEnrichedMovingCameraTfvdState_raw_gram"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteEnrichedMovingCameraTfvdState_raw_single_channel"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteEnrichedMovingCameraTfvdState_whitened_synthesis_isometry"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteEnrichedMovingCameraTfvdState_whitened_roundtrip"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteEnrichedMovingCameraTfvdState_pairing"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteEnrichedMovingCameraTfvdState_internal_map_commutes"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NaimarkState_camera_roundtrip"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3State_camera_readout_roundtrip"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedTfvdGreenAllCutoffNaimarkState_fixed_carrier_tendsto"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCameraStateReadout_coherent_roundtrip"}
   ]
 }
