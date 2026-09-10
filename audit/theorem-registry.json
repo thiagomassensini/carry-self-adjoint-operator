@@ -538,5 +538,25 @@
     ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraBlindEnergy_eq_blind_norm_sq"}
     ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraVisibleBlindEnergy_add_eq_state_norm_sq"}
     ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraVisibleBlindEnergy_eq_enriched_parseval"}
+    ,{"qualified": "CarrySelfAdjointOperator.inner_naimarkCameraVector_centeredNaimarkCameraVector"}
+    ,{"qualified": "CarrySelfAdjointOperator.inner_centeredNaimarkCameraVector_naimarkCameraVector"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraNaimarkSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCenteredLogNaimarkSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraNaimarkSynthesis_centeredLog_inner_entry"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraNaimarkSynthesis_centeredLog_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkSynthesis_inner_matrix"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedCenteredLogNaimarkSynthesis_inner_matrix"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedCenteredLogNaimarkSynthesis_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkSynthesis_centeredLog_inner_matrix"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkSynthesis_centeredLog_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedCrossGram_eq_cameraReturnCompression"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkAnalysis_apply_synthesis"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkAnalysis_apply_centeredLog"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkProjection_apply_synthesis"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkProjection_idempotent"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkEscape_centeredLog_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedNaimarkEscape_centeredLog_norm_sq"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraWhitenedCenteredLog_variance_sqrt_pair"}
   ]
 }
