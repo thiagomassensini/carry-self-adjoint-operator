@@ -523,5 +523,20 @@
     ,{"qualified": "CarrySelfAdjointOperator.atlasSixCamera_raw_overlap_2_4"}
     ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraWhitenedHilbertEmbedding_inner"}
     ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraWhitenedHilbertEmbedding_inner_tendsto_of_inverseSqrt_tendsto"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasNormalizedFiniteSixCameraRowGram_posSemidef"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraPositiveInverseSqrt_continuousAt"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraWhiteningMatrix_tendsto_of_sqrt_tendsto"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraWhitenedHilbertEmbedding_inner_tendsto_of_sqrt_tendsto"}
+    ,{"qualified": "CarrySelfAdjointOperator.rankOneMatrix_transpose"}
+    ,{"qualified": "CarrySelfAdjointOperator.rankOneMatrix_mul_self"}
+    ,{"qualified": "CarrySelfAdjointOperator.rankOneMatrix_mul_self_of_dotProduct_eq_one"}
+    ,{"qualified": "CarrySelfAdjointOperator.trace_projection_rankOne_eq_norm_sq"}
+    ,{"qualified": "CarrySelfAdjointOperator.projectorVisibleEnergy_eq_norm_sq"}
+    ,{"qualified": "CarrySelfAdjointOperator.projectorBlindEnergy_eq_norm_sq"}
+    ,{"qualified": "CarrySelfAdjointOperator.projector_energies_add_eq_norm_sq"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraVisibleEnergy_eq_readout_norm_sq"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraBlindEnergy_eq_blind_norm_sq"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraVisibleBlindEnergy_add_eq_state_norm_sq"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraVisibleBlindEnergy_eq_enriched_parseval"}
   ]
 }
