@@ -667,5 +667,25 @@
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraVariance_eq_logarithmic_compression_defect"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraVariance_eq_centered_logarithmic_form"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraLogarithmicCompressionDefect_eq_centeredNaimarkEscape"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraWhitenedNaimarkSynthesisContinuous_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraWhitenedNaimarkSynthesisContinuous_injective"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraCauchyRealPart_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraCauchyImaginaryPart_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraCauchyImaginaryPart_inner_neg"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraCauchyImaginaryPart_inner_pos"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraRealifiedCauchyBlock_skewQuadratic"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraRealifiedCauchyBlock_skewQuadratic_neg"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraRealifiedCauchyBlock_skewQuadratic_pos"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraRealifiedCauchyBlock_injective"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraRealifiedCauchyBlock_surjective"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraRealifiedCauchyBlock_bijective"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraRealifiedCauchyBlock_inner_ambient"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraIntrinsicWeylBlock_comp_cauchy"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraRealifiedCauchyBlock_comp_intrinsicWeyl"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraRealifiedCauchyBlock_injective"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraRealifiedCauchyBlock_surjective"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraRealifiedCauchyBlock_bijective"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraIntrinsicWeylBlock_comp_cauchy"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraRealifiedCauchyBlock_comp_intrinsicWeyl"}
   ]
 }
