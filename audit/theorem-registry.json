@@ -770,5 +770,6 @@
     ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylor_zero_zero_ne_moment"}
     ,{"qualified": "CarrySelfAdjointOperator.not_hasPolarizedCoefficientVectorEquation_enrichedTfvdTaylor"}
     ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroDefect_ne_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroGram_eq_ofReal"}
   ]
 }

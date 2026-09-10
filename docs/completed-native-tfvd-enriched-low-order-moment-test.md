@@ -43,9 +43,12 @@ The combined identity is exported as
 
 ```lean
 enrichedTfvdTaylorZeroZeroGram_re_eq_reflectedGreen_add_logJet
+enrichedTfvdTaylorZeroZeroGram_eq_ofReal
 ```
 
-and the defect relative to the canonical native moment is the explicit real
+The second theorem records the complete complex self-Gram: it is the cast to
+`ℂ` of the displayed real channel sum (the imaginary part vanishes by the
+standard self-inner-product identity).  The defect relative to the canonical native moment is the explicit real
 quantity
 
 ```lean

@@ -65,6 +65,24 @@ theorem enrichedTfvdTaylorZeroZeroGram_re_eq_reflectedGreen_add_logJet :
             (1 / 2 : ℂ) (by norm_num)‖ ^ 2 := by
   exact inner_canonicalCompletedNativeTfvdEnrichedTaylorRawJet_zero_zero_re_eq_reflectedGreen_add_logJet
 
+/-- The full complex self-Gram is the canonical real scalar obtained from
+that channel sum.  The real-part theorem is upgraded using the standard fact
+that a self-inner product has zero imaginary part. -/
+theorem enrichedTfvdTaylorZeroZeroGram_eq_ofReal :
+    inner ℂ
+        (canonicalCompletedNativeTfvdEnrichedTaylorRawJet 0)
+        (canonicalCompletedNativeTfvdEnrichedTaylorRawJet 0) =
+      ((infiniteReflectedGreenEnergy (1 / 2 : ℂ) +
+        ‖canonicalCompletedC3LogJetState
+            (1 / 2 : ℂ) (by norm_num)‖ ^ 2 : ℝ) : ℂ) := by
+  rw [inner_self_eq_norm_sq_to_K]
+  norm_cast
+  apply Complex.ofReal_inj.mpr
+  have h :=
+    inner_canonicalCompletedNativeTfvdEnrichedTaylorRawJet_zero_zero_re_eq_reflectedGreen_add_logJet
+  rw [inner_self_eq_norm_sq_to_K] at h
+  norm_cast at h
+
 /-- The same central defect written channel by channel.  This is an exact
 identity, not a fitted or asymptotic calibration. -/
 theorem enrichedTfvdTaylorZeroZeroDefect_eq_channelGrams_sub_native :
