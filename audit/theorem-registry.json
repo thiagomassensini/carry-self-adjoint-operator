@@ -734,5 +734,31 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ConcretePositiveSewingDefect_zero_zero_ne_zero"}
     ,{"qualified": "CarrySelfAdjointOperator.not_canonicalCompletedC3ConcreteRealAxisPositiveSewing_of_defect"}
     ,{"qualified": "CarrySelfAdjointOperator.not_hasCompletedNativeRealAxisNormalizedGreenKernel_concreteC3_of_defect"}
+    ,{"qualified": "CarrySelfAdjointOperator.clmReturnMetric"}
+    ,{"qualified": "CarrySelfAdjointOperator.clmReturnMetric_isSelfAdjoint"}
+    ,{"qualified": "CarrySelfAdjointOperator.clmReturnMetric_isPositive"}
+    ,{"qualified": "CarrySelfAdjointOperator.clmEndpoint_returnMetric_pullback_isometry"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameOperator"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameExternal"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameBulk"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFramePoisson"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameReturnMetric"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameParsevalSplit"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFramePoisson_intertwines"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameReturnMetric_isSelfAdjoint"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameReturnMetric_isPositive"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameReturnMetric_isometry"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameReturnReadout"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameReturnKernel"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameReturnReadout_eq_kernel"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameReturnKernel_eq_state_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameReturnReadout_eq_state_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeGreenFrameReturnKernel_posSemidef"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeReturnMetricCentralDefect"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeReturnMetricCentralKernel_eq_gradient_energy"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeReturnMetricCentralDefect_pos"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeReturnMetricCentralKernel_gt_nativeMoment"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeReturnMetricCentralKernel_ne_nativeMoment"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeReturnMetricCentralDefect_eq_energy_sub_native"}
   ]
 }
