@@ -496,5 +496,16 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3State_camera_readout_roundtrip"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedTfvdGreenAllCutoffNaimarkState_fixed_carrier_tendsto"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCameraStateReadout_coherent_roundtrip"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraProjection_factorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraBlindProjection_factorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCanonicalCameraProjection_hilbert_action"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientPortProjection_factorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientPortEscape_factorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.naimarkProjector_intertwines_of_squares"}
+    ,{"qualified": "CarrySelfAdjointOperator.naimarkProjector_intertwines_of_seam"}
+    ,{"qualified": "CarrySelfAdjointOperator.naimarkProjector_intertwines_apply_of_seam"}
+    ,{"qualified": "CarrySelfAdjointOperator.naimarkEscape_intertwines_of_squares"}
+    ,{"qualified": "CarrySelfAdjointOperator.naimarkEscape_intertwines_of_seam"}
+    ,{"qualified": "CarrySelfAdjointOperator.naimarkEscape_intertwines_apply_of_seam"}
   ]
 }
