@@ -624,5 +624,19 @@
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjection_centeredLog_not_forall_zero"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraGlobalCoherentHaloProjection_centeredLog_exists_ne_zero"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraProjection_centeredLog_eq_cameraReturnCompression_synthesis"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCauchyCameraFinsuppMap_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCauchyCameraHilbertSynthesisLinear_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCauchyWhitenedHilbertSynthesisLinear_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCauchyWhitenedHilbertSynthesisContinuous_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCauchyWhitenedHilbertSynthesisContinuous_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.naimarkIsometry_sixCameraCauchyWhitenedHilbertSynthesis"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCauchyRealifiedEmbedding_toPair"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraRealifiedCauchyCompression_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCauchyRealPartCompression_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCauchyImaginaryPartCompression_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.scalar_resolvent_third_order"}
+    ,{"qualified": "CarrySelfAdjointOperator.scalar_resolvent_third_order_of_offReal"}
+    ,{"qualified": "CarrySelfAdjointOperator.scalar_logarithmicCoordinate_resolvent_third_order_of_offReal"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraCauchy_globalWeyl_domain"}
   ]
 }

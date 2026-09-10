@@ -1,0 +1,18 @@
+import CarrySelfAdjointOperator.SixCameraCauchyMomentCrosswalk
+
+namespace CarrySelfAdjointOperator
+
+#print axioms sixCameraCauchyCameraFinsuppMap_apply
+#print axioms sixCameraCauchyCameraHilbertSynthesisLinear_apply
+#print axioms sixCameraCauchyWhitenedHilbertSynthesisLinear_apply
+#print axioms naimarkIsometry_sixCameraCauchyWhitenedHilbertSynthesis
+#print axioms sixCameraCauchyRealifiedEmbedding_toPair
+#print axioms sixCameraRealifiedCauchyCompression_inner
+#print axioms sixCameraCauchyRealPartCompression_inner
+#print axioms sixCameraCauchyImaginaryPartCompression_inner
+#print axioms scalar_resolvent_third_order
+#print axioms scalar_resolvent_third_order_of_offReal
+#print axioms scalar_logarithmicCoordinate_resolvent_third_order_of_offReal
+#print axioms sixCameraCauchy_globalWeyl_domain
+
+end CarrySelfAdjointOperator
