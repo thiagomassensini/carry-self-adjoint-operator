@@ -687,5 +687,30 @@
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraRealifiedCauchyBlock_bijective"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraIntrinsicWeylBlock_comp_cauchy"}
     ,{"qualified": "CarrySelfAdjointOperator.sixCameraRealifiedCauchyBlock_comp_intrinsicWeyl"}
+    ,{"qualified": "CarrySelfAdjointOperator.imaginarySpectralParameter"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraComplexStructure_sq"}
+    ,{"qualified": "CarrySelfAdjointOperator.imaginary_resolvent_inv_tendsto"}
+    ,{"qualified": "CarrySelfAdjointOperator.imaginary_resolvent_ratio_tendsto"}
+    ,{"qualified": "CarrySelfAdjointOperator.imaginary_resolvent_ratio_norm_le"}
+    ,{"qualified": "CarrySelfAdjointOperator.imaginary_resolvent_ratio_tendsto_nat"}
+    ,{"qualified": "CarrySelfAdjointOperator.imaginary_resolvent_ratio_norm_le_nat"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraImaginaryAxisNormalizedWeyl_comp_cauchy_clm"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraImaginaryAxisNormalizedCauchy_comp_weyl_clm"}
+    ,{"qualified": "CarrySelfAdjointOperator.scalar_imaginary_axis_resolvent_third_order"}
+    ,{"qualified": "CarrySelfAdjointOperator.scalar_imaginary_axis_resolvent_scaled_remainder"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraImaginaryAxisNormalizedCauchy_second_order_decomposition"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraIntrinsicWeyl_inverse_second_order_exact"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraRealifiedSecondMoment_sub_logSquare"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraRealifiedSecondOrderCoefficient_apply_complexStructure"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraImaginaryAxisNormalizedWeyl_second_order_decomposition"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraIntrinsicWeylFirstReturnResidual"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraIntrinsicWeylFirstReturnResidual_eq_coefficient_add_remainder"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraIntrinsicWeylFirstReturnResidual_eq_variance_add_remainder"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraIntrinsicWeyl_first_return_eq_residual"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraIntrinsicWeyl_first_return_tendsto_of_inverse_remainder"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraIntrinsicWeyl_first_return_tendsto_of_residual"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraComplexStructure_realifiedMatrixOperator_comm"}
+    ,{"qualified": "CarrySelfAdjointOperator.sixCameraIntrinsicWeylBlock_eq_normalizedWeyl_comp_scale"}
+    ,{"qualified": "CarrySelfAdjointOperator.finiteCameraScaledSecondOrder_cancel"}
   ]
 }
