@@ -1,0 +1,22 @@
+import CarrySelfAdjointOperator.AtlasEnergySixCameraHilbertAsymptoticCrosswalk
+
+namespace CarrySelfAdjointOperator
+
+#print axioms atlasSixCameraIndex_val
+#print axioms atlasSixCameraIndex_injective
+#print axioms atlasSixCamera_supported
+#print axioms atlasSixCameraHistoricalPeriod_eq_cameraSlope
+#print axioms atlasSixCamera_radiusSet_eq_historical
+#print axioms atlasSixCamera_alignedCenter_eq_historical
+#print axioms atlasSixCamera_finiteCharacteristic_tendsto
+#print axioms atlasSixCamera_iteratedDeriv_tail_le
+#print axioms atlasRawFiniteSixCameraRowGram_apply
+#print axioms atlasNormalizedFiniteSixCameraRowGram_tendsto
+#print axioms atlasSixCameraGram_entry_eq_gramKernel
+#print axioms atlasSixCameraHilbertEmbedding_inner
+#print axioms atlasSixCameraHilbertEmbedding_coordinate_inner
+#print axioms atlasSixCamera_raw_overlap_2_4
+#print axioms atlasSixCameraWhitenedHilbertEmbedding_inner
+#print axioms atlasSixCameraWhitenedHilbertEmbedding_inner_tendsto_of_inverseSqrt_tendsto
+
+end CarrySelfAdjointOperator

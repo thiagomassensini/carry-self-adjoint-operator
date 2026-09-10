@@ -507,5 +507,21 @@
     ,{"qualified": "CarrySelfAdjointOperator.naimarkEscape_intertwines_of_squares"}
     ,{"qualified": "CarrySelfAdjointOperator.naimarkEscape_intertwines_of_seam"}
     ,{"qualified": "CarrySelfAdjointOperator.naimarkEscape_intertwines_apply_of_seam"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraIndex_val"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraIndex_injective"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraHistoricalPeriod_eq_cameraSlope"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCamera_radiusSet_eq_historical"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCamera_alignedCenter_eq_historical"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCamera_supported"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCamera_finiteCharacteristic_tendsto"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCamera_iteratedDeriv_tail_le"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasRawFiniteSixCameraRowGram_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasNormalizedFiniteSixCameraRowGram_tendsto"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraGram_entry_eq_gramKernel"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraHilbertEmbedding_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraHilbertEmbedding_coordinate_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCamera_raw_overlap_2_4"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraWhitenedHilbertEmbedding_inner"}
+    ,{"qualified": "CarrySelfAdjointOperator.atlasSixCameraWhitenedHilbertEmbedding_inner_tendsto_of_inverseSqrt_tendsto"}
   ]
 }
