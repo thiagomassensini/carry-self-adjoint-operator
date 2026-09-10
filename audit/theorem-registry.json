@@ -760,5 +760,15 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeReturnMetricCentralKernel_gt_nativeMoment"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeReturnMetricCentralKernel_ne_nativeMoment"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeReturnMetricCentralDefect_eq_energy_sub_native"}
+    ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroOrdinaryGram_re_eq_reflectedGreen"}
+    ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroLogGram_re_eq_logJetNormSq"}
+    ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroGram_re_eq_reflectedGreen_add_logJet"}
+    ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroDefect_eq_channelGrams_sub_native"}
+    ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroDefect_eq_reflectedGreen_add_logJet_sub_native"}
+    ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroDefect_pos"}
+    ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylor_zero_zero_gram_re_gt_native"}
+    ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylor_zero_zero_ne_moment"}
+    ,{"qualified": "CarrySelfAdjointOperator.not_hasPolarizedCoefficientVectorEquation_enrichedTfvdTaylor"}
+    ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroDefect_ne_zero"}
   ]
 }
