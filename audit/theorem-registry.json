@@ -796,5 +796,15 @@
     ,{"qualified": "CarrySelfAdjointOperator.shiftedHankel_posDef_of_greenJetFactorization"}
     ,{"qualified": "CarrySelfAdjointOperator.greenJetOddPrefixSynthesis_generator_eq_greenJetEnergyFactorCore"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeForwardDifferenceOddPrefixFactorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenLedger_structural_eq"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernelDefect_eq_ledger_total"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenLedger_identity"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreen_local_identity"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreen_head_identity"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreen_completion_identity"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernelDefect_eq_wronskian_sub_green"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernelDefect_tendsto"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernel_eq_iff_defect_limit_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernel_implies_shiftedFactorization"}
   ]
 }
