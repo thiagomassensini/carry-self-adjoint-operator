@@ -1,24 +1,35 @@
 import CarrySelfAdjointOperator.CompletedNativePolarizedTfvdGreenMomentKernel
-import CPFormal.Analytic.CpTfvdSameEdgeReflectedEnergyCollapse
+import CarrySelfAdjointOperator.CompletedC3FourCornerGreenCell
 import Mathlib.Tactic
 
 /-!
-# Primus same-edge recovery to the polarized native Green Gram
+# Native four-corner / same-edge bridge for the polarized TFVD--Green ledger
 
-The old `CPFormal`/Primus same-edge construction recovers the reflected
-Dirichlet gradient from the ordinary gradient and its logarithmic jet before
-any prime-camera scalar readout.  The current completed C3 development already
-uses the ordinary Dirichlet-gradient prefixes as the raw two-variable Green
-Gram carrier.
+The native four-corner development already constructs, before scalar Green or
+Wronskian readout, a two-variable positive kernel
 
-This module identifies those two constructions directly.  The reflected leg
-of the current mixed C3 Gram is rebuilt from the Primus same-edge inversion,
-coordinate by coordinate, and only afterwards paired with the direct leg.
-No moment sequence, Hankel matrix, fixed-time profile transport, or target Gram
-is used to define the recovered state.
+`nativeGpreFourCornerPolarizedDirichletPrefix`.
+
+It is proved there to be simultaneously
+
+* the complete provenance-preserving four-corner synthesis;
+* the raw C3 gamma Gram of ordinary Dirichlet-gradient prefixes;
+* a positive-semidefinite finite Gram kernel;
+* and, on a reflected second leg, the exact Primus same-edge reconstruction
+  from the ordinary gradient and logarithmic jet.
+
+The current polarized TFVD--Green ledger was developed later and exposes the
+completed mixed Wronskian as finite reflected Green plus an explicit total
+defect.  This module is the missing adapter between those two layers.  It does
+not define another carrier.  Instead, it rewrites the Green term and the named
+ledger defect directly through the already-formalized native four-corner
+kernel and its same-edge ordinary/log-jet realization.
+
+No moment sequence, Hankel matrix, fixed-time transport, fitted metric, or
+vanishing of the ledger defect is assumed.
 -/
 
-open scoped BigOperators ComplexConjugate Topology lp
+open scoped BigOperators ComplexConjugate Topology
 
 namespace CarrySelfAdjointOperator
 
@@ -29,124 +40,140 @@ open Filter
 
 noncomputable section
 
-/-- Finite reflected C3 prefix reconstructed directly from the Primus
-ordinary/log-jet same-edge data.  The state is defined before comparing it with
-any pre-existing Green prefix. -/
-def canonicalC3SameEdgeRecoveredReflectedPrefixState
-    (M : ℕ) (z : ℂ) : CarryVerticalL2 :=
-  ∑ n ∈ Finset.range M,
-    lp.single 2 n
-      (sameEdgeRecoveredReflectedGradient n
-        (positiveDirichletGradient z n)
-        (positiveLogDirichletGradient z n))
-
-/-- The Primus same-edge recovered prefix is literally the reflected ordinary
-Dirichlet-gradient prefix already used by the completed C3 Green carrier. -/
-theorem canonicalC3SameEdgeRecoveredReflectedPrefixState_eq_completedPrefix
-    (M : ℕ) (z : ℂ) :
-    canonicalC3SameEdgeRecoveredReflectedPrefixState M z =
-      canonicalCompletedC3DirichletGradientPrefixState
-        (reflectedParameter z) M := by
-  rw [canonicalCompletedC3DirichletGradientPrefixState_eq_sum_single]
-  apply Finset.sum_congr rfl
-  intro n hn
-  rw [sameEdgeRecoveredReflectedGradient_canonical]
-
-/-- The raw two-variable C3 gamma Gram can therefore be read directly against
-the same-edge reconstructed reflected leg. -/
-theorem c3RawGammaGram_eq_inner_sameEdgeRecoveredReflectedPrefix
-    (M : ℕ) (z w : ℂ) :
-    c3RawGammaGram M w (reflectedParameter z) =
-      inner ℂ
-        (canonicalCompletedC3DirichletGradientPrefixState w M)
-        (canonicalC3SameEdgeRecoveredReflectedPrefixState M z) := by
-  rw [c3RawGammaGram_eq_inner_completedPrefix,
-    canonicalC3SameEdgeRecoveredReflectedPrefixState_eq_completedPrefix]
-
-/-- Exact finite polarized Green form with its reflected Hilbert leg sourced
-from the Primus ordinary/log-jet same-edge reconstruction. -/
+/-- The finite mixed Green term in the new polarized ledger is exactly the
+native four-corner kernel multiplied by the already-fixed mixed radial
+coefficient.  Thus the carrier on the right predates the ledger and is not
+defined from the desired Wronskian identity. -/
 theorem
-    greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_sameEdgeGram
+    greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_nativeFourCorner
     (M : ℕ) (z w : ℂ) :
     greenForm (𝕜 := ℂ)
         (finiteC3GenuineBracketGreenBoundaryPair M w)
         (finiteC3GenuineBracketGreenBoundaryPair M (reflectedParameter z)) =
       canonicalC3MixedRadialCoefficient z w *
-        inner ℂ
-          (canonicalCompletedC3DirichletGradientPrefixState w M)
-          (canonicalC3SameEdgeRecoveredReflectedPrefixState M z) := by
+        nativeGpreFourCornerPolarizedDirichletPrefix
+          M w (reflectedParameter z) := by
   rw [greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_gram,
-    c3RawGammaGram_eq_inner_sameEdgeRecoveredReflectedPrefix]
+    nativeGpreFourCornerPolarizedDirichletPrefix_eq_rawGammaGram]
 
-/-- The completed mixed Wronskian ledger can be rewritten with the explicit
-same-edge recovered Green Gram at every finite cutoff.  All previously named
-structural and completion defects remain unchanged. -/
-theorem canonicalCompletedC3RawMixedWronskian_eq_sameEdgeGreenGram_add_totalDefect
+/-- The same finite Green term written entirely from the unreflected ordinary
+and log-jet source on the reflected leg.  This is the direct Primus
+same-edge reconstruction before scalar synthesis. -/
+theorem
+    greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_logJetReconstruction
+    (M : ℕ) (z w : ℂ) :
+    greenForm (𝕜 := ℂ)
+        (finiteC3GenuineBracketGreenBoundaryPair M w)
+        (finiteC3GenuineBracketGreenBoundaryPair M (reflectedParameter z)) =
+      canonicalC3MixedRadialCoefficient z w *
+        (∑ n ∈ Finset.range M,
+          (starRingEnd ℂ) (positiveDirichletGradient w n) *
+            sameEdgeRecoveredReflectedGradient n
+              (positiveDirichletGradient z n)
+              (positiveLogDirichletGradient z n)) := by
+  rw [greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_nativeFourCorner,
+    nativeGpreFourCornerPolarizedDirichletPrefix_reflected_eq_logJetReconstruction]
+
+/-- Exact finite crosswalk from the completed mixed Wronskian ledger to the
+pre-existing native four-corner Gram.  The existing total defect is kept
+unchanged and visible. -/
+theorem canonicalCompletedC3RawMixedWronskian_eq_nativeFourCorner_add_totalDefect
     (M : ℕ) {z w : ℂ} (hz : -1 < z.re) (hw : -1 < w.re) :
     canonicalCompletedC3RawMixedWronskian z w =
       canonicalC3MixedRadialCoefficient z w *
-          inner ℂ
-            (canonicalCompletedC3DirichletGradientPrefixState w (3 * M))
-            (canonicalC3SameEdgeRecoveredReflectedPrefixState (3 * M) z) +
+          nativeGpreFourCornerPolarizedDirichletPrefix
+            (3 * M) w (reflectedParameter z) +
         canonicalC3FiniteMixedTotalDefect M z w := by
   rw [canonicalCompletedC3RawMixedWronskian_eq_green_add_totalDefect
       M hz hw,
-    greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_sameEdgeGram]
+    greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_nativeFourCorner]
 
-/-- The reconstructed reflected prefixes converge to the same completed
-reflected C3 state, so the same-edge provenance survives completion. -/
-theorem canonicalC3SameEdgeRecoveredReflectedPrefixState_tendsto
-    {z : ℂ} (hzReflected : 0 < (reflectedParameter z).re) :
-    Tendsto
-      (fun M : ℕ => canonicalC3SameEdgeRecoveredReflectedPrefixState M z)
-      atTop
-      (nhds
-        (canonicalCompletedC3DirichletGradientState
-          (reflectedParameter z) hzReflected)) := by
-  simpa only
-      [canonicalC3SameEdgeRecoveredReflectedPrefixState_eq_completedPrefix] using
-    (canonicalCompletedC3DirichletGradientPrefixState_tendsto hzReflected)
+/-- The named polarized TFVD--Green defect is literally the completed mixed
+Wronskian minus the finite native four-corner Green term.  This connects the
+new ledger to the old native positive carrier without redefining the defect. -/
+theorem
+    canonicalNativePolarizedTfvdGreenMomentKernelDefect_eq_wronskian_sub_nativeFourCorner
+    (M : ℕ) {z w : ℂ} (hz : -1 < z.re) (hw : -1 < w.re) :
+    canonicalNativePolarizedTfvdGreenMomentKernelDefect M z w =
+      canonicalCompletedC3RawMixedWronskian z w -
+        canonicalC3MixedRadialCoefficient z w *
+          nativeGpreFourCornerPolarizedDirichletPrefix
+            (3 * M) w (reflectedParameter z) := by
+  rw [canonicalNativePolarizedTfvdGreenMomentKernelDefect_eq_wronskian_sub_green
+      M hz hw,
+    greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_nativeFourCorner]
 
-/-- The polarized same-edge Gram itself has the existing completed raw gamma
-Gram as its norm-limit kernel. -/
-theorem c3SameEdgeRecoveredMixedGram_tendsto_completed
-    {z w : ℂ} (hw : 0 < w.re)
-    (hzReflected : 0 < (reflectedParameter z).re) :
-    Tendsto
-      (fun M : ℕ =>
-        inner ℂ
-          (canonicalCompletedC3DirichletGradientPrefixState w M)
-          (canonicalC3SameEdgeRecoveredReflectedPrefixState M z))
-      atTop
-      (nhds
-        (canonicalCompletedC3RawGammaGram
-          w (reflectedParameter z) hw hzReflected)) := by
-  have hgram := c3RawGammaGram_tendsto_completed hw hzReflected
-  exact hgram.congr'
-    (Eventually.of_forall fun M =>
-      (c3RawGammaGram_eq_inner_sameEdgeRecoveredReflectedPrefix M z w))
-
-/-- Along the native `3M` block cutoffs, the exact same-edge Green Gram tends
-to the completed mixed radial Green kernel already used by the polarized
-TFVD/Green ledger. -/
-theorem finiteC3SameEdgeRecoveredMixedGreen_tendsto_completed
+/-- Along the native `3M` cutoffs, the native four-corner term converges to the
+same completed mixed radial Green kernel already used by the polarized ledger. -/
+theorem nativeFourCornerMixedGreen_tendsto_completed
     {z w : ℂ} (hw : 0 < w.re)
     (hzReflected : 0 < (reflectedParameter z).re) :
     Tendsto
       (fun M : ℕ =>
         canonicalC3MixedRadialCoefficient z w *
-          inner ℂ
-            (canonicalCompletedC3DirichletGradientPrefixState w (3 * M))
-            (canonicalC3SameEdgeRecoveredReflectedPrefixState (3 * M) z))
+          nativeGpreFourCornerPolarizedDirichletPrefix
+            (3 * M) w (reflectedParameter z))
       atTop
       (nhds
         (canonicalCompletedC3MixedRadialGreenKernel
           z w hw hzReflected)) := by
-  have hgreen := finiteC3MixedRadialGreen_tendsto_completed hw hzReflected
-  exact hgreen.congr'
-    (Eventually.of_forall fun M =>
-      (greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_sameEdgeGram
-        (3 * M) z w))
+  have hprefix :=
+    nativeGpreFourCornerPolarizedDirichletPrefix_tendsto_completed
+      (r := w) (s := reflectedParameter z) hw hzReflected
+  have hprefixThree := hprefix.comp tendsto_three_mul_atTop
+  have hscaled :=
+    hprefixThree.const_mul (canonicalC3MixedRadialCoefficient z w)
+  simpa [canonicalCompletedC3MixedRadialGreenKernel] using hscaled
+
+/-- The limit statement for the current named defect can therefore be stated
+entirely in the old native four-corner kernel language. -/
+theorem
+    canonicalNativePolarizedTfvdGreenMomentKernelDefect_tendsto_nativeFourCornerLimit
+    {z w : ℂ} (hz : 0 < z.re) (hzUpper : z.re < 1)
+    (hw : 0 < w.re) :
+    Tendsto
+      (fun M : ℕ =>
+        canonicalNativePolarizedTfvdGreenMomentKernelDefect M z w)
+      atTop
+      (nhds
+        (canonicalCompletedC3RawMixedWronskian z w -
+          canonicalC3MixedRadialCoefficient z w *
+            canonicalCompletedC3RawGammaGram
+              w (reflectedParameter z) hw
+              (by simpa [reflectedParameter] using sub_pos.mpr hzUpper))) := by
+  simpa [canonicalCompletedC3MixedRadialGreenKernel] using
+    (canonicalNativePolarizedTfvdGreenMomentKernelDefect_tendsto
+      hz hzUpper hw)
+
+/-- Consequently the current completed Wronskian/Green sewing gate is exactly
+the statement that the explicit TFVD/Green defect tends to zero, with the
+Green side now identified as the completion of the native four-corner Gram. -/
+theorem
+    canonicalNativePolarizedTfvdGreenMomentKernel_eq_nativeFourCorner_iff_defect_limit_zero
+    {z w : ℂ} (hz : 0 < z.re) (hzUpper : z.re < 1)
+    (hw : 0 < w.re) :
+    canonicalCompletedC3RawMixedWronskian z w =
+        canonicalC3MixedRadialCoefficient z w *
+          canonicalCompletedC3RawGammaGram
+            w (reflectedParameter z) hw
+            (by simpa [reflectedParameter] using sub_pos.mpr hzUpper) ↔
+      Tendsto
+        (fun M : ℕ =>
+          canonicalNativePolarizedTfvdGreenMomentKernelDefect M z w)
+        atTop (nhds 0) := by
+  simpa [canonicalCompletedC3MixedRadialGreenKernel] using
+    (canonicalNativePolarizedTfvdGreenMomentKernel_eq_iff_defect_limit_zero
+      hz hzUpper hw)
+
+/-- The raw native source used on the Green side is positive semidefinite at
+every finite cutoff.  This is inherited from the pre-existing four-corner
+carrier, not from the mixed Wronskian or its defect. -/
+theorem nativePolarizedFourCornerSource_posSemidef
+    {ι : Type*} [Finite ι] (M : ℕ) (point : ι → ℂ) :
+    (Matrix.of fun i j =>
+      nativeGpreFourCornerPolarizedDirichletPrefix M
+        (point i) (point j)).PosSemidef := by
+  exact nativeGpreFourCornerPolarizedDirichletPrefix_posSemidef M point
 
 end
 
