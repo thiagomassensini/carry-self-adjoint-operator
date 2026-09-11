@@ -782,5 +782,19 @@
     ,{"qualified": "CarrySelfAdjointOperator.completedNativeVerticalModulusEnergy_secondDerivative_zero_ne_four_gradientEnergy"}
     ,{"qualified": "CarrySelfAdjointOperator.norm_sq_canonicalCompletedC3NormalizedAmbientResponseState_zero_ne_moment_zero"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NormalizedAmbientResponseState_zero_norm_sq_gt_moment_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.greenJetOddPrefixSynthesis_basis"}
+    ,{"qualified": "CarrySelfAdjointOperator.greenJetOddPrefixSynthesis_basisGram"}
+    ,{"qualified": "CarrySelfAdjointOperator.greenJetOddPrefixSynthesis_inner_eq_gram"}
+    ,{"qualified": "CarrySelfAdjointOperator.greenJetOddPrefixGram_eq_shiftedHankel_iff_defect_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.greenJetOddPrefixGram_eq_shiftedHankel_of_greenRepresentation"}
+    ,{"qualified": "CarrySelfAdjointOperator.greenJetShiftedHankelFactorization_of_greenRepresentation"}
+    ,{"qualified": "CarrySelfAdjointOperator.greenJetOddPrefixSynthesis_norm_sq_eq_shiftedHankel_quadratic"}
+    ,{"qualified": "CarrySelfAdjointOperator.greenJetOddPrefixGram_posSemidef"}
+    ,{"qualified": "CarrySelfAdjointOperator.shiftedHankel_posSemidef_of_greenJetShiftedHankelFactorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.shiftedHankel_posDef_of_greenJetShiftedHankelFactorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.shiftedHankel_posSemidef_of_greenJetFactorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.shiftedHankel_posDef_of_greenJetFactorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.greenJetOddPrefixSynthesis_generator_eq_greenJetEnergyFactorCore"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeForwardDifferenceOddPrefixFactorization"}
   ]
 }
