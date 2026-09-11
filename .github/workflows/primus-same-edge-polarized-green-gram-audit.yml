@@ -1,5 +1,6 @@
 name: Primus same-edge polarized Green Gram audit
 
+# Focused bridge audit for the Primus ordinary/log-jet recovered reflected leg.
 on:
   pull_request:
     paths:
