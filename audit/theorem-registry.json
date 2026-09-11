@@ -771,5 +771,16 @@
     ,{"qualified": "CarrySelfAdjointOperator.not_hasPolarizedCoefficientVectorEquation_enrichedTfvdTaylor"}
     ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroDefect_ne_zero"}
     ,{"qualified": "CarrySelfAdjointOperator.enrichedTfvdTaylorZeroZeroGram_eq_ofReal"}
+    ,{"qualified": "CarrySelfAdjointOperator.completedNativeVerticalModulusEnergy_zero_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedAmbientCentralCurvatureDefect"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedAmbientCentralCurvatureDefect_eq_characteristicWeightedMoment_sub_gradient"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3DirichletGradientState_operatorHeight_zero_norm_sq_gt_sixteenth"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedAmbientCentralCharacteristicWeightedMoment_lt_sixteenth"}
+    ,{"qualified": "CarrySelfAdjointOperator.completedNativeVerticalModulusEnergy_secondDerivative_zero_lt_sixteenth"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3DirichletGradientState_operatorHeight_zero_four_norm_sq_gt_quarter"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedAmbientCentralCurvatureDefect_neg"}
+    ,{"qualified": "CarrySelfAdjointOperator.completedNativeVerticalModulusEnergy_secondDerivative_zero_ne_four_gradientEnergy"}
+    ,{"qualified": "CarrySelfAdjointOperator.norm_sq_canonicalCompletedC3NormalizedAmbientResponseState_zero_ne_moment_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NormalizedAmbientResponseState_zero_norm_sq_gt_moment_zero"}
   ]
 }
