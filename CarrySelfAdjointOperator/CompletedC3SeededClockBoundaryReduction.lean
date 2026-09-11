@@ -1,6 +1,8 @@
 import CarrySelfAdjointOperator.C3SeededClockTaylorTransport
 import CarrySelfAdjointOperator.ProjectiveValveMomentFrontier
 import CarrySelfAdjointOperator.CompletedNativeTfvdWronskianMoments
+import CarrySelfAdjointOperator.CompletedGreenForwardDifferenceLimit
+import CarrySelfAdjointOperator.CompletedC3CentralLedgerCollisionAudit
 import Mathlib.Tactic
 
 /-!
@@ -29,6 +31,7 @@ namespace CarrySelfAdjointOperator
 namespace C3TraceDynamics
 
 open CPFormal.Analytic.Cp
+open Filter
 
 noncomputable section
 set_option autoImplicit false
@@ -152,6 +155,81 @@ theorem seededClockAtlasCoefficientEquation_iff_boundary
   · exact fun h => h.1
   · intro hboundary
     exact ⟨hboundary, seededClockAtlasCoefficient_shift block⟩
+
+/-! ## The completed scalar ledger supplies the target boundary column -/
+
+/-- Near the Taylor center, fixing the first Hermitian leg of the complete C3
+ledger gives the completed normalized response itself.  The constant reflected
+center term vanishes by the proved parity of the completed characteristic. -/
+theorem completedC3LedgerFixedCenter_eventuallyEq_completedResponse
+    (M : ℕ) :
+    (fun w : ℂ =>
+      canonicalCompletedC3AllCutoffPolarizedLedgerNumerator M 0 w) =ᶠ[nhds 0]
+      completedGreenNormalizedResponse
+        completedNativeOperatorCharacteristic
+        completedNativeOperatorBoundaryCompanion := by
+  calc
+    (fun w : ℂ =>
+      canonicalCompletedC3AllCutoffPolarizedLedgerNumerator M 0 w) =ᶠ[nhds 0]
+        (fun w : ℂ => canonicalCompletedNativePolarizedResponseNumerator 0 w) :=
+      canonicalCompletedC3AllCutoffPolarizedLedgerNumerator_fixedCenter_eventuallyEq_response M
+    _ =ᶠ[nhds 0]
+        completedGreenNormalizedResponse
+          completedNativeOperatorCharacteristic
+          completedNativeOperatorBoundaryCompanion := by
+      filter_upwards [] with w
+      unfold canonicalCompletedNativePolarizedResponseNumerator
+      rw [completedNativeGreenNormalizedResponse_zero]
+      simp
+
+/-- Every factorial-normalized central derivative of the channel-complete
+ledger is the corresponding coefficient of the completed normalized response.
+No radial, provenance, off-diagonal, residual, tail, xi, or archimedean channel
+has been discarded. -/
+theorem completedC3LedgerFixedCenterTaylorCoefficient_eq_response
+    (M order : ℕ) :
+    iteratedDeriv order
+        (fun w : ℂ =>
+          canonicalCompletedC3AllCutoffPolarizedLedgerNumerator M 0 w) 0 /
+        (order.factorial : ℂ) =
+      completedNativeGreenResponseTaylorCoefficient order := by
+  unfold completedNativeGreenResponseTaylorCoefficient
+  rw [(completedC3LedgerFixedCenter_eventuallyEq_completedResponse M).iteratedDeriv_eq]
+
+/-- Even central coefficients of the complete ledger vanish. -/
+theorem completedC3LedgerFixedCenterTaylorCoefficient_even_eq_zero
+    (M n : ℕ) :
+    iteratedDeriv (2 * n)
+        (fun w : ℂ =>
+          canonicalCompletedC3AllCutoffPolarizedLedgerNumerator M 0 w) 0 /
+        ((2 * n).factorial : ℂ) = 0 := by
+  rw [completedC3LedgerFixedCenterTaylorCoefficient_eq_response,
+    completedNativeGreenResponseTaylorCoefficient_even_eq_zero]
+
+/-- Odd central coefficients of the complete ledger are exactly the canonical
+completed-native logarithmic moments. -/
+theorem completedC3LedgerFixedCenterTaylorCoefficient_odd_eq_nativeMoment
+    (M n : ℕ) :
+    iteratedDeriv (2 * n + 1)
+        (fun w : ℂ =>
+          canonicalCompletedC3AllCutoffPolarizedLedgerNumerator M 0 w) 0 /
+        ((2 * n + 1).factorial : ℂ) =
+      (canonicalCompletedNativeLogDerivativeMoment n : ℂ) := by
+  rw [completedC3LedgerFixedCenterTaylorCoefficient_eq_response,
+    completedNativeGreenResponseTaylorCoefficient_odd_eq_canonical]
+
+/-- The same odd coefficient is precisely the first-column target appearing in
+the polarized coefficient equation. -/
+theorem completedC3LedgerFixedCenterTaylorCoefficient_odd_eq_boundaryTarget
+    (M n : ℕ) :
+    iteratedDeriv (2 * n + 1)
+        (fun w : ℂ =>
+          canonicalCompletedC3AllCutoffPolarizedLedgerNumerator M 0 w) 0 /
+        ((2 * n + 1).factorial : ℂ) =
+      oddMomentResponseCoefficient
+        canonicalCompletedNativeLogDerivativeMoment (2 * n + 1) := by
+  rw [completedC3LedgerFixedCenterTaylorCoefficient_odd_eq_nativeMoment,
+    oddMomentResponseCoefficient_odd]
 
 /-- The scalar target of the remaining boundary column is already fixed by the
 completed bracket--TFVD Wronskian: its odd response coefficients are exactly
