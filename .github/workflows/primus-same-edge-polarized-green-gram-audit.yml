@@ -1,0 +1,61 @@
+name: Primus same-edge polarized Green Gram audit
+
+on:
+  pull_request:
+    paths:
+      - 'CarrySelfAdjointOperator/CompletedNativePolarizedSameEdgeGreenGramBridge.lean'
+      - 'CarrySelfAdjointOperator/CompletedNativePolarizedSameEdgeGreenGramBridgeAudit.lean'
+      - '.github/workflows/primus-same-edge-polarized-green-gram-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  axiom-audit:
+    name: Exact-checkout Primus same-edge polarized Green Gram audit
+    runs-on: ubuntu-24.04
+    env:
+      AUDITED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+    steps:
+      - name: Check out the exact audited commit
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ env.AUDITED_SHA }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Reject a synthetic or dirty checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$AUDITED_SHA"
+          test -z "$(git status --porcelain --untracked-files=all)"
+
+      - name: Run static source audit
+        run: bash scripts/static_audit.sh
+
+      - name: Set up pinned Lean and Mathlib cache
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-github-cache: true
+          use-mathlib-cache: true
+          mk_all-check: false
+          check-reservoir-eligibility: false
+          leanchecker: false
+          lean4checker: false
+          nanoda: false
+
+      - name: Compile and print the axiom surface
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake build --wfail CarrySelfAdjointOperator.CompletedNativePolarizedSameEdgeGreenGramBridgeAudit
+
+      - name: Reject a dirty post-build tree
+        shell: bash
+        run: test -z "$(git status --porcelain --untracked-files=all)"
