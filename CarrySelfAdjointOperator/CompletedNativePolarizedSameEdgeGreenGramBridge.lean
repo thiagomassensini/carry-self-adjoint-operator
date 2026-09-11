@@ -29,7 +29,7 @@ No moment sequence, Hankel matrix, fixed-time transport, fitted metric, or
 vanishing of the ledger defect is assumed.
 -/
 
-open scoped BigOperators ComplexConjugate Topology
+open scoped BigOperators ComplexConjugate ComplexOrder Topology
 
 namespace CarrySelfAdjointOperator
 
