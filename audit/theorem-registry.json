@@ -830,5 +830,17 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySource_eq_tfvd"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceRelationPair_fst_weylBoundaryMap"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceRelationPair_snd_weylBoundaryMap"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3FiniteCancellationData_reconstruction"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3FiniteCancellationData_source_is_bracket"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3FiniteCancellationData_greenResponse_is_response"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationBoundaryState_reconstructs"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3FiniteCancellationBoundaryState_reconstructs"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationBoundaryState_is_finite_limit"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationNativeBoundaryPencil_greenDefect_eq_verticalWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationNativeBoundaryPencil_state_greenDefect"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationTraceState_trace_eq_scalarPair"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationTraceState_trace_eq_F_negFprime"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationTraceGlue_difference_eq_rawDefect"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationTraceGlue_iff_rawDefect_zero"}
   ]
 }
