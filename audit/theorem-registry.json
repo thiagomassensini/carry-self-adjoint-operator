@@ -805,6 +805,10 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernelDefect_eq_wronskian_sub_green"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernelDefect_tendsto"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernel_eq_iff_defect_limit_zero"}
-    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernel_implies_shiftedFactorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernel_implies_shiftedFactorization"},
+    {"qualified": "CarrySelfAdjointOperator.nativeLogHilbert_no_undampedCyclicSource"},
+    {"qualified": "CarrySelfAdjointOperator.nativeCyclicTriangularReadoutDefect_eq_transport"},
+    {"qualified": "CarrySelfAdjointOperator.nativeCyclicTriangularReadoutDefect_zero_iff"},
+    {"qualified": "CarrySelfAdjointOperator.nativeCyclicTriangularReadoutDefect_all_zero_iff_convolution"}
   ]
 }
