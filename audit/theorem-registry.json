@@ -855,5 +855,22 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RawGammaWronskianDefect_eq_nativeMismatch_sub_archimedeanCorrection"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalC3NativeBoundaryGreenMismatch_eq_zero_iff"}
     ,{"qualified": "CarrySelfAdjointOperator.completedNativeLogDerivative_eq_native_add_archimedean"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3StructuredNativeScalarBoundaryPair"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3StructuredNativeScalarBoundaryPair_eq_nativeUndressed"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3StructuredNativeGreenForm"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3StructuredNativeGreenForm_eq_nativeUndressed"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeBoundaryMismatch"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeBoundaryMismatch_eq_existing"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeBoundaryMismatch_eq_sameStructuredGreenForm_sub"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeBoundaryMismatch_eq_gammaReadout_sub_nativeWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3PureNativeBoundaryGreenSewing"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeBoundaryGreenSewing_iff_mismatch_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeBoundaryMismatch_skew"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeBoundaryMismatch_diagonal_re_eq_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeBoundaryMismatch_eq_rawDefect_add_archimedeanTransportCorrection"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3PureNativeCancellationBoundaryCarrier"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeCancellationBoundaryState_reconstructs"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeCancellation_greenDefect_eq_verticalWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeBoundaryGreenSewing_iff_sameStructuredNativeGreenCompatibility"}
   ]
 }
