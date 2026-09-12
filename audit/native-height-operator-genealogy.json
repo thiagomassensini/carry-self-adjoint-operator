@@ -1,0 +1,882 @@
+{
+  "schema_version": 1,
+  "audit_scope": {
+    "repository": "thiagomassensini/carry-self-adjoint-operator",
+    "base_branch": "agent/native-green-inverse-trace-sewing",
+    "base_commit": "d1a3f8ca7a86f86bea2add879549f6c4fb9e6c3c",
+    "audit_branch": "agent/native-height-operator-genealogy-forensic-audit",
+    "read_only_mathematical_scope": true,
+    "merge_performed": false,
+    "new_lean_declarations": false
+  },
+  "outcome": {
+    "primary": "D",
+    "label": "MULTIPLE GENEALOGIES",
+    "completion_classification_for_first_recoverable_height_route": "Completion-C",
+    "completion_label": "NATIVE + CLASSICAL DRESSING",
+    "statement": "The evidence contains multiple self-adjoint constructions and later crosswalks. The earliest recoverable concrete height laboratory applies an archimedean/classical completion before extracting moments; no Git evidence of a pure-native J/T construction was found."
+  },
+  "history_limitations": [
+    "The Python scripts under /home/thlinux/Downloads/Wayl are outside the repository Git index.",
+    "git log -S completion_series, gamma_series, and hankel_pair in the repository has no matching script commits.",
+    "The internal timestamps in jacobi.zip provide artifact chronology, not an absolute first commit.",
+    "The notes in /home/thlinux/Downloads/Wayl are archaeological documentation, not Lean axioms or proofs.",
+    "No literal current declaration named VLV* or H_clock was found."
+  ],
+  "objects": [
+    {
+      "id": "native_log_generator",
+      "mathematical_name": "L",
+      "code": "CarrySelfAdjointOperator.nativeLogGenerator",
+      "space": "NativeLogHilbert = InfiniteRealSpectralHilbert = l2(N,C)",
+      "definition": "infiniteRealSpectralGenerator; maximal multiplication by log(n+1)",
+      "status": "CLOSED EXISTING",
+      "self_adjoint": true,
+      "is_height_operator": false,
+      "evidence": "NativeLogEvolution.lean lines 22-61; CPFormal InfiniteRealSpectralGenerator",
+      "first_commit": "a3d493f100421923e0db6adfa6b954ce01f0051e"
+    },
+    {
+      "id": "finite_log_generator",
+      "mathematical_name": "finite L",
+      "code": "CPFormal.Analytic.Cp.finiteRealSpectralSelfAdjointGenerator",
+      "space": "EuclideanSpace C (Fin N)",
+      "definition": "finite diagonal generator with frequencies log(n+1)",
+      "status": "CLOSED EXISTING",
+      "self_adjoint": true,
+      "is_height_operator": false,
+      "evidence": "CPFormal CpRealSpectralGenerator.lean"
+    },
+    {
+      "id": "transported_clock",
+      "mathematical_name": "H_clock = V L V*",
+      "code": "no literal current declaration found",
+      "space": "conceptual transported range plus gauge/complement in archaeological notes",
+      "definition": "described in notes, not a current named Lean object",
+      "status": "MISSING",
+      "self_adjoint": "conceptual only",
+      "is_height_operator": false,
+      "evidence": "CARRY_GEOMETRY_TFVD_GREEN_WEYL_CAUSAL_CHRONOLOGY.md; no VLV* grep hit"
+    },
+    {
+      "id": "height_jacobi",
+      "mathematical_name": "J_N",
+      "code": "finiteJacobiSection; canonicalFiniteJacobiSection",
+      "space": "Matrix (Fin N) (Fin N) R",
+      "definition": "whitening congruence of shiftedHankel moments",
+      "status": "FORMAL LEAN under positivity data",
+      "self_adjoint": "symmetric under shifted Gram positivity",
+      "is_height_operator": false,
+      "evidence": "FiniteJacobiTransport.lean; CanonicalFiniteHeight.lean",
+      "first_commit": "c73ea47cbf33693890533ecfe9ac0dbfb4b83fac"
+    },
+    {
+      "id": "finite_height",
+      "mathematical_name": "T_N = J_N^(-1/2)",
+      "code": "finiteHeightOperator; nativeFiniteHeightOperator; canonicalFiniteHeightOperator",
+      "space": "Matrix (Fin N) (Fin N) R",
+      "definition": "Hermitian functional calculus y -> (sqrt y)^(-1)",
+      "status": "FORMAL LEAN under PosDef/Gram data",
+      "self_adjoint": true,
+      "is_height_operator": true,
+      "evidence": "FiniteHeightOperator.lean lines 38-68; CanonicalFiniteHeight.lean lines 42-66",
+      "first_commit": "de9ec64cf3af0b9420421b1509ae2015c8882fb3",
+      "canonical_commit": "779eb2d860c622aad2d229b3b267d8858a0991f4"
+    },
+    {
+      "id": "signed_finite_height",
+      "mathematical_name": "H_N = T_N direct-sum (-T_N)",
+      "code": "canonicalSignedFiniteHeightOperator",
+      "space": "finite signed/parity doubling",
+      "definition": "block reflection of canonical finite height",
+      "status": "FORMAL LEAN finite",
+      "self_adjoint": true,
+      "is_height_operator": true,
+      "evidence": "SignedFiniteHeightOperator.lean",
+      "first_commit": "64c4d5c90cfc995e04b911d350ec04beb1c80ba5"
+    },
+    {
+      "id": "projective_jacobi_tower",
+      "mathematical_name": "J_N = P_N J_(N+1) P_N*",
+      "code": "canonicalJacobiTowerLimitMatrix; ExactProjectiveMatrixTower",
+      "space": "infinite entry matrix with finite principal sections",
+      "definition": "exact principal/LDL compatibility",
+      "status": "FORMAL LEAN conditional on existence of positive sections",
+      "self_adjoint": "matrix symmetry inherited",
+      "is_height_operator": false,
+      "evidence": "ExactProjectiveMatrixTower.lean; CanonicalProjectiveJacobiTower.lean",
+      "first_commit": "108a12b114baae7874bfbac74b9fe23b645c5223"
+    },
+    {
+      "id": "green_jacobi_energy",
+      "mathematical_name": "J = B* B",
+      "code": "canonicalCompletedNativeStieltjesJacobiEnergyOperator; closed Green jet energy factor",
+      "space": "LinearPMap/closed Green-jet carrier",
+      "definition": "positive self-adjoint realization from a Green Gram factor",
+      "status": "CONDITIONAL",
+      "self_adjoint": "conditional",
+      "is_height_operator": false,
+      "evidence": "CanonicalCompletedNativeStieltjesOperator.lean; CurrentInfiniteHeightStatus.lean",
+      "first_commit": "02fc6ab003486141719d552776c2a9bd1085bc16"
+    },
+    {
+      "id": "green_signed_height",
+      "mathematical_name": "reciprocal signed height",
+      "code": "closedGreenJetReciprocalSignedHeightOperator; reduced variant",
+      "space": "completed Green-jet carrier",
+      "definition": "maximal real self-adjoint reciprocal signed block after Green factorization",
+      "status": "CONDITIONAL",
+      "self_adjoint": true,
+      "is_height_operator": true,
+      "evidence": "GreenJetReciprocalSignedHeightOperator.lean; CurrentInfiniteHeightStatus.lean",
+      "first_commit": "a5ed3a346485cfd7017774c84809ad2f5360b7d3"
+    },
+    {
+      "id": "complexified_green_height",
+      "mathematical_name": "complexified signed height",
+      "code": "complexifiedClosedGreenJetReciprocalSignedHeightOperator",
+      "space": "complexification of the Green-jet carrier",
+      "definition": "complexification of the real global signed operator",
+      "status": "CONDITIONAL",
+      "self_adjoint": true,
+      "is_height_operator": true,
+      "evidence": "ComplexifiedGreenJetSignedHeightOperator.lean"
+    },
+    {
+      "id": "camera_auxiliary_operators",
+      "mathematical_name": "camera/compression operators",
+      "code": "C3/camera compression and source modules",
+      "space": "finite camera/Green port spaces",
+      "definition": "camera-specific bracket, Cauchy, return, or log compression",
+      "status": "MULTIPLE AUXILIARY FAMILIES",
+      "self_adjoint": "varies",
+      "is_height_operator": false,
+      "evidence": "CarrySelfAdjointOperator camera modules; no single canonical camera operator"
+    },
+    {
+      "id": "c2_depth_jacobi",
+      "mathematical_name": "C2 depth Jacobi/Meixner",
+      "code": "C2 depth bridge artifacts",
+      "space": "C2 depth/camera finite spaces",
+      "definition": "depth-derived auxiliary Jacobi data",
+      "status": "AUXILIARY",
+      "self_adjoint": "varies",
+      "is_height_operator": false,
+      "evidence": "C2_DISCRETE_JACOBIAN_HEIGHT_JACOBI_BRIDGE.md and C2 modules"
+    },
+    {
+      "id": "mixed_mode_jacobi",
+      "mathematical_name": "mixed-mode 3-4-6 Jacobi",
+      "code": "native_carry_mixed_mode_three_scale_jacobi_lab.py and related modules",
+      "space": "mixed camera/mode sector",
+      "definition": "mode-coupled auxiliary Jacobi",
+      "status": "AUXILIARY",
+      "self_adjoint": "numerical/conditional depending artifact",
+      "is_height_operator": false,
+      "evidence": "external Wayl lab; no equivalence theorem to height Jacobi"
+    },
+    {
+      "id": "spectral_pencil_routes",
+      "mathematical_name": "nonlinear pencil and spectral-factor limits",
+      "code": "native_carry_height_spectral_pencil_lab.py; native_carry_height_spectral_factor_selfadjoint_limit_lab.py",
+      "space": "laboratory-specific finite/limit spaces",
+      "definition": "parallel later self-adjoint constructions",
+      "status": "ARCHIVE/PARALLEL ROUTE",
+      "self_adjoint": "conditional",
+      "is_height_operator": "not established equivalent",
+      "evidence": "external Wayl artifacts"
+    }
+  ],
+  "historical_edges": [
+    {
+      "from": "carry state",
+      "to": "native logarithmic orbit",
+      "evidence": "NativeLogEvolution.lean; nativeRealSpectralState_eq_logOrbit_zero",
+      "status": "CLOSED EXISTING",
+      "uses_classical_completion": false,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-21 03:30",
+      "lean_theorem": "nativeRealSpectralState_eq_logOrbit_zero"
+    },
+    {
+      "from": "native logarithmic orbit",
+      "to": "native log generator",
+      "evidence": "nativeLogGenerator_basisVector_log and CPFormal infiniteRealSpectralGenerator",
+      "status": "CLOSED EXISTING",
+      "uses_classical_completion": false,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-21 03:30",
+      "lean_theorem": "nativeLogGenerator_basisVector_log"
+    },
+    {
+      "from": "finite camera",
+      "to": "finite bracket head",
+      "evidence": "external finite_camera_series and Lean finiteBracketCharacteristic/camera modules",
+      "status": "CONDITIONAL CROSSWALK",
+      "uses_classical_completion": false,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "archive before 2026-08-17; Lean camera modules later",
+      "lean_theorem": "no single exact script-to-Lean theorem located"
+    },
+    {
+      "from": "finite bracket head",
+      "to": "exact head plus tail",
+      "evidence": "CompletedNativeCharacteristic.completedNativeCharacteristic and complete_head_add_complete_center_tail",
+      "status": "CLOSED FORMAL",
+      "uses_classical_completion": false,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-21 04:50",
+      "lean_theorem": "completedNativeCharacteristic_eq_bracketCharacteristic"
+    },
+    {
+      "from": "exact head plus tail",
+      "to": "camera-quotiented native scalar N",
+      "evidence": "factor(camera,s) * nativeScalar(s)",
+      "status": "CLOSED FORMAL",
+      "uses_classical_completion": false,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-21 04:50",
+      "lean_theorem": "completedNativeCharacteristic_eq_factor_mul_nativeScalar"
+    },
+    {
+      "from": "native scalar N",
+      "to": "archimedean dressed characteristic F",
+      "evidence": "CompletedOperatorCharacteristic defines nativeXiCompletionFactor and multiplies nativeScalar",
+      "status": "CLASSICAL IDENTITY/DEFINITION",
+      "uses_classical_completion": true,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-21 06:09",
+      "lean_theorem": "nativeXiCompletionFactor_mul_completedNativeCharacteristic"
+    },
+    {
+      "from": "dressed F",
+      "to": "even characteristic coefficients Phi",
+      "evidence": "CompletedNativeWeylMoments.completedNativeEvenCharacteristicCoefficient",
+      "status": "FORMAL LEAN",
+      "uses_classical_completion": true,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-24 22:55",
+      "lean_theorem": "completedNativeEvenCharacteristicCoefficient"
+    },
+    {
+      "from": "even Phi",
+      "to": "canonical logarithmic moments h_n",
+      "evidence": "division-free recurrence for -Phi'/Phi",
+      "status": "CLOSED FORMAL",
+      "uses_classical_completion": true,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-24 22:55",
+      "lean_theorem": "canonicalCompletedNativeLogDerivativeMoment_eq"
+    },
+    {
+      "from": "canonical h_n",
+      "to": "Hankel pair G_N,K_N",
+      "evidence": "hankelGram and shiftedHankel definitions",
+      "status": "CLOSED FORMAL",
+      "uses_classical_completion": true,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-21 03:30",
+      "lean_theorem": "hankelGram_apply; shiftedHankel_apply"
+    },
+    {
+      "from": "G_N",
+      "to": "canonical whitening",
+      "evidence": "canonicalLDLInverseFactor_whitens and canonicalHankelWhitening",
+      "status": "CLOSED FORMAL under G_N.PosDef",
+      "uses_classical_completion": false,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-21",
+      "lean_theorem": "canonicalLDLInverseFactor_whitens"
+    },
+    {
+      "from": "whitening plus K_N",
+      "to": "height Jacobi J_N",
+      "evidence": "finiteJacobiTransport and canonicalFiniteJacobiSection",
+      "status": "CLOSED FORMAL under Gram/whitening data",
+      "uses_classical_completion": false,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-21 04:10",
+      "lean_theorem": "finiteJacobiTransport; canonicalFiniteJacobiSection"
+    },
+    {
+      "from": "height Jacobi J_N",
+      "to": "height operator T_N",
+      "evidence": "Hermitian functional calculus y -> (sqrt y)^(-1)",
+      "status": "CLOSED FORMAL under PosDef",
+      "uses_classical_completion": false,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": true,
+      "chronology": "Lean 2026-08-21 04:23",
+      "lean_theorem": "finiteHeightOperator_isSymm; canonicalFiniteHeightOperator_isSymm"
+    },
+    {
+      "from": "J_N",
+      "to": "projective Jacobi tower",
+      "evidence": "exact principal/LDL prefix compatibility",
+      "status": "FORMAL LEAN conditional on positive sections",
+      "uses_classical_completion": false,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-21 23:12--2026-08-22 00:20",
+      "lean_theorem": "canonicalJacobiTowerLimitMatrix_submatrix_unconditional"
+    },
+    {
+      "from": "T_N",
+      "to": "signed height block",
+      "evidence": "signed sector reflection",
+      "status": "CLOSED FORMAL finite",
+      "uses_classical_completion": false,
+      "uses_zeros": false,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": true,
+      "chronology": "Lean 2026-08-21 23:26",
+      "lean_theorem": "canonicalSignedFiniteHeightOperator_isSymm"
+    },
+    {
+      "from": "Green/TFVD jets",
+      "to": "same canonical moments",
+      "evidence": "CompletedNativeGreenWeylHeight certificate and HasCanonicalCompletedNativeGreenMomentJets",
+      "status": "CONDITIONAL",
+      "uses_classical_completion": true,
+      "uses_zeros": false,
+      "uses_green": true,
+      "uses_tfvd": true,
+      "uses_height_operator": false,
+      "chronology": "Lean 2026-08-24 onward",
+      "lean_theorem": "canonicalCompletedNativeGreenWeylHeightCertificate_of_greenMomentJets"
+    },
+    {
+      "from": "Green moment representation",
+      "to": "global self-adjoint height package",
+      "evidence": "CurrentInfiniteHeightStatus and GreenJetReciprocalSignedHeightOperator",
+      "status": "CONDITIONAL",
+      "uses_classical_completion": true,
+      "uses_zeros": false,
+      "uses_green": true,
+      "uses_tfvd": false,
+      "uses_height_operator": true,
+      "chronology": "Lean 2026-08-22 onward",
+      "lean_theorem": "canonicalCompletedNativeHeightOperator_adjoint_eq_of_greenMomentJets"
+    },
+    {
+      "from": "height operator",
+      "to": "Genuine zero heights",
+      "evidence": "separate zero-spectrum/confinement gates",
+      "status": "OPEN",
+      "uses_classical_completion": true,
+      "uses_zeros": true,
+      "uses_green": false,
+      "uses_tfvd": false,
+      "uses_height_operator": true,
+      "chronology": "later theorem not discharged",
+      "lean_theorem": "none unconditional"
+    }
+  ],
+  "classifications": {
+    "historical_height_route": "NATIVE + CLASSICAL DRESSING",
+    "native_geometric_route": "carry/log orbit/head-tail/nativeScalar; Green/TFVD identification remains later or conditional",
+    "generic_lean_height_route": "moment-driven constructor; not evidence of a pure-native concrete script",
+    "green_tfvd_route": "later conditional crosswalk",
+    "recent_trace_branches": "later crosswalks/experimental, not foundational to first J/T"
+  },
+  "classical_dependencies": [
+    {
+      "object": "completion_series in Wayl scripts",
+      "dependency": "Gamma series, pi rotation, polynomial s(s-1), and factor 1/2",
+      "status": "explicit external dressing before moments"
+    },
+    {
+      "object": "completed_xi in archived height lab",
+      "dependency": "mp.zeta and mp.gamma in F(z)=xi(1/2+i z)",
+      "status": "used for characteristic evaluation; zero comparison is later"
+    },
+    {
+      "object": "nativeXiCompletionFactor",
+      "dependency": "Complex.Gamma, exp(-(s/2) log pi), s(s-1)/2",
+      "status": "formal definition; no prior Green derivation found"
+    }
+  ],
+  "native_dependencies": [
+    {
+      "object": "nativeLogGenerator",
+      "dependencies": [
+        "infiniteRealSpectralGenerator",
+        "log(n+1) frequencies",
+        "native log orbit"
+      ],
+      "status": "closed primitive"
+    },
+    {
+      "object": "completedNativeCharacteristic",
+      "dependencies": [
+        "finiteBracketCharacteristic",
+        "centerBracketTerm",
+        "exact head plus tail"
+      ],
+      "status": "closed geometric identity"
+    },
+    {
+      "object": "nativeScalar",
+      "dependencies": [
+        "bracketCharacteristic",
+        "camera factor crosswalk"
+      ],
+      "status": "closed crosswalk, no positivity conclusion"
+    },
+    {
+      "object": "canonicalCompletedNativeLogDerivativeMoment",
+      "dependencies": [
+        "even Taylor coefficients of completedNativeOperatorCharacteristic",
+        "well-founded division-free recurrence"
+      ],
+      "status": "closed formal sequence"
+    }
+  ],
+  "lean_crosswalks": [
+    {
+      "historical_arrow": "carry state -> log orbit",
+      "lean": "CarrySelfAdjointOperator.NativeLogEvolution.nativeRealSpectralState_eq_logOrbit_zero",
+      "status": "CLOSED"
+    },
+    {
+      "historical_arrow": "head plus exact tail -> nativeScalar",
+      "lean": "CarrySelfAdjointOperator.CompletedNativeCharacteristic.completedNativeCharacteristic_eq_factor_mul_nativeScalar",
+      "status": "CLOSED"
+    },
+    {
+      "historical_arrow": "F -> h_n",
+      "lean": "canonicalCompletedNativeLogDerivativeMoment_eq and canonicalCompletedNativeLogDerivativeMoment_isMomentSequence",
+      "status": "CLOSED"
+    },
+    {
+      "historical_arrow": "h_n -> G/K",
+      "lean": "hankelGram and shiftedHankel",
+      "status": "CLOSED"
+    },
+    {
+      "historical_arrow": "G -> whitening",
+      "lean": "canonicalLDLInverseFactor_whitens; canonicalHankelWhitening",
+      "status": "CLOSED under PosDef"
+    },
+    {
+      "historical_arrow": "K plus whitening -> J",
+      "lean": "finiteJacobiTransport; canonicalFiniteJacobiSection",
+      "status": "CLOSED under Gram data"
+    },
+    {
+      "historical_arrow": "J -> T",
+      "lean": "finiteHeightOperator; canonicalFiniteHeightOperator",
+      "status": "CLOSED under PosDef"
+    },
+    {
+      "historical_arrow": "Green jets -> h_n",
+      "lean": "HasCanonicalCompletedNativeGreenMomentJets",
+      "status": "OPEN/CONDITIONAL concrete instantiation"
+    }
+  ],
+  "dependency_inversions": [
+    {
+      "claim": "nativeLogGenerator is the height operator",
+      "classification": "DEPENDENCY_INVERSION",
+      "reason": "Its eigenvalues are log(n+1); T_N is inverse square root of the moment Jacobi."
+    },
+    {
+      "claim": "Green certificate proves its own Green moment hypothesis",
+      "classification": "CIRCULAR_RISK",
+      "reason": "CompletedNativeGreenWeylHeightCertificate consumes HasCanonicalCompletedNativeGreenMomentJets."
+    },
+    {
+      "claim": "nativeXiCompletionFactor was derived from TFVD/Green before moments",
+      "classification": "UNSUPPORTED_CROSSWALK",
+      "reason": "Only the multiplicative bridge is present; no preceding energy derivation was found."
+    },
+    {
+      "claim": "global Stieltjes/HP operator equals native log generator",
+      "classification": "DEPENDENCY_INVERSION",
+      "reason": "The global operator is built from Green moment factors and has a different carrier/type."
+    },
+    {
+      "claim": "cyclic Green-core readout establishes the first Python J/T genealogy",
+      "classification": "LATER_CROSSWALK",
+      "reason": "CompletedNativeJacobiCyclicReadout is dated 2026-08-25, after the archived height laboratory."
+    }
+  ],
+  "open_gates": [
+    {
+      "gate": "HasCanonicalCompletedNativeGreenMomentJets for the concrete native/TFVD state",
+      "status": "OPEN/CONDITIONAL",
+      "evidence": "CurrentInfiniteHeightStatus.lean lines 43-46"
+    },
+    {
+      "gate": "all-order positive Green/TFVD factorization for K_N",
+      "status": "OPEN",
+      "evidence": "TFVD_DEFECT_JETS_GREEN_POSITIVE_CARRY_OPERATOR_AUDIT.md"
+    },
+    {
+      "gate": "global all-order Hankel positivity and independence",
+      "status": "CONDITIONAL",
+      "evidence": "CanonicalCompletedNativeStieltjesOperator and Green-Weyl height certificates"
+    },
+    {
+      "gate": "identification of Green/global spectrum with Genuine zero heights",
+      "status": "OPEN",
+      "evidence": "CurrentInfiniteHeightStatus.lean lines 47-49"
+    },
+    {
+      "gate": "critical-line confinement from self-adjointness",
+      "status": "OPEN and explicitly not implied",
+      "evidence": "CurrentInfiniteHeightStatus.lean"
+    }
+  ],
+  "recent_crosswalk_branches": [
+    {
+      "branch_or_commit": "agent/native-boundary-archimedean-dressing-separation / ec1bc2b4ce9ccac3bf8be7d82909470d6b4ec162",
+      "file": "NativeBoundaryArchimedeanDressingSeparation.lean",
+      "classification": "later crosswalk",
+      "result": "separates F=A*N and archimedean Green correction"
+    },
+    {
+      "branch_or_commit": "agent/pure-native-boundary-green-sewing / e21ad6a176507369fee67127c6c5801fbd77bf6e",
+      "file": "PureNativeBoundaryGreenSewing.lean",
+      "classification": "later crosswalk",
+      "result": "defines pure native Gamma/scalar mismatch; does not prove zero"
+    },
+    {
+      "branch_or_commit": "agent/native-source-locus-green-compatibility / d98567fd5768866ba0455473f026eb1f9866bbeb",
+      "file": "NativeSourceLocusGreenCompatibility.lean",
+      "classification": "later crosswalk",
+      "result": "restricts mismatch to canonical source locus"
+    },
+    {
+      "branch_or_commit": "agent/native-green-inverse-trace-sewing / d1a3f8ca7a86f86bea2add879549f6c4fb9e6c3c",
+      "file": "NativeGreenInverseTraceSewing.lean",
+      "classification": "later conditional crosswalk",
+      "result": "trace realization is characterized by the existing mismatch; no unconditional sewing"
+    }
+  ],
+  "source_files": [
+    {
+      "path": "/home/thlinux/Downloads/Wayl/jacobi.zip",
+      "kind": "external archive",
+      "sha256": "29111e72a3cb6faddb05d38ac2d222210ff5323eb1ea7978ad5c65ebe39c2b25",
+      "relevant_entry": "native_carry_height_moment_jacobi_operator_lab.py",
+      "entry_timestamp": "2026-08-17 13:02",
+      "git_tracked": false
+    },
+    {
+      "path": "/home/thlinux/Downloads/Wayl/native_carry_height_moment_jacobi_operator_lab.py",
+      "kind": "external script/archive copy",
+      "sha256": "e82e9ff9efe98991f38f5dd50ace0a12a124253f8d6ec61355c1654541eaf929",
+      "git_tracked": false,
+      "uses_mp_zeta": true,
+      "uses_mp_zetazero": "only after construction",
+      "uses_root_finding": false
+    },
+    {
+      "path": "/home/thlinux/Downloads/Wayl/native_autoadjunto.py",
+      "kind": "external script",
+      "sha256": "38100a3c6731cb79d85cd8903c02b2f61c667026303683ae5f99073c91e4d8d3",
+      "git_tracked": false,
+      "uses_completion_series": true,
+      "uses_mp_zeta": false,
+      "uses_mp_zetazero": false
+    },
+    {
+      "path": "/home/thlinux/Downloads/Wayl/native_carry_r2_height_operator.py",
+      "kind": "external script",
+      "sha256": "e150941f5fd4a37b3e56c7f047c600ff2262af1961eb4a91033a0b5b2c47b51c",
+      "git_tracked": false,
+      "uses_completion_series": true,
+      "uses_mp_zeta": false,
+      "uses_mp_zetazero": false
+    },
+    {
+      "path": "CarrySelfAdjointOperator/NativeLogEvolution.lean",
+      "kind": "repository Lean source",
+      "first_commit": "a3d493f100421923e0db6adfa6b954ce01f0051e",
+      "status": "primitive log clock"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/FiniteJacobiTransport.lean",
+      "kind": "repository Lean source",
+      "first_commit": "c73ea47cbf33693890533ecfe9ac0dbfb4b83fac",
+      "status": "finite Jacobi congruence"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/FiniteHeightOperator.lean",
+      "kind": "repository Lean source",
+      "first_commit": "de9ec64cf3af0b9420421b1509ae2015c8882fb3",
+      "status": "inverse-square-root finite height"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CanonicalFiniteHeight.lean",
+      "kind": "repository Lean source",
+      "first_commit": "779eb2d860c622aad2d229b3b267d8858a0991f4",
+      "status": "canonical moment-driven finite height"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedNativeCharacteristic.lean",
+      "kind": "repository Lean source",
+      "first_commit": "326f5f238b3a9fe31910f805f8a9f8fc901024ce",
+      "status": "geometric head plus tail"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedOperatorCharacteristic.lean",
+      "kind": "repository Lean source",
+      "first_commit": "7fe207aedddcca5bc51add04561a2880cd2fca3e",
+      "status": "archimedean-dressed characteristic"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedNativeWeylMoments.lean",
+      "kind": "repository Lean source",
+      "first_commit": "e80bb49e1670073490127527fc0ba982e41e5e8e",
+      "status": "completed characteristic moments"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedNativeGreenWeylHeight.lean",
+      "kind": "repository Lean source",
+      "first_commit": "e80bb49e1670073490127527fc0ba982e41e5e8e",
+      "status": "conditional Green height certificate"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedNativeJacobiCyclicReadout.lean",
+      "kind": "repository Lean source",
+      "first_commit": "9d96bafc663c43d1725b0d19d79acf0b9313ff79",
+      "status": "later cyclic readout"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CurrentInfiniteHeightStatus.lean",
+      "kind": "repository Lean source",
+      "first_commit": "bebab7a50fb274185579eb4e5aa35c196a021b7c",
+      "status": "explicit open gates"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/NativeBoundaryArchimedeanDressingSeparation.lean",
+      "kind": "repository Lean source",
+      "first_commit": "ec1bc2b4ce9ccac3bf8be7d82909470d6b4ec162",
+      "status": "later crosswalk"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/PureNativeBoundaryGreenSewing.lean",
+      "kind": "repository Lean source",
+      "first_commit": "e21ad6a176507369fee67127c6c5801fbd77bf6e",
+      "status": "later crosswalk"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/NativeSourceLocusGreenCompatibility.lean",
+      "kind": "repository Lean source",
+      "first_commit": "d98567fd5768866ba0455473f026eb1f9866bbeb",
+      "status": "later crosswalk"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/NativeGreenInverseTraceSewing.lean",
+      "kind": "repository Lean source",
+      "first_commit": "d1a3f8ca7a86f86bea2add879549f6c4fb9e6c3c",
+      "status": "conditional trace criterion"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedNativeSignedGeneratorHerglotzGram.lean",
+      "kind": "repository Lean source",
+      "first_commit": "17bfb5a5db5d71e32f258bb7452f33e9f32d35ee",
+      "status": "conditional Herglotz readout"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CanonicalCompletedNativeStieltjesOperator.lean",
+      "kind": "repository Lean source",
+      "first_commit": "02fc6ab003486141719d552776c2a9bd1085bc16",
+      "status": "conditional positive Stieltjes operator"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/GenuineMomentOperatorUniqueness.lean",
+      "kind": "repository Lean source",
+      "first_commit": "not independently re-read in this audit",
+      "status": "downstream uniqueness API"
+    },
+    {
+      "path": "/home/thlinux/Downloads/Wayl/NATIVE_CARRY_HEIGHT_MOMENT_JACOBI_OPERATOR_LOG.md",
+      "kind": "external note",
+      "git_tracked": false
+    },
+    {
+      "path": "/home/thlinux/Downloads/Wayl/MEMORIA_DERIVACAO_OPERADOR_AUTOADJUNTO_GENUINE.md",
+      "kind": "external note",
+      "git_tracked": false
+    },
+    {
+      "path": "/home/thlinux/Downloads/Wayl/NATIVE_CARRY_CANONICAL_HEIGHT_WEYL_GATE_LOG.md",
+      "kind": "external note",
+      "git_tracked": false
+    },
+    {
+      "path": "/home/thlinux/Downloads/Wayl/TFVD_DEFECT_JETS_GREEN_POSITIVE_CARRY_OPERATOR_AUDIT.md",
+      "kind": "external note",
+      "git_tracked": false
+    },
+    {
+      "path": "/home/thlinux/Downloads/Wayl/CARRY_GEOMETRY_TFVD_GREEN_WEYL_CAUSAL_CHRONOLOGY.md",
+      "kind": "external note",
+      "git_tracked": false
+    },
+    {
+      "path": "/home/thlinux/Downloads/Wayl/IDENTIDADE_PROJETIVA_EXATA_LIMITE_OPERADOR_ALTURAS.md",
+      "kind": "external note",
+      "git_tracked": false
+    },
+    {
+      "path": "/home/thlinux/Downloads/geometria_do_carry_multibase.md",
+      "kind": "external attached note",
+      "sha256": "19f72b50363ac2a25ebe5d4d24f0e53ca67b8cfc84af102300906e1c66347845",
+      "git_tracked": false,
+      "epistemic_status": "reference only; not a proof"
+    }
+  ],
+  "source_commits": [
+    {
+      "hash": "a3d493f100421923e0db6adfa6b954ce01f0051e",
+      "date": "2026-08-21T03:30:45-03:00",
+      "subject": "bootstrap native log moment and Hankel formalization"
+    },
+    {
+      "hash": "c73ea47cbf33693890533ecfe9ac0dbfb4b83fac",
+      "date": "2026-08-21T04:10:27-03:00",
+      "subject": "formalize the exact finite Jacobi whitening transport"
+    },
+    {
+      "hash": "de9ec64cf3af0b9420421b1509ae2015c8882fb3",
+      "date": "2026-08-21T04:23:44-03:00",
+      "subject": "define the finite inverse-square-root height operator"
+    },
+    {
+      "hash": "326f5f238b3a9fe31910f805f8a9f8fc901024ce",
+      "date": "2026-08-21T04:50:50-03:00",
+      "subject": "connect exact completed characteristic to operator chain"
+    },
+    {
+      "hash": "779eb2d860c622aad2d229b3b267d8858a0991f4",
+      "date": "2026-08-21T05:42:25-03:00",
+      "subject": "Construct canonical finite self-adjoint height operator"
+    },
+    {
+      "hash": "7fe207aedddcca5bc51add04561a2880cd2fca3e",
+      "date": "2026-08-21T06:09:59-03:00",
+      "subject": "Define exact completed operator characteristic"
+    },
+    {
+      "hash": "dba780a78f8b44d768f340583a98dcb726b115e4",
+      "date": "2026-08-21T06:18:24-03:00",
+      "subject": "Identify native scalar with zeta and state critical-line closure"
+    },
+    {
+      "hash": "108a12b114baae7874bfbac74b9fe23b645c5223",
+      "date": "2026-08-21T23:12:57-03:00",
+      "subject": "formalize exact projective tower limit"
+    },
+    {
+      "hash": "e518550c3d58b655823e012f44e59699ed7cd8d2",
+      "date": "2026-08-21T23:28:45-03:00",
+      "subject": "reduce canonical Jacobi projectivity to LDL prefix compatibility"
+    },
+    {
+      "hash": "6f00328a71c23da4b9ffe1b901e3cc5dc79d7142",
+      "date": "2026-08-22T00:20:48-03:00",
+      "subject": "Formalize exact projective Jacobi tower and ORDER recurrence"
+    },
+    {
+      "hash": "a5ed3a346485cfd7017774c84809ad2f5360b7d3",
+      "date": "2026-08-22T00:28:01-03:00",
+      "subject": "Construct canonical Green-jet height intertwiner"
+    },
+    {
+      "hash": "1d9c631d5915fdd4c26a4f3f7dedd63d75b2a3cd",
+      "date": "2026-08-24T16:53:13-03:00",
+      "subject": "feat: identify completed camera traces with TFVD"
+    },
+    {
+      "hash": "e80bb49e1670073490127527fc0ba982e41e5e8e",
+      "date": "2026-08-24T22:55:11-03:00",
+      "subject": "feat: derive height operator from concrete Weyl moments"
+    },
+    {
+      "hash": "9d96bafc663c43d1725b0d19d79acf0b9313ff79",
+      "date": "2026-08-25T15:57:39-03:00",
+      "subject": "feat: stitch native log moments to completed Jacobi core"
+    },
+    {
+      "hash": "02fc6ab003486141719d552776c2a9bd1085bc16",
+      "date": "2026-08-28T07:49:00-03:00",
+      "subject": "formalize canonical native Stieltjes operator gate"
+    },
+    {
+      "hash": "17bfb5a5db5d71e32f258bb7452f33e9f32d35ee",
+      "date": "2026-09-01T15:26:53-03:00",
+      "subject": "Realize Herglotz kernel as signed-generator Gram"
+    },
+    {
+      "hash": "ec1bc2b4ce9ccac3bf8be7d82909470d6b4ec162",
+      "date": "2026-09-12T14:22:19-03:00",
+      "subject": "Separate native boundary chart from archimedean dressing"
+    },
+    {
+      "hash": "e21ad6a176507369fee67127c6c5801fbd77bf6e",
+      "date": "2026-09-12T14:56:04-03:00",
+      "subject": "Isolate pure native boundary Green sewing residual"
+    },
+    {
+      "hash": "d98567fd5768866ba0455473f026eb1f9866bbeb",
+      "date": "2026-09-12T15:26:21-03:00",
+      "subject": "Map native source-locus Green compatibility"
+    },
+    {
+      "hash": "d1a3f8ca7a86f86bea2add879549f6c4fb9e6c3c",
+      "date": "2026-09-12T16:02:09-03:00",
+      "subject": "Isolate native Green inverse trace sewing"
+    }
+  ],
+  "validation": {
+    "lake_build": "PASS",
+    "audit_build": "PASS",
+    "kernel_construction_audit_build": "PASS",
+    "scripts_audit": "PASS (static audit and Lean audit targets)",
+    "git_diff_check": "PASS",
+    "json_tool": "PASS",
+    "new_lean_axioms": "NONE"
+  }
+}
