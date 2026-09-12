@@ -872,5 +872,20 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeCancellationBoundaryState_reconstructs"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeCancellation_greenDefect_eq_verticalWronskian"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3PureNativeBoundaryGreenSewing_iff_sameStructuredNativeGreenCompatibility"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusGammaGreenForm"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusScalarGreenForm"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusGammaGreenForm_eq_canonical"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusScalarGreenForm_eq_nativeUndressed"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusProjectionMismatch"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusProjectionMismatch_eq_pureNative"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusProjectionMismatch_eq_gammaReadout_sub_nativeWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3NativeSourceLocusGreenCompatibilityAt"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusGreenCompatibilityAt_iff_structuredForms"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3NativeSourceLocusGreenCompatibility"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusGreenCompatibility_iff_mismatch_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusGreenCompatibilityAt_iff_pureNative"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusCancellation_greenDefect_eq_verticalWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusProjectionMismatch_skew"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusProjectionMismatch_diagonal_re_eq_zero"}
   ]
 }
