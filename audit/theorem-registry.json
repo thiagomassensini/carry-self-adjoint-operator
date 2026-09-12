@@ -887,5 +887,20 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusCancellation_greenDefect_eq_verticalWronskian"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusProjectionMismatch_skew"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeSourceLocusProjectionMismatch_diagonal_re_eq_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3NativeGreenInverseTraceRealization"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3NativeGreenInverseTraceRealization.candidateZ_eq_gamma"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3NativeGreenInverseTraceRealization.candidateW_eq_gamma"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3NativeGreenInverseTraceRealization.gammaBoundaryReadout_eq_nativeWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3NativeGreenInverseTraceRealization.pureNativeBoundaryMismatch_eq_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3NativeGreenInverseTraceRealization.nativeSourceLocusProjectionMismatch_eq_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeGreenInverseTraceRealizationOf"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3TfvdNativeBoundaryReadout_iff_mismatch_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeGreenInverseTraceRealization_nonempty_iff_mismatch_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3NativeGreenTraceRelationAt"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeGreenTraceRelationAt_iff_mismatch_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalCompletedC3NativeGreenInverseTraceRealizationExists"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeGreenInverseTraceRealizationExists_iff_mismatch_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeTrace_candidate_eq_gamma"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeTrace_cancellation_greenDefect_eq_verticalWronskian"}
   ]
 }
