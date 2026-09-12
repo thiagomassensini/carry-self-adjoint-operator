@@ -179,6 +179,17 @@ theorem completedC3LedgerFixedCenter_eventuallyEq_completedResponse
           completedNativeOperatorBoundaryCompanion := by
       filter_upwards [] with w
       unfold canonicalCompletedNativePolarizedResponseNumerator
+      change
+        completedGreenNormalizedResponse
+            completedNativeOperatorCharacteristic
+            completedNativeOperatorBoundaryCompanion w -
+          (starRingEnd ℂ)
+            (completedGreenNormalizedResponse
+              completedNativeOperatorCharacteristic
+              completedNativeOperatorBoundaryCompanion 0) =
+        completedGreenNormalizedResponse
+          completedNativeOperatorCharacteristic
+          completedNativeOperatorBoundaryCompanion w
       rw [completedNativeGreenNormalizedResponse_zero]
       simp
 
