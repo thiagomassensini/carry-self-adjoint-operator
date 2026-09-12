@@ -806,5 +806,29 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernelDefect_tendsto"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernel_eq_iff_defect_limit_zero"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernel_implies_shiftedFactorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceState"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySource"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceRelationPair"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceState_defectEquation"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceState_greenRightInverse"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceState_eq_gamma"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceRelationPair_weylBoundaryMap"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundaryReadout"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundaryReadout_eq_gammaBoundaryReadout"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundaryReadout_eq_separation_mul_gammaKernel"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundaryReadout_eq_bracketCauchy"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundaryReadoutDefect"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundaryReadoutDefect_eq_rawGammaWronskianDefect"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundaryReadoutDefect_eq_boundaryGreenForm_sub"}
+    ,{"qualified": "CarrySelfAdjointOperator.CanonicalNativeBoundaryCompletedReadoutSewing"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundaryCompletedReadoutSewing_iff_defect_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundaryCompletedReadoutSewing_iff_boundaryGreenSewing"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundaryCompletedReadoutSewing.normalizedGammaKernel_eq_dslope"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySource_ambientGreenDefect_eq_separation_mul_gram"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySource_green_identity_package"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceState_eq_resolvent"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySource_eq_tfvd"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceRelationPair_fst_weylBoundaryMap"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeBoundarySourceRelationPair_snd_weylBoundaryMap"}
   ]
 }
