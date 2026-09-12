@@ -71,48 +71,33 @@ theorem completedNativeLogDerivativeTriangularMatrix_mulVec_moments
       completedNativeEvenCharacteristicCoefficient (i.val - j) *
         (canonicalCompletedNativeLogDerivativeMoment j : ℂ)
     else 0
-  change (∑ j : Fin N,
-      completedNativeLogDerivativeTriangularMatrix N i j *
-        completedNativeLogDerivativeMomentVector N j) = _
+  change (∑ j : Fin N, f j.val) =
+    -(((i.val + 1 : ℕ) : ℂ) *
+      completedNativeEvenCharacteristicCoefficient (i.val + 1))
   rw [Fin.sum_univ_eq_sum_range]
-  have hrewrite :
-      (∑ j ∈ Finset.range N,
-          completedNativeLogDerivativeTriangularMatrix N i
-              ⟨j, Finset.mem_range.mp ‹j ∈ Finset.range N›⟩ *
-            completedNativeLogDerivativeMomentVector N
-              ⟨j, Finset.mem_range.mp ‹j ∈ Finset.range N›⟩) =
-        ∑ j ∈ Finset.range N, f j := by
-    apply Finset.sum_congr rfl
-    intro j hj
-    simp [f, completedNativeLogDerivativeTriangularMatrix,
-      completedNativeLogDerivativeMomentVector]
-  rw [hrewrite]
-  have hsubset : Finset.range (i.val + 1) ⊆ Finset.range N := by
-    exact Finset.range_mono (by omega)
-  have htrim :
+  have hsum :
       (∑ j ∈ Finset.range (i.val + 1), f j) =
         ∑ j ∈ Finset.range N, f j := by
-    apply Finset.sum_subset hsubset
-    intro j hjN hjSmall
-    have hgt : i.val < j := by
-      have hnot : ¬ j < i.val + 1 := by
-        simpa only [Finset.mem_range] using hjSmall
+    apply Finset.sum_subset (Finset.range_mono (by omega))
+    intro j _ hj
+    have hij : i.val < j := by
+      have hj' : i.val + 1 ≤ j := by
+        simpa only [Finset.mem_range, not_lt] using hj
       omega
-    simp [f, Nat.not_le.mpr hgt]
-  rw [← htrim]
-  have hprefix :
-      (∑ j ∈ Finset.range (i.val + 1), f j) =
+    simp [f, Nat.not_le.mpr hij]
+  rw [← hsum]
+  calc
+    (∑ j ∈ Finset.range (i.val + 1), f j) =
         ∑ j ∈ Finset.range (i.val + 1),
           (canonicalCompletedNativeLogDerivativeMoment j : ℂ) *
             completedNativeEvenCharacteristicCoefficient (i.val - j) := by
-    apply Finset.sum_congr rfl
-    intro j hj
-    have hji : j ≤ i.val := by
-      exact Nat.lt_succ_iff.mp (Finset.mem_range.mp hj)
-    simp [f, hji, mul_comm]
-  rw [hprefix]
-  exact completedNativeLogDerivativeMoment_fullConvolution
-    canonicalCompletedNativeLogDerivativeMoment_isMomentSequence i.val
+      apply Finset.sum_congr rfl
+      intro j hj
+      have hji : j ≤ i.val :=
+        Nat.lt_succ_iff.mp (Finset.mem_range.mp hj)
+      simp [f, hji, mul_comm]
+    _ = _ := completedNativeLogDerivativeMoment_fullConvolution
+      canonicalCompletedNativeLogDerivativeMoment_isMomentSequence i.val
 
 /-- The triangular transport has the expected determinant: one copy of the
 nonzero center coefficient on each diagonal entry. -/
