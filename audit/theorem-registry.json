@@ -842,5 +842,18 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationTraceState_trace_eq_F_negFprime"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationTraceGlue_difference_eq_rawDefect"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3CancellationTraceGlue_iff_rawDefect_zero"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeUndressedScalarBoundaryPair_eq_negDeriv"}
+    ,{"qualified": "CarrySelfAdjointOperator.completedNativeOperatorCharacteristic_eq_nativeXiCompletionFactor_mul_nativeHeightScalar"}
+    ,{"qualified": "CarrySelfAdjointOperator.nativeArchimedeanBoundaryDressing_nativePair_eq_productPair"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ScalarBoundaryPair_eq_nativeArchimedeanBoundaryDressing"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeUndressedScalarBoundaryPair_eq_normalizedTfvdTrace"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeUndressedGreenForm_eq_nativeWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ScalarGreenForm_eq_scaledNative_add_archimedeanCorrection"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalArchimedeanBoundaryGreenCorrection_eq_derivative"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3ScalarGreenForm_eq_native_add_archimedeanTransportCorrection"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RawGammaWronskianDefect_eq_gammaNativeMismatch_sub_archimedeanTransportCorrection"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RawGammaWronskianDefect_eq_nativeMismatch_sub_archimedeanCorrection"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalC3NativeBoundaryGreenMismatch_eq_zero_iff"}
+    ,{"qualified": "CarrySelfAdjointOperator.completedNativeLogDerivative_eq_native_add_archimedean"}
   ]
 }
