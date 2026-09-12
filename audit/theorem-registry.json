@@ -806,5 +806,23 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernelDefect_tendsto"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernel_eq_iff_defect_limit_zero"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalNativePolarizedTfvdGreenMomentKernel_implies_shiftedFactorization"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeFiniteGluedHilbertTraceGreenDefect_eq_verticalWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeFiniteGluedHilbertTraceGreenDefect_eq_coordinateWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeHilbertGluedTraceGreenDefect_eq_verticalWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeHilbertGluedTraceGreenDefect_eq_coordinateWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeVerticalTraceBoundaryWedge_eq_verticalWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.mixedScalarBoundaryWedge_nativeTrace_eq_neg_verticalWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrdinaryEdgeCore_eq_prefixCore"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3LogJetEdgeCore_eq_prefixCore"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrdinaryEdgeCore_realization_eq_prefix"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3LogJetEdgeCore_realization_eq_prefix"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrdinaryEdgeState_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3LogJetEdgeState_apply"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrdinaryLogJetTraceGlue"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrdinaryLogJetTraceCrosswalkDefect_eq_head_sub_verticalWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrdinaryLogJetTraceCrosswalkDefect_eq_structural_add_nativeGreenMismatch"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalC3FiniteMixedStructuralDefect_eq_headScalarizationResidual"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeFiniteHilbertTraceGlue_is_exact"}
+    ,{"qualified": "CarrySelfAdjointOperator.canonicalNativeHilbertTraceGlue_is_exact"}
   ]
 }
