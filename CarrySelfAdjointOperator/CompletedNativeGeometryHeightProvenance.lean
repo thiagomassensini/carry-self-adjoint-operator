@@ -145,6 +145,31 @@ theorem nativeGeometryFiniteHeightOperator_isSymm
     (greenJetOdd_prefix_linearIndependent
       (canonicalCompletedNativeStieltjesJet_odd_linearIndependent hpos) N)
 
+/-! ## Green carrier to the same finite height matrix -/
+
+/-- The finite height matrix is carrier-independent once its moments are the
+canonical completed-native moments. Thus a genuine Green-jet Gram and the
+canonical moment carrier produce the same J_N^(-1/2) matrix. The theorem is
+finite and exact: it does not identify either carrier with the other, and it
+uses no target spectrum or fitted constants. -/
+theorem nativeGeometryFiniteHeightOperator_eq_of_greenMomentKernel
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {greenJet : (ℕ ⊕ ℕ) → E}
+    (hgreen :
+      IsGreenWronskianMomentKernelGramRepresentation
+        canonicalCompletedNativeLogDerivativeMoment greenJet)
+    (hpos : CanonicalCompletedNativeStieltjesPositivity) (N : ℕ)
+    (hodd : LinearIndependent ℝ
+      (fun n : ℕ ↦ greenJet (Sum.inr n))) :
+    nativeGeometryFiniteHeightOperator hpos N =
+      canonicalFiniteHeightOperator
+        (greenWronskianMomentKernel_odd_shiftedMomentGram hgreen)
+        N
+        (canonicalCompletedNativeStieltjes_hankelGram_posDef hpos N)
+        (greenJetOdd_prefix_linearIndependent hodd N) := by
+  unfold nativeGeometryFiniteHeightOperator
+  rfl
+
 /- The compact theorem below is intentionally stated as a finite provenance
 chain. It does not claim that the all-order positivity gate or the concrete
 Green/Taylor Gram identification has already been proved. -/
@@ -167,6 +192,64 @@ theorem nativeGeometry_to_finiteHeight_chain
     nativeGeometryFiniteHeightOperator_isSymm hpos N⟩
 
 /-! ## The remaining Green/Taylor seam -/
+
+/-- The Green moment certificate itself supplies the Hankel Gram, while the
+two global parity-independence statements supply strictness. Consequently the
+native camera-to-height chain needs no separately postulated positivity at
+the chosen finite order. The independence hypotheses are deliberately
+exposed: a native incidence-transport theorem can discharge them without
+changing this operator construction. -/
+theorem nativeGeometry_to_finiteHeight_chain_of_greenMomentJets
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi]
+    (xiState : ℂ → Hxi)
+    (greenMomentJets :
+      HasCanonicalCompletedNativeGreenMomentJets xiState
+        canonicalCompletedNativeLogDerivativeMoment)
+    (heven : LinearIndependent ℝ
+      (fun n : ℕ ↦
+        canonicalCompletedNativeGreenParityJet xiState (Sum.inl n)))
+    (hodd : LinearIndependent ℝ
+      (fun n : ℕ ↦
+        canonicalCompletedNativeGreenParityJet xiState (Sum.inr n)))
+    (cutoff N : ℕ) :
+    ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+      normalizedCompletedNativeCameraCharacteristic 3 cutoff =
+          (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+        completedNativeCameraLogDerivativeMoment 3 cutoff =
+          canonicalCompletedNativeLogDerivativeMoment ∧
+        (∃ hgram :
+            (hankelGram
+              (completedNativeCameraLogDerivativeMoment 3 cutoff) N).PosDef,
+          canonicalFiniteJacobiSection
+              (completedNativeCameraLogDerivativeMoment 3 cutoff) N hgram =
+            canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+        (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  letI : InnerProductSpace ℝ
+      (BinaryHilbertSum Hxi CanonicalCompletedC3HilbertCarrier) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  have hreal :
+      IsGreenWronskianMomentKernelGramRepresentation
+        canonicalCompletedNativeLogDerivativeMoment
+        (canonicalCompletedNativeGreenParityJet xiState) := by
+    intro i j
+    change greenWronskianMomentKernel
+        canonicalCompletedNativeLogDerivativeMoment i j =
+      (inner ℂ
+        (canonicalCompletedNativeGreenParityJet xiState i)
+        (canonicalCompletedNativeGreenParityJet xiState j)).re
+    have h := congrArg Complex.re (greenMomentJets.momentKernel i j)
+    simpa [canonicalCompletedNativeGreenParityJet,
+      canonicalCompletedNativeNormalizedGreenState] using h
+  let hpos : CanonicalCompletedNativeStieltjesPositivity := fun M ↦
+    ⟨hankelGram_posDef_of_gramRepresentation
+        (greenWronskianMomentKernel_even_momentGram hreal) M
+        (greenJetEven_prefix_linearIndependent heven M),
+      shiftedHankel_posDef_of_gramRepresentation
+        (greenWronskianMomentKernel_odd_shiftedMomentGram hreal) M
+        (greenJetOdd_prefix_linearIndependent hodd M)⟩
+  exact ⟨hpos, nativeGeometry_to_finiteHeight_chain (camera := 3) (by norm_num)
+    cutoff N hpos⟩
 
 /-- The missing Green-to-Hankel identification is an exact, named defect
 condition, not evidence that the native operator had no geometric origin. -/
@@ -210,5 +293,55 @@ theorem nativeGeometry_greenForwardDifferenceResidual_zero_closes_momentGate
     xiState hxi hnative hkernel hresidual
 
 end
+
+end CarrySelfAdjointOperator
+
+namespace CarrySelfAdjointOperator
+
+/-- The forward-difference residual is now an explicit end-to-end finite
+closure criterion. Once it vanishes, the factor Green identities provide the
+Green moment certificate, and the two exposed parity-independence hypotheses
+are the only remaining inputs to the exact camera-to-height chain. -/
+theorem nativeGeometry_to_finiteHeight_chain_of_forwardDifferenceResidual
+    {Hxi : Type*}
+    [NormedAddCommGroup Hxi] [InnerProductSpace ℂ Hxi] [CompleteSpace Hxi]
+    (xiState : ℂ → Hxi)
+    (hxi : HasDivisionFreeGreenRepresentation
+      nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion xiState)
+    (hnative : HasDivisionFreeGreenRepresentation
+      nativeHeightScalar nativeHeightScalarBoundaryCompanion
+        canonicalCompletedOperatorC3HilbertState)
+    (hkernel :
+      HasCompletedNativeRealAxisNormalizedGreenKernel
+        (completedNativeC3ProductLedgerState xiState))
+    (hresidual : ∀ i j,
+      canonicalCompletedNativeGreenForwardDifferenceGramResidual
+        xiState hkernel i j = 0)
+    (heven : LinearIndependent ℝ
+      (fun n : ℕ ↦
+        canonicalCompletedNativeGreenParityJet xiState (Sum.inl n)))
+    (hodd : LinearIndependent ℝ
+      (fun n : ℕ ↦
+        canonicalCompletedNativeGreenParityJet xiState (Sum.inr n)))
+    (cutoff N : ℕ) :
+    ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+      normalizedCompletedNativeCameraCharacteristic 3 cutoff =
+          (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+        completedNativeCameraLogDerivativeMoment 3 cutoff =
+          canonicalCompletedNativeLogDerivativeMoment ∧
+        (∃ hgram :
+            (hankelGram
+              (completedNativeCameraLogDerivativeMoment 3 cutoff) N).PosDef,
+          canonicalFiniteJacobiSection
+              (completedNativeCameraLogDerivativeMoment 3 cutoff) N hgram =
+            canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+        (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  exact
+    nativeGeometry_to_finiteHeight_chain_of_greenMomentJets
+      xiState
+      (nativeGeometry_greenForwardDifferenceResidual_zero_closes_momentGate
+        xiState hxi hnative hkernel hresidual)
+      heven hodd cutoff N
+
 
 end CarrySelfAdjointOperator
