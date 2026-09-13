@@ -6,6 +6,7 @@ import CarrySelfAdjointOperator.CompletedNativeHilbertTraceGlueWronskian
 import CarrySelfAdjointOperator.CompletedNativeReturnMetricReadoutCrosswalk
 import CarrySelfAdjointOperator.CompletedNativeCentralCarryAtlasEnergy
 import CarrySelfAdjointOperator.BR2CausalGreenResponseTransport
+import CarrySelfAdjointOperator.ProjectiveValveCarryEnergyFrontier
 import Mathlib.Tactic
 
 open scoped ComplexConjugate InnerProductSpace
@@ -140,6 +141,93 @@ theorem canonicalCompletedC3CausalGreenProjectionBridge
       hr hs, ?_⟩
   exact canonicalCompletedC3GradientCompatiblePoissonGraphKernel_eq_causalAdjointSquare
     hbase r s hr hs
+
+theorem canonicalCompletedNativeCarryGreenIncidenceCrosswalk
+    {base radius : ℕ} (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base) :
+    (canonicalBR2CarryAmplitudeRatio base =
+      CarryGeometry.carryAmplitude base 1) ∧
+    (Nonempty (BR2BracketIncidenceJetTransport base radius
+      (canonicalBR2CameraBracketCausalGreenResponseParityJet base radius))) ∧
+    (∀ index : ℕ,
+      carryWeightedVerticalCenteredBracket
+          (canonicalBR2CarryAmplitudeRatio base)
+          (canonicalBR2CameraBracketCausalGreenResponse base radius index) =
+        br2CameraBracketVerticalState base radius index) ∧
+    (∀ x y : CarryVerticalL2,
+      inner ℂ x y =
+        inner ℂ
+            (carryVerticalL2WeightedGreen
+              (canonicalBR2CarryAmplitudeRatio base)
+              (carryWeightedVerticalCenteredBracket
+                (canonicalBR2CarryAmplitudeRatio base) x))
+            (carryVerticalL2WeightedGreen
+              (canonicalBR2CarryAmplitudeRatio base)
+              (carryWeightedVerticalCenteredBracket
+                (canonicalBR2CarryAmplitudeRatio base) y)) +
+        inner ℂ
+            (carryVerticalL2WeightedGreen
+              (canonicalBR2CarryAmplitudeRatio base)
+              (carryWeightedVerticalCenteredBracket
+                (canonicalBR2CarryAmplitudeRatio base) x))
+            (carryWeightedVerticalReturn
+              (canonicalBR2CarryAmplitudeRatio base)
+              (canonicalBR2CarryAmplitudeRatio_pos hbase).le
+              (canonicalBR2CarryAmplitudeRatio_lt_one hbase)
+              (carryWeightedVerticalTrace
+                (canonicalBR2CarryAmplitudeRatio base) y)) +
+        inner ℂ
+            (carryWeightedVerticalReturn
+              (canonicalBR2CarryAmplitudeRatio base)
+              (canonicalBR2CarryAmplitudeRatio_pos hbase).le
+              (canonicalBR2CarryAmplitudeRatio_lt_one hbase)
+              (carryWeightedVerticalTrace
+                (canonicalBR2CarryAmplitudeRatio base) x))
+            (carryVerticalL2WeightedGreen
+              (canonicalBR2CarryAmplitudeRatio base)
+              (carryWeightedVerticalCenteredBracket
+                (canonicalBR2CarryAmplitudeRatio base) y)) +
+        inner ℂ
+            (carryWeightedVerticalReturn
+              (canonicalBR2CarryAmplitudeRatio base)
+              (canonicalBR2CarryAmplitudeRatio_pos hbase).le
+              (canonicalBR2CarryAmplitudeRatio_lt_one hbase)
+              (carryWeightedVerticalTrace
+                (canonicalBR2CarryAmplitudeRatio base) x))
+            (carryWeightedVerticalReturn
+              (canonicalBR2CarryAmplitudeRatio base)
+              (canonicalBR2CarryAmplitudeRatio_pos hbase).le
+              (canonicalBR2CarryAmplitudeRatio_lt_one hbase)
+              (carryWeightedVerticalTrace
+                (canonicalBR2CarryAmplitudeRatio base) y))) := by
+  refine ⟨canonicalBR2CarryAmplitudeRatio_eq_carryAmplitude base,
+    ⟨canonicalBR2CameraBracketCausalGreenResponseIncidenceJetTransport
+      hbase hradius⟩, ?_, ?_⟩
+  · intro index
+    exact canonicalBR2WeightedVerticalCenteredBracket_causalGreenResponse
+      hbase hradius index
+  · intro x y
+    exact canonicalCarryTfvd_inner_eq_fourChannel hbase x y
+
+theorem canonicalCompletedNativeCarryGreen_tfvd_reconstruction
+    {base radius : ℕ} (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (S : Finset NativeGpreBoundaryContext) (index : ℕ) :
+    nativeGpreFiniteTfvdReconstruction
+        (canonicalBR2CarryAmplitudeRatio base)
+        (canonicalBR2CarryAmplitudeRatio_pos hbase).le
+        (canonicalBR2CarryAmplitudeRatio_lt_one hbase) S
+        (nativeGpreFiniteTfvdAnalysis
+          (canonicalBR2CarryAmplitudeRatio base) S
+          (canonicalBR2CameraBracketCausalGreenResponse
+            base radius index)) =
+      canonicalBR2CameraBracketCausalGreenResponse base radius index := by
+  simpa [canonicalBR2CameraBracketCausalGreenResponse] using
+    (nativeGpreFiniteTfvdReconstruction_analysis_br2CausalGreenResponse
+      (canonicalBR2CarryAmplitudeRatio base)
+      (canonicalBR2CarryAmplitudeRatio_pos hbase)
+      (canonicalBR2CarryAmplitudeRatio_lt_one hbase)
+      S base radius index)
 
 theorem canonicalCompletedNativeTfvdGreenPort_nativeLine_eq_packagedNativeSlope
     (time : ℝ) :
