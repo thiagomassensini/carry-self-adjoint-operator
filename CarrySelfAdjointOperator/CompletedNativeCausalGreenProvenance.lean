@@ -5,6 +5,8 @@ import CarrySelfAdjointOperator.CompletedNativeTfvdGreenMomentGramBridge
 import CarrySelfAdjointOperator.CompletedNativeHilbertTraceGlueWronskian
 import CarrySelfAdjointOperator.CompletedNativeReturnMetricReadoutCrosswalk
 import CarrySelfAdjointOperator.CompletedNativeCentralCarryAtlasEnergy
+import CarrySelfAdjointOperator.CompletedNativePolarizedSameEdgeGreenGramBridge
+import CarrySelfAdjointOperator.CompletedC3FullWronskianPolarization
 import CarrySelfAdjointOperator.BR2CausalGreenResponseTransport
 import CarrySelfAdjointOperator.ProjectiveValveCarryEnergyFrontier
 import Mathlib.Tactic
@@ -15,6 +17,7 @@ namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
 open NativeCarryC3Crosswalk
+open NativeCarrySpectralWeyl.Boundary
 open NativeCarrySpectralWeyl.Infinite
 open NativeCarrySpectralWeyl.Camera
 open FiniteNativeCarryOperator.Camera
@@ -211,7 +214,7 @@ theorem canonicalCompletedNativeCarryGreenIncidenceCrosswalk
 
 theorem canonicalCompletedNativeCarryGreen_tfvd_reconstruction
     {base radius : ℕ} (hbase : IsSupported base)
-    (hradius : radius ∈ radiusSet base)
+    (_hradius : radius ∈ radiusSet base)
     (S : Finset NativeGpreBoundaryContext) (index : ℕ) :
     nativeGpreFiniteTfvdReconstruction
         (canonicalBR2CarryAmplitudeRatio base)
@@ -241,6 +244,86 @@ theorem canonicalCompletedNativeTfvdGreenPort_nativeLine_eq_packagedNativeSlope
     _ = finitePackagedNativeSlopeGreenPort 3 time :=
       finiteC3GenuineBracketGreenBoundaryPair_nativeLine_eq_nativeSlopePort
         3 time
+
+/-! ## Native four-corner carrier before scalar moments -/
+
+/-- The complete native four-corner cell is the pre-Hankel object behind the
+causal Green readout.  The three equalities keep its provenance visible:
+the Genuine Green form, its literal Hilbert inner product, and the exact
+ordinary/log-jet reconstruction on the reflected leg.  No moment sequence,
+Hankel matrix, or Jacobi operator is used here. -/
+theorem canonicalCompletedNativeCarryGreenFourCornerProvenance
+    (M : ℕ) (z w : ℂ) :
+    (greenForm (𝕜 := ℂ)
+        (finiteC3GenuineBracketGreenBoundaryPair M w)
+        (finiteC3GenuineBracketGreenBoundaryPair M (reflectedParameter z)) =
+      canonicalC3MixedRadialCoefficient z w *
+        nativeGpreFourCornerPolarizedDirichletPrefix
+          M w (reflectedParameter z)) ∧
+    (nativeGpreFourCornerPolarizedDirichletPrefix
+        M w (reflectedParameter z) =
+      inner ℂ
+        (canonicalCompletedC3DirichletGradientPrefixState w M)
+        (canonicalCompletedC3DirichletGradientPrefixState
+          (reflectedParameter z) M)) ∧
+    (nativeGpreFourCornerPolarizedDirichletPrefix
+        M w (reflectedParameter z) =
+      ∑ n ∈ Finset.range M,
+        (starRingEnd ℂ) (positiveDirichletGradient w n) *
+          sameEdgeRecoveredReflectedGradient n
+            (positiveDirichletGradient z n)
+            (positiveLogDirichletGradient z n)) := by
+  refine ⟨?_, ?_, ?_⟩
+  · exact
+      greenForm_finiteC3GenuineBracket_twoParameter_eq_coefficient_mul_nativeFourCorner
+        M z w
+  · exact nativeGpreFourCornerPolarizedDirichletPrefix_eq_inner
+      M w (reflectedParameter z)
+  · exact nativeGpreFourCornerPolarizedDirichletPrefix_reflected_eq_logJetReconstruction
+      M w z
+
+/-- The remaining scalar sewing gate is exactly the vanishing of the explicit
+finite total defect after the native four-corner carrier has been exposed.
+This is the precise handoff from the causal/pre-Hankel construction to the
+completed Wronskian, not a replacement of that construction by a Gram ansatz.
+-/
+theorem canonicalCompletedNativeCarryGreenWronskian_sewing_iff_totalDefect_zero
+    {z w : ℂ} (hz : 0 < z.re) (hzUpper : z.re < 1) (hw : 0 < w.re) :
+    canonicalCompletedC3RawMixedWronskian z w =
+        canonicalC3MixedRadialCoefficient z w *
+          canonicalCompletedC3RawGammaGram
+            w (reflectedParameter z) hw
+            (by simpa [reflectedParameter] using sub_pos.mpr hzUpper) ↔
+      Tendsto
+        (fun M : ℕ => canonicalC3FiniteMixedTotalDefect M z w)
+        atTop (nhds 0) := by
+  simpa [canonicalCompletedC3MixedRadialGreenKernel] using
+    (canonicalC3FiniteMixedTotalDefect_tendsto_zero_iff
+      hz hzUpper hw).symm
+
+/-! ## The stronger scalar identity above the Gram layer -/
+
+/-- The signed chiral Wronskian response reads the native moments directly.
+This is the causal scalar identity produced by the completed Green operator;
+no Gram matrix or Jacobi coordinate appears in its statement. -/
+theorem canonicalCompletedNativeCarryGreenChiralResponse_oddCoefficient_eq_moment
+    (M n : ℕ) :
+    canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+        M (2 * n + 1) =
+      (canonicalCompletedNativeLogDerivativeMoment n : ℂ) := by
+  exact canonicalCompletedC3FullWronskianChiralResponse_odd_eq_canonicalMoment
+    M n
+
+/-- The same Wronskian identity before specializing to a parity diagonal:
+the coefficient of order `p + q + 1` is the polarized native moment. -/
+theorem canonicalCompletedNativeCarryGreenChiralResponse_succCoefficient_eq_polarizedMoment
+    (M p q : ℕ) :
+    canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+        M (p + q + 1) =
+      polarizedGreenMomentCoefficient
+        canonicalCompletedNativeLogDerivativeMoment p q := by
+  exact canonicalCompletedC3FullWronskianChiralResponse_succ_eq_polarizedMoment
+    M p q
 
 theorem canonicalCompletedNativeCausalGreenProvenance
     {base : ℕ} (hbase : IsSupported base)
