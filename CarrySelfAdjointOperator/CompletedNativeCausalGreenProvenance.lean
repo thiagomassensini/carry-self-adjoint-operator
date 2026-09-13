@@ -4,6 +4,7 @@ import CarrySelfAdjointOperator.CompletedC3CausalGreenGramSewing
 import CarrySelfAdjointOperator.CompletedNativeTfvdGreenMomentGramBridge
 import CarrySelfAdjointOperator.CompletedNativeHilbertTraceGlueWronskian
 import CarrySelfAdjointOperator.CompletedNativeReturnMetricReadoutCrosswalk
+import CarrySelfAdjointOperator.CompletedNativeCentralCarryAtlasEnergy
 import CarrySelfAdjointOperator.BR2CausalGreenResponseTransport
 import Mathlib.Tactic
 
@@ -110,6 +111,35 @@ theorem canonicalCompletedC3CausalGreenBoundary_native_source_response
         base s hs := by
   exact canonicalCompletedC3DirichletGradientBracket_causalGreen_eq_source
     hbase s hs
+
+theorem canonicalCompletedC3GradientCompatiblePoissonGraphKernel_eq_nativeState_inner
+    {r s : ℂ} (hr : 0 < r.re) (hs : 0 < s.re) :
+    canonicalCompletedC3GradientCompatiblePoissonGraphKernel r s hr hs =
+      inner ℂ
+        (canonicalCompletedC3DirichletGradientState r hr)
+        (canonicalCompletedC3DirichletGradientState s hs) := by
+  rw [canonicalCompletedC3GradientCompatiblePoissonGraphKernel_eq_rawGammaGram]
+  rfl
+
+theorem canonicalCompletedC3CausalGreenProjectionBridge
+    {base : ℕ} (hbase : IsSupported base)
+    {r s : ℂ} (hr : 0 < r.re) (hs : 0 < s.re) :
+    (canonicalCompletedC3GradientCompatiblePoissonGraphKernel r s hr hs =
+      inner ℂ
+        (canonicalCompletedC3DirichletGradientState r hr)
+        (canonicalCompletedC3DirichletGradientState s hs)) ∧
+    (canonicalCompletedC3GradientCompatiblePoissonGraphKernel r s hr hs =
+      inner ℂ
+        (canonicalCompletedC3DirichletGradientCausalGreenBoundaryState
+          hbase r hr)
+        ((canonicalCompletedC3CausalGreenBoundarySum.adjoint)
+          (canonicalCompletedC3CausalGreenBoundarySum
+            (canonicalCompletedC3DirichletGradientCausalGreenBoundaryState
+              hbase s hs)))) := by
+  refine ⟨canonicalCompletedC3GradientCompatiblePoissonGraphKernel_eq_nativeState_inner
+      hr hs, ?_⟩
+  exact canonicalCompletedC3GradientCompatiblePoissonGraphKernel_eq_causalAdjointSquare
+    hbase r s hr hs
 
 theorem canonicalCompletedNativeTfvdGreenPort_nativeLine_eq_packagedNativeSlope
     (time : ℝ) :
