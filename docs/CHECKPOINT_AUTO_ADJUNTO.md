@@ -6,7 +6,7 @@ Atualizado em: 2026-09-14
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL: `df12260f618decccacad3d47b490e9833682ac5b` (`Refresh current Gamma TFVD audit state`)
+HEAD REAL: `e6605ac656863278ecae87485772093e6620941d` (`Classify Gamma TFVD sewing as bilinear gate`)
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
 
@@ -52,7 +52,7 @@ statement.
 
 ## Retomada
 
-"O HEAD real é `df12260`. A classificação é D: a decomposição do balance é
+"O HEAD real é `e6605ac`. A classificação é D: a decomposição do balance é
 global, mas a igualdade Gamma–TFVD/sewing ainda é um theorem bilinear
 upstream. Continue pelos canais corrigidos e pelos cross terms; não promova
 balance zero a identidade nem o deduza de characteristic = 0."
