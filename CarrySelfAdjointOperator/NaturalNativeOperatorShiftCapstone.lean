@@ -2,6 +2,7 @@ import CarrySelfAdjointOperator.NaturalNativeSourceValveGreenProvenance
 import CarrySelfAdjointOperator.ProjectiveValveMomentFrontier
 import CarrySelfAdjointOperator.GreenJetJacobiFiniteCompression
 import CarrySelfAdjointOperator.CompletedNativeJacobiCyclicReadout
+import CarrySelfAdjointOperator.BR2GreenFrameDslopeLimitBridge
 import Mathlib.Tactic
 
 /-!
@@ -416,6 +417,101 @@ theorem canonicalC2Geometry_natural_source_to_height_operator_via_green_shift
     canonicalC2Geometry_height_chain_of_coefficientEquation_and_incidenceTransport
       hbase hradius hcoeff transport cutoff N
   exact ⟨hsplit.1, hsplit.2, hchain⟩
+
+/-! ## The stronger native Green identity route -/
+
+/-- A division-free native Green/Wronskian identity, together with continuity
+of the actual Hilbert state, already supplies the real-axis normalized kernel
+used by the completed forward-difference construction.  This is the natural
+route from the Green identity to the jet; no Gram, Hankel, Jacobi, or fitted
+finite atlas is used in the proof. -/
+theorem hasCanonicalCompletedNativeRealAxisNormalizedGreenKernel_of_divisionFreeGreen
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    {state : ℂ → E}
+    (hgreen : HasDivisionFreeGreenRepresentation
+      completedNativeOperatorCharacteristic
+      completedNativeOperatorBoundaryCompanion state)
+    (hstate : Continuous state) :
+    HasCompletedNativeRealAxisNormalizedGreenKernel state := by
+  intro x z hxF hzF
+  have hgreenOn :
+      HasDivisionFreeGreenRepresentationOn
+        completedNativeHeightDomain
+        completedNativeOperatorCharacteristic
+        completedNativeOperatorBoundaryCompanion state := by
+    intro u hu v hv
+    exact hgreen u v
+  have hxDomain : completedNativeHeightDomain ∈ nhds (x : ℂ) :=
+    isOpen_completedNativeHeightDomain.mem_nhds
+      (ofReal_mem_completedNativeHeightDomain x)
+  have hxAnalytic := completedNativeOperatorCharacteristic_analyticAt
+    (ofReal_mem_completedNativeHeightDomain x)
+  have hxFEvent : ∀ᶠ u in nhds (x : ℂ),
+      completedNativeOperatorCharacteristic u ≠ 0 :=
+    hxAnalytic.continuousAt.eventually_ne hxF
+  have hresponse : DifferentiableAt ℂ
+      (completedGreenNormalizedResponse
+        completedNativeOperatorCharacteristic
+        completedNativeOperatorBoundaryCompanion) (x : ℂ) := by
+    rw [show completedNativeOperatorBoundaryCompanion =
+        fun u => -deriv completedNativeOperatorCharacteristic u by
+      funext u
+      exact completedNativeOperatorBoundaryCompanion_eq_neg_deriv u]
+    unfold completedGreenNormalizedResponse
+    exact (hxAnalytic.deriv.neg.div
+      (analyticAt_const.mul hxAnalytic)
+      (mul_ne_zero (by norm_num) hxF)).differentiableAt
+  apply normalizedCompletedGreenState_inner_eq_dslope hgreenOn hxDomain hxFEvent
+  · simp
+  · exact completedNativeGreenNormalizedResponse_ofReal_conj x
+  · exact continuousAt_normalizedCompletedGreenState
+      hxAnalytic.continuousAt hxF hstate.continuousAt
+  · exact hresponse
+  · exact ofReal_mem_completedNativeHeightDomain z
+  · exact hzF
+
+/-- Source-direction capstone for the strong Green identity.  The order is
+explicit: division-free native Green representation, real-axis normalized
+kernel, completed Green jet, and only then the already-proved injective native
+incidence transport.  The finite symmetric height operator is consequently
+downstream of the native identity rather than its definition. -/
+theorem canonicalC2Geometry_height_chain_of_divisionFreeGreen_and_incidenceTransport
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [CompleteSpace E]
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (state : ℂ → E)
+    (hgreen : HasDivisionFreeGreenRepresentation
+      completedNativeOperatorCharacteristic
+      completedNativeOperatorBoundaryCompanion state)
+    (hstate : Continuous state)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (canonicalCompletedNativeGreenForwardDifferenceLimitParityJet
+        state
+        (hasCanonicalCompletedNativeRealAxisNormalizedGreenKernel_of_divisionFreeGreen
+          hgreen hstate)))
+    (cutoff N : ℕ) :
+    ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+      normalizedCompletedNativeCameraCharacteristic 3 cutoff =
+          (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+        completedNativeCameraLogDerivativeMoment 3 cutoff =
+          canonicalCompletedNativeLogDerivativeMoment ∧
+        (∃ hgram :
+            (hankelGram
+              (completedNativeCameraLogDerivativeMoment 3 cutoff) N).PosDef,
+          canonicalFiniteJacobiSection
+              (completedNativeCameraLogDerivativeMoment 3 cutoff) N hgram =
+            canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+        (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  letI : InnerProductSpace ℝ E := InnerProductSpace.rclikeToReal ℂ E
+  let hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state :=
+    hasCanonicalCompletedNativeRealAxisNormalizedGreenKernel_of_divisionFreeGreen
+      hgreen hstate
+  have hmoment :=
+    canonicalCompletedNativeGreenForwardDifferenceLimitParityJet_momentKernel
+      state hkernel
+  exact nativeGeometry_to_finiteHeight_chain_of_greenMomentKernel_and_incidenceTransport
+    hbase hradius hmoment transport cutoff N
 
 end
 
