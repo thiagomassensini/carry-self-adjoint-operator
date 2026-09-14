@@ -29,6 +29,14 @@ namespace CarrySelfAdjointOperator
 open CPFormal.Analytic.Cp
 open C3TraceDynamics
 open FiniteNativeCarryOperator.Camera
+open CPFormal.Carry.C2
+open CPFormal.Carry.Cp
+open CPFormal.Carry.Positional
+open ProjectiveDepth
+open FiniteNativeCarryOperator
+open NativeCarryC3Crosswalk
+open NativeCarrySpectralWeyl.Camera
+open NativeCarrySpectralWeyl.Camera.FiniteBridge
 
 noncomputable section
 
@@ -193,6 +201,124 @@ theorem canonicalC2Geometry_height_chain_of_coefficientEquation_and_incidenceTra
     nativeGeometry_cameraJacobiSection_eq_canonical (camera := 2)
       (by norm_num) cutoff N hpos,
     nativeGeometryFiniteHeightOperator_isSymm hpos N⟩
+
+/-! ## One-piece natural source-to-operator capstone -/
+
+/-- The complete source-direction genealogy of the finite height operator.
+
+The first four conjuncts are the native geometric/readout identities: the C2
+cell is written in its dyadic fibre coordinates, the finite camera is the
+seed plus its fibre brackets, the omitted centre tail is sewn exactly, and
+the completed zero-order readout is factor-cancelled to the common native
+characteristic.  Only then is the corrected boundary transport converted
+into the polarized coefficient equation.  The final conjunct consumes that
+equation together with the already formalized parity independence and
+produces the Stieltjes positivity certificate, the finite Jacobi section,
+and the symmetric height operator.
+
+Thus this theorem records the natural direction
+`native geometry -> Green/readout -> coefficient equation -> positivity ->
+height operator`; no Gram, Cholesky, Jacobi, or fitted spectral datum is used
+to prove any of the source identities.  The sole material input remains the
+named corrected-native boundary transport. -/
+theorem canonicalC2Geometry_natural_source_to_height_operator
+    {ι : Type*} [Fintype ι]
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (M cutoff N : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
+    letI : InnerProductSpace ℝ
+        (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    (∀ j : ℕ,
+        4 * (j + 1) =
+            2 ^ c2AlignedIndexDepth j * c2AlignedIndexCore j ∧
+          ((leftIncidence j).1.2 : ℝ) =
+            c2FiberPoint (c2AlignedIndexCore j) (-1)
+              (c2AlignedIndexDepth j) ∧
+          ((rightIncidence j).1.2 : ℝ) =
+            c2FiberPoint (c2AlignedIndexCore j) 1
+              (c2AlignedIndexDepth j) ∧
+          CPFormal.Carry.C2.effectiveDepth (leftIncidence j).1.2 =
+            c2AlignedIndexDepth j ∧
+          CPFormal.Carry.C2.effectiveDepth (rightIncidence j).1.2 =
+            c2AlignedIndexDepth j ∧
+          Real.log ((4 * (j + 1) : ℕ) : ℝ) =
+            (c2AlignedIndexDepth j : ℝ) * Real.log 2 +
+              primeDepthLogLedger (c2AlignedIndexCore j) ∧
+          Real.log ((4 * (j + 1) : ℕ) : ℝ) *
+              CPFormal.Carry.Cp.criticalAmplitude 2
+                (c2AlignedIndexDepth j) =
+            Real.log 2 * ProjectiveDepth.newtonJet
+                (CPFormal.Analytic.Cp.primeCarryAmplitudeRatio 2) 1
+                  (c2AlignedIndexDepth j) +
+              primeDepthLogLedger (c2AlignedIndexCore j) *
+                ProjectiveDepth.newtonJet
+                  (CPFormal.Analytic.Cp.primeCarryAmplitudeRatio 2) 0
+                    (c2AlignedIndexDepth j)) ∧
+      (∀ order : ℕ,
+        evalFormalStencil
+            (fun n => nativeDirichletSlopeTaylorCoefficient order n)
+            (finiteStencil 2 M) =
+          evalFormalStencil
+              (fun n => nativeDirichletSlopeTaylorCoefficient order n)
+              (seedStencil 2) +
+            ∑ j ∈ Finset.range M,
+              c2FiberNativeTaylorBracket order
+                (c2AlignedIndexCore j) (c2AlignedIndexDepth j)) ∧
+      (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →
+        finiteBracketCharacteristic 2 tailCutoff s +
+            (∑' index : ℕ,
+              centerBracketTerm 2 s (index + tailCutoff)) =
+          factor 2 s * nativeScalar s) ∧
+      (∀ (packagedCutoff : ℕ) (time : ℝ),
+        nativeXiCompletionFactor (time : ℂ) *
+            completedPackagedFiniteNativeOperatorJet
+              2 packagedCutoff 0 time /
+              factor 2 (nativeLine time) =
+          completedNativeOperatorCharacteristic (time : ℂ)) ∧
+      HasPolarizedCoefficientVectorEquation
+        canonicalCompletedNativeLogDerivativeMoment
+        (seededClockAtlasJet block) ∧
+      ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+        normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+            (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+          completedNativeCameraLogDerivativeMoment 2 cutoff =
+            canonicalCompletedNativeLogDerivativeMoment ∧
+          (∃ hgram :
+              (hankelGram
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+            canonicalFiniteJacobiSection
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+              canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+          (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  letI : InnerProductSpace ℝ
+      (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  have hcoeff :=
+    canonicalC2Geometry_correctedNative_coefficientEquation_before_gram
+      M block htransport
+  have hchain :=
+    canonicalC2Geometry_height_chain_of_coefficientEquation_and_incidenceTransport
+      hbase hradius hcoeff transport cutoff N
+  rcases hchain with ⟨hpos, hnorm, hmom, hjac, hsym⟩
+  refine ⟨?_, ?_, ?_, ?_, hcoeff, ⟨hpos, hnorm, hmom, hjac, hsym⟩⟩
+  · intro j
+    exact canonicalC2Geometry_nativeSourceChain j
+  · intro order
+    exact canonicalC2Geometry_nativeTaylorReadout_eq_seed_add_fibreBrackets
+      M order
+  · intro tailCutoff s hs
+    exact canonicalC2Geometry_finiteHead_add_exactTail_eq_factor_mul_nativeScalar
+      tailCutoff hs
+  · intro packagedCutoff time
+    exact canonicalC2Geometry_completedPackagedNativeJet_zero_normalized_eq_commonCharacteristic
+      packagedCutoff time
+
+
 
 /-! ## The native center--leg certificate to height -/
 
