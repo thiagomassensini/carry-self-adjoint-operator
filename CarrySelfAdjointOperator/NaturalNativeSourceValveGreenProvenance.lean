@@ -3,6 +3,7 @@ import CarrySelfAdjointOperator.CompletedNativeCausalGreenTraceTransport
 import CarrySelfAdjointOperator.CompletedNativeCausalGreenProvenance
 import CarrySelfAdjointOperator.NativeMomentProjectiveValveBridge
 import CarrySelfAdjointOperator.GreenMultiplicativeValveBridge
+import CarrySelfAdjointOperator.CompletedNativeRadialChiralMultiplier
 import Mathlib.Tactic
 
 /-!
@@ -249,6 +250,43 @@ theorem canonicalC2Geometry_causal_response_height_of_centerLegReadout
       hbase hradius)
     (canonicalParityCenterLegIncidence base radius hbase hradius side)
     hreadout cutoff N
+
+/-!
+The scalar valve route is the other natural capstone.  The source theorem
+above is independent of positivity; the following composition uses the
+already-defined chiral multiplier gate, whose contractivity is equivalent to
+the radial Pick/Herglotz positivity of the normalized Wronskian `dslope`.
+Thus the operator is introduced only after the native scalar geometry and its
+strictness gate have been discharged.
+-/
+theorem canonicalC2Geometry_valve_green_to_height_of_radialChiralGate
+    (hcontractive :
+      CanonicalCompletedNativeRadialChiralMultiplierEventuallyContractive)
+    (hnondegenerate : CanonicalCompletedNativeHankelPairNondegenerate)
+    (cutoff N : ℕ) :
+    ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+      normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+          (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+        completedNativeCameraLogDerivativeMoment 2 cutoff =
+          canonicalCompletedNativeLogDerivativeMoment ∧
+        (∃ hgram :
+            (hankelGram
+              (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+          canonicalFiniteJacobiSection
+              (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+            canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+        (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  let hpos : CanonicalCompletedNativeStieltjesPositivity :=
+    canonicalCompletedNativeStieltjesPositivity_of_radialChiralMultiplier
+      hcontractive hnondegenerate
+  exact ⟨hpos,
+    nativeGeometry_normalizedCamera_eq_commonCharacteristic (camera := 2)
+      (by norm_num) cutoff,
+    nativeGeometry_cameraMoments_eq_canonical (camera := 2)
+      (by norm_num) cutoff,
+    nativeGeometry_cameraJacobiSection_eq_canonical
+      (camera := 2) (by norm_num) cutoff N hpos,
+    nativeGeometryFiniteHeightOperator_isSymm hpos N⟩
 
 end
 
