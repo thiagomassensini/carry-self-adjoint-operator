@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.CompletedNativeCorrectedAtlasConstruction
 import CarrySelfAdjointOperator.CompletedNativePolarizedSameEdgeGreenGramBridge
+import CarrySelfAdjointOperator.CompletedNativeExpandedStructuralBlockProbe
 import CPFormal.Analytic.CpTfvdSameEdgeCompletedPrecompressionCollapse
 import CPFormal.Analytic.CpTfvdSameEdgeReflectedEnergyFixedTimeNoGo
 import CPFormal.Analytic.CpNativeGpreTfvdCommutatorTowerSource
@@ -19,6 +20,7 @@ open scoped ENNReal InnerProduct lp
 namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
+open C3TraceDynamics
 open Filter
 
 noncomputable section
@@ -367,6 +369,65 @@ theorem canonicalCompletedNativeCorrectedMaterialAtlas_heightNoLeak_iff_reflecte
       NativeGpreReflectedGapHasFixedTimeMomentStateAt (3 * N) s := by
   exact canonicalC3StructuralNoLeakAt_iff_reflectedGapFixedTimeMomentState
     N hN hs hzero
+
+/-! ## The native boundary target before material-clock transport
+
+The corrected chiral coefficient is not merely named by the response.  The
+expanded native structural carrier realizes the same coefficient after the
+four structural channels (head, exact tail, xi completion, and chart
+correction) have been synthesized inside each chiral sector.  This keeps the
+native target concrete and still strictly pre-Hankel.
+-/
+
+theorem canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_expandedStructuralSignature
+    (M p q : ℕ) :
+    canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M (p + q) =
+      canonicalCompletedC3ExpandedStructuralSignatureTaylorCoefficient
+        M (p + q + 1) := by
+  rw [canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_polarizedMoment,
+    canonicalCompletedC3ExpandedStructuralSignature_succ_eq_polarizedMoment]
+
+theorem canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_zero_eq_expandedStructuralFirstVariation
+    (M : ℕ) :
+    canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M 0 =
+      canonicalCompletedC3ExpandedStructuralSignatureTaylorCoefficient M 1 := by
+  simpa using
+    canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_expandedStructuralSignature
+      M 0 0
+
+/-! The remaining material handoff can therefore be stated directly against
+the explicit native structural synthesis.  This is an equivalence, not a
+calibration theorem: it exposes exactly what a genuine material atlas must
+prove. -/
+
+theorem hasCorrectedNativeChiralBoundaryTransport_iff_expandedStructuralSignature
+    {ι : Type*} [Fintype ι]
+    (M : ℕ) (block : ι → SeededClockBlock) :
+    HasCorrectedNativeChiralBoundaryTransport M block ↔
+      ∀ p : ℕ,
+        seededClockAtlasCoefficient block p 0 =
+          canonicalCompletedC3ExpandedStructuralSignatureTaylorCoefficient
+            M (p + 1) := by
+  constructor
+  · intro h p
+    calc
+      seededClockAtlasCoefficient block p 0 =
+          canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M p :=
+        h p
+      _ = canonicalCompletedC3ExpandedStructuralSignatureTaylorCoefficient
+          M (p + 1) := by
+        simpa using
+          canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_expandedStructuralSignature
+            M p 0
+  · intro h p
+    calc
+      seededClockAtlasCoefficient block p 0 =
+          canonicalCompletedC3ExpandedStructuralSignatureTaylorCoefficient
+            M (p + 1) := h p
+      _ = canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M p := by
+        simpa using
+          (canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_expandedStructuralSignature
+            M p 0).symm
 
 end
 
