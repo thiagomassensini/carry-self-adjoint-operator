@@ -99,6 +99,88 @@ menor residual de primeira coluna que ainda impede essa seta.
 "AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DAQUI.
 NÃO REPITA INVESTIGAÇÕES MARCADAS COMO FECHADAS OU NO-GO."
 
+## Checkpoint de descoberta — polarização quiral não é ainda o carrier de momentos
+
+Branch: `agent/next-natural-native-gate`
+HEAD: `b58e8de` (`Record Green carrier route audit`)
+Data: 2026-09-14
+
+### Estado confirmado
+
+- `CompletedC3FullWronskianPolarization.lean` prova que a rotação quarteada
+  do Wronskiano completo é uma involução hermitiana; as polarizações positiva e
+  negativa são ortogonais e o bloco de dois canais é um Gram Hilbertiano
+  positivo.
+- `CompletedNativeChiralBlockMomentProbe.lean` prova, para qualquer ordem,
+  que o coeficiente que contém os momentos canônicos é o readout assinado:
+  `positiveKernel - negativeKernel`. Em particular,
+  `canonicalCompletedC3ChiralBlockSignature_succ_eq_polarizedMoment` dá
+  diretamente `polarizedGreenMomentCoefficient`.
+- Logo a identidade disponível é estruturalmente
+  `signed response = Gram(positive channel) - Gram(negative channel)`;
+  positividade do bloco diagonal não implica positividade do readout assinado.
+- `CompletedC3CausalChiralBoundaryRelation.lean` confirma a mesma leitura em
+  forma de bordo: a forma canônica é indefinida (energia de câmera menos
+  energia quiral), a isotropia é equivalente à costura diagonal ainda aberta,
+  e em um zero característico hipotético a forma fica estritamente positiva,
+  portanto o datum não é isotrópico.
+
+### Hipóteses ainda abertas
+
+- Provar uma dominância/compensação nativa que transforme a assinatura quiral
+  no kernel Green positivo correto, ou fornecer diretamente o carrier
+  `division-free Green`/`Gamma boundary sewing`.
+- A rota de um canal isolado é positiva, mas ainda não há teorema de que seu
+  kernel tenha os momentos canônicos; escolher um canal e descartar o outro
+  mudaria o objeto.
+
+### No-goes já provados/reforçados
+
+- Não usar o Gram dos dois canais como se fosse o kernel assinado: ele é PSD,
+  enquanto os momentos vêm da diferença dos blocos.
+- Não deduzir a costura de bordo a partir de isotropia; a formalização mostra
+  que isotropia é precisamente a hipótese/igualdade que falta.
+- Não usar o Wronskiano completo como carrier positivo: ele é uma forma
+  quarteada/indefinida, embora sua decomposição em dois Grams positivos seja
+  exata.
+
+### O que NÃO precisa ser refeito
+
+- A prova do bloco positivo, a ortogonalidade quiral e os coeficientes
+  `h₀`, `h₁` e gerais já estão compilados.
+- A cadeia downstream de momentos → Jacobi → altura permanece intocada.
+
+### Alterações feitas nesta sessão
+
+- Registro desta separação entre bloco PSD e assinatura que gera momentos.
+- Nenhuma alteração em Lean de produção.
+
+### Builds/audits executados
+
+- Auditoria textual de `CompletedC3FullWronskianPolarization.lean`,
+  `CompletedNativeChiralBlockMomentProbe.lean` e
+  `CompletedC3CausalChiralBoundaryRelation.lean`.
+
+### Gargalo atual EXATO
+
+A ponte positiva nativa ainda precisa provar que o readout assinado
+`K₊(w,z) - K₋(w,z)` é o mesmo kernel de Green normalizado que representa o
+  produto interno do jet incidencial. Sem essa igualdade, o bloco quiral é
+  apenas evidência pré-Hankel e não uma instância de
+  `IsGreenWronskianMomentKernelGramRepresentation`.
+
+### Próxima ação mínima
+
+Buscar no repositório uma hipótese já formalizada de dominância, compensação,
+defeito complementar ou positividade do readout assinado; se ela não existir,
+comparar explicitamente sua primeira coluna com `h₀` antes de qualquer tentativa
+de transporte de todas as ordens.
+
+### Retomada
+
+"AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DAQUI.
+NÃO REPITA INVESTIGAÇÕES MARCADAS COMO FECHADAS OU NO-GO."
+
 ## Checkpoint de descoberta — PR #57 não mergeado e torre apenas de coeficientes
 
 Branch: `agent/next-natural-native-gate`
