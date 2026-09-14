@@ -19,7 +19,7 @@ No Hankel factorization, fitted spectrum, or operator-to-geometry
 reconstruction is used to prove the native response law.
 -/
 
-open scoped BigOperators ComplexConjugate InnerProductSpace
+open scoped BigOperators ComplexConjugate ComplexOrder InnerProductSpace
 
 namespace CarrySelfAdjointOperator
 
@@ -236,6 +236,73 @@ theorem canonicalC2Geometry_native_boundaryGreenSewing_normalizedRadialReadout
   rw [canonicalCompletedC3NormalizedPolarizedGammaBoundaryReadout_eq_kernel,
     hsewing.normalizedGammaKernel_eq_dslope M z w hz hw hzStrip hwStrip hzF hwF
       hsep]
+
+/-! ## Positive native kernel before Hankel
+
+The normalized Green sewing now has a direct Hilbert consequence.  On a
+finite radial grid, the completed-native `dslope` kernel is the Gram of the
+already constructed normalized Gamma responses.  This transports positivity
+from the native Green carrier; it does not define the carrier by a Hankel
+factorization or by the height operator.
+-/
+
+theorem
+    canonicalC2Geometry_native_normalizedRadialDslopeSampleMatrix_posSemidef_of_boundaryGreenSewing
+    (hsewing : CanonicalCompletedC3BoundaryGreenSewing)
+    (M k N : ℕ)
+    (hadmissible : ∀ i : Fin N,
+      canonicalCompletedC3RadialTiltPoint k i ∈ completedNativeHeightDomain ∧
+        completedNativeOperatorCharacteristic
+          (canonicalCompletedC3RadialTiltPoint k i) ≠ 0) :
+    (canonicalCompletedNativeRadialDslopeSampleMatrix k N).PosSemidef := by
+  have hmatrix :
+      canonicalCompletedNativeRadialDslopeSampleMatrix k N =
+        Matrix.of (fun i j : Fin N =>
+          canonicalCompletedC3NormalizedPolarizedGammaKernel
+            (canonicalCompletedC3RadialTiltPoint k i)
+            (canonicalCompletedC3RadialTiltPoint k j)
+            (canonicalCompletedC3RadialTiltPoint_im_ne_zero k i)
+            (canonicalCompletedC3RadialTiltPoint_im_ne_zero k j)) := by
+    ext i j
+    exact
+      (hsewing.normalizedGammaKernel_eq_dslope M
+        (canonicalCompletedC3RadialTiltPoint k i)
+        (canonicalCompletedC3RadialTiltPoint k j)
+        (canonicalCompletedC3RadialTiltPoint_im_ne_zero k i)
+        (canonicalCompletedC3RadialTiltPoint_im_ne_zero k j)
+        (hadmissible i).1 (hadmissible j).1
+        (hadmissible i).2 (hadmissible j).2
+        (sub_ne_zero.mp
+          (canonicalCompletedC3RadialTilt_separation_ne_zero k i j))).symm
+  rw [hmatrix]
+  exact
+    canonicalCompletedC3NormalizedPolarizedGammaKernel_posSemidef
+      (point := fun i : Fin N => canonicalCompletedC3RadialTiltPoint k i)
+      (fun i => canonicalCompletedC3RadialTiltPoint_im_ne_zero k i)
+
+theorem
+    canonicalC2Geometry_native_normalizedRadialDslopeSampleMatrix_eventually_posSemidef_of_boundaryGreenSewing
+    (hsewing : CanonicalCompletedC3BoundaryGreenSewing)
+    (M N : ℕ) :
+    ∀ᶠ k : ℕ in (Filter.atTop : Filter ℕ),
+      (canonicalCompletedNativeRadialDslopeSampleMatrix k N).PosSemidef := by
+  have hadmissible : ∀ᶠ k : ℕ in (Filter.atTop : Filter ℕ), ∀ i : Fin N,
+      canonicalCompletedC3RadialTiltPoint k i ∈ completedNativeHeightDomain ∧
+        completedNativeOperatorCharacteristic
+          (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 := by
+    refine
+      (Filter.eventually_all
+        (l := (Filter.atTop : Filter ℕ))
+        (p := fun (i : Fin N) k =>
+          canonicalCompletedC3RadialTiltPoint k i ∈ completedNativeHeightDomain ∧
+            completedNativeOperatorCharacteristic
+              (canonicalCompletedC3RadialTiltPoint k i) ≠ 0)).2 ?_
+    intro i
+    exact canonicalCompletedC3RadialTiltPoint_eventually_admissible i.val
+  filter_upwards [hadmissible] with k hk
+  exact
+    canonicalC2Geometry_native_normalizedRadialDslopeSampleMatrix_posSemidef_of_boundaryGreenSewing
+      hsewing M k N hk
 
 /-! ## Same-geometry energy before the height construction -/
 
