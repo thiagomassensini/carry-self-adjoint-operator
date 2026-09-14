@@ -136,6 +136,30 @@ theorem canonicalC2Geometry_native_strictChiralDominance_of_radialLedger
   exact canonicalCompletedNativeStieltjesPositivity_of_radialLedger
     hnoLeak hstrict
 
+/-! The genuinely energy-level spelling of the same source-direction seam.
+The four complex quadratic energies are the polarization of the concrete
+radial Gamma/`dslope` jet defect.  This is the useful interface when the
+native proof arrives from the valve/Green energy identity rather than from a
+kernel no-leak statement. -/
+
+theorem canonicalC2Geometry_native_strictChiralDominance_of_radialJetFlatness
+    (hflat : CanonicalCompletedC3RadialGammaDslopeJetDefectFlatness)
+    (hnondegenerate : CanonicalCompletedNativeHankelPairNondegenerate) :
+    CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance := by
+  apply (canonicalCompletedNativeCenteredStrictChiralCoefficientDominance_iff_expanded).mpr
+  apply (canonicalCompletedC3ExpandedStructuralStrictChiralDominance_iff_stieltjesPositivity).mpr
+  exact canonicalCompletedNativeStieltjesPositivity_of_radialGammaDslopeJetDefectFlatness
+    hflat hnondegenerate
+
+theorem canonicalC2Geometry_native_strictChiralDominance_of_radialQuadraticEnergy
+    (henergy : CanonicalCompletedC3RadialGammaDslopeQuadraticEnergyFlatness)
+    (hnondegenerate : CanonicalCompletedNativeHankelPairNondegenerate) :
+    CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance := by
+  exact canonicalC2Geometry_native_strictChiralDominance_of_radialJetFlatness
+    (canonicalCompletedC3RadialGammaDslopeJetDefectFlatness_of_quadraticEnergy
+      henergy)
+    hnondegenerate
+
 end
 
 end CarrySelfAdjointOperator
