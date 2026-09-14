@@ -4,6 +4,7 @@ import CarrySelfAdjointOperator.GreenJetJacobiFiniteCompression
 import CarrySelfAdjointOperator.CompletedNativeJacobiCyclicReadout
 import CarrySelfAdjointOperator.BR2GreenFrameDslopeLimitBridge
 import CarrySelfAdjointOperator.CompletedNativeChiralHankelDominance
+import CarrySelfAdjointOperator.CompletedNativeRadialTiltSamplePositivity
 import Mathlib.Tactic
 
 /-!
@@ -612,6 +613,38 @@ theorem canonicalC2Geometry_natural_source_to_height_operator_of_expandedStructu
   exact ⟨heven, hodd,
     ⟨hpos, nativeGeometry_to_finiteHeight_chain (camera := 3) (by norm_num)
       cutoff N hpos⟩⟩
+
+/-- The preceding structural capstone can be fed directly by the native
+radial Green/valve gates.  The ledger no-leak identity supplies the limiting
+chiral form, while the uniform determinant lower bound prevents collapse of
+the parity sectors.  Hence the self-adjoint height section is downstream of
+the native radial geometry even when the literal seeded-clock first column is
+not yet transported.
+-/
+theorem canonicalC2Geometry_natural_source_to_height_operator_of_radialLedger
+    (hnoLeak : CanonicalCompletedC3AsymptoticRadialGammaLedgerNoLeak)
+    (hstrict : CanonicalCompletedC3RadialGammaUniformDeterminantLowerBound)
+    (cutoff N : ℕ) :
+    ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+      normalizedCompletedNativeCameraCharacteristic 3 cutoff =
+          (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+        completedNativeCameraLogDerivativeMoment 3 cutoff =
+          canonicalCompletedNativeLogDerivativeMoment ∧
+        (∃ hgram :
+            (hankelGram
+              (completedNativeCameraLogDerivativeMoment 3 cutoff) N).PosDef,
+          canonicalFiniteJacobiSection
+              (completedNativeCameraLogDerivativeMoment 3 cutoff) N hgram =
+            canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+        (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  have hpos : CanonicalCompletedNativeStieltjesPositivity :=
+    canonicalCompletedNativeStieltjesPositivity_of_radialLedger hnoLeak hstrict
+  have hdominance : CanonicalCompletedC3ExpandedStructuralStrictChiralDominance :=
+    (canonicalCompletedC3ExpandedStructuralStrictChiralDominance_iff_stieltjesPositivity).mpr
+      hpos
+  exact
+    (canonicalC2Geometry_natural_source_to_height_operator_of_expandedStructuralDominance
+      hdominance cutoff N).2.2
 
 end
 
