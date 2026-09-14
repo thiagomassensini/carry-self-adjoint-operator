@@ -31,6 +31,10 @@ namespace CarrySelfAdjointOperator
 
 open C3TraceDynamics
 open CPFormal.Analytic.Cp
+open FiniteNativeCarryOperator
+open FiniteNativeCarryOperator.Camera
+open NativeCarrySpectralWeyl.Camera
+open NativeCarrySpectralWeyl.Camera.FiniteBridge
 
 noncomputable section
 
@@ -421,6 +425,62 @@ theorem canonicalC2Geometry_natural_source_to_height_operator_via_green_shift
     canonicalC2Geometry_height_chain_of_coefficientEquation_and_incidenceTransport
       hbase hradius hcoeff transport cutoff N
   exact ⟨hsplit.1, hsplit.2, hchain⟩
+
+/-! ## One-piece source-direction capstone -/
+
+/--
+The C2/valve/Green genealogy and the corrected native shift can be consumed
+in one source-direction theorem.  The first conjunct is the exact pre-Gram
+record: dyadic C2 incidence, bracket readout, exact centre-tail sewing,
+completion, valve identities, causal Green return, and the four-corner
+carrier.  The second conjunct is the shift capstone above, which turns the
+corrected Green boundary transport and the already formalized injective
+incidence transport into the finite symmetric height operator.
+
+This theorem is intentionally a conjunction of existing native identities,
+not a new operator-to-geometry reconstruction.  In particular, the
+corrected boundary transport remains visible as an input rather than being
+silently replaced by a positive Gram proxy.
+-/
+theorem canonicalC2Geometry_native_source_valve_green_to_height_via_correctedShift
+    {ι : Type*} [Fintype ι]
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M cutoff N : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
+    (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →
+        finiteBracketCharacteristic 2 tailCutoff s +
+            (∑' index : ℕ,
+              centerBracketTerm 2 s (index + tailCutoff)) =
+          factor 2 s * nativeScalar s) ∧
+      (∀ (packagedCutoff : ℕ) (time : ℝ),
+        nativeXiCompletionFactor (time : ℂ) *
+            completedPackagedFiniteNativeOperatorJet
+              2 packagedCutoff 0 time /
+              factor 2 (nativeLine time) =
+          completedNativeOperatorCharacteristic (time : ℂ)) ∧
+      ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+        normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+            (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+          completedNativeCameraLogDerivativeMoment 2 cutoff =
+            canonicalCompletedNativeLogDerivativeMoment ∧
+          (∃ hgram :
+              (hankelGram
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+            canonicalFiniteJacobiSection
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+              canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+          (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  rcases canonicalC2Geometry_native_source_valve_green_preGram hbase hradius with
+    ⟨hsource, hfinite, hallorder, htail, hpackaged, heven, hcurvature,
+      hderiv, hcausal, hfourcorner, hsewing⟩
+  have hchain :=
+    canonicalC2Geometry_natural_source_to_height_operator_via_green_shift
+      hbase hradius M cutoff N block htransport transport
+  exact ⟨htail, hpackaged, hchain.2.2⟩
 
 /-! ## The stronger native Green identity route -/
 
