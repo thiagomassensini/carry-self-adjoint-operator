@@ -26,7 +26,9 @@ namespace CarrySelfAdjointOperator
 open CPFormal.Carry.C2
 open CPFormal.Carry.Cp
 open CPFormal.Carry.Positional
+open CPFormal.Analytic.Cp
 open ProjectiveDepth
+open FiniteNativeCarryOperator
 open NativeCarryC3Crosswalk
 open NativeCarrySpectralWeyl.Camera
 open NativeCarrySpectralWeyl.Camera.FiniteBridge
@@ -217,6 +219,45 @@ theorem canonicalC2Geometry_completedPackagedNativeJet_zero_normalized_eq_common
     congrFun (canonicalC2Geometry_completedNormalizedCamera_eq_commonCharacteristic
       cutoff) time
   simpa [normalizedCompletedNativeCameraCharacteristic, hpack] using hnorm
+
+/-! ## Coefficient-level packaging and rotation -/
+
+/-- The finite C2 native jet, before exact completion, is the complex
+    finite-characteristic jet with precisely the native-line rotation
+    `I^order`.  This is the real-to-complex packaging seam; it is not a Gram
+    construction. -/
+theorem canonicalC2Geometry_packagedFiniteNativeOperatorJet_eq_complex
+    (cutoff order : ℕ) (time : ℝ) :
+    nativeCarryRealPlaneComplexPackaging
+        (iteratedDeriv order
+          (fun u : ℝ => Operator.finiteNativeOperator 2 cutoff u) time) =
+      iteratedDeriv order
+          (finiteBracketCharacteristic 2 cutoff) (nativeLine time) *
+        Complex.I ^ order := by
+  exact packaged_iteratedDeriv_finiteNativeOperator_eq_complex
+    (camera := 2) (by norm_num) cutoff order time
+
+/-- After exact C2 factor removal, every real native-line derivative is the
+    derivative of the same completed characteristic.  This keeps the
+    normalized scalar readout distinct from the unnormalized finite jet above. -/
+theorem canonicalC2Geometry_normalizedCamera_iteratedDeriv_eq_common
+    (cutoff order : ℕ) (time : ℝ) :
+    iteratedDeriv order
+        (normalizedCompletedNativeCameraCharacteristic 2 cutoff) time =
+      iteratedDeriv order completedNativeOperatorCharacteristic
+        (time : ℂ) := by
+  exact iteratedDeriv_normalizedCompletedNativeCameraCharacteristic
+    (by norm_num) cutoff order time
+
+/-- The corrected native chiral readout has the C2 camera moments as its odd
+    Taylor coefficients.  This is the coefficient-level handoff from the
+    normalized geometric camera to the polarized Green moment kernel. -/
+theorem canonicalC2Geometry_correctedChiralCoefficient_odd_eq_cameraMoment
+    (M cutoff n : ℕ) :
+    canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M (2 * n) =
+      (completedNativeCameraLogDerivativeMoment 2 cutoff n : ℂ) := by
+  rw [canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_odd_eq_canonicalMoment]
+  rw [canonicalC2Geometry_cameraMoments_eq_canonical cutoff]
 
 end
 end CarrySelfAdjointOperator
