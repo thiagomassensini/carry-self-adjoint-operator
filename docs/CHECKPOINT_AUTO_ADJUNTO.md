@@ -98,3 +98,36 @@ menor residual de primeira coluna que ainda impede essa seta.
 
 "AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DAQUI.
 NÃO REPITA INVESTIGAÇÕES MARCADAS COMO FECHADAS OU NO-GO."
+
+## Checkpoint de descoberta — PR #57 não mergeado e torre apenas de coeficientes
+
+Branch: `agent/next-natural-native-gate`
+HEAD: `36f430a`
+Data: 2026-09-14
+
+### Estado confirmado
+
+- `gh pr view 57` mostra `OPEN`, `mergedAt = null`, base `main` e head
+  `agent/corrected-native-chiral-clock-tower`.
+- O head remoto do PR foi auditado nos commits `d3a7e9d` e `e66d467`.
+- `CompletedNativeCorrectedChiralClockTower.lean` define
+  `canonicalCompletedNativeCorrectedClockTowerCoefficient p q` como
+  `polarizedGreenMomentCoefficient canonicalCompletedNativeLogDerivativeMoment p q`.
+- O PR prova a primeira coluna corrigida, a equação de coeficientes, o shift e
+  a unicidade da torre; ele não constrói uma norma/energia positiva nem prova
+  `CompletedNativeRealHPCarrierCertificate`.
+
+### Consequência
+
+A torre corrigida é uma especificação canônica de coeficientes, não a
+realização Hilbertiana final. Usá-la diretamente como Gram seria circular para
+a missão atual. Não mergear o PR como se ele removesse o gate geométrico.
+
+### Próxima ação mínima atualizada
+
+Auditar as interfaces de `PositiveObservableNativeMomentBridge`,
+`CompletedNativeReturnMetricReadoutCrosswalk` e
+`CompletedNativeTfvdGreenMomentGramBridge` para encontrar a menor igualdade
+upstream que transforma um carrier geométrico já existente no
+`momentKernel`, mantendo o residual explícito se essa igualdade não estiver
+provada.
