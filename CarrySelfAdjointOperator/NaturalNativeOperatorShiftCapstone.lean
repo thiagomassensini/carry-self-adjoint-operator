@@ -23,10 +23,12 @@ identity below.
 -/
 
 open scoped BigOperators ComplexConjugate InnerProductSpace
+open Filter
 
 namespace CarrySelfAdjointOperator
 
 open C3TraceDynamics
+open CPFormal.Analytic.Cp
 
 noncomputable section
 
@@ -512,6 +514,62 @@ theorem canonicalC2Geometry_height_chain_of_divisionFreeGreen_and_incidenceTrans
       state hkernel
   exact nativeGeometry_to_finiteHeight_chain_of_greenMomentKernel_and_incidenceTransport
     hbase hradius hmoment transport cutoff N
+
+/-! ## The vector-defect form of the same source route -/
+
+/-- The incidence transport need not be postulated separately.  The already
+formalized Green-frame bridge constructs it from the vanishing of the full
+analyzed vector defect against the BR2 jet.  This is the native source-facing
+form of the capstone: the only non-algebraic inputs are the division-free
+Green identity, continuity of the selected state, and the actual vector
+convergence of the Green-frame approximants. -/
+theorem canonicalC2Geometry_height_chain_of_divisionFreeGreen_and_greenFrameDefect
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (state : ℂ → CarryVerticalL2)
+    (hgreen : HasDivisionFreeGreenRepresentation
+      completedNativeOperatorCharacteristic
+      completedNativeOperatorBoundaryCompanion state)
+    (hstate : Continuous state)
+    (hdefect : ∀ i : ℕ ⊕ ℕ,
+      Tendsto
+        (fun k ↦ canonicalCompletedGreenFrameAnalysisCLM
+            (completedGreenForwardDifferenceParityJet
+              (normalizedCompletedGreenState
+                completedNativeOperatorCharacteristic state) k i) -
+          br2CameraBracketGreenFrameParityJet base radius i)
+        atTop (nhds 0))
+    (cutoff N : ℕ) :
+    ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+      normalizedCompletedNativeCameraCharacteristic 3 cutoff =
+          (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+        completedNativeCameraLogDerivativeMoment 3 cutoff =
+          canonicalCompletedNativeLogDerivativeMoment ∧
+        (∃ hgram :
+            (hankelGram
+              (completedNativeCameraLogDerivativeMoment 3 cutoff) N).PosDef,
+          canonicalFiniteJacobiSection
+              (completedNativeCameraLogDerivativeMoment 3 cutoff) N hgram =
+            canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+        (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  let hkernel : HasCompletedNativeRealAxisNormalizedGreenKernel state :=
+    hasCanonicalCompletedNativeRealAxisNormalizedGreenKernel_of_divisionFreeGreen
+      hgreen hstate
+  let htransport :=
+    canonicalCompletedNativeRealTfvdGreenMomentTransport_of_greenFrameDefect
+      state hkernel hdefect
+  have hinc : BR2BracketIncidenceJetTransport base radius
+      (canonicalCompletedNativeGreenForwardDifferenceLimitParityJet
+        state hkernel) := by
+    simpa [htransport,
+      canonicalCompletedNativeRealTfvdGreenMomentTransport_of_greenFrameDefect,
+      canonicalCompletedNativeRealTfvdGreenMomentTransport_of_vectorLimit_eq_projective,
+      canonicalCompletedNativeRealTfvdGreenMomentTransport_of_vectorLimit,
+      canonicalCompletedNativeGreenForwardDifferenceLimitParityJet] using
+      htransport.incidenceTransport
+  exact canonicalC2Geometry_height_chain_of_divisionFreeGreen_and_incidenceTransport
+    hbase hradius state hgreen hstate hinc cutoff N
 
 end
 
