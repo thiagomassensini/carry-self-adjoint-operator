@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.CompletedNativeCorrectedClockBoundaryGate
+import CarrySelfAdjointOperator.CompletedNativeClockGreenMomentGate
 import CarrySelfAdjointOperator.C2GeometryNativeSourceBridge
 import CarrySelfAdjointOperator.BR2IncidenceStrictPositivity
 import CarrySelfAdjointOperator.CompletedNativeHPGateAudit
@@ -100,6 +101,98 @@ theorem canonicalC2Geometry_correctedNative_greenKernel_eq_canonical
   rw [← canonicalC2Geometry_cameraMoments_eq_canonical cutoff]
   exact canonicalC2Geometry_correctedNative_greenKernel_before_height
     M cutoff block htransport
+
+/-! ## The pre-Gram coefficient equation -/
+
+/-- The corrected native calibration and the material-clock shift already give
+the complete polarized coefficient equation before any Gram/Hankel object is
+introduced.  The proof uses only the exact first-column ledger identity and
+the interior shift of the reconstructed C3 clock. -/
+theorem canonicalC2Geometry_correctedNative_coefficientEquation_before_gram
+    {ι : Type*} [Fintype ι]
+    (M : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    HasPolarizedCoefficientVectorEquation
+      canonicalCompletedNativeLogDerivativeMoment
+      (seededClockAtlasJet block) := by
+  have hboundary : ∀ p : ℕ,
+      seededClockAtlasCoefficient block p 0 =
+        canonicalCompletedC3LedgerBoundaryTaylorCoefficient M p := by
+    intro p
+    exact canonicalCompletedC3LedgerBoundary_of_correctedNativeChiralBoundaryTransport
+      M block htransport p
+  have hscalar :
+      IsPolarizedGreenCoefficientEquation
+        canonicalCompletedNativeLogDerivativeMoment
+        (seededClockAtlasCoefficient block) :=
+    seededClockAtlasCoefficient_equation_of_completedLedgerBoundary
+      M block hboundary
+  change IsPolarizedGreenCoefficientEquation
+    canonicalCompletedNativeLogDerivativeMoment
+    (fun p q => inner ℂ (seededClockAtlasJet block p)
+      (seededClockAtlasJet block q))
+  rw [show (fun p q => inner ℂ (seededClockAtlasJet block p)
+      (seededClockAtlasJet block q)) = seededClockAtlasCoefficient block by
+    funext p q
+    exact (seededClockAtlasCoefficient_eq_inner block p q).symm]
+  exact hscalar
+
+/-! ## Coefficient equation plus native incidence transport -/
+
+/-- The non-vacuous source-direction interface: a native coefficient equation
+is combined with the already formalized injective incidence transport.  The
+transport supplies strict parity independence in the actual completed
+carrier; no finite atomic atlas is used as an all-order Hilbert space. -/
+theorem canonicalC2Geometry_height_chain_of_coefficientEquation_and_incidenceTransport
+    {E : Type*}
+    [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    {base radius : ℕ} (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    {rawJet : ℕ → E}
+    (hcoeff : HasPolarizedCoefficientVectorEquation
+      canonicalCompletedNativeLogDerivativeMoment rawJet)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (polarizedCoefficientParityJet rawJet))
+    (cutoff N : ℕ) :
+    ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+      normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+          (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+        completedNativeCameraLogDerivativeMoment 2 cutoff =
+          canonicalCompletedNativeLogDerivativeMoment ∧
+        (∃ hgram :
+            (hankelGram
+              (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+          canonicalFiniteJacobiSection
+              (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+            canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+        (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  letI : InnerProductSpace ℝ E := InnerProductSpace.rclikeToReal ℂ E
+  have hcomplex :=
+    complexGreenWronskianMomentKernel_of_vectorCoefficientEquation hcoeff
+  have hcertificate :
+      CompletedNativeRealHPCarrierCertificate
+        (polarizedCoefficientParityJet rawJet) :=
+    { momentKernel := by
+        intro i j
+        change greenWronskianMomentKernel
+            canonicalCompletedNativeLogDerivativeMoment i j =
+          (inner ℂ (polarizedCoefficientParityJet rawJet i)
+            (polarizedCoefficientParityJet rawJet j)).re
+        have h := congrArg Complex.re (hcomplex i j)
+        simpa using h
+      evenIndependent := transport.even_linearIndependent hbase hradius
+      oddIndependent := transport.odd_linearIndependent hbase hradius }
+  let hpos : CanonicalCompletedNativeStieltjesPositivity :=
+    canonicalCompletedNativeStieltjesPositivity_of_certificate hcertificate
+  refine ⟨hpos, ?_⟩
+  exact ⟨
+    nativeGeometry_normalizedCamera_eq_commonCharacteristic (camera := 2)
+      (by norm_num) cutoff,
+    nativeGeometry_cameraMoments_eq_canonical (camera := 2)
+      (by norm_num) cutoff,
+    nativeGeometry_cameraJacobiSection_eq_canonical (camera := 2)
+      (by norm_num) cutoff N hpos,
+    nativeGeometryFiniteHeightOperator_isSymm hpos N⟩
 
 /-! ## The native center--leg certificate to height -/
 
