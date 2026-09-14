@@ -266,6 +266,44 @@ theorem canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_fullWronskianRespons
       exact canonicalCompletedNativeCarryGreenChiralResponse_oddCoefficient_eq_moment
         M n
 
+/-! The same cyclic readout is also the fully expanded native structural
+signature.  This is the source-facing spelling of the operator readout:
+the head, exact tail, completion, and chart-correction channels have already
+been synthesized before the cyclic Green/Jacobi scalar is compared with the
+moment sequence. -/
+theorem canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_expandedStructuralSignature
+    {ι : Type*} [Fintype ι]
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (polarizedCoefficientParityJet (seededClockAtlasJet block)))
+    (n : ℕ) :
+    letI : InnerProductSpace ℝ
+        (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    greenJetJacobiCoreCyclicMoment
+        (transport.even_linearIndependent hbase hradius) n =
+      canonicalCompletedC3ExpandedStructuralSignatureTaylorCoefficient
+        M (2 * n + 1) := by
+  letI : InnerProductSpace ℝ
+      (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  calc
+    (greenJetJacobiCoreCyclicMoment
+          (transport.even_linearIndependent hbase hradius) n : ℂ) =
+        canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+          M (2 * n + 1) := by
+      exact_mod_cast
+        (canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_fullWronskianResponse
+          hbase hradius M block htransport transport n)
+    _ = canonicalCompletedC3ExpandedStructuralSignatureTaylorCoefficient
+          M (2 * n + 1) := by
+      rw [canonicalCompletedC3ExpandedStructuralSignature_odd_eq_canonicalMoment,
+        canonicalCompletedNativeCarryGreenChiralResponse_oddCoefficient_eq_moment]
+
 /-! ## The algebraic seam before any Gram extraction -/
 
 /--
