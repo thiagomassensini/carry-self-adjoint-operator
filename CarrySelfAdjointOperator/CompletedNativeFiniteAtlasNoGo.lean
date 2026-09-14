@@ -318,5 +318,18 @@ theorem canonicalC2Geometry_seededClockAtlas_noGo_of_stieltjesPositivity
           M cutoff block htransport n
   exact canonicalNative_no_finite_complex_recurrence hpos d coeff hlead hrec
 
+theorem canonicalC2Geometry_seededClockBoundaryResidual_not_identically_zero
+    {ι : Type*} [Fintype ι]
+    (M : ℕ) (block : ι → C3TraceDynamics.SeededClockBlock)
+    (hpos : CanonicalCompletedNativeStieltjesPositivity) :
+    ¬ (∀ p : ℕ,
+      canonicalC2Geometry_seededClockBoundaryResidual M block p = 0) := by
+  intro hzero
+  have htransport :=
+    (canonicalC2Geometry_seededClockBoundaryResidual_zero_iff_correctedTransport
+      M block).mp hzero
+  exact canonicalC2Geometry_seededClockAtlas_noGo_of_stieltjesPositivity
+    M 0 block htransport hpos
+
 end
 end CarrySelfAdjointOperator
