@@ -795,6 +795,36 @@ abbrev canonicalC2Geometry_native_sameGeometry_energy_to_height_operator_of_radi
     (canonicalC2Geometry_native_strictChiralDominance_of_radialQuadraticEnergy
       henergy hnondegenerate)
 
+/-! ## Direct orthogonalized-valve input -/
+
+/-- The orthogonalized valve route to the height operator.
+
+The hypothesis is the native finite-combination contractivity of the chiral
+multiplier.  It is an energy inequality for the completed radial valve, not a
+Hankel or Jacobi assumption.  The existing factorization turns it into
+positive Stieltjes forms; the source-direction energy capstone then exposes,
+in order, the exact bracket/TFVD readout, the whole-centre tail, the causal
+Green adjoint-square identity, the boundary/shift law, and finally the finite
+Jacobi section and symmetric height operator.
+
+This is the direct formal spelling of the geometric genealogy: the operator
+is downstream of the completed valve energy and the native incidence
+nondegeneracy. -/
+abbrev canonicalC2Geometry_native_sameGeometry_energy_to_height_operator_of_radialChiralMultiplier
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M cutoff N : ℕ)
+    (hcontractive :
+      CanonicalCompletedNativeRadialChiralMultiplierEventuallyContractive)
+    (hnondegenerate : CanonicalCompletedNativeHankelPairNondegenerate) :=
+  canonicalC2Geometry_native_sameGeometry_energy_to_height_operator
+    hbase hradius M cutoff N
+    ((canonicalCompletedNativeCenteredStrictChiralCoefficientDominance_iff_expanded).mpr
+      ((canonicalCompletedC3ExpandedStructuralStrictChiralDominance_iff_stieltjesPositivity).mpr
+        (canonicalCompletedNativeStieltjesPositivity_of_radialChiralMultiplier
+          hcontractive hnondegenerate)))
+
 end
 
 end CarrySelfAdjointOperator
