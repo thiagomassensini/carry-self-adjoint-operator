@@ -206,6 +206,50 @@ theorem canonicalC2Geometry_native_source_valve_green_preGram
     exact canonicalCompletedNativeCarryGreenWronskian_sewing_iff_totalDefect_zero
       hz hzUpper hw
 
+/-! ## The remaining center--leg readout seam -/
+
+/--
+The causal Green response already carries the lossless incidence transport.
+Consequently the whole finite-height conclusion follows from one genuinely
+pre-Gram identity: the canonical polarized Green coefficient must equal the
+Hilbert inner product of the same causal response states on the center--leg
+incidence.  No Hankel, Cholesky, Jacobi, or fitted spectral datum occurs in
+this reduction.
+
+This is deliberately conditional.  The existing norm and radial-jet no-go
+results rule out silently replacing the causal response by a rescaled
+positive proxy; the hypothesis below is the exact native readout that still
+has to be proved for the corrected carrier.
+-/
+theorem canonicalC2Geometry_causal_response_height_of_centerLegReadout
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (side : CameraLegSide)
+    (hreadout :
+      HasCanonicalCompletedNativeTfvdGreenCenterLegReadout
+        (canonicalParityCenterLegIncidence base radius hbase hradius side)
+        (canonicalBR2CameraBracketCausalGreenResponseParityJet base radius))
+    (cutoff N : ℕ) :
+    ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+      normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+          (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+        completedNativeCameraLogDerivativeMoment 2 cutoff =
+          canonicalCompletedNativeLogDerivativeMoment ∧
+        (∃ hgram :
+            (hankelGram
+              (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+          canonicalFiniteJacobiSection
+              (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+            canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+        (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  exact canonicalC2Geometry_height_chain_of_tfvdGreenCenterLegReadout
+    hbase hradius
+    (canonicalBR2CameraBracketCausalGreenResponseIncidenceJetTransport
+      hbase hradius)
+    (canonicalParityCenterLegIncidence base radius hbase hradius side)
+    hreadout cutoff N
+
 end
 
 end CarrySelfAdjointOperator
