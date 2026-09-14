@@ -182,6 +182,24 @@ theorem inner_canonicalCompletedNativeCorrectedMaterialAtlasPrefixSource_eq_gree
   exact inner_nativeGpreTowerProfileVector_canonicalCpLogJetCommutatorPrefixTowerSource_eq_greenBulk
     p tau M s
 
+/-! ## Corrected material-to-`G_pre` crosswalk
+
+The corrected radial readout now meets the provenance-preserving commutator
+prefix at the scalar boundary. This is a camera-by-camera, pre-Hankel
+crosswalk; `tau` remains explicit and no common fixed-time source is claimed.
+-/
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_prefixSourceMoment
+    (p : Nat.Primes) (tau M : ℕ) (s : ℂ) :
+    canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout p s
+        (nativeGpreGreenEnergyFirstLevelState (3 * M) s) =
+      (0, inner ℝ (nativeGpreTowerProfileVector (p : ℕ) tau)
+        (canonicalCompletedNativeCorrectedMaterialAtlasPrefixSource p tau M s)) := by
+  rw [canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_greenBulk]
+  exact congrArg (fun x : ℝ => (0, x))
+    ((inner_canonicalCompletedNativeCorrectedMaterialAtlasPrefixSource_eq_greenBulk
+      p tau M s).trans (finiteNativeGpreLogJetGreenBulkReadout_eq p M s)).symm
+
 end
 
 end CarrySelfAdjointOperator
