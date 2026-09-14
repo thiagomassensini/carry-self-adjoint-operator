@@ -706,6 +706,73 @@ theorem canonicalC2Geometry_natural_source_to_height_operator_of_radialLedger
     (canonicalC2Geometry_natural_source_to_height_operator_of_expandedStructuralDominance
       hdominance cutoff N).2.2
 
+/-! ## Full native source capstone without the material-clock gate -/
+
+/--
+The source-direction capstone can be stated without assuming a finite seeded
+clock atlas.  The first conjunct is the already proved C2/valve/Green ledger,
+including the exact tail, completion, causal return, and four-corner carrier.
+The second conjunct records the stronger scalar identity that the causal
+Wronskian response itself has the polarized native moments as its Taylor
+coefficients.  Only after these source identities are in place do the radial
+no-leak and no-collapse gates supply the strict positivity consumed by the
+finite height construction.
+
+In particular, neither a Hankel factorization nor a material first-column
+calibration is used as an input to this theorem.  The material-clock route is
+kept separate because its finite atomic carrier has an explicit zeroth-mass
+calibration defect.
+-/
+theorem canonicalC2Geometry_native_source_valve_green_to_height_of_radialLedger
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (hnoLeak : CanonicalCompletedC3AsymptoticRadialGammaLedgerNoLeak)
+    (hstrict : CanonicalCompletedC3RadialGammaUniformDeterminantLowerBound)
+    (cutoff N : ℕ) :
+    (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →
+        finiteBracketCharacteristic 2 tailCutoff s +
+            (∑' index : ℕ, centerBracketTerm 2 s (index + tailCutoff)) =
+          factor 2 s * nativeScalar s) ∧
+      (∀ (packagedCutoff : ℕ) (time : ℝ),
+        nativeXiCompletionFactor (time : ℂ) *
+            completedPackagedFiniteNativeOperatorJet
+              2 packagedCutoff 0 time /
+              factor 2 (nativeLine time) =
+          completedNativeOperatorCharacteristic (time : ℂ)) ∧
+      (∀ (M p q : ℕ),
+        canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+            M (p + q + 1) =
+          polarizedGreenMomentCoefficient
+            canonicalCompletedNativeLogDerivativeMoment p q) ∧
+      ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+        normalizedCompletedNativeCameraCharacteristic 3 cutoff =
+            (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+          completedNativeCameraLogDerivativeMoment 3 cutoff =
+            canonicalCompletedNativeLogDerivativeMoment ∧
+          (∃ hgram :
+              (hankelGram
+                (completedNativeCameraLogDerivativeMoment 3 cutoff) N).PosDef,
+            canonicalFiniteJacobiSection
+                (completedNativeCameraLogDerivativeMoment 3 cutoff) N hgram =
+              canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+          (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  rcases canonicalC2Geometry_native_source_valve_green_preGram hbase hradius with
+    ⟨_, _, _, htail, hpackaged, _, _, _, _, _, _⟩
+  have hpos : CanonicalCompletedNativeStieltjesPositivity :=
+    canonicalCompletedNativeStieltjesPositivity_of_radialLedger hnoLeak hstrict
+  have hdominance : CanonicalCompletedC3ExpandedStructuralStrictChiralDominance :=
+    (canonicalCompletedC3ExpandedStructuralStrictChiralDominance_iff_stieltjesPositivity).mpr
+      hpos
+  have hheight :=
+    canonicalC2Geometry_natural_source_to_height_operator_of_expandedStructuralDominance
+      hdominance cutoff N
+  refine ⟨htail, hpackaged, ?_, ?_⟩
+  · intro M p q
+    exact canonicalCompletedNativeCarryGreenChiralResponse_succCoefficient_eq_polarizedMoment
+      M p q
+  · exact hheight.2.2
+
 end
 
 end CarrySelfAdjointOperator
