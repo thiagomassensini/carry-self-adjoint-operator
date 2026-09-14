@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.NaturalNativeGreenEnergyOperatorCapstone
 import CarrySelfAdjointOperator.CompletedNativeChiralCayleyHerglotz
+import CarrySelfAdjointOperator.CompletedC3FullWronskianPolarization
 import Mathlib.Tactic
 
 /-!
@@ -73,6 +74,125 @@ abbrev canonicalC2Geometry_native_sameGeometry_energy_to_height_operator_of_radi
     hbase hradius M cutoff N
     (canonicalC2Geometry_native_strictChiralDominance_of_radialHerglotz
       hHerglotz hnondegenerate)
+
+/-! ## The pre-Hankel operator forced by the Green carrier
+
+The global carrier has two retained geometric blocks: the weighted radial
+response/return block and the crossed archimedean/chart block.  Both are
+symplectic rotations.  The next two lemmas make explicit the operator fact
+which is usually hidden when the construction is written directly in scalar
+Wronskian notation: the native Green operator is skew-adjoint, and its
+canonical quarter-turn is a Hermitian involution.  This is the
+orthogonalization step before any moment or Jacobi matrix is named.
+-/
+
+theorem inner_canonicalCompletedC3RadialSymplecticRotation_left
+    (x y : CanonicalCompletedC3RadialOperatorCarrier) :
+    inner ℂ (canonicalCompletedC3RadialSymplecticRotation x) y =
+      -inner ℂ x (canonicalCompletedC3RadialSymplecticRotation y) := by
+  rw [canonicalCompletedC3RadialSymplecticRotation_apply,
+    canonicalCompletedC3RadialSymplecticRotation_apply,
+    WithLp.prod_inner_apply]
+  change
+    inner ℂ (-x.snd) y.fst + inner ℂ x.fst y.snd =
+      -(inner ℂ x.fst (-y.snd) + inner ℂ x.snd y.fst)
+  rw [inner_neg_left, inner_neg_right]
+  ring
+
+theorem inner_canonicalCompletedC3GlobalGreenOperator_left
+    (x y : CanonicalCompletedC3GlobalGreenOperatorCarrier) :
+    inner ℂ (canonicalCompletedC3GlobalGreenOperator x) y =
+      -inner ℂ x (canonicalCompletedC3GlobalGreenOperator y) := by
+  rw [canonicalCompletedC3GlobalGreenOperator_apply,
+    WithLp.prod_inner_apply]
+  change
+    inner ℂ
+        (canonicalCompletedC3RadialSymplecticRotation x.fst) y.fst +
+      inner ℂ (canonicalCompletedC3ArchimedeanChartOperator x.snd) y.snd =
+      -(inner ℂ x.fst
+          (canonicalCompletedC3RadialSymplecticRotation y.fst) +
+        inner ℂ x.snd
+          (canonicalCompletedC3ArchimedeanChartOperator y.snd))
+  rw [inner_canonicalCompletedC3RadialSymplecticRotation_left,
+    inner_canonicalCompletedC3ArchimedeanChartOperator_left]
+  ring
+
+theorem canonicalC2Geometry_native_globalGreenOperator_quarterTurn
+    (x y : CanonicalCompletedC3GlobalGreenOperatorCarrier) :
+    (inner ℂ ((-Complex.I) •
+        canonicalCompletedC3GlobalGreenOperator x) y =
+      inner ℂ x ((-Complex.I) •
+        canonicalCompletedC3GlobalGreenOperator y)) ∧
+      ((-Complex.I) • canonicalCompletedC3GlobalGreenOperator
+          ((-Complex.I) • canonicalCompletedC3GlobalGreenOperator x) = x) := by
+  constructor
+  · calc
+      inner ℂ ((-Complex.I) •
+          canonicalCompletedC3GlobalGreenOperator x) y =
+          (starRingEnd ℂ) (-Complex.I) *
+            inner ℂ (canonicalCompletedC3GlobalGreenOperator x) y := by
+              rw [inner_smul_left]
+      _ = Complex.I *
+            (-inner ℂ x (canonicalCompletedC3GlobalGreenOperator y)) := by
+              rw [inner_canonicalCompletedC3GlobalGreenOperator_left]
+              congr 1
+              norm_num [Complex.star_def]
+      _ = inner ℂ x ((-Complex.I) •
+          canonicalCompletedC3GlobalGreenOperator y) := by
+              rw [inner_smul_right]
+              ring
+  · rw [map_smul, smul_smul,
+      canonicalCompletedC3GlobalGreenOperator_sq]
+    simp
+
+/-! The scalar coefficient remains the native Green response.  This theorem
+records the complete source-side order: the geometric operator-valued carrier
+is available first, its chiral response supplies the polarized coefficient,
+and only the existing incidence/transport certificate is then consumed by the
+finite height construction.
+-/
+
+theorem canonicalC2Geometry_native_green_operator_to_height
+    {ι : Type*} [Fintype ι]
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M cutoff N : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
+    (∀ p q : ℕ,
+      canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+          M (p + q + 1) =
+        polarizedGreenMomentCoefficient
+          canonicalCompletedNativeLogDerivativeMoment p q) ∧
+      HasPolarizedCoefficientVectorEquation
+        canonicalCompletedNativeLogDerivativeMoment
+        (seededClockAtlasJet block) ∧
+      ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+        normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+            (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+          completedNativeCameraLogDerivativeMoment 2 cutoff =
+            canonicalCompletedNativeLogDerivativeMoment ∧
+          (∃ hgram :
+              (hankelGram
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+            canonicalFiniteJacobiSection
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+              canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+          (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  letI : InnerProductSpace ℝ
+      (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  have hchain :=
+    canonicalC2Geometry_natural_source_to_height_operator
+      hbase hradius M cutoff N block htransport transport
+  rcases hchain with
+    ⟨_, _, _, _, hcoeff, hheight⟩
+  refine ⟨?_, hcoeff, hheight⟩
+  intro p q
+  exact canonicalCompletedNativeCarryGreenChiralResponse_succCoefficient_eq_polarizedMoment
+    M p q
 
 end
 
