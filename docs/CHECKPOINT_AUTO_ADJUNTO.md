@@ -6,47 +6,56 @@ Atualizado em: 2026-09-14
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL: `d509c3c326d846d9aed9800e71d24383c503d4c9` (`Record ambient carrier zeroth-moment no-go`)
+HEAD REAL: `df12260f618decccacad3d47b490e9833682ac5b` (`Refresh current Gamma TFVD audit state`)
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
 
 ## Classificação Gamma–TFVD
 
-AINDA INDETERMINADO. Já há a identidade vetorial
-`ambient response = Gamma state + resolved TFVD correction` e as equivalências
-de `Balance = 0` com igualdade de energias, mas ainda não foi auditado nesta
-etapa se o balance zera globalmente, apenas no zero-locus, ou se é equivalente
-à própria conclusão.
+D — FALTA UM THEOREM BILINEAR UPSTREAM. A decomposição do balance é global,
+mas a igualdade de energias Gamma–TFVD não é uma identidade global provada.
+Formalmente, `Balance = 0` é apenas equivalente à igualdade das duas normas;
+o sewing de duas variáveis é um gate separado, equivalente ao defeito
+Gamma–Wronskian zero. O locus `characteristic = 0` não fornece esse
+cancelamento automaticamente.
 
 ## Theorem decisivo encontrado
 
-Ainda não há um theorem decisivo de classificação. As interfaces já
-confirmadas são `canonicalCompletedC3AmbientResponseState_eq_gamma_add_correction`,
-`canonicalCompletedC3GammaCorrectionBalance_eq_energyDifference` e
-`canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_energy`; a auditoria
-deve decidir se elas implicam uma identidade global ou apenas um gate de
-sewing/confinamento.
+Nome: `canonicalCompletedC3GammaCorrectionBalance_eq_energyDifference`;
+arquivo: `CompletedC3CompressedGammaGramCorrection.lean`;
+statement:
+
+```lean
+canonicalCompletedC3GammaCorrectionBalance z hz hzHalf =
+  z.im * (‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 -
+    ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2)
+```
+
+Complementos decisivos: `...Balance_eq_zero_iff_energy`,
+`canonicalCompletedC3BoundaryGreenSewing_iff_rawDefect_zero` e
+`canonicalCompletedC3NormalizedPolarizedGammaKernel_eq_dslope_iff_rawWronskian`.
+Nenhum deles prova o zero do balance ou do defeito.
 
 ## Gargalo atual exato
 
-Determinar, no mesmo carrier Hilbert/Naimark, se a combinação completa de
-Gamma, correção, termos cruzados e Gram da correção reproduz o readout
-TFVD/Green canônico. Não descartar cross terms nem zerar o defeito estrutural
-das seis câmeras.
+Provar, usando a realização corrigida fonte → retorno → Naimark já existente,
+a igualdade bilinear do readout Gamma/TFVD corrigido com o Green escalar
+`(F,-F')`, mantendo os dois cross terms e o termo de correção. A identidade
+diagonal de energia sozinha não é suficiente para o kernel de duas variáveis.
 
 ## Próxima ação mínima
 
-Auditar prioritariamente os módulos Gamma/correção, fonte–Naimark, sewing
-bilinear e Gram normalizado listados na solicitação; classificar formalmente o
-balance como GLOBAL, ZERO-LOCUS, CIRCULAR ou D e registrar o theorem exato que
-justifica a classificação.
+Formalizar/provar o statement bilinear mínimo abaixo no carrier corrigido; em
+seguida reutilizar as corolários de sewing, `dslope`, independência incidencial
+e HP já compilados. Não tentar provar `Balance = 0` como substituto desse
+statement.
 
 ## Retomada
 
-"O HEAD real é `d509c3c`. Leia este bloco primeiro. A classificação ainda está
-AINDA INDETERMINADA; continue pela identidade bilinear e pelos cross terms,
-sem tentar provar o balance zero antes de saber se ele é uma identidade ou
-uma condição de confinamento."
+"O HEAD real é `df12260`. A classificação é D: a decomposição do balance é
+global, mas a igualdade Gamma–TFVD/sewing ainda é um theorem bilinear
+upstream. Continue pelos canais corrigidos e pelos cross terms; não promova
+balance zero a identidade nem o deduza de characteristic = 0."
 
 Branch: `agent/next-natural-native-gate`
 HEAD: `e0d3d09` (`Record native carrier seam checkpoint`)
@@ -146,6 +155,219 @@ menor residual de primeira coluna que ainda impede essa seta.
 
 "AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DAQUI.
 NÃO REPITA INVESTIGAÇÕES MARCADAS COMO FECHADAS OU NO-GO."
+
+## Checkpoint — 2026-09-14 — classificação formal do balance Gamma–TFVD
+
+### Meta global
+
+Determinar se a igualdade de energia Gamma–TFVD é uma identidade geométrica
+upstream ou uma condição de sewing/confinamento, sem apagar os canais de
+correção e sem usar o balance zero para provar a própria linha crítica.
+
+### Estado confirmado
+
+- Em `CompletedC3CompressedGammaGramCorrection.lean`, a identidade global
+  verdadeira é
+
+  ```lean
+  canonicalCompletedC3GammaCorrectionBalance z hz hzHalf =
+    z.im * (‖canonicalCompletedC3AmbientResponseState z hzHalf‖ ^ 2 -
+      ‖canonicalCompletedC3PolarizedGammaState z hz‖ ^ 2)
+  ```
+
+  (`canonicalCompletedC3GammaCorrectionBalance_eq_energyDifference`). Ela é
+  uma decomposição geométrica exata, não uma prova de que o lado esquerdo é
+  zero.
+- Para `z.im ≠ 0`,
+  `canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_energy` prova
+  exatamente que `Balance = 0` equivale à igualdade das duas energias. A
+  versão totalmente geométrica
+  `canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_gradientEnergy`
+  substitui a energia ambiente pela energia do gradiente TFVD/carry.
+- A fatoração vetorial é exata e completa:
+  `canonicalCompletedC3AmbientResponseState_eq_gamma_add_correction` e
+  `canonicalCompletedC3AmbientResponseKernel_eq_gamma_add_threeCorrections`
+  mantêm Gamma–correção, correção–Gamma e Gram da correção. Não há theorem
+  autorizando descartar qualquer desses canais.
+- O carrier Gamma/Naimark é positivo antes do sewing:
+  `canonicalCompletedC3PolarizedGammaKernel_posSemidef` e
+  `canonicalCompletedC3NormalizedPolarizedGammaKernel_posSemidef`. A sua
+  fronteira satisfaz exatamente
+  `canonicalCompletedC3PolarizedGammaBoundaryReadout_eq_kernel`, isto é,
+  `boundary = (w - conj z) * Gram`.
+- O módulo `NativeBoundaryReadoutHPIntertwining.lean` prova a parte upstream
+  genuína: fonte nativa, equação de defeito, right-inverse de Green e
+  identificação do estado resolvido com o estado Gamma. Também prova que o
+  readout nativo é o readout Gamma e que seu defeito é exatamente
+  `canonicalCompletedC3RawGammaWronskianDefect`. Ele declara explicitamente
+  que não prova a costura escalar.
+- A ponte de relação de bordo em
+  `CompletedC3BoundaryRelationSewingBridge.lean` é literal:
+
+  ```lean
+  CanonicalCompletedC3BoundaryGreenSewing ↔
+    ∀ z w hz hw, canonicalCompletedC3RawGammaWronskianDefect z w hz hw = 0
+  ```
+
+  (`canonicalCompletedC3BoundaryGreenSewing_iff_rawDefect_zero`). A forma
+  Green Gamma é a forma do estado seis-câmeras; a outra forma é a forma
+  escalar do par `(boundary companion, characteristic) = (-F', F)`.
+- `CanonicalCompletedC3GammaDslopeGram.lean` e
+  `CanonicalCompletedC3NormalizedGammaSewing.lean` fecham a consequência,
+  não a premissa: o Gram Gamma normalizado coincide com `dslope` exatamente
+  quando o readout de bordo coincide com o Wronskiano. O theorem decisivo é
+  `canonicalCompletedC3NormalizedPolarizedGammaKernel_eq_dslope_iff_rawWronskian`.
+- A auditoria coisométrica fornece um teste contra a interpretação
+  “zero característico implica balance”: em
+  `CompletedC3CoisometricWronskianEnergyGate.lean`,
+  `canonicalCompletedC3CoisometricDiagonalWronskianEnergyBalance_ne_zero_of_characteristicZero`
+  prova que a balance de energia da realização coisométrica é não nula em um
+  zero fora do eixo, e a versão
+  `..._pos_of_characteristicZero` dá sinal estritamente positivo no
+  semiplano superior. Isso não é uma prova sobre o balance Gamma corrigido em
+  si, mas impede promover o locus de zeros a uma regra geral de sewing.
+- Não foi encontrado theorem que prove globalmente
+  `canonicalCompletedC3GammaCorrectionBalance = 0`, nem theorem que prove
+  `completedNativeOperatorCharacteristic z = 0` ⇒ esse balance zero, nem
+  equivalência do balance com `Re(s) = 1/2`.
+
+### Classificação Gamma–TFVD
+
+**D — falta exatamente um theorem bilinear upstream.**
+
+Mais precisamente: existe uma identidade geométrica global para a
+decomposição do balance, mas a igualdade de energias e o sewing não são
+identidades globais já provadas. Também não há base formal para classificá-los
+como uma consequência do zero-locus; e tratá-los como equivalentes à linha
+crítica seria circular.
+
+### Hipóteses ainda abertas
+
+- Identificar a combinação corrigida de fonte, retorno, projeção e canais de
+  escape cujo readout é o Green escalar completo. O carrier final pode não ser
+  Gamma isolado; a expansão correta deve preservar os três canais de correção.
+- Provar a igualdade bilinear no mesmo carrier, antes de momentos/Hankel/Jacobi.
+- Só depois transportar para `HasPolarizedCoefficientVectorEquation` ou para
+  `HasCompletedNativeRealAxisNormalizedGreenKernel`, usar a independência de
+  incidência e instanciar o certificado HP.
+
+### Theorem bilinear mínimo que falta
+
+Sem criar uma nova abstração, o statement mínimo é a seguinte igualdade
+pointwise; sua quantificação sobre todos os pares é exatamente o
+`CanonicalCompletedC3BoundaryGreenSewing` já existente:
+
+```lean
+theorem canonicalCompletedC3GammaBoundaryState_greenForm_eq_scalarBoundaryPair
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) :
+    greenForm (𝕜 := ℂ)
+        (canonicalCompletedC3GammaBoundaryState z hz)
+        (canonicalCompletedC3GammaBoundaryState w hw) =
+      greenForm (𝕜 := ℂ)
+        (canonicalCompletedC3ScalarBoundaryPair z)
+        (canonicalCompletedC3ScalarBoundaryPair w) := by
+  -- prova geométrica fonte → retorno → readout corrigido ainda ausente
+  sorry
+```
+
+Equivalentemente, usando somente objetos já definidos, falta provar:
+
+```lean
+theorem canonicalNativeBoundaryReadout_eq_completedWronskian
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) :
+    canonicalNativeBoundaryReadout z w hz hw =
+      completedGreenWronskian
+        completedNativeOperatorCharacteristic
+        completedNativeOperatorBoundaryCompanion w z := by
+  sorry
+```
+
+O `sorry` acima é apenas a marca do seam ausente neste registro; nenhum
+`sorry` foi introduzido no repositório. A segunda forma é equivalente à
+primeira pelo theorem
+`canonicalNativeBoundaryCompletedReadoutSewing_iff_boundaryGreenSewing`.
+
+### Corolários já disponíveis quando o theorem bilinear for fornecido
+
+- `CanonicalCompletedC3BoundaryGreenSewing.rawWronskian` obtém a identidade
+  Wronskiana sem nova álgebra.
+- `CanonicalCompletedC3BoundaryGreenSewing.normalizedGammaKernel_eq_dslope`
+  obtém o kernel positivo normalizado e, portanto, a interface de momentos.
+- A partir de um `rawJet` que realize essa identidade e do transporte de
+  incidência já formalizado, os teoremas existentes de
+  `HasPolarizedCoefficientVectorEquation`, Gram Green, Jacobi e resolvente
+  constroem o `CompletedNativeRealHPCarrierCertificate`; essa parte não deve
+  ser reconstruída.
+
+### No-goes
+
+- Não classificar `Balance = 0` como identidade global só porque a fórmula de
+  `Balance_eq_energyDifference` é global.
+- Não classificar como zero-locus sem um theorem explícito; no caso
+  coisométrico análogo, o balance é estritamente não nulo em um zero
+  característico.
+- Não chamar a equivalência com `Re(s) = 1/2` sem prova; isso seria usar a
+  conclusão como hipótese de sewing.
+- Não substituir a igualdade bilinear por positividade do Gram Gamma, nem
+  remover os cross terms da expansão ambiente.
+- Não zerar genericamente o defeito estrutural das seis câmeras; a cauda
+  tende a zero, mas o canal estrutural carrega o deslocamento crítico.
+
+### O que não precisa refazer
+
+- A identidade vetorial `ambient = Gamma + correction` e a expansão dos três
+  canais.
+- A fonte nativa, o right-inverse Green, a positividade dos Grams Gamma e a
+  forma Green da relação de bordo.
+- A identidade exata de cauda e toda a cadeia downstream
+  `momentKernel → Hankel → whitening → Jacobi → operador`.
+
+### Alterações feitas nesta sessão
+
+- Atualização do bloco `# CURRENT STATE` para a classificação D.
+- Registro da auditoria dos módulos Gamma/correção, fonte–Naimark, sewing e
+  Gram normalizado.
+- Nenhum Lean de produção foi alterado e nenhum `sorry` foi adicionado.
+
+### Builds/audits executados
+
+- Branch/HEAD remoto confirmado antes da auditoria: `agent/next-natural-native-gate`,
+  `df12260f618decccacad3d47b490e9833682ac5b`; status somente `.lake` não
+  rastreado.
+- Auditoria somente leitura de `CompletedC3CompressedGammaGramCorrection.lean`,
+  `NativeBoundaryReadoutHPIntertwining.lean`,
+  `CompletedC3BoundaryRelationSewingBridge.lean`,
+  `PureNativeBoundaryGreenSewing.lean`,
+  `CanonicalCompletedC3GammaDslopeGram.lean`,
+  `CompletedC3AllOrderSymplecticGammaLimit.lean`,
+  `CompletedC3NormalizedAllOrderSymplecticGamma.lean` e módulos de energia
+  coisométrica/defeito causal diretamente relacionados.
+- Nenhuma compilação nova foi necessária; o build completo anterior permanece
+  `9515 jobs`, exit code `0`.
+
+### Gargalo atual EXATO
+
+Não falta uma identidade de energia diagonal. Falta provar que o readout
+bilinear do carrier corrigido fonte–retorno–Naimark é exatamente a forma Green
+do par escalar `(−F', F)`, isto é, que o raw Gamma–Wronskian defect é zero no
+carrier correto. Essa é a única seta que liga a geometria positiva ao
+`dslope`/momentKernel; o balance diagonal é apenas um diagnóstico dessa
+diferença.
+
+### Próxima ação mínima
+
+Não tentar `Balance = 0`. Auditar a definição concreta do readout corrigido e
+provar primeiro o theorem pointwise `canonicalNativeBoundaryReadout_eq_completedWronskian`
+ou, se ele for forte demais, identificar o menor residual bilinear entre os
+dois lados. Depois de qualquer descoberta, fazer `CHECKPOINT → COMMIT →
+CONTINUE`.
+
+### Retomada
+
+"A classificação é D. A decomposição de energia Gamma–TFVD é global; a
+igualdade de energia/sewing ainda é um gate bilinear upstream. Continue pela
+combinação de canais corrigidos e pelo readout fonte–retorno, mantendo o
+defeito estrutural e sem promover zero de característica a sewing."
 
 ## Checkpoint — 2026-09-14 — no-go estrito do carrier ambiente source-matched
 
