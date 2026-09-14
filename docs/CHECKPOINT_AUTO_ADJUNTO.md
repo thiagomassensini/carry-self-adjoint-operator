@@ -99,6 +99,137 @@ menor residual de primeira coluna que ainda impede essa seta.
 "AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DAQUI.
 NÃO REPITA INVESTIGAÇÕES MARCADAS COMO FECHADAS OU NO-GO."
 
+## Checkpoint — 2026-09-14 — no-go estrito do carrier ambiente source-matched
+
+### Meta global
+
+Fechar a confinamento nativo pela cadeia geométrica carry → câmeras/TFVD →
+projeção/valva → Green/Wronskiano → carrier positivo → operador de alturas,
+sem definir o carrier nativo a partir de Hankel, Jacobi ou de uma proxy positiva.
+O alvo downstream continua sendo instanciar
+`CompletedNativeRealHPCarrierCertificate` e consumir a cadeia Hankel/Jacobi já
+formalizada.
+
+### Estado confirmado
+
+- O branch remoto é `agent/next-natural-native-gate`, em `98279a2`, com o único
+  item não rastreado conhecido sendo `.lake`; ele foi preservado.
+- A correção geométrica de Naimark/projeção e a decomposição
+  `ambient = Gamma + correction` estão formalizadas em
+  `CompletedC3CompressedGammaGramCorrection.lean`, incluindo projeção dos
+  portos, ortogonalidade da fuga e a identificação do termo de escape.
+- A identidade geométrica fonte → retorno → Hilbert/Green está formalizada em
+  `NativeBoundaryReadoutHPIntertwining.lean`; ela produz o produto interno dos
+  estados Naimark antes de qualquer Hankel, mas ainda não costura esse produto
+  interno ao readout escalar canônico.
+- O carrier ambiente/coisométrico é positivamente semidefinido e possui a
+  identidade de Green exata. A auditoria em
+  `CompletedC3AmbientRadialTiltSamplePositivity.lean` também mostra que o
+  defeito radial normalizado, ponderado pelo fator de separação, tende a zero
+  para cada entrada finita. Isso fecha uma aproximação radial, não a igualdade
+  finita/global de readout.
+- O arquivo `CompletedNativeAmbientCentralCurvatureDecision.lean` fecha agora
+  o diagnóstico de ordem zero: o carrier ambiente source-matched bruto não é o
+  carrier canônico de momentos. O teorema
+  `canonicalCompletedC3NormalizedAmbientResponseState_zero_norm_sq_gt_moment_zero`
+  prova estritamente
+
+  ```text
+  canonicalCompletedNativeLogDerivativeMoment 0 <
+    ‖canonicalCompletedC3NormalizedAmbientResponseState 0 _‖².
+  ```
+
+  A prova vem da curvatura vertical ponderada pela característica, que fica
+  abaixo de `1/16`, enquanto a energia do gradiente Green não ponderado fica
+  acima de `1/16`. Portanto o mismatch não é numérico nem uma escolha de
+  normalização arbitrária.
+
+### Hipóteses ainda abertas
+
+- Construir o readout/node-return corrigido que remove a componente ambiente
+  extra sem reescalar o carrier por uma constante escolhida a posteriori.
+- Provar a primeira coluna correta (em particular o valor `h₀`) para esse
+  carrier corrigido e, depois, a igualdade polarizada de duas variáveis com o
+  kernel nativo `dslope`/Green.
+- Em termos dos gates existentes, fornecer uma instância concreta de
+  `CanonicalCompletedC3AsymptoticRadialTiltBoundaryIntertwining` ou do ledger
+  equivalente `CanonicalCompletedC3AsymptoticRadialGammaLedgerNoLeak`, mas
+  somente depois de calibrar o readout correto.
+- Alternativamente, construir diretamente uma instância concreta de
+  `HasDivisionFreeGreenRepresentation` ou provar
+  `CanonicalCompletedC3BoundaryGreenSewing` no carrier corrigido.
+
+### No-goes
+
+- `canonicalCompletedC3NormalizedAmbientResponseState` não pode ser
+  identificado com o momento canônico por igualdade literal: há o teorema
+  `norm_sq_canonicalCompletedC3NormalizedAmbientResponseState_zero_ne_moment_zero`
+  e a desigualdade estrita acima.
+- Não basta usar a tendência radial ponderada a zero para concluir igualdade
+  de matriz em cutoff finito ou costura global; a separação pode mascarar um
+  mismatch de primeira coluna.
+- Não corrigir o carrier com um fator escalar para forçar `h₀`, não substituir
+  o defeito por uma Gram positiva abstrata e não usar `K`, `J`, Cholesky ou
+  Hankel na definição do vetor nativo.
+- O no-go é do carrier ambiente/source-matched bruto, não da geometria nativa
+  nem do mecanismo de projeção/valva; a rota correta passa pelo
+  `node-return/readout` corrigido.
+
+### O que não precisa refazer
+
+- Não refazer a identidade exata de cauda: ela já está formalizada e não é o
+  seam atual.
+- Não refazer a positividade do carrier Gamma/coisométrico, a decomposição de
+  Naimark, nem a cadeia downstream Hankel → whitening → Jacobi → operador.
+- Não reabrir a tentativa de uma câmera isolada: a rota estrutural relevante é
+  a família de seis câmeras e sua projeção/correção global.
+
+### Alterações feitas nesta sessão
+
+- Nenhum arquivo Lean de produção foi alterado.
+- Foi feita auditoria somente leitura do corpo dos teoremas de decisão central
+  e deste checkpoint append-only.
+- Este novo registro preserva explicitamente o no-go de primeira coluna e
+  redireciona a busca para o readout corrigido, sem introduzir hipótese nova.
+
+### Builds/audits executados
+
+- Confirmado no remoto: `HEAD=98279a2`, branch
+  `agent/next-natural-native-gate`; `.lake` permanece não rastreado.
+- Inspecionado o corpo de `CompletedNativeAmbientCentralCurvatureDecision.lean`.
+- Confirmados os teoremas
+  `completedNativeAmbientCentralCurvatureDefect_neg`,
+  `completedNativeVerticalModulusEnergy_secondDerivative_zero_ne_four_gradientEnergy`,
+  `norm_sq_canonicalCompletedC3NormalizedAmbientResponseState_zero_ne_moment_zero`
+  e
+  `canonicalCompletedC3NormalizedAmbientResponseState_zero_norm_sq_gt_moment_zero`.
+- Nenhum novo `lake build` foi necessário: a auditoria leu teoremas já
+  presentes no branch cujo build completo anterior passou em `9515 jobs`.
+
+### Gargalo atual EXATO
+
+O carrier ambiente source-matched já é geométrico e positivo, mas carrega uma
+energia central estritamente maior que `h₀`. O único seam agora é identificar a
+componente que deve ser removida pelo readout/node-return corrigido — ou provar
+que o carrier corrigido, e não o ambiente bruto, satisfaz a igualdade
+polarizada Green–`dslope` com a primeira coluna calibrada.
+
+### Próxima ação mínima
+
+Inspecionar os módulos de calibração causal/central e de node-return já
+existentes (`CompletedC3KernelMetricCalibration.lean`,
+`C3GammaCameraTraceObstruction.lean` e os módulos de retorno nativo) para
+localizar a definição concreta do readout corrigido e testar primeiro a
+igualdade de ordem zero. Se a calibração também falhar, registrar o residual
+exato em vez de ajustar constantes.
+
+### Retomada
+
+"AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO. O carrier ambiente bruto é um
+carrier positivo real, mas tem `h₀` errado por desigualdade estrita. Continue
+somente pela identificação do readout/node-return corrigido; não tente fechar
+por Gram, por escala ou pela cauda já resolvida."
+
 ---
 
 ## Checkpoint 2026-09-14 — carrier nativo four-corner e residual exato
