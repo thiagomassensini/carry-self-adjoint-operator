@@ -2,6 +2,7 @@ import CarrySelfAdjointOperator.NaturalNativeOperatorShiftCapstone
 import CarrySelfAdjointOperator.GreenJetMaximalAdjointSquare
 import CarrySelfAdjointOperator.NativeBracketTfvdGreenSameGeometry
 import CarrySelfAdjointOperator.CompletedNativeCausalGreenProvenance
+import CarrySelfAdjointOperator.CompletedC3BoundaryRelationSewingBridge
 import Mathlib.Tactic
 
 /-!
@@ -174,6 +175,67 @@ theorem canonicalC2Geometry_native_corrected_chiral_height_operator_forced
   · refine ⟨hpos, hnorm, hmom, ?_, hsym⟩
     exact nativeGeometry_cameraJacobiSection_eq_canonical
       (camera := 2) (by norm_num) cutoff N hpos
+
+/-! ## Corrected Green/Wronskian normalization -/
+
+/-- The boundary-relation identity gives the native radial readout with the
+exact characteristic weight that converts the completed Wronskian into
+`dslope`.  This is the division-free algebraic bridge: the weight is retained
+explicitly, so the raw Gamma boundary is not confused with the normalized
+moment readout. -/
+theorem canonicalC2Geometry_native_boundaryGreenSewing_correctedRadialReadout
+    (hsewing : CanonicalCompletedC3BoundaryGreenSewing)
+    (M : ℕ) {z w : ℂ}
+    (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip)
+    (hzF : completedNativeOperatorCharacteristic z ≠ 0)
+    (hwF : completedNativeOperatorCharacteristic w ≠ 0)
+    (hsep : w ≠ conj z) :
+    canonicalCompletedC3PolarizedGammaBoundaryReadout z w hz hw =
+      canonicalCompletedC3GammaCharacteristicWeight z w *
+        ((w - conj z) * canonicalCompletedNativePolarizedDslopeKernel z w) := by
+  have hzFStar : conj (completedNativeOperatorCharacteristic z) ≠ 0 :=
+    (map_ne_zero (starRingEnd ℂ)).2 hzF
+  have hweight : canonicalCompletedC3GammaCharacteristicWeight z w ≠ 0 := by
+    unfold canonicalCompletedC3GammaCharacteristicWeight
+    exact mul_ne_zero (mul_ne_zero (by norm_num) hzFStar) hwF
+  have hdiv :=
+    canonicalCompletedC3AllCutoffPolarizedLedgerNumerator_eq_wronskian_div_weight
+      M hzStrip hwStrip hzF hwF
+  calc
+    canonicalCompletedC3PolarizedGammaBoundaryReadout z w hz hw =
+        completedGreenWronskian
+          completedNativeOperatorCharacteristic
+          completedNativeOperatorBoundaryCompanion w z :=
+      hsewing.rawWronskian z w hz hw
+    _ = canonicalCompletedC3GammaCharacteristicWeight z w *
+          canonicalCompletedC3AllCutoffPolarizedLedgerNumerator M z w := by
+      rw [hdiv]
+      field_simp [hweight]
+    _ = canonicalCompletedC3GammaCharacteristicWeight z w *
+          ((w - conj z) * canonicalCompletedNativePolarizedDslopeKernel z w) := by
+      rw [canonicalCompletedC3AllCutoffPolarizedLedgerNumerator_eq_mul_dslope
+        M hzStrip hwStrip hzF hwF hsep]
+
+/-- The same seam in the normalized boundary coordinates is exactly the
+`dslope` numerator.  This is the form that can be compared with a positive
+Gamma Gram; the preceding theorem explains why the raw readout carries the
+extra characteristic weight. -/
+theorem canonicalC2Geometry_native_boundaryGreenSewing_normalizedRadialReadout
+    (hsewing : CanonicalCompletedC3BoundaryGreenSewing)
+    (M : ℕ) {z w : ℂ}
+    (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip)
+    (hzF : completedNativeOperatorCharacteristic z ≠ 0)
+    (hwF : completedNativeOperatorCharacteristic w ≠ 0)
+    (hsep : w ≠ conj z) :
+    canonicalCompletedC3NormalizedPolarizedGammaBoundaryReadout z w hz hw =
+      (w - conj z) * canonicalCompletedNativePolarizedDslopeKernel z w := by
+  rw [canonicalCompletedC3NormalizedPolarizedGammaBoundaryReadout_eq_kernel,
+    hsewing.normalizedGammaKernel_eq_dslope M z w hz hw hzStrip hwStrip hzF hwF
+      hsep]
 
 /-! ## Same-geometry energy before the height construction -/
 
