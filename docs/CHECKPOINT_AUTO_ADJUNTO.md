@@ -211,6 +211,140 @@ transporte/anulação, sem voltar para Hankel/Jacobi.
 NÃO REPITA AS AUDITORIAS FECHADAS; PROCURE SOMENTE A ANULAÇÃO/TRANSPORTE QUE
 TORNA O CARRIER POSITIVO IGUAL AO GREEN COMPLETADO."
 
+---
+
+## Checkpoint 2026-09-14 — seis câmeras, canal estrutural e carrier Gamma
+
+Branch: `agent/next-natural-native-gate`
+HEAD no início deste checkpoint: `b8de70c` (`Record native four-corner residual audit`)
+Data: 2026-09-14
+
+### Meta global
+
+Seguir a construção geométrica real: incidência/câmeras → TFVD/valva →
+Naimark/simetria → carrier positivo nativo → identidade Green e momentos,
+sem transformar o Gram ou o operador em definição retroativa.
+
+### Estado confirmado
+
+- O candidato de uma câmera e quatro canais é um no-go estrutural, não apenas
+  uma falha de prova: em parâmetros iguais, o segundo canal converge para
+  `-((3 : ℝ) ^ criticalDisplacement * infiniteReflectedGradientPairing)`,
+  que é não nulo no Genuine critical strip.
+- A realização correta é simultânea em seis câmeras (`2,...,7`). O módulo
+  prova a igualdade exata da família completa de traces com o TFVD ponderado e
+  a reconstrução symplectic/Naimark:
+  `canonicalC3SixCameraSymplecticComplexReadout_eq_greenForm`.
+- O readout Green das seis câmeras já é a mesma forma Green intrínseca do
+  port C3; não é preciso eliminar câmeras individualmente.
+- A decomposição exata do objeto completo é:
+
+  ```text
+  completed raw Wronskian
+    = six-camera Green readout
+      + structural defect
+      + tail-completion defect.
+  ```
+
+  Isso está em `canonicalCompletedC3RawHeightMixedWronskian_eq_sixCameraGreen_add_channels`.
+- A identidade de cauda já está fechada: `canonicalC3MixedHeightTailCompletionDefect_tendsto_zero`.
+  Logo a cauda não é o gate atual.
+- O defeito estrutural também já tem limite exato:
+  `canonicalC3FiniteMixedHeightStructuralDefect_tendsto`, igual a
+  `raw Wronskian - completed radial Green`. Em um Genuine zero ele tende ao
+  negativo do canal radial e só tende a zero se a parte real for `1/2`.
+- Portanto não devemos tentar provar que o defeito estrutural desaparece
+  genericamente. Ele é precisamente o sinal geométrico que carrega a
+  confinabilidade; zerá-lo fora da linha crítica seria pedir a conclusão.
+- Existe um carrier positivo genuíno anterior a Hankel/Jacobi: o estado
+  `canonicalCompletedC3AllOrderSymplecticGammaState` e seu kernel Gram
+  `canonicalCompletedC3AllOrderSymplecticGammaKernel`. O Lean prova
+  `canonicalCompletedC3AllOrderSymplecticGammaKernel_posSemidef` e a identidade
+  de bordo `(w - conj z) * GammaKernel`.
+- A normalização pelo trace bruto também é uma Gram positiva:
+  `canonicalCompletedC3NormalizedAllOrderSymplecticGammaKernel_eq_inner` e
+  `..._posSemidef`. A igualdade desse Gram com o Wronskiano normalizado é
+  equivalente ao gate de sewing, não uma consequência automática da
+  positividade.
+- Há uma identidade ainda mais nativa, sem passar pelo Gram dos momentos:
+  `canonicalNativeBoundarySource_green_identity_package`. Ela dá o defeito
+  de Green ambiente como `(w - conj z)` vezes o produto interno de duas
+  imagens Naimark da fonte nativa resolvida, e prova simultaneamente a
+  equação de fonte e o right-inverse Green.
+
+### Hipóteses ainda abertas
+
+- O carrier Gamma/Naimark positivo precisa ser ligado ao readout escalar
+  canônico da teoria (ou ao `polarizedGreenMomentCoefficient`) por uma
+  identidade de transporte de dois parâmetros. A positividade do carrier,
+  isoladamente, não fornece essa identificação.
+- A hipótese global nomeada
+  `CanonicalCompletedC3BoundaryGreenSewing` ainda não tem construtor nativo;
+  ela é exatamente a igualdade entre o Green da fonte Gamma e o Green do par
+  escalar TFVD, ou equivalentemente o zero do `canonicalCompletedC3RawGammaWronskianDefect`.
+- Depois de uma prova dessa identidade de origem/readout, os teoremas
+  `canonicalC2Geometry_native_normalizedRadialDslopeSampleMatrix_posSemidef_of_boundaryGreenSewing`
+  e `canonicalC2Geometry_nativeNormalizedRadialGammaJet_inner_tendsto_of_boundaryGreenSewing`
+  já transportam positividade e o coeficiente de momentos antes de Hankel.
+
+### No-goes já provados/reforçados
+
+- Não exigir que cada câmera isolada seja o carrier global; o no-go do segundo
+  canal mostra que isso destrói a leitura correta.
+- Não anular o defeito estrutural como se fosse erro de cauda. A cauda tende a
+  zero, mas o estrutural tende ao radial negativo em um Genuine zero.
+- Não identificar o Gram positivo Gamma com o Wronskiano normalizado sem
+  provar `CanonicalCompletedC3BoundaryGreenSewing`.
+- A igualdade Green seis-câmeras é uma igualdade de readout bilinear; ainda
+  não é, sozinha, a equação de coeficientes do jet de momentos.
+
+### O que NÃO precisa ser refeito
+
+- Não reabrir o four-corner, a identidade de cauda ou o no-go de uma câmera.
+- Não reconstruir Hankel/Cholesky/Jacobi.
+- Não tentar fazer a prova por `Gram` bruto das linhas de câmera.
+
+### Alterações feitas nesta sessão
+
+- Checkpoint anterior foi salvo e publicado em `b8de70c`.
+- Nenhum arquivo Lean de produção foi alterado.
+- `.lake` não rastreado foi preservado.
+
+### Builds/audits executados
+
+- Auditoria de `CompletedC3PolarizedCameraCrossResidual.lean`:
+  seis-câmeras, no-go da câmera única, decomposição estrutural e readout.
+- Auditoria de `CompletedC3AllOrderSymplecticGammaLimit.lean`:
+  carrier Gamma positivo, kernel Gram e identidade de bordo.
+- Auditoria de `CompletedC3NormalizedAllOrderSymplecticGamma.lean`:
+  normalização, positividade e equivalência com o gate de sewing.
+- Auditoria de `NativeBoundaryReadoutHPIntertwining.lean`:
+  identidade Green ambiente nativa sem hipótese de sewing escalar.
+- Build global anterior confirmado: `lake build`, `9515 jobs`, sucesso.
+
+### Gargalo atual EXATO
+
+O seam não é mais “zerar a cauda” nem “provar que a câmera funciona”. É
+identificar o readout escalar TFVD/Genuine com o carrier Gamma/Naimark nativo
+na forma de uma igualdade de duas variáveis. Formalmente, falta construir
+`CanonicalCompletedC3BoundaryGreenSewing` ou um teorema equivalente de
+`HasPolarizedCoefficientVectorEquation` para o carrier resolvido. O defeito
+estrutural deve permanecer como canal de confinamento, não ser apagado.
+
+### Próxima ação mínima
+
+Auditar `NativeBoundaryReadoutHPIntertwining.lean` e
+`CompletedC3CompressedGammaGramCorrection.lean` para ver se a identidade
+ambiente fonte→Naimark→Green já contém a operação corrigida que produz o
+readout escalar, ou se resta exatamente um termo de correção Gamma–TFVD.
+
+### Retomada
+
+"AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO. A ROTA CORRETA É SEIS CÂMERAS +
+NAIMARK + CARRIER GAMMA POSITIVO. NÃO TENTE ZERAR O DEFEITO ESTRUTURAL; PROCURE
+SOMENTE A IDENTIFICAÇÃO DE READOUT QUE AINDA LIGA O CARRIER À TEORIA DOS
+MOMENTOS."
+
 ## Checkpoint de seam — identidade vetorial antes do Gram
 
 Branch: `agent/next-natural-native-gate`
