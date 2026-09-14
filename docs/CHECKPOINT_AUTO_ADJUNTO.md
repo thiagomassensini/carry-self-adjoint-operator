@@ -99,6 +99,118 @@ menor residual de primeira coluna que ainda impede essa seta.
 "AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DAQUI.
 NÃO REPITA INVESTIGAÇÕES MARCADAS COMO FECHADAS OU NO-GO."
 
+---
+
+## Checkpoint 2026-09-14 — carrier nativo four-corner e residual exato
+
+Branch: `agent/next-natural-native-gate`
+HEAD confirmado antes deste registro: `232b77a` (`Record vector pre-Gram seam`)
+Data: 2026-09-14
+
+### Meta global
+
+Fechar a proveniência nativa do operador de alturas pela cadeia geométrica
+carry → câmeras/TFVD → Green/valva → carrier Hilbertiano positivo →
+momento/Hankel/Jacobi, sem inserir o operador ou a positividade como hipótese
+externa.
+
+### Estado confirmado
+
+- O carrier positivo nativo mais próximo já existe antes de Hankel/Jacobi:
+  `nativeGpreFourCorner` e seus prefixos de Taylor/enriched Taylor em
+  `CompletedC3FourCornerTaylorGram.lean`.
+- `nativeGpreFourCornerTaylorPrefix_eq_inner` identifica literalmente esse
+  prefixo com um produto interno de quatro cantos; as torres de Gram são
+  positivas quando a independência correspondente é fornecida.
+- A costura entre esse carrier e o Wronskiano completado já está reduzida a
+  uma igualdade com residual nomeado:
+  `canonicalCompletedC3RawMixedWronskian_eq_nativeFourCorner_add_totalDefect`
+  e
+  `canonicalNativePolarizedTfvdGreenMomentKernelDefect_eq_wronskian_sub_nativeFourCorner`.
+- O teorema
+  `canonicalNativePolarizedTfvdGreenMomentKernel_eq_nativeFourCorner_iff_defect_limit_zero`
+  confirma que o four-corner vira exatamente o kernel Green/momento somente
+  quando o limite do residual de sewing é zero.
+- `CompletedNativeCorrectedMaterialAtlas.lean` melhora o readout radial,
+  prime/log-jet e mantém o slot refletido oculto, mas não elimina por si só o
+  residual nem fornece o transporte material de relógio.
+- A resposta causal/return e o transporte de incidência existem como objetos
+  nativos reais (`BR2CausalGreenResponseTransport.lean`), mas ainda não há
+  igualdade entre o Gram dessa resposta e o kernel polarizado canônico.
+- A torre corrigida do PR #57 continua sendo uma especificação exata de
+  coeficientes, não uma realização positiva de Hilbert; portanto o PR não é
+  dependência suficiente para fechar o gate.
+
+### Hipóteses ainda abertas
+
+- Provar que o residual material/total de four-corner tende a zero na
+  normalização correta, ou construir uma valva/defeito corrigido cujo carrier
+  já satisfaça essa costura exatamente.
+- Alternativamente, produzir diretamente um `rawJet` nativo que satisfaça
+  `HasPolarizedCoefficientVectorEquation` e cujo carrier seja o mesmo da
+  independência incidencial.
+- Depois disso, reutilizar o teorema pre-Gram
+  `canonicalC2Geometry_height_chain_of_coefficientEquation_and_incidenceTransport`;
+  a cadeia downstream de Hankel/Jacobi/altura não precisa ser reconstruída.
+
+### No-goes já provados/reforçados
+
+- O `nativeGpreFourCorner` positivo não pode ser identificado com o Green
+  completado sem zerar o residual nomeado; positividade do four-corner não
+  prova a costura.
+- O enriched Taylor rawJet falha o teste de primeira coluna/baixo grau para
+  `HasPolarizedCoefficientVectorEquation`; não usar essa família como ponte.
+- O transporte do Green normalizado projetivo/BR2 específico falha já no
+  ancoramento de ordem zero; isso é no-go dessa identificação, não de todo
+  carrier corrigido.
+- A torre escalar corrigida e a resposta causal incidencial não podem ser
+  coladas por reinterpretacão como Gram positivo sem uma realização vetorial
+  independente.
+
+### O que NÃO precisa ser refeito
+
+- Não reconstruir Gram → Hankel → whitening/Cholesky → Jacobi → operador.
+- Não usar `K` ou `J` para definir o `rawJet` nativo.
+- Não repetir as auditorias fechadas de `nativeGpre`, resposta causal/return,
+  PR #57 ou dos no-goes de Taylor/BR2; retomar apenas pelo residual exato.
+
+### Alterações feitas nesta sessão
+
+- Apenas este checkpoint foi atualizado; nenhum Lean de produção foi alterado.
+- O estado remoto segue em `232b77a`, com `.lake` não rastreado preservado.
+
+### Builds/audits executados
+
+- Status remoto confirmado: branch limpo salvo `.lake` não rastreado, HEAD
+  `232b77a`.
+- Auditoria estrutural dos módulos `CompletedC3FourCornerTaylorGram`,
+  `CompletedNativePolarizedSameEdgeGreenGramBridge`,
+  `CompletedNativeCorrectedMaterialAtlas` e
+  `BR2CausalGreenResponseTransport`.
+- Build anterior confirmado: `lake build`, `9515 jobs`, sucesso.
+
+### Gargalo atual EXATO
+
+O único seam atual é o residual de sewing/transport que mede a diferença entre
+o Wronskiano Green completado e o carrier positivo four-corner nativo. Em
+símbolos, falta provar o limite zero de
+`canonicalNativePolarizedTfvdGreenMomentKernelDefect` (ou uma igualdade
+equivalente no carrier corrigido); sem isso não existe ainda um `rawJet`
+positivo nativo com `HasPolarizedCoefficientVectorEquation`.
+
+### Próxima ação mínima
+
+Ler `CompletedC3PolarizedCameraCrossResidual.lean` e localizar a forma
+estrutural mínima do residual (primeira coluna, radial/prime-log ou termo de
+defeito) que poderia ser anulada pela operação corrigida de
+transporte/anulação, sem voltar para Hankel/Jacobi.
+
+### Retomada
+
+"AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DO RESIDUAL FOUR-CORNER.
+NÃO REPITA AS AUDITORIAS FECHADAS; PROCURE SOMENTE A ANULAÇÃO/TRANSPORTE QUE
+TORNA O CARRIER POSITIVO IGUAL AO GREEN COMPLETADO."
+
 ## Checkpoint de seam — identidade vetorial antes do Gram
 
 Branch: `agent/next-natural-native-gate`
