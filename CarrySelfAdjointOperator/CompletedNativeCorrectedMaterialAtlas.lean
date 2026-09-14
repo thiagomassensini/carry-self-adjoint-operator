@@ -31,6 +31,28 @@ def canonicalCompletedNativeCorrectedMaterialAtlasState
     (nativeGpreTfvdSameEdgeCompletedPrecompressionCollapseAt (3 * M))
     M s
 
+/-! ## The corrected radial operation
+
+The existing completed precompression carrier already contains the required
+operation: inject the recovered energy into the residual slot while setting
+the untransported fixed-time slot to zero. The radial profile is then used
+only at readout, where it is annihilated on the critical locus. -/
+
+def canonicalCompletedNativeCorrectedMaterialAtlasRadialInjection
+    (energy : NativeGpreTowerHilbert) :
+    CanonicalCompletedNativeCorrectedMaterialAtlasCarrier :=
+  (0, energy)
+
+@[simp] theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialInjection_fst
+    (energy : NativeGpreTowerHilbert) :
+    (canonicalCompletedNativeCorrectedMaterialAtlasRadialInjection energy).1 = 0 :=
+  rfl
+
+@[simp] theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialInjection_snd
+    (energy : NativeGpreTowerHilbert) :
+    (canonicalCompletedNativeCorrectedMaterialAtlasRadialInjection energy).2 = energy :=
+  rfl
+
 def canonicalCompletedNativeCorrectedMaterialAtlasPrimeReadout
     (p : Nat.Primes) (s : ℂ)
     (state : CanonicalCompletedNativeCorrectedMaterialAtlasCarrier) :
@@ -42,6 +64,60 @@ theorem canonicalCompletedNativeCorrectedMaterialAtlasState_eq_sameEdge
     canonicalCompletedNativeCorrectedMaterialAtlasState M s =
       (0, nativeGpreGreenEnergyFirstLevelState (3 * M) s) := by
   exact seededTfvdGpreCompletedPrecompressionSource_sameEdge M s
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlasState_eq_radialInjection
+    (M : ℕ) (s : ℂ) :
+    canonicalCompletedNativeCorrectedMaterialAtlasState M s =
+      canonicalCompletedNativeCorrectedMaterialAtlasRadialInjection
+        (nativeGpreGreenEnergyFirstLevelState (3 * M) s) := by
+  rw [canonicalCompletedNativeCorrectedMaterialAtlasState_eq_sameEdge]
+  rfl
+
+theorem nativeGpreReflectedFirstLevelGapProfile_eq_zero_of_critical
+    (p : Nat.Primes) {s : ℂ}
+    (hcritical : criticalDisplacement s.re = 0) :
+    nativeGpreReflectedFirstLevelGapProfile p s = 0 := by
+  have hsre : s.re = (1 : ℝ) / 2 := by
+    unfold criticalDisplacement at hcritical
+    linarith
+  have hexponent : (2⁻¹ : ℝ) - 1 = -(2⁻¹ : ℝ) := by
+    norm_num
+  simp [nativeGpreReflectedFirstLevelGapProfile,
+    nativeGpreRealTimeFirstLevelProfile, hsre, hexponent]
+
+def canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout
+    (p : Nat.Primes) (s : ℂ) (energy : NativeGpreTowerHilbert) : ℝ × ℝ :=
+  nativeGpreTfvdCompletedPrecompressionPrimeReadout p s
+    (canonicalCompletedNativeCorrectedMaterialAtlasRadialInjection energy)
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_components
+    (p : Nat.Primes) (s : ℂ) (energy : NativeGpreTowerHilbert) :
+    canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout p s energy =
+      (0, inner ℝ (nativeGpreReflectedFirstLevelGapProfile p s) energy) := by
+  simp [canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout,
+    canonicalCompletedNativeCorrectedMaterialAtlasRadialInjection,
+    nativeGpreTfvdCompletedPrecompressionPrimeReadout]
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_zero_of_critical
+    (p : Nat.Primes) (s : ℂ) (energy : NativeGpreTowerHilbert)
+    (hcritical : criticalDisplacement s.re = 0) :
+    canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout p s energy = 0 := by
+  rw [canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_components,
+    nativeGpreReflectedFirstLevelGapProfile_eq_zero_of_critical p hcritical]
+  simp
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_greenBulk
+    (M : ℕ) (s : ℂ) (p : Nat.Primes) :
+      canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout p s
+        (nativeGpreGreenEnergyFirstLevelState (3 * M) s) =
+      (0, primeCarryGreenBulkCutoffProfile (3 * M) s p) := by
+  unfold canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout
+    canonicalCompletedNativeCorrectedMaterialAtlasRadialInjection
+    nativeGpreTfvdCompletedPrecompressionPrimeReadout
+  simp only [inner_zero_right]
+  exact congrArg (fun x : ℝ => (0, x))
+    (inner_nativeGpreReflectedFirstLevelGapProfile_eq_greenBulk
+      (3 * M) s p)
 
 theorem canonicalCompletedNativeCorrectedMaterialAtlasPrimeReadout_eq_greenBulk
     (M : ℕ) (s : ℂ) (p : Nat.Primes) :
