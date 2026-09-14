@@ -183,3 +183,84 @@ transformação TFVD nativa e independência dos jets, sem momento, espectro ou
 proxy. O que ainda falta para virar o gate radial é a passagem uniforme desse
 carrier finito ao limite radial e a identificação do readout com o seam
 Gamma/valva.
+
+## Checkpoint adicional — retorno positivo, no-go do carrier bruto e próximo seam
+
+Este checkpoint registra a auditoria do seam seguinte sem apagar os
+residuais anteriores.
+
+### O que está fechado
+
+O módulo
+`CarrySelfAdjointOperator/CompletedNativeReturnMetricReadoutCrosswalk.lean`
+formaliza a métrica de retorno
+
+`clmReturnMetric = I + poisson† ∘L poisson`,
+
+com a decomposição Parseval entre o setor externo e o bulk. Estão provados a
+auto-adjunção, a positividade, a identidade de readout e a isometria do
+retorno. Portanto existe uma realização nativa positiva antes de Hankel/Jacobi.
+
+Também está fechada, antes de Gram, a equação escalar
+`canonicalC2Geometry_nativeWronskianResponse_coefficientEquation_before_gram`
+e a correspondente identidade de bordo/shift. Esta é a rota causal correta:
+Green/TFVD/valva produzem o response e o deslocamento; o Gram só vem depois.
+
+### O que foi descartado como carrier final
+
+A métrica de retorno genérica não pode ser identificada com o momento
+canônico. Os teoremas
+`canonicalNativeReturnMetricCentralKernel_eq_gradient_energy`,
+`canonicalNativeReturnMetricCentralDefect_pos`,
+`canonicalNativeReturnMetricCentralKernel_gt_nativeMoment` e
+`canonicalNativeReturnMetricCentralKernel_ne_nativeMoment` mostram que o
+kernel central dessa métrica é energia Green de gradiente estritamente maior
+que `h₀`. Logo ela é um carrier positivo válido, mas não é o carrier de
+momentos; não se deve corrigir isso por uma constante.
+
+O mesmo alerta vale para o kernel projectivo bruto, que satisfaz
+`one_le_completedProjectiveHilbertKernel_diagonal` e
+`completedProjectiveHilbertKernel_zero_ne_nativeMoment`, e para a resposta
+BR2 causal literal: `br2C3SourceSolution_norm_ge_two_fifths` e
+`canonicalBR2C3CausalResponseWithBoundary_nativeMassDefect_gt` dão o no-go de
+massa no primeiro coeficiente. Esses objetos não devem ser usados como
+substitutos positivos do carrier nativo corrigido.
+
+### O que a positividade já fornece
+
+O carrier four-corner/enriched-Taylor (`nativeGpreFourCorner` e suas versões
+enriquecidas) e o carrier causal com retorno de bordo possuem Gram positivo e
+independência finita. Isso é evidência nativa pré-Hankel real, mas ainda não
+prova a igualdade com `h_{i+j}` e `h_{i+j+1}`.
+
+O transporte de incidência também já está disponível na família
+`canonicalBR2CameraBracketCausalGreenResponseIncidenceJetTransport`; portanto
+o lado da independência não é o gargalo atual. O alvo tipado continua sendo a
+hipótese de
+`nativeGeometry_to_finiteHeight_chain_of_greenMomentKernel_and_incidenceTransport`:
+
+`IsGreenWronskianMomentKernelGramRepresentation
+  canonicalCompletedNativeLogDerivativeMoment jet`.
+
+### Gate restante e regra de preservação
+
+O que falta é a identificação do readout/energia corrigido da valva com o
+kernel Green polarizado, não uma nova prova de positividade. Os residuais que
+devem continuar nomeados são
+`canonicalCompletedNativeGreenMomentGramDefect`,
+`canonicalNativePolarizedTfvdGreenMomentKernelDefect` e
+`canonicalCompletedC3NativeSourceLocusProjectionMismatch`, conforme o carrier
+escolhido. A rota de fechamento é provar o transporte chiral/corrigido
+(`HasCorrectedNativeChiralBoundaryTransport` ou a costura
+`CanonicalCompletedC3BoundaryGreenSewing`) ou, na rota radial, as hipóteses
+explícitas de boundary e strictness. Só depois disso se instancia o certificado
+de momentos, a independência incidencial, Stieltjes/Jacobi e o operador de
+alturas.
+
+Regra deste checkpoint: manter a ordem
+
+`native geometry -> Green/TFVD/valva -> response/shift -> carrier corrigido
+positivo -> kernel de momentos -> incidência -> Jacobi -> altura`,
+
+sem definir o carrier nativo a partir de `K`, `J` ou de uma fatoração positiva
+genérica.
