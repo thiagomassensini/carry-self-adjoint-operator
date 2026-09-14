@@ -825,6 +825,42 @@ abbrev canonicalC2Geometry_native_sameGeometry_energy_to_height_operator_of_radi
         (canonicalCompletedNativeStieltjesPositivity_of_radialChiralMultiplier
           hcontractive hnondegenerate)))
 
+/-! ## Corrected native shift into the same-geometry energy capstone -/
+
+/--
+The corrected native Green/clock shift and the already faithful parity
+incidence transport supply the strict Stieltjes certificate before the
+same-geometry energy capstone is invoked.  This is the direct source-side
+composition: the C2/valve/Green identities are kept in the capstone, while
+the transport supplies only the missing nondegeneracy of its two parity jet
+families.  In particular, no camera Gram, Cholesky factor, or fitted
+operator is used to create the hypothesis returned here.
+-/
+theorem canonicalC2Geometry_native_strictChiralDominance_of_correctedGreenShift
+    {ι : Type*} [Fintype ι]
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M cutoff N : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
+    CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance := by
+  letI : InnerProductSpace ℝ
+      (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  have hchain :=
+    canonicalC2Geometry_natural_source_to_height_operator_via_green_shift
+      hbase hradius M cutoff N block htransport transport
+  rcases hchain with ⟨_, _, hheight⟩
+  rcases hheight with ⟨hpos, _, _, _, _⟩
+  have hdominance :
+      CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance :=
+    (canonicalCompletedNativeCenteredStrictChiralCoefficientDominance_iff_expanded).mpr
+      ((canonicalCompletedC3ExpandedStructuralStrictChiralDominance_iff_stieltjesPositivity).mpr
+        hpos)
+  exact hdominance
+
 end
 
 end CarrySelfAdjointOperator
