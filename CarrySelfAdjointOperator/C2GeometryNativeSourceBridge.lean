@@ -4,6 +4,7 @@ import CarrySelfAdjointOperator.CompletedNativeCameraUniversality
 import CarrySelfAdjointOperator.CompletedNativeCorrectedCausalChiralGate
 import CarrySelfAdjointOperator.CompletedNativeCorrectedClockBoundaryGate
 import NativeCarrySpectralWeyl.Camera.BracketProfileBridge
+import Mathlib.Algebra.Polynomial.Eval.Degree
 
 /-!
 # Exact C2 geometry-to-native source bridge
@@ -376,6 +377,105 @@ theorem canonicalC2Geometry_seededClockBoundaryResidual_eq_atomicPowerSum_sub_ca
       (canonicalC2Geometry_correctedChiralCoefficient_eq_cameraMoments
         M cutoff p 0)
   rw [htarget]
+
+/-! ## The finite atomic recurrence forced by the native clock -/
+
+/-- Characteristic polynomial of the four nodal frequencies of one material
+    clock block.  This is a diagnostic polynomial for the material carrier;
+    it does not define the Green or height operator. -/
+def canonicalC2Geometry_seededClockBlockCharacteristic
+    (block : SeededClockBlock) : Polynomial ℂ :=
+  ∏ i : Fin 4,
+    (Polynomial.X - Polynomial.C
+      (((![block.d, block.a, block.b, block.c] i : ℝ) : ℂ)))
+
+/-- Every native nodal frequency is a root of its block characteristic. -/
+theorem canonicalC2Geometry_seededClockBlockCharacteristic_root
+    (block : SeededClockBlock) (i : Fin 4) :
+    (canonicalC2Geometry_seededClockBlockCharacteristic block).eval
+        (((![block.d, block.a, block.b, block.c] i : ℝ) : ℂ)) = 0 := by
+  unfold canonicalC2Geometry_seededClockBlockCharacteristic
+  rw [Polynomial.eval_prod]
+  apply Finset.prod_eq_zero (Finset.mem_univ i)
+  simp
+
+/-- Product characteristic of a finite atlas.  It annihilates every atom of
+    every block, hence every finite atomic boundary sequence. -/
+def canonicalC2Geometry_seededClockAtlasCharacteristic
+    {ι : Type*} [Fintype ι]
+    (block : ι → SeededClockBlock) : Polynomial ℂ :=
+  ∏ k : ι, canonicalC2Geometry_seededClockBlockCharacteristic (block k)
+
+/-- Every atom in a finite atlas is a root of the atlas characteristic. -/
+theorem canonicalC2Geometry_seededClockAtlasCharacteristic_root
+    {ι : Type*} [Fintype ι]
+    (block : ι → SeededClockBlock) (k : ι) (i : Fin 4) :
+    (canonicalC2Geometry_seededClockAtlasCharacteristic block).eval
+        (((![(block k).d, (block k).a, (block k).b, (block k).c] i : ℝ) : ℂ)) = 0 := by
+  unfold canonicalC2Geometry_seededClockAtlasCharacteristic
+  rw [Polynomial.eval_prod]
+  apply Finset.prod_eq_zero (Finset.mem_univ k)
+  exact canonicalC2Geometry_seededClockBlockCharacteristic_root (block k) i
+
+/-- Every finite seeded-clock atlas satisfies an exact scalar linear recurrence.
+    This is a necessary consequence of the native four-corner clock and is
+    independent of Hankel, Cholesky, Jacobi, or any fitted normalization. -/
+theorem canonicalC2Geometry_seededClockAtlasCoefficient_recurrence
+    {ι : Type*} [Fintype ι]
+    (block : ι → SeededClockBlock) (n : ℕ) :
+    ∑ r ∈ Finset.range
+        ((canonicalC2Geometry_seededClockAtlasCharacteristic block).natDegree + 1),
+      (canonicalC2Geometry_seededClockAtlasCharacteristic block).coeff r *
+        seededClockAtlasCoefficient block (n + r) 0 = 0 := by
+  simp_rw [canonicalC2Geometry_seededClockAtlasCoefficient_eq_finiteAtomicPowerSum]
+  simp only [Nat.add_zero]
+  simp_rw [Finset.mul_sum]
+  rw [Finset.sum_comm]
+  apply Finset.sum_eq_zero
+  intro k hk
+  rw [Finset.sum_comm]
+  apply Finset.sum_eq_zero
+  intro i hi
+  calc
+    (∑ x ∈ Finset.range
+        ((canonicalC2Geometry_seededClockAtlasCharacteristic block).natDegree + 1),
+        (canonicalC2Geometry_seededClockAtlasCharacteristic block).coeff x *
+          ((starRingEnd ℂ) (seededRecover (block k).state i) *
+            seededRecover (block k).state i *
+              (((![(block k).d, (block k).a, (block k).b, (block k).c] i : ℝ) : ℂ) ^
+                (n + x)))) =
+      (starRingEnd ℂ) (seededRecover (block k).state i) *
+        seededRecover (block k).state i *
+          (((![(block k).d, (block k).a, (block k).b, (block k).c] i : ℝ) : ℂ) ^ n) *
+            (∑ x ∈ Finset.range
+                ((canonicalC2Geometry_seededClockAtlasCharacteristic block).natDegree + 1),
+              (canonicalC2Geometry_seededClockAtlasCharacteristic block).coeff x *
+                (((![(block k).d, (block k).a, (block k).b, (block k).c] i : ℝ) : ℂ) ^ x)) := by
+        rw [Finset.mul_sum]
+        apply Finset.sum_congr rfl
+        intro x hx
+        rw [pow_add]
+        ring
+    _ = 0 := by
+      rw [← Polynomial.eval_eq_sum_range]
+      rw [canonicalC2Geometry_seededClockAtlasCharacteristic_root]
+      ring
+
+/-- If the corrected material transport actually closes, then the C2
+    polarized Green boundary sequence must satisfy the same finite recurrence.
+    This is the first exact obstruction/test for a proposed finite atlas. -/
+theorem canonicalC2Geometry_seededClockAtlas_target_recurrence
+    {ι : Type*} [Fintype ι]
+    (M cutoff : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) (n : ℕ) :
+    ∑ r ∈ Finset.range
+        ((canonicalC2Geometry_seededClockAtlasCharacteristic block).natDegree + 1),
+      (canonicalC2Geometry_seededClockAtlasCharacteristic block).coeff r *
+        polarizedGreenMomentCoefficient
+          (completedNativeCameraLogDerivativeMoment 2 cutoff) (n + r) 0 = 0 := by
+  have hrec := canonicalC2Geometry_seededClockAtlasCoefficient_recurrence block n
+  simpa only [canonicalC2Geometry_seededClockFirstColumn_eq_cameraPolarizedMoment
+    M cutoff block _ htransport] using hrec
 
 end
 end CarrySelfAdjointOperator
