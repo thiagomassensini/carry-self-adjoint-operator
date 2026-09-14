@@ -1,6 +1,7 @@
 import CarrySelfAdjointOperator.CompletedNativeCorrectedClockBoundaryGate
 import CarrySelfAdjointOperator.C2GeometryNativeSourceBridge
 import CarrySelfAdjointOperator.BR2IncidenceStrictPositivity
+import CarrySelfAdjointOperator.CompletedNativeHPGateAudit
 import CarrySelfAdjointOperator.CompletedNativeGeometryHeightProvenance
 import CarrySelfAdjointOperator.CanonicalCompletedNativeStieltjesOperator
 import Mathlib.Tactic
@@ -26,6 +27,7 @@ namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
 open C3TraceDynamics
+open FiniteNativeCarryOperator.Camera
 
 noncomputable section
 
@@ -142,6 +144,50 @@ theorem canonicalC2Geometry_height_chain_of_centerLegGreenCertificate
     nativeGeometry_to_finiteHeight_chain_of_greenMomentKernel_and_incidenceTransport
       incidence.hbase incidence.hradius hgreen transport cutoff N
   rcases hchain with ⟨hpos, _, _, _, _⟩
+  exact ⟨hpos,
+    nativeGeometry_normalizedCamera_eq_commonCharacteristic (camera := 2)
+      (by norm_num) cutoff,
+    nativeGeometry_cameraMoments_eq_canonical (camera := 2)
+      (by norm_num) cutoff,
+    nativeGeometry_cameraJacobiSection_eq_canonical (camera := 2)
+      (by norm_num) cutoff N hpos,
+    nativeGeometryFiniteHeightOperator_isSymm hpos N⟩
+
+/-! ## The stronger pre-Gram state/readout seam -/
+
+/-- The direct TFVD/Green route: a pointwise center--leg readout identity is
+enough to produce the carrier certificate and hence the finite height
+operator.  This is the exact geometric input before any Hankel or Jacobi
+object is formed. -/
+theorem canonicalC2Geometry_height_chain_of_tfvdGreenCenterLegReadout
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    {jet : (ℕ ⊕ ℕ) → CanonicalCompletedTfvdGreenHilbertCarrier}
+    (transport : BR2BracketIncidenceJetTransport base radius jet)
+    (incidence : BR2CameraIncidence)
+    (hreadout : HasCanonicalCompletedNativeTfvdGreenCenterLegReadout
+      incidence jet)
+    (cutoff N : ℕ) :
+    ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+      normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+          (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+        completedNativeCameraLogDerivativeMoment 2 cutoff =
+          canonicalCompletedNativeLogDerivativeMoment ∧
+        (∃ hgram :
+            (hankelGram
+              (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+          canonicalFiniteJacobiSection
+              (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+            canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+        (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  letI : InnerProductSpace ℝ CanonicalCompletedTfvdGreenHilbertCarrier :=
+    InnerProductSpace.rclikeToReal ℂ _
+  have hcertificate : CompletedNativeRealHPCarrierCertificate jet :=
+    completedNativeRealHPCarrierCertificate_of_centerLegReadout
+      hbase hradius transport incidence hreadout
+  let hpos : CanonicalCompletedNativeStieltjesPositivity :=
+    canonicalCompletedNativeStieltjesPositivity_of_certificate hcertificate
   exact ⟨hpos,
     nativeGeometry_normalizedCamera_eq_commonCharacteristic (camera := 2)
       (by norm_num) cutoff,
