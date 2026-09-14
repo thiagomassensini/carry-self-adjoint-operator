@@ -299,5 +299,83 @@ theorem canonicalC2Geometry_seededClockGreenMomentKernel_of_correctedTransport
   exact seededClockAtlasGreenMomentKernel_of_correctedNativeChiralBoundaryTransport
     M block htransport
 
+/-! ## The remaining material equation in explicit atomic form -/
+
+/-- Every material-clock coefficient is a finite four-atom power sum.  This
+    is an expansion of the existing reconstructed clock, not a new spectral
+    carrier: the four atoms are exactly its nodal frequencies and the weights
+    are the squared nodal seed amplitudes. -/
+theorem canonicalC2Geometry_seededClockCoefficient_eq_fourAtomPowerSum
+    (d a b c : ℝ) (x : SeededC3Data) (p q : ℕ) :
+    seededClockMaterialCoefficient d a b c x p q =
+      ∑ i : Fin 4,
+        (starRingEnd ℂ) (seededRecover x i) * seededRecover x i *
+          (((![d, a, b, c] i : ℝ) : ℂ) ^ (p + q)) := by
+  simpa [seededClockMaterialCoefficient, seededClockMaterialRawJet] using
+    (inner_seededRecover_clock_iterate d a b c x x p q)
+
+/-- The finite orthogonal material atlas is therefore a finite sum of the
+    preceding four-atom power sums. -/
+theorem canonicalC2Geometry_seededClockAtlasCoefficient_eq_finiteAtomicPowerSum
+    {ι : Type*} [Fintype ι]
+    (block : ι → SeededClockBlock) (p q : ℕ) :
+    seededClockAtlasCoefficient block p q =
+      ∑ k : ι, ∑ i : Fin 4,
+        (starRingEnd ℂ) (seededRecover (block k).state i) *
+          seededRecover (block k).state i *
+            (((![ (block k).d, (block k).a, (block k).b, (block k).c ] i : ℝ) : ℂ) ^
+              (p + q)) := by
+  unfold seededClockAtlasCoefficient
+  apply Finset.sum_congr rfl
+  intro k hk
+  exact canonicalC2Geometry_seededClockCoefficient_eq_fourAtomPowerSum
+    (block k).d (block k).a (block k).b (block k).c (block k).state p q
+
+/-- Named residual for the still-open first-column calibration. -/
+def canonicalC2Geometry_seededClockBoundaryResidual
+    {ι : Type*} [Fintype ι]
+    (M : ℕ) (block : ι → SeededClockBlock) (p : ℕ) : ℂ :=
+  seededClockAtlasCoefficient block p 0 -
+    canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M p
+
+/-- Vanishing of the named residual is exactly the corrected-native boundary
+    transport hypothesis. -/
+theorem canonicalC2Geometry_seededClockBoundaryResidual_zero_iff_correctedTransport
+    {ι : Type*} [Fintype ι]
+    (M : ℕ) (block : ι → SeededClockBlock) :
+    (∀ p : ℕ,
+      canonicalC2Geometry_seededClockBoundaryResidual M block p = 0) ↔
+      HasCorrectedNativeChiralBoundaryTransport M block := by
+  constructor
+  · intro h p
+    exact sub_eq_zero.mp (h p)
+  · intro h p
+    exact sub_eq_zero.mpr (h p)
+
+/-- The residual is exactly the finite atomic power sum minus the C2
+    factor-cancelled polarized Green target.  This is the concrete equation
+    that a genuine material atlas must solve. -/
+theorem canonicalC2Geometry_seededClockBoundaryResidual_eq_atomicPowerSum_sub_cameraTarget
+    {ι : Type*} [Fintype ι]
+    (M cutoff : ℕ) (block : ι → SeededClockBlock) (p : ℕ) :
+    canonicalC2Geometry_seededClockBoundaryResidual M block p =
+      (∑ k : ι, ∑ i : Fin 4,
+        (starRingEnd ℂ) (seededRecover (block k).state i) *
+          seededRecover (block k).state i *
+            (((![ (block k).d, (block k).a, (block k).b, (block k).c ] i : ℝ) : ℂ) ^ p)) -
+        polarizedGreenMomentCoefficient
+          (completedNativeCameraLogDerivativeMoment 2 cutoff) p 0 := by
+  unfold canonicalC2Geometry_seededClockBoundaryResidual
+  rw [canonicalC2Geometry_seededClockAtlasCoefficient_eq_finiteAtomicPowerSum]
+  simp only [Nat.add_zero]
+  have htarget :
+      canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M p =
+        polarizedGreenMomentCoefficient
+          (completedNativeCameraLogDerivativeMoment 2 cutoff) p 0 := by
+    simpa only [Nat.add_zero] using
+      (canonicalC2Geometry_correctedChiralCoefficient_eq_cameraMoments
+        M cutoff p 0)
+  rw [htarget]
+
 end
 end CarrySelfAdjointOperator
