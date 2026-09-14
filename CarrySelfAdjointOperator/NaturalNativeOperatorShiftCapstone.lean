@@ -674,6 +674,65 @@ theorem canonicalC2Geometry_natural_source_to_height_operator_of_expandedStructu
     ⟨hpos, nativeGeometry_to_finiteHeight_chain (camera := 3) (by norm_num)
       cutoff N hpos⟩⟩
 
+/-! ## Native chiral source capstone - before radial Gamma sampling -/
+
+/--
+The source-direction theorem in the vocabulary in which the construction was
+actually discovered.  The C2 source, exact centre tail, completion, and the
+causal Green/Wronskian response are taken from the pre-Gram genealogy.  The
+only strictness input is the native centered positive-minus-negative chiral
+dominance; it is a coefficient-level valve/Green statement, not a Hankel,
+Cholesky, Jacobi, or spectral-fit hypothesis.
+
+Thus the finite self-adjoint height section is downstream of the native
+geometry and its chiral separation.  The theorem deliberately leaves the
+radial Gamma no-leak and no-collapse route as an alternative way of proving
+that same dominance, rather than silently identifying the two carriers.
+-/
+theorem canonicalC2Geometry_native_source_valve_green_to_height_of_nativeChiralDominance
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (hdominance : CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance)
+    (cutoff N : ℕ) :
+    (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →
+        finiteBracketCharacteristic 2 tailCutoff s +
+            (∑' index : ℕ,
+              centerBracketTerm 2 s (index + tailCutoff)) =
+          factor 2 s * nativeScalar s) ∧
+      (∀ (packagedCutoff : ℕ) (time : ℝ),
+        nativeXiCompletionFactor (time : ℂ) *
+            completedPackagedFiniteNativeOperatorJet
+              2 packagedCutoff 0 time /
+              factor 2 (nativeLine time) =
+          completedNativeOperatorCharacteristic (time : ℂ)) ∧
+      (∀ (M p q : ℕ),
+        canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+            M (p + q + 1) =
+          polarizedGreenMomentCoefficient
+            canonicalCompletedNativeLogDerivativeMoment p q) ∧
+      ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+        normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+            (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+          completedNativeCameraLogDerivativeMoment 2 cutoff =
+            canonicalCompletedNativeLogDerivativeMoment ∧
+          (∃ hgram :
+              (hankelGram
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+            canonicalFiniteJacobiSection
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+              canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+          (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  rcases canonicalC2Geometry_native_source_valve_green_preGram hbase hradius with
+    ⟨_, _, _, htail, hpackaged, _, _, _, _, _, _⟩
+  have hheight :=
+    canonicalC2Geometry_valve_green_to_height_of_nativeChiralDominance
+      hdominance cutoff N
+  refine ⟨htail, hpackaged, ?_, hheight⟩
+  intro M p q
+  exact canonicalCompletedNativeCarryGreenChiralResponse_succCoefficient_eq_polarizedMoment
+    M p q
+
 /-- The preceding structural capstone can be fed directly by the native
 radial Green/valve gates.  The ledger no-leak identity supplies the limiting
 chiral form, while the uniform determinant lower bound prevents collapse of
