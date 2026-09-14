@@ -1,5 +1,7 @@
 import CarrySelfAdjointOperator.NaturalNativeOperatorShiftCapstone
 import CarrySelfAdjointOperator.GreenJetMaximalAdjointSquare
+import CarrySelfAdjointOperator.NativeBracketTfvdGreenSameGeometry
+import CarrySelfAdjointOperator.CompletedNativeCausalGreenProvenance
 import Mathlib.Tactic
 
 /-!
@@ -26,6 +28,7 @@ open FiniteNativeCarryOperator
 open FiniteNativeCarryOperator.Camera
 open NativeCarryC3Crosswalk
 open NativeCarrySpectralWeyl.Camera
+open NativeCarrySpectralWeyl.Boundary
 open NativeCarrySpectralWeyl.Camera.FiniteBridge
 
 noncomputable section
@@ -168,6 +171,107 @@ theorem canonicalC2Geometry_native_corrected_chiral_height_operator_forced
   · intro p q
     exact canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_polarizedMoment
       M p q
+  · refine ⟨hpos, hnorm, hmom, ?_, hsym⟩
+    exact nativeGeometry_cameraJacobiSection_eq_canonical
+      (camera := 2) (by norm_num) cutoff N hpos
+
+/-! ## The same-geometry energy capstone
+
+This is the source-side spelling of the construction recorded in the
+relational atlas.  The first conjunct keeps the bracket and corrected Green
+readouts on one TFVD carrier.  The second keeps the exact whole-centre tail.
+The third is the native positive energy identity: causal response plus return
+is the original gradient state, so its polarized energy is the adjoint square
+of the Green boundary readout.  Only after these identities and the native
+boundary/shift law are exposed is the finite height section returned.
+
+No Gram, Cholesky factor, fitted spectrum, or positive proxy is an input to
+this theorem.  Strict all-order positivity remains the explicitly named
+chiral gate consumed by the last conjunct.
+-/
+theorem canonicalC2Geometry_native_sameGeometry_energy_to_height_operator
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M cutoff N : ℕ)
+    (hdominance : CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance) :
+    (∀ (cameraCutoff : ℕ) (s : ℂ),
+        (finiteSeededEnrichedTfvdGenuineReadout cameraCutoff tfvdHaarScale
+            (fun _ : ℕ => (1 : ℂ))
+            (canonicalSeededEnrichedTfvdGenuinePort tfvdHaarScale
+              (fun _ : ℕ => (1 : ℂ)) s) =
+          finiteBracketCharacteristic 3 cameraCutoff s) ∧
+        (finiteCanonicalSeededTfvdSameSBoundaryForm cameraCutoff tfvdHaarScale
+            (fun _ : ℕ => (1 : ℂ)) s -
+          finiteCanonicalTfvdSameSGreenProvenanceDefect 3 cameraCutoff s =
+          greenForm
+            (finiteC3GenuineBracketGreenBoundaryPair (3 * cameraCutoff) s)
+            (finiteC3GenuineBracketGreenBoundaryPair
+              (3 * cameraCutoff) (reflectedParameter s)))) ∧
+      (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →
+        finiteBracketCharacteristic 2 tailCutoff s +
+            (∑' index : ℕ,
+              centerBracketTerm 2 s (index + tailCutoff)) =
+          factor 2 s * nativeScalar s) ∧
+      (∀ (s t : ℂ) (hs : 0 < s.re) (ht : 0 < t.re),
+        inner ℂ
+            (canonicalCompletedC3DirichletGradientCausalGreenBoundaryState
+              hbase s hs)
+            ((canonicalCompletedC3CausalGreenBoundarySum.adjoint)
+              (canonicalCompletedC3CausalGreenBoundarySum
+                (canonicalCompletedC3DirichletGradientCausalGreenBoundaryState
+                  hbase t ht))) =
+          inner ℂ
+            (canonicalCompletedC3DirichletGradientState s hs)
+            (canonicalCompletedC3DirichletGradientState t ht)) ∧
+      (∀ (s : ℂ) (hs : 0 < s.re),
+        carryWeightedVerticalCenteredBracket
+            (canonicalBR2CarryAmplitudeRatio base)
+            (canonicalCompletedC3DirichletGradientCausalGreenState
+              base s hs) =
+          canonicalCompletedC3DirichletGradientBracketSourceState
+            base s hs) ∧
+      IsPolarizedGreenCoefficientEquation
+        canonicalCompletedNativeLogDerivativeMoment
+        (fun p q : ℕ ↦
+          canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+            M (p + q + 1)) ∧
+      ((∀ p : ℕ,
+          canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+              M (p + 1) =
+            oddMomentResponseCoefficient
+              canonicalCompletedNativeLogDerivativeMoment (p + 1)) ∧
+        (∀ p q : ℕ,
+          canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+              M (p + (q + 1) + 1) =
+            canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+              M ((p + 1) + q + 1))) ∧
+      ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+        normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+            (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+          completedNativeCameraLogDerivativeMoment 2 cutoff =
+            canonicalCompletedNativeLogDerivativeMoment ∧
+          (∃ hgram :
+              (hankelGram
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+            canonicalFiniteJacobiSection
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+              canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+          (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  have hforced :=
+    canonicalC2Geometry_native_source_valve_green_operator_forced
+      hbase hradius M cutoff N hdominance
+  rcases hforced with ⟨_, htail, hcoeff, hshift, hheight⟩
+  rcases hheight with ⟨hpos, _, hnorm, hmom, hsym⟩
+  refine ⟨?_, htail, ?_, ?_, hcoeff, hshift, ?_⟩
+  · intro cameraCutoff s
+    exact finiteNativeC3BracketTfvdGreen_sameGeometry cameraCutoff s
+  · intro s t hs ht
+    exact canonicalCompletedC3CausalGreenBoundarySum_adjointSquare_eq_nativeState_inner
+      hbase hs ht
+  · intro s hs
+    exact canonicalCompletedC3CausalGreenBoundary_native_source_response
+      hbase hs
   · refine ⟨hpos, hnorm, hmom, ?_, hsym⟩
     exact nativeGeometry_cameraJacobiSection_eq_canonical
       (camera := 2) (by norm_num) cutoff N hpos
