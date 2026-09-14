@@ -6,7 +6,8 @@ Atualizado em: 2026-09-14
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL: `e6605ac656863278ecae87485772093e6620941d` (`Classify Gamma TFVD sewing as bilinear gate`)
+HEAD REAL: este próprio commit de checkpoint; confirme com `git rev-parse HEAD`.
+HEAD CONFIRMADO ANTES DO PIN: `e6605ac656863278ecae87485772093e6620941d`
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
 
