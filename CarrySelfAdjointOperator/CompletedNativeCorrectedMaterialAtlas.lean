@@ -291,6 +291,83 @@ theorem canonicalCompletedNativeCorrectedMaterialAtlas_completedWronskianSewing_
   exact canonicalNativePolarizedTfvdGreenMomentKernel_eq_nativeFourCorner_iff_defect_limit_zero
     hz hzUpper hw
 
+/-! ## Native cancellation at the completed seam
+
+The independent completion tail is already an exact vanishing channel.  Thus
+the limit of the total native sewing defect is zero exactly when the retained
+finite structural defect is zero in the limit.  This is the cancellation that
+can be used before transporting any boundary coefficient; it does not identify
+the material clock's first column by itself.
+-/
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlas_totalDefect_tendsto_zero_iff_structuralDefect_tendsto_zero
+    {z w : ℂ} (hz : 0 < z.re) (hw : 0 < w.re) :
+    Tendsto
+        (fun M : ℕ => canonicalC3FiniteMixedTotalDefect M z w)
+        atTop (nhds 0) ↔
+      Tendsto
+        (fun M : ℕ => canonicalC3FiniteMixedStructuralDefect M z w)
+        atTop (nhds 0) := by
+  have htail := canonicalC3MixedTailCompletionDefect_tendsto_zero
+    (z := z) (w := w) hz hw
+  constructor
+  · intro htotal
+    have hsub := htotal.sub htail
+    simpa [canonicalC3FiniteMixedTotalDefect, sub_eq_add_neg,
+      add_assoc, add_left_comm, add_comm] using hsub
+  · intro hstructural
+    have hadd := hstructural.add htail
+    simpa [canonicalC3FiniteMixedTotalDefect, add_assoc, add_left_comm,
+      add_comm] using hadd
+
+/-! ## Height specialization of the native no-leak cancellation
+
+The completed height defect has a sharper native criterion: at a Genuine zero
+it disappears exactly on the critical line.  We expose that criterion in the
+corrected-material module so it can be consumed by the later boundary and
+height gates without reintroducing a fitted positive carrier.
+-/
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlas_heightStructuralDefect_tendsto_zero_iff_critical
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hzero : genuineContinuation s = 0) :
+    Tendsto
+        (fun M : ℕ => canonicalC3FiniteMixedHeightStructuralDefect M s s)
+        atTop (nhds 0) ↔
+      s.re = (1 : ℝ) / 2 := by
+  exact canonicalC3FiniteMixedHeightStructuralDefect_tendsto_zero_at_genuineZero_iff
+    hs hzero
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlas_heightStructuralDefect_tendsto_zero_of_critical
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hzero : genuineContinuation s = 0)
+    (hcritical : s.re = (1 : ℝ) / 2) :
+    Tendsto
+        (fun M : ℕ => canonicalC3FiniteMixedHeightStructuralDefect M s s)
+        atTop (nhds 0) := by
+  exact
+    (canonicalCompletedNativeCorrectedMaterialAtlas_heightStructuralDefect_tendsto_zero_iff_critical
+      hs hzero).2 hcritical
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlas_heightStructuralDefect_not_tendsto_zero_of_offCritical
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hzero : genuineContinuation s = 0)
+    (hoff : s.re ≠ (1 : ℝ) / 2) :
+    ¬ Tendsto
+        (fun M : ℕ => canonicalC3FiniteMixedHeightStructuralDefect M s s)
+        atTop (nhds 0) := by
+  exact canonicalC3FiniteMixedHeightStructuralDefect_not_tendsto_zero_of_offCritical_genuineZero
+    hs hzero hoff
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlas_heightNoLeak_iff_reflectedGapFixedTimeMomentState
+    (N : ℕ) (hN : 0 < N) {s : ℂ}
+    (hs : s ∈ genuineCriticalStrip)
+    (hzero : genuineContinuation s = 0) :
+    CanonicalC3StructuralNoLeakAt s ↔
+      NativeGpreReflectedGapHasFixedTimeMomentStateAt (3 * N) s := by
+  exact canonicalC3StructuralNoLeakAt_iff_reflectedGapFixedTimeMomentState
+    N hN hs hzero
+
 end
 
 end CarrySelfAdjointOperator
