@@ -345,6 +345,127 @@ NAIMARK + CARRIER GAMMA POSITIVO. NÃO TENTE ZERAR O DEFEITO ESTRUTURAL; PROCURE
 SOMENTE A IDENTIFICAÇÃO DE READOUT QUE AINDA LIGA O CARRIER À TEORIA DOS
 MOMENTOS."
 
+---
+
+## Checkpoint 2026-09-14 — projeção Naimark corrigida e gate radial de no-leak
+
+Branch: `agent/next-natural-native-gate`
+HEAD no início deste checkpoint: `c88e8ba` (`Record six-camera native carrier seam`)
+Data: 2026-09-14
+
+### Meta global
+
+Formalizar a operação que remove o artefato de coordenadas das câmeras pela
+projeção ortogonal do carrier nativo, mantendo o Green/TFVD como origem do
+operador e só depois extraindo os momentos e a altura.
+
+### Estado confirmado
+
+- `CompletedC3CompressedGammaGramCorrection.lean` contém a decomposição vetorial
+  exata do response ambiente:
+
+  ```text
+  ambient response = Gamma response + TFVD-resolved correction.
+  ```
+
+  A correção é dividida em diferença interna do porto e o oposto do escape
+  Gamma.
+- `canonicalCompletedC3AmbientPortProjection` é uma projeção idempotente,
+  fixa os vetores promovidos pelo porto, comuta com a ação escalar realificada,
+  e o complemento tem compressão de câmera zero.
+- O escape Gamma é ortogonal ao componente projetado; o leak logarítmico é
+  exatamente `z • GammaEscape`. Isso formaliza a “válvula” de ortogonalização
+  antes de qualquer Hankel/Jacobi.
+- `NativeBoundaryReadoutHPIntertwining.lean` prova, sem a costura escalar,
+  que a fonte nativa satisfaz o Green right-inverse e que o defeito Green
+  ambiente é `(w - conj z)` vezes o produto interno de duas imagens Naimark da
+  fonte resolvida. Esta é a identidade geométrica forte disponível.
+- `CompletedC3CoisometricBoundaryWronskian.lean` fornece a mesma identidade
+  de forma canônica para o source coisométrico e separa explicitamente porto e
+  leak; `CompletedC3CoisometricAmbientStrictPositivity.lean` prova
+  independência/positividade do carrier ambiente.
+- A rota radial anterior a Hankel está completamente explicitada em
+  `CompletedNativeRadialTiltSamplePositivity.lean`:
+  `CanonicalCompletedC3AsymptoticRadialTiltBoundaryIntertwining` equivale ao
+  `CanonicalCompletedC3AsymptoticRadialGammaLedgerNoLeak`; esse no-leak implica
+  a flatness de todos os coeficientes do jet Gamma e, com o limite positivo,
+  identifica cada produto interno com
+  `polarizedGreenMomentCoefficient canonicalCompletedNativeLogDerivativeMoment`.
+- A positividade estrita requer ainda
+  `CanonicalCompletedC3RadialGammaUniformDeterminantLowerBound`; a positividade
+  semidefinida do Gram Gamma não substitui esse gate de não-colapso.
+- A auditoria `NaturalNativeGeometryOperatorAudit.lean` confirma a genealogia:
+  a projeção/Green é pré-Hankel; o operador finito só aparece depois do no-leak
+  radial e da não-degenerescência incidencial.
+
+### Hipóteses ainda abertas
+
+- Provar o no-leak radial efetivo (`CanonicalCompletedC3AsymptoticRadialGammaLedgerNoLeak`),
+  ou equivalentemente a identificação assintótica do Green boundary readout
+  com o `dslope` nos stencils radiais.
+- Provar a lower bound uniforme dos determinantes radiais, ou obter a mesma
+  não-degenerescência pelo transporte de incidência nativa já existente.
+- Não confundir a identidade Green ambiente (já exata) com a costura escalar
+  `CanonicalCompletedC3BoundaryGreenSewing`; a segunda ainda é mais forte.
+
+### No-goes já provados/reforçados
+
+- A projeção positiva/ambiente não identifica automaticamente o kernel `dslope`.
+- A correção vetorial e a ortogonalidade do escape não autorizam descartar o
+  leak; o termo é explícito e reaparece no gate de no-leak.
+- PSD de seções finitas e convergência entrada a entrada não implicam a lower
+  bound uniforme necessária para positividade estrita.
+- Não usar a costura escalar global quando a rota radial local já permite
+  formular o seam mínimo.
+
+### O que NÃO precisa ser refeito
+
+- Não reconstruir a projeção Naimark, a decomposição Gamma+correção ou o Green
+  ambiente: todos já estão compilados.
+- Não tentar provar novamente a identidade de cauda nem o operador downstream.
+- Não voltar ao Gram bruto das linhas de câmera.
+
+### Alterações feitas nesta sessão
+
+- Checkpoint anterior publicado em `c88e8ba`.
+- Apenas este checkpoint foi atualizado; nenhum arquivo Lean de produção foi
+  alterado.
+- `.lake` não rastreado permanece preservado.
+
+### Builds/audits executados
+
+- Auditoria de `CompletedC3CompressedGammaGramCorrection.lean`:
+  correção de fonte, projeção idempotente, escape/leak e ortogonalidade.
+- Auditoria de `NativeBoundaryReadoutHPIntertwining.lean` e
+  `CompletedC3CoisometricBoundaryWronskian.lean`:
+  identidade Green ambiente/coisométrica exata.
+- Auditoria de `CompletedNativeRadialTiltSamplePositivity.lean` e
+  `NaturalNativeGeometryOperatorAudit.lean`:
+  equivalência no-leak ↔ seam de momentos e gate de determinante.
+- Build global anterior confirmado: `lake build`, `9515 jobs`, sucesso.
+
+### Gargalo atual EXATO
+
+O próximo gate mínimo não é “construir um Gram” nem “provar a cauda”: é
+mostrar que, depois da projeção/correção nativa, o leak da ledger Gamma some no
+germ radial para cada par de ordens, e obter a não-colapso uniforme que torna a
+positividade estrita. Formalmente, o alvo é
+`CanonicalCompletedC3AsymptoticRadialGammaLedgerNoLeak` mais
+`CanonicalCompletedC3RadialGammaUniformDeterminantLowerBound` (ou uma prova
+equivalente via incidência), mantendo o carrier Naimark como objeto de origem.
+
+### Próxima ação mínima
+
+Localizar no módulo da ledger a expressão exata do no-leak radial e testar se a
+projeção/correção já provou cada termo do seu limite; se faltar, registrar o
+primeiro termo residual (ordem zero) e não tentar concluir a torre inteira.
+
+### Retomada
+
+"AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO. A OPERAÇÃO NATURAL JÁ É A
+PROJEÇÃO NAIMARK + CORREÇÃO TFVD. PROCURE SOMENTE O PRIMEIRO TERMO DO
+NO-LEAK RADIAL E A NÃO-COLAPSO; NÃO REFAÇA O CARRIER OU O OPERADOR."
+
 ## Checkpoint de seam — identidade vetorial antes do Gram
 
 Branch: `agent/next-natural-native-gate`
