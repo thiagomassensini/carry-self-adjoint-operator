@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.CompletedNativeCorrectedAtlasConstruction
 import CPFormal.Analytic.CpTfvdSameEdgeCompletedPrecompressionCollapse
+import CPFormal.Analytic.CpTfvdSameEdgeReflectedEnergyFixedTimeNoGo
 import CPFormal.Analytic.CpNativeGpreTfvdCommutatorTowerSource
 import Mathlib.Tactic
 
@@ -69,6 +70,28 @@ theorem canonicalCompletedNativeCorrectedMaterialAtlasFixedTimeTransport_iff_mom
         (nativeGpreTfvdSameEdgeReflectedEnergyCollapseAt (3 * M)) M s ↔
       HasCanonicalCompletedNativeCorrectedMaterialAtlasFixedTimeTransport M s := by
   exact isSeededTfvdGpreMomentCollapseAt_sameEdgeReflectedEnergy_iff M s
+
+/-! The raw same-edge reflected-energy source cannot itself be the fixed-time
+native moment source on the critical locus: its reflected readout vanishes,
+while its fixed native-time readout remains strictly positive. The corrected
+atlas therefore has to keep the hidden reflected slot and change the readout,
+not identify the raw source with the fixed-time profile. -/
+theorem canonicalCompletedNativeCorrectedMaterialAtlasFixedTimeTransport_not_of_critical
+    (p : Nat.Primes) {M : ℕ} (hM : 0 < M) {s : ℂ}
+    (hs : s ∈ genuineCriticalStrip)
+    (hcritical : criticalDisplacement s.re = 0) :
+    ¬ HasCanonicalCompletedNativeCorrectedMaterialAtlasFixedTimeTransport M s := by
+  exact sameEdgeReflectedEnergyTransportsToFixedTimeAt_not_of_critical
+    p hM hs hcritical
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlasMomentCollapse_not_of_critical
+    (p : Nat.Primes) {M : ℕ} (hM : 0 < M) {s : ℂ}
+    (hs : s ∈ genuineCriticalStrip)
+    (hcritical : criticalDisplacement s.re = 0) :
+    ¬ IsSeededTfvdGpreMomentCollapseAt
+        (nativeGpreTfvdSameEdgeReflectedEnergyCollapseAt (3 * M)) M s := by
+  exact isSeededTfvdGpreMomentCollapseAt_sameEdgeReflectedEnergy_not_of_critical
+    p hM hs hcritical
 
 def canonicalCompletedNativeCorrectedMaterialAtlasPrefixSource
     (p : Nat.Primes) (tau M : ℕ) (s : ℂ) :
