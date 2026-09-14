@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.NaturalNativeSourceValveGreenProvenance
 import CarrySelfAdjointOperator.ProjectiveValveMomentFrontier
+import CarrySelfAdjointOperator.GreenJetJacobiFiniteCompression
 import Mathlib.Tactic
 
 /-!
@@ -26,6 +27,141 @@ namespace CarrySelfAdjointOperator
 open C3TraceDynamics
 
 noncomputable section
+
+/-! ## The Green Jacobi core forced by the coefficient equation -/
+
+/-- The real Green representation extracted from the complex coefficient law. -/
+theorem polarizedCoefficientVectorEquation_realMomentKernel
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    {moments : ℕ → ℝ} {rawJet : ℕ → E}
+    (hcoeff : HasPolarizedCoefficientVectorEquation moments rawJet) :
+    letI : InnerProductSpace ℝ E := InnerProductSpace.rclikeToReal ℂ E
+    IsGreenWronskianMomentKernelGramRepresentation moments
+      (polarizedCoefficientParityJet rawJet) := by
+  letI : InnerProductSpace ℝ E := InnerProductSpace.rclikeToReal ℂ E
+  have hcomplex :=
+    complexGreenWronskianMomentKernel_of_vectorCoefficientEquation hcoeff
+  intro i j
+  change greenWronskianMomentKernel moments i j =
+    (inner ℂ
+      (polarizedCoefficientParityJet rawJet i)
+      (polarizedCoefficientParityJet rawJet j)).re
+  have h := congrArg Complex.re (hcomplex i j)
+  simpa using h
+
+/--
+The vector coefficient equation already supplies the real Green moment
+representation needed by the algebraic Green Jacobi core.  Thus the core is
+obtained from the native jet and its shift law, not introduced as an
+independent matrix ansatz.
+-/
+theorem greenJacobiCore_formalSelfAdjoint_of_polarizedCoefficientVectorEquation
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
+    {moments : ℕ → ℝ} {rawJet : ℕ → E}
+    (hcoeff : HasPolarizedCoefficientVectorEquation moments rawJet)
+    (heven : LinearIndependent ℝ
+      (fun n : ℕ =>
+        polarizedCoefficientParityJet rawJet (Sum.inl n)))
+    :
+    letI : InnerProductSpace ℝ E := InnerProductSpace.rclikeToReal ℂ E
+    ∀ x y :
+      greenJetEvenOperatorCore (polarizedCoefficientParityJet rawJet),
+      ⟪greenJetJacobiCoreMap heven x,
+          (y : greenJetEvenHilbertSubspace
+            (polarizedCoefficientParityJet rawJet))⟫_ℝ =
+        ⟪(x : greenJetEvenHilbertSubspace
+            (polarizedCoefficientParityJet rawJet)),
+          greenJetJacobiCoreMap heven y⟫_ℝ := by
+  letI : InnerProductSpace ℝ E := InnerProductSpace.rclikeToReal ℂ E
+  exact greenJetJacobiCore_formalSelfAdjoint
+    (polarizedCoefficientVectorEquation_realMomentKernel hcoeff) heven
+
+/-! ## C2 specialization of the Green Jacobi core -/
+
+/--
+The actual C2 incidence transport supplies the even independence required by
+the Green core.  Hence the self-adjoint shift is obtained on the transported
+native jet itself.
+-/
+theorem canonicalC2Geometry_greenJacobiCore_formalSelfAdjoint
+    {ι : Type*} [Fintype ι]
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
+    letI : InnerProductSpace ℝ
+        (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    ∀ x y :
+      greenJetEvenOperatorCore
+        (polarizedCoefficientParityJet (seededClockAtlasJet block)),
+      ⟪greenJetJacobiCoreMap
+          (transport.even_linearIndependent hbase hradius) x,
+          (y : greenJetEvenHilbertSubspace
+            (polarizedCoefficientParityJet (seededClockAtlasJet block)))⟫_ℝ =
+        ⟪(x : greenJetEvenHilbertSubspace
+            (polarizedCoefficientParityJet (seededClockAtlasJet block))),
+          greenJetJacobiCoreMap
+            (transport.even_linearIndependent hbase hradius) y⟫_ℝ := by
+  letI : InnerProductSpace ℝ
+      (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  exact greenJacobiCore_formalSelfAdjoint_of_polarizedCoefficientVectorEquation
+    (canonicalC2Geometry_correctedNative_coefficientEquation_before_gram
+      M block htransport)
+    (transport.even_linearIndependent hbase hradius)
+
+/--
+At every finite order, the same C2 Green core has a Jacobi compression equal
+to the canonical finite section.  This is the explicit operator-level
+crosswalk; the inverse-square-root height operator is introduced only after
+this shift compression and the strict odd-sector certificate.
+-/
+theorem canonicalC2Geometry_greenJacobiCore_finiteCompression
+    {ι : Type*} [Fintype ι]
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M N : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
+    letI : InnerProductSpace ℝ
+        (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    (fun i j : Fin N =>
+      ⟪greenJetJacobiCoreMap
+          (transport.even_linearIndependent hbase hradius)
+          (canonicalGreenJetEvenJacobiCoreVector
+            (polarizedCoefficientVectorEquation_realMomentKernel
+              (canonicalC2Geometry_correctedNative_coefficientEquation_before_gram
+                M block htransport))
+            (transport.even_linearIndependent hbase hradius) N i),
+        (canonicalGreenJetEvenJacobiCoreVector
+            (polarizedCoefficientVectorEquation_realMomentKernel
+              (canonicalC2Geometry_correctedNative_coefficientEquation_before_gram
+                M block htransport))
+            (transport.even_linearIndependent hbase hradius) N j :
+          greenJetEvenHilbertSubspace
+            (polarizedCoefficientParityJet (seededClockAtlasJet block)))⟫_ℝ) =
+      canonicalFiniteJacobiSection
+        canonicalCompletedNativeLogDerivativeMoment N
+        (canonicalGreenJetHankelGramCertificate
+          (polarizedCoefficientVectorEquation_realMomentKernel
+            (canonicalC2Geometry_correctedNative_coefficientEquation_before_gram
+              M block htransport))
+          (transport.even_linearIndependent hbase hradius) N) := by
+  letI : InnerProductSpace ℝ
+      (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  exact greenJetJacobiCore_finiteCompression_eq_canonicalFiniteJacobiSection
+    (polarizedCoefficientVectorEquation_realMomentKernel
+      (canonicalC2Geometry_correctedNative_coefficientEquation_before_gram
+        M block htransport))
+    (transport.even_linearIndependent hbase hradius) N
 
 /-! ## The algebraic seam before any Gram extraction -/
 
