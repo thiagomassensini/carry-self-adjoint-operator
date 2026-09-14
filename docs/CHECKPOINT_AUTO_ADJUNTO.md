@@ -1,5 +1,53 @@
 # CHECKPOINT AUTO-ADJUNTO
 
+# CURRENT STATE
+
+Atualizado em: 2026-09-14
+
+Branch: `agent/next-natural-native-gate`
+
+HEAD REAL: `d509c3c326d846d9aed9800e71d24383c503d4c9` (`Record ambient carrier zeroth-moment no-go`)
+
+Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
+
+## Classificação Gamma–TFVD
+
+AINDA INDETERMINADO. Já há a identidade vetorial
+`ambient response = Gamma state + resolved TFVD correction` e as equivalências
+de `Balance = 0` com igualdade de energias, mas ainda não foi auditado nesta
+etapa se o balance zera globalmente, apenas no zero-locus, ou se é equivalente
+à própria conclusão.
+
+## Theorem decisivo encontrado
+
+Ainda não há um theorem decisivo de classificação. As interfaces já
+confirmadas são `canonicalCompletedC3AmbientResponseState_eq_gamma_add_correction`,
+`canonicalCompletedC3GammaCorrectionBalance_eq_energyDifference` e
+`canonicalCompletedC3GammaCorrectionBalance_eq_zero_iff_energy`; a auditoria
+deve decidir se elas implicam uma identidade global ou apenas um gate de
+sewing/confinamento.
+
+## Gargalo atual exato
+
+Determinar, no mesmo carrier Hilbert/Naimark, se a combinação completa de
+Gamma, correção, termos cruzados e Gram da correção reproduz o readout
+TFVD/Green canônico. Não descartar cross terms nem zerar o defeito estrutural
+das seis câmeras.
+
+## Próxima ação mínima
+
+Auditar prioritariamente os módulos Gamma/correção, fonte–Naimark, sewing
+bilinear e Gram normalizado listados na solicitação; classificar formalmente o
+balance como GLOBAL, ZERO-LOCUS, CIRCULAR ou D e registrar o theorem exato que
+justifica a classificação.
+
+## Retomada
+
+"O HEAD real é `d509c3c`. Leia este bloco primeiro. A classificação ainda está
+AINDA INDETERMINADA; continue pela identidade bilinear e pelos cross terms,
+sem tentar provar o balance zero antes de saber se ele é uma identidade ou
+uma condição de confinamento."
+
 Branch: `agent/next-natural-native-gate`
 HEAD: `e0d3d09` (`Record native carrier seam checkpoint`)
 Data: 2026-09-14
