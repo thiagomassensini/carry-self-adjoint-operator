@@ -1,8 +1,12 @@
 import CarrySelfAdjointOperator.C2GeometryNativeSourceBridge
+import CarrySelfAdjointOperator.CompletedNativeGeometryHeightProvenance
 
 namespace CarrySelfAdjointOperator
 
 open scoped BigOperators
+open FiniteNativeCarryOperator.Camera
+open NativeCarrySpectralWeyl.Camera
+open NativeCarrySpectralWeyl.Finite
 
 noncomputable section
 
@@ -330,6 +334,27 @@ theorem canonicalC2Geometry_seededClockBoundaryResidual_not_identically_zero
       M block).mp hzero
   exact canonicalC2Geometry_seededClockAtlas_noGo_of_stieltjesPositivity
     M 0 block htransport hpos
+
+theorem canonicalC2Geometry_seededClockAtlas_noGo_of_greenMomentKernel_and_incidenceTransport
+    {ι : Type*} [Fintype ι]
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {base radius : ℕ}
+    {jet : (ℕ ⊕ ℕ) → E}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (hgreen :
+      IsGreenWronskianMomentKernelGramRepresentation
+        canonicalCompletedNativeLogDerivativeMoment jet)
+    (transport : BR2BracketIncidenceJetTransport base radius jet)
+    (M cutoff N : ℕ)
+    (block : ι → C3TraceDynamics.SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    False := by
+  obtain ⟨hpos, _⟩ :=
+    nativeGeometry_to_finiteHeight_chain_of_greenMomentKernel_and_incidenceTransport
+      hbase hradius hgreen transport cutoff N
+  exact canonicalC2Geometry_seededClockAtlas_noGo_of_stieltjesPositivity
+    M cutoff block htransport hpos
 
 end
 end CarrySelfAdjointOperator
