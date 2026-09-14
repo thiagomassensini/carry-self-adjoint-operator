@@ -131,3 +131,119 @@ Auditar as interfaces de `PositiveObservableNativeMomentBridge`,
 upstream que transforma um carrier geométrico já existente no
 `momentKernel`, mantendo o residual explícito se essa igualdade não estiver
 provada.
+
+## Checkpoint de estrutura — build completo e duas rotas equivalentes de entrada
+
+Branch: `agent/next-natural-native-gate`
+HEAD: `3edf447` (`Record corrected clock tower audit`)
+Data: 2026-09-14
+
+### Estado confirmado
+
+- `lake build` no checkout remoto `/tmp/carry-corrected-native-20260913`
+  terminou com sucesso: `9515 jobs`, exit code `0`.
+- A torre corrigida do PR #57 continua sendo apenas uma especificação de
+  coeficientes; ela não fecha um carrier positivo.
+- Há duas formas já formalizadas de consumir a mesma costura upstream:
+  1. `HasDivisionFreeGreenRepresentation` + continuidade produz
+     `HasCompletedNativeRealAxisNormalizedGreenKernel` por
+     `hasCanonicalCompletedNativeRealAxisNormalizedGreenKernel_of_divisionFreeGreen`;
+     depois entram o jet Green, o kernel de momentos, o transporte incidencial
+     e a cadeia de altura existente.
+  2. O estado Gamma polarizado é positivo; se a costura de bordo
+     `CanonicalCompletedC3BoundaryGreenSewing` for provada, seu kernel
+     normalizado coincide com o `dslope` e pode alimentar a rota radial/HP.
+- `CompletedC3GreenFrameStructuralReadoutBridge.lean` já identifica o
+  readout escalar orientado com o produto interno do estado Parseval nativo,
+  condicionado ao kernel Green normalizado. Portanto a passagem escalar →
+  carrier está escrita; falta fornecer o kernel Green normalizado sem assumir
+  a conclusão.
+- `CompletedC3GammaDslopeGram.lean` prova positividade semidefinida do kernel
+  Gamma e a equivalência exata entre sua identificação com `dslope` e a
+  igualdade do readout de bordo.
+- `CompletedC3BoundaryRelationSewing.lean`,
+  `PureNativeBoundaryGreenSewing.lean` e
+  `NativeBoundaryReadoutHPIntertwining.lean` reduzem essa igualdade ao
+  residual nomeado de mismatch Gamma–Green nativo; nenhuma prova de que o
+  residual é zero foi encontrada.
+- O carrier do Wronskiano completo é exato como produto interno de um operador
+  normalizado (`completedGreenWronskian_eq_normalizedFullOperatorInner`), mas
+  não é um substituto positivo do carrier de momentos. O teorema
+  `canonicalCompletedC3GammaBoundary_ne_fullOperatorInner_of_characteristicZero`
+  mostra que identificar esses dois readouts globalmente seria uma afirmação
+  adicional forte, não uma simplificação legítima.
+
+### Hipóteses ainda abertas
+
+- Fornecer uma realização concreta de
+  `HasDivisionFreeGreenRepresentation` no carrier nativo correto, ou provar
+  diretamente a costura `CanonicalCompletedC3BoundaryGreenSewing`.
+- Em forma mínima, para um jet genuinamente construído por Green/TFVD/valva,
+  provar:
+
+  ```lean
+  IsGreenWronskianMomentKernelGramRepresentation
+    canonicalCompletedNativeLogDerivativeMoment jet
+  ```
+
+- Não há atualmente um estado concreto no código que satisfaz a hipótese
+  division-free ou a costura de bordo; os teoremas downstream são condicionais
+  a uma dessas entradas.
+
+### No-goes reforçados
+
+- A identidade algébrica da torre corrigida não pode ser reinterpretada como
+  positividade: isso reutilizaria o kernel-alvo como se fosse Gram.
+- A positividade do estado Gamma e a exatidão do Wronskiano completo, tomadas
+  separadamente, não provam a mesma igualdade; o primeiro é positivo mas exige
+  a costura, e o segundo é indefinido para o papel de momento.
+- Não substituir o residual Gamma–Green por uma proxy positiva nem ajustar a
+  constante para forçar o valor `h₀`.
+
+### O que NÃO precisa ser refeito
+
+- Não reconstruir a cadeia Hankel → whitening/Cholesky → Jacobi → operador de
+  alturas.
+- Não reauditar o build inteiro salvo após alteração de código; o build atual
+  está confirmado em `9515 jobs`.
+- Não tratar o PR #57 como dependência mergeada nem repetir a busca por uma
+  prova de costura que já foi reduzida aos resíduos nomeados.
+
+### Alterações feitas nesta sessão
+
+- Atualização deste checkpoint com a auditoria estrutural das rotas
+  division-free/Gamma e com o resultado do build completo.
+- Nenhum arquivo Lean de produção foi alterado; nenhuma hipótese nova foi
+  introduzida.
+
+### Builds/audits executados
+
+- `lake build`: sucesso, `9515 jobs`, exit code `0`.
+- Auditoria de `CompletedNativeHPGateAudit.lean`,
+  `NaturalNativeOperatorShiftCapstone.lean`,
+  `CompletedC3GreenFrameStructuralReadoutBridge.lean`,
+  `CanonicalCompletedC3GammaDslopeGram.lean`,
+  `CompletedC3BoundaryRelationSewing.lean`,
+  `CompletedC3ValveGreenNaturality.lean` e
+  `CompletedC3GammaFullWronskianOperatorBridge.lean`.
+
+### Gargalo atual EXATO
+
+O único elo upstream ainda não materializado é a igualdade geométrica que
+transforma o Green/TFVD/valva nativo em um kernel positivo normalizado com o
+readout escalar canônico: equivalentemente, uma prova concreta de
+`HasDivisionFreeGreenRepresentation` ou de
+`CanonicalCompletedC3BoundaryGreenSewing`, suficiente para instanciar o
+`momentKernel` no mesmo carrier que já possui a independência incidencial.
+
+### Próxima ação mínima
+
+Inspecionar a polarização quiral positiva e a relação causal de bordo para
+verificar se elas constroem esse carrier positivo sem usar `K`, `J`, Hankel ou
+os coeficientes da torre como definição. Se falhar, registrar o menor
+residual de primeira coluna/costura, não fabricar uma igualdade.
+
+### Retomada
+
+"AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DAQUI.
+NÃO REPITA INVESTIGAÇÕES MARCADAS COMO FECHADAS OU NO-GO."
