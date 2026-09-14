@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.CompletedNativeCorrectedAtlasConstruction
+import CarrySelfAdjointOperator.CompletedNativePolarizedSameEdgeGreenGramBridge
 import CPFormal.Analytic.CpTfvdSameEdgeCompletedPrecompressionCollapse
 import CPFormal.Analytic.CpTfvdSameEdgeReflectedEnergyFixedTimeNoGo
 import CPFormal.Analytic.CpNativeGpreTfvdCommutatorTowerSource
@@ -18,6 +19,7 @@ open scoped ENNReal InnerProduct lp
 namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
+open Filter
 
 noncomputable section
 
@@ -249,6 +251,45 @@ theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_
   congr 1
   exact congrArg Complex.re
     (finiteNativeGpreLogJetGreenBulkReadout_complex_eq p M s)
+
+/-! ## Finite and completed Wronskian sewing on the same carrier
+
+The four-corner prefix above is not merely a scalar energy readout.  It is
+the native carrier already used by the mixed TFVD/Green ledger.  Exposing the
+ledger equation here gives the exact finite sewing gate and its completed
+limit without identifying a prime readout directly with a Taylor coefficient.
+-/
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlas_fourCornerWronskianSewing_iff_totalDefect_zero
+    (M : ℕ) {z w : ℂ} (hz : -1 < z.re) (hw : -1 < w.re) :
+    canonicalCompletedC3RawMixedWronskian z w =
+        canonicalC3MixedRadialCoefficient z w *
+          nativeGpreFourCornerPolarizedDirichletPrefix
+            (3 * M) w (reflectedParameter z) ↔
+      canonicalC3FiniteMixedTotalDefect M z w = 0 := by
+  rw [canonicalCompletedC3RawMixedWronskian_eq_nativeFourCorner_add_totalDefect
+    M hz hw]
+  constructor
+  · intro h
+    linear_combination h
+  · intro h
+    rw [h]
+    ring
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlas_completedWronskianSewing_iff_defect_limit_zero
+    {z w : ℂ} (hz : 0 < z.re) (hzUpper : z.re < 1)
+    (hw : 0 < w.re) :
+    canonicalCompletedC3RawMixedWronskian z w =
+        canonicalC3MixedRadialCoefficient z w *
+          canonicalCompletedC3RawGammaGram
+            w (reflectedParameter z) hw
+            (by simpa [reflectedParameter] using sub_pos.mpr hzUpper) ↔
+      Tendsto
+        (fun M : ℕ =>
+          canonicalNativePolarizedTfvdGreenMomentKernelDefect M z w)
+        atTop (nhds 0) := by
+  exact canonicalNativePolarizedTfvdGreenMomentKernel_eq_nativeFourCorner_iff_defect_limit_zero
+    hz hzUpper hw
 
 end
 
