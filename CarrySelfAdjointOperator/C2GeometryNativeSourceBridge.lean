@@ -477,5 +477,22 @@ theorem canonicalC2Geometry_seededClockAtlas_target_recurrence
   simpa only [canonicalC2Geometry_seededClockFirstColumn_eq_cameraPolarizedMoment
     M cutoff block _ htransport] using hrec
 
+/-- The same necessary recurrence written directly for the canonical native
+    moment sequence, using camera universality only after the material-to-C2
+    transport has been assumed. -/
+theorem canonicalC2Geometry_seededClockAtlas_canonicalTarget_recurrence
+    {ι : Type*} [Fintype ι]
+    (M cutoff : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) (n : ℕ) :
+    ∑ r ∈ Finset.range
+        ((canonicalC2Geometry_seededClockAtlasCharacteristic block).natDegree + 1),
+      (canonicalC2Geometry_seededClockAtlasCharacteristic block).coeff r *
+        polarizedGreenMomentCoefficient
+          canonicalCompletedNativeLogDerivativeMoment (n + r) 0 = 0 := by
+  have hrec := canonicalC2Geometry_seededClockAtlas_target_recurrence
+    M cutoff block htransport n
+  simpa only [completedNativeCameraLogDerivativeMoment_eq_canonical
+    (camera := 2) (by norm_num) cutoff] using hrec
+
 end
 end CarrySelfAdjointOperator
