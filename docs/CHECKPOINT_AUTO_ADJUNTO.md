@@ -99,6 +99,110 @@ menor residual de primeira coluna que ainda impede essa seta.
 "AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DAQUI.
 NÃO REPITA INVESTIGAÇÕES MARCADAS COMO FECHADAS OU NO-GO."
 
+## Checkpoint de seam — identidade vetorial antes do Gram
+
+Branch: `agent/next-natural-native-gate`
+HEAD: `9502416` (`Record chiral positivity gate`)
+Data: 2026-09-14
+
+### Estado confirmado
+
+- A interface mais próxima da genealogia natural é
+  `HasPolarizedCoefficientVectorEquation moments rawJet`: ela afirma que o
+  produto interno do `rawJet` satisfaz diretamente a equação Green polarizada
+  (primeira coluna + shift), antes de qualquer Hankel, Cholesky ou Jacobi.
+- `complexGreenWronskianMomentKernel_of_vectorCoefficientEquation` transforma
+  essa lei vetorial no kernel par/ímpar; combinada com
+  `BR2BracketIncidenceJetTransport`, a
+  `canonicalC2Geometry_height_chain_of_coefficientEquation_and_incidenceTransport`
+  constrói o certificado HP e retorna o operador simétrico. Este é o caminho
+  formal que respeita a ordem `geometria → Green/shift → positividade → altura`.
+- A ponte escalar correspondente já está fechada:
+  `canonicalC2Geometry_nativeWronskianResponse_coefficientEquation_before_gram`
+  e a identidade exata de cauda fornecem a resposta/shift, mas ainda não
+  fornecem um `rawJet` com essa mesma lei de produto interno.
+- O carrier causal Green/retorno tem transporte incidencial real e é positivo
+  em cada cutoff, mas seus Grams são apenas pré-Hankel; o arquivo
+  `CompletedNativeCausalGreenTraceTransport.lean` explicitamente mantém o
+  readout Wronskiano assinado separado do carrier de momentos.
+- O candidato normalizado `canonicalCompletedNativeGreenForwardDifferenceLimitParityJet`
+  já possui `..._momentKernel`, mas o transporte vetorial para o BR2 incidencial
+  não pode ser obtido por identificação ingênua: o componente par zero exige
+  a âncora impossível entre o estado Green normalizado na origem e o estado
+  BR2. Isso está provado em
+  `CompletedNativeCameraTfvdGreenFrameDefectCrosswalk.lean` e
+  `BR2GreenFrameDslopeLimitBridge.lean`.
+- O `rawJet` enriquecido de Taylor ordinário + log também não serve: há um
+  no-go de baixa ordem para `HasPolarizedCoefficientVectorEquation` em
+  `CompletedNativeTfvdEnrichedLowOrderMomentTest.lean`.
+
+### Hipóteses ainda abertas
+
+- Construir ou identificar um `rawJet` nativo corrigido que simultaneamente:
+  1. venha do carrier causal/TFVD/valva já existente;
+  2. satisfaça a equação vetorial Green polarizada; e
+  3. admita o `BR2BracketIncidenceJetTransport` já formalizado.
+- Alternativamente, provar a costura division-free/Gamma que fornece o mesmo
+  `momentKernel` no carrier correto; não basta transportar o estado Green
+  normalizado para o BR2 bruto.
+
+### No-goes reforçados
+
+- Não usar `canonicalCompletedNativeGreenFrameDslopeJet` como se fosse o jet
+  incidencial: sua igualdade ao BR2 é equivalente ao defeito vetorial zero e
+  falha já em `(Sum.inl 0)` para todo estado com kernel normalizado.
+- Não usar `canonicalCompletedNativeTfvdEnrichedTaylorRawJet`: o defeito de
+  ordem baixa impede a equação vetorial.
+- Não usar a torre `canonicalCompletedNativeCorrectedClockTowerCoefficient`
+  como `rawJet`: ela fornece coeficientes escalares corretos, mas não uma
+  realização Hilbertiana positiva.
+
+### O que NÃO precisa ser refeito
+
+- Não rederivar o shift, a identidade de cauda, o transporte incidencial
+  abstrato, o teorema do kernel Green ou a construção downstream do operador.
+- Não voltar ao Gram bruto das câmeras; o seam correto é a lei vetorial
+  `HasPolarizedCoefficientVectorEquation`.
+
+### Alterações feitas nesta sessão
+
+- Registro da interface vetorial pré-Gram e da separação entre o carrier causal
+  positivo, o readout Wronskiano assinado e o jet incidencial.
+- Nenhum Lean de produção alterado.
+
+### Builds/audits executados
+
+- Auditoria de `CompletedNativeCausalCoefficientMomentGate.lean`,
+  `CompletedNativeCorrectedGeometryHeightProvenance.lean`,
+  `NaturalNativeOperatorShiftCapstone.lean`,
+  `CompletedNativeCausalGreenTraceTransport.lean`,
+  `BR2GreenFrameDslopeLimitBridge.lean`,
+  `CompletedNativeCameraTfvdGreenFrameDefectCrosswalk.lean` e
+  `CompletedNativeTfvdEnrichedLowOrderMomentTest.lean`.
+- O build completo continua confirmado no checkpoint anterior: `9515 jobs`,
+  exit code `0`.
+
+### Gargalo atual EXATO
+
+O menor elo não é mais “provar um Gram”: é fornecer um `rawJet` geométrico
+correto com `HasPolarizedCoefficientVectorEquation` e transportá-lo
+injetivamente a partir das incidências nativas. As duas realizações concretas
+mais próximas já auditadas falham em pontos distintos: o Green-frame normalizado
+falha na âncora BR2 de ordem zero; o Taylor enriquecido falha no Gram de baixa
+ordem.
+
+### Próxima ação mínima
+
+Auditar a construção `nativeGpreFourCorner`/causal Green + retorno para saber
+se ela contém um `rawJet` corrigido com a lei vetorial de primeira coluna e
+shift. Se não contiver, registrar a igualdade mínima de primeira coluna que
+falta, sem converter a torre escalar corrigida em carrier por definição.
+
+### Retomada
+
+"AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DAQUI.
+NÃO REPITA INVESTIGAÇÕES MARCADAS COMO FECHADAS OU NO-GO."
+
 ## Checkpoint de descoberta — polarização quiral não é ainda o carrier de momentos
 
 Branch: `agent/next-natural-native-gate`
