@@ -312,6 +312,41 @@ theorem canonicalC2Geometry_native_strictChiralDominance_of_radialQuadraticEnerg
       henergy)
     hnondegenerate
 
+/-! ## Direct native radial input for the same-geometry energy capstone -/
+
+/-- The same-geometry energy capstone with the strictness input written in
+the native radial vocabulary.  The exact bracket/TFVD/Green identities and
+the causal adjoint-square identity remain the first fields of the result;
+`noLeak` and the uniform Gamma determinant bound are used only to obtain the
+strict Stieltjes certificate needed by the final finite height section. -/
+abbrev canonicalC2Geometry_native_sameGeometry_energy_to_height_operator_of_radialLedger
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M cutoff N : ℕ)
+    (hnoLeak : CanonicalCompletedC3AsymptoticRadialGammaLedgerNoLeak)
+    (hstrict : CanonicalCompletedC3RadialGammaUniformDeterminantLowerBound) :=
+  canonicalC2Geometry_native_sameGeometry_energy_to_height_operator
+    hbase hradius M cutoff N
+    (canonicalC2Geometry_native_strictChiralDominance_of_radialLedger
+      hnoLeak hstrict)
+
+/-- Energy-level version of the preceding theorem.  The four rotated
+quadratic Gamma/dslope energy limits are exactly the polarization data used
+to recover the native mixed jet defect; finite nondegeneracy then supplies
+the strict part. -/
+abbrev canonicalC2Geometry_native_sameGeometry_energy_to_height_operator_of_radialQuadraticEnergy
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M cutoff N : ℕ)
+    (henergy : CanonicalCompletedC3RadialGammaDslopeQuadraticEnergyFlatness)
+    (hnondegenerate : CanonicalCompletedNativeHankelPairNondegenerate) :=
+  canonicalC2Geometry_native_sameGeometry_energy_to_height_operator
+    hbase hradius M cutoff N
+    (canonicalC2Geometry_native_strictChiralDominance_of_radialQuadraticEnergy
+      henergy hnondegenerate)
+
 end
 
 end CarrySelfAdjointOperator
