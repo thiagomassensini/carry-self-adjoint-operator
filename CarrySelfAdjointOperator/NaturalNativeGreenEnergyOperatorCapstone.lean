@@ -124,6 +124,18 @@ theorem canonicalC2Geometry_native_source_valve_green_operator_forced
       (canonicalCompletedNativeStieltjesJet_odd_linearIndependent hpos)
       N
 
+/-! The same capstone with the strictness input expressed in the native
+radial language. -/
+
+theorem canonicalC2Geometry_native_strictChiralDominance_of_radialLedger
+    (hnoLeak : CanonicalCompletedC3AsymptoticRadialGammaLedgerNoLeak)
+    (hstrict : CanonicalCompletedC3RadialGammaUniformDeterminantLowerBound) :
+    CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance := by
+  apply (canonicalCompletedNativeCenteredStrictChiralCoefficientDominance_iff_expanded).mpr
+  apply (canonicalCompletedC3ExpandedStructuralStrictChiralDominance_iff_stieltjesPositivity).mpr
+  exact canonicalCompletedNativeStieltjesPositivity_of_radialLedger
+    hnoLeak hstrict
+
 end
 
 end CarrySelfAdjointOperator
