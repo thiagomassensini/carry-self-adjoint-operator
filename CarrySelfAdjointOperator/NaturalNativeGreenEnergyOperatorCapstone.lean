@@ -36,7 +36,17 @@ theorem canonicalC2Geometry_native_source_valve_green_operator_forced
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M cutoff N : ℕ)
     (hdominance : CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance) :
-    (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →
+    (∀ (s t : ℂ) (hs : 0 < s.re) (ht : 0 < t.re),
+        canonicalCompletedC3RawGammaGram s t hs ht =
+          inner ℂ
+            (canonicalCompletedC3DirichletGradientCausalGreenBoundaryState
+              hbase s hs)
+            (ContinuousLinearMap.adjoint
+              canonicalCompletedC3CausalGreenBoundarySum
+              (canonicalCompletedC3CausalGreenBoundarySum
+                (canonicalCompletedC3DirichletGradientCausalGreenBoundaryState
+                  hbase t ht)))) ∧
+      (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →
         finiteBracketCharacteristic 2 tailCutoff s +
             (∑' index : ℕ,
               centerBracketTerm 2 s (index + tailCutoff)) =
@@ -99,17 +109,20 @@ theorem canonicalC2Geometry_native_source_valve_green_operator_forced
     exact
       (canonicalCompletedC3ExpandedStructuralStrictChiralDominance_iff_stieltjesPositivity).mp
         hexpanded
-  refine ⟨htail, hcoeff, hshift, ⟨hpos, ?_,
+  refine ⟨?_, htail, hcoeff, hshift, ⟨hpos, ?_,
     nativeGeometry_normalizedCamera_eq_commonCharacteristic (camera := 2)
       (by norm_num) cutoff,
     nativeGeometry_cameraMoments_eq_canonical (camera := 2)
       (by norm_num) cutoff,
     nativeGeometryFiniteHeightOperator_isSymm hpos N⟩⟩
-  exact closedGreenJetEnergyAdjointSquare_finiteCompression_eq_canonicalSection
-    (canonicalCompletedNativeStieltjesJet_momentKernel hpos)
-    (canonicalCompletedNativeStieltjesJet_even_linearIndependent hpos)
-    (canonicalCompletedNativeStieltjesJet_odd_linearIndependent hpos)
-    N
+  · intro s t hs ht
+    exact canonicalCompletedC3RawGammaGram_eq_causalAdjointSquare
+      hbase s t hs ht
+  · exact closedGreenJetEnergyAdjointSquare_finiteCompression_eq_canonicalSection
+      (canonicalCompletedNativeStieltjesJet_momentKernel hpos)
+      (canonicalCompletedNativeStieltjesJet_even_linearIndependent hpos)
+      (canonicalCompletedNativeStieltjesJet_odd_linearIndependent hpos)
+      N
 
 end
 
