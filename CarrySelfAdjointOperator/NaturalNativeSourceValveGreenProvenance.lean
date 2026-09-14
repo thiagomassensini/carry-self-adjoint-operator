@@ -4,6 +4,7 @@ import CarrySelfAdjointOperator.CompletedNativeCausalGreenProvenance
 import CarrySelfAdjointOperator.NativeMomentProjectiveValveBridge
 import CarrySelfAdjointOperator.GreenMultiplicativeValveBridge
 import CarrySelfAdjointOperator.CompletedNativeRadialChiralMultiplier
+import CarrySelfAdjointOperator.CompletedNativeChiralHankelDominance
 import Mathlib.Tactic
 
 /-!
@@ -279,6 +280,46 @@ theorem canonicalC2Geometry_valve_green_to_height_of_radialChiralGate
   let hpos : CanonicalCompletedNativeStieltjesPositivity :=
     canonicalCompletedNativeStieltjesPositivity_of_radialChiralMultiplier
       hcontractive hnondegenerate
+  exact ⟨hpos,
+    nativeGeometry_normalizedCamera_eq_commonCharacteristic (camera := 2)
+      (by norm_num) cutoff,
+    nativeGeometry_cameraMoments_eq_canonical (camera := 2)
+      (by norm_num) cutoff,
+    nativeGeometry_cameraJacobiSection_eq_canonical
+      (camera := 2) (by norm_num) cutoff N hpos,
+    nativeGeometryFiniteHeightOperator_isSymm hpos N⟩
+
+/-!
+The same capstone can be reached from the geometric chiral readout itself.
+`CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance` is stated
+in terms of the two completed positive/negative Wronskian channels, before a
+Hankel matrix, Cholesky factor, or Jacobi coordinate is introduced.  The
+existing equivalence to the expanded structural dominance then supplies the
+Stieltjes positivity consumed by the final finite-height construction.
+-/
+theorem canonicalC2Geometry_valve_green_to_height_of_nativeChiralDominance
+    (hdominance :
+      CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance)
+    (cutoff N : ℕ) :
+    ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+      normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+          (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+        completedNativeCameraLogDerivativeMoment 2 cutoff =
+          canonicalCompletedNativeLogDerivativeMoment ∧
+        (∃ hgram :
+            (hankelGram
+              (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+          canonicalFiniteJacobiSection
+              (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+            canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+        (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  have hexpanded :
+      CanonicalCompletedC3ExpandedStructuralStrictChiralDominance :=
+    (canonicalCompletedNativeCenteredStrictChiralCoefficientDominance_iff_expanded).mp
+      hdominance
+  have hpos : CanonicalCompletedNativeStieltjesPositivity :=
+    (canonicalCompletedC3ExpandedStructuralStrictChiralDominance_iff_stieltjesPositivity).mp
+      hexpanded
   exact ⟨hpos,
     nativeGeometry_normalizedCamera_eq_commonCharacteristic (camera := 2)
       (by norm_num) cutoff,
