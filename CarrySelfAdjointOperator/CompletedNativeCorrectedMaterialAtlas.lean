@@ -200,6 +200,56 @@ theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_
     ((inner_canonicalCompletedNativeCorrectedMaterialAtlasPrefixSource_eq_greenBulk
       p tau M s).trans (finiteNativeGpreLogJetGreenBulkReadout_eq p M s)).symm
 
+/-! ## Corrected material to native four-corner flux
+
+The next seam is still below Hankel/Jacobi.  The corrected material readout
+is the radial prime coefficient applied to the actual four-corner `G_pre`
+prefix energy, and the same scalar is the normalized log-jet wedge readout.
+These are two exact views of the same finite native synthesis.
+-/
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_fourCornerPrefix
+    (p : Nat.Primes) (M : ℕ) (s : ℂ) :
+    canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout p s
+        (nativeGpreGreenEnergyFirstLevelState (3 * M) s) =
+      (0, primeCarryGreenRadialProfile (criticalDisplacement s.re) p *
+        (nativeGpreFourCornerDirichletPrefixReadout (3 * M) s).re) := by
+  rw [canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_greenBulk,
+    primeCarryGreenBulkCutoffProfile_eq,
+    nativeGpreFourCornerDirichletPrefixReadout_eq_pairing]
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_normalizedLogJetReadout
+    (p : Nat.Primes) (M : ℕ) (s : ℂ) :
+    canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout p s
+        (nativeGpreGreenEnergyFirstLevelState (3 * M) s) =
+      (0, finiteNativeGpreLogJetGreenBulkReadout p M s) := by
+  rw [canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_greenBulk,
+    finiteNativeGpreLogJetGreenBulkReadout_eq]
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_normalizedLogJetWedge
+    (p : Nat.Primes) (M : ℕ) (s : ℂ) :
+    canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout p s
+        (nativeGpreGreenEnergyFirstLevelState (3 * M) s) =
+      (0,
+        (((-(((primeCarryAmplitudeRatio p : ℝ) : ℂ) /
+          ((Real.log (p : ℝ) : ℝ) : ℂ))) *
+          finiteCanonicalCpLogJetCommutatorWedgeTrace
+            (p : ℕ) M s).re)) := by
+  rw [canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_normalizedLogJetReadout]
+  rfl
+
+theorem canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_normalizedOrientedGreenFlux
+    (p : Nat.Primes) (M : ℕ) (s : ℂ) :
+    canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout p s
+        (nativeGpreGreenEnergyFirstLevelState (3 * M) s) =
+      (0,
+        (((primeCarryAmplitudeRatio p : ℝ) : ℂ) *
+          finiteOrientedCpGreenFlux (p : ℕ) (3 * M) s).re) := by
+  rw [canonicalCompletedNativeCorrectedMaterialAtlasRadialTransportReadout_eq_normalizedLogJetWedge]
+  congr 1
+  exact congrArg Complex.re
+    (finiteNativeGpreLogJetGreenBulkReadout_complex_eq p M s)
+
 end
 
 end CarrySelfAdjointOperator
