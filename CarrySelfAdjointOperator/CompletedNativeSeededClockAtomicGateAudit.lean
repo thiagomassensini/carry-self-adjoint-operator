@@ -1,0 +1,10 @@
+import CarrySelfAdjointOperator.CompletedNativeSeededClockAtomicGate
+
+namespace CarrySelfAdjointOperator
+
+#print axioms seededClockAtlasCoefficient_eq_finiteAtomicMoment
+#print axioms seededClockAtlasCoefficient_zero_zero_eq_nativeMoment_zero_of_sameEdgeTransport
+#print axioms nativeZeroSeededClockBlock_zero_zero_eq_energy
+#print axioms nativeZeroSeededClockBlock_not_sameEdgeTransport
+
+end CarrySelfAdjointOperator
