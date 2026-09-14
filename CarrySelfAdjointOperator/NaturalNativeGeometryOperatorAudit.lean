@@ -194,6 +194,55 @@ theorem canonicalC2Geometry_native_green_operator_to_height
   exact canonicalCompletedNativeCarryGreenChiralResponse_succCoefficient_eq_polarizedMoment
     M p q
 
+/-! The finite material clock is not needed for the source-direction route.
+The shrinking radial Gamma/valve seam is the geometric replacement for that
+first-column calibration: its ledger form feeds the already completed
+carry/TFVD/Green source capstone, while the uniform determinant bound is kept
+as the explicit no-collapse premise. -/
+
+theorem canonicalC2Geometry_native_radial_boundary_to_height
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (cutoff N : ℕ)
+    (hboundary :
+      CanonicalCompletedC3AsymptoticRadialTiltBoundaryIntertwining)
+    (hstrict :
+      CanonicalCompletedC3RadialGammaUniformDeterminantLowerBound) :
+    (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →
+        finiteBracketCharacteristic 2 tailCutoff s +
+            (∑' index : ℕ, centerBracketTerm 2 s (index + tailCutoff)) =
+          factor 2 s * nativeScalar s) ∧
+      (∀ (packagedCutoff : ℕ) (time : ℝ),
+        nativeXiCompletionFactor (time : ℂ) *
+            completedPackagedFiniteNativeOperatorJet
+              2 packagedCutoff 0 time /
+              factor 2 (nativeLine time) =
+          completedNativeOperatorCharacteristic (time : ℂ)) ∧
+      (∀ (M p q : ℕ),
+        canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+            M (p + q + 1) =
+          polarizedGreenMomentCoefficient
+            canonicalCompletedNativeLogDerivativeMoment p q) ∧
+      ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+        normalizedCompletedNativeCameraCharacteristic 3 cutoff =
+            (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+          completedNativeCameraLogDerivativeMoment 3 cutoff =
+            canonicalCompletedNativeLogDerivativeMoment ∧
+          (∃ hgram :
+              (hankelGram
+                (completedNativeCameraLogDerivativeMoment 3 cutoff) N).PosDef,
+            canonicalFiniteJacobiSection
+                (completedNativeCameraLogDerivativeMoment 3 cutoff) N hgram =
+              canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+          (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  have hnoLeak : CanonicalCompletedC3AsymptoticRadialGammaLedgerNoLeak :=
+    (canonicalCompletedC3AsymptoticRadialTiltBoundaryIntertwining_iff_ledgerNoLeak).mp
+      hboundary
+  exact
+    canonicalC2Geometry_native_source_valve_green_to_height_of_radialLedger
+      hbase hradius hnoLeak hstrict cutoff N
+
 end
 
 end CarrySelfAdjointOperator
