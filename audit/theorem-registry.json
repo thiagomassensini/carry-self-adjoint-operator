@@ -906,5 +906,7 @@
     ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_zero_zero_eq_nativeMoment_zero_of_sameEdgeTransport"}
     ,{"qualified": "CarrySelfAdjointOperator.nativeZeroSeededClockBlock_zero_zero_eq_energy"}
     ,{"qualified": "CarrySelfAdjointOperator.nativeZeroSeededClockBlock_not_sameEdgeTransport"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_zero_zero_eq_positiveChiralDerivative_of_sameEdgeTransport"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_zero_zero_eq_negNegativeChiralDerivative_of_sameEdgeTransport"}
   ]
 }

@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.CompletedNativeSameEdgeGreenClockTransport
+import CarrySelfAdjointOperator.CompletedNativeCentralChiralEnergyFlow
 import Mathlib.Tactic
 
 open scoped BigOperators ComplexConjugate InnerProductSpace
@@ -87,6 +88,41 @@ theorem nativeZeroSeededClockBlock_not_sameEdgeTransport
   exact nativeBlockSeededData_zero_energy_ne_nativeMoment s
     (Complex.ofReal_injective hcomplex)
 
+/-! The central clock gate can be read directly as the signed chiral
+energy flow.  This is the existing Green/chiral polarization, not a new
+Gram or a mirrored clock normalization. -/
+
+/-- Under the exact same-edge transport, the central seeded-clock mass is
+the first-order variation of the positive chiral energy. -/
+theorem seededClockAtlasCoefficient_zero_zero_eq_positiveChiralDerivative_of_sameEdgeTransport
+    {ι : Type*} [Fintype ι]
+    (M : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasSameEdgeGreenToClockBoundaryTransport M block) :
+    seededClockAtlasCoefficient block 0 0 =
+      ((deriv completedNativeCentralPositiveChiralEnergy 0 : ℝ) : ℂ) := by
+  calc
+    seededClockAtlasCoefficient block 0 0 =
+        (canonicalCompletedNativeLogDerivativeMoment 0 : ℂ) :=
+      seededClockAtlasCoefficient_zero_zero_eq_nativeMoment_zero_of_sameEdgeTransport
+        M block htransport
+    _ = ((deriv completedNativeCentralPositiveChiralEnergy 0 : ℝ) : ℂ) := by
+      rw [deriv_completedNativeCentralPositiveChiralEnergy_zero]
+
+/-- The same central mass is the opposite of the first-order variation of
+the negative chiral energy. -/
+theorem seededClockAtlasCoefficient_zero_zero_eq_negNegativeChiralDerivative_of_sameEdgeTransport
+    {ι : Type*} [Fintype ι]
+    (M : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasSameEdgeGreenToClockBoundaryTransport M block) :
+    seededClockAtlasCoefficient block 0 0 =
+      ((-deriv completedNativeCentralNegativeChiralEnergy 0 : ℝ) : ℂ) := by
+  calc
+    seededClockAtlasCoefficient block 0 0 =
+        (canonicalCompletedNativeLogDerivativeMoment 0 : ℂ) :=
+      seededClockAtlasCoefficient_zero_zero_eq_nativeMoment_zero_of_sameEdgeTransport
+        M block htransport
+    _ = ((-deriv completedNativeCentralNegativeChiralEnergy 0 : ℝ) : ℂ) := by
+      simpa [deriv_completedNativeCentralNegativeChiralEnergy_zero]
 end
 
 end CarrySelfAdjointOperator
