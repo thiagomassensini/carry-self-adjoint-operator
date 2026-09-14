@@ -3,6 +3,7 @@ import CarrySelfAdjointOperator.ProjectiveValveMomentFrontier
 import CarrySelfAdjointOperator.GreenJetJacobiFiniteCompression
 import CarrySelfAdjointOperator.CompletedNativeJacobiCyclicReadout
 import CarrySelfAdjointOperator.BR2GreenFrameDslopeLimitBridge
+import CarrySelfAdjointOperator.CompletedNativeChiralHankelDominance
 import Mathlib.Tactic
 
 /-!
@@ -570,6 +571,47 @@ theorem canonicalC2Geometry_height_chain_of_divisionFreeGreen_and_greenFrameDefe
       htransport.incidenceTransport
   exact canonicalC2Geometry_height_chain_of_divisionFreeGreen_and_incidenceTransport
     hbase hradius state hgreen hstate hinc cutoff N
+
+/-! ## The expanded structural signature forces the same operator -/
+
+/-- The completed structural signature is already the source-side scalar from
+the native Green construction: its odd Taylor coefficients are the canonical
+logarithmic moments, and its two regularized Loewner blocks are therefore the
+unshifted and shifted Hankel towers.  Once the genuinely geometric chiral
+dominance gate is supplied, the finite height operator follows without a
+material-clock first-column calibration.  This is the direct structural
+route; the separate clock transport remains available when one wants the
+literal seeded-clock carrier.
+-/
+theorem canonicalC2Geometry_natural_source_to_height_operator_of_expandedStructuralDominance
+    (hdominance : CanonicalCompletedC3ExpandedStructuralStrictChiralDominance)
+    (cutoff N : ℕ) :
+    canonicalCompletedC3ExpandedStructuralEvenLoewnerDefect 0 N =
+        hankelGram canonicalCompletedNativeLogDerivativeMoment N ∧
+      canonicalCompletedC3ExpandedStructuralOddLoewnerDefect 0 N =
+        shiftedHankel canonicalCompletedNativeLogDerivativeMoment N ∧
+      ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+        normalizedCompletedNativeCameraCharacteristic 3 cutoff =
+            (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+          completedNativeCameraLogDerivativeMoment 3 cutoff =
+            canonicalCompletedNativeLogDerivativeMoment ∧
+          (∃ hgram :
+              (hankelGram
+                (completedNativeCameraLogDerivativeMoment 3 cutoff) N).PosDef,
+            canonicalFiniteJacobiSection
+                (completedNativeCameraLogDerivativeMoment 3 cutoff) N hgram =
+              canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+          (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  have heven :=
+    canonicalCompletedC3ExpandedStructuralEvenLoewnerDefect_eq_hankel 0 N
+  have hodd :=
+    canonicalCompletedC3ExpandedStructuralOddLoewnerDefect_eq_shiftedHankel 0 N
+  have hpos : CanonicalCompletedNativeStieltjesPositivity :=
+    (canonicalCompletedC3ExpandedStructuralStrictChiralDominance_iff_stieltjesPositivity).mp
+      hdominance
+  exact ⟨heven, hodd,
+    ⟨hpos, nativeGeometry_to_finiteHeight_chain (camera := 3) (by norm_num)
+      cutoff N hpos⟩⟩
 
 end
 
