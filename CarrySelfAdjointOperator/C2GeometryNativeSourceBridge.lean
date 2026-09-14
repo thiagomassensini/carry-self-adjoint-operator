@@ -2,6 +2,7 @@ import CarrySelfAdjointOperator.C2LiteralCameraAllOrderJetCrosswalk
 import CarrySelfAdjointOperator.PrimeDepthTfvdLogJetCrosswalk
 import CarrySelfAdjointOperator.CompletedNativeCameraUniversality
 import CarrySelfAdjointOperator.CompletedNativeCorrectedCausalChiralGate
+import CarrySelfAdjointOperator.CompletedNativeCorrectedClockBoundaryGate
 import NativeCarrySpectralWeyl.Camera.BracketProfileBridge
 
 /-!
@@ -29,6 +30,7 @@ open CPFormal.Carry.Positional
 open CPFormal.Analytic.Cp
 open ProjectiveDepth
 open FiniteNativeCarryOperator
+open C3TraceDynamics
 open NativeCarryC3Crosswalk
 open NativeCarrySpectralWeyl.Camera
 open NativeCarrySpectralWeyl.Camera.FiniteBridge
@@ -258,6 +260,44 @@ theorem canonicalC2Geometry_correctedChiralCoefficient_odd_eq_cameraMoment
       (completedNativeCameraLogDerivativeMoment 2 cutoff n : ℂ) := by
   rw [canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_odd_eq_canonicalMoment]
   rw [canonicalC2Geometry_cameraMoments_eq_canonical cutoff]
+
+/-! ## C2 specialization of the two-variable transport gate -/
+
+/-- If a seeded material atlas realizes the corrected native C2 boundary
+    column, then that column is already the C2 factor-cancelled polarized
+    Green column.  The statement is coefficient-level and does not introduce
+    a Gram or Jacobi construction. -/
+theorem canonicalC2Geometry_seededClockFirstColumn_eq_cameraPolarizedMoment
+    {ι : Type*} [Fintype ι]
+    (M cutoff : ℕ) (block : ι → SeededClockBlock) (p : ℕ)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    seededClockAtlasCoefficient block p 0 =
+      polarizedGreenMomentCoefficient
+        (completedNativeCameraLogDerivativeMoment 2 cutoff) p 0 := by
+  calc
+    seededClockAtlasCoefficient block p 0 =
+        canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M p :=
+      htransport p
+    _ = polarizedGreenMomentCoefficient
+        (completedNativeCameraLogDerivativeMoment 2 cutoff) p 0 := by
+      rw [canonicalC2Geometry_cameraMoments_eq_canonical cutoff]
+      exact canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_polarizedMoment
+        M p 0
+
+/-- The corrected C2 boundary transport is sufficient to close the complete
+    two-variable Green moment kernel of the seeded-clock parity jet.  The
+    only unproved input is the material first-column calibration itself; the
+    interior transport is inherited from the exact seeded-clock shift. -/
+theorem canonicalC2Geometry_seededClockGreenMomentKernel_of_correctedTransport
+    {ι : Type*} [Fintype ι]
+    (M cutoff : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    IsComplexGreenWronskianMomentKernelGramRepresentation
+      (completedNativeCameraLogDerivativeMoment 2 cutoff)
+      (polarizedCoefficientParityJet (seededClockAtlasJet block)) := by
+  rw [canonicalC2Geometry_cameraMoments_eq_canonical cutoff]
+  exact seededClockAtlasGreenMomentKernel_of_correctedNativeChiralBoundaryTransport
+    M block htransport
 
 end
 end CarrySelfAdjointOperator
