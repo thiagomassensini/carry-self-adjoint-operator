@@ -195,6 +195,77 @@ theorem canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_nativeMoment
         M block htransport))
     (transport.even_linearIndependent hbase hradius) n
 
+/-- The same cyclic readout is the corrected native chiral boundary
+coefficient itself.  Thus the operator-level scalar is inherited directly
+from the signed Green/TFVD readout, before the moment sequence is named. -/
+theorem canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_correctedNativeChiralBoundary
+    {ι : Type*} [Fintype ι]
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (polarizedCoefficientParityJet (seededClockAtlasJet block)))
+    (n : ℕ) :
+    letI : InnerProductSpace ℝ
+        (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    greenJetJacobiCoreCyclicMoment
+        (transport.even_linearIndependent hbase hradius) n =
+      canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M (2 * n) := by
+  letI : InnerProductSpace ℝ
+      (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  calc
+    (greenJetJacobiCoreCyclicMoment
+          (transport.even_linearIndependent hbase hradius) n : ℂ) =
+        (canonicalCompletedNativeLogDerivativeMoment n : ℂ) := by
+      exact_mod_cast
+        (canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_nativeMoment
+          hbase hradius M block htransport transport n)
+    _ = canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M (2 * n) := by
+      symm
+      exact canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_odd_eq_canonicalMoment
+        M n
+
+/-- The cyclic moments of the Green Jacobi core are therefore the odd Taylor
+coefficients of the completed native Wronskian response.  This is the direct
+scalar provenance statement corresponding to the script's `closed_native_series`
+readout; no matrix fit is used in this equality. -/
+theorem canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_fullWronskianResponse
+    {ι : Type*} [Fintype ι]
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M : ℕ) (block : ι → SeededClockBlock)
+    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (transport : BR2BracketIncidenceJetTransport base radius
+      (polarizedCoefficientParityJet (seededClockAtlasJet block)))
+    (n : ℕ) :
+    letI : InnerProductSpace ℝ
+        (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+      InnerProductSpace.rclikeToReal ℂ _
+    greenJetJacobiCoreCyclicMoment
+        (transport.even_linearIndependent hbase hradius) n =
+      canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+        M (2 * n + 1) := by
+  letI : InnerProductSpace ℝ
+      (WithLp 2 (ι → EuclideanSpace ℂ (Fin 4))) :=
+    InnerProductSpace.rclikeToReal ℂ _
+  calc
+    (greenJetJacobiCoreCyclicMoment
+          (transport.even_linearIndependent hbase hradius) n : ℂ) =
+        (canonicalCompletedNativeLogDerivativeMoment n : ℂ) := by
+      exact_mod_cast
+        (canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_nativeMoment
+          hbase hradius M block htransport transport n)
+    _ = canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+          M (2 * n + 1) := by
+      symm
+      exact canonicalCompletedNativeCarryGreenChiralResponse_oddCoefficient_eq_moment
+        M n
+
 /-! ## The algebraic seam before any Gram extraction -/
 
 /--
