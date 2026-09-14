@@ -1,5 +1,8 @@
 import CarrySelfAdjointOperator.C2LiteralCameraAllOrderJetCrosswalk
 import CarrySelfAdjointOperator.PrimeDepthTfvdLogJetCrosswalk
+import CarrySelfAdjointOperator.CompletedNativeCameraUniversality
+import CarrySelfAdjointOperator.CompletedNativeCorrectedCausalChiralGate
+import NativeCarrySpectralWeyl.Camera.BracketProfileBridge
 
 /-!
 # Exact C2 geometry-to-native source bridge
@@ -113,6 +116,53 @@ theorem canonicalC2Geometry_primeDepthPrefix_eq_completedTfvd
     finitePrimeDepthGeneratedC3HilbertPrefixState M time =
       canonicalCompletedC3HilbertPrefixState (nativeLine time) M :=
   finitePrimeDepthGeneratedC3HilbertPrefixState_eq_completedTfvd M time
+
+/-! ## Camera-factor removal and the common Green/chiral target -/
+
+/-- The finite aligned C2 characteristic is exactly the periodic-profile
+Dirichlet prefix described by the geometric pushforward. -/
+theorem canonicalC2Geometry_finiteCharacteristic_eq_profilePrefix
+    (cutoff : ℕ) (s : ℂ) :
+    finiteBracketCharacteristic 2 cutoff s =
+      coefficientDirichletPrefix c2Profile (4 * cutoff + 1) s :=
+  finiteBracketCharacteristic_two_eq_profilePrefix cutoff s
+
+/-- On the absolutely convergent half-plane, the C2 profile is the explicit
+camera factor times the common positive Dirichlet series. -/
+theorem canonicalC2Geometry_profileSeries_eq_factor_mul_positiveSeries
+    {s : ℂ} (hs : 1 < s.re) :
+    coefficientDirichletSeries c2Profile s =
+      c2Factor s * positiveDirichletSeries s :=
+  c2ProfileDirichletSeries_factorization hs
+
+/-- After completion and exact division by the nonvanishing C2 factor, the
+camera returns the common completed characteristic on the whole native line. -/
+theorem canonicalC2Geometry_completedNormalizedCamera_eq_commonCharacteristic
+    (cutoff : ℕ) :
+    normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+      (fun time : ℝ =>
+        completedNativeOperatorCharacteristic (time : ℂ)) := by
+  exact normalizedCompletedNativeCameraCharacteristic_eq (by norm_num) cutoff
+
+/-- The logarithmic moment sequence reconstructed from the normalized C2
+camera is exactly the canonical native moment sequence. -/
+theorem canonicalC2Geometry_cameraMoments_eq_canonical (cutoff : ℕ) :
+    completedNativeCameraLogDerivativeMoment 2 cutoff =
+      canonicalCompletedNativeLogDerivativeMoment := by
+  exact completedNativeCameraLogDerivativeMoment_eq_canonical
+    (by norm_num) cutoff
+
+/-- The corrected Green/chiral boundary coefficient is the two-variable
+polarized moment coefficient of the factor-cancelled C2 camera.  This is the
+source-level handoff to the height gate; no Hankel or Jacobi object occurs. -/
+theorem canonicalC2Geometry_correctedChiralCoefficient_eq_cameraMoments
+    (M cutoff p q : ℕ) :
+    canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M (p + q) =
+      polarizedGreenMomentCoefficient
+        (completedNativeCameraLogDerivativeMoment 2 cutoff) p q := by
+  rw [canonicalC2Geometry_cameraMoments_eq_canonical cutoff]
+  exact canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_polarizedMoment
+    M p q
 
 end
 end CarrySelfAdjointOperator
