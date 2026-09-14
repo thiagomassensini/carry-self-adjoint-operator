@@ -313,6 +313,61 @@ theorem canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_expandedStructuralSi
       rw [canonicalCompletedC3ExpandedStructuralSignature_odd_eq_canonicalMoment,
         canonicalCompletedNativeCarryGreenChiralResponse_oddCoefficient_eq_moment]
 
+/-! ## The native response already carries the boundary-plus-shift law -/
+
+/-- The completed native Wronskian response satisfies the full polarized
+coefficient equation before any Hilbert Gram, Hankel section, or Jacobi
+coordinate is introduced.  Its coefficient array is the response coefficient
+at total degree `p + q + 1`; the native Green/valve identity identifies that
+array with the polarized moment coefficient. -/
+theorem canonicalC2Geometry_nativeWronskianResponse_coefficientEquation_before_gram
+    (M : ℕ) :
+    IsPolarizedGreenCoefficientEquation
+      canonicalCompletedNativeLogDerivativeMoment
+      (fun p q : ℕ ↦
+        canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+          M (p + q + 1)) := by
+  have hcoeff :
+      (fun p q : ℕ ↦
+        canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+          M (p + q + 1)) =
+        polarizedGreenMomentCoefficient
+          canonicalCompletedNativeLogDerivativeMoment := by
+    funext p q
+    exact canonicalCompletedNativeCarryGreenChiralResponse_succCoefficient_eq_polarizedMoment
+      M p q
+  rw [hcoeff]
+  exact polarizedGreenMomentCoefficient_coefficientEquation _
+
+/-- The same native response equation, split into the two identities which
+force the later shift operator: its first column is the Green boundary
+response, and its interior is invariant under moving one unit between the two
+indices.  This is the pre-Gram algebraic seam of the construction. -/
+theorem canonicalC2Geometry_nativeWronskianResponse_boundary_and_shift_before_gram
+    (M : ℕ) :
+    (∀ p : ℕ,
+      canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+          M (p + 1) =
+        oddMomentResponseCoefficient
+          canonicalCompletedNativeLogDerivativeMoment (p + 1)) ∧
+      (∀ p q : ℕ,
+        canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+            M (p + (q + 1) + 1) =
+          canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+            M ((p + 1) + q + 1)) := by
+  have hsplit :=
+    (polarizedGreenCoefficientEquation_iff_boundary_transport
+      canonicalCompletedNativeLogDerivativeMoment
+      (fun p q : ℕ ↦
+        canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+          M (p + q + 1))).mp
+      (canonicalC2Geometry_nativeWronskianResponse_coefficientEquation_before_gram M)
+  constructor
+  · intro p
+    simpa using hsplit.1 p
+  · intro p q
+    simpa using hsplit.2 p q
+
 /-! ## The algebraic seam before any Gram extraction -/
 
 /--
@@ -732,6 +787,63 @@ theorem canonicalC2Geometry_native_source_valve_green_to_height_of_nativeChiralD
   intro M p q
   exact canonicalCompletedNativeCarryGreenChiralResponse_succCoefficient_eq_polarizedMoment
     M p q
+
+/-- A compact source-direction capstone with the operator-forcing identity
+exposed in its native form.  The response coefficient equation, and hence its
+boundary-plus-shift decomposition, is proved before the height section is
+introduced; strict chiral dominance is used only afterwards to supply the
+positive finite section on which the height operator lives. -/
+theorem canonicalC2Geometry_native_source_to_height_operator_via_native_response_shift
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M cutoff N : ℕ)
+    (hdominance : CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance) :
+    (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →
+        finiteBracketCharacteristic 2 tailCutoff s +
+            (∑' index : ℕ,
+              centerBracketTerm 2 s (index + tailCutoff)) =
+          factor 2 s * nativeScalar s) ∧
+      (∀ (packagedCutoff : ℕ) (time : ℝ),
+        nativeXiCompletionFactor (time : ℂ) *
+            completedPackagedFiniteNativeOperatorJet
+              2 packagedCutoff 0 time /
+              factor 2 (nativeLine time) =
+          completedNativeOperatorCharacteristic (time : ℂ)) ∧
+      IsPolarizedGreenCoefficientEquation
+        canonicalCompletedNativeLogDerivativeMoment
+        (fun p q : ℕ ↦
+          canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+            M (p + q + 1)) ∧
+      ((∀ p : ℕ,
+          canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+              M (p + 1) =
+            oddMomentResponseCoefficient
+              canonicalCompletedNativeLogDerivativeMoment (p + 1)) ∧
+        (∀ p q : ℕ,
+          canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+              M (p + (q + 1) + 1) =
+            canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+              M ((p + 1) + q + 1))) ∧
+      ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+        normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+            (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+          completedNativeCameraLogDerivativeMoment 2 cutoff =
+            canonicalCompletedNativeLogDerivativeMoment ∧
+          (∃ hgram :
+              (hankelGram
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+            canonicalFiniteJacobiSection
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+              canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+          (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  rcases canonicalC2Geometry_native_source_valve_green_to_height_of_nativeChiralDominance
+      hbase hradius hdominance cutoff N with
+    ⟨htail, hpackaged, _, hheight⟩
+  exact ⟨htail, hpackaged,
+    canonicalC2Geometry_nativeWronskianResponse_coefficientEquation_before_gram M,
+    canonicalC2Geometry_nativeWronskianResponse_boundary_and_shift_before_gram M,
+    hheight⟩
 
 /-- The preceding structural capstone can be fed directly by the native
 radial Green/valve gates.  The ledger no-leak identity supplies the limiting
