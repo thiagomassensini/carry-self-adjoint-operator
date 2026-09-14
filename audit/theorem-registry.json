@@ -908,5 +908,7 @@
     ,{"qualified": "CarrySelfAdjointOperator.nativeZeroSeededClockBlock_not_sameEdgeTransport"}
     ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_zero_zero_eq_positiveChiralDerivative_of_sameEdgeTransport"}
     ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_zero_zero_eq_negNegativeChiralDerivative_of_sameEdgeTransport"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_firstColumn_eq_chiralBlockSignature_of_sameEdgeTransport"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_firstColumn_eq_polarizedGreenMoment_of_sameEdgeTransport"}
   ]
 }

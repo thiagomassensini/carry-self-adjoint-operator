@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.CompletedNativeSameEdgeGreenClockTransport
 import CarrySelfAdjointOperator.CompletedNativeCentralChiralEnergyFlow
+import CarrySelfAdjointOperator.CompletedNativeChiralBlockMomentProbe
 import Mathlib.Tactic
 
 open scoped BigOperators ComplexConjugate InnerProductSpace
@@ -122,7 +123,50 @@ theorem seededClockAtlasCoefficient_zero_zero_eq_negNegativeChiralDerivative_of_
       seededClockAtlasCoefficient_zero_zero_eq_nativeMoment_zero_of_sameEdgeTransport
         M block htransport
     _ = ((-deriv completedNativeCentralNegativeChiralEnergy 0 : ℝ) : ℂ) := by
-      simpa [deriv_completedNativeCentralNegativeChiralEnergy_zero]
+      simp [deriv_completedNativeCentralNegativeChiralEnergy_zero]
+
+/-! ## All-order first-column chiral readout
+
+The exact boundary transport is now exposed through the existing chiral block
+signature.  This is the causal/Green readout of the complete Wronskian; it is
+not a new positive carrier or a reconstruction from Hankel/Jacobi data. -/
+
+/-- Every transported clock first-column coefficient is the corresponding
+Taylor coefficient of the signed positive-minus-negative chiral readout. -/
+theorem seededClockAtlasCoefficient_firstColumn_eq_chiralBlockSignature_of_sameEdgeTransport
+    {ι : Type*} [Fintype ι]
+    (M : ℕ) (block : ι → SeededClockBlock) (p : ℕ)
+    (htransport : HasSameEdgeGreenToClockBoundaryTransport M block) :
+    seededClockAtlasCoefficient block p 0 =
+      canonicalCompletedC3ChiralBlockSignatureTaylorCoefficient M (p + 1) := by
+  calc
+    seededClockAtlasCoefficient block p 0 =
+        canonicalCompletedC3FullWronskianChiralResponseTaylorCoefficient
+          M (p + 1) := htransport p
+    _ = canonicalCompletedC3ChiralBlockSignatureTaylorCoefficient M (p + 1) :=
+      (canonicalCompletedC3ChiralBlockSignatureTaylorCoefficient_eq_response
+        M (p + 1)).symm
+
+/-- The same first-column coefficient is the polarized Green moment with
+the second index fixed at zero. -/
+theorem seededClockAtlasCoefficient_firstColumn_eq_polarizedGreenMoment_of_sameEdgeTransport
+    {ι : Type*} [Fintype ι]
+    (M : ℕ) (block : ι → SeededClockBlock) (p : ℕ)
+    (htransport : HasSameEdgeGreenToClockBoundaryTransport M block) :
+    seededClockAtlasCoefficient block p 0 =
+      polarizedGreenMomentCoefficient
+        canonicalCompletedNativeLogDerivativeMoment p 0 := by
+  calc
+    seededClockAtlasCoefficient block p 0 =
+        canonicalCompletedC3ChiralBlockSignatureTaylorCoefficient M (p + 1) :=
+      seededClockAtlasCoefficient_firstColumn_eq_chiralBlockSignature_of_sameEdgeTransport
+        M block p htransport
+    _ = polarizedGreenMomentCoefficient
+          canonicalCompletedNativeLogDerivativeMoment p 0 := by
+      simpa using
+        (canonicalCompletedC3ChiralBlockSignature_succ_eq_polarizedMoment
+          M p 0)
+
 end
 
 end CarrySelfAdjointOperator
