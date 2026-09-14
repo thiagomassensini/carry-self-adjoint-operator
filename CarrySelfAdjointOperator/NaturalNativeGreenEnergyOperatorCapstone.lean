@@ -124,6 +124,54 @@ theorem canonicalC2Geometry_native_source_valve_green_operator_forced
       (canonicalCompletedNativeStieltjesJet_odd_linearIndependent hpos)
       N
 
+/-! ## Geometric spelling of the same capstone -/
+
+/- The strictness input is exposed in the native expanded chiral carrier,
+rather than as an already packaged Stieltjes predicate.  This corollary is
+the short source-direction statement to use when the proof arrives from the
+orthogonalized camera/Green energy decomposition. -/
+theorem canonicalC2Geometry_native_corrected_chiral_height_operator_forced
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M cutoff N : ℕ)
+    (hdominance : CanonicalCompletedC3ExpandedStructuralStrictChiralDominance) :
+    (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →
+        finiteBracketCharacteristic 2 tailCutoff s +
+            (∑' index : ℕ,
+              centerBracketTerm 2 s (index + tailCutoff)) =
+          factor 2 s * nativeScalar s) ∧
+      (∀ p q : ℕ,
+        canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M (p + q) =
+          polarizedGreenMomentCoefficient
+            canonicalCompletedNativeLogDerivativeMoment p q) ∧
+      ∃ hpos : CanonicalCompletedNativeStieltjesPositivity,
+        normalizedCompletedNativeCameraCharacteristic 2 cutoff =
+            (fun time : ℝ ↦ completedNativeOperatorCharacteristic (time : ℂ)) ∧
+          completedNativeCameraLogDerivativeMoment 2 cutoff =
+            canonicalCompletedNativeLogDerivativeMoment ∧
+          (∃ hgram :
+              (hankelGram
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N).PosDef,
+            canonicalFiniteJacobiSection
+                (completedNativeCameraLogDerivativeMoment 2 cutoff) N hgram =
+              canonicalCompletedNativeStieltjesFiniteJacobiTower hpos N) ∧
+          (nativeGeometryFiniteHeightOperator hpos N).IsSymm := by
+  have hforced :=
+    canonicalC2Geometry_native_source_valve_green_operator_forced
+      hbase hradius M cutoff N
+      ((canonicalCompletedNativeCenteredStrictChiralCoefficientDominance_iff_expanded).mpr
+        hdominance)
+  rcases hforced with ⟨_, htail, _, _, hheight⟩
+  rcases hheight with ⟨hpos, _, hnorm, hmom, hsym⟩
+  refine ⟨htail, ?_, ?_⟩
+  · intro p q
+    exact canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_polarizedMoment
+      M p q
+  · refine ⟨hpos, hnorm, hmom, ?_, hsym⟩
+    exact nativeGeometry_cameraJacobiSection_eq_canonical
+      (camera := 2) (by norm_num) cutoff N hpos
+
 /-! The same capstone with the strictness input expressed in the native
 radial language. -/
 
