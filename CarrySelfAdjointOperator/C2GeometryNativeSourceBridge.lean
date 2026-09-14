@@ -27,6 +27,7 @@ open CPFormal.Carry.C2
 open CPFormal.Carry.Cp
 open CPFormal.Carry.Positional
 open ProjectiveDepth
+open NativeCarryC3Crosswalk
 open NativeCarrySpectralWeyl.Camera
 open NativeCarrySpectralWeyl.Camera.FiniteBridge
 
@@ -163,6 +164,59 @@ theorem canonicalC2Geometry_correctedChiralCoefficient_eq_cameraMoments
   rw [canonicalC2Geometry_cameraMoments_eq_canonical cutoff]
   exact canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_polarizedMoment
     M p q
+
+/-! ## Exact finite-head / tail sewing -/
+
+/-- The C2 finite head plus its exact omitted-center tail is the native scalar
+    dressed by the C2 camera factor.  This is the discrete completion identity
+    before normalization and before any moment or Gram construction. -/
+theorem canonicalC2Geometry_finiteHead_add_exactTail_eq_factor_mul_nativeScalar
+    (cutoff : ℕ) {s : ℂ} (hs : s ∈ nativeScalarDomain) :
+    finiteBracketCharacteristic 2 cutoff s +
+        (∑' index : ℕ, centerBracketTerm 2 s (index + cutoff)) =
+      factor 2 s * nativeScalar s := by
+  exact complete_head_add_complete_center_tail_eq_factor_mul_nativeScalar
+    (camera := 2) (cutoff := cutoff) (by norm_num) hs
+
+/-- The packaged all-order native jet is literally the C2 finite head plus the
+    exact center tail, after taking the real native-line derivative. -/
+theorem canonicalC2Geometry_completedPackagedNativeJet_eq_head_add_exactTail
+    (cutoff order : ℕ) (time : ℝ) :
+    completedPackagedFiniteNativeOperatorJet 2 cutoff order time =
+      iteratedDeriv order
+        (fun u : ℝ ↦
+          finiteBracketCharacteristic 2 cutoff (nativeLine u) +
+            ∑' index : ℕ, centerBracketTerm 2 (nativeLine u) (index + cutoff))
+        time := by
+  have hfun :
+      (fun u : ℝ ↦
+          finiteBracketCharacteristic 2 cutoff (nativeLine u) +
+            ∑' index : ℕ, centerBracketTerm 2 (nativeLine u) (index + cutoff)) =
+        (fun u : ℝ ↦ completedNativeCharacteristic 2 cutoff (nativeLine u)) := by
+    funext u
+    rfl
+  rw [hfun]
+  exact completedPackagedFiniteNativeOperatorJet_eq_completedNativeCharacteristic
+    (camera := 2) (by norm_num) cutoff order time
+
+/-- At order zero, exact head--tail completion followed by C2-factor removal
+    lands directly on the common completed native characteristic. -/
+theorem canonicalC2Geometry_completedPackagedNativeJet_zero_normalized_eq_commonCharacteristic
+    (cutoff : ℕ) (time : ℝ) :
+    nativeXiCompletionFactor (time : ℂ) *
+        completedPackagedFiniteNativeOperatorJet 2 cutoff 0 time /
+          factor 2 (nativeLine time) =
+      completedNativeOperatorCharacteristic (time : ℂ) := by
+  have hpack :
+      completedPackagedFiniteNativeOperatorJet 2 cutoff 0 time =
+        completedNativeCharacteristic 2 cutoff (nativeLine time) := by
+    simpa only [iteratedDeriv_zero] using
+      (completedPackagedFiniteNativeOperatorJet_eq_completedNativeCharacteristic
+        (camera := 2) (by norm_num) cutoff 0 time)
+  have hnorm :=
+    congrFun (canonicalC2Geometry_completedNormalizedCamera_eq_commonCharacteristic
+      cutoff) time
+  simpa [normalizedCompletedNativeCameraCharacteristic, hpack] using hnorm
 
 end
 end CarrySelfAdjointOperator
