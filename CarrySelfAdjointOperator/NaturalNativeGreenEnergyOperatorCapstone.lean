@@ -31,6 +31,7 @@ open NativeCarryC3Crosswalk
 open NativeCarrySpectralWeyl.Camera
 open NativeCarrySpectralWeyl.Boundary
 open NativeCarrySpectralWeyl.Camera.FiniteBridge
+open Filter Topology
 
 noncomputable section
 
@@ -304,6 +305,229 @@ theorem
     canonicalC2Geometry_native_normalizedRadialDslopeSampleMatrix_posSemidef_of_boundaryGreenSewing
       hsewing M k N hk
 
+/-! ## Normalized radial Gamma jet
+
+The old radial jet in `CompletedNativeRadialTiltSamplePositivity` is the
+unnormalized Gamma jet.  The following totalized state keeps the exact
+characteristic normalization used by the completed native kernel, while
+remaining total on the real axis so that forward differences are legal as
+functions on `ℂ`.
+-/
+
+def canonicalC2Geometry_nativeNormalizedGammaState (z : ℂ) :
+    CarryGammaComplexNaimark :=
+  if hz : z.im ≠ 0 then
+    canonicalCompletedC3NormalizedPolarizedGammaState z hz
+  else 0
+
+@[simp] theorem canonicalC2Geometry_nativeNormalizedGammaState_of_im_ne_zero
+    (z : ℂ) (hz : z.im ≠ 0) :
+    canonicalC2Geometry_nativeNormalizedGammaState z =
+      canonicalCompletedC3NormalizedPolarizedGammaState z hz := by
+  simp [canonicalC2Geometry_nativeNormalizedGammaState, hz]
+
+def canonicalC2Geometry_nativeNormalizedRadialGammaJet
+    (k order : ℕ) : CarryGammaComplexNaimark :=
+  completedGreenShiftedForwardDifferenceJet
+    canonicalC2Geometry_nativeNormalizedGammaState
+    (canonicalCompletedC3RadialSecondStep k) order
+
+def canonicalC2Geometry_nativeNormalizedRadialGammaDslopeJetDefect
+    (steps : ℕ × ℕ) (p q : ℕ) : ℂ :=
+  inner ℂ
+      (canonicalC2Geometry_nativeNormalizedRadialGammaJet steps.1 p)
+      (canonicalC2Geometry_nativeNormalizedRadialGammaJet steps.2 q) -
+    completedGreenKernelTwoStepShiftedForwardDifference
+      canonicalCompletedNativePolarizedDslopeKernel
+      (canonicalCompletedC3RadialSecondStep steps.1)
+      (canonicalCompletedC3RadialSecondStep steps.2) p q
+
+theorem
+    canonicalC2Geometry_nativeNormalizedRadialGammaDslopeJetDefectFlatness_of_boundaryGreenSewing
+    (hsewing : CanonicalCompletedC3BoundaryGreenSewing) :
+    ∀ p q : ℕ,
+      Tendsto
+        (fun steps : ℕ × ℕ =>
+          canonicalC2Geometry_nativeNormalizedRadialGammaDslopeJetDefect
+            steps p q)
+        (Filter.atTop : Filter (ℕ × ℕ)) (nhds 0) := by
+  intro p q
+  have hfst : Tendsto (Prod.fst : ℕ × ℕ → ℕ) atTop atTop := by
+    rw [← prod_atTop_atTop_eq]
+    exact tendsto_fst
+  have hsnd : Tendsto (Prod.snd : ℕ × ℕ → ℕ) atTop atTop := by
+    rw [← prod_atTop_atTop_eq]
+    exact tendsto_snd
+  have hi : ∀ᶠ k : ℕ in atTop,
+      ∀ i ∈ Finset.range (p + 1),
+        canonicalCompletedC3RadialTiltPoint k i ∈
+            completedNativeHeightDomain ∧
+          completedNativeOperatorCharacteristic
+            (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 :=
+    (Finset.range (p + 1)).eventually_all.2 fun i hi =>
+      canonicalCompletedC3RadialTiltPoint_eventually_admissible i
+  have hj : ∀ᶠ k : ℕ in atTop,
+      ∀ j ∈ Finset.range (q + 1),
+        canonicalCompletedC3RadialTiltPoint k j ∈
+            completedNativeHeightDomain ∧
+          completedNativeOperatorCharacteristic
+            (canonicalCompletedC3RadialTiltPoint k j) ≠ 0 :=
+    (Finset.range (q + 1)).eventually_all.2 fun j hj =>
+      canonicalCompletedC3RadialTiltPoint_eventually_admissible j
+  have hzero : ∀ᶠ steps : ℕ × ℕ in (Filter.atTop : Filter (ℕ × ℕ)),
+      canonicalC2Geometry_nativeNormalizedRadialGammaDslopeJetDefect
+        steps p q = 0 := by
+    filter_upwards [hfst.eventually hi, hsnd.eventually hj] with
+      steps hiSteps hjSteps
+    unfold canonicalC2Geometry_nativeNormalizedRadialGammaDslopeJetDefect
+      canonicalC2Geometry_nativeNormalizedRadialGammaJet
+    rw [inner_completedGreenShiftedForwardDifferenceJet_eq_kernel]
+    have hkernel_eq :
+        completedGreenKernelTwoStepShiftedForwardDifference
+            (fun w z => inner ℂ
+              (canonicalC2Geometry_nativeNormalizedGammaState w)
+              (canonicalC2Geometry_nativeNormalizedGammaState z))
+            (canonicalCompletedC3RadialSecondStep steps.1)
+            (canonicalCompletedC3RadialSecondStep steps.2) p q =
+          completedGreenKernelTwoStepShiftedForwardDifference
+            canonicalCompletedNativePolarizedDslopeKernel
+            (canonicalCompletedC3RadialSecondStep steps.1)
+            (canonicalCompletedC3RadialSecondStep steps.2) p q := by
+      apply completedGreenKernelTwoStepShiftedForwardDifference_eq_of_eq_on_grid
+      intro i hii j hjj
+      rw [← canonicalCompletedC3RadialTiltPoint_eq_step_add_nsmul,
+        ← canonicalCompletedC3RadialTiltPoint_eq_step_add_nsmul]
+      rw [canonicalC2Geometry_nativeNormalizedGammaState_of_im_ne_zero
+          (canonicalCompletedC3RadialTiltPoint steps.1 i)
+          (canonicalCompletedC3RadialTiltPoint_im_ne_zero steps.1 i),
+        canonicalC2Geometry_nativeNormalizedGammaState_of_im_ne_zero
+          (canonicalCompletedC3RadialTiltPoint steps.2 j)
+          (canonicalCompletedC3RadialTiltPoint_im_ne_zero steps.2 j)]
+      calc
+        inner ℂ
+            (canonicalCompletedC3NormalizedPolarizedGammaState
+              (canonicalCompletedC3RadialTiltPoint steps.1 i)
+              (canonicalCompletedC3RadialTiltPoint_im_ne_zero steps.1 i))
+            (canonicalCompletedC3NormalizedPolarizedGammaState
+              (canonicalCompletedC3RadialTiltPoint steps.2 j)
+              (canonicalCompletedC3RadialTiltPoint_im_ne_zero steps.2 j)) =
+          canonicalCompletedC3NormalizedPolarizedGammaKernel
+            (canonicalCompletedC3RadialTiltPoint steps.1 i)
+            (canonicalCompletedC3RadialTiltPoint steps.2 j)
+            (canonicalCompletedC3RadialTiltPoint_im_ne_zero steps.1 i)
+            (canonicalCompletedC3RadialTiltPoint_im_ne_zero steps.2 j) :=
+              (canonicalCompletedC3NormalizedPolarizedGammaKernel_eq_inner
+                _ _ _ _).symm
+        _ = canonicalCompletedNativePolarizedDslopeKernel
+            (canonicalCompletedC3RadialTiltPoint steps.1 i)
+            (canonicalCompletedC3RadialTiltPoint steps.2 j) :=
+          hsewing.normalizedGammaKernel_eq_dslope 0 _ _ _ _
+            (hiSteps i hii).1 (hjSteps j hjj).1
+            (hiSteps i hii).2 (hjSteps j hjj).2
+            (sub_ne_zero.mp
+              (canonicalCompletedC3RadialTilt_separation_ne_zero_twoStep
+                steps.1 steps.2 i j))
+    rw [hkernel_eq]
+    ring
+  exact tendsto_nhds_of_eventually_eq hzero
+
+theorem
+    canonicalC2Geometry_nativeNormalizedRadialGammaJet_inner_tendsto_of_boundaryGreenSewing
+    (hsewing : CanonicalCompletedC3BoundaryGreenSewing) (p q : ℕ) :
+    Tendsto
+      (fun steps : ℕ × ℕ => inner ℂ
+        (canonicalC2Geometry_nativeNormalizedRadialGammaJet steps.1 p)
+        (canonicalC2Geometry_nativeNormalizedRadialGammaJet steps.2 q))
+      atTop
+      (nhds (polarizedGreenMomentCoefficient
+        canonicalCompletedNativeLogDerivativeMoment p q)) := by
+  have hdefect :=
+    canonicalC2Geometry_nativeNormalizedRadialGammaDslopeJetDefectFlatness_of_boundaryGreenSewing
+      hsewing p q
+  have hdslope := completedNativePolarizedDslope_shiftedRadial_tendsto p q
+  have hsum := hdefect.add hdslope
+  simpa [canonicalC2Geometry_nativeNormalizedRadialGammaDslopeJetDefect] using hsum
+
+theorem canonicalC2Geometry_nativeNormalizedRadialGammaJet_realGram_posSemidef
+    {ι : Type*} [Finite ι] (k : ℕ) (order : ι → ℕ) :
+    (Matrix.of fun i j =>
+      (inner ℂ
+        (canonicalC2Geometry_nativeNormalizedRadialGammaJet k (order i))
+        (canonicalC2Geometry_nativeNormalizedRadialGammaJet k (order j))).re).PosSemidef := by
+  letI : NormedSpace ℝ CarryGammaComplexNaimark :=
+    NormedSpace.restrictScalars ℝ ℂ CarryGammaComplexNaimark
+  letI : InnerProductSpace ℝ CarryGammaComplexNaimark :=
+    InnerProductSpace.rclikeToReal ℂ CarryGammaComplexNaimark
+  change (Matrix.gram ℝ (fun i =>
+    canonicalC2Geometry_nativeNormalizedRadialGammaJet k (order i))).PosSemidef
+  exact Matrix.posSemidef_gram ℝ _
+
+theorem
+    canonicalC2Geometry_nativeNormalizedStieltjesPosSemidefinite_of_boundaryGreenSewing
+    (hsewing : CanonicalCompletedC3BoundaryGreenSewing) :
+    CanonicalCompletedNativeStieltjesPosSemidefinite := by
+  intro N
+  have hdiag : Tendsto (fun k : ℕ => (k, k)) atTop atTop := by
+    rw [← prod_atTop_atTop_eq]
+    exact tendsto_id.prodMk tendsto_id
+  constructor
+  · let evenGram (k : ℕ) : Matrix (Fin N) (Fin N) ℝ :=
+      Matrix.of fun i j =>
+        (inner ℂ
+          (canonicalC2Geometry_nativeNormalizedRadialGammaJet k
+            (2 * (i : ℕ)))
+          (canonicalC2Geometry_nativeNormalizedRadialGammaJet k
+            (2 * (j : ℕ)))).re
+    apply matrixPosSemidef_of_tendsto_entrywise (A := evenGram)
+    · intro k
+      exact canonicalC2Geometry_nativeNormalizedRadialGammaJet_realGram_posSemidef
+        k (fun i : Fin N => 2 * (i : ℕ))
+    · intro i j
+      have hcomplex :=
+        (canonicalC2Geometry_nativeNormalizedRadialGammaJet_inner_tendsto_of_boundaryGreenSewing
+          hsewing (2 * (i : ℕ)) (2 * (j : ℕ))).comp hdiag
+      have hreal := Complex.continuous_re.continuousAt.tendsto.comp hcomplex
+      simpa [evenGram, Function.comp_def, hankelGram,
+        completedGreenParityOrder, greenWronskianMomentKernel] using hreal
+  · let oddGram (k : ℕ) : Matrix (Fin N) (Fin N) ℝ :=
+      Matrix.of fun i j =>
+        (inner ℂ
+          (canonicalC2Geometry_nativeNormalizedRadialGammaJet k
+            (2 * (i : ℕ) + 1))
+          (canonicalC2Geometry_nativeNormalizedRadialGammaJet k
+            (2 * (j : ℕ) + 1))).re
+    apply matrixPosSemidef_of_tendsto_entrywise (A := oddGram)
+    · intro k
+      exact canonicalC2Geometry_nativeNormalizedRadialGammaJet_realGram_posSemidef
+        k (fun i : Fin N => 2 * (i : ℕ) + 1)
+    · intro i j
+      have hcomplex :=
+        (canonicalC2Geometry_nativeNormalizedRadialGammaJet_inner_tendsto_of_boundaryGreenSewing
+          hsewing (2 * (i : ℕ) + 1) (2 * (j : ℕ) + 1)).comp hdiag
+      have hreal := Complex.continuous_re.continuousAt.tendsto.comp hcomplex
+      simpa [oddGram, Function.comp_def, shiftedHankel,
+        completedGreenParityOrder, greenWronskianMomentKernel] using hreal
+
+/-! ## Strictness before the height operator
+
+The normalized Green sewing supplies the semidefinite Hankel pair.  The
+incidence transport supplies the independent directions; it is precisely the
+separate nondegeneracy input needed to upgrade semidefiniteness to the strict
+Stieltjes certificate consumed by the finite height construction.
+-/
+
+theorem canonicalC2Geometry_native_strictChiralDominance_of_boundaryGreenSewing
+    (hsewing : CanonicalCompletedC3BoundaryGreenSewing)
+    (hnondegenerate : CanonicalCompletedNativeHankelPairNondegenerate) :
+    CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance := by
+  apply (canonicalCompletedNativeCenteredStrictChiralCoefficientDominance_iff_expanded).mpr
+  apply (canonicalCompletedC3ExpandedStructuralStrictChiralDominance_iff_stieltjesPositivity).mpr
+  rw [canonicalCompletedNativeStieltjesPositivity_iff_posSemidefinite_and_nondegenerate]
+  exact ⟨
+    canonicalC2Geometry_nativeNormalizedStieltjesPosSemidefinite_of_boundaryGreenSewing
+      hsewing,
+    hnondegenerate⟩
+
 /-! ## Same-geometry energy before the height construction -/
 
 /-- The entire native source/energy seam before any positivity or height
@@ -517,6 +741,24 @@ theorem canonicalC2Geometry_native_strictChiralDominance_of_radialQuadraticEnerg
     (canonicalCompletedC3RadialGammaDslopeJetDefectFlatness_of_quadraticEnergy
       henergy)
     hnondegenerate
+
+/-! ## Direct normalized Green input for the same-geometry energy capstone -/
+
+/-- Full source-direction capstone with the remaining boundary identity made
+explicit.  The operator is returned only after the Green/valve identities,
+the normalized Hilbert carrier, and the independent-incidence strictness have
+been supplied. -/
+abbrev canonicalC2Geometry_native_sameGeometry_energy_to_height_operator_of_boundaryGreenSewing
+    {base radius : ℕ}
+    (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
+    (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
+    (M cutoff N : ℕ)
+    (hsewing : CanonicalCompletedC3BoundaryGreenSewing)
+    (hnondegenerate : CanonicalCompletedNativeHankelPairNondegenerate) :=
+  canonicalC2Geometry_native_sameGeometry_energy_to_height_operator
+    hbase hradius M cutoff N
+    (canonicalC2Geometry_native_strictChiralDominance_of_boundaryGreenSewing
+      hsewing hnondegenerate)
 
 /-! ## Direct native radial input for the same-geometry energy capstone -/
 
