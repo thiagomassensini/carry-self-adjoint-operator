@@ -2,11 +2,11 @@
 
 # CURRENT STATE
 
-Atualizado em: 2026-09-14 (classificação do balance e do sewing)
+Atualizado em: 2026-09-14 (residual do sewing formalizado)
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL CONFIRMADO: `df7dba94e33290d0ae2ad48a9e0aa71c007de9dc`
+HEAD REAL CONFIRMADO: `cfec4e84d2f9ec6288340e888d529d37db1050a7`
 Comando de confirmação: `git rev-parse HEAD` no checkout remoto.
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
@@ -118,7 +118,7 @@ mas isso ainda não é o Gram do carrier. Não usar `Balance = 0` como substitut
 
 ## Retomada
 
-"O HEAD atual confirmado é `df7dba94e33290d0ae2ad48a9e0aa71c007de9dc`.
+"O HEAD atual confirmado é `cfec4e84d2f9ec6288340e888d529d37db1050a7`.
 A classificação é D para o balance: sua fatoração energética é global, mas
 seu zero/sewing ainda exige o defeito Gamma–Wronskian. O carrier Gamma literal
 é D2 por contraexemplos formais arbitrariamente próximos do centro. No zero
