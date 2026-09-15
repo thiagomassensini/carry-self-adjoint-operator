@@ -82,7 +82,8 @@ positiva.
 
 A cadeia existente prova separadamente:
 
-```ReturnMetric graph readout = State inner
+```
+ReturnMetric graph readout = State inner
 finite G^(-1/2) camera synthesis = Euclidean inner
 FourTrace symplectic readout = Green form
 global incidence jet = same CarryVerticalL2 state by n
