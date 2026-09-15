@@ -2,11 +2,11 @@
 
 # CURRENT STATE
 
-Atualizado em: 2026-09-14 (retomada: expansão literal do sewing)
+Atualizado em: 2026-09-14 (expansão estrutural: carrier Wronskiano e ponte vetorial)
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL CONFIRMADO: `90971844358a2aa23ae98889a9deed841043aa57`
+HEAD REAL CONFIRMADO: `6a8509579fe78e07379bf6863e78db31da57e6a9`
 Comando de confirmação: `git rev-parse HEAD` no checkout remoto.
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
@@ -149,16 +149,135 @@ Na rota de fatorização TFVD, o mesmo seam aparece como os canais explícitos
 `archimedeanChart`, sem theorem de anulação. O tail escalar já é exato; não é
 o gargalo.
 
+## Expansão estrutural — carrier completo e primeira igualdade genuinamente nova
+
+`CompletedC3FullWronskianOperatorCarrier.lean` não é uma prova do sewing
+Gamma: ele constrói um carrier de traço completo com operador limitado
+skew (`canonicalCompletedC3FullWronskianOperator`), e prova que o readout
+escalar `(F,-F')` é exatamente sua forma simplética. Em particular,
+`completedGreenWronskian_eq_normalizedFullOperatorInner` e
+`canonicalCompletedC3NormalizedFullWronskianOperatorKernel_eq_completed`
+expõem o Lado B como produto interno com o operador Wronskiano completo.
+
+`CompletedC3GammaFullWronskianOperatorBridge.lean` apenas reescreve o mesmo
+fato no domínio TFVD e dá:
+
+```text
+raw Gamma defect
+= Gamma boundary readout
+  - full-Wronskian-operator inner product.
+```
+
+Os teoremas `..._eq_fullOperatorInner_iff` e
+`..._eq_sub_fullOperatorInner` são reduções exatas do seam; não são uma
+identificação, e o no-go `...GammaBoundary_ne_fullOperatorInner_of_characteristicZero`
+confirma que o Gamma literal não pode ser promovido a esse carrier.
+
+`CompletedC3FourTraceSymplecticBridge.lean` fornece a ponte vetorial concreta:
+o mesmo `CanonicalC3FourTraceSixCameraSource` tem `greenPort`,
+`symplecticCarrier` e os traços `(F,-F')` coordenalmente compatíveis. O
+teorema `canonicalC3FourTraceSixCameraSource_greenReadout_eq_greenForm`
+identifica o readout de seis câmeras com uma forma de Green finita, mas não
+prova que a projeção Gamma preserve a forma simplética do carrier completo.
+
+Assim, a primeira divergência fica mais precisa:
+
+```text
+mesmo source/state estruturado
+→ Gamma: greenPort / seis câmeras / Cauchy readout
+→ escalar: completedTraceAt / (F,-F') / full symplectic readout
+```
+
+O theorem mínimo não é mais uma comparação vaga de Gram. É uma destas duas
+setas equivalentes:
+
+```lean
+-- forma bilinear corrigida
+gammaCorrectedGreenForm z w = fullWronskianOperatorInner z w
+
+-- ou transporte vetorial que a implica
+∃ U : ... →ₗᵢ[ℂ] ..., ∀ z, U (correctedGammaState z) = fullWronskianState z
+```
+
+Para o Gamma literal, a segunda seta é falsa pelo no-go acima. A busca deve
+continuar por um estado/readout corrigido que preserve os canais estruturais;
+não se deve zerar `structural defect`, descartar cross terms, nem usar a
+estrutura `CanonicalCompletedC3WronskianResolventRealization` como prova,
+pois ela recebe justamente a igualdade de readout como campo.
+
+## Carrier corrigido encontrado — sewing escalar sem apagar o ledger
+
+A rota corrigida já tem uma realização geométrica concreta, mas ela não é o
+Gamma positivo isolado:
+
+- CanonicalC3SymplecticNaimarkBridge.lean prova que o packing de seis
+  câmeras e sua promoção Naimark preservam exatamente a forma Green real
+  (a parte real de greenForm) e são injetivos. Isso é uma identidade
+  vetorial/geométrica global da porta; não é ainda a igualdade com o
+  Wronskiano escalar.
+- CompletedC3BracketTfvdGreenFactorization.lean prova
+  canonicalC3BracketTfvdMixedCorrectedBoundary_eq_greenReadout e a
+  fatorização do Wronskiano em greenProvenance, offDiagonal,
+  readoutResidual, tailCompletion e archimedeanChart. A passagem
+  GlobalGreenReadout_tendsto_wronskian_iff reduz a costura a
+  Tendsto (canonicalC3FiniteMixedHeightStructuralDefect ...) (nhds 0);
+  não zera esse canal genericamente.
+- CompletedC3RecoveredEnrichedWronskianCarrier.lean constrói o carrier
+  enriquecido que retém radial, canal estrutural, tail, peso xi e chart.
+  canonicalCompletedC3RecoveredAllCutoffLedgerState_readout_tendsto_wronskian
+  e ..._readout_tendsto_fullOperatorInner dão a realização escalar
+  concreta do Wronskiano/operador completo; a energia do estado permanece
+  positiva mesmo quando o readout escalar tende a zero num zero.
+- CompletedC3EnrichedChiralReadoutTransformation.lean e
+  CompletedC3CoisometricCameraChiralTransformation.lean têm no-go para
+  uma fatoração linear global do bloco coisométrico Gamma através da
+  polarização positiva do Wronskiano. A obstrução é um modo Naimark direto
+  invisível ao trace, portanto o transporte só pode ser procurado no
+  subespaço causal dos estados canônicos, não no carrier ambiente irrestrito.
+
+Logo, a seta verdadeira já fechada é:
+
+text:
+fonte/TFVD
+→ porta Naimark symplectic corrigida
+→ carrier enriquecido (radial + structural + tail + xi + chart)
+→ readout Green completo
+→ Wronskiano do operador completo.
+
+A seta que permanece é precisamente a identificação desse readout corrigido
+com o readout Gamma positivo no subespaço causal. Para o Gamma literal ela é
+falsa (D2). O menor statement não circular a procurar é, portanto, uma
+preservação bilinear restrita aos estados canônicos, com a forma existente:
+
+lean:
+theorem canonicalCompletedC3CausalCorrectedReadout_eq_fullOperatorInner
+    {z w : Complex}
+    (hz : z.im != 0) (hw : w.im != 0)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip) :
+    correctedCausalReadout z w hzStrip hwStrip =
+      inner Complex
+        (canonicalCompletedC3NormalizedFullWronskianOperatorState 0 z)
+        (canonicalCompletedC3FullWronskianOperator
+          (canonicalCompletedC3NormalizedFullWronskianOperatorState 0 w))
+
+A declaração acima é o único gate ainda não realizado: correctedCausalReadout
+deve ser a leitura bilinear do carrier enriquecido já existente, não uma nova
+métrica positiva nem um campo de uma estrutura de realização. O teorema
+canonicalCompletedC3RecoveredAllCutoffLedgerState_readout_tendsto_fullOperatorInner
+já prova o lado direito para o readout de limite; falta apenas uma definição/
+identificação de correctedCausalReadout com o estado Gamma corrigido no
+subespaço causal.
+
 ## Próxima ação mínima
 
-Auditar e, se possível, instanciar o seam
-`HasCanonicalCompletedNativeTfvdGreenCenterLegReadout` para o response/readout
-corrigido. O jet causal zero-seed bruto já foi formalmente excluído; a próxima
-ação deve localizar a correção de boundary/readout que remove a translação sem
-apagar os canais estruturais e, então, provar a igualdade de produto interno.
-O coeficiente escalar corrigido já satisfaz
-`canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_polarizedMoment`,
-mas isso ainda não é o Gram do carrier. Não usar `Balance = 0` como substituto.
+Não tentar o Gamma literal: o no-go e a estrutura de modos diretos já
+eliminam essa rota global. Formalizar primeiro o readout corrigido causal
+usando canonicalCompletedC3RecoveredAllCutoffLedgerState e provar a única
+identificação bilinear acima no subespaço dos estados canônicos, mantendo
+cross terms, readoutResidual e structural defect. Se a identificação não
+estiver tipada no carrier atual, registrar o residual exato e parar no
+statement mínimo; não usar Balance = 0 como substituto.
 
 ## Retomada
 
