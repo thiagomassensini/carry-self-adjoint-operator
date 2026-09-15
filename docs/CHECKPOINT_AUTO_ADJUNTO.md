@@ -2,11 +2,11 @@
 
 # CURRENT STATE
 
-Atualizado em: 2026-09-14 (retomada do seam causal center-leg)
+Atualizado em: 2026-09-14 (no-go formal do jet causal bruto)
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL CONFIRMADO: `17b698ae16b3f9e1e11f506ea7bee00be05f359b`
+HEAD REAL CONFIRMADO: `37b43cff9ac98d87f8c930c7c24c507692078fd9`
 Comando de confirmação: `git rev-parse HEAD` no checkout remoto.
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
@@ -104,7 +104,7 @@ registrar a negação do center-leg para o carrier bruto. Não tentar provar
 
 ## Retomada
 
-"O HEAD atual confirmado é `17b698ae16b3f9e1e11f506ea7bee00be05f359b`.
+"O HEAD atual confirmado é `37b43cff9ac98d87f8c930c7c24c507692078fd9`.
 A classificação é D2 para o carrier Gamma literal: há contraexemplos formais
 arbitrariamente próximos do centro. O balance diagonal continua apenas uma
 igualdade de diferença de energias; para o carrier corrigido a classificação
