@@ -2,32 +2,139 @@
 
 # CURRENT STATE
 
-Atualizado em: 2026-09-14 (auditoria ReturnMetric antes de novo carrier)
+Atualizado em: 2026-09-14 (auditoria ReturnMetric/FourTrace concluida)
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL CONFIRMADO: `3681881a542e976a968fbdc7a50b0d0d0b0facce`
-Comando de confirmação: `git rev-parse HEAD` no checkout remoto.
+HEAD REAL CONFIRMADO NO INICIO DESTA ETAPA:
+`a5646574108b5f19c15336ac9ddfe18df89a5a3b`
 
-Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
+A referencia remota `origin/agent/next-natural-native-gate` foi confirmada no
+mesmo HEAD antes da auditoria. O status preserva somente `.lake` nao
+rastreado.
 
-## Prioridade atual — auditar ReturnMetric antes de criar carrier
+## Classificacao da rota Gamma-TFVD
 
-A nova rota deve testar primeiro a hipótese histórica de que o node trace e o
-Green trace só coincidem depois do whitening pela métrica de retorno nativa.
-A comparação deve ser feita após a colagem global das incidências pelo mesmo
-rótulo n, não câmera a câmera.
+D para o balance Gamma-TFVD e D2 para o sewing Gamma literal. A rota
+ReturnMetric fecha uma identidade global de metrica de retorno e uma
+isometria Parseval, mas nao fecha o transporte FourTrace -> GreenBoundary
+pedido. A igualdade positiva desejada nao foi encontrada e a realizacao
+ordinaria atual tem um mismatch central provado.
 
-Tabela obrigatória a preencher após a auditoria:
-objeto antigo | objeto Lean atual | theorem de transporte | métrica usada
+Isso nao e Caso A/B/C para a costura desejada. O resultado desta etapa e
+Caso D: falta um theorem bilinear upstream que identifique o readout
+corrigido com o GreenBoundary, ou uma especificacao concreta de metric/source
+de retorno diferente da realizacao ordinaria atual.
 
-Alvos: return metric/endpoint metric, whitening G^(-1/2), node trace ↔ Green
-trace, Parseval isometry, Naimark dilation e global incidence/fibre gluing.
-Não criar novo carrier nem promover FourTraceSymplecticBridge a isometria
-euclidiana antes de localizar essa cadeia. A classificação Gamma–TFVD continua
-D para o balance e D2 para o Gamma literal até que ReturnMetric prove uma
-ponte bilinear diferente.
+## Theorems decisivos encontrados
 
+1. Identidade global da ReturnMetric, arquivo
+`CarrySelfAdjointOperator/CompletedNativeReturnMetricReadoutCrosswalk.lean`:
+
+```lean
+canonicalNativeGreenFrameExternal.adjoint comp
+  canonicalNativeGreenFrameReturnMetric comp
+  canonicalNativeGreenFrameExternal = 1
+```
+
+Nome: `canonicalNativeGreenFrameReturnMetric_isometry`.
+A consequencia bilinear e
+`canonicalNativeGreenFrameReturnReadout_eq_state_inner`.
+
+2. No-go da realizacao ordinaria, no mesmo arquivo:
+
+```lean
+canonicalNativeReturnMetricCentralKernel_ne_nativeMoment
+```
+
+Ela segue de
+`canonicalNativeReturnMetricCentralKernel_gt_nativeMoment`: o kernel do
+grafo `I + P.adjoint P` no estado central e estritamente maior que o
+momento nativo de ordem zero. Logo essa ReturnMetric nao pode ser o carrier
+positivo do kernel nativo/Wronskiano por simples whitening.
+
+3. Ponte FourTrace -> Green que realmente existe, arquivo
+`CarrySelfAdjointOperator/CompletedC3SymplecticNaimarkLimitBridge.lean`:
+
+```lean
+finiteC3SymplecticNaimark_complexReadout_eq_greenForm
+canonicalC3FiniteMixedSymplecticNaimarkGreenReadout_eq_greenForm
+completedC3MixedSymplecticNaimarkGreenReadout_eq_radialKernel
+```
+
+Esses theorems preservam `greenForm` por `realifiedGreenSkew` e duas
+quadraturas simpleticas. Nao afirmam
+`inner (W (T z)) (W (T w)) = GreenBoundary(z,w)` em uma metrica euclidiana
+positiva.
+
+## Tabela da rota auditada
+
+| objeto antigo | objeto Lean atual | theorem de transporte | metrica usada |
+|---|---|---|---|
+| return metric / endpoint metric | `clmReturnMetric`, `canonicalNativeGreenFrameReturnMetric` | `clmEndpoint_returnMetric_pullback_isometry`, `canonicalNativeGreenFrameReturnMetric_isometry`, `canonicalNativeGreenFrameReturnReadout_eq_state_inner` | grafo `I + P.adjoint P` em `ConcreteExternalSpace`; pullback para a inner de `State` |
+| whitening `G^(-1/2)` | `finiteCanonicalCameraReadout`, `finiteCameraWhitenedNaimarkSynthesisContinuous`, `atlasSixCameraWhiteningMatrix` | `finiteCanonicalCameraReadout_mul_transpose`, `finiteCameraWhitenedNaimarkSynthesisContinuous_inner`, `atlasSixCameraWhiteningMatrix_tendsto_of_sqrt_tendsto` | `finiteCameraRowGram = C C^T`, Gram finito de seis cameras e inner Euclidiana; exige `PosDef` ou hipotese de limite |
+| node trace <-> Green trace | `finiteC3SymplecticCameraPacking`, `finiteC3SymplecticNaimarkRealization`, `canonicalC3FourTraceSixCameraSource` | `realifiedGreenSkew_finiteC3SymplecticNaimarkRealization`, `finiteC3SymplecticNaimark_complexReadout_eq_greenForm`, `canonicalC3FourTraceSixCameraSource_greenReadout_eq_greenForm` | forma skew/simples­tica `realifiedGreenSkew`; nao a metrica positiva ReturnMetric |
+| Parseval isometry | `canonicalNativeGreenFrameExternal`, `canonicalNativeGreenFrameBulk`, `canonicalCompletedGreenFrameAnalysis` | `canonicalNativeGreenFrameParsevalSplit`, `canonicalNativeGreenFramePoisson_intertwines`, `canonicalNativeGreenFrameReturnReadout_eq_state_inner` | inner global de `State`; split external + bulk |
+| Naimark dilation | `realifiedNaimarkPort`, `realifiedNaimarkAdjoint`, `canonicalCameraStateReadout` | `realifiedNaimarkAdjoint_comp_realifiedNaimarkPort`, `canonicalCameraStateReadout_of_coherent`, `inner_canonicalCameraStateReadout_fst/snd` | inner ambient de `RealifiedNaimarkComplexification`; compressao exata, sem sewing Wronskiano |
+| colagem global por incidencia/fibra | `carryVerticalL2GreenFrameStateEquiv`, `br2CameraBracketProjectiveHilbertMap`, `br2CameraBracketGreenFrameParityJet` | `br2FiniteTfvdHilbertRecovery_parityJet`, `br2CameraBracketProjectiveTfvdIncidenceJetTransport`, `br2CameraBracketGreenFrameIncidenceJetTransport` | carrier global `CarryVerticalL2`/ `State`; o mesmo rotulo `n`, com `2*n` e `2*n+1`, antes de qualquer camera |
+
+## Leitura formal da meta W T -> GreenBoundary
+
+A cadeia existente prova separadamente:
+
+```ReturnMetric graph readout = State inner
+finite G^(-1/2) camera synthesis = Euclidean inner
+FourTrace symplectic readout = Green form
+global incidence jet = same CarryVerticalL2 state by n
+```
+
+Ela nao prova que esses quatro readouts sao o mesmo objeto. Em particular,
+o theorem de ReturnMetric que seria necessario para a meta do usuario ainda
+nao existe com os tipos atuais: nao ha um `T` four-trace e um `W`
+ReturnMetric tipados cuja inner positiva seja o `greenForm` complexo.
+O Green existente e recuperado por uma operacao skew/simples­tica com
+quadratura direta e quarter-turn.
+
+## Gargalo atual exato
+
+O gargalo nao e a identidade de cauda, o Parseval, a colagem por `n`, a
+whitening finita ou a dilatacao Naimark. O gargalo e a identificacao
+bilinear entre:
+
+- o readout positivo da realizacao ordinaria
+  `canonicalNativeGreenFrameReturnReadout`, que e
+  `inner State`; e
+- o readout Green/Wronskiano, que passa por
+  `realifiedGreenSkew`/quadraturas e ainda conserva o
+  `canonicalC3FiniteMixedHeightStructuralDefect`.
+
+O mismatch central
+`canonicalNativeReturnMetricCentralKernel_ne_nativeMoment` exclui esta
+realizacao ordinaria como o carrier positivo do momento nativo. Nao se deve
+corrigir isso ajustando constante nem descartar o canal estrutural.
+
+A forma minima ainda faltante e uma identidade bilinear upstream para um
+readout corrigido existente que:
+
+1. preserve a metrica de retorno apos a colagem global por `n`;
+2. identifique a parte FourTrace com `greenForm`;
+3. transporte essa forma ao `canonicalNativeBoundaryReadout`; e
+4. mostre separadamente a anulacao do residual estrutural necessario para o
+Wronskiano completo.
+
+O theorem ja existente
+`canonicalCompletedC3FiniteFNegFPrimeSymplecticGlobalGreenReadout_tendsto_wronskian_iff`
+mostra a condicao exata downstream: o limite do
+`canonicalC3FiniteMixedHeightStructuralDefect` deve tender a zero. Isso e
+uma condicao/gate, nao uma identidade ja provada.
+
+## Proxima acao minima
+
+Nao criar carrier novo. Auditar somente se algum readout corrigido ja
+existente fornece simultaneamente o tipo `T`, a metrica de retorno e o
+canal simpletico; caso contrario, formalizar o theorem residual acima como
+a interface minima, mantendo explicitamente cross terms, escape Naimark,
+archimedean channel e structural defect.
 ## Expansão literal do sewing
 
 Lado A já expandido até a mesma fonte Naimark:
@@ -1659,3 +1766,55 @@ residual de primeira coluna/costura, não fabricar uma igualdade.
 
 "AO RETOMAR, LEIA ESTE CHECKPOINT PRIMEIRO E CONTINUE DAQUI.
 NÃO REPITA INVESTIGAÇÕES MARCADAS COMO FECHADAS OU NO-GO."
+
+
+## 2026-09-14 -- auditoria ReturnMetric antes de novo carrier
+
+### Evidencia compilada
+
+Os seguintes modulos compilaram com `/home/thlinux/.elan/bin/lake env lean`
+e exit code 0:
+
+- `CompletedNativeReturnMetricReadoutCrosswalkAudit.lean`
+- `FiniteCameraHilbertSchmidtEnergyCrosswalkAudit.lean`
+- `SixCameraCauchyMomentCrosswalkAudit.lean`
+- `CompletedC3FourTraceSymplecticBridge.lean`
+
+### Descobertas
+
+- A API finita `NativeCarrySpectralWeyl.Finite.returnMetric` e
+  `1 + poisson^H * poisson`. A identidade
+  `endpointMap_conjTranspose_mul_returnMetric_mul_endpointMap` e a
+  cancelacao exata sob `P E = B` e `E^H E + B^H B = I`.
+- A elevacao Hilbertiana `clmReturnMetric` e a metrica de grafo `I + P^dagger P`. A prova
+  global usa `canonicalNativeGreenFrameParsevalSplit` e
+  `canonicalNativeGreenFramePoisson_intertwines`, sem comparacao camera a
+  camera.
+- A whitening explicita `G^(-1/2)` aparece em
+  `finiteCanonicalCameraReadout` e
+  `finiteCameraWhitenedNaimarkSynthesisContinuous`. Seus theorems sao
+  isometrias de Gram finito, nao uma identificacao do GreenBoundary.
+- A colagem global por incidencia usa `CarryVerticalL2`, a equivalencia
+  `carryVerticalL2GreenFrameStateEquiv` e o indice comum `n`. Os
+  theorems de recovery/parity transport recuperam literalmente cada
+  componente par/impar; a realizacao nao e camera a camera.
+- O FourTraceSymplecticBridge e exato, mas preserva a forma de Green como
+  forma skew simpletica: duas quadraturas reconstruem `greenForm`. Isso
+  nao pode ser reescrito automaticamente como Gram positivo.
+- A rota de retorno misto confirma o limite: `sixCameraReturnReadout`
+  seleciona somente o coeficiente horizontal central; o remainder de retorno
+  e nao nulo e produz energia Gamma nao nula. Portanto o readout escalar
+  misto nao fatoriza o boundary Gamma para todos os sources.
+- O limite global simpletico chega ao Wronskiano somente sob o gate
+  `Tendsto structuralDefect ... (nhds 0)`, explicitado por
+  `canonicalCompletedC3FiniteFNegFPrimeSymplecticGlobalGreenReadout_tendsto_wronskian_iff`.
+
+### Conclusao desta etapa
+
+A possibilidade solicitada foi excluida para a realizacao atual sem criar
+carrier novo: ReturnMetric, Gram whitening, Naimark e colagem global existem
+e sao teoremas compilados, mas sao quatro transportes tipados diferentes.
+Nenhum theorem atual fornece
+`inner (W (T z)) (W (T w)) = GreenBoundary(z,w)` nem identifica esse
+produto positivo com `canonicalNativeBoundaryReadout`. O resultado correto
+permanece Caso D, com o gate estrutural explicitamente preservado.
