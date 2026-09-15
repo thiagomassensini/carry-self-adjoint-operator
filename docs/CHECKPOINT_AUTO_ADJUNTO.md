@@ -2,12 +2,12 @@
 
 # CURRENT STATE
 
-Atualizado em: 2026-09-14
+Atualizado em: 2026-09-14 (auditoria bilinear Gamma–TFVD)
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL: este próprio commit de checkpoint; confirme com `git rev-parse HEAD`.
-HEAD CONFIRMADO ANTES DO PIN: `e6605ac656863278ecae87485772093e6620941d`
+HEAD REAL CONFIRMADO: `444678506778ae47b9ca34304d2ea1cdfa1c8ed7`
+Comando de confirmação: `git rev-parse HEAD` no checkout remoto.
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
 
@@ -44,6 +44,29 @@ a igualdade bilinear do readout Gamma/TFVD corrigido com o Green escalar
 `(F,-F')`, mantendo os dois cross terms e o termo de correção. A identidade
 diagonal de energia sozinha não é suficiente para o kernel de duas variáveis.
 
+Auditoria literal do seam: a fonte, o resolvente e o estado Naimark são os
+mesmos nos dois lados. A primeira divergência ocorre apenas no readout de
+bordo do mesmo `canonicalCompletedC3StructuredOnePointState`: o lado Gamma
+projeta `greenPort` pela fonte de seis câmeras/Cauchy, enquanto o lado escalar
+projeta `completedTraceAt` no par orientado `(Psi,F)=(-F',F)`. Portanto ainda
+não há igualdade de costura; há um residual de projeção estruturado.
+
+Resíduos exatos já localizados:
+
+```text
+canonicalCompletedC3RawGammaWronskianDefect
+  = sameStructuredGreenForm - scalar/native Green form
+  = gammaNativeMismatch - archimedeanTransportCorrection
+```
+
+Os nomes são `canonicalCompletedC3RawGammaWronskianDefect_eq_sameStructuredGreenForm_sub`,
+`canonicalCompletedC3RawGammaWronskianDefect_eq_gammaNativeMismatch_sub_archimedeanTransportCorrection`
+e `canonicalCompletedC3NativeSourceLocusProjectionMismatch_eq_pureNative`.
+Na rota de fatorização TFVD, o mesmo seam aparece como os canais explícitos
+`greenProvenance`, `offDiagonal`, `readoutResidual`, `tailCompletion` e
+`archimedeanChart`, sem theorem de anulação. O tail escalar já é exato; não é
+o gargalo.
+
 ## Próxima ação mínima
 
 Formalizar/provar o statement bilinear mínimo abaixo no carrier corrigido; em
@@ -53,11 +76,51 @@ statement.
 
 ## Retomada
 
-"O HEAD atual é o próprio commit de checkpoint; confirme com `git rev-parse
-HEAD`. A classificação é D: a decomposição do balance é global, mas a
+"O HEAD atual confirmado é `444678506778ae47b9ca34304d2ea1cdfa1c8ed7`.
+A classificação é D: a decomposição do balance é global, mas a
 igualdade Gamma–TFVD/sewing ainda é um theorem bilinear upstream. Continue
 pelos canais corrigidos e pelos cross terms; não promova balance zero a
 identidade nem o deduza de characteristic = 0."
+
+## Auditoria estrutural registrada antes de continuar
+
+- `NativeBoundaryReadoutHPIntertwining.lean`: a cadeia
+  `canonicalNativeBoundaryReadout → canonicalNativeBoundarySourceState →
+  canonicalCompletedC3TfvdCameraSource → canonicalCompletedC3TfvdResolventDomainVector`
+  é exata; a unicidade leva ao estado Gamma/Naimark e ao `gammaBoundaryReadout`.
+- `CompletedC3BoundaryRelationSewingBridge.lean`: o sewing é equivalente ao
+  `canonicalCompletedC3RawGammaWronskianDefect = 0`; não é consequência do
+  balance diagonal.
+- `CompletedC3BracketTfvdGreenFactorization.lean`: o Wronskiano completado
+  fatoriza através do Green TFVD com todos os canais, e a convergência do
+  readout global ao Wronskiano é equivalente ao defeito estrutural misto
+  tender a zero.
+- `NativeBoundaryArchimedeanDressingSeparation.lean`: a correção
+  arquimediana é uma contribuição explícita pela regra do produto; não deve
+  ser apagada ao comparar os dois readouts.
+- `NativeSourceLocusGreenCompatibility.lean` e
+  `CompletedC3SameStructuredBoundaryState.lean`: Gamma e escalar são duas
+  projeções do mesmo estado; a compatibilidade é exatamente o residual de
+  igualdade entre as formas Green dessas projeções.
+- `CompletedC3AllOrderGammaWronskianLimitGate.lean`: a diferença finita se
+  separa em dinâmica-estática, defeito estrutural e tail; o tail já tende a
+  zero, restando a compatibilidade do carrier/readout.
+
+Conclusão provisória da etapa: não há evidência formal suficiente para A ou B,
+nem testemunho que torne a igualdade Gamma global falsamente impossível. O
+resultado correto permanece D: falta um theorem bilinear upstream concreto,
+mais precisamente uma identidade de projeção/fonte que determine a soma dos
+canais acima. Não usar `Characteristic = 0`, `BoundaryGreenSewing`, HP ou
+Gram como hipótese para provar esse theorem.
+
+Próxima ação mínima: expandir as definições de
+`CanonicalCompletedC3FNegFPrimeMixedChannels` e dos canais
+`greenProvenance/offDiagonal/readoutResidual/tailCompletion/archimedeanChart`,
+identificando se há uma igualdade de fonte já existente que os combine ou
+qual único cross-term ainda falta.
+
+Alteração deste checkpoint: somente documentação; nenhum arquivo Lean de
+produção alterado. `.lake` não rastreado preservado.
 
 Branch: `agent/next-natural-native-gate`
 HEAD: `e0d3d09` (`Record native carrier seam checkpoint`)
