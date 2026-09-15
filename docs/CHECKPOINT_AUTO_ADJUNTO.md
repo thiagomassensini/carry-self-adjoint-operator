@@ -13,12 +13,13 @@ Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
 
 ## Classificação Gamma–TFVD
 
-D — FALTA UM THEOREM BILINEAR UPSTREAM. A decomposição do balance é global,
-mas a igualdade de energias Gamma–TFVD não é uma identidade global provada.
-Formalmente, `Balance = 0` é apenas equivalente à igualdade das duas normas;
-o sewing de duas variáveis é um gate separado, equivalente ao defeito
-Gamma–Wronskian zero. O locus `characteristic = 0` não fornece esse
-cancelamento automaticamente.
+D2 para o carrier Gamma canônico: o sewing bilinear literal é formalmente
+falso perto do centro. A decomposição do balance continua global, mas
+`Balance = 0` só está provado como equivalente à igualdade das energias
+ambiente e Gamma; não há theorem global que force esse zero. Para o carrier
+corrigido/enriquecido, a classificação permanece D: falta a identidade de
+fonte/readout que diga qual combinação de Gamma, correção e canais retidos
+realiza o Green escalar.
 
 ## Theorem decisivo encontrado
 
@@ -36,6 +37,27 @@ Complementos decisivos: `...Balance_eq_zero_iff_energy`,
 `canonicalCompletedC3BoundaryGreenSewing_iff_rawDefect_zero` e
 `canonicalCompletedC3NormalizedPolarizedGammaKernel_eq_dslope_iff_rawWronskian`.
 Nenhum deles prova o zero do balance ou do defeito.
+
+No-go decisivo para a versão Gamma literal:
+
+Nome: `canonicalC3RawDefect_counterexamples_arbitrarily_close`;
+arquivo: `C3GammaCameraTraceObstruction.lean`;
+statement resumido:
+
+```lean
+∀ ε > 0, ∃ t, 0 < t ∧ t < ε ∧ t < 1/2 ∧
+  operatorHeightParameter (I * t) ∈ genuineCriticalStrip ∧
+  completedNativeOperatorCharacteristic (I * t) ≠ 0 ∧
+  ∀ hz, (I * t).im ≠ 0 →
+    canonicalCompletedC3RawGammaWronskianDefect
+      (I * t) (I * t) hz hz ≠ 0
+```
+
+Com os teoremas exatos
+`canonicalNativeBoundaryReadoutDefect_eq_rawGammaWronskianDefect` e
+`canonicalNativeBoundaryCompletedReadoutSewing_iff_defect_zero`, isso refuta
+o sewing global do `canonicalNativeBoundaryReadout` com o Wronskiano
+completado. A refutação é pré-Hankel e não usa zeros, RH ou `characteristic = 0`.
 
 ## Gargalo atual exato
 
@@ -69,18 +91,22 @@ o gargalo.
 
 ## Próxima ação mínima
 
-Formalizar/provar o statement bilinear mínimo abaixo no carrier corrigido; em
-seguida reutilizar as corolários de sewing, `dslope`, independência incidencial
-e HP já compilados. Não tentar provar `Balance = 0` como substituto desse
-statement.
+Formalizar em Lean a negação do sewing literal do carrier Gamma e, em seguida,
+redirecionar o alvo para o carrier enriquecido `Gamma + corrected channel`.
+Nesse carrier, o theorem mínimo ainda aberto é uma identidade bilinear de
+fonte/readout que combine os canais `port`, `leak`, `source`, `provenance`,
+`offDiagonal`, `readoutResidual`, `tailCompletion` e `archimedeanChart` sem
+apagá-los. Não tentar provar `Balance = 0` como substituto.
 
 ## Retomada
 
 "O HEAD atual confirmado é `444678506778ae47b9ca34304d2ea1cdfa1c8ed7`.
-A classificação é D: a decomposição do balance é global, mas a
-igualdade Gamma–TFVD/sewing ainda é um theorem bilinear upstream. Continue
-pelos canais corrigidos e pelos cross terms; não promova balance zero a
-identidade nem o deduza de characteristic = 0."
+A classificação é D2 para o carrier Gamma literal: há contraexemplos formais
+arbitrariamente próximos do centro. O balance diagonal continua apenas uma
+igualdade de diferença de energias; para o carrier corrigido a classificação
+é D, com um theorem bilinear de fonte/readout ainda aberto. Continue pelos
+canais corrigidos e pelos cross terms; não promova balance zero a identidade
+nem o deduza de characteristic = 0."
 
 ## Auditoria estrutural registrada antes de continuar
 
@@ -113,11 +139,36 @@ mais precisamente uma identidade de projeção/fonte que determine a soma dos
 canais acima. Não usar `Characteristic = 0`, `BoundaryGreenSewing`, HP ou
 Gram como hipótese para provar esse theorem.
 
-Próxima ação mínima: expandir as definições de
+### Atualização após o no-go do centro
+
+A conclusão acima foi refinada por `C3GammaCameraTraceObstruction.lean`:
+`canonicalC3RawDefect_counterexamples_arbitrarily_close` fornece, para todo
+`ε > 0`, um ponto diagonal off-axis Genuine dentro de `ε` do centro, com
+`completedNativeOperatorCharacteristic ≠ 0` e defeito Gamma–Wronskian não
+nulo. Logo o alvo literal
+
+```lean
+∀ z w hz hw,
+  canonicalNativeBoundaryReadout z w hz hw =
+    completedGreenWronskian
+      completedNativeOperatorCharacteristic
+      completedNativeOperatorBoundaryCompanion w z
+```
+
+é falso para o carrier Gamma atual. O defeito não é um simples termo ainda
+não estimado: ele tem testemunho formal de não-anulação. A rota correta é
+conservar o Gamma como projeção positiva e usar o carrier enriquecido com a
+correção/ledger para o readout escalar; a identidade a provar muda de
+“Gamma sozinho = Wronskian” para uma igualdade do readout corrigido, com os
+cross terms explícitos.
+
+Próxima ação mínima: depois de registrar a negação do sewing Gamma literal,
+expandir as definições de
 `CanonicalCompletedC3FNegFPrimeMixedChannels` e dos canais
 `greenProvenance/offDiagonal/readoutResidual/tailCompletion/archimedeanChart`,
 identificando se há uma igualdade de fonte já existente que os combine ou
-qual único cross-term ainda falta.
+qual único cross-term ainda falta. O alvo literal Gamma não deve mais ser
+tratado como uma identidade possível.
 
 Alteração deste checkpoint: somente documentação; nenhum arquivo Lean de
 produção alterado. `.lake` não rastreado preservado.
