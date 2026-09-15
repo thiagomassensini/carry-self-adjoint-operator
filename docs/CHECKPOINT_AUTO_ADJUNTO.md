@@ -53,10 +53,11 @@ statement.
 
 ## Retomada
 
-"O HEAD real é `e6605ac`. A classificação é D: a decomposição do balance é
-global, mas a igualdade Gamma–TFVD/sewing ainda é um theorem bilinear
-upstream. Continue pelos canais corrigidos e pelos cross terms; não promova
-balance zero a identidade nem o deduza de characteristic = 0."
+"O HEAD atual é o próprio commit de checkpoint; confirme com `git rev-parse
+HEAD`. A classificação é D: a decomposição do balance é global, mas a
+igualdade Gamma–TFVD/sewing ainda é um theorem bilinear upstream. Continue
+pelos canais corrigidos e pelos cross terms; não promova balance zero a
+identidade nem o deduza de characteristic = 0."
 
 Branch: `agent/next-natural-native-gate`
 HEAD: `e0d3d09` (`Record native carrier seam checkpoint`)
