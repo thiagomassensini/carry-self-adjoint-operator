@@ -2,11 +2,11 @@
 
 # CURRENT STATE
 
-Atualizado em: 2026-09-14 (auditoria bilinear Gamma–TFVD)
+Atualizado em: 2026-09-14 (retomada do seam causal center-leg)
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL CONFIRMADO: `b72aba48f0d0698bc727e0d478a9aaef7e5626c9`
+HEAD REAL CONFIRMADO: `17b698ae16b3f9e1e11f506ea7bee00be05f359b`
 Comando de confirmação: `git rev-parse HEAD` no checkout remoto.
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
@@ -91,22 +91,45 @@ o gargalo.
 
 ## Próxima ação mínima
 
-Formalizar em Lean a negação do sewing literal do carrier Gamma e, em seguida,
-redirecionar o alvo para o carrier enriquecido `Gamma + corrected channel`.
-Nesse carrier, o theorem mínimo ainda aberto é uma identidade bilinear de
-fonte/readout que combine os canais `port`, `leak`, `source`, `provenance`,
-`offDiagonal`, `readoutResidual`, `tailCompletion` e `archimedeanChart` sem
-apagá-los. Não tentar provar `Balance = 0` como substituto.
+Auditar e, se possível, instanciar o seam
+`HasCanonicalCompletedNativeTfvdGreenCenterLegReadout` para o jet causal
+corrigido/enriquecido `canonicalBR2CameraBracketCausalGreenResponseParityJet`.
+O jet causal zero-seed bruto já tem um no-go formal de equação de coeficientes
+(`not_br2C3CausalResponse_coefficientEquation`) e um defeito de primeiro shift
+`br2C3CausalTfvdMetric_firstShiftDefect_eq_neg_six`; portanto ele não pode ser
+promovido a carrier canônico. A próxima ação deve localizar a correção de
+boundary/readout que remove esse defeito sem apagar os canais estruturais, ou
+registrar a negação do center-leg para o carrier bruto. Não tentar provar
+`Balance = 0` como substituto.
 
 ## Retomada
 
-"O HEAD atual confirmado é `b72aba48f0d0698bc727e0d478a9aaef7e5626c9`.
+"O HEAD atual confirmado é `17b698ae16b3f9e1e11f506ea7bee00be05f359b`.
 A classificação é D2 para o carrier Gamma literal: há contraexemplos formais
 arbitrariamente próximos do centro. O balance diagonal continua apenas uma
 igualdade de diferença de energias; para o carrier corrigido a classificação
 é D, com um theorem bilinear de fonte/readout ainda aberto. Continue pelos
-canais corrigidos e pelos cross terms; não promova balance zero a identidade
-nem o deduza de characteristic = 0."
+canais corrigidos, pelo center-leg e pelos cross terms; não promova balance
+zero a identidade nem o deduza de characteristic = 0."
+
+## Descoberta registrada nesta retomada — seam causal center-leg
+
+A cadeia causal já existente prova a proveniência escalar: fonte nativa →
+resposta Green causal → retorno de bordo → traço Hilbert, além do transporte
+injetivo de incidência. Em particular,
+`canonicalCompletedNativeCarryGreenChiralResponse_succCoefficient_eq_polarizedMoment`
+identifica os coeficientes escalares com
+`polarizedGreenMomentCoefficient` antes de Hankel/Jacobi.
+
+Isso ainda não é a identidade de produto interno exigida por
+`HasCanonicalCompletedNativeTfvdGreenCenterLegReadout`. O carrier causal
+zero-seed bruto é unilateralmente traduzido e satisfaz o no-go formal
+`not_br2C3CausalResponse_coefficientEquation`; seu primeiro defeito de métrica
+é explicitamente `-6`. Logo o próximo objeto não pode ser essa família bruta:
+deve ser o response/readout corrigido, com a correção de bordo/center-leg e os
+canais de defeito preservados. O seam restante é, portanto, uma igualdade
+bilinear de center-leg para o carrier corrigido, não uma nova comparação de
+Gram nem uma prova do zero do balance.
 
 ## Auditoria estrutural registrada antes de continuar
 
