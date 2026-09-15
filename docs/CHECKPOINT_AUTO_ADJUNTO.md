@@ -2,24 +2,29 @@
 
 # CURRENT STATE
 
-Atualizado em: 2026-09-14 (no-go formal do jet causal bruto)
+Atualizado em: 2026-09-14 (classificação do balance e do sewing)
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL CONFIRMADO: `37b43cff9ac98d87f8c930c7c24c507692078fd9`
+HEAD REAL CONFIRMADO: `df7dba94e33290d0ae2ad48a9e0aa71c007de9dc`
 Comando de confirmação: `git rev-parse HEAD` no checkout remoto.
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
 
 ## Classificação Gamma–TFVD
 
-D2 para o carrier Gamma canônico: o sewing bilinear literal é formalmente
-falso perto do centro. A decomposição do balance continua global, mas
-`Balance = 0` só está provado como equivalente à igualdade das energias
-ambiente e Gamma; não há theorem global que force esse zero. Para o carrier
-corrigido/enriquecido, a classificação permanece D: falta a identidade de
-fonte/readout que diga qual combinação de Gamma, correção e canais retidos
-realiza o Green escalar.
+D para o balance Gamma–TFVD: a fatoração energética é uma identidade
+geométrica global no domínio (`Balance = Im z * (E_TFVD - E_Gamma)`), mas o
+zero do balance não é uma identidade global nem foi obtido no zero-locus.
+Para o carrier Gamma literal há ainda D2: o sewing bilinear é formalmente
+falso perto do centro. Para o carrier corrigido/enriquecido, a costura exige
+também o defeito Gamma–Wronskian; portanto o theorem mínimo de fonte/readout
+continua aberto.
+
+Não é Caso B: no zero característico, a energia coisométrica/Wronskiana é
+estritamente positiva fora do eixo real. Há uma equivalência de isotropia com
+`Im z = 0` quando a condição de fechamento nativo já fornece o zero, mas usá-la
+para provar o fechamento seria circular (alerta de Caso C, não um certificado).
 
 ## Theorem decisivo encontrado
 
@@ -37,6 +42,17 @@ Complementos decisivos: `...Balance_eq_zero_iff_energy`,
 `canonicalCompletedC3BoundaryGreenSewing_iff_rawDefect_zero` e
 `canonicalCompletedC3NormalizedPolarizedGammaKernel_eq_dslope_iff_rawWronskian`.
 Nenhum deles prova o zero do balance ou do defeito.
+
+Theorem decisivo de projeção/sewing: `canonicalCompletedC3CoisometricBoundaryReadout_diagonal_eq_wronskian_iff_gammaCorrectionBalance` em `CompletedC3CoisometricWronskianProjectionGate.lean`:
+
+```lean
+boundaryReadout = completedGreenWronskian ↔
+  rawGammaWronskianDefect z z hz hz +
+    Complex.I * (((2 * Balance z hz hzHalf : ℝ) : ℂ)) = 0
+```
+
+Assim, `Balance = 0` reduz a costura a `rawGammaWronskianDefect = 0`; ele não
+substitui a ponte bilinear.
 
 No-go decisivo para a versão Gamma literal:
 
@@ -92,25 +108,23 @@ o gargalo.
 ## Próxima ação mínima
 
 Auditar e, se possível, instanciar o seam
-`HasCanonicalCompletedNativeTfvdGreenCenterLegReadout` para o jet causal
-corrigido/enriquecido `canonicalBR2CameraBracketCausalGreenResponseParityJet`.
-O jet causal zero-seed bruto já tem um no-go formal de equação de coeficientes
-(`not_br2C3CausalResponse_coefficientEquation`) e um defeito de primeiro shift
-`br2C3CausalTfvdMetric_firstShiftDefect_eq_neg_six`; portanto ele não pode ser
-promovido a carrier canônico. A próxima ação deve localizar a correção de
-boundary/readout que remove esse defeito sem apagar os canais estruturais, ou
-registrar a negação do center-leg para o carrier bruto. Não tentar provar
-`Balance = 0` como substituto.
+`HasCanonicalCompletedNativeTfvdGreenCenterLegReadout` para o response/readout
+corrigido. O jet causal zero-seed bruto já foi formalmente excluído; a próxima
+ação deve localizar a correção de boundary/readout que remove a translação sem
+apagar os canais estruturais e, então, provar a igualdade de produto interno.
+O coeficiente escalar corrigido já satisfaz
+`canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_polarizedMoment`,
+mas isso ainda não é o Gram do carrier. Não usar `Balance = 0` como substituto.
 
 ## Retomada
 
-"O HEAD atual confirmado é `37b43cff9ac98d87f8c930c7c24c507692078fd9`.
-A classificação é D2 para o carrier Gamma literal: há contraexemplos formais
-arbitrariamente próximos do centro. O balance diagonal continua apenas uma
-igualdade de diferença de energias; para o carrier corrigido a classificação
-é D, com um theorem bilinear de fonte/readout ainda aberto. Continue pelos
-canais corrigidos, pelo center-leg e pelos cross terms; não promova balance
-zero a identidade nem o deduza de characteristic = 0."
+"O HEAD atual confirmado é `df7dba94e33290d0ae2ad48a9e0aa71c007de9dc`.
+A classificação é D para o balance: sua fatoração energética é global, mas
+seu zero/sewing ainda exige o defeito Gamma–Wronskian. O carrier Gamma literal
+é D2 por contraexemplos formais arbitrariamente próximos do centro. No zero
+característico, a energia coisométrica é positiva fora do eixo real; portanto
+não há rota B pelo zero do balance. Continue pelo response/readout corrigido,
+sem promover balance zero a identidade nem deduzi-lo de characteristic = 0."
 
 ## Descoberta registrada nesta retomada — seam causal center-leg
 
@@ -156,6 +170,48 @@ Consequência operacional: a próxima seta deve usar o response/readout
 corrigido (boundary return, completion ou canal de defeito) e provar o
 center-leg nesse novo carrier. O theorem acima não refuta a realização
 corrigida; ele impede apenas reutilizar o jet causal zero-seed sem correção.
+
+## Descoberta formal — balance global, sewing não reduzido ao balance
+
+`CompletedC3CoisometricWronskianProjectionGate.lean` expõe a forma exata:
+
+```lean
+canonicalCompletedC3CoisometricBoundaryReadout_diagonal_eq_wronskian_iff_gammaCorrectionBalance
+```
+
+Ela diz que a costura diagonal é equivalente a
+`rawGammaWronskianDefect + I * (2 * GammaCorrectionBalance) = 0`.
+Portanto a igualdade de energia é uma identidade geométrica global de
+fatorização, mas sua anulação não é global e não basta para a costura. Se o
+balance for fornecido como zero, o residual exato que ainda precisa ser
+provado é `canonicalCompletedC3RawGammaWronskianDefect = 0`.
+
+O lado corrigido também está classificado: `canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_polarizedMoment`
+prova o readout escalar dos momentos antes de Hankel/Jacobi, mas não fornece
+o produto interno do carrier. E
+`canonicalCompletedC3CoisometricDiagonalWronskianEnergyBalance_pos_of_characteristicZero`
+prova positividade estrita no zero característico fora do eixo real. A
+equivalência de isotropia com `z.im = 0` sob `NativeCarryLogWaveBoundaryCloses`
+é uma consequência condicional e não pode ser usada para fabricar o zero.
+
+Foi formalizado e compilado em `GammaBalanceSewingResidualAudit.lean`:
+
+```lean
+theorem canonicalCompletedC3CoisometricSewing_iff_rawDefect_of_gammaBalance_zero
+    (z : ℂ) (hz : z.im ≠ 0)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hbalance : canonicalCompletedC3GammaCorrectionBalance z hz hzStrip.1 = 0) :
+    canonicalCompletedC3CoisometricCompressedBoundaryReadout
+          z z hzStrip.1 hzStrip.1 =
+        completedGreenWronskian
+          completedNativeOperatorCharacteristic
+          completedNativeOperatorBoundaryCompanion z z ↔
+      canonicalCompletedC3RawGammaWronskianDefect z z hz hz = 0
+```
+
+O nome completo do readout no arquivo é
+`canonicalCompletedC3CoisometricCompressedBoundaryReadout`. Esse é o menor
+corolário formal que impede usar o balance como substituto do sewing.
 
 ## Auditoria estrutural registrada antes de continuar
 
