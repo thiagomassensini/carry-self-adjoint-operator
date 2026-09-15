@@ -6,7 +6,7 @@ Atualizado em: 2026-09-14 (auditoria bilinear Gamma–TFVD)
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL CONFIRMADO: `444678506778ae47b9ca34304d2ea1cdfa1c8ed7`
+HEAD REAL CONFIRMADO: `b72aba48f0d0698bc727e0d478a9aaef7e5626c9`
 Comando de confirmação: `git rev-parse HEAD` no checkout remoto.
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
@@ -100,7 +100,7 @@ apagá-los. Não tentar provar `Balance = 0` como substituto.
 
 ## Retomada
 
-"O HEAD atual confirmado é `444678506778ae47b9ca34304d2ea1cdfa1c8ed7`.
+"O HEAD atual confirmado é `b72aba48f0d0698bc727e0d478a9aaef7e5626c9`.
 A classificação é D2 para o carrier Gamma literal: há contraexemplos formais
 arbitrariamente próximos do centro. O balance diagonal continua apenas uma
 igualdade de diferença de energias; para o carrier corrigido a classificação
@@ -132,12 +132,11 @@ nem o deduza de characteristic = 0."
   separa em dinâmica-estática, defeito estrutural e tail; o tail já tende a
   zero, restando a compatibilidade do carrier/readout.
 
-Conclusão provisória da etapa: não há evidência formal suficiente para A ou B,
-nem testemunho que torne a igualdade Gamma global falsamente impossível. O
-resultado correto permanece D: falta um theorem bilinear upstream concreto,
-mais precisamente uma identidade de projeção/fonte que determine a soma dos
-canais acima. Não usar `Characteristic = 0`, `BoundaryGreenSewing`, HP ou
-Gram como hipótese para provar esse theorem.
+Conclusão provisória antes do contraexemplo explícito: a evidência apontava
+para D, isto é, um theorem bilinear upstream concreto. O resultado foi depois
+refinado para D2 no carrier Gamma literal pelo witness formal abaixo; para o
+carrier corrigido/enriquecido ainda permanece D. Não usar `Characteristic = 0`,
+`BoundaryGreenSewing`, HP ou Gram como hipótese para provar o theorem correto.
 
 ### Atualização após o no-go do centro
 
@@ -163,7 +162,7 @@ correção/ledger para o readout escalar; a identidade a provar muda de
 cross terms explícitos.
 
 Próxima ação mínima: depois de registrar a negação do sewing Gamma literal,
-expandir as definições de
+auditar o center-leg readout do jet causal/TFVD e só então expandir as definições de
 `CanonicalCompletedC3FNegFPrimeMixedChannels` e dos canais
 `greenProvenance/offDiagonal/readoutResidual/tailCompletion/archimedeanChart`,
 identificando se há uma igualdade de fonte já existente que os combine ou
@@ -194,6 +193,44 @@ lake env lean CarrySelfAdjointOperator/NativeBoundaryReadoutGammaNoGoAudit.lean
 
 com exit code `0`. O arquivo de auditoria ainda não foi incluído no agregador
 principal; a prova é independente e rastreável no branch.
+
+### Separação do carrier corrigido
+
+`CompletedC3EnrichedSymplecticNoLeakBridge.lean` e
+`CompletedC3RecoveredEnrichedWronskianCarrier.lean` já provam um fato
+verdadeiro e mais fraco: o `finalReadout` do ledger enriquecido, mantendo
+radial + structural + tail + xi + archimedean, é exatamente o Wronskiano
+completado em cada cutoff. Isso é uma identidade escalar de readout, não uma
+representação `inner state(z) state(w)` e não fornece positividade por si só.
+
+O carrier positivo concreto correspondente também tem um no-go formal:
+`not_hasCompletedNativeRealAxisNormalizedGreenKernel_concreteC3_of_defect`
+em `CompletedC3ConcretePositiveSewingClosure.lean`, derivado do defeito
+central `canonicalCompletedC3ConcretePositiveSewingDefect_zero_zero_ne_zero`.
+Logo não é válido promover o ledger escalar a Gram positivo sem uma métrica ou
+transporte adicional.
+
+O menor seam natural restante já está tipado em
+`CompletedNativeHPGateAudit.lean`:
+
+```lean
+def HasCanonicalCompletedNativeTfvdGreenCenterLegReadout
+    (incidence : BR2CameraIncidence)
+    (jet : (ℕ ⊕ ℕ) → CanonicalCompletedTfvdGreenHilbertCarrier) : Prop :=
+  ∀ i j, incidence.centerCoordinate i ≠ incidence.legCoordinate j →
+    polarizedGreenMomentCoefficient
+      canonicalCompletedNativeLogDerivativeMoment
+      (parityJetNumber i) (parityJetNumber j) =
+      inner ℂ (jet i) (jet j)
+```
+
+Com `BR2BracketIncidenceJetTransport`, esse theorem já fecha o certificado
+HP via `completedNativeRealHPCarrierCertificate_of_centerLegReadout`; o
+capstone pré-Gram é
+`canonicalC2Geometry_causal_response_height_of_centerLegReadout` em
+`NaturalNativeSourceValveGreenProvenance.lean`. Portanto o alvo correto para
+continuar é provar esse readout no jet causal, não ressuscitar o sewing Gamma
+literal nem usar o `finalReadout` escalar como Gram.
 
 Branch: `agent/next-natural-native-gate`
 HEAD: `e0d3d09` (`Record native carrier seam checkpoint`)
