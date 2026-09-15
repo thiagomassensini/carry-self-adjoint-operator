@@ -2,14 +2,31 @@
 
 # CURRENT STATE
 
-Atualizado em: 2026-09-14 (expansão estrutural: carrier Wronskiano e ponte vetorial)
+Atualizado em: 2026-09-14 (auditoria ReturnMetric antes de novo carrier)
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL CONFIRMADO: `6a8509579fe78e07379bf6863e78db31da57e6a9`
+HEAD REAL CONFIRMADO: `3681881a542e976a968fbdc7a50b0d0d0b0facce`
 Comando de confirmação: `git rev-parse HEAD` no checkout remoto.
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
+
+## Prioridade atual — auditar ReturnMetric antes de criar carrier
+
+A nova rota deve testar primeiro a hipótese histórica de que o node trace e o
+Green trace só coincidem depois do whitening pela métrica de retorno nativa.
+A comparação deve ser feita após a colagem global das incidências pelo mesmo
+rótulo n, não câmera a câmera.
+
+Tabela obrigatória a preencher após a auditoria:
+objeto antigo | objeto Lean atual | theorem de transporte | métrica usada
+
+Alvos: return metric/endpoint metric, whitening G^(-1/2), node trace ↔ Green
+trace, Parseval isometry, Naimark dilation e global incidence/fibre gluing.
+Não criar novo carrier nem promover FourTraceSymplecticBridge a isometria
+euclidiana antes de localizar essa cadeia. A classificação Gamma–TFVD continua
+D para o balance e D2 para o Gamma literal até que ReturnMetric prove uma
+ponte bilinear diferente.
 
 ## Expansão literal do sewing
 
@@ -271,13 +288,11 @@ subespaço causal.
 
 ## Próxima ação mínima
 
-Não tentar o Gamma literal: o no-go e a estrutura de modos diretos já
-eliminam essa rota global. Formalizar primeiro o readout corrigido causal
-usando canonicalCompletedC3RecoveredAllCutoffLedgerState e provar a única
-identificação bilinear acima no subespaço dos estados canônicos, mantendo
-cross terms, readoutResidual e structural defect. Se a identificação não
-estiver tipada no carrier atual, registrar o residual exato e parar no
-statement mínimo; não usar Balance = 0 como substituto.
+Auditar os módulos atuais de ReturnMetric, frame/Gram/Parseval, Naimark e
+incidence gluing, sempre na família global indexada pelo mesmo n. Expandir a
+cadeia node trace → Green trace → return-metric whitening → Parseval/Naimark
+e preencher a tabela acima com declarações reais. Só depois decidir se ela
+fecha o residual Gamma–Wronskian ou se deixa um gate bilinear explícito.
 
 ## Retomada
 
