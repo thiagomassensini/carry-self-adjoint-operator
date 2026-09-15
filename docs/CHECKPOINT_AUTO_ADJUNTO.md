@@ -2,14 +2,58 @@
 
 # CURRENT STATE
 
-Atualizado em: 2026-09-14 (residual do sewing formalizado)
+Atualizado em: 2026-09-14 (retomada: expansão literal do sewing)
 
 Branch: `agent/next-natural-native-gate`
 
-HEAD REAL CONFIRMADO: `eb8aab78228e68e4be1e057a68d3017eaecf9c1e`
+HEAD REAL CONFIRMADO: `90971844358a2aa23ae98889a9deed841043aa57`
 Comando de confirmação: `git rev-parse HEAD` no checkout remoto.
 
 Status remoto: somente `.lake` não rastreado; preservado intencionalmente.
+
+## Expansão literal do sewing
+
+Lado A já expandido até a mesma fonte Naimark:
+
+```text
+canonicalNativeBoundaryReadout
+→ canonicalNativeBoundarySourceState
+→ canonicalNativeBoundarySourceState_eq_gamma
+→ canonicalNativeBoundaryReadout_eq_gammaBoundaryReadout
+→ canonicalNativeBoundaryReadout_eq_separation_mul_gammaKernel
+```
+
+Teoremas: `NativeBoundaryReadoutHPIntertwining.lean`; todas essas setas são
+igualdades exatas, sob as hipóteses de domínio e `im ≠ 0`. A última forma é a
+Gram Gamma/Cauchy; ela ainda não é o Wronskiano escalar.
+
+Lado B já expandido até o readout escalar completado:
+
+```text
+completedGreenWronskian
+→ completedNativeOperatorCharacteristic
+  + completedNativeOperatorBoundaryCompanion
+→ boundary companion = -deriv characteristic
+→ canonicalC3BracketTfvdCompletedWronskianReadout_eq_F_negFprime
+→ Green/TFVD structural channels
+```
+
+Teoremas: `CompletedC3CoisometricWronskianEnergyGate.lean`,
+`CompletedC3FNegFPrimeMixedKernel.lean` e
+`CompletedNativeCausalGreenProvenance.lean`. A decomposição escalar mantém
+`greenProvenance`, `offDiagonal`, `readoutResidual`, `tailCompletion` e
+`archimedeanChart`; o tail isolado já é exato.
+
+Primeira divergência confirmada: os dois lados usam a mesma fonte/estado
+estruturado, mas aplicam readouts de bordo diferentes. O residual canônico é
+`canonicalCompletedC3RawGammaWronskianDefect`, já decomposto como
+`sameStructuredGreenForm - scalar/native Green form` e como
+`gammaNativeMismatch - archimedeanTransportCorrection`.
+
+Theorem mínimo ainda faltante: uma identidade bilinear upstream para o
+readout corrigido que elimine esse residual, ou uma única identidade concreta
+de fonte/companion que o decomponha até um termo geométrico único. Não usar
+balance, sewing, Gram, zeros ou Jacobi como hipótese.
 
 ## Classificação Gamma–TFVD
 
@@ -118,7 +162,7 @@ mas isso ainda não é o Gram do carrier. Não usar `Balance = 0` como substitut
 
 ## Retomada
 
-"O HEAD atual confirmado é `eb8aab78228e68e4be1e057a68d3017eaecf9c1e`.
+"O HEAD atual confirmado é `90971844358a2aa23ae98889a9deed841043aa57`.
 A classificação é D para o balance: sua fatoração energética é global, mas
 seu zero/sewing ainda exige o defeito Gamma–Wronskian. O carrier Gamma literal
 é D2 por contraexemplos formais arbitrariamente próximos do centro. No zero
