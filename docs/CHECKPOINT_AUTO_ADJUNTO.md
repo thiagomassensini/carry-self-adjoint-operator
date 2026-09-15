@@ -173,6 +173,28 @@ tratado como uma identidade possível.
 Alteração deste checkpoint: somente documentação; nenhum arquivo Lean de
 produção alterado. `.lake` não rastreado preservado.
 
+### Formalização do no-go literal
+
+Foi compilado, sem `sorry`, o arquivo
+`CarrySelfAdjointOperator/NativeBoundaryReadoutGammaNoGoAudit.lean`, com o
+theorem:
+
+```lean
+not_canonicalNativeBoundaryCompletedReadoutSewing_of_cameraFive_counterexample :
+  ¬ CanonicalNativeBoundaryCompletedReadoutSewing
+```
+
+A prova usa apenas o contraexemplo diagonal já kernel-checked e a igualdade
+exata entre `canonicalNativeBoundaryReadoutDefect` e
+`canonicalCompletedC3RawGammaWronskianDefect`. A checagem direta foi:
+
+```text
+lake env lean CarrySelfAdjointOperator/NativeBoundaryReadoutGammaNoGoAudit.lean
+```
+
+com exit code `0`. O arquivo de auditoria ainda não foi incluído no agregador
+principal; a prova é independente e rastreável no branch.
+
 Branch: `agent/next-natural-native-gate`
 HEAD: `e0d3d09` (`Record native carrier seam checkpoint`)
 Data: 2026-09-14
