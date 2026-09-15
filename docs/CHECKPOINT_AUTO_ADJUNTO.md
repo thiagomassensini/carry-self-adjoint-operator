@@ -131,6 +131,32 @@ canais de defeito preservados. O seam restante é, portanto, uma igualdade
 bilinear de center-leg para o carrier corrigido, não uma nova comparação de
 Gram nem uma prova do zero do balance.
 
+## Descoberta formal — center-leg do jet causal bruto é impossível
+
+Foi compilado o theorem
+`not_canonicalBR2CausalGreenResponse_centerLegReadout` em
+`NativeCausalCenterLegNoGoAudit.lean`:
+
+```lean
+theorem not_canonicalBR2CausalGreenResponse_centerLegReadout
+    (incidence : BR2CameraIncidence) :
+    ¬ HasCanonicalCompletedNativeTfvdGreenCenterLegReadout incidence
+      (canonicalBR2CameraBracketCausalGreenResponseParityJet 3 1)
+```
+
+A prova usa `Nat.even_or_odd'` para mostrar que o jet intercalado cobre toda a
+família causal, transforma o readout center-leg em
+`IsPolarizedGreenCoefficientEquation` e aplica
+`not_br2C3CausalResponse_coefficientEquation`. O fato de o center-leg ser
+off-diagonal para todos os pares não repara a obstrução: a família bruta é uma
+família de translações unilaterais. Isso classifica esse candidato como no-go
+de carrier, não como um simples buraco de diagonalização.
+
+Consequência operacional: a próxima seta deve usar o response/readout
+corrigido (boundary return, completion ou canal de defeito) e provar o
+center-leg nesse novo carrier. O theorem acima não refuta a realização
+corrigida; ele impede apenas reutilizar o jet causal zero-seed sem correção.
+
 ## Auditoria estrutural registrada antes de continuar
 
 - `NativeBoundaryReadoutHPIntertwining.lean`: a cadeia
