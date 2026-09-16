@@ -1,0 +1,12 @@
+import CarrySelfAdjointOperator.FiveFieldDecoratedFusionBlock
+
+open NativeCarryFiveFieldCapstone
+
+#print axioms decoratedMonodromy_mul_inverse
+#print axioms decoratedMonodromy_hasDerivAt_amplitude
+#print axioms decoratedMonodromy_hasDerivAt_decoration
+#print axioms decoratedFusionBlock_eq
+#print axioms decoratedMonodromy_product_trace
+#print axioms decoratedMonodromy_commutator_upper
+#print axioms decoratedFusionBlock_same_line
+#print axioms decoratedFusionBlock_physical
