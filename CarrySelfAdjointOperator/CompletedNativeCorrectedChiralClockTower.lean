@@ -76,9 +76,11 @@ theorem canonicalCompletedNativeCorrectedClockTower_coefficientEquation :
     IsPolarizedGreenCoefficientEquation
       canonicalCompletedNativeLogDerivativeMoment
       canonicalCompletedNativeCorrectedClockTowerCoefficient := by
-  simpa [canonicalCompletedNativeCorrectedClockTowerCoefficient] using
-    (polarizedGreenMomentCoefficient_coefficientEquation
-      canonicalCompletedNativeLogDerivativeMoment)
+  change IsPolarizedGreenCoefficientEquation
+    canonicalCompletedNativeLogDerivativeMoment
+    (polarizedGreenMomentCoefficient canonicalCompletedNativeLogDerivativeMoment)
+  exact polarizedGreenMomentCoefficient_coefficientEquation
+    canonicalCompletedNativeLogDerivativeMoment
 
 /-- Hence the native clock tower transports coefficients diagonally through the
 interior exactly as the material seeded clock does. -/

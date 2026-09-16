@@ -75,10 +75,7 @@ theorem completedNativeLogDerivativeTriangularMatrix_mulVec_moments
       completedNativeEvenCharacteristicCoefficient (i.val - j) *
         (canonicalCompletedNativeLogDerivativeMoment j : ℂ)
     else 0
-  simp only [Matrix.mulVec, dotProduct,
-    completedNativeLogDerivativeTriangularMatrix,
-    completedNativeLogDerivativeMomentVector,
-    completedNativeLogDerivativeSourceVector, ite_mul, zero_mul]
+  simp only [ite_mul, zero_mul]
   change (∑ j : Fin N, f j.val) =
     -(((i.val + 1 : ℕ) : ℂ) *
       completedNativeEvenCharacteristicCoefficient (i.val + 1))
