@@ -1,0 +1,11 @@
+import CarrySelfAdjointOperator.FiveFieldChiralEndpointTail
+
+open NativeCarryFiveFieldCapstone
+
+#print axioms integrableOn_exp_neg_mul_natPow
+#print axioms integral_exp_neg_mul_natPow_succ
+#print axioms recurrenceEndpointPolynomial_eq_exp_mul_realTail
+#print axioms integrableOn_complex_exp_neg_mul_natPow
+#print axioms recurrenceEndpointPolynomial_eq_exp_mul_tail
+#print axioms recurrenceEndpointPolynomial_sum_eq_exp_mul_tail
+#print axioms twoJumpMoment_projected_endpoint_eq_exp_mul_tail
