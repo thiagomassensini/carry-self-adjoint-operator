@@ -902,5 +902,13 @@
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeGreenInverseTraceRealizationExists_iff_mismatch_zero"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeTrace_candidate_eq_gamma"}
     ,{"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NativeTrace_cancellation_greenDefect_eq_verticalWronskian"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_eq_finiteAtomicMoment"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_zero_zero_eq_nativeMoment_zero_of_sameEdgeTransport"}
+    ,{"qualified": "CarrySelfAdjointOperator.nativeZeroSeededClockBlock_zero_zero_eq_energy"}
+    ,{"qualified": "CarrySelfAdjointOperator.nativeZeroSeededClockBlock_not_sameEdgeTransport"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_zero_zero_eq_positiveChiralDerivative_of_sameEdgeTransport"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_zero_zero_eq_negNegativeChiralDerivative_of_sameEdgeTransport"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_firstColumn_eq_chiralBlockSignature_of_sameEdgeTransport"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_firstColumn_eq_polarizedGreenMoment_of_sameEdgeTransport"}
   ]
 }
