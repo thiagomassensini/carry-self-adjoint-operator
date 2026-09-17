@@ -66,11 +66,16 @@ theorem completedNativeLogDerivativeTriangularMatrix_mulVec_moments
         (completedNativeLogDerivativeMomentVector N) =
       completedNativeLogDerivativeSourceVector N := by
   funext i
+  simp only [Matrix.mulVec, dotProduct,
+    completedNativeLogDerivativeTriangularMatrix,
+    completedNativeLogDerivativeMomentVector,
+    completedNativeLogDerivativeSourceVector]
   let f : ℕ → ℂ := fun j =>
     if hj : j ≤ i.val then
       completedNativeEvenCharacteristicCoefficient (i.val - j) *
         (canonicalCompletedNativeLogDerivativeMoment j : ℂ)
     else 0
+  simp only [ite_mul, zero_mul]
   change (∑ j : Fin N, f j.val) =
     -(((i.val + 1 : ℕ) : ℂ) *
       completedNativeEvenCharacteristicCoefficient (i.val + 1))

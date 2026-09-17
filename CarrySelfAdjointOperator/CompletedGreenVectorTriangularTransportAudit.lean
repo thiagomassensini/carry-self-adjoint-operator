@@ -1,0 +1,4 @@
+import CarrySelfAdjointOperator.CompletedGreenVectorTriangularTransport
+
+#print axioms CarrySelfAdjointOperator.completedNativeGreenVectorTriangularAct_eq_of_convolution
+#print axioms CarrySelfAdjointOperator.completedGreenTaylorJet_prefix_triangular
