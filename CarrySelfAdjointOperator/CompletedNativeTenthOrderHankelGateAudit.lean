@@ -1,0 +1,9 @@
+import CarrySelfAdjointOperator.CompletedNativeTenthOrderHankelGate
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalCompletedNativeLogDerivativeMoment_four_eq_tenthOrderRatio
+#print axioms canonicalCompletedNativeHankel_three_det_eq
+#print axioms canonicalCompletedNativeHankel_three_det_eq_tenthOrderRatio
+
+end CarrySelfAdjointOperator

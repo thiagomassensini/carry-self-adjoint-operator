@@ -1,0 +1,128 @@
+{
+  "cauchy_audit": {
+    "control": {
+      "maximum_imaginary_coefficient": "1.2494982415153684319652347351101062e-77",
+      "maximum_odd_coefficient": "2.1660475265209815031944584938093087e-78"
+    },
+    "maximum_absolute_moment_difference_between_radii": "5.919437483000697384328461613437763e-57",
+    "maximum_relative_moment_difference_between_radii": "2.6385039227182724730131262898810413e-53",
+    "primary": {
+      "maximum_imaginary_coefficient": "2.438809667610038412012399988677567e-78",
+      "maximum_odd_coefficient": "6.8707577417179248639378995564473786e-79"
+    }
+  },
+  "configuration": {
+    "camera": 3,
+    "cauchy_samples": 32,
+    "compare_count": 0,
+    "control_radius": "0.32",
+    "cutoff": 4,
+    "dps": 80,
+    "hurwitz_zeta_in_construction": false,
+    "interval_arithmetic": false,
+    "order": 2,
+    "radius": "0.4",
+    "riemann_zeta_in_construction": false,
+    "root_finding_in_construction": "none",
+    "truncations": [
+      2
+    ],
+    "workers": 2,
+    "zero_heights_used_in_construction": false
+  },
+  "defect_jet_realization": {
+    "M_pick_green_identity_residual": "3.2949248095591671275354291604677886e-83",
+    "definition": "gamma_N(u)=(I-u*J_N)^(-1)*x_0, x_0=sqrt(h_0)e_0, x_j=J_N^j*x_0, X_N e_j=x_j",
+    "jet_feature_equals_cholesky_feature_residual": "0.0",
+    "jet_gram_factorization_residual": "9.0996821951528038893654642307100656e-86",
+    "jet_shifted_factorization_residual": "6.4344469868350361476736902168396112e-86",
+    "minimum_jacobi_eigenvalue": "0.00042254180171788770803297513768519594",
+    "native_tfvd_crosswalk_status": "not assumed: one still needs a theorem identifying the height shifted-Hankel energy with the native TFVD Green energy readout",
+    "positive_energy_factorization_residual": "5.4476628964462084348387432586924709e-84",
+    "q_pick_energy_identity_residual": "1.019461163073092768816610930344994e-82",
+    "weyl_green_test_points": {
+      "u": [
+        "0.125",
+        "0.0625"
+      ],
+      "v": [
+        "-0.09375",
+        "0.03125"
+      ]
+    }
+  },
+  "derivation": {
+    "bounded_operator": "Y f(y)=y f(y)",
+    "classical_function_role": "no Riemann/Hurwitz zeta is evaluated in construction; Phi is only the even coordinate F_native(z)=F_native(0)*Phi(z^2)",
+    "common_characteristic": "F_native(z)=A(s)*(R_bM(s)+tau_bM(s))/kappa_b(s), s=1/2+i z",
+    "fredholm_determinant": "Phi(u)=det(I-u T^(-2))",
+    "global_firewall": "The positive measure formula and all-order Hankel positivity are equivalent to the global height-Weyl/RH gate; finite positivity is not a proof.",
+    "height_operator": "T=Y^(-1/2)",
+    "measure": "rho=sum_gamma multiplicity(gamma) gamma^(-2) delta_(gamma^(-2))",
+    "moment_weyl": "q(u)=-d_u log Phi(u), F(z)=F(0)Phi(z^2)",
+    "multiplicity_firewall": "The scalar cyclic Jacobi realization stores zero multiplicity in atom weights/Weyl residues, not in eigenspace dimension.",
+    "native_bridge": "R_bM is the finite native camera; tau_bM is its exact bracket-Mellin tail; kappa_b is the nonzero geometric camera factor on the contour",
+    "resolvent_trace": "q(u)=Tr((T^2-u I)^(-1))",
+    "spectral_moments": "h_k=Tr(T^(-2k-2))"
+  },
+  "green_boundary_closure": {
+    "boundary_feedback": [
+      "-0.0000019804124837958498300950270024729383",
+      "0.0051094449098702091868987537824406729"
+    ],
+    "boundary_parameter_residual": "0.0",
+    "cholesky_gram_factorization_residual": "9.0996821951528038893654642307100656e-86",
+    "cholesky_shifted_factorization_residual": "6.4344469868350361476736902168396112e-86",
+    "g_selfadjoint_defect": "0.0",
+    "green_defect_formula_residual": "0.0",
+    "jacobi_similarity_residual": "4.1180460715744231345111617387773512e-84",
+    "selected_selfadjoint_boundary_parameter": "0.00000000066303168025299086987327208196135725",
+    "shift_plus_rank_one_defect": "4.6636981248104272760181704713171172e-88"
+  },
+  "hankel_gate": {
+    "gram_maximum_eigenvalue": "0.023105052920984651694918354335463313",
+    "gram_minimum_eigenvalue": "0.000000084368365720067295151476431795693203",
+    "gram_positive_at_tested_order": true,
+    "shifted_maximum_eigenvalue": "0.000037173158465444518663227357462236384",
+    "shifted_minimum_eigenvalue": "0.00000000010385150542049250877828158615571078",
+    "shifted_positive_at_tested_order": true
+  },
+  "height_operator_truncations": [
+    {
+      "height_operator_maximum_eigenvalue": "48.64801900795257966513353886652019",
+      "height_operator_minimum_eigenvalue": "14.606864893060023368967322128399102",
+      "height_operator_symmetry_defect": "2.3854270893661366227738202552952594e-80",
+      "heights": [
+        "14.606864893060023368967322128399102",
+        "48.64801900795257966513353886652019"
+      ],
+      "jacobi_tower_compatibility_defect": "0.0",
+      "order": 2
+    }
+  ],
+  "jacobi_operator_y": {
+    "diagonal": [
+      "0.0016088556745971409753263482210265999",
+      "0.003500589235273068211572405561414073"
+    ],
+    "minimum_off_diagonal": "0.0019108977920880258769073916550969612",
+    "off_diagonal": [
+      "0.0019108977920880258769073916550969612"
+    ],
+    "outside_tridiagonal_maximum": "0.0",
+    "symmetry_defect": "0.0"
+  },
+  "moments": [
+    "0.023104993115418970788933810430339014",
+    "0.000037172599285269686164866262471740578",
+    "0.00000014417393140097327969538155609482091",
+    "0.00000000066303168025299086987327208196135725"
+  ],
+  "postconstruction_reference_audit": {
+    "reference_source": "mpmath.zetazero, queried only after native construction",
+    "rows": [],
+    "used_by_construction": false
+  },
+  "schema": "org.native-carry.height-moment-jacobi-operator/v1",
+  "status": "FINITE_SELFADJOINT_HEIGHT_OPERATOR_CONDITIONAL_MOMENT_GATE"
+}

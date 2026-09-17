@@ -1,0 +1,15 @@
+import CarrySelfAdjointOperator.FiveFieldDecoratedLeveltLocal
+
+open NativeCarryFiveFieldCapstone
+
+#print axioms decoratedNilpotent_eq_conjugated
+#print axioms decoratedNilpotent_square_zero
+#print axioms decoratedNilpotent_mulVec_eq_zero_iff
+#print axioms decoratedLeveltResidue_square_zero
+#print axioms decoratedNilpotent_hasDerivAt
+#print axioms decoratedLeveltResidue_hasDerivAt_amplitude
+#print axioms decoratedLeveltResidue_hasDerivAt_decoration
+#print axioms decoratedAmplitudeGenerator_commutator
+#print axioms decoratedLowerGenerator_commutator
+#print axioms decoratedLevelt_local_KK_trace
+#print axioms decoratedLevelt_nonzero_adjoint_eigenvector_vanishes

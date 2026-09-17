@@ -1,0 +1,8 @@
+import CarrySelfAdjointOperator.CompletedNativeCorrectedChiralClockMomentKernel
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalCompletedNativeCorrectedClockTowerCoefficient_parity_eq_greenWronskianMomentKernel
+#print axioms CorrectedNativeClockTower.parity_eq_greenWronskianMomentKernel
+
+end CarrySelfAdjointOperator

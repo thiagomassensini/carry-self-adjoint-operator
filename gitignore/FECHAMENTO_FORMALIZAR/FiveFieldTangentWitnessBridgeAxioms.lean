@@ -1,0 +1,7 @@
+import CarrySelfAdjointOperator.FiveFieldTangentWitnessBridge
+
+open NativeCarryFiveFieldCapstone
+
+#print axioms twoJumpTangentResiduesLinear_eq_of_laurent_moments
+#print axioms twoJumpScalarFromMoments_eq_effective_readout
+#print axioms twoJumpScalarFromMoments_eq_effective_coordinate_pairing
