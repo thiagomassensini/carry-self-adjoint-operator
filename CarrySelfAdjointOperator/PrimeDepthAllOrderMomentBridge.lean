@@ -274,6 +274,125 @@ theorem canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_primeDepth
       (p + 1)).symm
 
 
+/-! ## Exact material six-source kernel -/
+
+/-- Off-diagonal divided-difference kernel obtained directly from the complete
+six-source material final readout.  Unlike the raw seeded-clock Gram, this
+readout retains the reconstructed Green ports, structural channels, exact
+tail, completion weight, and archimedean chart. -/
+def nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout
+    (M : ℕ) (x z : ℂ)
+    (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) : ℂ :=
+  nativeC3SeededClockTfvdSixSourceFinalReadout
+      M z x q hq0 hq1 S /
+    (mixedHermitianWeight canonicalC3ChartFactorHeight z x *
+      ((2 : ℂ) *
+        (starRingEnd ℂ) (completedNativeOperatorCharacteristic x) *
+        completedNativeOperatorCharacteristic z) *
+      (z - (starRingEnd ℂ) x))
+
+/-- The material six-source off-diagonal kernel is exactly the canonical
+all-cutoff kernel, cutoff by cutoff. -/
+theorem nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout_eq_canonical
+    (M : ℕ) (x z : ℂ)
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout
+        M x z q hqpos.le hq1 S =
+      canonicalCompletedC3AllCutoffOffDiagonalKernelReadout M x z := by
+  unfold nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout
+    canonicalCompletedC3AllCutoffOffDiagonalKernelReadout
+  rw [nativeC3SeededClockTfvdSixSourceFinalReadout_eq_ledger
+    M z x q hqpos hq1 S]
+
+/-- Canonical removable real-axis closure of the exact material six-source
+kernel. -/
+def nativeC3SeededClockTfvdSixSourceRealKernelReadout
+    (M : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (x z : ℝ) : ℂ :=
+  if x = z then
+    deriv
+      (completedGreenNormalizedResponse
+        completedNativeOperatorCharacteristic
+        completedNativeOperatorBoundaryCompanion) (x : ℂ)
+  else
+    nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout
+      M (x : ℂ) (z : ℂ) q hq0 hq1 S
+
+/-- The material real-axis kernel is exactly the canonical all-cutoff kernel
+at every cutoff, not merely in a limit. -/
+theorem nativeC3SeededClockTfvdSixSourceRealKernelReadout_eq_canonical
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (x z : ℝ) :
+    nativeC3SeededClockTfvdSixSourceRealKernelReadout
+        M q hqpos.le hq1 S x z =
+      canonicalCompletedC3AllCutoffRealKernelReadout M x z := by
+  by_cases hxz : x = z
+  · simp [nativeC3SeededClockTfvdSixSourceRealKernelReadout,
+      canonicalCompletedC3AllCutoffRealKernelReadout, hxz]
+  · simp only [nativeC3SeededClockTfvdSixSourceRealKernelReadout,
+      canonicalCompletedC3AllCutoffRealKernelReadout, hxz, if_false]
+    exact nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout_eq_canonical
+      M (x : ℂ) (z : ℂ) q hqpos hq1 S
+
+/-- Exact kernel statement: the complete enriched material clock realizes the
+canonical completed-native dslope on the real axis at every regular pair. -/
+theorem nativeC3SeededClockTfvdSixSourceRealKernelReadout_eq_dslope
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (x z : ℝ)
+    (hxF : completedNativeOperatorCharacteristic (x : ℂ) ≠ 0)
+    (hzF : completedNativeOperatorCharacteristic (z : ℂ) ≠ 0) :
+    nativeC3SeededClockTfvdSixSourceRealKernelReadout
+        M q hqpos.le hq1 S x z =
+      dslope
+        (completedGreenNormalizedResponse
+          completedNativeOperatorCharacteristic
+          completedNativeOperatorBoundaryCompanion)
+        (x : ℂ) (z : ℂ) := by
+  rw [nativeC3SeededClockTfvdSixSourceRealKernelReadout_eq_canonical
+    M q hqpos hq1 S x z]
+  exact canonicalCompletedC3AllCutoffRealKernelReadout_eq_dslope
+    M x z hxF hzF
+
+/-- Complex-argument wrapper for the existing mixed forward-difference API. -/
+def nativeC3SeededClockTfvdSixSourceRealAxisKernelReadout
+    (M : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (x z : ℂ) : ℂ :=
+  nativeC3SeededClockTfvdSixSourceRealKernelReadout
+    M q hq0 hq1 S x.re z.re
+
+/-- The exact material kernel has the same all-order mixed forward-difference
+limit as the canonical dslope kernel: every bidegree tends to the polarized
+completed-native moment coefficient. -/
+theorem nativeC3SeededClockTfvdSixSourceKernelForwardDifference_tendsto_moment
+    (M p r : ℕ)
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    Tendsto
+      (fun k : ℕ =>
+        completedGreenKernelForwardDifference
+          (nativeC3SeededClockTfvdSixSourceRealAxisKernelReadout
+            M q hqpos.le hq1 S)
+          (canonicalGreenJetStep k) p r)
+      atTop
+      (nhds
+        (polarizedGreenMomentCoefficient
+          canonicalCompletedNativeLogDerivativeMoment p r)) := by
+  have hcanonical :=
+    canonicalCompletedC3AllCutoffRealAxisKernelForwardDifference_tendsto_moment
+      M p r
+  apply hcanonical.congr'
+  filter_upwards with k
+  apply completedGreenKernelForwardDifference_eq_of_eq_on_grid
+  intro i hi j hj
+  unfold nativeC3SeededClockTfvdSixSourceRealAxisKernelReadout
+    canonicalCompletedC3AllCutoffRealAxisKernelReadout
+  exact nativeC3SeededClockTfvdSixSourceRealKernelReadout_eq_canonical
+    M q hqpos hq1 S
+      (i • canonicalGreenJetStep k).re
+      (j • canonicalGreenJetStep k).re
+
 /-! ## Infinite Hilbert carrier of the enriched material clock -/
 
 /-- Reconstruct the six analyzed material clock channels at cutoff `M` back
