@@ -1,6 +1,7 @@
 import CarrySelfAdjointOperator.CompletedNativeChiralTwoPointControl
 import CarrySelfAdjointOperator.CompletedNativeCentralChiralQuotientCurvature
 import CarrySelfAdjointOperator.CompletedC3FullWronskianCentralChiralEnergy
+import CarrySelfAdjointOperator.CompletedC3FullWronskianChiralDslope
 
 /-!
 # Accumulated return balance on the existing radial Cauchy carrier
@@ -255,6 +256,93 @@ theorem two_point_storage_nonnegative_but_endpoint_flux_negative :
   · rw [opposite_endpoint_flux]
     exact mul_neg_of_neg_of_pos (neg_neg_of_pos (by positivity))
       (Complex.normSq_pos.mpr (sub_ne_zero.mpr hne.symm))
+
+theorem chiralMultiplierContractiveAt_iff_storage_one_nonnegative
+    (k N : ℕ) :
+    CanonicalCompletedNativeRadialChiralMultiplierContractiveAt k N ↔
+      ∀ c : Fin N → ℂ, 0 ≤ (storage k c 1).re := by
+  constructor
+  · intro h c
+    rw [storage_re_eq_norm_balance]
+    simp only [Complex.ofReal_one, one_pow, mul_one]
+    exact sub_nonneg.mpr
+      ((sq_le_sq₀ (norm_nonneg _) (norm_nonneg _)).mpr (h c))
+  · intro h c
+    have hs :
+        ‖∑ i, c i • completedNativeRadialChiralMultiplierState k i‖ ^ 2 ≤
+          ‖∑ i, c i • completedNativeRadialChiralCauchyState k i‖ ^ 2 := by
+      have hstorage := h c
+      rw [storage_re_eq_norm_balance] at hstorage
+      simpa only [Complex.ofReal_one, one_pow, mul_one] using
+        (sub_nonneg.mp hstorage)
+    exact (sq_le_sq₀ (norm_nonneg _) (norm_nonneg _)).mp hs
+
+theorem chiralMultiplierEventuallyContractive_iff_storage_one_eventually_nonnegative :
+    CanonicalCompletedNativeRadialChiralMultiplierEventuallyContractive ↔
+      ∀ N : ℕ, ∀ᶠ k : ℕ in Filter.atTop,
+        ∀ c : Fin N → ℂ, 0 ≤ (storage k c 1).re := by
+  constructor
+  · intro h N
+    filter_upwards [h N] with k hk
+    exact
+      (chiralMultiplierContractiveAt_iff_storage_one_nonnegative k N).mp hk
+  · intro h N
+    filter_upwards [h N] with k hk
+    exact
+      (chiralMultiplierContractiveAt_iff_storage_one_nonnegative k N).mpr hk
+
+def fullWronskianRegularizedChiralSampleMatrix
+    (M k N : ℕ) : Matrix (Fin N) (Fin N) ℂ :=
+  Matrix.of fun i j =>
+    Complex.I *
+      (canonicalCompletedC3NormalizedFullWronskianPositiveChiralKernel
+          M
+          (canonicalCompletedC3RadialTiltPoint k i)
+          (canonicalCompletedC3RadialTiltPoint k j) -
+       canonicalCompletedC3NormalizedFullWronskianNegativeChiralKernel
+          M
+          (canonicalCompletedC3RadialTiltPoint k i)
+          (canonicalCompletedC3RadialTiltPoint k j)) /
+      (canonicalCompletedC3RadialTiltPoint k j -
+        conj (canonicalCompletedC3RadialTiltPoint k i))
+
+theorem fullWronskianRegularizedChiralSampleMatrix_eq_dslope
+    (M k N : ℕ)
+    (hstrip : ∀ i : Fin N,
+      operatorHeightParameter
+          (canonicalCompletedC3RadialTiltPoint k i) ∈
+        CPFormal.Analytic.Cp.genuineCriticalStrip)
+    (hF : ∀ i : Fin N,
+      completedNativeOperatorCharacteristic
+          (canonicalCompletedC3RadialTiltPoint k i) ≠ 0) :
+    fullWronskianRegularizedChiralSampleMatrix M k N =
+      canonicalCompletedNativeRadialDslopeSampleMatrix k N := by
+  ext i j
+  unfold fullWronskianRegularizedChiralSampleMatrix
+    canonicalCompletedNativeRadialDslopeSampleMatrix
+  exact
+    (canonicalCompletedNativePolarizedDslopeKernel_eq_chiralDifference_div
+      M
+      (z := canonicalCompletedC3RadialTiltPoint k i)
+      (w := canonicalCompletedC3RadialTiltPoint k j)
+      (hzStrip := hstrip i)
+      (hwStrip := hstrip j)
+      (hzF := hF i)
+      (hwF := hF j)
+      (hsep := sub_ne_zero.mp
+        (canonicalCompletedC3RadialTilt_separation_ne_zero k i j))).symm
+
+theorem storage_one_eventually_nonnegative_iff_dslope :
+    (∀ N : ℕ, ∀ᶠ k : ℕ in Filter.atTop,
+      ∀ c : Fin N → ℂ, 0 ≤ (storage k c 1).re) ↔
+      CanonicalCompletedNativeRadialDslopeEventuallyPosSemidefinite := by
+  calc
+    (∀ N : ℕ, ∀ᶠ k : ℕ in Filter.atTop,
+      ∀ c : Fin N → ℂ, 0 ≤ (storage k c 1).re) ↔
+        CanonicalCompletedNativeRadialChiralMultiplierEventuallyContractive :=
+      chiralMultiplierEventuallyContractive_iff_storage_one_eventually_nonnegative.symm
+    _ ↔ CanonicalCompletedNativeRadialDslopeEventuallyPosSemidefinite :=
+      canonicalCompletedNativeRadialChiralMultiplierEventuallyContractive_iff_dslope
 
 end
 end CarrySelfAdjointOperator.ChiralReturn

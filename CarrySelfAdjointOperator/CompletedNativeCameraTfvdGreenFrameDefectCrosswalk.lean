@@ -31,6 +31,7 @@ namespace CarrySelfAdjointOperator
 open CPFormal.Analytic.Cp
 open Filter
 open FiniteNativeCarryOperator.Camera
+open GreenFrame.Concrete
 
 noncomputable section
 
@@ -169,6 +170,122 @@ theorem canonicalCompletedNativeGreenFrameDslopeJet_ne_br2_of_kernel
   apply canonicalCompletedGreenFrameAnalysisCLM_injective at hanal
   simpa [br2CameraBracketGreenFrameParityJet,
     br2CameraBracketProjectiveHilbertParityJet] using hanal
+
+/-! ## Direct Gram audit on the faithful native carriers -/
+
+section FaithfulCarrierGramAudit
+
+local instance faithfulCarrierGramAuditRealInnerProductSpace :
+    InnerProductSpace ℝ CanonicalCompletedTfvdGreenHilbertCarrier :=
+  InnerProductSpace.rclikeToReal ℂ CanonicalCompletedTfvdGreenHilbertCarrier
+
+/-- The first Gram entry of the faithful projective incidence carrier is
+strictly larger than the native zeroth logarithmic moment.  This is the exact
+entry which the `hgreen` premise would have to identify. -/
+theorem br2CameraBracketProjectiveHilbertParityJet_zeroGram_gt_nativeMoment
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base) :
+    canonicalCompletedNativeLogDerivativeMoment 0 <
+      Matrix.gram ℝ (br2CameraBracketProjectiveHilbertParityJet base radius)
+        (Sum.inl 0) (Sum.inl 0) := by
+  change canonicalCompletedNativeLogDerivativeMoment 0 <
+    inner ℝ
+      (br2CameraBracketProjectiveHilbertParityJet base radius (Sum.inl 0))
+      (br2CameraBracketProjectiveHilbertParityJet base radius (Sum.inl 0))
+  simp only [br2CameraBracketProjectiveHilbertParityJet, Nat.mul_zero,
+    real_inner_self_eq_norm_sq]
+  have hcoord := lp.norm_apply_le_norm (by norm_num : (2 : ENNReal) ≠ 0)
+    (br2CameraBracketVerticalState base radius 0) (alignedCenter base 0)
+  rw [br2CameraBracketVerticalState_apply_alignedCenter hbase hradius 0 0] at hcoord
+  norm_num at hcoord ⊢
+  have hmoment := canonicalCompletedNativeLogDerivativeMoment_zero_lt_sixteenth
+  nlinarith [sq_nonneg (‖br2CameraBracketVerticalState base radius 0‖ - 2)]
+
+/-- Therefore the concrete faithful projective incidence jet cannot be the
+`greenMomentKernel` Gram carrier.  Only its zeroth diagonal entry is used. -/
+theorem not_isGreenWronskianMomentKernelGramRepresentation_br2CameraBracketProjectiveHilbertParityJet
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base) :
+    ¬ IsGreenWronskianMomentKernelGramRepresentation
+        canonicalCompletedNativeLogDerivativeMoment
+        (br2CameraBracketProjectiveHilbertParityJet base radius) := by
+  intro hgreen
+  have hentry := hgreen (Sum.inl 0) (Sum.inl 0)
+  change canonicalCompletedNativeLogDerivativeMoment 0 =
+    Matrix.gram ℝ (br2CameraBracketProjectiveHilbertParityJet base radius)
+      (Sum.inl 0) (Sum.inl 0) at hentry
+  have hstrict :=
+    br2CameraBracketProjectiveHilbertParityJet_zeroGram_gt_nativeMoment
+      hbase hradius
+  linarith
+
+end FaithfulCarrierGramAudit
+
+section FaithfulGreenFrameGramAudit
+
+local instance faithfulGreenFrameGramAuditRealInnerProductSpace :
+    InnerProductSpace ℝ CanonicalCompletedGreenFrameCarrier :=
+  InnerProductSpace.rclikeToReal ℂ CanonicalCompletedGreenFrameCarrier
+
+/-- The raw endpoint/bulk Green-frame analysis also has a first Gram entry
+strictly above the native zeroth moment.  Its lower frame bound is `1/2`, so
+the incidence pivot of modulus `2` already gives a norm-square floor `2`. -/
+theorem br2CameraBracketGreenFrameParityJet_zeroGram_gt_nativeMoment
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base) :
+    canonicalCompletedNativeLogDerivativeMoment 0 <
+      Matrix.gram ℝ (br2CameraBracketGreenFrameParityJet base radius)
+        (Sum.inl 0) (Sum.inl 0) := by
+  change canonicalCompletedNativeLogDerivativeMoment 0 <
+    inner ℝ
+      (br2CameraBracketGreenFrameParityJet base radius (Sum.inl 0))
+      (br2CameraBracketGreenFrameParityJet base radius (Sum.inl 0))
+  simp only [real_inner_self_eq_norm_sq]
+  have hframe := (concreteSplitFrameBounds canonicalCarryInfinitePartition).lower_norm_sq
+    (carryVerticalL2GreenFrameStateEquiv
+      (br2CameraBracketVerticalState base radius 0))
+  have hequiv :
+      ‖carryVerticalL2GreenFrameStateEquiv
+          (br2CameraBracketVerticalState base radius 0)‖ =
+        ‖br2CameraBracketVerticalState base radius 0‖ := by
+    exact carryVerticalL2GreenFrameStateEquiv.norm_map _
+  rw [hequiv] at hframe
+  have hcoord := lp.norm_apply_le_norm (by norm_num : (2 : ENNReal) ≠ 0)
+    (br2CameraBracketVerticalState base radius 0) (alignedCenter base 0)
+  rw [br2CameraBracketVerticalState_apply_alignedCenter hbase hradius 0 0] at hcoord
+  norm_num at hcoord ⊢
+  have hframe' :
+      (1 / 2 : ℝ) * ‖br2CameraBracketVerticalState base radius 0‖ ^ 2 ≤
+        ‖br2CameraBracketGreenFrameParityJet base radius (Sum.inl 0)‖ ^ 2 := by
+    simpa [br2CameraBracketGreenFrameParityJet,
+      canonicalCompletedGreenFrameAnalysis,
+      br2CameraBracketProjectiveHilbertParityJet] using hframe
+  have hmoment := canonicalCompletedNativeLogDerivativeMoment_zero_lt_sixteenth
+  nlinarith [sq_nonneg (‖br2CameraBracketVerticalState base radius 0‖ - 2)]
+
+/-- Therefore the literal endpoint/bulk Green-frame jet cannot satisfy the
+`hgreen` hypothesis either. -/
+theorem not_isGreenWronskianMomentKernelGramRepresentation_br2CameraBracketGreenFrameParityJet
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base) :
+    ¬ IsGreenWronskianMomentKernelGramRepresentation
+        canonicalCompletedNativeLogDerivativeMoment
+        (br2CameraBracketGreenFrameParityJet base radius) := by
+  intro hgreen
+  have hentry := hgreen (Sum.inl 0) (Sum.inl 0)
+  change canonicalCompletedNativeLogDerivativeMoment 0 =
+    Matrix.gram ℝ (br2CameraBracketGreenFrameParityJet base radius)
+      (Sum.inl 0) (Sum.inl 0) at hentry
+  have hstrict :=
+    br2CameraBracketGreenFrameParityJet_zeroGram_gt_nativeMoment
+      hbase hradius
+  linarith
+
+end FaithfulGreenFrameGramAudit
 
 /-! ## Canonical C2 specialization -/
 
