@@ -464,8 +464,9 @@ theorem nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_eq_dslope
   · exact (hregular j).1
   · exact (hregular i).2.1
   · exact (hregular j).2.1
-  · exact (canonicalCompletedC3RadialTilt_separation_ne_zero
-      k (i : ℕ) (j : ℕ))
+  · exact sub_ne_zero.mp
+      (canonicalCompletedC3RadialTilt_separation_ne_zero
+        k (i : ℕ) (j : ℕ))
 
 /-- The same radial material-clock matrix is the exact signed projective
 chiral Gram difference. -/
