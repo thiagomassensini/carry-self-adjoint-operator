@@ -3,6 +3,7 @@ import CarrySelfAdjointOperator.NativeLogEvolution
 import CarrySelfAdjointOperator.MultibaseCameraLogTfvdChannelTransport
 import CarrySelfAdjointOperator.CompletedNativeSeededClockTfvdSixSource
 import CarrySelfAdjointOperator.CompletedC3RecoveredEnrichedWronskianCarrier
+import CarrySelfAdjointOperator.CompletedC3GreenFrameStructuralReadoutBridge
 import CarrySelfAdjointOperator.CompletedC3AllOrderChartResponseCorrection
 import CarrySelfAdjointOperator.AllOrderLogJetLedger
 import CarrySelfAdjointOperator.CompletedNativeCorrectedClockBoundaryGate
@@ -474,6 +475,49 @@ theorem inner_nativeC3SeededClockTfvdSixSourceReconstructedState_tendsto
       hz₁ hw₁ hz₁Reflected q hqpos hq1 S)
     (nativeC3SeededClockTfvdSixSourceReconstructedState_tendsto
       hz₂ hw₂ hz₂Reflected q hqpos hq1 S)
+
+/-! ## Vector crosswalk to the oriented Green-frame carrier -/
+
+/-- The losslessly reconstructed six-source material clock state and the
+bounded synthesis of the oriented Green-frame prefix are literally the same
+three-source Hilbert vector at every cutoff.  This is a source-level
+identification, before any scalar kernel or moment readout. -/
+theorem nativeC3SeededClockTfvdSixSourceReconstructedState_eq_orientedGreenFrame
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (z w : ℂ) :
+    nativeC3SeededClockTfvdSixSourceReconstructedState
+        M q hqpos.le hq1 S z w =
+      (canonicalC3AllCutoffMixedOrientedGreenFramePrefixState M z w).recoveredHilbertSource := by
+  rw [nativeC3SeededClockTfvdSixSourceReconstructedState_eq_prefix
+      M q hqpos hq1 S z w,
+    canonicalC3AllCutoffMixedOrientedGreenFramePrefixState_recoveredHilbertSource_eq]
+
+/-- The structural triple read from the six-source material clock is exactly
+the structural triple read from the oriented Green-frame source.  Thus Green
+provenance, the off-diagonal channel, and the scalar-readout residual are
+preserved coordinatewise across the clock-to-Green-frame handoff. -/
+theorem nativeC3SeededClockTfvdSixSourceStructuralReadout_eq_orientedGreenFrame
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (z w : ℂ) :
+    canonicalC3AllCutoffMixedSourceTfvdStructuralReadout M
+        w (reflectedParameter z) q hqpos.le hq1 S
+        (nativeC3SeededClockTfvdSixSourceAnalysis M q S z w) =
+      CanonicalC3AllCutoffMixedOrientedGreenFrameSourceHilbert.structuralReadout
+        M w (reflectedParameter z)
+        (canonicalC3AllCutoffMixedOrientedGreenFramePrefixState M z w) := by
+  calc
+    canonicalC3AllCutoffMixedSourceTfvdStructuralReadout M
+        w (reflectedParameter z) q hqpos.le hq1 S
+        (nativeC3SeededClockTfvdSixSourceAnalysis M q S z w) =
+        canonicalC3FiniteMixedHeightStructuralChannelState M z w := by
+      rw [nativeC3SeededClockTfvdSixSourceAnalysis_eq_canonical]
+      exact canonicalC3AllCutoffMixedSourceTfvdStructuralReadout_canonicalPrefix
+        M z w q hqpos hq1 S
+    _ = CanonicalC3AllCutoffMixedOrientedGreenFrameSourceHilbert.structuralReadout
+        M w (reflectedParameter z)
+        (canonicalC3AllCutoffMixedOrientedGreenFramePrefixState M z w) :=
+      (canonicalC3AllCutoffMixedOrientedGreenFramePrefixState_structuralReadout_eq
+        M z w).symm
 
 /-! ## Six-source material data inside the recovered enriched ledger -/
 
