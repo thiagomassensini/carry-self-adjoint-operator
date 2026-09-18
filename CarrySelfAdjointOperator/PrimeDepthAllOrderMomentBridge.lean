@@ -310,6 +310,105 @@ theorem nativeC3SeededClockTfvdSixSourceJet_even_eq_canonicalMoment
       canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_odd_eq_canonicalMoment
         M n
 
+
+/-! ## The full two-index material clock tower -/
+
+/-- Promote the enriched six-source material jet from the first column to the
+whole two-index clock tower by total degree.  This is the natural extension
+forced by the Green diagonal shift: entry `(p,r)` is the material jet of
+index `p+r`. -/
+def nativeC3SeededClockTfvdSixSourceTowerCoefficient
+    (M : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    (p r : ℕ) : ℂ :=
+  nativeC3SeededClockTfvdSixSourceJetCoefficient M (p + r) q hq0 hq1 S
+
+/-- Every entry of the enriched material six-source tower is exactly the
+canonical corrected native clock tower entry on the same bidegree.  Thus the
+material observation supplies not only the first column but the complete
+division-free coefficient array. -/
+theorem nativeC3SeededClockTfvdSixSourceTowerCoefficient_eq_correctedTower
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (p r : ℕ) :
+    nativeC3SeededClockTfvdSixSourceTowerCoefficient
+        M q hqpos.le hq1 S p r =
+      canonicalCompletedNativeCorrectedClockTowerCoefficient p r := by
+  unfold nativeC3SeededClockTfvdSixSourceTowerCoefficient
+  calc
+    nativeC3SeededClockTfvdSixSourceJetCoefficient
+        M (p + r) q hqpos.le hq1 S =
+        canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M (p + r) :=
+      (canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_seededClockTfvdSixSourceJet
+        M (p + r) q hqpos hq1 S).symm
+    _ = canonicalCompletedNativeCorrectedClockTowerCoefficient p r :=
+      (canonicalCompletedNativeCorrectedClockTowerCoefficient_eq_correctedChiralBoundaryCoefficient
+        M p r).symm
+
+/-- The enriched material six-source tower satisfies the complete polarized
+Green coefficient equation in all two-index orders. -/
+theorem nativeC3SeededClockTfvdSixSourceTower_coefficientEquation
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    IsPolarizedGreenCoefficientEquation
+      canonicalCompletedNativeLogDerivativeMoment
+      (nativeC3SeededClockTfvdSixSourceTowerCoefficient
+        M q hqpos.le hq1 S) := by
+  have hfun :
+      nativeC3SeededClockTfvdSixSourceTowerCoefficient
+          M q hqpos.le hq1 S =
+        canonicalCompletedNativeCorrectedClockTowerCoefficient := by
+    funext p r
+    exact nativeC3SeededClockTfvdSixSourceTowerCoefficient_eq_correctedTower
+      M q hqpos hq1 S p r
+  rw [hfun]
+  exact canonicalCompletedNativeCorrectedClockTower_coefficientEquation
+
+/-- The material six-source tower obeys the exact diagonal clock shift before
+any Gram, Hankel, or Jacobi construction. -/
+theorem nativeC3SeededClockTfvdSixSourceTower_shift
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (p r : ℕ) :
+    nativeC3SeededClockTfvdSixSourceTowerCoefficient
+        M q hqpos.le hq1 S p (r + 1) =
+      nativeC3SeededClockTfvdSixSourceTowerCoefficient
+        M q hqpos.le hq1 S (p + 1) r := by
+  exact polarizedGreenCoefficient_transport
+    (nativeC3SeededClockTfvdSixSourceTower_coefficientEquation
+      M q hqpos hq1 S) p r
+
+/-- Package the lossless enriched material observation itself as the canonical
+corrected native clock tower.  Uniqueness of corrected towers then applies
+without passing through the raw positive seeded-clock Gram. -/
+def nativeC3SeededClockTfvdSixSourceCorrectedClockTower
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    CorrectedNativeClockTower M where
+  coefficient :=
+    nativeC3SeededClockTfvdSixSourceTowerCoefficient M q hqpos.le hq1 S
+  coefficientEquation :=
+    nativeC3SeededClockTfvdSixSourceTower_coefficientEquation
+      M q hqpos hq1 S
+  boundaryTransport := by
+    intro p
+    unfold nativeC3SeededClockTfvdSixSourceTowerCoefficient
+    simpa using
+      (canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_seededClockTfvdSixSourceJet
+        M p q hqpos hq1 S).symm
+
+/-- Full two-index wheel/prime-depth crosswalk: the material six-source clock
+entry at `(p,r)` is the coefficient of total Taylor order `p+r+1` of the
+completed response whose logarithmic material channel is reconstructed from
+prime-camera depths. -/
+theorem nativeC3SeededClockTfvdSixSourceTowerCoefficient_eq_primeDepthResponse
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (p r : ℕ) :
+    nativeC3SeededClockTfvdSixSourceTowerCoefficient
+        M q hqpos.le hq1 S p r =
+      primeDepthCompletedNativeResponseTaylorCoefficient (p + r + 1) := by
+  unfold nativeC3SeededClockTfvdSixSourceTowerCoefficient
+  exact nativeC3SeededClockTfvdSixSourceJetCoefficient_eq_primeDepthResponse
+    M (p + r) q hqpos hq1 S
+
 /-- Exact reformulation of the still-open finite material-clock calibration:
 its first column must equal the all-order response generated by the prime-depth
 ledger, after the independent completion channel has been retained. -/
