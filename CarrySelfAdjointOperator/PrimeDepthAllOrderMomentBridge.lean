@@ -450,6 +450,105 @@ theorem nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_readout_tendsto_wro
       nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_readout_eq_canonical
         M z w hzStrip hwStrip q hqpos hq1 S)
 
+/-! ## Canonically normalized material kernel and dslope limit -/
+
+/-- Normalize the recovered material six-source ledger only after all
+structural and completion channels have been retained. -/
+def nativeC3SeededClockTfvdRecoveredOffDiagonalKernelReadout
+    (M : ℕ) (x z : ℂ)
+    (hxStrip : operatorHeightParameter x ∈ genuineCriticalStrip)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) : ℂ :=
+  CanonicalCompletedC3RecoveredAllCutoffLedgerHilbert.readout x z
+      (nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState
+        M x z hxStrip hzStrip q hq0 hq1 S) /
+    (mixedHermitianWeight canonicalC3ChartFactorHeight z x *
+      ((2 : ℂ) *
+        (starRingEnd ℂ) (completedNativeOperatorCharacteristic x) *
+        completedNativeOperatorCharacteristic z) *
+      (z - (starRingEnd ℂ) x))
+
+/-- Cutoff by cutoff, the normalized material six-source kernel is exactly the
+existing recovered enriched kernel. -/
+theorem nativeC3SeededClockTfvdRecoveredOffDiagonalKernelReadout_eq_canonical
+    (M : ℕ) (x z : ℂ)
+    (hxStrip : operatorHeightParameter x ∈ genuineCriticalStrip)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    nativeC3SeededClockTfvdRecoveredOffDiagonalKernelReadout
+        M x z hxStrip hzStrip q hqpos.le hq1 S =
+      canonicalCompletedC3RecoveredAllCutoffOffDiagonalKernelReadout
+        M x z hxStrip hzStrip := by
+  unfold nativeC3SeededClockTfvdRecoveredOffDiagonalKernelReadout
+    canonicalCompletedC3RecoveredAllCutoffOffDiagonalKernelReadout
+  rw [nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_eq_canonical
+    M x z hxStrip hzStrip q hqpos hq1 S]
+
+/-- Real-axis removable closure of the material six-source recovered kernel. -/
+def nativeC3SeededClockTfvdRecoveredRealKernelReadout
+    (M : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (x z : ℝ) : ℂ :=
+  if x = z then
+    deriv
+      (completedGreenNormalizedResponse
+        completedNativeOperatorCharacteristic
+        completedNativeOperatorBoundaryCompanion) (x : ℂ)
+  else
+    nativeC3SeededClockTfvdRecoveredOffDiagonalKernelReadout
+      M (x : ℂ) (z : ℂ)
+      (by constructor <;> norm_num [operatorHeightParameter])
+      (by constructor <;> norm_num [operatorHeightParameter])
+      q hq0 hq1 S
+
+/-- The real-axis material kernel is exactly the canonical recovered kernel at
+every cutoff. -/
+theorem nativeC3SeededClockTfvdRecoveredRealKernelReadout_eq_canonical
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (x z : ℝ) :
+    nativeC3SeededClockTfvdRecoveredRealKernelReadout
+        M q hqpos.le hq1 S x z =
+      canonicalCompletedC3RecoveredAllCutoffRealKernelReadout M x z := by
+  by_cases hxz : x = z
+  · simp [nativeC3SeededClockTfvdRecoveredRealKernelReadout,
+      canonicalCompletedC3RecoveredAllCutoffRealKernelReadout, hxz]
+  · simp only [nativeC3SeededClockTfvdRecoveredRealKernelReadout,
+      canonicalCompletedC3RecoveredAllCutoffRealKernelReadout, hxz, if_false]
+    exact nativeC3SeededClockTfvdRecoveredOffDiagonalKernelReadout_eq_canonical
+      M (x : ℂ) (z : ℂ)
+      (by constructor <;> norm_num [operatorHeightParameter])
+      (by constructor <;> norm_num [operatorHeightParameter])
+      q hqpos hq1 S
+
+/-- The canonically normalized material-clock kernel converges on the real
+axis to the completed-native dslope.  This is the continuous kernel limit
+obtained from the enriched clock, rather than from the raw positive atlas. -/
+theorem nativeC3SeededClockTfvdRecoveredRealKernelReadout_tendsto_dslope
+    {x z : ℝ}
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    (hxF : completedNativeOperatorCharacteristic (x : ℂ) ≠ 0)
+    (hzF : completedNativeOperatorCharacteristic (z : ℂ) ≠ 0) :
+    Tendsto
+      (fun M : ℕ =>
+        nativeC3SeededClockTfvdRecoveredRealKernelReadout
+          M q hqpos.le hq1 S x z)
+      atTop
+      (nhds
+        (dslope
+          (completedGreenNormalizedResponse
+            completedNativeOperatorCharacteristic
+            completedNativeOperatorBoundaryCompanion)
+          (x : ℂ) (z : ℂ))) := by
+  have hcanonical :=
+    canonicalCompletedC3RecoveredAllCutoffRealKernelReadout_tendsto_dslope
+      hxF hzF
+  exact hcanonical.congr'
+    (Eventually.of_forall fun M =>
+      (nativeC3SeededClockTfvdRecoveredRealKernelReadout_eq_canonical
+        M q hqpos hq1 S x z).symm)
+
 /-! ## Functional germ sewing: material clock, chiral block, prime-depth -/
 
 /-- Before taking any Taylor coefficient, the enriched material six-source
