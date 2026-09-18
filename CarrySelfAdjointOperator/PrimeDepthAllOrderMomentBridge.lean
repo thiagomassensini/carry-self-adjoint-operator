@@ -2,6 +2,7 @@ import CarrySelfAdjointOperator.PrimeDepthTfvdLogJetCrosswalk
 import CarrySelfAdjointOperator.NativeLogEvolution
 import CarrySelfAdjointOperator.MultibaseCameraLogTfvdChannelTransport
 import CarrySelfAdjointOperator.CompletedNativeSeededClockTfvdSixSource
+import CarrySelfAdjointOperator.CompletedC3RecoveredEnrichedWronskianCarrier
 import CarrySelfAdjointOperator.CompletedC3AllOrderChartResponseCorrection
 import CarrySelfAdjointOperator.AllOrderLogJetLedger
 import CarrySelfAdjointOperator.CompletedNativeCorrectedClockBoundaryGate
@@ -354,6 +355,100 @@ theorem inner_nativeC3SeededClockTfvdSixSourceReconstructedState_tendsto
       hz₁ hw₁ hz₁Reflected q hqpos hq1 S)
     (nativeC3SeededClockTfvdSixSourceReconstructedState_tendsto
       hz₂ hw₂ hz₂Reflected q hqpos hq1 S)
+
+/-! ## Six-source material data inside the recovered enriched ledger -/
+
+/-- Replace the structural coordinate of the recovered all-cutoff ledger by
+the structural triple reconstructed directly from the six analyzed material
+clock channels.  The radial, tail, completion-weight, and archimedean
+coordinates remain the already established completed channels; this avoids
+pretending those global coordinates are contained in the raw local clock
+Gram. -/
+def nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState
+    (M : ℕ) (z w : ℂ)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip)
+    (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    CanonicalCompletedC3RecoveredAllCutoffLedgerHilbert :=
+  WithLp.toLp 2
+    (canonicalCompletedC3RecoveredRadialPairState z w hzStrip hwStrip,
+      WithLp.toLp 2
+        (canonicalC3AllCutoffMixedSourceTfvdStructuralReadout M
+            w (reflectedParameter z) q hq0 hq1 S
+            (nativeC3SeededClockTfvdSixSourceAnalysis M q S z w),
+          WithLp.toLp 2
+            (canonicalC3MixedHeightTailCompletionDefect M w z,
+              WithLp.toLp 2
+                (mixedHermitianWeight nativeXiCompletionFactor w z,
+                  WithLp.toLp 2
+                    (canonicalCompletedC3ArchimedeanChartOperatorState z,
+                      canonicalCompletedC3ArchimedeanChartOperatorState w)))))
+
+/-- On the native material six-source analysis, the enriched reconstructed
+ledger state is literally the canonical recovered ledger state.  This is a
+vector-level identification of all retained channels, not merely an equality
+of final scalar readouts. -/
+theorem nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_eq_canonical
+    (M : ℕ) (z w : ℂ)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip)
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState
+        M z w hzStrip hwStrip q hqpos.le hq1 S =
+      canonicalCompletedC3RecoveredAllCutoffLedgerState
+        M z w hzStrip hwStrip := by
+  unfold nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState
+    canonicalCompletedC3RecoveredAllCutoffLedgerState
+  rw [nativeC3SeededClockTfvdSixSourceAnalysis_eq_canonical]
+  rw [canonicalC3AllCutoffMixedSourceTfvdStructuralReadout_canonicalPrefix
+    M z w q hqpos hq1 S]
+
+/-- Consequently the complete scalar readout of the material-enriched carrier
+is exactly the canonical recovered-ledger readout at every cutoff. -/
+theorem nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_readout_eq_canonical
+    (M : ℕ) (z w : ℂ)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip)
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    CanonicalCompletedC3RecoveredAllCutoffLedgerHilbert.readout z w
+      (nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState
+        M z w hzStrip hwStrip q hqpos.le hq1 S) =
+    CanonicalCompletedC3RecoveredAllCutoffLedgerHilbert.readout z w
+      (canonicalCompletedC3RecoveredAllCutoffLedgerState
+        M z w hzStrip hwStrip) := by
+  rw [nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_eq_canonical
+    M z w hzStrip hwStrip q hqpos hq1 S]
+
+/-- The enriched material-clock ledger therefore inherits the already proved
+cutoff limit to the crossed completed Wronskian.  No moment, Hankel, Jacobi,
+or positive proxy is inserted in this limit. -/
+theorem nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_readout_tendsto_wronskian
+    {z w : ℂ}
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip)
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    Tendsto
+      (fun M : ℕ =>
+        CanonicalCompletedC3RecoveredAllCutoffLedgerHilbert.readout z w
+          (nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState
+            M z w hzStrip hwStrip q hqpos.le hq1 S))
+      atTop
+      (nhds
+        (mixedHermitianWeight canonicalC3ChartFactorHeight w z *
+          completedGreenWronskian
+            completedNativeOperatorCharacteristic
+            completedNativeOperatorBoundaryCompanion w z)) := by
+  have hcanonical :=
+    canonicalCompletedC3RecoveredAllCutoffLedgerState_readout_tendsto_wronskian
+      hzStrip hwStrip
+  exact hcanonical.congr'
+    (Eventually.of_forall fun M =>
+      nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_readout_eq_canonical
+        M z w hzStrip hwStrip q hqpos hq1 S)
 
 /-! ## Functional germ sewing: material clock, chiral block, prime-depth -/
 
