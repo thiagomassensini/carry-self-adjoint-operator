@@ -6,6 +6,83 @@ characteristic and its logarithmic moments. It does **not** accept a zero
 table, target heights, a fitted Jacobi matrix, or a scanned spectral parameter
 as input.
 
+## Canonical Closed Handoff: Native/Genuine Certificate to Self-Adjoint Height
+
+The canonical closed interface between native moment geometry and the existing
+all-order operator machinery is
+`CompletedNativeRealHPCarrierCertificate jet`, defined in
+[`CompletedNativeHPGateAudit.lean`](CarrySelfAdjointOperator/CompletedNativeHPGateAudit.lean).
+It has exactly three fields:
+
+- `momentKernel`;
+- `evenIndependent`;
+- `oddIndependent`.
+
+| Stage | Canonical declaration |
+|---|---|
+| Native scalar = Genuine | `nativeScalar_eq_genuineContinuation_unconditional` |
+| HP carrier interface | `CompletedNativeRealHPCarrierCertificate` |
+| Three obligations | `momentKernel`, `evenIndependent`, `oddIndependent` |
+| Certificate → strict Hankel pair | `CompletedNativeRealHPCarrierCertificate.hankelPair_posDef` |
+| Certificate → Stieltjes | `canonicalCompletedNativeStieltjesPositivity_of_certificate` |
+| Camera moments = canonical moments | `nativeGeometry_cameraMoments_eq_canonical` |
+| Camera Hankel pair = canonical pair | `nativeGeometry_cameraHankelPair_eq_canonical` |
+| Camera Jacobi = canonical Jacobi | `nativeGeometry_cameraJacobiSection_eq_canonical` |
+| Same finite height from Green carrier | `nativeGeometryFiniteHeightOperator_eq_of_greenMomentKernel` |
+| Native/Genuine all-order adapter | `nativeCameraGenuineAllOrderInstantiation_of_certificate` |
+| Positive completed Jacobi package | `CompletedNativeRealHPCarrierCertificate.completedJacobiEnergySelfAdjointData` |
+| Completed signed-height package | `CompletedNativeRealHPCarrierCertificate.toReducedMaximalSelfAdjointHeightData` |
+
+> [!IMPORTANT]
+> `CompletedNativeRealHPCarrierCertificate` is the closed interface between
+> the geometric/Gram side and the already-built all-order operator machinery.
+> It has exactly three fields: `momentKernel`, `evenIndependent`, and
+> `oddIndependent`.
+>
+> Once such a certificate is supplied, no additional J/H quotient,
+> post-T0 Hilbert scale, Gamma/Herglotz/Pick construction, or new positivity
+> hypothesis is required to instantiate the native-camera/Genuine
+> Hankel–Jacobi–height chain.
+
+There is no fourth universal HP-certificate obligation. The operator is not
+fitted from target heights or a zero table: the certificate authenticates the
+native moment geometry, while the downstream Hankel/Jacobi/self-adjoint
+machinery is already constructed.
+
+The canonical capstone is
+[`nativeCameraGenuineAllOrderInstantiation_of_certificate`](CarrySelfAdjointOperator/NativeCameraGenuineAllOrderInstantiation.lean).
+It only changes the source instantiation; it does not rebuild the all-order
+derivatives, triangular convolution, parity split, finite-prefix arguments,
+limit passage, Hankel/Jacobi construction, Hilbert completion, or
+self-adjoint operator.
+
+```text
+nativeScalar = genuineContinuation
+        ↓
+canonical native log-derivative moments
+        ↓
+CompletedNativeRealHPCarrierCertificate
+   ├─ momentKernel
+   ├─ evenIndependent
+   └─ oddIndependent
+        ↓
+canonicalCompletedNativeStieltjesPositivity_of_certificate
+        ↓
+strict Hankel pair positivity, for every N
+        ↓
+canonical Jacobi tower → finite height J_N^(-1/2)
+        ↓
+completed maximal self-adjoint signed-height operator
+```
+
+> [!NOTE]
+> The historical and exploratory routes documented below — including Gamma,
+> Herglotz/Pick, J/H, post-T0 scales, raw seeded-clock atlases, and alternative
+> sewing constructions — are auxiliary provenance, representation, or
+> certificate-construction routes. They are not additional prerequisites of
+> `nativeCameraGenuineAllOrderInstantiation_of_certificate` once a
+> `CompletedNativeRealHPCarrierCertificate` is supplied.
+
 ## Two Routes, One Construction
 
 This repository contains two related routes. They meet at the moment kernel,
