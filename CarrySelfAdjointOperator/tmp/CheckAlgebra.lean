@@ -1,0 +1,10 @@
+import CarrySelfAdjointOperator.FiniteCameraRealifiedCauchyInvertibility
+#check eq_sub_of_add_eq
+#check eq_sub_of_add_eq_left
+#check eq_sub_of_add_eq_right
+#check sub_eq_iff_eq_add
+#check eq_sub_iff_add_eq
+#check add_eq_iff_eq_sub
+#check sub_eq_iff_eq_add
+#check add_sub_cancel_left
+#check add_sub_cancel_right

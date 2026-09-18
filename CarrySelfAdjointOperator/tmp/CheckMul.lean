@@ -1,0 +1,11 @@
+import CarrySelfAdjointOperator.FiniteCameraLogarithmicMomentCrosswalk
+open Matrix
+#check Matrix.mulVec_mulVec
+#check Matrix.mulVec_mulVec
+#check Matrix.mulVec_add
+#check Matrix.add_mulVec
+#check Matrix.sub_mulVec
+#check Matrix.mulVec_sub
+#check Matrix.mulVec_neg
+#check Matrix.mulVec_smul
+#check mulVec_mulVec

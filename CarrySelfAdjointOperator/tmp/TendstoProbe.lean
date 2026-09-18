@@ -1,0 +1,31 @@
+import CarrySelfAdjointOperator
+open scoped BigOperators ENNReal MeasureTheory RealInnerProductSpace Matrix MatrixOrder ComplexConjugate
+open Set MeasureTheory Filter
+open CarrySelfAdjointOperator
+open NativeCarrySpectralWeyl.Infinite
+#check tendsto_id
+#check tendsto_id.atTop
+#check tendsto_const_nhds.mul
+#check tendsto_const_nhds.div_atTop
+#check tendsto_const_nhds.div
+#check Filter.Tendsto.const_mul
+#check Filter.Tendsto.mul_const
+#check Filter.Tendsto.inv₀
+#check tendsto_norm_atTop_atTop
+#check tendsto_norm_atTop_iff
+#check tendsto_complex_ofReal_atTop
+#check Complex.continuous_ofReal
+#check Complex.continuous_ofReal_mul
+#check Complex.continuous_const_mul
+#check Continuous.tendsto
+#check ContinuousAt.tendsto
+#check Complex.normSq
+#check Complex.abs
+#check Complex.normSq_apply
+#check Complex.div_re
+#check Complex.div_im
+#check Complex.normSq_eq_abs
+#check norm_div
+#check norm_sub_rev
+#check norm_sub_le
+#check Filter.Eventually

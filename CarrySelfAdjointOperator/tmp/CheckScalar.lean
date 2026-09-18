@@ -1,0 +1,9 @@
+import CarrySelfAdjointOperator.SixCameraCauchyMomentCrosswalk
+open NativeCarrySpectralWeyl.Infinite
+#check scalar_resolvent_third_order_of_offReal
+#check tendsto_natCast_atTop_atTop
+#check tendsto_nat_nhds_top
+#check tendsto_nat_nhds_top_atTop
+#check tendsto_natCast_atTop_iff
+#check tendsto_nat_atTop_atTop
+#check tendsto_nat_nhds_top

@@ -1,0 +1,29 @@
+import CarrySelfAdjointOperator
+open scoped BigOperators ENNReal MeasureTheory RealInnerProductSpace
+open Set MeasureTheory Filter
+#check MeasureTheory.tendsto_set_integral_filter_of_dominated_convergence
+#check MeasureTheory.tendsto_integral_filter_of_dominated_convergence
+#check MeasureTheory.tendsto_integral_filter_of_dominated_convergence'
+#check MeasureTheory.tendsto_integral_filter_of_dominated_convergence_of_norm_le
+#check MeasureTheory.tendsto_integral_filter_of_dominated_convergence_of_norm_le'
+#check MeasureTheory.integrable_norm
+#check MeasureTheory.Integrable.bdd_mul
+#check MeasureTheory.Integrable.mul_const
+#check MeasureTheory.Integrable.const_mul
+#check MeasureTheory.Integrable.norm
+#check MeasureTheory.Integrable.mono'
+#check MeasureTheory.Integrable.mono
+#check MeasureTheory.Integrable.mul
+#check MeasureTheory.L2.integrable_inner
+#check MeasureTheory.L2.inner_def
+#check MemLp.integrable_mul
+#check MemLp.integrable_mul'
+#check MemLp.integrable_norm
+#check MemLp.norm_toLp
+#check MeasureTheory.integrable_of_memLp
+#check MeasureTheory.MemLp.integrable_mul
+#check MeasureTheory.MemLp.mul
+#check Filter.Tendsto.integral
+#check MeasureTheory.integral_tendsto_of_dominated_convergence
+#check MeasureTheory.tendsto_integral_of_dominated_convergence
+#check MeasureTheory.integral_congr_ae

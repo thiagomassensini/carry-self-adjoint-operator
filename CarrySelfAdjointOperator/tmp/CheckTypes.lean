@@ -1,0 +1,26 @@
+import CarrySelfAdjointOperator.FiniteCameraRealifiedCauchyInvertibility
+import CarrySelfAdjointOperator.FiniteCameraLogarithmicMomentCrosswalk
+open scoped BigOperators ENNReal MeasureTheory RealInnerProductSpace Matrix MatrixOrder ComplexConjugate
+open Set MeasureTheory Filter
+namespace CarrySelfAdjointOperator
+open NativeCarrySpectralWeyl.Infinite NativeCarrySpectralWeyl.Finite NativeCarrySpectralWeyl.Camera
+#check sixCameraLogOperator
+#check sixCameraWhitenedSecondMoment
+#check sixCameraVariance
+#check finiteCameraMatrixMulVec
+#check LinearMap.toContinuousLinearMap
+#check ContinuousLinearMap.comp
+#check ContinuousLinearMap.smul_apply
+#check ContinuousLinearMap.smul_comp
+#check ContinuousLinearMap.comp_smul
+#check ContinuousLinearEquiv.toContinuousLinearMap
+#check ContinuousLinearEquiv.symm
+#check finiteCameraIntrinsicWeylBlock
+#check sixCameraIntrinsicWeylBlock
+#check realifiedContinuousLinearBlock
+#check ContinuousLinearMap.id
+#check ContinuousLinearMap.ext
+#check ContinuousLinearMap.add_apply
+#check ContinuousLinearMap.neg_apply
+#check ContinuousLinearMap.smul_apply
+end CarrySelfAdjointOperator

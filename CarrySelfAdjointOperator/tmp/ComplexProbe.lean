@@ -1,0 +1,13 @@
+import CarrySelfAdjointOperator
+#check Complex.tendsto_iff
+#check Complex.tendsto_iff_re_im
+#check tendsto_iff_norm_tendsto_zero
+#check Complex.continuous_re
+#check Complex.continuous_im
+#check Filter.Tendsto.prod_mk
+#check Filter.Tendsto.prod_mk_nhds
+#check Isometry.tendsto_iff
+#check tendsto_sub_nhds_zero_iff
+#check tendsto_zero_iff_norm_tendsto_zero
+#check tendsto_iff_norm_sub_tendsto_zero
+#check Filter.Tendsto.nhdsWithin_le_iff
