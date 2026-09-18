@@ -548,6 +548,27 @@ theorem
       (nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_posSemidef_iff_contractive
         M q hqpos hq1 S k N hregular).mpr hk
 
+/-! ## Material-clock positivity to Stieltjes -/
+
+/-- Once the exact material-clock kernel is positive on every eventual radial
+finite section, the only extra input needed for strict Stieltjes positivity
+is the already isolated Hankel-pair nondegeneracy.  The proof passes through
+the equivalent chiral-multiplier contractivity gate. -/
+theorem canonicalCompletedNativeStieltjesPositivity_of_materialClockRadialPosSemidefinite
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    (hmaterial :
+      NativeC3SeededClockTfvdSixSourceRadialEventuallyPosSemidefinite
+        M q hqpos.le hq1 S)
+    (hnondegenerate : CanonicalCompletedNativeHankelPairNondegenerate) :
+    CanonicalCompletedNativeStieltjesPositivity := by
+  have hcontractive :
+      CanonicalCompletedNativeRadialChiralMultiplierEventuallyContractive :=
+    (nativeC3SeededClockTfvdSixSourceRadialEventuallyPosSemidefinite_iff_contractive
+      M q hqpos hq1 S).mp hmaterial
+  exact canonicalCompletedNativeStieltjesPositivity_of_radialChiralMultiplier
+    hcontractive hnondegenerate
+
 /-! ## Infinite Hilbert carrier of the enriched material clock -/
 
 /-- Reconstruct the six analyzed material clock channels at cutoff `M` back
