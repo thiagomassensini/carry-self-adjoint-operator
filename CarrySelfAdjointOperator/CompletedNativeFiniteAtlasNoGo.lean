@@ -280,7 +280,7 @@ theorem canonicalNative_no_finite_complex_recurrence
 theorem canonicalC2Geometry_seededClockAtlas_noGo_of_stieltjesPositivity
     {ι : Type*} [Fintype ι]
     (M cutoff : ℕ) (block : ι → C3TraceDynamics.SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (hpos : CanonicalCompletedNativeStieltjesPositivity) :
     False := by
   let p : Polynomial ℂ :=
@@ -348,7 +348,7 @@ theorem canonicalC2Geometry_seededClockAtlas_noGo_of_greenMomentKernel_and_incid
     (transport : BR2BracketIncidenceJetTransport base radius jet)
     (M cutoff N : ℕ)
     (block : ι → C3TraceDynamics.SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) :
     False := by
   obtain ⟨hpos, _⟩ :=
     nativeGeometry_to_finiteHeight_chain_of_greenMomentKernel_and_incidenceTransport

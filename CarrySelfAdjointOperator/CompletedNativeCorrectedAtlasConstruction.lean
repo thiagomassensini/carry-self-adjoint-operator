@@ -187,7 +187,7 @@ transport still required by the material seeded clock. -/
 theorem canonicalCompletedNativeCorrectedAtlas_firstColumn_eq_boundary
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (p : ℕ) :
     seededClockAtlasCoefficient block p 0 =
       canonicalCompletedNativeCorrectedChiralBoundaryCoefficient M p := by

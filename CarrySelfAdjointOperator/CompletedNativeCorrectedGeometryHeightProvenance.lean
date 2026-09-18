@@ -45,7 +45,7 @@ noncomputable section
 theorem canonicalC2Geometry_correctedNative_to_finiteHeight_chain
     {ι : Type*} [Fintype ι]
     (M cutoff N : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (heven : LinearIndependent ℂ
       (fun n : ℕ => seededClockAtlasJet block (2 * n)))
     (hodd : LinearIndependent ℂ
@@ -90,7 +90,7 @@ theorem canonicalC2Geometry_correctedNative_to_finiteHeight_chain
 theorem canonicalC2Geometry_correctedNative_greenKernel_before_height
     {ι : Type*} [Fintype ι]
     (M cutoff : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) :
     IsComplexGreenWronskianMomentKernelGramRepresentation
       (completedNativeCameraLogDerivativeMoment 2 cutoff)
       (polarizedCoefficientParityJet (seededClockAtlasJet block)) := by
@@ -102,7 +102,7 @@ theorem canonicalC2Geometry_correctedNative_greenKernel_before_height
 theorem canonicalC2Geometry_correctedNative_greenKernel_eq_canonical
     {ι : Type*} [Fintype ι]
     (M cutoff : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) :
     IsComplexGreenWronskianMomentKernelGramRepresentation
       canonicalCompletedNativeLogDerivativeMoment
       (polarizedCoefficientParityJet (seededClockAtlasJet block)) := by
@@ -119,7 +119,7 @@ the interior shift of the reconstructed C3 clock. -/
 theorem canonicalC2Geometry_correctedNative_coefficientEquation_before_gram
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) :
     HasPolarizedCoefficientVectorEquation
       canonicalCompletedNativeLogDerivativeMoment
       (seededClockAtlasJet block) := by
@@ -227,7 +227,7 @@ theorem canonicalC2Geometry_natural_source_to_height_operator
     (hbase : IsSupported base)
     (hradius : radius ∈ radiusSet base)
     (M cutoff N : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
     letI : InnerProductSpace ℝ

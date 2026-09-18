@@ -403,7 +403,7 @@ prove. -/
 theorem hasCorrectedNativeChiralBoundaryTransport_iff_expandedStructuralSignature
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock) :
-    HasCorrectedNativeChiralBoundaryTransport M block ↔
+    HasCorrectedNativeSeededClockBoundaryTransport M block ↔
       ∀ p : ℕ,
         seededClockAtlasCoefficient block p 0 =
           canonicalCompletedC3ExpandedStructuralSignatureTaylorCoefficient

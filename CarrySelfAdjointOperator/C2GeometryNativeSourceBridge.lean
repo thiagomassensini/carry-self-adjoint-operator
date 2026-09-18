@@ -271,7 +271,7 @@ theorem canonicalC2Geometry_correctedChiralCoefficient_odd_eq_cameraMoment
 theorem canonicalC2Geometry_seededClockFirstColumn_eq_cameraPolarizedMoment
     {ι : Type*} [Fintype ι]
     (M cutoff : ℕ) (block : ι → SeededClockBlock) (p : ℕ)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) :
     seededClockAtlasCoefficient block p 0 =
       polarizedGreenMomentCoefficient
         (completedNativeCameraLogDerivativeMoment 2 cutoff) p 0 := by
@@ -292,7 +292,7 @@ theorem canonicalC2Geometry_seededClockFirstColumn_eq_cameraPolarizedMoment
 theorem canonicalC2Geometry_seededClockGreenMomentKernel_of_correctedTransport
     {ι : Type*} [Fintype ι]
     (M cutoff : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) :
     IsComplexGreenWronskianMomentKernelGramRepresentation
       (completedNativeCameraLogDerivativeMoment 2 cutoff)
       (polarizedCoefficientParityJet (seededClockAtlasJet block)) := by
@@ -346,7 +346,7 @@ theorem canonicalC2Geometry_seededClockBoundaryResidual_zero_iff_correctedTransp
     (M : ℕ) (block : ι → SeededClockBlock) :
     (∀ p : ℕ,
       canonicalC2Geometry_seededClockBoundaryResidual M block p = 0) ↔
-      HasCorrectedNativeChiralBoundaryTransport M block := by
+      HasCorrectedNativeSeededClockBoundaryTransport M block := by
   constructor
   · intro h p
     exact sub_eq_zero.mp (h p)
@@ -467,7 +467,7 @@ theorem canonicalC2Geometry_seededClockAtlasCoefficient_recurrence
 theorem canonicalC2Geometry_seededClockAtlas_target_recurrence
     {ι : Type*} [Fintype ι]
     (M cutoff : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) (n : ℕ) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) (n : ℕ) :
     ∑ r ∈ Finset.range
         ((canonicalC2Geometry_seededClockAtlasCharacteristic block).natDegree + 1),
       (canonicalC2Geometry_seededClockAtlasCharacteristic block).coeff r *
@@ -483,7 +483,7 @@ theorem canonicalC2Geometry_seededClockAtlas_target_recurrence
 theorem canonicalC2Geometry_seededClockAtlas_canonicalTarget_recurrence
     {ι : Type*} [Fintype ι]
     (M cutoff : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) (n : ℕ) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) (n : ℕ) :
     ∑ r ∈ Finset.range
         ((canonicalC2Geometry_seededClockAtlasCharacteristic block).natDegree + 1),
       (canonicalC2Geometry_seededClockAtlasCharacteristic block).coeff r *

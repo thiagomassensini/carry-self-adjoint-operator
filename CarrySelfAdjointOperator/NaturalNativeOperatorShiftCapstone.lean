@@ -99,7 +99,7 @@ theorem canonicalC2Geometry_greenJacobiCore_formalSelfAdjoint
     (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
     letI : InnerProductSpace ℝ
@@ -136,7 +136,7 @@ theorem canonicalC2Geometry_greenJacobiCore_finiteCompression
     (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M N : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
     letI : InnerProductSpace ℝ
@@ -185,7 +185,7 @@ theorem canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_nativeMoment
     (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block)))
     (n : ℕ) :
@@ -213,7 +213,7 @@ theorem canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_correctedNativeChira
     (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block)))
     (n : ℕ) :
@@ -248,7 +248,7 @@ theorem canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_fullWronskianRespons
     (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block)))
     (n : ℕ) :
@@ -286,7 +286,7 @@ theorem canonicalC2Geometry_greenJacobiCore_cyclicMoment_eq_expandedStructuralSi
     (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block)))
     (n : ℕ) :
@@ -406,7 +406,7 @@ identities explicitly, before any Hankel/Jacobi construction.
 theorem canonicalC2Geometry_correctedNative_boundary_and_shift_before_gram
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) :
     (∀ p : ℕ,
       inner ℂ (seededClockAtlasJet block p)
           (seededClockAtlasJet block 0) =
@@ -438,7 +438,7 @@ theorem canonicalC2Geometry_natural_source_to_height_operator_via_green_shift
     (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M cutoff N : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
     letI : InnerProductSpace ℝ
@@ -503,7 +503,7 @@ theorem canonicalC2Geometry_native_source_valve_green_to_height_via_correctedShi
     (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M cutoff N : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
     (∀ (tailCutoff : ℕ) {s : ℂ}, s ∈ nativeScalarDomain →

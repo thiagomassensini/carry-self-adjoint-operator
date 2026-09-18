@@ -158,7 +158,7 @@ theorem canonicalC2Geometry_native_green_operator_to_height
     (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M cutoff N : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
     (∀ p q : ℕ,

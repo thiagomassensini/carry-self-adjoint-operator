@@ -842,7 +842,7 @@ theorem canonicalC2Geometry_native_strictChiralDominance_of_correctedGreenShift
     (hbase : FiniteNativeCarryOperator.Camera.IsSupported base)
     (hradius : radius ∈ FiniteNativeCarryOperator.Camera.radiusSet base)
     (M cutoff N : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (transport : BR2BracketIncidenceJetTransport base radius
       (polarizedCoefficientParityJet (seededClockAtlasJet block))) :
     CanonicalCompletedNativeCenteredStrictChiralCoefficientDominance := by

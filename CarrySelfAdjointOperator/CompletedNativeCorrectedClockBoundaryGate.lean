@@ -30,7 +30,7 @@ noncomputable section
 
 /-- The exact material-to-native handoff: every clock first-column coefficient
 is the coefficient of the corrected native causal/chiral boundary readout. -/
-def HasCorrectedNativeChiralBoundaryTransport
+def HasCorrectedNativeSeededClockBoundaryTransport
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock) : Prop :=
   ∀ p : ℕ,
@@ -43,7 +43,7 @@ with the completed full Wronskian response. -/
 theorem hasCorrectedNativeChiralBoundaryTransport_iff_sameEdgeGreenToClockBoundaryTransport
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock) :
-    HasCorrectedNativeChiralBoundaryTransport M block ↔
+    HasCorrectedNativeSeededClockBoundaryTransport M block ↔
       HasSameEdgeGreenToClockBoundaryTransport M block := by
   constructor
   · intro h p
@@ -69,7 +69,7 @@ first column consumed by the material-clock reduction. -/
 theorem canonicalCompletedC3LedgerBoundary_of_correctedNativeChiralBoundaryTransport
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) :
     ∀ p : ℕ,
       seededClockAtlasCoefficient block p 0 =
         canonicalCompletedC3LedgerBoundaryTaylorCoefficient M p := by
@@ -83,7 +83,7 @@ column, before any Hankel or Jacobi construction. -/
 theorem seededClockAtlasCoefficient_firstColumn_eq_correctedNativePolarizedMoment
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock) (p : ℕ)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) :
     seededClockAtlasCoefficient block p 0 =
       polarizedGreenMomentCoefficient
         canonicalCompletedNativeLogDerivativeMoment p 0 := by
@@ -102,7 +102,7 @@ kernel in the literal seeded-clock direct-sum carrier. -/
 theorem seededClockAtlasGreenMomentKernel_of_correctedNativeChiralBoundaryTransport
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block) :
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block) :
     IsComplexGreenWronskianMomentKernelGramRepresentation
       canonicalCompletedNativeLogDerivativeMoment
       (polarizedCoefficientParityJet (seededClockAtlasJet block)) := by
@@ -116,7 +116,7 @@ reaches the existing real HP carrier certificate. -/
 theorem completedNativeRealHPCarrierCertificate_of_correctedNativeChiralBoundaryTransport
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock)
-    (htransport : HasCorrectedNativeChiralBoundaryTransport M block)
+    (htransport : HasCorrectedNativeSeededClockBoundaryTransport M block)
     (heven : LinearIndependent ℂ
       (fun n : ℕ => seededClockAtlasJet block (2 * n)))
     (hodd : LinearIndependent ℂ
@@ -142,7 +142,7 @@ boundary handoff at the central coefficient.  This is a carrier no-go, not a
 failure of the corrected causal/chiral readout. -/
 theorem nativeZeroSeededClockBlock_not_correctedNativeChiralBoundaryTransport
     (M : ℕ) (s : ℂ) :
-    ¬ HasCorrectedNativeChiralBoundaryTransport M
+    ¬ HasCorrectedNativeSeededClockBoundaryTransport M
         (fun _ : Fin 1 => nativeZeroSeededClockBlock s) := by
   intro htransport
   exact nativeZeroSeededClockBlock_not_sameEdgeTransport M s
