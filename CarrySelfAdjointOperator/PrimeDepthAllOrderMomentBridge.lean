@@ -382,8 +382,8 @@ theorem nativeC3SeededClockTfvdSixSourceKernelForwardDifference_tendsto_moment
   have hcanonical :=
     canonicalCompletedC3AllCutoffRealAxisKernelForwardDifference_tendsto_moment
       M p r
-  apply hcanonical.congr'
-  filter_upwards with k
+  refine hcanonical.congr' (Eventually.of_forall ?_)
+  intro k
   apply completedGreenKernelForwardDifference_eq_of_eq_on_grid
   intro i hi j hj
   unfold nativeC3SeededClockTfvdSixSourceRealAxisKernelReadout
