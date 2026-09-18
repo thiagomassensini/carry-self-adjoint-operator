@@ -273,6 +273,88 @@ theorem canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_primeDepth
       (p + 1)).symm
 
 
+/-! ## Infinite Hilbert carrier of the enriched material clock -/
+
+/-- Reconstruct the six analyzed material clock channels at cutoff `M` back
+into their honest three-source Hilbert carrier.  This definition retains the
+ordinary/log-jet source at `z`, `w`, and the reflected point; no scalar
+moment readout is taken here. -/
+def nativeC3SeededClockTfvdSixSourceReconstructedState
+    (M : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (z w : ℂ) :
+    CanonicalC3AllCutoffMixedSourceHilbert :=
+  canonicalC3AllCutoffMixedSourceTfvdReconstruction q hq0 hq1 S
+    (nativeC3SeededClockTfvdSixSourceAnalysis M q S z w)
+
+/-- Losslessness makes the reconstructed material state exactly the canonical
+three-prefix source at every cutoff. -/
+theorem nativeC3SeededClockTfvdSixSourceReconstructedState_eq_prefix
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (z w : ℂ) :
+    nativeC3SeededClockTfvdSixSourceReconstructedState
+        M q hqpos.le hq1 S z w =
+      canonicalC3AllCutoffMixedSourcePrefixState M z w := by
+  unfold nativeC3SeededClockTfvdSixSourceReconstructedState
+  exact canonicalC3AllCutoffMixedSourceTfvdReconstruction_seededClockAnalysis
+    M z w q hqpos hq1 S
+
+/-- The enriched material clock therefore has an honest infinite Hilbert
+carrier: after lossless six-channel reconstruction, its finite cutoff states
+converge in norm to the completed three-source state.  This is a state-level
+limit, prior to any scalar moment, Hankel, or Jacobi construction. -/
+theorem nativeC3SeededClockTfvdSixSourceReconstructedState_tendsto
+    {z w : ℂ} (hz : 0 < z.re) (hw : 0 < w.re)
+    (hzReflected : 0 < (reflectedParameter z).re)
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    Tendsto
+      (fun M : ℕ =>
+        nativeC3SeededClockTfvdSixSourceReconstructedState
+          M q hqpos.le hq1 S z w)
+      atTop
+      (nhds
+        (canonicalC3AllCutoffMixedSourceState
+          z w hz hw hzReflected)) := by
+  exact
+    (canonicalC3AllCutoffMixedSourcePrefixState_tendsto
+      hz hw hzReflected).congr'
+      (Eventually.of_forall fun M =>
+        nativeC3SeededClockTfvdSixSourceReconstructedState_eq_prefix
+          M q hqpos hq1 S z w)
+
+/-- Strong state convergence also preserves every polarized Hilbert inner
+product.  Thus the finite enriched material carriers have an entrywise Gram
+limit in the completed three-source Hilbert space.  This does not identify
+that positive Gram with the signed native moment kernel; it only records the
+honest Hilbert completion of the material source itself. -/
+theorem inner_nativeC3SeededClockTfvdSixSourceReconstructedState_tendsto
+    {z₁ w₁ z₂ w₂ : ℂ}
+    (hz₁ : 0 < z₁.re) (hw₁ : 0 < w₁.re)
+    (hz₁Reflected : 0 < (reflectedParameter z₁).re)
+    (hz₂ : 0 < z₂.re) (hw₂ : 0 < w₂.re)
+    (hz₂Reflected : 0 < (reflectedParameter z₂).re)
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    Tendsto
+      (fun M : ℕ =>
+        inner ℂ
+          (nativeC3SeededClockTfvdSixSourceReconstructedState
+            M q hqpos.le hq1 S z₁ w₁)
+          (nativeC3SeededClockTfvdSixSourceReconstructedState
+            M q hqpos.le hq1 S z₂ w₂))
+      atTop
+      (nhds
+        (inner ℂ
+          (canonicalC3AllCutoffMixedSourceState
+            z₁ w₁ hz₁ hw₁ hz₁Reflected)
+          (canonicalC3AllCutoffMixedSourceState
+            z₂ w₂ hz₂ hw₂ hz₂Reflected))) := by
+  exact Filter.Tendsto.inner (𝕜 := ℂ)
+    (nativeC3SeededClockTfvdSixSourceReconstructedState_tendsto
+      hz₁ hw₁ hz₁Reflected q hqpos hq1 S)
+    (nativeC3SeededClockTfvdSixSourceReconstructedState_tendsto
+      hz₂ hw₂ hz₂Reflected q hqpos hq1 S)
+
 /-! ## Functional germ sewing: material clock, chiral block, prime-depth -/
 
 /-- Before taking any Taylor coefficient, the enriched material six-source
