@@ -2,6 +2,9 @@ import CarrySelfAdjointOperator.PrimeDepthAllOrderMomentBridge
 
 namespace CarrySelfAdjointOperator
 
+#print axioms nativeLogGenerator_basisVector_primeDepthLedger
+#print axioms infiniteRealSpectralPhase_eq_primeDepthLedger
+#print axioms nativeRealSpectralState_eq_primeDepthClockOrbit_zero
 #print axioms primeDepthCanonicalLogBracketBlock_eq_canonical
 #print axioms primeDepthCanonicalLogBracketChart_eq_canonical
 #print axioms primeDepthC3LogJetCutoffTail_eq_canonical
