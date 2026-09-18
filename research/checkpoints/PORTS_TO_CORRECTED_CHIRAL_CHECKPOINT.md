@@ -557,10 +557,10 @@ CONFIRMADO:
   não há linhas novas com `sorry`, `admit` ou declaração `axiom`; os
   `#print axioms` auditados permanecem nos axiomas padrão observados
   (`propext`, `Classical.choice`, `Quot.sound`, conforme o teorema).
-- As duas modificações rastreadas que permanecem no worktree local,
+- As duas modificações rastreadas que estavam no worktree local,
   `CompletedNativeCameraTfvdGreenFrameDefectCrosswalk.lean` e
-  `CompletedNativeChiralReturnStorage.lean`, compilam diretamente com
-  `lake env lean` (exit 0).
+  `CompletedNativeChiralReturnStorage.lean`, compilaram diretamente com
+  `lake env lean` (exit 0) e foram incorporadas pelo PR #60.
 - A bateria local anterior dos módulos Lean diretos passou para os 26 arquivos
   auditados (25 arquivos de produção e um probe); os 113 nós e 16 células do
   certificado theta, além do agregado, também passaram. Esses resultados são
@@ -620,6 +620,72 @@ integrar qualquer parte adicional. Não fazer isso durante a pausa.
 STATUS:
 PARTIAL — integração remota validada e mergeada; lote local adicional e gate
 matemático native-positivity→dslope permanecem fora de `main`.
+=== END CHECKPOINT ===
+
+=== CHECKPOINT: FECHAMENTO DA AUDITORIA — 2026-09-18 ===
+Objetivo atual:
+Deixar o repositório pausado em um estado reproduzível, com os PRs validados
+mergeados e o restante local explicitamente separado.
+
+CONFIRMADO:
+- PR #60 foi mergeado como
+  `fba7b5e3d058ea7d573f004d284966a668747492`; `HEAD`, `main`, `origin/main` e
+  `origin/HEAD` apontam para esse SHA.
+- O build final pós-PR #60 passou com `lake build` e 9.522 jobs. O agregador
+  `CarrySelfAdjointOperator/Audit.lean` também passou localmente.
+- O `#print axioms` pontual dos oito teoremas novos do PR #60 reportou apenas
+  `propext`, `Classical.choice` e `Quot.sound`.
+- Estado remoto final: 60 PRs conhecidos, 46 `MERGED`, 14 `CLOSED` e nenhum
+  `OPEN`. Isso não significa que todas as branches exploratórias remotas sejam
+  ancestrais de `main`; significa que não há PR aberto pendente.
+
+NOVO NESTA RODADA:
+- `main...origin/main` está sincronizado (`0 0`) e não há modificações
+  rastreadas pendentes; somente os artefatos locais untracked permanecem.
+- A branch local antiga do PR #59 não foi apagada porque um worktree antigo a
+  referencia; nenhum worktree antigo foi alterado.
+
+NO-GO / NÃO REPETIR:
+- O consumidor `CompletedNativeTenthOrderHankelPositivity.lean` segue
+  `TIMEOUT/OPEN`: execução acima de 25 minutos, sem erro Lean e sem `.olean`.
+- Os 25 módulos de produção/provenance locais que compilaram isoladamente, o
+  probe separado, os 130 arquivos do certificado theta e os arquivos em
+  `tmp/` não devem ser tratados como integrados até existir um PR limpo e um
+  build conjunto; backups, scripts e caches continuam preservados.
+- O build verde do repositório não promove o gate matemático
+  native-positivity→dslope a teorema: o checkpoint de storage/contractivity
+  continua `PARTIAL / OPEN`.
+
+IDENTIDADES IMPORTANTES:
+- `chiralMultiplierContractiveAt_iff_storage_one_nonnegative`.
+- `chiralMultiplierEventuallyContractive_iff_storage_one_eventually_nonnegative`.
+- `fullWronskianRegularizedChiralSampleMatrix_eq_dslope`.
+- `storage_one_eventually_nonnegative_iff_dslope`.
+- `br2CameraBracketProjectiveHilbertParityJet_zeroGram_gt_nativeMoment`.
+- `br2CameraBracketGreenFrameParityJet_zeroGram_gt_nativeMoment`.
+
+ARQUIVOS/TEOREMAS USADOS:
+- `/home/thlinux/carry-self-adjoint-operator/CarrySelfAdjointOperator/CompletedNativeChiralReturnStorage.lean`.
+- `/home/thlinux/carry-self-adjoint-operator/CarrySelfAdjointOperator/CompletedNativeCameraTfvdGreenFrameDefectCrosswalk.lean`.
+- `/home/thlinux/carry-self-adjoint-operator/CarrySelfAdjointOperator/Audit.lean`.
+- `/home/thlinux/carry-self-adjoint-operator/research/checkpoints/PORTS_TO_CORRECTED_CHIRAL_CHECKPOINT.md`.
+
+GARGALO EXATO:
+Do ponto de vista de integração, não há gate remoto pendente: `main` compila.
+Do ponto de vista matemático, ainda falta a desigualdade geométrica all-order
+que identifica a energia Green/return upstream com a positividade de
+`dslope`; o PR #60 apenas tornou explícita a equivalência condicional e os
+no-gos locais.
+
+PRÓXIMO MICRO-PASSO:
+Ao retomar, revisar o lote untracked em um worktree limpo, começando pelo
+timeout da décima ordem e pelo transporte TFVD→storage. Não fazer staging
+global nem incluir dados/probes automaticamente.
+
+STATUS:
+PASS — auditoria e integração dos PRs validados concluídas.
+PARTIAL / OPEN — trabalho local adicional e gate matemático permanecem
+deliberadamente fora de `main`.
 === END CHECKPOINT ===
 
 === CHECKPOINT ===
