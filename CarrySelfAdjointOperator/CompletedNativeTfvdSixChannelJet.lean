@@ -321,7 +321,7 @@ theorem canonicalC3AllCutoffMixedSourceTfvd_readoutResidual_canonicalPrefix
 /-- The direct Green port is a functional of the same six lossless TFVD
 analyses: reconstruct the `w` source and take its existing Green port. -/
 def canonicalC3AllCutoffMixedSourceTfvdDirectGreenPort
-    (M : ℕ) (z w : ℂ)
+    (M : ℕ) (_z w : ℂ)
     (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
     (S : Finset NativeGpreBoundaryContext)
     (data : CanonicalC3AllCutoffMixedSourceTfvdAnalysisData S) :
@@ -332,7 +332,7 @@ def canonicalC3AllCutoffMixedSourceTfvdDirectGreenPort
 /-- The reflected Green port is recovered from the reflected `z` source in
 the same six-analysis carrier. -/
 def canonicalC3AllCutoffMixedSourceTfvdReflectedGreenPort
-    (M : ℕ) (z w : ℂ)
+    (M : ℕ) (z _w : ℂ)
     (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
     (S : Finset NativeGpreBoundaryContext)
     (data : CanonicalC3AllCutoffMixedSourceTfvdAnalysisData S) :
