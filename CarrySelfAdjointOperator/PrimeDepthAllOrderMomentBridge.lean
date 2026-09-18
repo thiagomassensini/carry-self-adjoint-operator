@@ -273,6 +273,64 @@ theorem canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_primeDepth
       (p + 1)).symm
 
 
+/-! ## Functional germ sewing: material clock, chiral block, prime-depth -/
+
+/-- Before taking any Taylor coefficient, the enriched material six-source
+response is already the same germ at the center as the canonical completed
+response.  This is the function-level seam behind the all-order jet
+identifications. -/
+theorem nativeC3SeededClockTfvdSixSourceNormalizedResponse_eventuallyEq_completed
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    nativeC3SeededClockTfvdSixSourceNormalizedResponse M q hqpos.le hq1 S =ᶠ[nhds 0]
+      completedGreenNormalizedResponse
+        completedNativeOperatorCharacteristic
+        completedNativeOperatorBoundaryCompanion := by
+  have hmaterial :
+      nativeC3SeededClockTfvdSixSourceNormalizedResponse M q hqpos.le hq1 S =
+        canonicalC3BracketTfvdSixAnalysisNormalizedResponse
+          M q hqpos.le hq1 S :=
+    nativeC3SeededClockTfvdSixSourceNormalizedResponse_eq_sixAnalysis
+      M q hqpos hq1 S
+  have hsix :
+      canonicalC3BracketTfvdSixAnalysisNormalizedResponse
+          M q hqpos.le hq1 S =
+        canonicalC3BracketTfvdSixChannelNormalizedResponse M :=
+    canonicalC3BracketTfvdSixAnalysisNormalizedResponse_eq_sixChannel
+      M q hqpos hq1 S
+  rw [hmaterial, hsix]
+  exact
+    (canonicalC3BracketTfvdSixChannelNormalizedResponse_eventuallyEq_response M).trans
+      (canonicalC3BracketTfvdNormalizedResponse_eventuallyEq_completed M)
+
+/-- The material six-source response and the signed positive-minus-negative
+chiral block response are the same germ at the center.  Thus the signed
+chiral representation is not an independently fitted moment model; it is a
+second realization of the same local material response. -/
+theorem nativeC3SeededClockTfvdSixSourceNormalizedResponse_eventuallyEq_chiralBalance
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    nativeC3SeededClockTfvdSixSourceNormalizedResponse M q hqpos.le hq1 S =ᶠ[nhds 0]
+      canonicalCompletedC3FullWronskianChiralBalanceResponse M := by
+  exact
+    (nativeC3SeededClockTfvdSixSourceNormalizedResponse_eventuallyEq_completed
+      M q hqpos hq1 S).trans
+      (canonicalCompletedC3FullWronskianChiralBalanceResponse_eventuallyEq_completed
+        M).symm
+
+/-- The material six-source response and the response whose logarithmic clock
+is reconstructed from prime-camera depths are the same germ at the center.
+This is the direct function-level wheel/clock seam, prior to moments. -/
+theorem nativeC3SeededClockTfvdSixSourceNormalizedResponse_eventuallyEq_primeDepth
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    nativeC3SeededClockTfvdSixSourceNormalizedResponse M q hqpos.le hq1 S =ᶠ[nhds 0]
+      primeDepthCompletedNativeNormalizedResponse := by
+  exact
+    (nativeC3SeededClockTfvdSixSourceNormalizedResponse_eventuallyEq_completed
+      M q hqpos hq1 S).trans
+      primeDepthCompletedNativeNormalizedResponse_eventuallyEq_completed.symm
+
 /-- The enriched material clock itself, read through the lossless six-source
 TFVD observation, produces exactly the prime-depth completed response jet at
 every order.  No raw seeded-clock Gram, Hankel matrix, Jacobi operator, or
