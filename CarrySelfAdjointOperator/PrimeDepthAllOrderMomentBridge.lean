@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.PrimeDepthTfvdLogJetCrosswalk
 import CarrySelfAdjointOperator.NativeLogEvolution
+import CarrySelfAdjointOperator.MultibaseCameraLogTfvdChannelTransport
 import CarrySelfAdjointOperator.CompletedC3AllOrderChartResponseCorrection
 import CarrySelfAdjointOperator.AllOrderLogJetLedger
 import CarrySelfAdjointOperator.CompletedNativeCorrectedClockBoundaryGate
@@ -47,6 +48,19 @@ theorem nativeLogGenerator_basisVector_primeDepthLedger (n : ℕ) :
         infiniteRealSpectralBasisVector n := by
   rw [primeDepthLogLedger_eq_log (Nat.succ_ne_zero n)]
   exact nativeLogGenerator_basisVector_log n
+
+
+/-- The same eigenvalue before scalar synthesis: each prime camera contributes
+exactly `v_p(n+1) * log p`, and the self-adjoint clock sees their canonical
+multibase synthesis. -/
+theorem nativeLogGenerator_basisVector_cameraLogSynthesis (n : ℕ) :
+    nativeLogGenerator
+        ⟨infiniteRealSpectralBasisVector n,
+          nativeLogBasisVector_mem_domain n⟩ =
+      cameraComplexSynthesis (cameraLogContributionVectorComplex (n + 1)) •
+        infiniteRealSpectralBasisVector n := by
+  rw [cameraComplexSynthesis_cameraLogContributionVectorComplex]
+  exact nativeLogGenerator_basisVector_primeDepthLedger n
 
 /-- The unitary phase of the same clock is the exponential of the complete
 prime-depth ledger. -/
