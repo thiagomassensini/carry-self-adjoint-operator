@@ -29,11 +29,12 @@ this file does not identify them with clock nodes or with zero heights, and it
 does not discard the quotient remainder.
 -/
 
-open scoped BigOperators
+open scoped BigOperators ComplexConjugate ComplexOrder InnerProductSpace Matrix MatrixOrder lp
 
 namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
+open C3TraceDynamics
 open Filter
 
 noncomputable section
@@ -169,7 +170,7 @@ theorem primeDepthCompletedC3EnrichedTfvdNormalizedLogJetTailReadout_eq_canonica
       canonicalCompletedC3EnrichedTfvdNormalizedLogJetTailReadout z := by
   unfold primeDepthCompletedC3EnrichedTfvdNormalizedLogJetTailReadout
     canonicalCompletedC3EnrichedTfvdNormalizedLogJetTailReadout
-  rw [primeDepthCompletedC3EnrichedTfvdLogJetTailReadout_eq_canonical]
+  simp_rw [primeDepthCompletedC3EnrichedTfvdLogJetTailReadout_eq_canonical]
 
 /-- Native scalar normalized response whose logarithmic companion is generated
 from the prime-depth reconstruction. -/
@@ -390,10 +391,10 @@ theorem nativeC3SeededClockTfvdSixSourceKernelForwardDifference_tendsto_moment
   intro i hi j hj
   unfold nativeC3SeededClockTfvdSixSourceRealAxisKernelReadout
     canonicalCompletedC3AllCutoffRealAxisKernelReadout
-  exact nativeC3SeededClockTfvdSixSourceRealKernelReadout_eq_canonical
+  exact (nativeC3SeededClockTfvdSixSourceRealKernelReadout_eq_canonical
     M q hqpos hq1 S
       (i • canonicalGreenJetStep k).re
-      (j • canonicalGreenJetStep k).re
+      (j • canonicalGreenJetStep k).re).symm
 
 /-! ## Polarized material kernel and the chiral contractivity gate -/
 
@@ -615,8 +616,8 @@ theorem nativeC3SeededClockTfvdSixSourceReconstructedState_tendsto
     (canonicalC3AllCutoffMixedSourcePrefixState_tendsto
       hz hw hzReflected).congr'
       (Eventually.of_forall fun M =>
-        nativeC3SeededClockTfvdSixSourceReconstructedState_eq_prefix
-          M q hqpos hq1 S z w)
+        (nativeC3SeededClockTfvdSixSourceReconstructedState_eq_prefix
+          M q hqpos hq1 S z w).symm)
 
 /-- Strong state convergence also preserves every polarized Hilbert inner
 product.  Thus the finite enriched material carriers have an entrywise Gram
@@ -713,8 +714,11 @@ def nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState
     (canonicalCompletedC3RecoveredRadialPairState z w hzStrip hwStrip,
       WithLp.toLp 2
         (canonicalC3AllCutoffMixedSourceTfvdStructuralReadout M
-            w (reflectedParameter z) q hq0 hq1 S
-            (nativeC3SeededClockTfvdSixSourceAnalysis M q S z w),
+            (operatorHeightParameter z)
+            (reflectedParameter (operatorHeightParameter w))
+            q hq0 hq1 S
+            (nativeC3SeededClockTfvdSixSourceAnalysis M q S
+              (operatorHeightParameter w) (operatorHeightParameter z)),
           WithLp.toLp 2
             (canonicalC3MixedHeightTailCompletionDefect M w z,
               WithLp.toLp 2
@@ -741,7 +745,8 @@ theorem nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_eq_canonical
     canonicalCompletedC3RecoveredAllCutoffLedgerState
   rw [nativeC3SeededClockTfvdSixSourceAnalysis_eq_canonical]
   rw [canonicalC3AllCutoffMixedSourceTfvdStructuralReadout_canonicalPrefix
-    M z w q hqpos hq1 S]
+    M (operatorHeightParameter w) (operatorHeightParameter z)
+      q hqpos hq1 S]
 
 /-- Consequently the complete scalar readout of the material-enriched carrier
 is exactly the canonical recovered-ledger readout at every cutoff. -/
@@ -785,8 +790,8 @@ theorem nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_readout_tendsto_wro
       hzStrip hwStrip
   exact hcanonical.congr'
     (Eventually.of_forall fun M =>
-      nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_readout_eq_canonical
-        M z w hzStrip hwStrip q hqpos hq1 S)
+      (nativeC3SeededClockTfvdRecoveredAllCutoffLedgerState_readout_eq_canonical
+        M z w hzStrip hwStrip q hqpos hq1 S).symm)
 
 /-! ## Canonically normalized material kernel and dslope limit -/
 
