@@ -1,0 +1,9 @@
+import CarrySelfAdjointOperator.FiveFieldTangentTailReadout
+
+open NativeCarryFiveFieldCapstone
+
+#print axioms twoJumpScalarFromMoments_integral
+#print axioms twoJumpPolynomialMomentDensity_integrable
+#print axioms twoJumpScalarFromMoments_polynomial_tail
+#print axioms twoJumpMoment_endpoint_eq_reconstructed_tail
+#print axioms twoJumpProjectedTail_eq_reconstructed_pairing

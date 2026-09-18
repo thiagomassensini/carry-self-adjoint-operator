@@ -1,0 +1,7 @@
+import CarrySelfAdjointOperator.CompletedNativeTenthOrderHankelMomentForm
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalCompletedNativeHankel_three_det_eq_xiTenthMomentRatio
+
+end CarrySelfAdjointOperator

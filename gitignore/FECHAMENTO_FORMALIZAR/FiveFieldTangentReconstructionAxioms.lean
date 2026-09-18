@@ -1,0 +1,14 @@
+import CarrySelfAdjointOperator.FiveFieldTangentReconstruction
+
+open NativeCarryFiveFieldCapstone
+
+#print axioms twoJumpResidueMoments_reconstruct
+#print axioms twoJumpReconstructResidues_moments
+#print axioms twoJumpResidueMoments_eq_iff
+#print axioms twoJumpReconstructResiduesLinear
+#print axioms twoJumpTangentLaurentLinear
+#print axioms twoJumpTangentResiduesLinear_moments
+#print axioms twoJumpResidueCoordinateLinear
+#print axioms twoJumpRadialPairingLinear
+#print axioms twoJumpScalarFromMoments_sum
+#print axioms twoJumpScalarFromMoments_smul
