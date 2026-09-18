@@ -4,6 +4,7 @@ import CarrySelfAdjointOperator.MultibaseCameraLogTfvdChannelTransport
 import CarrySelfAdjointOperator.CompletedNativeSeededClockTfvdSixSource
 import CarrySelfAdjointOperator.CompletedC3RecoveredEnrichedWronskianCarrier
 import CarrySelfAdjointOperator.CompletedC3GreenFrameStructuralReadoutBridge
+import CarrySelfAdjointOperator.CompletedNativeProjectiveChiralCarrier
 import CarrySelfAdjointOperator.CompletedC3AllOrderChartResponseCorrection
 import CarrySelfAdjointOperator.AllOrderLogJetLedger
 import CarrySelfAdjointOperator.CompletedNativeCorrectedClockBoundaryGate
@@ -393,6 +394,159 @@ theorem nativeC3SeededClockTfvdSixSourceKernelForwardDifference_tendsto_moment
     M q hqpos hq1 S
       (i • canonicalGreenJetStep k).re
       (j • canonicalGreenJetStep k).re
+
+/-! ## Polarized material kernel and the chiral contractivity gate -/
+
+/-- Away from Hermitian collision, the complete material six-source kernel is
+exactly the canonical polarized completed-native dslope.  The clock readout
+therefore realizes the same complex kernel used by the projective chiral
+carrier, not merely its real-axis restriction. -/
+theorem nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout_eq_polarizedDslope
+    (M : ℕ) {z w : ℂ}
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    (hzStrip : operatorHeightParameter z ∈ genuineCriticalStrip)
+    (hwStrip : operatorHeightParameter w ∈ genuineCriticalStrip)
+    (hzF : completedNativeOperatorCharacteristic z ≠ 0)
+    (hwF : completedNativeOperatorCharacteristic w ≠ 0)
+    (hsep : w ≠ conj z) :
+    nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout
+        M z w q hqpos.le hq1 S =
+      canonicalCompletedNativePolarizedDslopeKernel z w := by
+  rw [nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout_eq_canonical
+    M z w q hqpos hq1 S]
+  rw [canonicalCompletedC3AllCutoffOffDiagonalKernelReadout_eq
+    M hzStrip hwStrip hzF hwF hsep]
+  change
+    (w - conj z)⁻¹ *
+        canonicalCompletedNativePolarizedResponseNumerator z w =
+      canonicalCompletedNativePolarizedDslopeKernel z w
+  rw [canonicalCompletedNativePolarizedResponseNumerator_eq_mul_dslope
+    hzStrip hsep]
+  field_simp [sub_ne_zero.mpr hsep]
+
+/-- Finite radial matrix sampled directly from the complete material
+six-source clock kernel. -/
+def nativeC3SeededClockTfvdSixSourceRadialSampleMatrix
+    (M : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    (k N : ℕ) : Matrix (Fin N) (Fin N) ℂ :=
+  Matrix.of fun i j =>
+    nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout M
+      (canonicalCompletedC3RadialTiltPoint k i)
+      (canonicalCompletedC3RadialTiltPoint k j)
+      q hq0 hq1 S
+
+/-- On every regular radial section, the matrix read directly from the
+material clock is exactly the canonical radial dslope matrix. -/
+theorem nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_eq_dslope
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    (k N : ℕ)
+    (hregular : ∀ i : Fin N,
+      canonicalCompletedC3RadialTiltPoint k i ∈
+          completedNativeHeightDomain ∧
+        completedNativeOperatorCharacteristic
+            (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 ∧
+          completedNativePositiveHermiteBiehlerCoordinate
+            (canonicalCompletedC3RadialTiltPoint k i) ≠ 0) :
+    nativeC3SeededClockTfvdSixSourceRadialSampleMatrix
+        M q hqpos.le hq1 S k N =
+      canonicalCompletedNativeRadialDslopeSampleMatrix k N := by
+  ext i j
+  unfold nativeC3SeededClockTfvdSixSourceRadialSampleMatrix
+    canonicalCompletedNativeRadialDslopeSampleMatrix
+  simp only [Matrix.of_apply]
+  apply
+    nativeC3SeededClockTfvdSixSourceOffDiagonalKernelReadout_eq_polarizedDslope
+      M q hqpos hq1 S
+  · exact (hregular i).1
+  · exact (hregular j).1
+  · exact (hregular i).2.1
+  · exact (hregular j).2.1
+  · exact (canonicalCompletedC3RadialTilt_separation_ne_zero
+      k (i : ℕ) (j : ℕ))
+
+/-- The same radial material-clock matrix is the exact signed projective
+chiral Gram difference. -/
+theorem nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_eq_projectiveChiral
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    (k N : ℕ)
+    (hregular : ∀ i : Fin N,
+      canonicalCompletedC3RadialTiltPoint k i ∈
+          completedNativeHeightDomain ∧
+        completedNativeOperatorCharacteristic
+            (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 ∧
+          completedNativePositiveHermiteBiehlerCoordinate
+            (canonicalCompletedC3RadialTiltPoint k i) ≠ 0) :
+    nativeC3SeededClockTfvdSixSourceRadialSampleMatrix
+        M q hqpos.le hq1 S k N =
+      canonicalCompletedNativeRadialProjectiveChiralSampleMatrix k N := by
+  rw [nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_eq_dslope
+      M q hqpos hq1 S k N hregular,
+    canonicalCompletedNativeRadialProjectiveChiralSampleMatrix_eq_dslope
+      k N hregular]
+
+/-- Exact positivity decision for the enriched material clock on every regular
+finite radial section: its canonical kernel is positive semidefinite if and
+only if the native Hermite--Biehler chiral multiplier is contractive there.
+This is the positivity gate; no new Gram identification remains hidden. -/
+theorem
+    nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_posSemidef_iff_contractive
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    (k N : ℕ)
+    (hregular : ∀ i : Fin N,
+      canonicalCompletedC3RadialTiltPoint k i ∈
+          completedNativeHeightDomain ∧
+        completedNativeOperatorCharacteristic
+            (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 ∧
+          completedNativePositiveHermiteBiehlerCoordinate
+            (canonicalCompletedC3RadialTiltPoint k i) ≠ 0) :
+    (nativeC3SeededClockTfvdSixSourceRadialSampleMatrix
+        M q hqpos.le hq1 S k N).PosSemidef ↔
+      CanonicalCompletedNativeRadialChiralMultiplierContractiveAt k N := by
+  rw [nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_eq_projectiveChiral
+      M q hqpos hq1 S k N hregular]
+  exact
+    canonicalCompletedNativeRadialProjectiveChiralSampleMatrix_posSemidef_iff_contractive
+      k N hregular
+
+/-- All-order eventual version: positivity of every finite radial section of
+the enriched material-clock kernel is exactly the already isolated eventual
+contractivity of the canonical chiral multiplier. -/
+def NativeC3SeededClockTfvdSixSourceRadialEventuallyPosSemidefinite
+    (M : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) : Prop :=
+  ∀ N : ℕ, ∀ᶠ k : ℕ in atTop,
+    (nativeC3SeededClockTfvdSixSourceRadialSampleMatrix
+      M q hq0 hq1 S k N).PosSemidef
+
+theorem
+    nativeC3SeededClockTfvdSixSourceRadialEventuallyPosSemidefinite_iff_contractive
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) :
+    NativeC3SeededClockTfvdSixSourceRadialEventuallyPosSemidefinite
+        M q hqpos.le hq1 S ↔
+      CanonicalCompletedNativeRadialChiralMultiplierEventuallyContractive := by
+  constructor
+  · intro hmaterial N
+    filter_upwards [
+      hmaterial N,
+      canonicalCompletedNativeRadialProjectiveChiral_eventually_regular N
+    ] with k hk hregular
+    exact
+      (nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_posSemidef_iff_contractive
+        M q hqpos hq1 S k N hregular).mp hk
+  · intro hcontractive N
+    filter_upwards [
+      hcontractive N,
+      canonicalCompletedNativeRadialProjectiveChiral_eventually_regular N
+    ] with k hk hregular
+    exact
+      (nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_posSemidef_iff_contractive
+        M q hqpos hq1 S k N hregular).mpr hk
 
 /-! ## Infinite Hilbert carrier of the enriched material clock -/
 
