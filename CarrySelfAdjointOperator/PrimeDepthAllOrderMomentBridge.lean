@@ -299,6 +299,40 @@ theorem hasCorrectedNativeSeededClockBoundaryTransport_iff_primeDepthResponse
         (canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_primeDepthResponse
           M p).symm
 
+
+/-- Same statement in the original same-edge Green vocabulary: the sole
+Wronskian-to-clock calibration is exactly equality of the clock first column
+with the all-order completed response generated from prime-camera depths. -/
+theorem hasSameEdgeGreenToClockBoundaryTransport_iff_primeDepthResponse
+    {ι : Type*} [Fintype ι]
+    (M : ℕ) (block : ι → C3TraceDynamics.SeededClockBlock) :
+    HasSameEdgeGreenToClockBoundaryTransport M block ↔
+      ∀ p : ℕ,
+        seededClockAtlasCoefficient block p 0 =
+          primeDepthCompletedNativeResponseTaylorCoefficient (p + 1) := by
+  exact
+    (hasCorrectedNativeChiralBoundaryTransport_iff_sameEdgeGreenToClockBoundaryTransport
+      M block).symm.trans
+      (hasCorrectedNativeSeededClockBoundaryTransport_iff_primeDepthResponse
+        M block)
+
+/-- Under the canonical strict Stieltjes positivity certificate, a fixed
+finite same-edge seeded-clock atlas cannot satisfy the all-order Green clock
+boundary transport.  The obstruction is therefore to the finite material
+carrier, not to the causal/Wronskian target. -/
+theorem no_finite_sameEdgeGreenToClockBoundaryTransport_of_stieltjesPositivity
+    {ι : Type*} [Fintype ι]
+    (M cutoff : ℕ) (block : ι → C3TraceDynamics.SeededClockBlock)
+    (hpos : CanonicalCompletedNativeStieltjesPositivity) :
+    ¬ HasSameEdgeGreenToClockBoundaryTransport M block := by
+  intro hsame
+  have hcorrected :
+      HasCorrectedNativeSeededClockBoundaryTransport M block :=
+    (hasCorrectedNativeChiralBoundaryTransport_iff_sameEdgeGreenToClockBoundaryTransport
+      M block).2 hsame
+  exact canonicalC2Geometry_seededClockAtlas_noGo_of_stieltjesPositivity
+    M cutoff block hcorrected hpos
+
 /-- A fixed finite seeded-clock atlas cannot realize the prime-depth completed
 response at all orders once the canonical Stieltjes positivity certificate is
 available.  Thus any exact wheel-clock realization compatible with that
