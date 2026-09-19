@@ -33,6 +33,9 @@ altura finita J_N^(-1/2)
 completion Hilbertiana
         ↓
 operador assinado maximalmente autoadjunto
+        ↓
+todos os zeros nativos/Genuine no domínio natural
+viram autovalores do mesmo operador assinado autoadjunto
 ```
 
 Em paralelo, a identificação de fonte é:
@@ -779,7 +782,259 @@ Portanto o downstream completado depende da mesma interface de três campos.
 
 ---
 
-## 16. Mapa visual completo
+## 16. Zero do Genuine → autovalor do autoadjunto
+
+Esta é a parte que não pode mais desaparecer deste README.
+
+A rota já construída não para em “confinement” nem em “o zero tem altura real”.
+Ela chega ao **point spectrum** do mesmo operador assinado maximalmente autoadjunto construído a partir do HP certificate.
+
+### 16.1 Resolvente global do Jacobi positivo
+
+Arquivos:
+
+```text
+CarrySelfAdjointOperator/CompletedNativePositiveJacobiResolvent.lean
+CarrySelfAdjointOperator/CompletedNativePositiveJacobiResolventAnalytic.lean
+```
+
+A primeira camada constrói o resolvente global do Jacobi positivo fora do eixo real não-negativo, usando o mesmo operador:
+
+```lean
+CompletedNativeRealHPCarrierCertificate.completedJacobiEnergySelfAdjointData
+```
+
+A segunda camada constrói charts analíticos locais do resolvente, cola o readout com o Weyl nativo e fecha o argumento de ordem meromorfa.
+
+Theorem de confinement sem hipótese externa de continuação:
+
+```lean
+CompletedNativeRealHPCarrierCertificate
+  .completedNativeOperator_zero_im_eq_zero_of_positiveJacobiResolvent
+```
+
+Seu contrato é:
+
+```text
+certificate
++ z ∈ completedNativeHeightDomain
++ completedNativeOperatorCharacteristic z = 0
+        ↓
+z.im = 0
+```
+
+Não aparece `HasGlobalGraphResolventAt` como premissa externa.
+
+### 16.2 Extração atômica: zero → autovalor do Jacobi
+
+Arquivo:
+
+```text
+CarrySelfAdjointOperator/CompletedNativeJacobiCyclicAtomicExtraction.lean
+```
+
+Theorem:
+
+```lean
+CompletedNativeRealHPCarrierCertificate
+  .completedNativeOperator_zero_hasEigenvalue_inv_sq
+```
+
+Tipo lógico:
+
+```text
+certificate
++ z₀ ∈ completedNativeHeightDomain
++ completedNativeOperatorCharacteristic z₀ = 0
+        ↓
+(z₀²)⁻¹ é autovalor da complexificação
+do Jacobi positivo concretamente construído
+```
+
+Em Lean:
+
+```lean
+LinearPMap.HasEigenvalue
+  certificate.completedJacobiEnergySelfAdjointData.complexification
+  (z₀ ^ 2)⁻¹
+```
+
+O comentário do próprio theorem é importante: **todo zero nativo no strip natural fornece um átomo genuíno do operador Jacobi cíclico concreto**; nenhuma hipótese de espectro puramente pontual ou de medida espectral é assumida.
+
+### 16.3 Extração final: zero → autovalor da altura assinada
+
+No mesmo arquivo, o theorem decisivo é:
+
+```lean
+CompletedNativeRealHPCarrierCertificate
+  .reducedSignedHeightComplexification_hasEigenvalue_of_atomicExtraction
+```
+
+Seu contrato é:
+
+```text
+certificate
++ z₀ ∈ completedNativeHeightDomain
++ completedNativeOperatorCharacteristic z₀ = 0
+        ↓
+z₀ é autovalor da complexificação
+do operador assinado reduzido maximalmente autoadjunto
+```
+
+Em Lean:
+
+```lean
+LinearPMap.HasEigenvalue
+  certificate.toReducedMaximalSelfAdjointHeightData
+    .selfAdjointData.complexification
+  z₀
+```
+
+Este theorem usa a extração atômica do Jacobi, recupera a raiz recíproca correta e transporta o átomo para o operador de altura assinado já construído.
+
+> [!IMPORTANT]
+> A `complexification` acima não é um novo operador escolhido depois.
+> É a complexificação canônica do mesmo operador real empacotado em
+> `toReducedMaximalSelfAdjointHeightData`.
+> A rota também prova que o autovalor extraído é real; o repositório contém
+> `LinearPMap.hasRealEigenvalue_of_complexification_hasEigenvalue` para recuperar
+> um autovetor real quando o autovalor da complexificação é real.
+
+### 16.4 Rota direta pelo signed generator
+
+Arquivo:
+
+```text
+CarrySelfAdjointOperator/CompletedNativeSignedGeneratorResolvent.lean
+```
+
+Theorem:
+
+```lean
+CompletedNativeRealHPCarrierCertificate
+  .completedNativeOperator_zero_im_eq_zero_of_signedGeneratorResolvent
+```
+
+Ele usa diretamente o gerador assinado maximalmente autoadjunto e seu resolvente global não-real:
+
+```text
+K = [ 0   B* ]
+    [ B    0 ]
+```
+
+A conclusão é novamente:
+
+```text
+completedNativeOperatorCharacteristic z = 0
+        ↓
+z.im = 0
+```
+
+sem passar pelo resolvente do Jacobi positivo e sem `HasGlobalGraphResolventAt`.
+
+Esta rota é complementar à extração atômica: o signed-generator resolvent fecha diretamente o confinement; a extração atômica fecha o **zero → point spectrum**.
+
+### 16.5 Genuine → característica nativa completada
+
+A identificação com Genuine é nativa e não depende de zeta.
+
+Arquivo:
+
+```text
+CarrySelfAdjointOperator/NativeScalarGenuineIdentification.lean
+```
+
+Theorem:
+
+```lean
+nativeScalar_eq_genuineContinuation_unconditional
+```
+
+Também usamos a coordenada centrada:
+
+```lean
+operatorHeightParameter_centeredHeightParameter
+```
+
+e a definição:
+
+```lean
+completedNativeHeightDomain := {z | operatorHeightParameter z ∈ genuineCriticalStrip}
+```
+
+Portanto, para qualquer
+
+```text
+s ∈ genuineCriticalStrip
+```
+
+e
+
+```text
+genuineContinuation s = 0,
+```
+
+tomando
+
+```text
+z := centeredHeightParameter s,
+```
+
+temos automaticamente:
+
+```text
+z ∈ completedNativeHeightDomain
+```
+
+porque
+
+```text
+operatorHeightParameter z = s.
+```
+
+Além disso,
+
+```text
+completedNativeOperatorCharacteristic z
+= nativeXiCompletionFactor z * nativeScalar s
+= nativeXiCompletionFactor z * genuineContinuation s
+= 0.
+```
+
+Logo o theorem
+
+```lean
+reducedSignedHeightComplexification_hasEigenvalue_of_atomicExtraction
+```
+
+se aplica.
+
+A seta canônica que deve ser lembrada é:
+
+```text
+s ∈ genuineCriticalStrip
++ genuineContinuation s = 0
+        ↓  z := centeredHeightParameter s
+completedNativeOperatorCharacteristic z = 0
+        ↓
+completedNativeOperator_zero_hasEigenvalue_inv_sq
+        ↓
+(z²)⁻¹ ∈ point spectrum do Jacobi positivo
+        ↓
+reducedSignedHeightComplexification_hasEigenvalue_of_atomicExtraction
+        ↓
+z ∈ point spectrum do operador assinado maximalmente autoadjunto
+```
+
+Portanto, dentro do domínio Genuine formalizado, **todos os zeros do Genuine são transportados para autovalores do operador autoadjunto construído pela própria cadeia de momentos**.
+
+> [!CAUTION]
+> Não voltar a registrar esta etapa apenas como “zero confinement”.
+> O repositório agora contém um theorem de **extração de autovalor**.
+> Confinement é uma etapa intermediária; point spectrum é a conclusão mais forte desta rota.
+
+
+## 17. Mapa visual completo
 
 ```mermaid
 flowchart TD
@@ -810,7 +1065,7 @@ flowchart TD
 
 ---
 
-## 17. Os nomes que precisamos conseguir recitar de memória
+## 18. Os nomes que precisamos conseguir recitar de memória
 
 | Pergunta | Declaration canônica |
 |---|---|
@@ -828,10 +1083,13 @@ flowchart TD
 | Onde o certificate produz Jacobi SA completado? | `CompletedNativeRealHPCarrierCertificate.completedJacobiEnergySelfAdjointData` |
 | Onde o certificate produz altura assinada SA completada? | `CompletedNativeRealHPCarrierCertificate.toReducedMaximalSelfAdjointHeightData` |
 | Qual theorem-base prova SA do bloco assinado? | `closedGreenJetReducedReciprocalSignedHeightOperator_adjoint_eq` |
+| Onde zero nativo vira átomo do Jacobi? | `CompletedNativeRealHPCarrierCertificate.completedNativeOperator_zero_hasEigenvalue_inv_sq` |
+| Onde zero nativo vira autovalor da altura assinada? | `CompletedNativeRealHPCarrierCertificate.reducedSignedHeightComplexification_hasEigenvalue_of_atomicExtraction` |
+| Qual rota direta fecha o confinement pelo gerador assinado? | `CompletedNativeRealHPCarrierCertificate.completedNativeOperator_zero_im_eq_zero_of_signedGeneratorResolvent` |
 
 ---
 
-## 18. O que NÃO faz parte da rota canônica fechada
+## 19. O que NÃO faz parte da rota canônica fechada
 
 Os seguintes clusters permanecem úteis como história, auditoria, rotas alternativas, no-gos ou investigação, mas **não devem ser colocados entre o HP certificate e o operador**:
 
@@ -857,7 +1115,7 @@ Seus arquivos podem permanecer disponíveis para auditoria histórica, mas não 
 
 ---
 
-## 19. Guardrails lógicos
+## 20. Guardrails lógicos
 
 ### Guardrail A — não confundir constructor com hipótese descarregada
 
@@ -901,7 +1159,7 @@ A autoadjunticidade completada é fornecida separadamente pelo mesmo certificate
 
 ---
 
-## 20. Ordem recomendada para construir o futuro repositório de auditoria
+## 21. Ordem recomendada para construir o futuro repositório de auditoria
 
 Quando este laboratório for reduzido a um repositório limpo, começar pela seguinte sequência e adicionar dependências somente quando o compilador exigir:
 
@@ -930,6 +1188,10 @@ Quando este laboratório for reduzido a um repositório limpo, começar pela seg
 23. `NativeCameraGenuineAllOrderInstantiation.lean`
 24. `GreenJetMaximalAdjointSquare.lean`
 25. `GreenJetReciprocalSignedHeightOperator.lean`
+26. `CompletedNativePositiveJacobiResolvent.lean`
+27. `CompletedNativePositiveJacobiResolventAnalytic.lean`
+28. `CompletedNativeSignedGeneratorResolvent.lean`
+29. `CompletedNativeJacobiCyclicAtomicExtraction.lean`
 
 > [!TIP]
 > No repositório novo, cada arquivo deve entrar porque existe uma aresta explícita no dependency graph.
@@ -937,7 +1199,7 @@ Quando este laboratório for reduzido a um repositório limpo, começar pela seg
 
 ---
 
-## 21. Comandos úteis para reencontrar a rota em segundos
+## 22. Comandos úteis para reencontrar a rota em segundos
 
 ```bash
 rg -n 'CompletedNativeRealHPCarrierCertificate' CarrySelfAdjointOperator
@@ -947,6 +1209,9 @@ rg -n 'canonicalC2Geometry_natural_source_to_height_operator' CarrySelfAdjointOp
 rg -n 'nativeCameraGenuineAllOrderInstantiation_of_certificate' CarrySelfAdjointOperator
 rg -n 'toReducedMaximalSelfAdjointHeightData' CarrySelfAdjointOperator
 rg -n 'closedGreenJetReducedReciprocalSignedHeightOperator_adjoint_eq' CarrySelfAdjointOperator
+rg -n 'completedNativeOperator_zero_hasEigenvalue_inv_sq' CarrySelfAdjointOperator
+rg -n 'reducedSignedHeightComplexification_hasEigenvalue_of_atomicExtraction' CarrySelfAdjointOperator
+rg -n 'completedNativeOperator_zero_im_eq_zero_of_signedGeneratorResolvent' CarrySelfAdjointOperator
 ```
 
 Para procurar escapes de confiança:
@@ -957,7 +1222,7 @@ rg -n '\bsorry\b|\badmit\b|sorryAx|admitAx' CarrySelfAdjointOperator
 
 ---
 
-## 22. Estado canônico desta documentação
+## 23. Estado canônico desta documentação
 
 Esta versão do README foi consolidada em **18 de setembro de 2026** para servir como checkpoint interno do repositório privado.
 
@@ -985,7 +1250,7 @@ nativeCameraGenuineAllOrderInstantiation_of_certificate
 
 ---
 
-## 23. Regra para qualquer agente futuro
+## 24. Regra para qualquer agente futuro
 
 Antes de anunciar um 'novo gargalo' depois do HP certificate:
 
