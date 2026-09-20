@@ -182,6 +182,140 @@ theorem inner_canonicalCompletedC3GammaLogarithmicLeak_eq_conj_mul_mul_inner_esc
     inner_smul_left, inner_smul_right]
   ring
 
+/-! ## Literal Gamma--correction polarization -/
+
+/-- Orthogonality of a projected Gamma port at `z` against the escape of an
+independent Gamma response at `w`.  This is the fully polarized form of the
+orthogonal-projection/complement law; it has no diagonal specialization. -/
+theorem inner_canonicalCompletedC3ProjectedGammaPort_gammaEscape_eq_zero
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0) :
+    inner ℂ
+        (canonicalCompletedC3ProjectedGammaPortState z hz)
+        (canonicalCompletedC3GammaPortEscapeState w hw) = 0 := by
+  exact inner_canonicalCompletedC3AmbientPortProjection_sub_eq_zero
+    (canonicalCompletedC3PolarizedGammaState z hz)
+    (canonicalCompletedC3PolarizedGammaState w hw)
+
+/-- The ambient port difference at `z` is orthogonal to the independent
+Gamma escape at `w`.  Both pieces of the difference lie in the projected
+Naimark port before the second argument is projected away. -/
+theorem inner_canonicalCompletedC3AmbientPortDifference_gammaEscape_eq_zero
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hzHalf : 0 < (operatorHeightParameter z).re) :
+    inner ℂ
+        (canonicalCompletedC3AmbientPortDifferenceState z hz hzHalf)
+        (canonicalCompletedC3GammaPortEscapeState w hw) = 0 := by
+  have hambient :
+      inner ℂ
+          (canonicalCompletedC3AmbientResponseState z hzHalf)
+          (canonicalCompletedC3GammaPortEscapeState w hw) = 0 := by
+    rw [show canonicalCompletedC3AmbientResponseState z hzHalf =
+        canonicalCompletedC3GammaNaimarkView
+          (canonicalCompletedC3AmbientPortProjection
+            (completedC3SymplecticNaimarkState
+              (operatorHeightParameter z) hzHalf)) by
+      unfold canonicalCompletedC3AmbientResponseState
+      rw [canonicalCompletedC3AmbientPortProjection_completedSymplecticState]]
+    exact inner_canonicalCompletedC3AmbientPortProjection_sub_eq_zero
+      (completedC3SymplecticNaimarkState
+        (operatorHeightParameter z) hzHalf)
+      (canonicalCompletedC3PolarizedGammaState w hw)
+  have hport :=
+    inner_canonicalCompletedC3ProjectedGammaPort_gammaEscape_eq_zero
+      z w hz hw
+  unfold canonicalCompletedC3AmbientPortDifferenceState
+  rw [inner_sub_left, hambient, hport, sub_zero]
+
+/-- Reversing the preceding polarized orthogonality gives the exact second
+mixed term that occurs in the Gamma--correction expansion. -/
+theorem inner_canonicalCompletedC3GammaEscape_ambientPortDifference_eq_zero
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hwHalf : 0 < (operatorHeightParameter w).re) :
+    inner ℂ
+        (canonicalCompletedC3GammaPortEscapeState z hz)
+        (canonicalCompletedC3AmbientPortDifferenceState w hw hwHalf) = 0 := by
+  exact inner_eq_zero_symm.mp
+    (inner_canonicalCompletedC3AmbientPortDifference_gammaEscape_eq_zero
+      w z hw hz hwHalf)
+
+/-- The two mixed terms left by the literal four-term expansion of the
+Gamma--correction kernel.  It is named before being simplified so the
+geometric content of the polarization remains inspectable. -/
+def canonicalCompletedC3GammaEscapeCrossDefect
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hwHalf : 0 < (operatorHeightParameter w).re) : ℂ :=
+  - inner ℂ
+      (canonicalCompletedC3ProjectedGammaPortState z hz)
+      (canonicalCompletedC3GammaPortEscapeState w hw) +
+    inner ℂ
+      (canonicalCompletedC3GammaPortEscapeState z hz)
+      (canonicalCompletedC3AmbientPortDifferenceState w hw hwHalf)
+
+/-- Literal, unsimplified four-channel expansion of the old
+Gamma--resolved-correction kernel.  The order of the inner-product arguments
+matches the complex convention fixed by `inner ℂ`. -/
+theorem canonicalCompletedC3GammaCorrectionKernel_eq_four_channel_expansion
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hwHalf : 0 < (operatorHeightParameter w).re) :
+    canonicalCompletedC3GammaCorrectionKernel z w hz hw hwHalf =
+      inner ℂ
+        (canonicalCompletedC3ProjectedGammaPortState z hz)
+        (canonicalCompletedC3AmbientPortDifferenceState w hw hwHalf) -
+      inner ℂ
+        (canonicalCompletedC3ProjectedGammaPortState z hz)
+        (canonicalCompletedC3GammaPortEscapeState w hw) +
+      inner ℂ
+        (canonicalCompletedC3GammaPortEscapeState z hz)
+        (canonicalCompletedC3AmbientPortDifferenceState w hw hwHalf) -
+      inner ℂ
+        (canonicalCompletedC3GammaPortEscapeState z hz)
+        (canonicalCompletedC3GammaPortEscapeState w hw) := by
+  unfold canonicalCompletedC3GammaCorrectionKernel
+  rw [canonicalCompletedC3PolarizedGammaState_eq_port_add_escape z hz,
+    canonicalCompletedC3AmbientTfvdResolvedCorrectionState_eq_portDifference_sub_escape
+      w hw hwHalf,
+    inner_add_left, inner_sub_right, inner_sub_right]
+  ring
+
+/-- The four-channel expansion is the balance kernel plus the explicitly
+named mixed-channel residual. -/
+theorem canonicalCompletedC3GammaCorrectionKernel_eq_gammaCauchyEscapeBalance_add_crossDefect
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hwHalf : 0 < (operatorHeightParameter w).re) :
+    canonicalCompletedC3GammaCorrectionKernel z w hz hw hwHalf =
+      canonicalCompletedC3GammaCauchyEscapeBalanceKernel z w hz hw hwHalf +
+        canonicalCompletedC3GammaEscapeCrossDefect z w hz hw hwHalf := by
+  rw [canonicalCompletedC3GammaCorrectionKernel_eq_four_channel_expansion]
+  unfold canonicalCompletedC3GammaCauchyEscapeBalanceKernel
+    canonicalCompletedC3GammaEscapeCrossDefect
+  ring
+
+/-- The mixed-channel residual vanishes for every regular pair `(z,w)`, not
+merely on the diagonal.  The cancellation is a projection fact, not a
+positivity or Pick argument. -/
+theorem canonicalCompletedC3GammaEscapeCrossDefect_eq_zero
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hwHalf : 0 < (operatorHeightParameter w).re) :
+    canonicalCompletedC3GammaEscapeCrossDefect z w hz hw hwHalf = 0 := by
+  unfold canonicalCompletedC3GammaEscapeCrossDefect
+  rw [inner_canonicalCompletedC3ProjectedGammaPort_gammaEscape_eq_zero
+      z w hz hw,
+    inner_canonicalCompletedC3GammaEscape_ambientPortDifference_eq_zero
+      z w hz hw hwHalf]
+  ring
+
+/-- Therefore the Gamma--correction kernel is exactly the polarized
+Cauchy--escape balance at arbitrary regular pairs.  This identifies an old
+kernel name for the residual without turning it into a positive Gram. -/
+theorem canonicalCompletedC3GammaCorrectionKernel_eq_gammaCauchyEscapeBalance
+    (z w : ℂ) (hz : z.im ≠ 0) (hw : w.im ≠ 0)
+    (hwHalf : 0 < (operatorHeightParameter w).re) :
+    canonicalCompletedC3GammaCorrectionKernel z w hz hw hwHalf =
+      canonicalCompletedC3GammaCauchyEscapeBalanceKernel
+        z w hz hw hwHalf := by
+  rw [canonicalCompletedC3GammaCorrectionKernel_eq_gammaCauchyEscapeBalance_add_crossDefect,
+    canonicalCompletedC3GammaEscapeCrossDefect_eq_zero, add_zero]
+
 end
 
 end CarrySelfAdjointOperator
