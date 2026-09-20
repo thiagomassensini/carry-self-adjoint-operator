@@ -1,0 +1,14 @@
+import CarrySelfAdjointOperator.CompletedNativeAmbientRadialIntertwiningNoGo
+
+/-!
+# Axiom audit for the literal ambient radial no-go
+
+The contradiction uses only the existing regularized radial limit and the
+already proved strict central excess.  In particular it assumes neither Pick
+positivity nor a Stieltjes/Hankel/Jacobi consequence.
+-/
+
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3NormalizedAmbientCentralExcess_pos
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3RegularizedAmbientRadialDslopeDefect_tendsto_centralExcess
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3RegularizedAmbientRadialDslopeDefect_eq_zero_of_boundaryIntertwining
+#print axioms CarrySelfAdjointOperator.not_canonicalCompletedC3NormalizedAmbientRadialTiltBoundaryIntertwining
