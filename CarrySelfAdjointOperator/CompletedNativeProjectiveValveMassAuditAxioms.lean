@@ -1,0 +1,11 @@
+import CarrySelfAdjointOperator.CompletedNativeProjectiveValveMassAudit
+
+/-!
+# Axiom audit: projective-valve mass guardrail
+-/
+
+#print axioms CarrySelfAdjointOperator.projectiveValveMass_testStates_bracket_eq
+#print axioms CarrySelfAdjointOperator.projectiveValveMass_testStates_eq
+#print axioms CarrySelfAdjointOperator.projectiveValveMass_testStates_ne
+#print axioms CarrySelfAdjointOperator.not_injective_discreteProjective_stateMass
+#print axioms CarrySelfAdjointOperator.projectiveValveMass_nativeMoments_curvature_readback
