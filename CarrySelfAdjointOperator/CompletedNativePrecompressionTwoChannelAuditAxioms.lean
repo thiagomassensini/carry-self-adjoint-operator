@@ -1,0 +1,7 @@
+import CarrySelfAdjointOperator.CompletedNativePrecompressionTwoChannelAudit
+
+/-! Audit surface for the existing completed-precompression two-channel route. -/
+
+#print axioms CarrySelfAdjointOperator.canonicalCompletedPrecompression_visibleChannel_eq_zero
+#print axioms CarrySelfAdjointOperator.canonicalCompletedPrecompression_residualChannel_eq_greenEnergy
+#print axioms CarrySelfAdjointOperator.canonicalCompletedPrecompression_visible_zero_residual_nonzero
