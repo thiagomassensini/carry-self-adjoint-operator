@@ -8,6 +8,8 @@ import CarrySelfAdjointOperator.CompletedNativeCentralChiralQuotientCurvature
 import CarrySelfAdjointOperator.CompletedNativeCausalLegChiralBridge
 import CarrySelfAdjointOperator.CompletedNativeTfvdGreenShiftedHankelFactorization
 import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceCenterLegBridge
+import CarrySelfAdjointOperator.ProjectiveValveMomentFrontier
+import CarrySelfAdjointOperator.CompletedC3ValveNaturality
 import CPFormal.Analytic.CpUniversalCarryStructuralPersistence
 import Mathlib.Tactic
 
@@ -274,6 +276,20 @@ theorem canonicalCompletedNativeProjectiveValve_curvature_eq_moments :
       mk canonicalCompletedNativeLogDerivativeMoment :=
   projectiveValveCurvature_nativeReciprocal_eq_moments
 
+/-- The C3 log-block has an exact **multiplicative** projective-mass split
+after its native additive curvature split.  It records genuine valve
+provenance, but is not an inner-product Pythagoras theorem and hence cannot
+by itself identify either Hankel block with a Hilbert Gram. -/
+theorem canonicalCpLogBlock_projectiveValveMass_factorization
+    (p : ℕ) (hp : p ≠ 0) (s : ℂ) :
+    ProjectiveValve.projectiveValveMass
+        (canonicalCpLogBlockProjectiveCurvature p s) =
+      ProjectiveValve.projectiveValveMass
+          (canonicalCpTransportedLogJetProjectiveCurvature p s) *
+        ProjectiveValve.projectiveValveMass
+          (canonicalCpLogScaleOrdinaryProjectiveCurvature p s) :=
+  projectiveValveMass_canonicalCpLogBlock_eq_mul p hp s
+
 /-- The odd Green-jet prefix is a genuinely geometric finite synthesis before
 any moment matrix is named.  Its comparison with `K_N` is available exactly
 after, and only after, a polarized Green--Wronskian Gram representation is
@@ -321,6 +337,37 @@ theorem nativeSixSourceBR2CenterLeg_evenZero_defect_ne_zero
         M q hqpos.le hq1 S base radius (Sum.inl 0) (Sum.inl 0) ≠ 0 :=
   nativeC3SeededClockTfvdSixSourceCenterLegDefect_evenZero_ne_zero
     M q hqpos hq1 S hbase hradius
+
+/-- The first literal projective-valve metric obstruction is not merely an
+unsolved normalization: its two total-degree-two coefficients are forced to
+be `0` and `6`.  Their difference is the exact polarized shift residual of
+the raw C3 incidence realization. -/
+def c3RawProjectiveValveShiftResidual : ℂ :=
+  ProjectiveValve.projectiveIncidenceCoefficient
+      ProjectiveValve.nativeProjectiveCoreToHilbert 3 1 0 2 -
+    ProjectiveValve.projectiveIncidenceCoefficient
+      ProjectiveValve.nativeProjectiveCoreToHilbert 3 1 1 1
+
+theorem c3RawProjectiveValveShiftResidual_eq_neg_six :
+    c3RawProjectiveValveShiftResidual = -6 := by
+  unfold c3RawProjectiveValveShiftResidual
+  rw [ProjectiveValve.c3_rawCoefficient_zero_two,
+    ProjectiveValve.c3_rawCoefficient_one_one]
+  norm_num
+
+theorem c3RawProjectiveValveShiftResidual_ne_zero :
+    c3RawProjectiveValveShiftResidual ≠ 0 := by
+  rw [c3RawProjectiveValveShiftResidual_eq_neg_six]
+  norm_num
+
+/-- Thus the failure of the literal C3 projective incidence route occurs
+before any positivity question: it violates the required polarized transport
+identity at `(p,q) = (0,1)`. -/
+theorem not_c3RawProjectiveValve_nativeMomentEquation :
+    ¬ ProjectiveValve.ProjectiveIncidenceMomentEquation
+      canonicalCompletedNativeLogDerivativeMoment
+      ProjectiveValve.nativeProjectiveCoreToHilbert 3 1 :=
+  ProjectiveValve.not_c3_rawMomentEquation _
 
 /-- The precise remaining material condition is the existing first-column
 transport, not a positivity axiom. -/
