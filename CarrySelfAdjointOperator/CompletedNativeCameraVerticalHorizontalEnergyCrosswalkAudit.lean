@@ -1,0 +1,17 @@
+import CarrySelfAdjointOperator.CompletedNativeCameraVerticalHorizontalEnergyCrosswalk
+
+/-!
+# Axiom audit for the camera vertical/horizontal energy crosswalk
+
+The declarations audited here are algebraic transport and finite Hilbert-space
+identities.  The ambient embedding in the crosswalk is an uninhabited-by-API
+test interface, not a postulated theorem or an axiom.
+-/
+
+#print axioms CarrySelfAdjointOperator.cameraLogHorizontalContribution_synthesis_eq_log_cameraHorizontal
+#print axioms CarrySelfAdjointOperator.cameraLogHorizontalContribution_synthesis_eq_sum_otherCameraVerticals
+#print axioms CarrySelfAdjointOperator.finiteCanonicalCameraHilbertVisibleBlind_inner_add
+#print axioms CarrySelfAdjointOperator.finiteCanonicalCameraHilbertVisibleBlind_norm_sq_add
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeCameraAmbientEmbedding_pythagoras
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeCameraHorizontalEnergyResidual_eq_neg_visible
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeCameraHorizontalEnergyResidual_eq_zero_iff
