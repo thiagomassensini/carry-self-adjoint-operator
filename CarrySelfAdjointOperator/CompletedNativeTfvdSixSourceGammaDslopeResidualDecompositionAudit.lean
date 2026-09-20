@@ -1,0 +1,16 @@
+import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceGammaDslopeResidualDecomposition
+
+/-!
+# Axiom audit for the Gamma--`dslope` residual decomposition
+
+The new statements only expose pre-existing Gamma, correction, ledger, and
+Wronskian equations.  These checks make sure the residual has not been closed
+by an additional trusted assumption.
+-/
+
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeGammaDslopeResidual_eq_oldSewingDefect_add_correctionGap
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeGammaDslopeResidual_boundary_eq_neg_oldLedger_add_correction
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3GammaLedgerBoundaryDefect_eq_normalizedDefect_add_normalizationGap
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3NormalizedGammaLedgerBoundaryDefect_eq_rawDefect_div_weight
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3Separation_mul_dslope_sub_normalizedGamma_eq_neg_rawDefect_div_weight
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialGammaEscapePickResidualSampleMatrix_apply_eq_gammaDslopeResidual
