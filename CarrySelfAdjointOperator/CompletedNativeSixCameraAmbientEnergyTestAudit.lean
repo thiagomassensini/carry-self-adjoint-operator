@@ -1,0 +1,20 @@
+import CarrySelfAdjointOperator.CompletedNativeSixCameraAmbientEnergyTest
+
+/-!
+# Axiom audit for the six-camera ambient energy test
+
+The audited statements use the historical six-camera Gram projection and the
+already constructed global halo.  They do not assume a Pick kernel, a
+contraction, a Herglotz/Schur hypothesis, or a target-kernel factorization.
+-/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms inner_sixCameraWhitenedNaimark_eq_projection_add_escape
+#print axioms inner_canonicalCompletedC3GammaNaimarkView_eq_sixCameraProjection_add_horizontal
+#print axioms canonicalCompletedC3NormalizedAmbientSixCameraHorizontalState_eq_globalHalo
+#print axioms inner_canonicalCompletedC3NormalizedAmbientResponseState_eq_sixCameraVisible_add_globalHalo
+#print axioms canonicalCompletedC3SixCameraHorizontalCentralExcessResidual_eq_moment_sub_visible
+#print axioms canonicalCompletedC3SixCameraHorizontal_central_energy_eq_excess_iff
+
+end CarrySelfAdjointOperator
