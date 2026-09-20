@@ -1,6 +1,7 @@
 import CarrySelfAdjointOperator.PrimeDepthAllOrderMomentBridge
 import CarrySelfAdjointOperator.CompletedNativeHPGateAudit
 import CarrySelfAdjointOperator.CompletedNativeCausalCoefficientMomentGate
+import CarrySelfAdjointOperator.CompletedNativeCameraTfvdGreenFrameDefectCrosswalk
 import Mathlib.Tactic
 
 /-!
@@ -183,6 +184,93 @@ theorem nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_one_even_zero
     (nativeC3SeededClockTfvdSixSourceTower_coefficientEquation
       M q hqpos hq1 S) 2 0]
   simp [polarizedGreenMomentCoefficient, evenMomentDiagonalCoefficient]
+
+/-! ## Exact order-zero obstruction for the literal BR2 carrier -/
+
+/-- The literal projective BR2 jet has an order-zero norm strictly larger
+than the canonical zeroth moment.  Since canonical center--leg incidence
+declares the same formal index geometrically off-diagonal, this is already a
+counterexample to the proposed all-entry readout, rather than an unresolved
+higher-order calibration. -/
+theorem nativeC3SeededClockTfvdSixSourceCenterLegDefect_evenZero_ne_zero
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base) :
+    nativeC3SeededClockTfvdSixSourceCenterLegDefect
+        M q hqpos.le hq1 S base radius (Sum.inl 0) (Sum.inl 0) ≠ 0 := by
+  letI : InnerProductSpace ℝ CanonicalCompletedTfvdGreenHilbertCarrier :=
+    InnerProductSpace.rclikeToReal ℂ _
+  rw [nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_zero_even_zero
+    M q hqpos hq1 S base]
+  intro hzero
+  have hreal := congrArg Complex.re hzero
+  rw [Complex.sub_re, Complex.ofReal_re, Complex.zero_re] at hreal
+  have hstrict :=
+    br2CameraBracketProjectiveHilbertParityJet_zeroGram_gt_nativeMoment
+      hbase hradius
+  have hmoment : canonicalCompletedNativeLogDerivativeMoment 0 =
+    inner ℝ
+      (br2CameraBracketProjectiveHilbertParityJet base radius (Sum.inl 0))
+      (br2CameraBracketProjectiveHilbertParityJet base radius (Sum.inl 0)) := by
+    have hreal' := sub_eq_zero.mp hreal
+    simpa only [real_inner_eq_re_inner, RCLike.re_eq_complex_re] using hreal'
+  exact (ne_of_lt hstrict) hmoment
+
+/-- Consequently, the concrete projective BR2 incidence jet cannot satisfy
+the center--leg readout expected by the HP interface.  This uses exactly one
+off-diagonal sample: equal formal parity indices have unequal center and leg
+coordinates. -/
+theorem not_nativeC3SeededClockTfvdSixSource_centerLegReadout_projectiveHilbert
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (side : CameraLegSide) :
+    ¬ HasCanonicalCompletedNativeTfvdGreenCenterLegReadout
+        (canonicalParityCenterLegIncidence base radius hbase hradius side)
+        (br2CameraBracketProjectiveHilbertParityJet base radius) := by
+  intro hreadout
+  have hzero := hreadout (Sum.inl 0) (Sum.inl 0)
+    (canonicalParityCenterLeg_sameIndex_offDiagonal
+      base radius hbase hradius side (Sum.inl 0))
+  have hdefect :
+      nativeC3SeededClockTfvdSixSourceCenterLegDefect
+          M q hqpos.le hq1 S base radius (Sum.inl 0) (Sum.inl 0) = 0 := by
+    rw [nativeC3SeededClockTfvdSixSourceCenterLegDefect_eq_polarizedResidual
+      M q hqpos hq1 S base radius (Sum.inl 0) (Sum.inl 0)]
+    exact sub_eq_zero.mpr hzero
+  exact
+    nativeC3SeededClockTfvdSixSourceCenterLegDefect_evenZero_ne_zero
+      M q hqpos hq1 S hbase hradius hdefect
+
+/-- Equivalently, the explicit enriched defect cannot vanish on all canonical
+center--leg samples of the literal BR2 projective carrier.  The witness is
+the same geometrically off-diagonal order-zero sample, so no unverified
+all-order or diagonal extension is hidden in this no-go. -/
+theorem not_nativeC3SeededClockTfvdSixSource_centerLegDefect_eq_zero_projectiveHilbert
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base)
+    (side : CameraLegSide) :
+    ¬ ∀ i j : ℕ ⊕ ℕ,
+      (canonicalParityCenterLegIncidence
+          base radius hbase hradius side).centerCoordinate i ≠
+        (canonicalParityCenterLegIncidence
+          base radius hbase hradius side).legCoordinate j →
+      nativeC3SeededClockTfvdSixSourceCenterLegDefect
+        M q hqpos.le hq1 S base radius i j = 0 := by
+  intro hdefect
+  apply not_nativeC3SeededClockTfvdSixSource_centerLegReadout_projectiveHilbert
+    M q hqpos hq1 S hbase hradius side
+  exact
+    (nativeC3SeededClockTfvdSixSource_centerLegReadout_iff_defect_eq_zero
+      M q hqpos hq1 S base radius
+        (canonicalParityCenterLegIncidence base radius hbase hradius side)).mpr hdefect
 
 end
 

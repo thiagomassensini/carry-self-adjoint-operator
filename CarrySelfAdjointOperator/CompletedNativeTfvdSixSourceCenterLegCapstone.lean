@@ -2,13 +2,15 @@ import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceCenterLegBridge
 import CarrySelfAdjointOperator.CompletedNativeCorrectedGeometryHeightProvenance
 
 /-!
-# Six-source TFVD center--leg downstream capstone
+# Six-source TFVD center--leg downstream conditional capstone
 
-This file has one purpose: it records that the explicit defect isolated in
-`CompletedNativeTfvdSixSourceCenterLegBridge` is sufficient to activate the
-already constructed strict-positivity and finite-height pipeline.  No moment
-matrix is used to define a carrier, and no additional analytic or positivity
-premise is introduced.
+This file records the exact downstream consequence that would follow from
+vanishing of the explicit defect isolated in
+`CompletedNativeTfvdSixSourceCenterLegBridge`.  It is deliberately a
+conditional composition: the companion bridge proves that the literal BR2
+projective carrier has a nonzero order-zero defect, so this theorem is not a
+claim that its premise holds.  No moment matrix is used to define a carrier,
+and no additional analytic or positivity premise is introduced.
 -/
 
 namespace CarrySelfAdjointOperator
@@ -18,10 +20,12 @@ open FiniteNativeCarryOperator.Camera
 
 noncomputable section
 
-/-- Vanishing of the explicit enriched six-source center--leg defect gives
-the pre-existing finite-height chain.  In particular, the only non-composite
-input is the typed entrywise equality from the material coefficient to the
-projective Hilbert pairing; BR2 incidence supplies strictness. -/
+/-- Counterfactually, vanishing of the explicit enriched six-source
+center--leg defect would give the pre-existing finite-height chain.  The only
+non-composite input is the typed entrywise equality from the material
+coefficient to the projective Hilbert pairing; BR2 incidence supplies
+strictness.  The bridge's order-zero no-go shows that this premise is false
+for the literal projective jet. -/
 theorem nativeC3SeededClockTfvdSixSource_defect_eq_zero_to_finiteHeightChain
     (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
     (S : Finset NativeGpreBoundaryContext)
