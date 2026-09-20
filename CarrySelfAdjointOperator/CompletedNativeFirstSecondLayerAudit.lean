@@ -10,6 +10,9 @@ import CarrySelfAdjointOperator.CompletedNativeTfvdGreenShiftedHankelFactorizati
 import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceCenterLegBridge
 import CarrySelfAdjointOperator.ProjectiveValveMomentFrontier
 import CarrySelfAdjointOperator.CompletedC3ValveNaturality
+import CarrySelfAdjointOperator.CompletedC3CausalChiralKernelObstruction
+import CarrySelfAdjointOperator.CompletedNativeTfvdEnrichedLowOrderMomentTest
+import CarrySelfAdjointOperator.ProjectiveValveCarryGreenObstruction
 import CPFormal.Analytic.CpUniversalCarryStructuralPersistence
 import Mathlib.Tactic
 
@@ -368,6 +371,42 @@ theorem not_c3RawProjectiveValve_nativeMomentEquation :
       canonicalCompletedNativeLogDerivativeMoment
       ProjectiveValve.nativeProjectiveCoreToHilbert 3 1 :=
   ProjectiveValve.not_c3_rawMomentEquation _
+
+/-- A distinct, more global candidate class is also closed: a fixed-parameter
+causal chiral defect-Gram contraction on the *whole* causal source span would
+force kernel compatibility with the twelve-real-dimensional positive
+Wronskian trace.  Thirteen explicit native camera states refute that
+compatibility throughout the open upper half-plane.  This is a no-go for this
+causal readout class, not for an arbitrary future native polarization. -/
+theorem not_fixedParameterCausalChiralDefectGram_in_upperHalfPlane
+    (z : ℂ) (hzIm : 0 < z.im) :
+    ¬ CanonicalCompletedC3CausalChiralDefectGramNonnegativeAt z :=
+  not_canonicalCompletedC3CausalChiralDefectGramNonnegativeAt_of_im_pos z hzIm
+
+/-- The most natural ordinary-plus-log-jet TFVD Taylor candidate is an
+orthogonal direct sum of native channels, but its very first Gram entry has
+too much energy.  The displayed residual is strictly positive already at
+`(p,q) = (0,0)`, so this is a material low-order no-go rather than a missing
+polarization calculation. -/
+theorem enrichedTfvdTaylor_zeroZero_residual_pos :
+    0 < enrichedTfvdTaylorZeroZeroDefect :=
+  enrichedTfvdTaylorZeroZeroDefect_pos
+
+theorem not_enrichedTfvdTaylor_polarizedMomentEquation :
+    ¬ HasPolarizedCoefficientVectorEquation
+      canonicalCompletedNativeLogDerivativeMoment
+      canonicalCompletedNativeTfvdEnrichedTaylorRawJet :=
+  not_hasPolarizedCoefficientVectorEquation_enrichedTfvdTaylor
+
+/-- Choosing the carry-determined amplitude in the native projective Green
+map does not repair the zero-seed C3 route: exact unilateral-shift symmetry
+of its causal responses contradicts the required polarized coefficient
+transport, for every proposed moment sequence. -/
+theorem not_canonicalProjectiveCarryGreen_polarizedMomentEquation
+    (moments : ℕ → ℝ) :
+    ¬ ProjectiveValve.ProjectiveIncidenceMomentEquation moments
+      (ProjectiveValve.canonicalProjectiveCarryGreenMap 3) 3 1 :=
+  ProjectiveValve.not_canonicalProjectiveCarryGreenMomentEquation moments
 
 /-- The precise remaining material condition is the existing first-column
 transport, not a positivity axiom. -/
