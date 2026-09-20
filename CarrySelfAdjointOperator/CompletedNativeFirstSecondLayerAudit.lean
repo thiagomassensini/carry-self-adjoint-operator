@@ -13,6 +13,7 @@ import CarrySelfAdjointOperator.CompletedC3ValveNaturality
 import CarrySelfAdjointOperator.CompletedC3CausalChiralKernelObstruction
 import CarrySelfAdjointOperator.CompletedNativeTfvdEnrichedLowOrderMomentTest
 import CarrySelfAdjointOperator.ProjectiveValveCarryGreenObstruction
+import CarrySelfAdjointOperator.BR2CausalTfvdMetricShift
 import CPFormal.Analytic.CpUniversalCarryStructuralPersistence
 import Mathlib.Tactic
 
@@ -371,6 +372,52 @@ theorem not_c3RawProjectiveValve_nativeMomentEquation :
       canonicalCompletedNativeLogDerivativeMoment
       ProjectiveValve.nativeProjectiveCoreToHilbert 3 1 :=
   ProjectiveValve.not_c3_rawMomentEquation _
+
+/-- Retaining the existing TFVD trace channel does not repair the literal
+zero-seed C3 causal/projective-valve candidate.  Its *full* bracket-plus-trace
+metric has the same first polarized shift residual, `c₀₂ - c₁₁ = -6`.
+
+The scope is intentionally narrow: these are the actual translated C3 causal
+responses at base `3`, radius `1`; this does not rule out a future completed
+state family with nontrivial boundary or mass data. -/
+theorem canonicalC3CausalTfvdMetric_firstShiftResidual_eq_neg_six
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1) :
+    let v := fun n =>
+      carryTfvdMetricState q (br2CameraBracketCausalGreenResponse q 3 1 n)
+    inner ℂ (v 0) (v 2) - inner ℂ (v 1) (v 1) = -6 :=
+  br2C3CausalTfvdMetric_firstShiftDefect_eq_neg_six q hqpos hq1
+
+/-- Hence no real moment sequence can identify the retained full TFVD metric
+of this translated zero-seed C3 response family with a polarized Green
+coefficient array.  This fails before, and independently of, any PSD or
+Stieltjes assertion. -/
+theorem not_canonicalC3CausalTfvdMetric_polarizedMomentEquation
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1) (moments : ℕ → ℝ) :
+    ¬ IsPolarizedGreenCoefficientEquation moments
+      (fun p r =>
+        inner ℂ
+          (carryTfvdMetricState q
+            (br2CameraBracketCausalGreenResponse q 3 1 p))
+          (carryTfvdMetricState q
+            (br2CameraBracketCausalGreenResponse q 3 1 r))) := by
+  intro hcoeff
+  have htransport :
+      inner ℂ
+          (carryTfvdMetricState q
+            (br2CameraBracketCausalGreenResponse q 3 1 0))
+          (carryTfvdMetricState q
+            (br2CameraBracketCausalGreenResponse q 3 1 2)) =
+        inner ℂ
+          (carryTfvdMetricState q
+            (br2CameraBracketCausalGreenResponse q 3 1 1))
+          (carryTfvdMetricState q
+            (br2CameraBracketCausalGreenResponse q 3 1 1)) := by
+    simpa using polarizedGreenCoefficient_transport hcoeff 0 1
+  have hdefect :=
+    canonicalC3CausalTfvdMetric_firstShiftResidual_eq_neg_six q hqpos hq1
+  dsimp only at hdefect
+  rw [htransport] at hdefect
+  norm_num at hdefect
 
 /-- A distinct, more global candidate class is also closed: a fixed-parameter
 causal chiral defect-Gram contraction on the *whole* causal source span would
