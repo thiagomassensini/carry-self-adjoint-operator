@@ -1,0 +1,25 @@
+import CarrySelfAdjointOperator.CompletedNativeAllCameraPortAmbientNoGo
+
+/-!
+# Axiom audit for the all-camera port candidate no-go
+
+The theorems audited here reject only the concrete, pre-existing all-camera
+Naimark port/escape candidate.  They do not invoke Pick positivity,
+contractivity, Herglotz theory, Hankel/Stieltjes/Jacobi machinery, a kernel
+factorization, or any zero/RH statement.
+-/
+
+open scoped InnerProductSpace
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalCompletedC3AmbientPortProjection_normalizedAmbientRealifiedState
+#print axioms canonicalCompletedC3AmbientPortProjection_fst_eq_globalNaimarkCameraProjection
+#print axioms canonicalCompletedC3AmbientPortProjection_snd_eq_globalNaimarkCameraProjection
+#print axioms canonicalCompletedC3NormalizedAmbientAllCameraHorizontalState_eq_zero
+#print axioms inner_canonicalCompletedC3NormalizedAmbientResponseState_eq_allCameraPort_add_horizontal
+#print axioms canonicalCompletedC3AllCameraHorizontalCentralExcessResidual_eq_neg
+#print axioms canonicalCompletedC3AllCameraHorizontalCentralExcessResidual_neg
+#print axioms canonicalCompletedC3AllCameraHorizontal_central_energy_ne_excess
+
+end CarrySelfAdjointOperator
