@@ -1,0 +1,17 @@
+import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceCenterLegBridge
+
+/-!
+# Audit: six-source TFVD center--leg bridge
+
+The capstone here is deliberately an equivalence, not an assumed Gram
+identity.  It exposes the unique remaining entrywise calibration in the exact
+carrier required by the HP route.
+-/
+
+#print axioms CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegCoefficient_eq_polarizedGreenMomentCoefficient
+#print axioms CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_eq_polarizedResidual
+#print axioms CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSource_centerLegReadout_iff_defect_eq_zero
+#print axioms CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_zero_even_zero
+#print axioms CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_odd_zero_odd_zero
+#print axioms CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_zero_odd_zero
+#print axioms CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_one_even_zero
