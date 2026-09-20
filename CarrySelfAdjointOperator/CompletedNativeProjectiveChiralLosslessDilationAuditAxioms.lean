@@ -1,0 +1,17 @@
+import CarrySelfAdjointOperator.CompletedNativeProjectiveChiralLosslessDilationAudit
+
+/-!
+# Axiom audit for the projective/chiral lossless-dilation frontier
+
+The printed results are intentionally residual identities, finite-section
+audits, and no-go statements.  No abstract defect factorization or downstream
+moment/spectral theorem is used to manufacture a candidate state.
+-/
+
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeProjectiveChiralGraphSumForm_defectState_eq_add
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialChiralGraphDefectResidual_eq_pick
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialChiralGraphDefectResidual_posSemidef_iff
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3CoisometricChiralDilationResidual_eq
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3CoisometricChiralDilationResidual_diagonal_eq
+#print axioms CarrySelfAdjointOperator.not_canonicalCompletedC3CausalCoisometricCandidateDefectGram_of_im_pos
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeProjectiveChiralLosslessFrontier_iff
