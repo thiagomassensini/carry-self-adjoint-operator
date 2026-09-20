@@ -1,0 +1,20 @@
+import CarrySelfAdjointOperator.CompletedNativeC2HaarDoubleLog4Transport
+
+/-!
+# Kernel audit for the C2/Haar double-log-four transport
+
+The audit covers only coordinate and source-chart statements.  In particular,
+`C2HaarMatchedPhysicalHorizonMomentTransport` remains an explicit seam until
+a finite Haar family with a matched physical horizon is constructed.
+-/
+
+#print axioms CarrySelfAdjointOperator.cameraSlope_four_eq_four
+#print axioms CarrySelfAdjointOperator.nativeCarryC2_is_width_four_not_geometricC4
+#print axioms CarrySelfAdjointOperator.c2HaarCoordinateChangeInv_apply_change
+#print axioms CarrySelfAdjointOperator.c2HaarCoordinateChange_apply_inv
+#print axioms CarrySelfAdjointOperator.sixCameraMixedReturn_c2c4_eq_haar
+#print axioms CarrySelfAdjointOperator.sixCameraMixedReturnFunctional_eq_haar_threeFourSix
+#print axioms CarrySelfAdjointOperator.c2HaarCoordinateMatrix_mul_inv
+#print axioms CarrySelfAdjointOperator.c2HaarCoordinateMatrixInv_mul
+#print axioms CarrySelfAdjointOperator.c2HaarCoordinateMatrix_commutes_logSlope
+#print axioms CarrySelfAdjointOperator.c2HaarCongruence_quadraticForm
