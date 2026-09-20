@@ -14,10 +14,13 @@ import CarrySelfAdjointOperator.CompletedC3CausalChiralKernelObstruction
 import CarrySelfAdjointOperator.CompletedNativeTfvdEnrichedLowOrderMomentTest
 import CarrySelfAdjointOperator.ProjectiveValveCarryGreenObstruction
 import CarrySelfAdjointOperator.BR2CausalTfvdMetricShift
+import CarrySelfAdjointOperator.CompletedNativeProductClockQuotientGreenAudit
 import CarrySelfAdjointOperator.PrimeDepthAllOrderMomentBridge
 import CPFormal.Analytic.CpUniversalCarryStructuralPersistence
 import CPFormal.Analytic.CpTfvdSeededFiniteBesselConservation
 import CPFormal.Analytic.CpTfvdSeededNativeMomentSourceAudit
+import CPFormal.Analytic.CpTfvdSameEdgeReflectedEnergyCollapse
+import CPFormal.Analytic.CpTfvdSameEdgeReflectedEnergyFixedTimeNoGo
 import Mathlib.Tactic
 
 /-!
@@ -375,6 +378,86 @@ theorem canonicalSeededTfvdBesselProvenance_fixedTimeMomentBridge_iff_re_eq_half
       IsNativeGprePrimeMomentRealizationAt 1 (3 * M) s x) ↔
       s.re = (1 : ℝ) / 2 :=
   exists_seededTfvdNativeMomentSource_iff_re_eq_half M hM hs
+
+/-! ## The reflected same-edge channel and the clock quotient
+
+The next two constructions are the strongest native lossless-looking objects
+found in the `primos` and completed-product layers.  They are recorded as
+audits, not promoted to a Pick defect channel:
+
+* ordinary/log-jet same-edge data reconstruct both endpoints and a reflected
+  gradient energy exactly, but the resulting fixed-time moment source exists
+  only at the critical half-abscissa;
+* the C3 clock quotient is a genuine self-adjoint orthogonal projection and
+  subtracts a forced rank-one kernel term, but the Green collision multiplier
+  annihilates that correction at `(0,0)`.
+
+Thus both are genuine geometric conservation mechanisms, while neither has
+yet supplied a polarized identity with first output `Q v`. -/
+
+theorem canonicalNativeSameEdgeRecoveredReflectedGradient_eq_reflected
+    (s : ℂ) (n : ℕ) :
+    sameEdgeRecoveredReflectedGradient n
+        (positiveDirichletGradient s n)
+        (positiveLogDirichletGradient s n) =
+      positiveDirichletGradient (reflectedParameter s) n :=
+  sameEdgeRecoveredReflectedGradient_canonical s n
+
+theorem canonicalNativeSameEdgeCollapsedSource_readout_eq_greenBulk
+    (M : ℕ) (s : ℂ) (p : Nat.Primes) :
+    inner ℝ (nativeGpreReflectedFirstLevelGapProfile p s)
+        (seededTfvdGpreCollapsedSource
+          (nativeGpreTfvdSameEdgeReflectedEnergyCollapseAt (3 * M)) M s) =
+      primeCarryGreenBulkCutoffProfile (3 * M) s p :=
+  inner_nativeGpreReflectedFirstLevelGapProfile_seededSameEdgeCollapsedSource
+    M s p
+
+theorem canonicalNativeSameEdgeCollapsedSource_not_fixedTime_on_critical
+    (p : Nat.Primes) {M : ℕ} (hM : 0 < M)
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hcritical : criticalDisplacement s.re = 0) :
+    ¬ IsSeededTfvdGpreMomentCollapseAt
+        (nativeGpreTfvdSameEdgeReflectedEnergyCollapseAt (3 * M)) M s :=
+  isSeededTfvdGpreMomentCollapseAt_sameEdgeReflectedEnergy_not_of_critical
+    p hM hs hcritical
+
+theorem canonicalNativeSameEdgeCollapsedSource_not_transport_to_fixed_time_on_critical
+    (p : Nat.Primes) {M : ℕ} (hM : 0 < M)
+    {s : ℂ} (hs : s ∈ genuineCriticalStrip)
+    (hcritical : criticalDisplacement s.re = 0) :
+    ¬ SameEdgeReflectedEnergyTransportsToFixedTimeAt M s :=
+  sameEdgeReflectedEnergyTransportsToFixedTimeAt_not_of_critical
+    p hM hs hcritical
+
+theorem canonicalSeededTfvdGpreMomentCollapse_forces_re_eq_half
+    (collapse : NativeGpreTfvdCollapse)
+    (M : ℕ) (hM : 0 < M) {s : ℂ}
+    (hs : s ∈ genuineCriticalStrip)
+    (hcollapse : IsSeededTfvdGpreMomentCollapseAt collapse M s) :
+    s.re = (1 : ℝ) / 2 :=
+  re_eq_half_of_tfvdGpreMomentCollapse collapse M hM hs hcollapse
+
+theorem canonicalCompletedNativeClockPortQuotient_orthogonal_to_clock
+    (x : CanonicalCompletedC3HilbertCarrier) :
+    inner ℂ canonicalCompletedNativeC3CenterClockPortDirection
+      (canonicalCompletedNativeC3CenterClockPortQuotient x) = 0 :=
+  inner_clockPortDirection_clockPortQuotient_eq_zero x
+
+theorem canonicalCompletedNativeClockPortQuotient_center_correction_zero :
+    ((0 : ℂ) - (starRingEnd ℂ) 0) *
+      canonicalCompletedNativeC3ClockPortKernelCorrection 0 0 = 0 :=
+  canonicalCompletedNativeC3ClockPortCorrection_center_collision
+
+theorem canonicalCompletedNativeClockPortQuotient_green_forces_centerWronskian_zero
+    (hgreen : HasDivisionFreeGreenRepresentationOn
+      completedNativeHeightDomain
+      nativeHeightScalar nativeHeightScalarBoundaryCompanion
+      (fun z ↦ canonicalCompletedNativeC3CenterClockPortQuotient
+        (canonicalCompletedOperatorC3HilbertState z))) :
+    completedGreenWronskian
+        nativeHeightScalar nativeHeightScalarBoundaryCompanion 0 0 = 0 :=
+  canonicalCompletedNativeC3ClockPortQuotient_green_implies_centerWronskian_zero
+    hgreen
 
 /-- The first material obstruction is already coefficient `(0,0)` for the
 literal one-block seeded-clock atlas.  The displayed quantity is its exact
