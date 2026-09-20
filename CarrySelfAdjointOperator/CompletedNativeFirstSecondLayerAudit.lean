@@ -730,6 +730,37 @@ theorem baseCarryGreen_totalLedger_invariant_audit
         CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.boundary source x :=
   CPFormal.Analytic.Cp.baseCarryGreen_totalLedger_invariant source target x
 
+/-! ## The exact TFVD valve identity is reconstruction, not an isometry
+
+The universal `primos` certificate supplies a stronger algebraic identity than
+the readout-atlas ledger: Green applied to the centered bracket plus affine
+return applied to the trace is the identity.  Its first output is the native
+bracket channel and its second output is the two-coordinate boundary trace.
+No adjoint or norm-balance statement is part of this identity, so it cannot be
+relabelled as the desired `Qv ⊕ Dv` dilation. -/
+
+theorem canonicalBaseCarryTfvd_reconstruction_identity
+    (b : ℕ) (hb : 2 ≤ b) :
+    baseCarryVerticalL2WeightedGreen b ∘L
+          baseCarryWeightedVerticalCenteredBracket b +
+        baseCarryWeightedVerticalReturn b hb ∘L
+          baseCarryWeightedVerticalTrace b =
+      ContinuousLinearMap.id ℂ CarryVerticalL2 :=
+  baseCarryWeightedVerticalTfvd_identity b hb
+
+theorem canonicalBaseCarryTfvd_trace_return_identity
+    (b : ℕ) (hb : 2 ≤ b) :
+    baseCarryWeightedVerticalTrace b ∘L
+        baseCarryWeightedVerticalReturn b hb =
+      ContinuousLinearMap.id ℂ (ℂ × ℂ) :=
+  baseCarryWeightedVerticalTrace_comp_return b hb
+
+theorem canonicalBaseCarryTfvd_bracket_annihilates_return
+    (b : ℕ) (hb : 2 ≤ b) :
+    baseCarryWeightedVerticalCenteredBracket b ∘L
+        baseCarryWeightedVerticalReturn b hb = 0 :=
+  baseCarryWeightedVerticalCenteredBracket_comp_return b hb
+
 end
 
 end CarrySelfAdjointOperator
