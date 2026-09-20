@@ -14,8 +14,10 @@ import CarrySelfAdjointOperator.CompletedC3CausalChiralKernelObstruction
 import CarrySelfAdjointOperator.CompletedNativeTfvdEnrichedLowOrderMomentTest
 import CarrySelfAdjointOperator.ProjectiveValveCarryGreenObstruction
 import CarrySelfAdjointOperator.BR2CausalTfvdMetricShift
+import CarrySelfAdjointOperator.PrimeDepthAllOrderMomentBridge
 import CPFormal.Analytic.CpUniversalCarryStructuralPersistence
 import CPFormal.Analytic.CpTfvdSeededFiniteBesselConservation
+import CPFormal.Analytic.CpTfvdSeededNativeMomentSourceAudit
 import Mathlib.Tactic
 
 /-!
@@ -203,6 +205,16 @@ theorem canonicalCompletedNativeChiralSignature_first_four_odd_variations
   · simpa using canonicalCompletedC3ChiralBlockSignature_odd_eq_canonicalMoment M 2
   · simpa using canonicalCompletedC3ChiralBlockSignature_odd_eq_canonicalMoment M 3
 
+/-- The same completed moments have a material prime-depth genealogy: `hₙ` is
+the odd coefficient of the completed response whose logarithmic channel is
+reconstructed from the native prime-depth ledger.  This is a scalar Taylor
+identity; it does not assert a Hilbert Gram realization. -/
+theorem canonicalCompletedNativeMoment_eq_primeDepthMaterialResponse
+    (n : ℕ) :
+    (canonicalCompletedNativeLogDerivativeMoment n : ℂ) =
+      primeDepthCompletedNativeResponseTaylorCoefficient (2 * n + 1) :=
+  canonicalCompletedNativeLogDerivativeMoment_eq_primeDepthResponse n
+
 /-- Genuine Hilbert orthogonality found upstream.  Its indices are the
 positive/negative *chiral* channels; it is not yet the even/odd clock-jet
 orthogonality required for an unconditional Hankel Gram realization. -/
@@ -349,6 +361,20 @@ theorem canonicalSeededTfvdBesselProvenance_activeReadout_eq_greenBulk
       (canonicalEnrichedPrimeCarryDefectProvenanceState M s S) =
       primeCarryGreenBulkCutoffProfile (3 * M) s p :=
   inner_globalCarryAxis_canonicalProvenanceState_eq_greenBulk M s S p hp
+
+/-- This is the precise missing bridge between the genuinely orthogonal
+finite Bessel/provenance construction and the native moment tower.  At every
+nonempty cutoff, a single fixed-time tower state realizing all its prime
+Green-bulk readouts exists exactly on the critical half-abscissa.  Hence this
+bridge cannot be silently used as an unconditional source for the corrected
+clock moments. -/
+theorem canonicalSeededTfvdBesselProvenance_fixedTimeMomentBridge_iff_re_eq_half
+    (M : ℕ) (hM : 0 < M) {s : ℂ}
+    (hs : s ∈ genuineCriticalStrip) :
+    (∃ x : NativeGpreTowerHilbert,
+      IsNativeGprePrimeMomentRealizationAt 1 (3 * M) s x) ↔
+      s.re = (1 : ℝ) / 2 :=
+  exists_seededTfvdNativeMomentSource_iff_re_eq_half M hM hs
 
 /-- The first material obstruction is already coefficient `(0,0)` for the
 literal one-block seeded-clock atlas.  The displayed quantity is its exact
