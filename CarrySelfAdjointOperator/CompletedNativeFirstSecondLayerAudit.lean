@@ -15,6 +15,7 @@ import CarrySelfAdjointOperator.CompletedNativeTfvdEnrichedLowOrderMomentTest
 import CarrySelfAdjointOperator.ProjectiveValveCarryGreenObstruction
 import CarrySelfAdjointOperator.BR2CausalTfvdMetricShift
 import CarrySelfAdjointOperator.CompletedNativeProductClockQuotientGreenAudit
+import CarrySelfAdjointOperator.CompletedNativeProjectiveValveMassAudit
 import CarrySelfAdjointOperator.PrimeDepthAllOrderMomentBridge
 import CPFormal.Analytic.CpUniversalCarryStructuralPersistence
 import CPFormal.Analytic.CpTfvdSeededFiniteBesselConservation
@@ -295,6 +296,15 @@ theorem canonicalCompletedNativeProjectiveValve_curvature_eq_moments :
         normalizedCompletedNativeEvenFormalSeries⁻¹ =
       mk canonicalCompletedNativeLogDerivativeMoment :=
   projectiveValveCurvature_nativeReciprocal_eq_moments
+
+/-! The scalar projective mass itself is not a lossless second output.  The
+existing projective reconstruction keeps two affine boundary coordinates in
+addition to the mass; dropping them is genuinely non-injective. -/
+
+theorem not_canonicalProjectiveValveMass_lossless_defect_state :
+    ¬ Function.Injective
+      (DiscreteProjective.stateMass : (ℕ → ℝ) → PowerSeries ℝ) :=
+  not_injective_discreteProjective_stateMass
 
 /-- The C3 log-block has an exact **multiplicative** projective-mass split
 after its native additive curvature split.  It records genuine valve
