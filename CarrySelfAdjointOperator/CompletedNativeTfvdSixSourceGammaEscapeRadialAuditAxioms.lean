@@ -1,0 +1,17 @@
+import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceGammaEscapeRadialAudit
+
+/-!
+# Axiom audit for the radial Gamma-escape comparison
+
+The residual keeps the existing Pick/dslope normalizations literal and makes
+no semidefinite or factorization assumption.  These checks guard that the
+remaining sewing condition was not hidden behind an additional axiom.
+-/
+
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialChiralPickSampleMatrix_apply_eq_cauchyFactor
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialGammaEscapePickResidual_apply_eq_amplitudePick_sub
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialGammaEscapePickResidual_apply_eq_explicit_sub
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialGammaEscapePickResidual_eq_zero_iff
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialGammaEscapePickResidual_one_apply_zero
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialGammaEscapePickResidual_two_apply
+#print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialGammaEscapePickResidual_three_apply
