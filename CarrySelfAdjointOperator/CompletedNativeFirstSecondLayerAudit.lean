@@ -4,6 +4,10 @@ import CarrySelfAdjointOperator.CompletedNativeSeededClockAtomicGate
 import CarrySelfAdjointOperator.DiscreteProjectiveReconstruction
 import CarrySelfAdjointOperator.NativeMomentProjectiveValveBridge
 import CarrySelfAdjointOperator.CompletedNativeC2HaarDoubleLog4Transport
+import CarrySelfAdjointOperator.CompletedNativeCentralChiralQuotientCurvature
+import CarrySelfAdjointOperator.CompletedNativeCausalLegChiralBridge
+import CarrySelfAdjointOperator.CompletedNativeTfvdGreenShiftedHankelFactorization
+import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceCenterLegBridge
 import CPFormal.Analytic.CpUniversalCarryStructuralPersistence
 import Mathlib.Tactic
 
@@ -39,6 +43,9 @@ namespace CarrySelfAdjointOperator
 
 open PowerSeries
 open C3TraceDynamics
+open CPFormal.Analytic.Cp
+open FiniteNativeCarryOperator.Camera
+open NativeCarrySpectralWeyl.Finite NativeCarrySpectralWeyl.Camera
 
 noncomputable section
 
@@ -211,6 +218,24 @@ theorem canonicalCompletedNativeMomentReadout_is_signedChiralReadout
         (canonicalCompletedC3NormalizedFullWronskianChiralBlockKernel M 0 z) :=
   canonicalCompletedC3FullWronskianChiralBalanceResponse_eq_blockSignature M z
 
+/-- The first transverse variation of the native Hermite--Biehler quotient is
+`4 h₀`.  Its source is the second derivative of the characteristic, but it is
+a first variation of the *projective quotient*; it is not a bracket Gram. -/
+theorem canonicalCompletedNativeCentralChiralQuotient_firstVariation :
+    HasDerivAt completedNativeCentralHermiteBiehlerChiralQuotient
+      (4 * (canonicalCompletedNativeLogDerivativeMoment 0 : ℂ)) 0 :=
+  hasDerivAt_completedNativeCentralHermiteBiehlerChiralQuotient_zero
+
+/-- By contrast, the vertical modulus channel sees the same `h₀` only at its
+second variation, with the forced characteristic-energy scale.  This is the
+precise order distinction that prevents identifying a raw bracket energy with
+the zeroth moment without its normalization theorem. -/
+theorem canonicalCompletedNativeVerticalEnergy_secondVariation :
+    iteratedDeriv 2 (completedNativeVerticalModulusEnergy 0) 0 =
+      4 * ‖completedNativeOperatorCharacteristic 0‖ ^ 2 *
+        canonicalCompletedNativeLogDerivativeMoment 0 :=
+  completedNativeVerticalModulusEnergy_secondDerivative_zero_eq_moment_zero
+
 /-- Projective reconstruction has its affine boundary/value and slope terms
 before the `X^2` Green-curvature term.  Thus the raw bracket is not a valid
 candidate for the zeroth moment merely by order bookkeeping. -/
@@ -249,6 +274,18 @@ theorem canonicalCompletedNativeProjectiveValve_curvature_eq_moments :
       mk canonicalCompletedNativeLogDerivativeMoment :=
   projectiveValveCurvature_nativeReciprocal_eq_moments
 
+/-- The odd Green-jet prefix is a genuinely geometric finite synthesis before
+any moment matrix is named.  Its comparison with `K_N` is available exactly
+after, and only after, a polarized Green--Wronskian Gram representation is
+supplied. -/
+theorem greenOddPrefix_eq_shiftedHankel_of_polarizedGreenGram
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {moments : ℕ → ℝ} {jet : (ℕ ⊕ ℕ) → E}
+    (hgram : IsGreenWronskianMomentKernelGramRepresentation moments jet)
+    (N : ℕ) :
+    greenJetOddPrefixGram jet N = shiftedHankel moments N :=
+  greenJetOddPrefixGram_eq_shiftedHankel_of_greenRepresentation hgram N
+
 /-- The first material obstruction is already coefficient `(0,0)` for the
 literal one-block seeded-clock atlas.  The displayed quantity is its exact
 central calibration residual. -/
@@ -270,6 +307,21 @@ theorem nativeZeroSeededClock_firstColumn_gate_fails (M : ℕ) (s : ℂ) :
         (fun _ : Fin 1 => nativeZeroSeededClockBlock s) :=
   nativeZeroSeededClockBlock_not_sameEdgeTransport M s
 
+/-- The fully synthesized six-source coefficient array is already exact, but
+the literal BR2 projective Hilbert pairing fails its first even/even
+center--leg comparison.  This is the concrete order-zero residual for that
+candidate class, not an open all-order coefficient calculation. -/
+theorem nativeSixSourceBR2CenterLeg_evenZero_defect_ne_zero
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset CPFormal.Analytic.Cp.NativeGpreBoundaryContext)
+    {base radius : ℕ}
+    (hbase : IsSupported base)
+    (hradius : radius ∈ radiusSet base) :
+    nativeC3SeededClockTfvdSixSourceCenterLegDefect
+        M q hqpos.le hq1 S base radius (Sum.inl 0) (Sum.inl 0) ≠ 0 :=
+  nativeC3SeededClockTfvdSixSourceCenterLegDefect_evenZero_ne_zero
+    M q hqpos hq1 S hbase hradius
+
 /-- The precise remaining material condition is the existing first-column
 transport, not a positivity axiom. -/
 theorem seededClock_correctedBoundaryTransport_iff_sameEdge
@@ -290,6 +342,83 @@ theorem c2Haar_alignedC2_is_widthFour_radiusOne
       CPFormal.Analytic.Cp.nativeCarryFiniteSaturatedChart 4 M f ∧
       CPFormal.Genuine.Cp.halfRange 4 = 1 :=
   nativeCarryC2_is_width_four_not_geometricC4 M f
+
+/-- Cross-term audit in the already existing six-camera **source Gram**.  The
+mixed return ray is orthogonal to the Haar `h₂` coordinate.  This statement
+uses the inverse C2/Haar coding map and the raw source Gram only; it does not
+claim a matched-horizon Haar moment transport. -/
+theorem c2HaarMixedReturnRay_sourceGram_h2_cross_zero :
+    sixCameraMixedReturnRay ⬝ᵥ
+      (sixCameraGram *ᵥ c2HaarCoordinateChangeInv
+        (Pi.single (0 : Fin 6) 1)) = 0 := by
+  have hsym : sixCameraGramᵀ = sixCameraGram := by
+    simpa only [Matrix.conjTranspose_eq_transpose_of_trivial] using
+      sixCameraGram_posDef.isHermitian.eq
+  calc
+    sixCameraMixedReturnRay ⬝ᵥ
+        (sixCameraGram *ᵥ c2HaarCoordinateChangeInv (Pi.single (0 : Fin 6) 1)) =
+      c2HaarCoordinateChangeInv (Pi.single (0 : Fin 6) 1) ⬝ᵥ
+        (sixCameraGramᵀ *ᵥ sixCameraMixedReturnRay) :=
+      (Matrix.dotProduct_transpose_mulVec sixCameraGram
+        (c2HaarCoordinateChangeInv (Pi.single (0 : Fin 6) 1))
+        sixCameraMixedReturnRay).symm
+    _ = c2HaarCoordinateChangeInv (Pi.single (0 : Fin 6) 1) ⬝ᵥ
+        (sixCameraGram *ᵥ sixCameraMixedReturnRay) := by rw [hsym]
+    _ = 0 := by
+      have h04 : (0 : Fin 6) ≠ 4 := by decide
+      rw [sixCameraGram_mul_mixedReturnRay]
+      norm_num [c2HaarCoordinateChangeInv, dotProduct,
+        Fin.sum_univ_succ, Matrix.cons_val, Pi.single_apply, h04]
+
+/-- The same raw mixed-return ray is orthogonal to the retained physical
+`c₃` coordinate. -/
+theorem c2HaarMixedReturnRay_sourceGram_c3_cross_zero :
+    sixCameraMixedReturnRay ⬝ᵥ
+      (sixCameraGram *ᵥ c2HaarCoordinateChangeInv
+        (Pi.single (1 : Fin 6) 1)) = 0 := by
+  have hsym : sixCameraGramᵀ = sixCameraGram := by
+    simpa only [Matrix.conjTranspose_eq_transpose_of_trivial] using
+      sixCameraGram_posDef.isHermitian.eq
+  calc
+    sixCameraMixedReturnRay ⬝ᵥ
+        (sixCameraGram *ᵥ c2HaarCoordinateChangeInv (Pi.single (1 : Fin 6) 1)) =
+      c2HaarCoordinateChangeInv (Pi.single (1 : Fin 6) 1) ⬝ᵥ
+        (sixCameraGramᵀ *ᵥ sixCameraMixedReturnRay) :=
+      (Matrix.dotProduct_transpose_mulVec sixCameraGram
+        (c2HaarCoordinateChangeInv (Pi.single (1 : Fin 6) 1))
+        sixCameraMixedReturnRay).symm
+    _ = c2HaarCoordinateChangeInv (Pi.single (1 : Fin 6) 1) ⬝ᵥ
+        (sixCameraGram *ᵥ sixCameraMixedReturnRay) := by rw [hsym]
+    _ = 0 := by
+      have h14 : (1 : Fin 6) ≠ 4 := by decide
+      rw [sixCameraGram_mul_mixedReturnRay]
+      norm_num [c2HaarCoordinateChangeInv, dotProduct,
+        Fin.sum_univ_succ, Matrix.cons_val, Pi.single_apply, h14]
+
+/-- The `c₆` cross term survives with its exact source-Gram coefficient.
+Thus the C2/Haar reduction does not diagonalize the mixed return ray into
+three mutually orthogonal physical coordinates. -/
+theorem c2HaarMixedReturnRay_sourceGram_c6_cross_eq :
+    sixCameraMixedReturnRay ⬝ᵥ
+      (sixCameraGram *ᵥ c2HaarCoordinateChangeInv
+        (Pi.single (4 : Fin 6) 1)) = (278 / 3 : ℝ) := by
+  have hsym : sixCameraGramᵀ = sixCameraGram := by
+    simpa only [Matrix.conjTranspose_eq_transpose_of_trivial] using
+      sixCameraGram_posDef.isHermitian.eq
+  calc
+    sixCameraMixedReturnRay ⬝ᵥ
+        (sixCameraGram *ᵥ c2HaarCoordinateChangeInv (Pi.single (4 : Fin 6) 1)) =
+      c2HaarCoordinateChangeInv (Pi.single (4 : Fin 6) 1) ⬝ᵥ
+        (sixCameraGramᵀ *ᵥ sixCameraMixedReturnRay) :=
+      (Matrix.dotProduct_transpose_mulVec sixCameraGram
+        (c2HaarCoordinateChangeInv (Pi.single (4 : Fin 6) 1))
+        sixCameraMixedReturnRay).symm
+    _ = c2HaarCoordinateChangeInv (Pi.single (4 : Fin 6) 1) ⬝ᵥ
+        (sixCameraGram *ᵥ sixCameraMixedReturnRay) := by rw [hsym]
+    _ = (278 / 3 : ℝ) := by
+      rw [sixCameraGram_mul_mixedReturnRay]
+      norm_num [c2HaarCoordinateChangeInv, dotProduct,
+        Fin.sum_univ_succ, Matrix.cons_val]
 
 /-- The same upstream readout-atlas infrastructure transports only the total
 Green ledger.  It is therefore sufficient for the coding/readout audit, but
