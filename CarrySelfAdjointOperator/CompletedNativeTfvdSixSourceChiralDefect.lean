@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.PrimeDepthAllOrderMomentBridge
+import CarrySelfAdjointOperator.CompletedNativeChiralReturnStorage
 import Mathlib.Tactic
 
 /-!
@@ -23,13 +24,24 @@ In particular, none of the literal BR2 center-leg energy-excess results are
 used here.
 -/
 
-open scoped ComplexConjugate ComplexOrder InnerProductSpace Matrix MatrixOrder
+open scoped BigOperators ComplexConjugate ComplexOrder InnerProductSpace Matrix MatrixOrder
 
 namespace CarrySelfAdjointOperator
 
 open CPFormal.Analytic.Cp
 
 noncomputable section
+
+/-- The finite quadratic form read directly from the material six-source
+TFVD/Green radial kernel.  This is the source-side candidate defect for a
+coefficient vector `c`; it is defined before any semidefinite claim. -/
+def nativeC3SeededClockTfvdSixSourceRadialSampleQuadratic
+    (M : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    (k N : ℕ) (c : Fin N → ℂ) : ℂ :=
+  star c ⬝ᵥ
+    (nativeC3SeededClockTfvdSixSourceRadialSampleMatrix
+      M q hq0 hq1 S k N *ᵥ c)
 
 /-- The exact radial six-source TFVD/Green sample is the positive-amplitude
 congruence of the Cauchy input-minus-multiplier-output Gram defect.  This is
@@ -90,6 +102,47 @@ theorem nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_apply_eq_projectiveCh
         M q hqpos.le hq1 S k N i j = _
   rw [hmatrix]
   rfl
+
+/-- The real part of the material six-source quadratic defect is precisely
+the Cauchy input energy minus the chiral-multiplier output energy, up to the
+forced factor `2`.  In particular, this gives an explicit finite-combination
+energy identity without taking either moment-matrix positivity or the
+contractivity conclusion as an input. -/
+theorem nativeC3SeededClockTfvdSixSourceRadialSampleQuadratic_re_eq_chiralInput_sub_output
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext)
+    (k N : ℕ)
+    (hregular : ∀ i : Fin N,
+      canonicalCompletedC3RadialTiltPoint k i ∈
+          completedNativeHeightDomain ∧
+        completedNativeOperatorCharacteristic
+            (canonicalCompletedC3RadialTiltPoint k i) ≠ 0 ∧
+          completedNativePositiveHermiteBiehlerCoordinate
+            (canonicalCompletedC3RadialTiltPoint k i) ≠ 0)
+    (c : Fin N → ℂ) :
+    2 *
+        (nativeC3SeededClockTfvdSixSourceRadialSampleQuadratic
+          M q hqpos.le hq1 S k N c).re =
+      ‖∑ i, (c i * completedNativeNormalizedPositiveChiralAmplitude
+          (canonicalCompletedC3RadialTiltPoint k i)) •
+          completedNativeRadialChiralCauchyState k i‖ ^ 2 -
+        ‖∑ i, (c i * completedNativeNormalizedPositiveChiralAmplitude
+          (canonicalCompletedC3RadialTiltPoint k i)) •
+          completedNativeRadialChiralMultiplierState k i‖ ^ 2 := by
+  have hstorage := ChiralReturn.storage_one_eq_native_quadratic k N c hregular
+  have hmaterial :
+      ChiralReturn.storage k
+          (fun i => c i * completedNativeNormalizedPositiveChiralAmplitude
+            (canonicalCompletedC3RadialTiltPoint k i)) 1 =
+        2 * nativeC3SeededClockTfvdSixSourceRadialSampleQuadratic
+          M q hqpos.le hq1 S k N c := by
+    rw [hstorage,
+      ← nativeC3SeededClockTfvdSixSourceRadialSampleMatrix_eq_dslope
+        M q hqpos hq1 S k N hregular]
+    rfl
+  have hreal := congrArg Complex.re hmaterial
+  rw [ChiralReturn.storage_re_eq_norm_balance] at hreal
+  simpa [Complex.mul_re] using hreal.symm
 
 /-- Smallest finite sanity check: the one-point material sample is exactly
 the diagonal signed Cauchy-versus-multiplier defect.  Its sign is therefore
