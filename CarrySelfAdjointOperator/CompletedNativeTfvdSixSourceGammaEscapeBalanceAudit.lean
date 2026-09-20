@@ -1,0 +1,16 @@
+import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceGammaEscapeBalance
+
+/-!
+# Axiom audit for the polarized Cauchy--Gamma-escape balance
+
+The balance and its camera/leak rewrites are built only from the pre-existing
+completed six-source and Naimark infrastructure.  Keep their trusted base
+visible as the module evolves toward (or away from) a Pick identification.
+-/
+
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3GammaCauchyEscapeBalanceKernel_diagonal_re
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3GammaCauchyEscapeBalanceKernel_diagonal_re_eq_zero_iff
+#print axioms CarrySelfAdjointOperator.inner_projectedGammaPort_ambientPortDifference_eq_cauchyCamera_polarized
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3GammaCauchyEscapeBalanceKernel_eq_cauchyCamera_sub_escape
+#print axioms CarrySelfAdjointOperator.canonicalCompletedC3GammaCauchyEscapeBalanceKernel_swap_sub_conj
+#print axioms CarrySelfAdjointOperator.inner_canonicalCompletedC3GammaLogarithmicLeak_eq_conj_mul_mul_inner_escape
