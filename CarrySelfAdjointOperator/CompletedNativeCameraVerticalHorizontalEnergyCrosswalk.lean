@@ -148,6 +148,59 @@ theorem finiteCanonicalCameraHilbertVisibleBlind_norm_sq_add
     inner_self_eq_norm_sq_to_K] at h
   exact_mod_cast h
 
+/-! ## Typed visible/blind versus port/escape residual -/
+
+/-- The readout component of the visible/blind-to-port/escape residual.  It
+is an operator, rather than a scalar, because the finite historical and
+completed Naimark projections have different domains before a cross-carrier
+transport is supplied. -/
+def naimarkProjectorReadoutIntertwiningResidual
+    {𝕜 S A Ainf N : Type*}
+    [Ring 𝕜]
+    [AddCommGroup S] [AddCommGroup A] [AddCommGroup Ainf] [AddCommGroup N]
+    [Module 𝕜 S] [Module 𝕜 A] [Module 𝕜 Ainf] [Module 𝕜 N]
+    (E : S →ₗ[𝕜] N) (J : A →ₗ[𝕜] Ainf)
+    (R : S →ₗ[𝕜] A) (_V : A →ₗ[𝕜] S)
+    (_U : Ainf →ₗ[𝕜] N) (Ustar : N →ₗ[𝕜] Ainf) :
+    S →ₗ[𝕜] Ainf :=
+  J.comp R - Ustar.comp E
+
+/-- The synthesis component of the visible/blind-to-port/escape residual. -/
+def naimarkProjectorSynthesisIntertwiningResidual
+    {𝕜 S A Ainf N : Type*}
+    [Ring 𝕜]
+    [AddCommGroup S] [AddCommGroup A] [AddCommGroup Ainf] [AddCommGroup N]
+    [Module 𝕜 S] [Module 𝕜 A] [Module 𝕜 Ainf] [Module 𝕜 N]
+    (E : S →ₗ[𝕜] N) (J : A →ₗ[𝕜] Ainf)
+    (_R : S →ₗ[𝕜] A) (V : A →ₗ[𝕜] S)
+    (U : Ainf →ₗ[𝕜] N) (_Ustar : N →ₗ[𝕜] Ainf) :
+    A →ₗ[𝕜] N :=
+  E.comp V - U.comp J
+
+/-- The exact type-level residual `R_HB` for identifying a finite historical
+visible/blind split with a completed Naimark port/escape split.  Its two
+components vanish exactly when the pre-existing
+`NaimarkProjectorIntertwiningSeam` holds.  The current development has no
+concrete finite-camera instance of either component. -/
+theorem naimarkProjectorIntertwiningSeam_iff_residuals_eq_zero
+    {𝕜 S A Ainf N : Type*}
+    [Ring 𝕜]
+    [AddCommGroup S] [AddCommGroup A] [AddCommGroup Ainf] [AddCommGroup N]
+    [Module 𝕜 S] [Module 𝕜 A] [Module 𝕜 Ainf] [Module 𝕜 N]
+    (E : S →ₗ[𝕜] N) (J : A →ₗ[𝕜] Ainf)
+    (R : S →ₗ[𝕜] A) (V : A →ₗ[𝕜] S)
+    (U : Ainf →ₗ[𝕜] N) (Ustar : N →ₗ[𝕜] Ainf) :
+    NaimarkProjectorIntertwiningSeam E J R V U Ustar ↔
+      naimarkProjectorReadoutIntertwiningResidual E J R V U Ustar = 0 ∧
+        naimarkProjectorSynthesisIntertwiningResidual E J R V U Ustar = 0 := by
+  constructor
+  · intro h
+    constructor
+    · exact sub_eq_zero.mpr h.1
+    · exact sub_eq_zero.mpr h.2
+  · rintro ⟨hreadout, hsynthesis⟩
+    exact ⟨sub_eq_zero.mp hreadout, sub_eq_zero.mp hsynthesis⟩
+
 /-! ## The only honest central-energy test -/
 
 /-- Data required to *test* the proposed identification at the center.

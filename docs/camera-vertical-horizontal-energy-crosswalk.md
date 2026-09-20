@@ -64,6 +64,19 @@ Thus visible/blind and vertical/horizontal are **not** identified.  Matching
 dimensions, a shared camera vocabulary, or algebraic `IsCompl` cannot bridge
 this gap.
 
+The resulting typed residual is now formalized rather than merely described:
+
+```text
+R_HB = (ℛ_read, ℛ_synth)
+ℛ_read  = J ∘ R_C - U* ∘ E,
+ℛ_synth = E ∘ V_C - U ∘ J.
+```
+
+`naimarkProjectorIntertwiningSeam_iff_residuals_eq_zero` proves that
+`R_HB = 0` exactly when both required squares hold.  This is intentionally an
+operator-valued residual: without `E` and `J`, a scalar norm difference would
+not even compare terms in a common carrier.
+
 ## What is closed at the algebraic and finite levels
 
 For every nonzero `n` and prime `p`, the new all-other-cameras theorem is
