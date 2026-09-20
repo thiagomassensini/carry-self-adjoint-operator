@@ -15,6 +15,7 @@ import CarrySelfAdjointOperator.CompletedNativeTfvdEnrichedLowOrderMomentTest
 import CarrySelfAdjointOperator.ProjectiveValveCarryGreenObstruction
 import CarrySelfAdjointOperator.BR2CausalTfvdMetricShift
 import CPFormal.Analytic.CpUniversalCarryStructuralPersistence
+import CPFormal.Analytic.CpTfvdSeededFiniteBesselConservation
 import Mathlib.Tactic
 
 /-!
@@ -305,6 +306,49 @@ theorem greenOddPrefix_eq_shiftedHankel_of_polarizedGreenGram
     (N : ℕ) :
     greenJetOddPrefixGram jet N = shiftedHankel moments N :=
   greenJetOddPrefixGram_eq_shiftedHankel_of_greenRepresentation hgram N
+
+/-! ## A genuine native orthogonal decomposition, and its exact scope -/
+
+/-- The finite centered-carry provenance construction from `primos` really
+does supply a polarized cross-term identity: its active prime-camera state is
+orthogonal to the unused component of *any state realizing the same finite
+radial Green readouts*.  This is actual Hilbert orthogonality, not merely a
+`ReadoutAtlas` ledger or a complementary-submodule assertion. -/
+theorem canonicalSeededTfvdBesselProvenance_residual_orthogonal
+    (M : ℕ) (s : ℂ) (S : Finset Nat.Primes)
+    (x : PrimeCarryDefectGlobalHilbert)
+    (hrealizes :
+      IsCanonicalEnrichedPrimeCarryDefectReadoutRealizationOn M s S x) :
+    inner ℝ (canonicalEnrichedPrimeCarryDefectProvenanceState M s S)
+      (x - canonicalEnrichedPrimeCarryDefectProvenanceState M s S) = 0 :=
+  inner_canonicalProvenanceState_residual_eq_zero_of_realizesOn
+    M s S x hrealizes
+
+/-- Consequently the same native construction has an exact Pythagorean
+energy split.  The active term is a finite Bessel energy of radial TFVD Green
+observables; its residual is genuinely orthogonal, rather than an after-the-
+fact scalar remainder. -/
+theorem canonicalSeededTfvdBesselProvenance_pythagoras
+    (M : ℕ) (s : ℂ) (S : Finset Nat.Primes)
+    (x : PrimeCarryDefectGlobalHilbert)
+    (hrealizes :
+      IsCanonicalEnrichedPrimeCarryDefectReadoutRealizationOn M s S x) :
+    ‖x‖ ^ 2 = finiteSeededTfvdBesselEnergy M s S +
+      ‖x - canonicalEnrichedPrimeCarryDefectProvenanceState M s S‖ ^ 2 :=
+  canonicalProvenanceState_pythagoras_seededTfvdBesselLedger_of_realizesOn
+    M s S x hrealizes
+
+/-- The first factor in this genuine orthogonal split reads a finite prime
+Green bulk, not a canonical moment coefficient.  This identifies the exact
+role of the construction and prevents an unsupported identification with the
+`G_N ⊕ K_N` clock sectors. -/
+theorem canonicalSeededTfvdBesselProvenance_activeReadout_eq_greenBulk
+    (M : ℕ) (s : ℂ) (S : Finset Nat.Primes)
+    (p : Nat.Primes) (hp : p ∈ S) :
+    inner ℝ (primeCriticalCenteredCarryGlobalAxis p)
+      (canonicalEnrichedPrimeCarryDefectProvenanceState M s S) =
+      primeCarryGreenBulkCutoffProfile (3 * M) s p :=
+  inner_globalCarryAxis_canonicalProvenanceState_eq_greenBulk M s S p hp
 
 /-- The first material obstruction is already coefficient `(0,0)` for the
 literal one-block seeded-clock atlas.  The displayed quantity is its exact
