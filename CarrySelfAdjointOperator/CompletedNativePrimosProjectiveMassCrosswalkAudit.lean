@@ -10,6 +10,8 @@ import CPFormal.Analytic.CpGenuineGprePrimeVerticalTraceAtlas
 import CPFormal.Analytic.CpGenuinePrimeCarryDefectUniformBound
 import CPFormal.Analytic.CpTfvdSeededFiniteBesselConservation
 import CPFormal.Analytic.CpTfvdSameEdgeCompletedPrecompressionCollapse
+import CPFormal.Analytic.CpTfvdSameEdgeReflectedEnergyCollapse
+import CPFormal.Analytic.CpTfvdSameEdgeReflectedEnergyFixedTimeNoGo
 
 /-!
 # Crosswalk of the native `CPFormal` / `primos` projective sources
@@ -40,6 +42,14 @@ the `primos` carriers provide reconstruction, provenance, and retained
 energy, but no second output whose inner products are the Pick defect and no
 first output equal to the completed chiral multiplier on the radial Cauchy
 carrier.
+
+Carrier status after the ambient and literal-carrier audits:
+
+* BR2 literal: NO-GO;
+* Gamma literal: NO-GO;
+* normalized ambient Gram literal: NO-GO;
+* projective/chiral defect channel: OPEN (the native channels below are
+  reconstruction/provenance candidates, not yet a Pick realization).
 
 No square root of `I - T* T`, Kolmogorov/RKHS factorization, Cholesky,
 Stieltjes positivity, Jacobi conclusion, zero hypothesis, `sorry`, `admit`,
@@ -139,6 +149,174 @@ theorem canonicalPrimosC2LogJet_enriched_reconstruction
       CPFormal.Analytic.Cp.nativeGpreCanonicalVerticalRealization
         (CPFormal.Analytic.Cp.c2LogJetPrefixCore s N) :=
   CPFormal.Analytic.Cp.c2LogJetPrefixEnrichedAnalysis_reconstruction
+    q hqpos hq1 S s N
+
+/-! ## The native ordinary/log-jet two-layer lift
+
+The same-edge source in `primos` is the closest existing lossless-looking
+projective construction.  Its two coordinates are not invented here: they
+are the ordinary Dirichlet gradient and its logarithmic jet.  The recovery
+theorems invert that pair before any prime or Green readout is taken.  This
+is the correct algebraic analogue of retaining an incident coordinate and a
+second channel; it is deliberately not identified with the chiral quotient
+`Q`.
+-/
+
+/-- The ordinary/log-jet two-coordinate map is injective on each edge.  The
+proof uses the native recovery formulas for both endpoints, rather than a
+dimension count or an abstract quotient. -/
+theorem canonicalPrimosSameEdgeOrdinaryLogJet_readout_injective
+    (n : ℕ) :
+    Function.Injective (fun endpoints : ℂ × ℂ =>
+      (endpoints.2 - endpoints.1,
+      (Real.log (((n + 2 : ℕ) : ℝ)) : ℂ) * endpoints.2 -
+          (Real.log (((n + 1 : ℕ) : ℝ)) : ℂ) * endpoints.1)) := by
+  intro x y hxy
+  have hdiff : x.2 - x.1 = y.2 - y.1 := by
+    exact congrArg Prod.fst hxy
+  have hlog :
+      (Real.log (((n + 2 : ℕ) : ℝ)) : ℂ) * x.2 -
+          (Real.log (((n + 1 : ℕ) : ℝ)) : ℂ) * x.1 =
+        (Real.log (((n + 2 : ℕ) : ℝ)) : ℂ) * y.2 -
+          (Real.log (((n + 1 : ℕ) : ℝ)) : ℂ) * y.1 := by
+    exact congrArg Prod.snd hxy
+  apply Prod.ext
+  · calc
+      x.1 = CPFormal.Analytic.Cp.sameEdgeRecoverLeft n
+          (x.2 - x.1)
+          ((Real.log (((n + 2 : ℕ) : ℝ)) : ℂ) * x.2 -
+            (Real.log (((n + 1 : ℕ) : ℝ)) : ℂ) * x.1) :=
+        (CPFormal.Analytic.Cp.sameEdgeRecoverLeft_of_values n x.1 x.2).symm
+      _ = CPFormal.Analytic.Cp.sameEdgeRecoverLeft n
+          (y.2 - y.1)
+          ((Real.log (((n + 2 : ℕ) : ℝ)) : ℂ) * y.2 -
+            (Real.log (((n + 1 : ℕ) : ℝ)) : ℂ) * y.1) := by
+        rw [hdiff, hlog]
+      _ = y.1 :=
+        CPFormal.Analytic.Cp.sameEdgeRecoverLeft_of_values n y.1 y.2
+  · calc
+      x.2 = CPFormal.Analytic.Cp.sameEdgeRecoverRight n
+          (x.2 - x.1)
+          ((Real.log (((n + 2 : ℕ) : ℝ)) : ℂ) * x.2 -
+            (Real.log (((n + 1 : ℕ) : ℝ)) : ℂ) * x.1) :=
+        (CPFormal.Analytic.Cp.sameEdgeRecoverRight_of_values n x.1 x.2).symm
+      _ = CPFormal.Analytic.Cp.sameEdgeRecoverRight n
+          (y.2 - y.1)
+          ((Real.log (((n + 2 : ℕ) : ℝ)) : ℂ) * y.2 -
+            (Real.log (((n + 1 : ℕ) : ℝ)) : ℂ) * y.1) := by
+        rw [hdiff, hlog]
+      _ = y.2 :=
+        CPFormal.Analytic.Cp.sameEdgeRecoverRight_of_values n y.1 y.2
+
+/-- The canonical ordinary/log-jet pair recovers both spectral endpoints and
+then the reflected gradient.  These are exact geometric identities before
+any moment or positivity statement. -/
+theorem canonicalPrimosSameEdgeOrdinaryLogJet_reflectedGradient_exact
+    (s : ℂ) (n : ℕ) :
+    CPFormal.Analytic.Cp.sameEdgeRecoveredReflectedGradient n
+        (CPFormal.Analytic.Cp.positiveDirichletGradient s n)
+        (CPFormal.Analytic.Cp.positiveLogDirichletGradient s n) =
+      CPFormal.Analytic.Cp.positiveDirichletGradient
+        (CPFormal.Analytic.Cp.reflectedParameter s) n :=
+  CPFormal.Analytic.Cp.sameEdgeRecoveredReflectedGradient_canonical s n
+
+/-- The second native output retained by this two-layer lift is the reflected
+Green edge energy.  It is a provenance channel, not a Pick defect channel. -/
+theorem canonicalPrimosSameEdgeOrdinaryLogJet_reflectedEnergy_exact
+    (s : ℂ) (n : ℕ) :
+    CPFormal.Analytic.Cp.sameEdgeRecoveredReflectedEnergyEdge n
+        (CPFormal.Analytic.Cp.positiveDirichletGradient s n)
+        (CPFormal.Analytic.Cp.positiveLogDirichletGradient s n) =
+      (CPFormal.Analytic.Cp.finiteReflectedGradientEdge n s).re :=
+  CPFormal.Analytic.Cp.sameEdgeRecoveredReflectedEnergyEdge_canonical s n
+
+/-- After the explicit ordinary/log-jet recovery, the remaining all-prime
+identification is exactly the reflected-profile-to-fixed-time transport gate.
+This names the first open material condition; it is not hidden in a mass
+normalization. -/
+theorem canonicalPrimosSameEdgeOrdinaryLogJet_fixedTime_gate_iff
+    (M : ℕ) (s : ℂ) :
+    CPFormal.Analytic.Cp.IsSeededTfvdGpreMomentCollapseAt
+        (CPFormal.Analytic.Cp.nativeGpreTfvdSameEdgeReflectedEnergyCollapseAt
+          (3 * M)) M s ↔
+      CPFormal.Analytic.Cp.SameEdgeReflectedEnergyTransportsToFixedTimeAt M s :=
+  CPFormal.Analytic.Cp.isSeededTfvdGpreMomentCollapseAt_sameEdgeReflectedEnergy_iff
+    M s
+
+/-- On the critical locus the raw reflected-energy output cannot pass the
+fixed-time gate: its reflected-profile readout is zero while the native
+fixed-time level-one readout is strictly positive.  This is a native
+candidate-specific no-go, not a no-go for projective/chiral dilations in
+general. -/
+theorem canonicalPrimosSameEdgeOrdinaryLogJet_fixedTime_gate_not_of_critical
+    (p : Nat.Primes) {M : ℕ} (hM : 0 < M)
+    {s : ℂ} (hs : CPFormal.Analytic.Cp.genuineCriticalStrip s)
+    (hcritical : CPFormal.Analytic.Cp.criticalDisplacement s.re = 0) :
+    ¬ CPFormal.Analytic.Cp.IsSeededTfvdGpreMomentCollapseAt
+        (CPFormal.Analytic.Cp.nativeGpreTfvdSameEdgeReflectedEnergyCollapseAt
+          (3 * M)) M s :=
+  CPFormal.Analytic.Cp.isSeededTfvdGpreMomentCollapseAt_sameEdgeReflectedEnergy_not_of_critical
+    p hM hs hcritical
+
+theorem canonicalPrimosSameEdgeOrdinaryLogJet_critical_reflected_readout_eq_zero
+    (p : Nat.Primes) (M : ℕ) (s : ℂ)
+    (hcritical : CPFormal.Analytic.Cp.criticalDisplacement s.re = 0) :
+    inner ℝ (CPFormal.Analytic.Cp.nativeGpreReflectedFirstLevelGapProfile p s)
+        (CPFormal.Analytic.Cp.seededTfvdGpreCollapsedSource
+          (CPFormal.Analytic.Cp.nativeGpreTfvdSameEdgeReflectedEnergyCollapseAt
+            (3 * M)) M s) = 0 :=
+  CPFormal.Analytic.Cp.inner_nativeGpreReflectedFirstLevelGapProfile_seededSameEdgeCollapsedSource_eq_zero_of_critical
+    M p s hcritical
+
+theorem canonicalPrimosSameEdgeOrdinaryLogJet_critical_fixed_time_readout_pos
+    (p : Nat.Primes) {M : ℕ} (hM : 0 < M)
+    {s : ℂ} (hs : CPFormal.Analytic.Cp.genuineCriticalStrip s) :
+    0 < inner ℝ (CPFormal.Analytic.Cp.nativeGpreTowerProfileVector (p : ℕ) 1)
+        (CPFormal.Analytic.Cp.seededTfvdGpreCollapsedSource
+          (CPFormal.Analytic.Cp.nativeGpreTfvdSameEdgeReflectedEnergyCollapseAt
+            (3 * M)) M s) :=
+  by
+    rw [CPFormal.Analytic.Cp.seededTfvdGpreCollapsedSource_sameEdgeReflectedEnergy]
+    exact CPFormal.Analytic.Cp.inner_nativeGpreTowerProfileVector_greenEnergyFirstLevelState_pos
+      p (M := 3 * M) (by omega) hs
+
+/-! The preceding two readouts expose the exact first residual of this
+candidate: at critical displacement it is `positive - 0`, before any
+all-prime or Pick positivity argument. -/
+theorem canonicalPrimosSameEdgeOrdinaryLogJet_critical_fixed_time_residual_pos
+    (p : Nat.Primes) {M : ℕ} (hM : 0 < M)
+    {s : ℂ} (hs : CPFormal.Analytic.Cp.genuineCriticalStrip s)
+    (hcritical : CPFormal.Analytic.Cp.criticalDisplacement s.re = 0) :
+    0 <
+      inner ℝ (CPFormal.Analytic.Cp.nativeGpreTowerProfileVector (p : ℕ) 1)
+          (CPFormal.Analytic.Cp.seededTfvdGpreCollapsedSource
+            (CPFormal.Analytic.Cp.nativeGpreTfvdSameEdgeReflectedEnergyCollapseAt
+              (3 * M)) M s) -
+        inner ℝ (CPFormal.Analytic.Cp.nativeGpreReflectedFirstLevelGapProfile p s)
+          (CPFormal.Analytic.Cp.seededTfvdGpreCollapsedSource
+            (CPFormal.Analytic.Cp.nativeGpreTfvdSameEdgeReflectedEnergyCollapseAt
+              (3 * M)) M s) := by
+  have hfixed :=
+    canonicalPrimosSameEdgeOrdinaryLogJet_critical_fixed_time_readout_pos
+      p hM hs
+  have hreflected :=
+    canonicalPrimosSameEdgeOrdinaryLogJet_critical_reflected_readout_eq_zero
+      p M s hcritical
+  linarith
+
+/-- The enriched C2 log-jet analysis also has an exact TFVD left inverse and
+retains its two provenance roles.  This is a genuine native reconstruction,
+but the proved readout is the log-jet scalar rather than `Qv`, and no norm
+conservation theorem is present in the source package. -/
+theorem canonicalPrimosC2LogJet_enriched_scalar_readout_exact
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset CPFormal.Analytic.Cp.NativeGpreBoundaryContext)
+    (s : ℂ) (N : ℕ) :
+    CPFormal.Analytic.Cp.c2LogJetPrefixEnrichedReadout
+        q hqpos.le hq1 S N
+        (CPFormal.Analytic.Cp.c2LogJetPrefixEnrichedAnalysis q S s N) =
+      CPFormal.Analytic.Cp.positiveLogDirichletValue s N :=
+  CPFormal.Analytic.Cp.c2LogJetPrefixEnrichedReadout_analysis
     q hqpos hq1 S s N
 
 /-! ## The full projective TFVD--`G_pre` output
