@@ -289,6 +289,84 @@ theorem canonicalPrimosSeededTfvdBessel_pythagoras_of_realizesOn
   CPFormal.Analytic.Cp.canonicalProvenanceState_pythagoras_seededTfvdBesselLedger_of_realizesOn
     M s S x hrealizes
 
+/-!
+The provenance Pythagoras has a genuinely polarized form.  If two states
+realize the same finite prime-atlas readouts, the canonical active state is
+the common first output and the two residuals are the second output.  This is
+the exact sesquilinear conservation law available from the `primos` carrier;
+it is deliberately not identified with the radial chiral multiplier.
+-/
+theorem canonicalPrimosPrimeCarryProvenance_polarized_pythagoras_of_realizesOn
+    (M : ℕ) (s : ℂ) (S : Finset Nat.Primes)
+    (x y : CPFormal.Analytic.Cp.PrimeCarryDefectGlobalHilbert)
+    (hx :
+      CPFormal.Analytic.Cp.IsCanonicalEnrichedPrimeCarryDefectReadoutRealizationOn
+        M s S x)
+    (hy :
+      CPFormal.Analytic.Cp.IsCanonicalEnrichedPrimeCarryDefectReadoutRealizationOn
+        M s S y) :
+    inner ℝ x y =
+      ‖CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+          M s S‖ ^ 2 +
+        inner ℝ
+          (x - CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+            M s S)
+          (y - CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+            M s S) := by
+  let P : CPFormal.Analytic.Cp.PrimeCarryDefectGlobalHilbert :=
+    CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+      M s S
+  let Rₓ : CPFormal.Analytic.Cp.PrimeCarryDefectGlobalHilbert := x - P
+  let Rᵧ : CPFormal.Analytic.Cp.PrimeCarryDefectGlobalHilbert := y - P
+  have hPₓ : inner ℝ P Rₓ = 0 := by
+    dsimp [P, Rₓ]
+    exact
+      CPFormal.Analytic.Cp.inner_canonicalProvenanceState_residual_eq_zero_of_realizesOn
+        M s S x hx
+  have hPᵧ : inner ℝ P Rᵧ = 0 := by
+    dsimp [P, Rᵧ]
+    exact
+      CPFormal.Analytic.Cp.inner_canonicalProvenanceState_residual_eq_zero_of_realizesOn
+        M s S y hy
+  have hₓP : inner ℝ Rₓ P = 0 := by
+    rw [real_inner_comm]
+    exact hPₓ
+  have hx_decomp : x = P + Rₓ := by
+    dsimp [Rₓ]
+    abel
+  have hy_decomp : y = P + Rᵧ := by
+    dsimp [Rᵧ]
+    abel
+  calc
+    inner ℝ x y = inner ℝ (P + Rₓ) (P + Rᵧ) := by rw [hx_decomp, hy_decomp]
+    _ = (inner ℝ P P + inner ℝ P Rᵧ) +
+        (inner ℝ Rₓ P + inner ℝ Rₓ Rᵧ) := by
+      rw [inner_add_left, inner_add_right, inner_add_right]
+    _ = ‖P‖ ^ 2 + inner ℝ Rₓ Rᵧ := by
+      rw [hPᵧ, hₓP, real_inner_self_eq_norm_sq]
+      ring
+
+/-! The same polarized ledger written with the seeded TFVD/Bessel active term. -/
+theorem canonicalPrimosSeededTfvdBessel_polarized_pythagoras_of_realizesOn
+    (M : ℕ) (s : ℂ) (S : Finset Nat.Primes)
+    (x y : CPFormal.Analytic.Cp.PrimeCarryDefectGlobalHilbert)
+    (hx :
+      CPFormal.Analytic.Cp.IsCanonicalEnrichedPrimeCarryDefectReadoutRealizationOn
+        M s S x)
+    (hy :
+      CPFormal.Analytic.Cp.IsCanonicalEnrichedPrimeCarryDefectReadoutRealizationOn
+        M s S y) :
+    inner ℝ x y =
+      CPFormal.Analytic.Cp.finiteSeededTfvdBesselEnergy M s S +
+        inner ℝ
+          (x - CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+            M s S)
+          (y - CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+            M s S) := by
+  rw [canonicalPrimosPrimeCarryProvenance_polarized_pythagoras_of_realizesOn
+    M s S x y hx hy,
+    CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState_norm_sq_eq_finiteSeededTfvdBesselEnergy]
+
 theorem canonicalPrimosNativeMomentRealization_to_contractiveProvenanceState
     (M : ℕ) (s : ℂ)
     (x : CPFormal.Analytic.Cp.NativeGpreTowerHilbert)

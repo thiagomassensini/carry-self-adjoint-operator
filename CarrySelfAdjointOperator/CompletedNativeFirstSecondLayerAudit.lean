@@ -157,6 +157,48 @@ theorem canonicalCompletedNativeClockN2ParityBlock_eq_hankelBlocks
     simp [correctedClockN2ParityIndex,
       canonicalCompletedNativeCorrectedClockTowerCoefficient]
 
+/-! ## All-order first/second-layer coefficient sewing -/
+
+/-- Every even/even coefficient of the corrected tower is the ordinary
+Hankel moment `h_(i+j)`.  This is the all-order version of the upper-left
+`G₂` block displayed above. -/
+theorem canonicalCompletedNativeCorrectedClockTower_even_even_eq_hankel
+    (i j : ℕ) :
+    canonicalCompletedNativeCorrectedClockTowerCoefficient (2 * i) (2 * j) =
+      ((canonicalCompletedNativeLogDerivativeMoment (i + j) : ℝ) : ℂ) := by
+  simpa [correctedNativeClockParityIndex, greenWronskianMomentKernel] using
+    (canonicalCompletedNativeCorrectedClockTowerCoefficient_parity_eq_greenWronskianMomentKernel
+      (Sum.inl i) (Sum.inl j))
+
+/-- Every odd/odd coefficient of the corrected tower is the shifted Hankel
+moment `h_(i+j+1)`.  This is the all-order version of the lower-right `K₂`
+block displayed above. -/
+theorem canonicalCompletedNativeCorrectedClockTower_odd_odd_eq_shiftedHankel
+    (i j : ℕ) :
+    canonicalCompletedNativeCorrectedClockTowerCoefficient (2 * i + 1) (2 * j + 1) =
+      ((canonicalCompletedNativeLogDerivativeMoment (i + j + 1) : ℝ) : ℂ) := by
+  simpa [correctedNativeClockParityIndex, greenWronskianMomentKernel] using
+    (canonicalCompletedNativeCorrectedClockTowerCoefficient_parity_eq_greenWronskianMomentKernel
+      (Sum.inr i) (Sum.inr j))
+
+/-- The corrected clock has no even/odd coefficient.  Thus the first and
+second layers are coefficient-orthogonal before any Hilbert sewing is
+attempted. -/
+theorem canonicalCompletedNativeCorrectedClockTower_even_odd_eq_zero
+    (i j : ℕ) :
+    canonicalCompletedNativeCorrectedClockTowerCoefficient (2 * i) (2 * j + 1) = 0 := by
+  simpa [correctedNativeClockParityIndex, greenWronskianMomentKernel] using
+    (canonicalCompletedNativeCorrectedClockTowerCoefficient_parity_eq_greenWronskianMomentKernel
+      (Sum.inl i) (Sum.inr j))
+
+/-- The reverse mixed parity coefficient vanishes as well. -/
+theorem canonicalCompletedNativeCorrectedClockTower_odd_even_eq_zero
+    (i j : ℕ) :
+    canonicalCompletedNativeCorrectedClockTowerCoefficient (2 * i + 1) (2 * j) = 0 := by
+  simpa [correctedNativeClockParityIndex, greenWronskianMomentKernel] using
+    (canonicalCompletedNativeCorrectedClockTowerCoefficient_parity_eq_greenWronskianMomentKernel
+      (Sum.inr i) (Sum.inl j))
+
 /-- The even corner of the parity-ordered microscope is literally the
 ordinary Hankel matrix `G₂`, after scalar extension. -/
 theorem canonicalCompletedNativeClockN2_evenBlock_eq_hankelGram
