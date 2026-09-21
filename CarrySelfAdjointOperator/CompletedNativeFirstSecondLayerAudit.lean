@@ -7,6 +7,7 @@ import CarrySelfAdjointOperator.CompletedNativeC2HaarDoubleLog4Transport
 import CarrySelfAdjointOperator.CompletedNativeCentralChiralQuotientCurvature
 import CarrySelfAdjointOperator.CompletedNativeCausalLegChiralBridge
 import CarrySelfAdjointOperator.CompletedNativeTfvdGreenShiftedHankelFactorization
+import CarrySelfAdjointOperator.GreenJetParityReflection
 import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceCenterLegBridge
 import CarrySelfAdjointOperator.ProjectiveValveMomentFrontier
 import CarrySelfAdjointOperator.CompletedC3ValveNaturality
@@ -198,6 +199,46 @@ theorem canonicalCompletedNativeCorrectedClockTower_odd_even_eq_zero
   simpa [correctedNativeClockParityIndex, greenWronskianMomentKernel] using
     (canonicalCompletedNativeCorrectedClockTowerCoefficient_parity_eq_greenWronskianMomentKernel
       (Sum.inr i) (Sum.inl j))
+
+/-! ## Conditional material Green sewing (orthogonality before positivity) -/
+
+/-- The exact first/second-layer sewing statement available from the existing
+Green--Wronskian representation interface.  It identifies the corrected-clock
+parity blocks with the inner products of one geometric even/odd Green-jet
+family and records the vanishing mixed channels.  The hypothesis is stated
+explicitly because the repository has not proved this representation for the
+completed scalar carrier itself; this theorem therefore exposes the remaining
+material sewing gate rather than assuming it away.  No positivity, Cholesky,
+or defect factorization is used. -/
+theorem canonicalCompletedNativeCorrectedClockTower_conditionalGreenJetParitySewing
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation
+      canonicalCompletedNativeLogDerivativeMoment jet)
+    (i j : ℕ) :
+    (⟪greenJetInHilbert jet (Sum.inl i),
+        greenJetInHilbert jet (Sum.inl j)⟫_ℝ =
+      canonicalCompletedNativeLogDerivativeMoment (i + j)) ∧
+    (⟪greenJetInHilbert jet (Sum.inr i),
+        greenJetInHilbert jet (Sum.inr j)⟫_ℝ =
+      canonicalCompletedNativeLogDerivativeMoment (i + j + 1)) ∧
+    (⟪greenJetInHilbert jet (Sum.inl i),
+        greenJetInHilbert jet (Sum.inr j)⟫_ℝ = 0) ∧
+    (⟪greenJetInHilbert jet (Sum.inr i),
+        greenJetInHilbert jet (Sum.inl j)⟫_ℝ = 0) := by
+  have heven := hrep (Sum.inl i) (Sum.inl j)
+  have hodd := hrep (Sum.inr i) (Sum.inr j)
+  have hevenOdd := hrep (Sum.inl i) (Sum.inr j)
+  have hoddEven := hrep (Sum.inr i) (Sum.inl j)
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · simpa [greenWronskianMomentKernel, Matrix.gram,
+      greenJetInHilbert] using heven.symm
+  · simpa [greenWronskianMomentKernel, Matrix.gram,
+      greenJetInHilbert] using hodd.symm
+  · simpa [greenWronskianMomentKernel, Matrix.gram,
+      greenJetInHilbert] using hevenOdd.symm
+  · simpa [greenWronskianMomentKernel, Matrix.gram,
+      greenJetInHilbert] using hoddEven.symm
 
 /-- The even corner of the parity-ordered microscope is literally the
 ordinary Hankel matrix `G₂`, after scalar extension. -/
