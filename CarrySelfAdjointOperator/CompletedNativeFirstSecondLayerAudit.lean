@@ -769,8 +769,31 @@ theorem baseCarryGreen_totalLedger_invariant_audit
         CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.boundary target
           (CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.transport source target x)) =
       CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.interior source x +
-        CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.boundary source x :=
+      CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.boundary source x :=
   CPFormal.Analytic.Cp.baseCarryGreen_totalLedger_invariant source target x
+
+/-- The full native `ReadoutAtlas` transport theorem, exposed at the audit
+surface.  It transports the normalized Green readout and its closing predicate
+and transports only the *sum* of the interior and boundary ledger.  In
+particular, this is a coding/readout invariant, not an orthogonal decomposition
+of the two layers. -/
+theorem baseCarryGreen_minimal_view_invariance_audit
+    (source target : CPFormal.Analytic.Cp.CarryMaterialBase)
+    (x : CPFormal.Analytic.Cp.CarryVerticalL2) :
+    CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.normalizedRead target
+          (CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.transport source target x) =
+        CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.normalizedRead source x ∧
+      (CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.Closes target
+          (CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.transport source target x) ↔
+        CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.Closes source x) ∧
+      (CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.interior target
+          (CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.transport source target x) +
+        CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.boundary target
+          (CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.transport source target x)) =
+      CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.interior source x +
+        CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.boundary source x := by
+  exact CPFormal.Analytic.Cp.baseCarryGreenReadoutAtlas.minimal_view_invariance
+    source target x trivial
 
 /-! ## The exact TFVD valve identity is reconstruction, not an isometry
 
