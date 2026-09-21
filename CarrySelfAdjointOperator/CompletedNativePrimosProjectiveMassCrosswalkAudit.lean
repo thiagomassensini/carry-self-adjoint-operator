@@ -7,6 +7,8 @@ import CPFormal.Analytic.CpNativeGpreFiniteGluedGreenDefect
 import CPFormal.Analytic.CpNativeGpreHilbertGluedGreenDefect
 import CPFormal.Analytic.CpNativeGpreTfvdProjectiveAnalysis
 import CPFormal.Analytic.CpGenuineGprePrimeVerticalTraceAtlas
+import CPFormal.Analytic.CpGenuinePrimeCarryDefectUniformBound
+import CPFormal.Analytic.CpTfvdSeededFiniteBesselConservation
 import CPFormal.Analytic.CpTfvdSameEdgeCompletedPrecompressionCollapse
 
 /-!
@@ -229,6 +231,76 @@ theorem canonicalPrimosPrimeMassTraceFiniteState_eq_greenBulk
       CPFormal.Analytic.Cp.primeGreenBulkFiniteState M s S :=
   CPFormal.Analytic.Cp.primeMassGreenVerticalTraceFiniteState_eq_greenBulkFiniteState
     M s S
+
+/-! ## The closest positive lossless channel in `primos`
+
+The prime-carry provenance package does contain the kind of conservation law
+we were looking for, but for a different first output.  A state `x` realizing
+the active enriched prime readouts splits orthogonally into the canonical
+centered-carry provenance state and an unused residual.  The active term is
+also exactly the seeded TFVD Bessel energy.  These identities are therefore a
+genuine lossless dilation of the *provenance/readout* map.  Nothing in the
+package identifies that map with the radial chiral multiplier `Q`, so these
+aliases are recorded as a positive partial channel rather than as a Pick
+defect realization.
+-/
+
+theorem canonicalPrimosPrimeCarryProvenance_pythagoras_of_realizesOn
+    (M : ℕ) (s : ℂ) (S : Finset Nat.Primes)
+    (x : CPFormal.Analytic.Cp.PrimeCarryDefectGlobalHilbert)
+    (hrealizes :
+      CPFormal.Analytic.Cp.IsCanonicalEnrichedPrimeCarryDefectReadoutRealizationOn
+        M s S x) :
+    ‖x‖ ^ 2 =
+      ‖CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+          M s S‖ ^ 2 +
+        ‖x -
+          CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+            M s S‖ ^ 2 :=
+  CPFormal.Analytic.Cp.canonicalProvenanceState_pythagoras_of_realizesOn
+    M s S x hrealizes
+
+theorem canonicalPrimosPrimeCarryProvenance_residual_orthogonal_of_realizesOn
+    (M : ℕ) (s : ℂ) (S : Finset Nat.Primes)
+    (x : CPFormal.Analytic.Cp.PrimeCarryDefectGlobalHilbert)
+    (hrealizes :
+      CPFormal.Analytic.Cp.IsCanonicalEnrichedPrimeCarryDefectReadoutRealizationOn
+        M s S x) :
+    inner ℝ
+        (CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+          M s S)
+        (x -
+          CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+            M s S) = 0 :=
+  CPFormal.Analytic.Cp.inner_canonicalProvenanceState_residual_eq_zero_of_realizesOn
+    M s S x hrealizes
+
+theorem canonicalPrimosSeededTfvdBessel_pythagoras_of_realizesOn
+    (M : ℕ) (s : ℂ) (S : Finset Nat.Primes)
+    (x : CPFormal.Analytic.Cp.PrimeCarryDefectGlobalHilbert)
+    (hrealizes :
+      CPFormal.Analytic.Cp.IsCanonicalEnrichedPrimeCarryDefectReadoutRealizationOn
+        M s S x) :
+    ‖x‖ ^ 2 =
+      CPFormal.Analytic.Cp.finiteSeededTfvdBesselEnergy M s S +
+        ‖x -
+          CPFormal.Analytic.Cp.canonicalEnrichedPrimeCarryDefectProvenanceState
+            M s S‖ ^ 2 :=
+  CPFormal.Analytic.Cp.canonicalProvenanceState_pythagoras_seededTfvdBesselLedger_of_realizesOn
+    M s S x hrealizes
+
+theorem canonicalPrimosNativeMomentRealization_to_contractiveProvenanceState
+    (M : ℕ) (s : ℂ)
+    (x : CPFormal.Analytic.Cp.NativeGpreTowerHilbert)
+    (hx :
+      CPFormal.Analytic.Cp.IsNativeGprePrimeMomentRealizationAt
+        1 (3 * M) s x) :
+    ∃ y : CPFormal.Analytic.Cp.PrimeCarryDefectGlobalHilbert,
+      CPFormal.Analytic.Cp.IsCanonicalEnrichedPrimeCarryDefectReadoutRealization
+          M s y ∧
+        ‖y‖ ^ 2 ≤ (11 / 12 : ℝ) * ‖x‖ ^ 2 :=
+  CPFormal.Analytic.Cp.nativeMomentRealization_yields_contractive_globalRealization
+    M s x hx
 
 end
 
