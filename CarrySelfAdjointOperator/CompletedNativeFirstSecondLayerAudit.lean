@@ -240,6 +240,17 @@ theorem canonicalCompletedNativeCorrectedClockTower_conditionalGreenJetParitySew
   · simpa [greenWronskianMomentKernel, Matrix.gram,
       greenJetInHilbert] using hoddEven.symm
 
+/-- The pointwise mixed zeros above lift to the actual closed even/odd
+Green-jet subspaces.  This is the genuine geometric orthogonality available
+before any Hankel or Pick positivity transfer. -/
+theorem canonicalCompletedNativeCorrectedClockTower_conditionalGreenJetClosedParityOrthogonal
+    {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    {jet : (ℕ ⊕ ℕ) → E}
+    (hrep : IsGreenWronskianMomentKernelGramRepresentation
+      canonicalCompletedNativeLogDerivativeMoment jet) :
+    greenJetEvenHilbertSubspace jet ⟂ greenJetOddHilbertSubspace jet :=
+  greenJetHilbertSubspaces_isOrtho hrep
+
 /-- The even corner of the parity-ordered microscope is literally the
 ordinary Hankel matrix `G₂`, after scalar extension. -/
 theorem canonicalCompletedNativeClockN2_evenBlock_eq_hankelGram
