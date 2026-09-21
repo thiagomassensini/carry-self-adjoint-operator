@@ -5,6 +5,8 @@ import CPFormal.Analytic.CpMinimalProvenanceQuotient
 import CPFormal.Analytic.CpNativeCarryRealPrecompressionBoundaryWitness
 import CPFormal.Analytic.CpNativeGpreFiniteGluedGreenDefect
 import CPFormal.Analytic.CpNativeGpreHilbertGluedGreenDefect
+import CPFormal.Analytic.CpNativeGpreTfvdProjectiveAnalysis
+import CPFormal.Analytic.CpGenuineGprePrimeVerticalTraceAtlas
 import CPFormal.Analytic.CpTfvdSameEdgeCompletedPrecompressionCollapse
 
 /-!
@@ -136,6 +138,97 @@ theorem canonicalPrimosC2LogJet_enriched_reconstruction
         (CPFormal.Analytic.Cp.c2LogJetPrefixCore s N) :=
   CPFormal.Analytic.Cp.c2LogJetPrefixEnrichedAnalysis_reconstruction
     q hqpos hq1 S s N
+
+/-! ## The full projective TFVD--`G_pre` output
+
+The package also contains a genuinely projective family of all finite
+provenance atlases.  Its first output is still the native TFVD bracket--trace
+pair, while the second output records the two `G_pre` provenance roles.  The
+projective reconstruction reads the empty-atlas TFVD component and is an
+exact left inverse.  This is an algebraic reconstruction statement; no norm
+balance is asserted for the four displayed output slots.
+-/
+
+theorem canonicalPrimosProjectiveAnalysis_compatible
+    (q : ℝ) (x : CPFormal.Analytic.Cp.CarryVerticalL2) :
+    CPFormal.Analytic.Cp.NativeGpreTfvdProjectiveCompatible
+      (CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveAnalysis q x) :=
+  CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveAnalysis_compatible q x
+
+theorem canonicalPrimosProjectiveAnalysis_first_output_eq_bracket
+    (q : ℝ) (S : Finset CPFormal.Analytic.Cp.NativeGpreBoundaryContext)
+    (x : CPFormal.Analytic.Cp.CarryVerticalL2) :
+    (CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveAnalysis q x S).1.1 =
+      CPFormal.Analytic.Cp.carryWeightedVerticalCenteredBracket q x := by
+  rfl
+
+theorem canonicalPrimosProjectiveAnalysis_first_output_eq_trace
+    (q : ℝ) (S : Finset CPFormal.Analytic.Cp.NativeGpreBoundaryContext)
+    (x : CPFormal.Analytic.Cp.CarryVerticalL2) :
+    (CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveAnalysis q x S).1.2 =
+      CPFormal.Analytic.Cp.carryWeightedVerticalTrace q x := by
+  rfl
+
+theorem canonicalPrimosProjectiveAnalysis_second_output_eq_provenance
+    (q : ℝ) (S : Finset CPFormal.Analytic.Cp.NativeGpreBoundaryContext)
+    (x : CPFormal.Analytic.Cp.CarryVerticalL2) :
+    (CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveAnalysis q x S).2 =
+      (CPFormal.Analytic.Cp.nativeGpreFiniteContinuousBoundaryValueLift S x,
+        CPFormal.Analytic.Cp.nativeGpreFiniteContinuousBoundaryNumberFluxLift S x) := by
+  rfl
+
+theorem canonicalPrimosProjectiveAnalysis_reconstruction_exact
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (x : CPFormal.Analytic.Cp.CarryVerticalL2) :
+    CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveReconstruction q hqpos.le hq1
+        (CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveAnalysis q x) = x :=
+  CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveReconstruction_analysis
+    q hqpos hq1 x
+
+theorem canonicalPrimosProjectiveAnalysis_reconstruction_is_green_add_return
+    (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (data : CPFormal.Analytic.Cp.NativeGpreTfvdProjectiveAnalysisCarrier) :
+    CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveReconstruction q hq0 hq1 data =
+      CPFormal.Analytic.Cp.carryVerticalL2WeightedGreen q
+          (data (∅ : Finset CPFormal.Analytic.Cp.NativeGpreBoundaryContext)).1.1 +
+        CPFormal.Analytic.Cp.carryWeightedVerticalReturn q hq0 hq1
+          (data (∅ : Finset CPFormal.Analytic.Cp.NativeGpreBoundaryContext)).1.2 := by
+  rfl
+
+theorem canonicalPrimosProjectiveAnalysis_injective
+    (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1) :
+    Function.Injective (CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveAnalysis q) :=
+  CPFormal.Analytic.Cp.nativeGpreTfvdProjectiveAnalysis_injective q hqpos hq1
+
+/-! ## The strongest positive prime-wise output
+
+The prime vertical-trace atlas is a real Hilbert state with an exact norm
+ledger.  Its trace has zero value coordinate and Green bulk flux.  This is a
+genuine positive output, but it belongs to the provenance/energy channel: no
+theorem identifies it with the projective multiplier output `Q v` or with a
+polarized Pick defect.
+-/
+
+theorem canonicalPrimosPrimeMassFiber_trace_eq_zero_greenBulk
+    (M : ℕ) (s : ℂ) (p : Nat.Primes) :
+    CPFormal.Analytic.Cp.primeCarryWeightedVerticalTrace (p : ℕ)
+        (CPFormal.Analytic.Cp.primeMassGreenVerticalFiberState M s p) =
+      (0, (CPFormal.Analytic.Cp.primeCarryGreenBulkCutoffProfile M s p : ℂ)) :=
+  CPFormal.Analytic.Cp.primeCarryWeightedVerticalTrace_massFiber M s p
+
+theorem canonicalPrimosPrimeMassTraceFiniteState_norm_sq
+    (M : ℕ) (s : ℂ) (S : Finset Nat.Primes) :
+    ‖CPFormal.Analytic.Cp.primeMassGreenVerticalTraceFiniteState M s S‖ ^ 2 =
+      ∑ p ∈ S,
+        (CPFormal.Analytic.Cp.primeMassGreenVerticalTraceFluxProfile M s p) ^ 2 :=
+  CPFormal.Analytic.Cp.primeMassGreenVerticalTraceFiniteState_norm_sq M s S
+
+theorem canonicalPrimosPrimeMassTraceFiniteState_eq_greenBulk
+    (M : ℕ) (s : ℂ) (S : Finset Nat.Primes) :
+    CPFormal.Analytic.Cp.primeMassGreenVerticalTraceFiniteState M s S =
+      CPFormal.Analytic.Cp.primeGreenBulkFiniteState M s S :=
+  CPFormal.Analytic.Cp.primeMassGreenVerticalTraceFiniteState_eq_greenBulkFiniteState
+    M s S
 
 end
 
