@@ -1064,3 +1064,189 @@ critério.
 
 Esse é o ponto que explica simultaneamente por que a memória de “fechou” é
 legítima e por que o theorem final incondicional ainda não apareceu na busca.
+
+## 19. Avanço posterior do mesmo dia — rota B como correção métrica com canal de perda
+
+Depois da consolidação acima, a rota **B — carrier TFVD/Green corrigido** foi
+escolhida como a continuação principal. O primeiro avanço está em
+[`CompletedNativeTfvdGreenCorrectedMetric.lean`](CarrySelfAdjointOperator/CompletedNativeTfvdGreenCorrectedMetric.lean).
+
+### 19.1. A métrica BR2 literal de C3 foi calculada em toda ordem
+
+O arquivo anterior
+`CompletedNativeTfvdSixSourceBr2EnergyExcess.lean` continha as contas
+explícitas dos primeiros blocos de tamanhos dois e três. A nova prova global
+
+```lean
+br2C3CameraBracketVerticalState_inner
+```
+
+estabelece, para quaisquer índices naturais `i,j`:
+
+\[
+\left\langle B_i,B_j\right\rangle
+=
+\begin{cases}
+6,&i=j,\\
+0,&i\ne j.
+\end{cases}
+\]
+
+Portanto a família literal completa de brackets C3, raio um, é ortogonal e
+tem energia constante `6`. Isso promove as contas finitas anteriores para as
+identidades all-order compiladas:
+
+\[
+\boxed{
+E_N^{\mathrm{even}}=6I-H_N,
+\qquad
+E_N^{\mathrm{odd}}=6I-K_N,
+\qquad
+E_N^{\mathrm{cross}}=0.
+}
+\]
+
+Os nomes Lean são:
+
+```text
+nativeC3SeededClockTfvdSixSourceBr2EnergyExcess_evenBlock_eq
+nativeC3SeededClockTfvdSixSourceBr2EnergyExcess_oddBlock_eq
+nativeC3SeededClockTfvdSixSourceBr2EnergyExcess_crossBlock_eq_zero
+```
+
+Aqui `H_N` e `K_N` são, respectivamente, os blocos Hankel nativo e Hankel
+deslocado. Essa igualdade não afirma que `H_N` ou `K_N` são positivos; ela
+fixa exatamente qual energia a correção deve retirar do carrier literal.
+
+### 19.2. A correção correta precisa ser uma compressão, não uma expansão
+
+A nova estrutura
+
+```lean
+CanonicalCompletedNativeTfvdGreenLosslessCorrection E Loss
+```
+
+parte do carrier TFVD/Green fiel já existente e fornece dois mapas reais
+lineares:
+
+```text
+correctedMap : carrier TFVD → E
+lossMap      : carrier TFVD → Loss
+```
+
+com:
+
+1. `correctedMap` injetivo, para preservar a independência das incidências;
+2. a identidade de Gram polarizada
+
+\[
+\langle x,y\rangle
+=
+\langle Cx,Cy\rangle
++
+\langle Lx,Ly\rangle.
+\]
+
+Assim, o output corrigido `C` e o canal de perda `L` formam uma decomposição
+pitagórica do estado TFVD original. O sinal não é arbitrário: o momento
+nativo aparece depois de **subtrair** o excesso do Gram literal.
+
+A proposição
+
+```lean
+RealizesSixSourceEnergyExcess
+```
+
+exige que o Gram do canal `lossMap`, aplicado aos brackets com sua proveniência
+original, seja exatamente o excesso de seis fontes já construído:
+
+\[
+\langle LB_i,LB_j\rangle
+=
+\langle B_i,B_j\rangle-C_6(i,j).
+\]
+
+O lado direito conserva o ledger TFVD/`G_pre`, completion, canais ordinário e
+log-jet e os resíduos já transportados. Ele não é uma fatorização de Hankel
+introduzida depois do fato.
+
+### 19.3. Essa costura entrega exatamente o certificado final
+
+Foi provado:
+
+```lean
+sixSourceCenterLegCoefficient_eq_corrected_inner
+toRealHPCarrierCertificate
+toStieltjesPositivity
+```
+
+Isto é, se o canal geométrico de perda realizar o excesso explícito, então:
+
+\[
+C_6(i,j)=\langle CB_i,CB_j\rangle
+\]
+
+em toda bidegree. A injetividade de `C` transporta automaticamente a
+independência all-order das incidências. A recorrência da torre de seis fontes
+identifica `C_6` com os coeficientes polarizados nativos. Logo o mesmo objeto
+produz, sem hipótese adicional de Hankel/Jacobi:
+
+```text
+CompletedNativeRealHPCarrierCertificate
+CanonicalCompletedNativeStieltjesPositivity
+```
+
+Essa ainda é uma redução condicional: falta construir `lossMap` a partir dos
+canais TFVD/Green concretos. A melhoria é que o gate deixou de ser a igualdade
+abstrata “Gram corrigido = momento”. Agora ele tem direção, sinal, carrier de
+origem, lei de conservação e residual de proveniência explicitamente fixados.
+
+### 19.4. Calibração obrigatória no grau zero
+
+Para C3, todo candidato que satisfizer a nova interface obedece aos theorems:
+
+```lean
+loss_even_zero_norm_sq_eq_six_sub_h0
+corrected_even_zero_norm_sq_eq_h0
+corrected_even_zero_norm_sq_lt_raw
+loss_even_zero_ne_zero
+```
+
+ou seja:
+
+\[
+\boxed{
+\|LB_0\|^2=6-h_0,
+\qquad
+\|CB_0\|^2=h_0,
+\qquad
+\|CB_0\|^2<\|B_0\|^2=6.
+}
+\]
+
+Consequências para a próxima construção:
+
+- uma isometria do carrier literal não pode funcionar;
+- uma inclusão ortogonal que apenas adicione canais positivos não pode
+  funcionar;
+- o canal de perda não pode ser zero;
+- a correção deve ser uma compressão genuína, mas injetiva nas incidências;
+- o primeiro teste de qualquer candidato concreto é reproduzir exatamente
+  `6 - h₀` no output de perda, antes de tentar a identidade em toda ordem.
+
+### 19.5. Nova fronteira operacional
+
+A tarefa material mais concentrada passa a ser:
+
+\[
+\boxed{
+\text{construir, dos canais TFVD/Green/}G_{\mathrm{pre}}\text{ existentes,}
+\quad L
+\quad\text{tal que}\quad
+\langle LB_i,LB_j\rangle=E(i,j),
+}
+\]
+
+junto de seu complemento corrigido injetivo `C` e da identidade pitagórica.
+Se essa construção for obtida, a passagem ao certificado HP e a Stieltjes
+all-order já está compilada no novo módulo.
