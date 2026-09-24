@@ -4028,3 +4028,230 @@ a reportar somente:
 ```text
 propext, Classical.choice, Quot.sound.
 ```
+
+## 32. Whitening físico finito concreto — Gram literal positivo, complexificação e handoff sem hipótese externa
+
+### 32.1. O Gram literal correto foi localizado
+
+O objeto novo
+
+```lean
+finitePhysicalSixCameraRowGram cutoff
+```
+
+é, por definição literal,
+
+\[
+G_N^\mathbb R
+=
+\texttt{finiteCameraRowGram}
+  (\texttt{finiteLiteralSixCameraMatrix}\;N)
+=C_N^\mathbb R(C_N^\mathbb R)^\mathsf T.
+\]
+
+Ele não é o `sixCameraGram` periódico e não foi identificado com o objeto
+limite `sixCameraInverseSqrt`. A ponte de coordenadas já existente mostra que
+as entradas são o Gram das linhas literais finitas; a nova prova trabalha
+diretamente nesta matriz, sem importar uma positividade assintótica.
+
+### 32.2. Positividade definida a partir de um minor estrutural uniforme
+
+Foi provado:
+
+```lean
+finiteLiteralSixCameraMatrix_vecMul_injective
+finitePhysicalSixCameraRowGram_posDef
+```
+
+para `1 ≤ cutoff`. A condição é mínima para esta realização: no cutoff `0` a
+janela finita tem apenas três posições e, portanto, não pode conter um minor
+de seis colunas que dê independência às seis linhas.
+
+A prova não usa floating point, fitting, nem uma lista de certificados por
+cutoff. Ela restringe todas as seis linhas às seis primeiras posições e mostra
+exatamente dois regimes uniformes:
+
+\[
+\det M_1=880,
+\qquad
+\det M_N=960\quad(N\ge2).
+\]
+
+O primeiro é o template literal do cutoff `1`; o segundo é o mesmo minor no
+regime em que cada entrada já coincide com o perfil periódico. Esses são
+inteiros exatos verificados por `decide` no kernel; o argumento que passa do
+minor à matriz completa é a injetividade da restrição, e daí
+
+\[
+\boxed{G_N^\mathbb R>0\qquad(N\ge1).}
+\]
+
+### 32.3. A raiz inversa positiva concreta e sua inversa à esquerda
+
+Foram definidos:
+
+```lean
+finitePhysicalSixCameraRealWhitening
+finitePhysicalSixCameraRealWhiteningInverse
+finitePhysicalSixCameraRealWhitening_whitens
+```
+
+com
+
+\[
+W_N^\mathbb R=(G_N^\mathbb R)^{-1/2}
+\]
+
+na definição `positiveInverseSqrt` já existente. A positividade definida
+anterior fornece `IsUnit` dessa raiz, e o theorem
+
+```lean
+finitePhysicalSixCameraRealWhiteningInverse_mul
+```
+
+fecha literalmente
+
+\[
+(W_N^\mathbb R)^{-1}W_N^\mathbb R=I.
+\]
+
+Além da invertibilidade requerida pelo bridge de kernel, o theorem
+`finitePhysicalSixCameraRealWhitening_whitens` registra a normalização
+canônica real completa:
+
+\[
+W_N^\mathbb R G_N^\mathbb R W_N^\mathbb R=I.
+\]
+
+### 32.4. Ponte real → complexa: o que foi provado, e o que não foi forçado
+
+O repo já representa a matriz complexa literal como
+
+```lean
+finiteCameraMatrix cutoff sixCamera
+```
+
+e agora prova:
+
+```lean
+complexify_finiteLiteralSixCameraMatrix
+complexify_finitePhysicalSixCameraRowGram
+```
+
+isto é,
+
+\[
+\operatorname{complexify}(C_N^\mathbb R)=C_N^\mathbb C,
+\qquad
+\operatorname{complexify}(G_N^\mathbb R)
+=C_N^\mathbb C(C_N^\mathbb C)^\ast.
+\]
+
+O whitening usado pelo handoff físico é, portanto, definido honestamente por
+
+\[
+W_N=
+\operatorname{complexify}\!\left((G_N^\mathbb R)^{-1/2}\right),
+\]
+
+e `finitePhysicalSixCameraWhiteningInverse_mul` constrói
+
+\[
+W_N^{-1}W_N=I.
+\]
+
+Não foi afirmada a igualdade mais forte
+
+\[
+W_N=(C_N^\mathbb C(C_N^\mathbb C)^\ast)^{-1/2}
+\]
+
+na álgebra funcional complexa do repo: essa exigiria uma ponte de
+funcional calculus que não é necessária para o evento de cegueira. O que já
+foi provado é precisamente a complexificação canônica do whitening real do
+Gram literal e a sua invertibilidade sobre `ℂ`.
+
+### 32.5. Handoff concreto sem `hleft` fornecido pelo usuário
+
+Foi definido:
+
+```lean
+finitePhysicalSixCameraWhitenedCompletedReadout cutoff time
+```
+
+e formalizada a fórmula de laboratório como reescrita:
+
+```lean
+finitePhysicalSixCameraWhitenedCompletedReadout_eq_whitening_mulVec_raw_add_tail
+```
+
+ou seja,
+
+\[
+\widetilde\Phi_N(t)=
+W_N\bigl(C_N\psi_N(t)+T_N(t)\bigr).
+\]
+
+Para todo `1 ≤ cutoff`, a hipótese abstrata `hleft` desaparece no theorem:
+
+```lean
+finitePhysicalSixCameraWhitenedCompletedReadout_eq_zero_iff_nativeZero
+```
+
+que prova
+
+\[
+\boxed{
+\widetilde\Phi_N(t)=0
+\iff
+F(t)=0.
+}
+\]
+
+Os corolários reutilizam, sem reconstrução, o bridge já existente:
+
+```lean
+finitePhysicalSixCameraWhitenedCompletedReadout_zero_hasSignedHeightEigenvalue
+finitePhysicalSixCameraWhitenedCompletedReadout_zero_iff_jacobiEigenvalue_inv_sq
+```
+
+Assim, sob o mesmo `CompletedNativeRealHPCarrierCertificate`, cegueira física
+concretamente whitened implica autovalor do signed-height; para `t ≠ 0`, é
+equivalente ao autovalor Jacobi em `(t²)⁻¹`.
+
+### 32.6. Dependência de cutoff preservada corretamente
+
+O vetor não-whitened `canonicalCompletedSixCameraPhysicalReadout` continua
+exatamente estabilizado em cutoff. Já `finitePhysicalSixCameraWhitening N`
+pode variar com `N`; não foi provada igualdade entre whitenings de cutoffs
+distintos, nem ela é necessária. O resultado concreto é, para cada cutoff
+admissível,
+
+\[
+W_N\widetilde C(t)=0
+\iff
+\widetilde C(t)=0
+\iff F(t)=0.
+\]
+
+Logo nenhuma promoção topológica `N\to\infty` é necessária para esta camada
+de zero-set. A eventual identificação da raiz funcional complexa e qualquer
+estudo de valores/multiplicidades permanecem proposições separadas.
+
+### 32.7. Validação
+
+Os módulos desta rodada são:
+
+```text
+CarrySelfAdjointOperator/FinitePhysicalSixCameraConcreteWhitening.lean
+CarrySelfAdjointOperator/FinitePhysicalSixCameraConcreteWhiteningAudit.lean
+```
+
+Foram verificados localmente o módulo, seu target Lake e o audit. O audit
+inclui o minor, a injetividade, `PosDef`, as duas inversas, a ponte de Gram
+real→complexa, a equivalência concreta de zeros e os dois corolários
+espectrais. Ele reporta somente:
+
+```text
+propext, Classical.choice, Quot.sound.
+```
