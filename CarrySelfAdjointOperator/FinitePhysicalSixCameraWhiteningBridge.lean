@@ -7,21 +7,23 @@ import Mathlib.Tactic
 /-!
 # Finite physical six-camera whitening bridge
 
-This module records the part of the finite laboratory realization that is
-already represented by the checked library, and keeps distinct the one seam
-that is not yet present.
+This module records the checked finite laboratory realization and its exact
+additive completion ledger.
 
 * `finiteCameraMatrix` is the literal complex finite camera matrix;
 * `finiteRealSpectralStateVector` is the finite logarithmic orbit with
   critical seed amplitude;
 * a left-invertible whitening preserves the kernel of every raw readout;
 * the completed native camera characteristic is not the raw finite head: it
-  is that head plus its exact whole-center analytic tail.
+  is that head plus its exact whole-center analytic tail; and
+* for the historical six-camera package, that tail is added before the
+  zero-equivalent completed readout and optional whitening handoff.
 
 Consequently, whitening is not the obstruction to comparing a finite
-laboratory readout with the canonical completed characteristic.  The missing
-comparison is the *additive completion* of the finite orbit readout.  This is
-why a nonvanishing scalar gauge alone cannot identify the two finite objects.
+laboratory readout with the canonical completed characteristic.  The required
+comparison is the *additive completion* of the finite orbit readout, now
+implemented for the six-camera package.  A nonvanishing scalar gauge alone
+would not identify the two finite objects.
 
 No height operator, Jacobi operator, Weyl theorem, positivity certificate, or
 limit assertion is constructed here.
@@ -136,11 +138,130 @@ theorem finiteCameraPhysicalWhitenedReadout_eq_zero_iff_raw_eq_zero
 
 /-- The scalar raw finite head for one camera.  This is the exact finite
 stencil characteristic already used by the canonical completed ledger.  It
-is deliberately named separately from the matrix expression above until the
-matrix-orbit/stencil equality is supplied as a theorem. -/
+is deliberately named separately from the matrix expression above; their
+exact equality is supplied below by the matrix--stencil theorem. -/
 def finiteCameraPhysicalRawHead
     (camera cutoff : ℕ) (time : ℝ) : ℂ :=
   finiteBracketCharacteristic camera cutoff (nativeLine time)
+
+/-- The finite real-spectral coordinate is the positive-index Dirichlet
+sample on the native line.  This is the coordinate-level identification used
+to expand the literal matrix readout into the finite bracket stencil. -/
+theorem realSpectralState_eq_dirichletValue_nativeLine
+    (time : ℝ) (n : ℕ) :
+    realSpectralState time n =
+      dirichletValue (nativeLine time) (n + 1) := by
+  unfold realSpectralState positiveDirichletValue dirichletValue
+  congr 2
+  apply Complex.ext <;>
+    simp [nativeLine, criticalLineParameter]
+
+private theorem dirichletValue_nativeLine_zero (time : ℝ) :
+    dirichletValue (nativeLine time) 0 = 0 := by
+  unfold dirichletValue
+  have hnonzero : -nativeLine time ≠ 0 := by
+    intro hzero
+    have hre := congrArg Complex.re hzero
+    simp [nativeLine] at hre
+  simpa only [Nat.cast_zero] using Complex.zero_cpow hnonzero
+
+private theorem sum_range_succ_shift_eq_sum_range
+    (f : ℕ → ℂ) (hzero : f 0 = 0) (length : ℕ) :
+    (∑ n ∈ Finset.range length, f (n + 1)) =
+      ∑ n ∈ Finset.range (length + 1), f n := by
+  induction length with
+  | zero => simp [hzero]
+  | succ length ih =>
+      calc
+        (∑ n ∈ Finset.range (Nat.succ length), f (n + 1)) =
+            (∑ n ∈ Finset.range length, f (n + 1)) + f (length + 1) := by
+              rw [Finset.sum_range_succ]
+        _ = (∑ n ∈ Finset.range (length + 1), f n) + f (length + 1) := by
+              rw [ih]
+        _ = ∑ n ∈ Finset.range (Nat.succ length + 1), f n := by
+              simpa [Nat.succ_eq_add_one] using
+                (Finset.sum_range_succ f (length + 1)).symm
+
+/-- Finite stencil evaluation written as a sum over any camera-complete
+positive coordinate window.  This is the scalar matrix--stencil expansion;
+the common family window used by `finiteCameraMatrix` is such a window. -/
+theorem finiteBracketCharacteristic_nativeLine_eq_sum_finiteCoefficientAt
+    {camera cutoff length : ℕ} (hcamera : 2 ≤ camera)
+    (hlength : finiteCameraWindow camera cutoff ≤ length) (time : ℝ) :
+    finiteBracketCharacteristic camera cutoff (nativeLine time) =
+      ∑ n ∈ Finset.range length,
+        (finiteCoefficientAt camera cutoff n : ℂ) * realSpectralState time n := by
+  rw [← evalDirichletStencil_finiteStencil]
+  unfold evalDirichletStencil
+  rw [Finsupp.linearCombination_apply]
+  let f : ℕ → ℂ := fun n =>
+    (finiteCoefficient camera cutoff n : ℂ) * dirichletValue (nativeLine time) n
+  have hsupport : (finiteStencil camera cutoff).support ⊆
+      Finset.range (length + 1) := by
+    intro n hn
+    by_contra hnotmem
+    have hnle : length + 1 ≤ n := by
+      exact Nat.le_of_not_gt (by simpa only [Finset.mem_range] using hnotmem)
+    have hwindow : finiteCameraWindow camera cutoff < n := by omega
+    have hcoefficient : finiteCoefficient camera cutoff n = 0 :=
+      finiteCoefficient_eq_zero_above_complete_horizon hcamera hwindow
+    have hstencil : finiteStencil camera cutoff n = 0 := by
+      rw [finiteStencil_apply, hcoefficient]
+    exact (Finsupp.mem_support_iff.mp hn) hstencil
+  rw [Finsupp.sum_of_support_subset (finiteStencil camera cutoff) hsupport
+    (fun i coefficient => coefficient • dirichletValue (nativeLine time) i)
+    (by intro i hi; simp)]
+  have hsum :
+      (∑ n ∈ Finset.range (length + 1), f n) =
+        ∑ n ∈ Finset.range length, f (n + 1) := by
+    symm
+    apply sum_range_succ_shift_eq_sum_range
+    simp [f, dirichletValue_nativeLine_zero]
+  rw [show (∑ x ∈ Finset.range (length + 1),
+      (finiteStencil camera cutoff x) • dirichletValue (nativeLine time) x) =
+      ∑ x ∈ Finset.range (length + 1), f x by
+        apply Finset.sum_congr rfl
+        intro x hx
+        simp only [f, finiteStencil_apply, zsmul_eq_mul]
+    , hsum]
+  apply Finset.sum_congr rfl
+  intro n hn
+  change (finiteCoefficient camera cutoff (n + 1) : ℂ) *
+      dirichletValue (nativeLine time) (n + 1) =
+    (finiteCoefficient camera cutoff (n + 1) : ℂ) * realSpectralState time n
+  rw [realSpectralState_eq_dirichletValue_nativeLine]
+
+/-- Gate A's missing matrix--stencil identity.  The literal finite camera
+matrix applied to the finite logarithmic orbit has, in every camera slot, the
+finite bracket head for that camera.  No completion tail is used here. -/
+theorem finiteCameraPhysicalRawReadout_apply_eq_finiteBracketCharacteristic
+    {index : Type*} [Fintype index]
+    (cutoff : ℕ) (camera : index → ℕ) (time : ℝ) (i : index)
+    (hcamera : 2 ≤ camera i) :
+    finiteCameraPhysicalRawReadout cutoff camera time i =
+      finiteCameraPhysicalRawHead (camera i) cutoff time := by
+  unfold finiteCameraPhysicalRawReadout finiteCameraPhysicalRawHead
+  simp only [Matrix.mulVec, dotProduct, finiteCameraMatrix,
+    finiteRealSpectralStateVector_apply]
+  let length := finiteFamilyWindow cutoff camera
+  change (∑ x : Fin length,
+      (finiteCoefficientAt (camera i) cutoff x.val : ℂ) *
+        realSpectralState time x.val) =
+      finiteBracketCharacteristic (camera i) cutoff (nativeLine time)
+  calc
+    (∑ x : Fin length,
+        (finiteCoefficientAt (camera i) cutoff x.val : ℂ) *
+          realSpectralState time x.val) =
+        ∑ n ∈ Finset.range length,
+          (finiteCoefficientAt (camera i) cutoff n : ℂ) * realSpectralState time n :=
+      by
+        simpa only using (Fin.sum_univ_eq_sum_range
+          (fun n : ℕ =>
+            (finiteCoefficientAt (camera i) cutoff n : ℂ) *
+              realSpectralState time n) length)
+    _ = finiteBracketCharacteristic (camera i) cutoff (nativeLine time) :=
+      (finiteBracketCharacteristic_nativeLine_eq_sum_finiteCoefficientAt
+        hcamera (finiteCameraWindow_le_finiteFamilyWindow cutoff camera i) time).symm
 
 /-- The exact omitted whole-center contribution of a finite camera head. -/
 def finiteCameraPhysicalCompletionTail
@@ -223,6 +344,202 @@ theorem finiteSixCameraPhysicalRawHead_eq_zero_iff_completionTail_eq_zero_of_nat
       finiteSixCameraPhysicalCompletionTail cutoff time = 0 := by
   rw [finiteSixCameraPhysicalRawHead_eq_neg_completionTail_of_nativeZero
     cutoff time hzero, neg_eq_zero]
+
+/-- The literal matrix readout for the six historical cameras. -/
+def finiteSixCameraPhysicalRawReadout (cutoff : ℕ) (time : ℝ) : Fin 6 → ℂ :=
+  finiteCameraPhysicalRawReadout cutoff sixCamera time
+
+/-- The finite matrix calculation is exactly the vector of finite bracket
+heads, coordinate by coordinate. -/
+theorem finiteSixCameraPhysicalRawReadout_eq_rawHead
+    (cutoff : ℕ) (time : ℝ) :
+    finiteSixCameraPhysicalRawReadout cutoff time =
+      finiteSixCameraPhysicalRawHead cutoff time := by
+  funext i
+  exact finiteCameraPhysicalRawReadout_apply_eq_finiteBracketCharacteristic
+    cutoff sixCamera time i (two_le_sixCamera i)
+
+/-- The unnormalized completed camera vector, before removing the individual
+nonvanishing camera factors.  It is the literal target of `raw head + tail`. -/
+def finiteSixCameraCompletedNativeReadout
+    (cutoff : ℕ) (time : ℝ) : Fin 6 → ℂ :=
+  fun i => completedNativeCharacteristic (sixCamera i) cutoff (nativeLine time)
+
+/-- The finite physical readout corrected by the already-existing whole-center
+tail.  This is the finite object that corresponds to the completed camera
+ledger; it is not the raw truncated matrix readout. -/
+def finiteSixCameraCompletedPhysicalReadout
+    (cutoff : ℕ) (time : ℝ) : Fin 6 → ℂ :=
+  finiteSixCameraPhysicalRawReadout cutoff time +
+    finiteSixCameraPhysicalCompletionTail cutoff time
+
+/-- Gate B/C: the literal finite matrix readout plus the literal whole-center
+tail is exactly the unnormalized completed six-camera vector. -/
+theorem finiteSixCameraCompletedPhysicalReadout_eq_completedNativeReadout
+    (cutoff : ℕ) (time : ℝ) :
+    finiteSixCameraCompletedPhysicalReadout cutoff time =
+      finiteSixCameraCompletedNativeReadout cutoff time := by
+  rw [finiteSixCameraCompletedPhysicalReadout,
+    finiteSixCameraPhysicalRawReadout_eq_rawHead,
+    finiteSixCameraPhysicalRawHead_add_completionTail_eq_completed]
+  rfl
+
+/-- The unnormalized completed six-camera vector has the canonical completed
+native zero locus.  Individual factor normalizations are not needed for this
+zero-set statement. -/
+theorem finiteSixCameraCompletedNativeReadout_eq_zero_iff_nativeZero
+    (cutoff : ℕ) (time : ℝ) :
+    finiteSixCameraCompletedNativeReadout cutoff time = 0 ↔
+      completedNativeOperatorCharacteristic (time : ℂ) = 0 := by
+  constructor
+  · intro hzero
+    have hcoordinate := congrFun hzero (0 : Fin 6)
+    change completedNativeCharacteristic (sixCamera (0 : Fin 6)) cutoff
+      (nativeLine time) = 0 at hcoordinate
+    exact (completedNativeCharacteristic_nativeLine_eq_zero_iff
+      (two_le_sixCamera (0 : Fin 6)) cutoff time).mp hcoordinate
+  · intro hzero
+    funext i
+    change completedNativeCharacteristic (sixCamera i) cutoff (nativeLine time) = 0
+    exact (completedNativeCharacteristic_nativeLine_eq_zero_iff
+      (two_le_sixCamera i) cutoff time).mpr hzero
+
+/-- Gate C: completed physical collective blindness is equivalent to the
+canonical native characteristic zero condition. -/
+theorem finiteSixCameraCompletedPhysicalReadout_eq_zero_iff_nativeZero
+    (cutoff : ℕ) (time : ℝ) :
+    finiteSixCameraCompletedPhysicalReadout cutoff time = 0 ↔
+      completedNativeOperatorCharacteristic (time : ℂ) = 0 := by
+  rw [finiteSixCameraCompletedPhysicalReadout_eq_completedNativeReadout,
+    finiteSixCameraCompletedNativeReadout_eq_zero_iff_nativeZero]
+
+/-- The completed physical vector and the previously formalized normalized
+completed six-camera collective readout are zero-equivalent.  They are not
+claimed equal: each coordinate of the latter has removed a nonvanishing
+camera factor and retained the common completion factor. -/
+theorem finiteSixCameraCompletedPhysicalReadout_eq_zero_iff_collectiveReadout_eq_zero
+    (cutoff : ℕ) (time : ℝ) :
+    finiteSixCameraCompletedPhysicalReadout cutoff time = 0 ↔
+      completedNativeSixCameraCollectiveReadout (fun _ => cutoff) time = 0 := by
+  rw [finiteSixCameraCompletedPhysicalReadout_eq_zero_iff_nativeZero,
+    completedNativeSixCameraCollectiveReadout_eq_zero_iff_nativeZero]
+
+/-- The completed physical six-camera vector is a direct handoff to the
+pre-existing zero-equivalent height-spectrum bridge. -/
+theorem finiteSixCameraCompletedPhysicalReadout_isZeroEquivalent
+    (cutoff : ℕ) :
+    IsZeroEquivalentCompletedNativeHeightReadout
+      (finiteSixCameraCompletedPhysicalReadout cutoff) :=
+  fun time => finiteSixCameraCompletedPhysicalReadout_eq_zero_iff_nativeZero cutoff time
+
+/-- Whiten the *completed* physical vector by a supplied complex matrix.  The
+matrix is kept explicit: proving that it is the inverse square root of the
+literal finite Gram is a separate finite-Gram theorem. -/
+def finiteSixCameraCompletedPhysicalWhitenedReadout
+    (whitening : Matrix (Fin 6) (Fin 6) ℂ)
+    (cutoff : ℕ) (time : ℝ) : Fin 6 → ℂ :=
+  whitening *ᵥ finiteSixCameraCompletedPhysicalReadout cutoff time
+
+/-- Gate D, first half: left-invertible whitening preserves the completed
+physical collective-blindness condition. -/
+theorem finiteSixCameraCompletedPhysicalWhitenedReadout_eq_zero_iff_completed_eq_zero
+    (whitening whiteningInv : Matrix (Fin 6) (Fin 6) ℂ)
+    (cutoff : ℕ) (time : ℝ)
+    (hleft : whiteningInv * whitening = 1) :
+    finiteSixCameraCompletedPhysicalWhitenedReadout whitening cutoff time = 0 ↔
+      finiteSixCameraCompletedPhysicalReadout cutoff time = 0 := by
+  constructor
+  · intro hzero
+    have htransport := congrArg
+      (fun y : Fin 6 → ℂ => whiteningInv *ᵥ y) hzero
+    rw [finiteSixCameraCompletedPhysicalWhitenedReadout,
+      Matrix.mulVec_mulVec, hleft, Matrix.one_mulVec,
+      Matrix.mulVec_zero] at htransport
+    exact htransport
+  · intro hzero
+    simp [finiteSixCameraCompletedPhysicalWhitenedReadout, hzero]
+
+/-- Gate D, completed form: a left-invertibly whitened completed physical
+readout has exactly the canonical native zero locus. -/
+theorem finiteSixCameraCompletedPhysicalWhitenedReadout_eq_zero_iff_nativeZero
+    (whitening whiteningInv : Matrix (Fin 6) (Fin 6) ℂ)
+    (cutoff : ℕ) (time : ℝ)
+    (hleft : whiteningInv * whitening = 1) :
+    finiteSixCameraCompletedPhysicalWhitenedReadout whitening cutoff time = 0 ↔
+      completedNativeOperatorCharacteristic (time : ℂ) = 0 := by
+  rw [finiteSixCameraCompletedPhysicalWhitenedReadout_eq_zero_iff_completed_eq_zero
+    whitening whiteningInv cutoff time hleft,
+    finiteSixCameraCompletedPhysicalReadout_eq_zero_iff_nativeZero]
+
+/-- Zero-equivalent spectral handoff for a left-invertibly whitened completed
+physical six-camera readout. -/
+theorem finiteSixCameraCompletedPhysicalWhitenedReadout_isZeroEquivalent
+    (whitening whiteningInv : Matrix (Fin 6) (Fin 6) ℂ)
+    (cutoff : ℕ) (hleft : whiteningInv * whitening = 1) :
+    IsZeroEquivalentCompletedNativeHeightReadout
+      (finiteSixCameraCompletedPhysicalWhitenedReadout whitening cutoff) :=
+  fun time => finiteSixCameraCompletedPhysicalWhitenedReadout_eq_zero_iff_nativeZero
+    whitening whiteningInv cutoff time hleft
+
+namespace CompletedNativeRealHPCarrierCertificate
+
+variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+variable {jet : (ℕ ⊕ ℕ) → E}
+
+/-- Completed physical six-camera blindness feeds the already-built signed
+height operator without constructing any spectral object anew. -/
+theorem finiteSixCameraCompletedPhysicalReadout_zero_hasSignedHeightEigenvalue
+    (certificate : CompletedNativeRealHPCarrierCertificate jet)
+    (cutoff : ℕ) {time : ℝ}
+    (hzero : finiteSixCameraCompletedPhysicalReadout cutoff time = 0) :
+    LinearPMap.HasEigenvalue
+      certificate.toReducedMaximalSelfAdjointHeightData.selfAdjointData.complexification
+      (time : ℂ) := by
+  exact certificate.zeroEquivalentReadout_zero_hasSignedHeightEigenvalue
+    (finiteSixCameraCompletedPhysicalReadout_isZeroEquivalent cutoff) hzero
+
+/-- At nonzero height, completed physical six-camera blindness is exactly the
+existing reciprocal-square Jacobi point-eigenvalue condition. -/
+theorem finiteSixCameraCompletedPhysicalReadout_zero_iff_jacobiEigenvalue_inv_sq
+    (certificate : CompletedNativeRealHPCarrierCertificate jet)
+    (cutoff : ℕ) {time : ℝ} (htime : time ≠ 0) :
+    finiteSixCameraCompletedPhysicalReadout cutoff time = 0 ↔
+      LinearPMap.HasEigenvalue
+        certificate.completedJacobiEnergySelfAdjointData.complexification
+        ((time : ℂ) ^ 2)⁻¹ := by
+  exact certificate.zeroEquivalentReadout_zero_iff_jacobiEigenvalue_inv_sq
+    (finiteSixCameraCompletedPhysicalReadout_isZeroEquivalent cutoff) htime
+
+/-- Signed-height corollary after any left-invertible whitening of the
+completed physical six-camera vector. -/
+theorem finiteSixCameraCompletedPhysicalWhitenedReadout_zero_hasSignedHeightEigenvalue
+    (certificate : CompletedNativeRealHPCarrierCertificate jet)
+    (whitening whiteningInv : Matrix (Fin 6) (Fin 6) ℂ)
+    (cutoff : ℕ) (hleft : whiteningInv * whitening = 1) {time : ℝ}
+    (hzero : finiteSixCameraCompletedPhysicalWhitenedReadout whitening cutoff time = 0) :
+    LinearPMap.HasEigenvalue
+      certificate.toReducedMaximalSelfAdjointHeightData.selfAdjointData.complexification
+      (time : ℂ) := by
+  exact certificate.zeroEquivalentReadout_zero_hasSignedHeightEigenvalue
+    (finiteSixCameraCompletedPhysicalWhitenedReadout_isZeroEquivalent
+      whitening whiteningInv cutoff hleft) hzero
+
+/-- At nonzero height, left-invertibly whitened completed physical blindness
+is exactly the existing reciprocal-square Jacobi point-eigenvalue condition. -/
+theorem finiteSixCameraCompletedPhysicalWhitenedReadout_zero_iff_jacobiEigenvalue_inv_sq
+    (certificate : CompletedNativeRealHPCarrierCertificate jet)
+    (whitening whiteningInv : Matrix (Fin 6) (Fin 6) ℂ)
+    (cutoff : ℕ) (hleft : whiteningInv * whitening = 1)
+    {time : ℝ} (htime : time ≠ 0) :
+    finiteSixCameraCompletedPhysicalWhitenedReadout whitening cutoff time = 0 ↔
+      LinearPMap.HasEigenvalue
+        certificate.completedJacobiEnergySelfAdjointData.complexification
+        ((time : ℂ) ^ 2)⁻¹ := by
+  exact certificate.zeroEquivalentReadout_zero_iff_jacobiEigenvalue_inv_sq
+    (finiteSixCameraCompletedPhysicalWhitenedReadout_isZeroEquivalent
+      whitening whiteningInv cutoff hleft) htime
+
+end CompletedNativeRealHPCarrierCertificate
 
 end
 

@@ -3591,3 +3591,257 @@ O audit dos seis theorems expostos lista somente:
 ```text
 propext, Classical.choice, Quot.sound.
 ```
+
+## 30. Readout físico finito completado → `F` → signed-height
+
+### 30.1. Gate A fechado: matriz literal = stencil finito
+
+O módulo
+
+```text
+FinitePhysicalSixCameraWhiteningBridge.lean
+```
+
+agora contém o theorem de expansão que antes faltava nomear:
+
+```lean
+finiteCameraPhysicalRawReadout_apply_eq_finiteBracketCharacteristic
+```
+
+Para uma família finita de câmeras, uma linha `i` e uma janela comum
+camera-completa, ele prova
+
+\[
+\boxed{
+\bigl(\texttt{finiteCameraMatrix}\ N\ \texttt{camera}\bigr)
+\,\texttt{finiteRealSpectralStateVector}\ N\ t\,(i)
+=
+\texttt{finiteBracketCharacteristic}
+(\texttt{camera}\ i)\ N\ (\texttt{nativeLine}\ t).
+}
+\]
+
+A prova é inteiramente finita:
+
+1. `finiteRealSpectralStateVector` é reescrito coordenadamente como o valor
+   de Dirichlet positivo em `nativeLine`;
+2. a linha da matriz se expande pelos `finiteCoefficientAt`;
+3. o suporte do stencil fica dentro de qualquer janela que contenha
+   `finiteCameraWindow`; e
+4. `evalDirichletStencil_finiteStencil` identifica a soma com o head de
+   bracket.
+
+Para o pacote histórico, a forma vetorial pronta é:
+
+```lean
+finiteSixCameraPhysicalRawReadout_eq_rawHead
+```
+
+e diz
+
+\[
+\boxed{
+C_Ne^{-itL_N}\alpha_N
+=H_{6,N}(t).}
+\]
+
+Aqui `finiteRealSpectralStateVector` é a órbita não normalizada
+\(e^{-itL_N}\alpha_N\); a normalização não nula para (j_N) continua sendo
+zero-invariante pelo theorem da seção 29.
+
+### 30.2. Gate B/C fechado: soma literal com a cauda
+
+A cauda não foi reinventada. O vetor existente é reaproveitado sob o nome
+
+```lean
+finiteSixCameraPhysicalCompletionTail cutoff time : Fin 6 → ℂ.
+```
+
+Sua coordenada `i` é literalmente
+
+```lean
+finiteCameraPhysicalCompletionTail (sixCamera i) cutoff time
+```
+
+isto é, a mesma soma de centros inteiros omitidos que já ocorria no ledger
+escalar.
+
+Foram definidos:
+
+```lean
+finiteSixCameraCompletedNativeReadout cutoff time
+finiteSixCameraCompletedPhysicalReadout cutoff time
+```
+
+com os significados respectivos
+
+\[
+\mathcal C^{\mathrm{comp}}_{6,N}(t)_i
+=\operatorname{completedNativeCharacteristic}
+(b_i,N,\operatorname{nativeLine}(t)),
+\]
+
+e
+
+\[
+\widetilde C_N(t)
+=C_Ne^{-itL_N}\alpha_N+T_{6,N}(t).
+\]
+
+A costura principal está compilada como
+
+```lean
+finiteSixCameraCompletedPhysicalReadout_eq_completedNativeReadout
+```
+
+e é uma igualdade vetorial literal:
+
+\[
+\boxed{
+\widetilde C_N(t)=\mathcal C^{\mathrm{comp}}_{6,N}(t).
+}
+\]
+
+Portanto a correção aditiva deixou de ser apenas uma interpretação do
+checkpoint: ela está inserida no readout físico formalizado.
+
+### 30.3. Relação com o readout coletivo canônico já existente
+
+O objeto já existente
+
+```lean
+completedNativeSixCameraCollectiveReadout (fun _ => cutoff) time
+```
+
+não é literalmente igual a `finiteSixCameraCompletedPhysicalReadout`: ele
+remove, coordenada a coordenada, os fatores de câmera não nulos e conserva o
+fator comum de completion. A diferença é portanto de normalização de valores,
+não de evento de cegueira.
+
+O theorem compilado
+
+```lean
+finiteSixCameraCompletedPhysicalReadout_eq_zero_iff_collectiveReadout_eq_zero
+```
+
+prova:
+
+\[
+\widetilde C_N(t)=0
+\Longleftrightarrow
+\texttt{completedNativeSixCameraCollectiveReadout}(t)=0.
+\]
+
+Em seguida,
+
+```lean
+finiteSixCameraCompletedPhysicalReadout_eq_zero_iff_nativeZero
+finiteSixCameraCompletedPhysicalReadout_isZeroEquivalent
+```
+
+fecham o handoff procurado:
+
+\[
+\boxed{
+\widetilde C_N(t)=0
+\Longleftrightarrow
+\texttt{completedNativeOperatorCharacteristic}(t:\mathbb C)=0.
+}
+\]
+
+Assim o objeto físico correto de cutoff finito é, formalmente,
+
+```text
+raw matrix orbit + whole-center completion tail,
+```
+
+e não o head matricial truncado por si só.
+
+### 30.4. Gate D e downstream já existente
+
+Para um whitening complexo explicitamente munido de inversa à esquerda,
+foi definido
+
+```lean
+finiteSixCameraCompletedPhysicalWhitenedReadout whitening cutoff time
+```
+
+e os theorems
+
+```lean
+finiteSixCameraCompletedPhysicalWhitenedReadout_eq_zero_iff_completed_eq_zero
+finiteSixCameraCompletedPhysicalWhitenedReadout_eq_zero_iff_nativeZero
+finiteSixCameraCompletedPhysicalWhitenedReadout_isZeroEquivalent
+```
+
+provam:
+
+\[
+W_N\widetilde C_N(t)=0
+\Longleftrightarrow
+\widetilde C_N(t)=0
+\Longleftrightarrow F(t)=0.
+\]
+
+O whitening vem **depois** do completamento. Não foi assumido que esse
+`whitening` já seja o inverse square root canônico do Gram físico literal;
+só é requerida a identidade de inversa à esquerda que já basta para
+preservar kernels.
+
+Sob o `CompletedNativeRealHPCarrierCertificate` que já era condição de todo
+downstream, há agora corolários pequenos, sem novos operadores:
+
+```lean
+finiteSixCameraCompletedPhysicalReadout_zero_hasSignedHeightEigenvalue
+finiteSixCameraCompletedPhysicalReadout_zero_iff_jacobiEigenvalue_inv_sq
+finiteSixCameraCompletedPhysicalWhitenedReadout_zero_hasSignedHeightEigenvalue
+finiteSixCameraCompletedPhysicalWhitenedReadout_zero_iff_jacobiEigenvalue_inv_sq.
+```
+
+Logo, para o objeto completado,
+
+\[
+\widetilde C_N(t)=0
+\Longrightarrow t\in\sigma_p(H_{\mathrm{signed\ height}}),
+\]
+
+e, se (t\ne0),
+
+\[
+\widetilde C_N(t)=0
+\Longleftrightarrow(t^2)^{-1}\in\sigma_p(J).
+\]
+
+As mesmas conclusões valem depois de qualquer whitening com inversa à
+esquerda.
+
+### 30.5. O que continua separado
+
+Esta rodada fecha o handoff físico finito de zero-set. Ela não prova:
+
+1. que o whitening físico concreto é literalmente
+   \((C_NC_N^*)^{-1/2}\) para todo cutoff;
+2. `PosDef` global do Gram literal finito ou sua ponte real--complexa;
+3. igualdade de valores, derivadas, multiplicidades ou resíduos entre o
+   readout físico completado e o readout canônico normalizado; ou
+4. qualquer passagem (N\to\infty).
+
+Essas lacunas não impedem a rota de zeros já fechada. Em particular, a
+condição que antes faltava — adicionar o ledger de cauda antes de tentar
+comparar com `F` — não é mais uma hipótese externa.
+
+### 30.6. Validação
+
+Foram validados localmente apenas os módulos envolvidos:
+
+```text
+lake env lean CarrySelfAdjointOperator/FinitePhysicalSixCameraWhiteningBridge.lean
+lake build CarrySelfAdjointOperator.FinitePhysicalSixCameraWhiteningBridge
+lake env lean CarrySelfAdjointOperator/FinitePhysicalSixCameraWhiteningBridgeAudit.lean
+```
+
+O audit dos treze theorems expostos lista somente:
+
+```text
+propext, Classical.choice, Quot.sound.
+```
