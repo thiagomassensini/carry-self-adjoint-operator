@@ -5129,3 +5129,106 @@ propext, Classical.choice, Quot.sound.
 ```
 
 Nenhum push, PR ou GitHub Action foi acionado nesta rodada.
+
+### 35.8. Auditoria: Gram causal TFVD \(\neq\) automaticamente Gram Hankel
+
+Foi auditada a hipótese de transportar a positividade da família causal TFVD
+para os Hankels canônicos apenas por “primeira coluna + shift”.  A conclusão
+é mais nítida do que uma simples falta de prova.
+
+O arquivo `CompletedNativeCausalCoefficientGram.lean` já constrói, para cada
+ordem finita \(N\), a família separada
+
+```lean
+canonicalFiniteNativeCausalGreenBoundaryJet hbase N :
+  Fin N → FiniteWeightedSlopeGreenBoundaryCarrier
+```
+
+e prova:
+
+```lean
+canonicalFiniteNativeCausalGreenBoundaryJet_linearIndependent
+canonicalFiniteNativeCausalGreenBoundaryGram_posDef
+```
+
+Logo existe uma Gram causal estritamente positiva, construída de
+`Green response ⊕ boundary return`, sem hipótese de momentos.  Mas seus
+índices são um prefixo `Fin N`; a árvore de theorems atual não contém uma
+compatibilidade projetiva de suas Grams quando \(N\) muda, nem o theorema
+
+\[
+\langle\Psi_p,\Psi_0\rangle
+=
+\operatorname{oddMomentResponseCoefficient}(p+1),
+\]
+
+nem a lei de dois índices
+
+\[
+\langle\Psi_p,\Psi_{q+1}\rangle
+=
+\langle\Psi_{p+1},\Psi_q\rangle.
+\]
+
+Essas duas identidades são exatamente o conteúdo de
+
+```lean
+HasPolarizedCoefficientVectorEquation moments rawJet
+```
+
+para uma família all-order em carrier fixo.  Assim, a positividade causal é
+um recurso upstream real, mas ainda não é a Gram \(G_N=(h_{i+j})\).
+
+Dois atalhos naturais foram excluídos formalmente:
+
+1. A família all-order em carrier fixo
+   `canonicalCompletedNativeTfvdEnrichedTaylorRawJet` é independente nas duas
+   paridades, mas falha já no coeficiente \((0,0)\):
+
+   ```lean
+   not_hasPolarizedCoefficientVectorEquation_enrichedTfvdTaylor
+   ```
+
+   Sua energia refletida mais energia log-jet é estritamente maior que
+   \(h_0\); portanto não pode ser renomeada como a Gram nativa dos momentos.
+
+2. A resposta causal BR2 C3 literal também não serve, mesmo permitindo
+   retorno de bordo arbitrário de duas sementes:
+
+   ```lean
+   not_canonicalBR2CausalGreenResponse_centerLegReadout
+   not_nonempty_canonicalBR2C3BoundaryResponse_momentCertificate
+   ```
+
+   A obstrução já ocorre na massa central: toda solução da fonte BR2 C3 tem
+   norma grande demais para realizar \(h_0\) na métrica causal literal.
+
+Existe ainda o raw jet Naimark all-order por diferença finita,
+`canonicalCompletedTfvdGreenNaimarkRawJet k`, mas ele conserva o parâmetro
+de passo \(k\).  O repo só registra a forma de um eventual limite all-order
+em `IsCanonicalCompletedTfvdGreenRawJetLimit`; não há hoje uma família limite
+construída e calibrada que descarregue a equação de Gram.
+
+Portanto o próximo seam construtivo não é aplicar a Gram causal bruta aos
+momentos.  É construir ou identificar uma família vetorial **completada**,
+all-order e em carrier fixo, que preserve os portos TFVD/six-source e prove
+diretamente:
+
+\[
+\boxed{
+\texttt{HasPolarizedCoefficientVectorEquation}
+\;\texttt{canonicalCompletedNativeLogDerivativeMoment}\;\Psi.
+}
+\]
+
+Depois disso, a independência e a construção HP/Jacobi já existentes voltam
+a ser puramente downstream.
+
+Foi acrescentado o audit:
+
+```text
+CarrySelfAdjointOperator/TfvdCausalGramCalibrationAudit.lean
+```
+
+Nenhuma nova positividade, medida Stieltjes, HP, Jacobi ou realização
+espectral foi introduzida nesta auditoria.
