@@ -5232,3 +5232,67 @@ CarrySelfAdjointOperator/TfvdCausalGramCalibrationAudit.lean
 
 Nenhuma nova positividade, medida Stieltjes, HP, Jacobi ou realização
 espectral foi introduzida nesta auditoria.
+
+### 35.9. Frontier da válvula + TFVD: redução condicional à primeira coluna
+
+A nota canônica de 15/09 foi confrontada com os módulos Lean atuais. Ela
+organiza corretamente três leis distintas, que não devem ser confundidas:
+
+\[
+\mathcal S_q\mathcal A_q=I
+\quad\text{(TFVD: análise/síntese lossless)},
+\qquad
+\operatorname{Valve}(Q)=\widehat\Phi^{-1}
+\quad\text{(válvula escalar)},
+\qquad
+G_NA_N=K_N
+\quad\text{(metricização Hankel)}.
+\]
+
+`NativeMomentProjectiveValveBridge.lean` fecha a identificação escalar da
+série nativa (`projectiveValveMass_nativeMoments_eq_reciprocal` e
+`projectiveValveCurvature_nativeReciprocal_eq_moments`), mas não uma Gram
+Hilbertiana. `TfvdBoundaryCompletedTransport.lean` prova que trace e segunda
+diferença são coordenadas lossless, mas não identifica o seu produto interno
+com os momentos. Essas duas verdades permanecem separadas.
+
+O adapter novo
+`ProjectiveValveFirstColumnMomentGate.lean` formaliza a redução correta para
+uma família vetorial que **já possui** transporte interno de Gram:
+
+```lean
+hasPolarizedCoefficientVectorEquation_iff_firstColumn_of_transport
+hasNativePolarizedCoefficientVectorEquation_iff_firstColumn_of_transport
+completedNativeRealHPCarrierCertificate_of_firstColumn_and_transport
+```
+
+Sob
+
+\[
+\langle\Psi_p,\Psi_{q+1}\rangle=
+\langle\Psi_{p+1},\Psi_q\rangle,
+\]
+
+a equação completa de Gram é equivalente à única calibração de bordo
+
+\[
+\boxed{
+\langle\Psi_p,\Psi_0\rangle=
+\operatorname{oddMomentResponseCoefficient}(p+1).
+}
+\]
+
+Esta redução é concreta para o atlas de clock material:
+`seededClockAtlasCoefficientEquation_iff_boundary` já descarrega o shift, e
+`canonicalCompletedC3LedgerBoundaryTaylorCoefficient_eq_boundaryTarget`
+deixa atlas \(\to\) ledger como a primeira coluna restante.
+
+Ela **não** se transfere automaticamente para a Gram causal TFVD atual. Essa
+Gram tem PosDef finita e TFVD é lossless, mas ainda não há, para uma família
+completada all-order em carrier fixo, nem a primeira coluna nativa nem a lei
+de Gram-shift. TFVD preserva os canais/proveniência que a futura construção
+precisa; não transforma por si só a Gram causal positiva em Gram Hankel.
+
+Foi acrescentado o audit
+`ProjectiveValveFirstColumnMomentGateAudit.lean`. Nenhum push, PR ou GitHub
+Action foi acionado nesta rodada.
