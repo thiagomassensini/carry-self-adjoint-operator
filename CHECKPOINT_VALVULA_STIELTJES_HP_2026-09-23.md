@@ -2819,3 +2819,174 @@ Naimark/ledger para os slots `CarryVerticalL2`, com compatibilidade de kernel
 e jatos. Enquanto isso não existir, `6I=H+\mathrm{blind\ Gram}` permanece
 uma arquitetura formal pronta para receber a costura, não uma identidade
 concreta já demonstrada.
+
+## 26. Ponte característica multibase → espectro de altura — operador já existente, seam de readout exato
+
+### 26.1. O downstream espectral não requer um novo operador de Potapov
+
+O módulo integrado
+
+```text
+MixedReturnHeightSpectrumBridge.lean
+```
+
+confirma que a teoria já possui o operador correto para a leitura por alturas:
+o reduced signed-height self-adjoint operator construído a partir de um
+
+```lean
+CompletedNativeRealHPCarrierCertificate jet.
+```
+
+Portanto uma futura característica multibase, mínima, Potapov ou Weyl **não**
+deve criar uma segunda realização espectral. O seu único handoff para essa
+parte da teoria é identificar o seu readout na reta real com a característica
+canônica já usada pelo operador:
+
+\[
+F(t)=\texttt{completedNativeOperatorCharacteristic}(t).
+\]
+
+O guardrail condicional é importante: como todo o downstream HP/Jacobi, os
+teoremas de espectro desta seção recebem um
+`CompletedNativeRealHPCarrierCertificate`. Eles não descarregam por si a
+positividade concreta all-order que continua sendo o gate principal deste
+checkpoint. O que foi removido é a necessidade de um **novo operador** depois
+que esse certificado existe.
+
+### 26.2. Interface mínima e reutilizável
+
+Foi formalizada a interface
+
+```lean
+IsExactCompletedNativeHeightReadout (readout : ℝ → ℂ) : Prop :=
+  ∀ t : ℝ,
+    readout t = completedNativeOperatorCharacteristic (t : ℂ).
+```
+
+Ela não menciona momentos, Hankel, HP, Potapov, uma extensão auto-adjunta nova
+nem um zero numérico. Assim qualquer construção futura tem a obrigação
+upstream única
+
+\[
+\boxed{
+R(t)=F(t)\quad\text{para todo }t\in\mathbb R.
+}
+\]
+
+e herda a rota espectral canônica sem duplicação.
+
+O readout mixed-return já existente satisfaz essa interface em qualquer
+cutoff de seis câmeras:
+
+```lean
+mixedReturnCompletedHeightCharacteristic_isExactReadout
+```
+
+isto é,
+
+\[
+\texttt{mixedReturnCompletedHeightCharacteristic}(\mathrm{cutoff},t)=F(t).
+\]
+
+### 26.3. Consequências espectrais já compiladas
+
+Dado um certificado HP real e qualquer `readout` exato, o theorem genérico
+
+```lean
+CompletedNativeRealHPCarrierCertificate
+  .exactReadout_zero_hasSignedHeightEigenvalue
+```
+
+prova
+
+\[
+\boxed{
+R(t)=0
+\Longrightarrow
+t\in\sigma_p(H_{\mathrm{signed\ height}}).
+}
+\]
+
+O autovalor é o próprio (t), visto em \(\mathbb C\). Não há nessa ponte uma
+reparametrização por \(\log n\), por \(t^{-2}\), nem um fitting de alturas.
+
+Para \(t\ne0\), o theorem correspondente fornece a roupa Jacobi do mesmo
+evento:
+
+```lean
+CompletedNativeRealHPCarrierCertificate
+  .exactReadout_zero_iff_jacobiEigenvalue_inv_sq
+```
+
+\[
+\boxed{
+R(t)=0
+\Longleftrightarrow
+(t^2)^{-1}\in\sigma_p(J).
+}
+\]
+
+As duas versões concretas para o readout mixed-return são:
+
+```lean
+mixedReturnCompletedHeightCharacteristic_zero_hasSignedHeightEigenvalue
+mixedReturnCompletedHeightCharacteristic_zero_iff_jacobiEigenvalue_inv_sq.
+```
+
+### 26.4. Relação com a rota B e próximo seam
+
+Esta ponte não substitui a rota B Parseval/HP; ela organiza o seu downstream.
+As duas obrigações permanecem claramente separadas:
+
+\[
+\begin{array}{rcl}
+\text{rota B}&:&
+\text{geometria six-source/câmera}
+\to\text{certificate HP concreto},\\[1mm]
+\text{ponte de alturas}&:&
+\text{característica multibase }R
+\to R|_{\mathbb R}=F
+\to\text{espectro do operador já construído}.
+\end{array}
+\]
+
+Assim, o seam novo de pesquisa não é “construir o operador de alturas”, mas
+
+\[
+\boxed{
+\text{característica multibase física}
+\xrightarrow{\ \text{readout exato}\ }
+\texttt{completedNativeOperatorCharacteristic}.
+}
+\]
+
+Se uma construção natural produzir primeiro
+
+\[
+R(t)=u(t)F(t),\qquad u(t)\ne0,
+\]
+
+ela não deve ser artificialmente forçada a uma igualdade literal. A interface
+exata permanece a meta preferida, pois conserva mais estrutura; uma futura
+interface secundária de equivalência de zeros pode tratar esse caso de
+normalização não nula sem reconstruir o downstream espectral.
+
+### 26.5. Auditoria e validação local
+
+O módulo e seu audit foram compilados localmente em worktree isolado, sem PR
+e sem modificar `main`:
+
+```text
+lake build CarrySelfAdjointOperator.MixedReturnHeightSpectrumBridge
+lake env lean CarrySelfAdjointOperator/MixedReturnHeightSpectrumBridgeAudit.lean
+```
+
+Os cinco teoremas auditados dependem somente de
+
+```text
+propext, Classical.choice, Quot.sound.
+```
+
+O commit remoto original foi integrado sem conflitos; os três arquivos da
+ponte são adicionais e não alteram a implementação existente do operador de
+altura, do certificado HP ou da torre Jacobi.
