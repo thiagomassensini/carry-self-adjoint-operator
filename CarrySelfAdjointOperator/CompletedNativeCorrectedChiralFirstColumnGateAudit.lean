@@ -1,0 +1,37 @@
+import CarrySelfAdjointOperator.CompletedNativeCorrectedChiralFirstColumnGate
+import CarrySelfAdjointOperator.CompletedC3ConcretePositiveSewingClosure
+import CarrySelfAdjointOperator.CompletedNativeTfvdEnrichedLowOrderMomentTest
+import CarrySelfAdjointOperator.CompletedNativeProjectiveChiralLosslessDilationAudit
+
+/-!
+# Audit: corrected chiral first-column Hilbert frontier
+
+The six-analysis TFVD ledger supplies the scalar corrected first column
+all-order.  This audit records the exact adapter from that scalar target to a
+future Hilbert jet, and the three nearest candidates that do not supply it:
+
+* the fixed concrete positive all-order state fails at its central kernel;
+* the enriched TFVD Taylor jet fails its `(0,0)` moment entry;
+* the projective/chiral pair realizes `dslope` by a signed form, whose
+  Hilbertization is exactly the separate multiplier-contractivity frontier.
+-/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_firstColumnTarget
+#print axioms hasNativePolarizedCoefficientVectorEquation_iff_correctedChiralFirstColumnGram_of_transport
+#print axioms correctedChiralFirstColumnGram_iff_sixAnalysisJet
+#print axioms hasNativePolarizedCoefficientVectorEquation_iff_sixAnalysisJet_of_transport
+#print axioms completedNativeRealHPCarrierCertificate_of_sixAnalysisJet_and_transport
+
+#print axioms canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_sixAnalysisJet
+#print axioms canonicalC3AllCutoffMixedSourceTfvdReconstruction_analysis
+#print axioms canonicalC3AllCutoffMixedSourceTfvdFinalReadout_canonicalPrefix
+
+#print axioms not_hasCompletedNativeRealAxisNormalizedGreenKernel_concreteC3_of_defect
+#print axioms not_hasPolarizedCoefficientVectorEquation_enrichedTfvdTaylor
+#print axioms not_canonicalCompletedC3CausalCoisometricCandidateDefectGram_of_im_pos
+#print axioms canonicalCompletedNativeRadialProjectiveChiralForm_eq_dslope
+#print axioms canonicalCompletedNativeRadialProjectiveChiralEventuallyPosSemidefinite_iff_contractive
+
+end CarrySelfAdjointOperator

@@ -5414,3 +5414,106 @@ Ele imprime os axiomas do clock, dos jets, do estado resolvente, da cadeia
 escalar de momentos, das equivalências de sewing, dos dois no-gos e da
 decomposição de residual. Nenhum HP, Jacobi, operador espectral novo, push,
 PR ou GitHub Action foi introduzido nesta auditoria.
+
+### 35.11. Gate de primeira coluna corrigida: a fonte TFVD six-source já é o alvo geométrico
+
+Esta rodada não encontrou — e não inventou — uma nova família Hilbertiana
+positiva que realize a Gram dos momentos. Em vez disso, ela fecha o seam
+tipado entre qualquer futura família vetorial e a **primeira coluna geométrica
+que já existe** no ledger TFVD completed/corrected.
+
+O novo módulo
+
+```text
+CarrySelfAdjointOperator/CompletedNativeCorrectedChiralFirstColumnGate.lean
+```
+
+define, para uma família em carrier fixo `rawJet : ℕ → E`, a calibração
+
+```lean
+HasCorrectedNativeChiralFirstColumnGram M rawJet
+```
+
+isto é,
+
+\[
+\langle\Psi_p,\Psi_0\rangle=
+\texttt{canonicalCompletedNativeCorrectedChiralBoundaryCoefficient}(M,p).
+\]
+
+Ela não cria `Ψ` a partir de `h_n`. Pelo contrário, prova que esta condição é
+equivalente a uma igualdade cuja direita é o jet central da reconstrução
+TFVD de seis fontes:
+
+```lean
+correctedChiralFirstColumnGram_iff_sixAnalysisJet
+```
+
+ou seja,
+
+\[
+\langle\Psi_p,\Psi_0\rangle=
+\texttt{canonicalC3BracketTfvdSixAnalysisJetCoefficient}(M,p,q,S).
+\]
+
+O objeto do lado direito é pré-momento: é obtido fazendo as seis análises
+TFVD orientadas, reconstruindo o carrier corrected completo com seus ports,
+proveniência estrutural, tail e chart, e somente então tomando o jet central.
+O theorem que certifica isto é
+
+```lean
+canonicalCompletedNativeCorrectedChiralBoundaryCoefficient_eq_sixAnalysisJet
+```
+
+e depende da reconstrução lossless já existente:
+
+```lean
+canonicalC3AllCutoffMixedSourceTfvdReconstruction_analysis
+canonicalC3AllCutoffMixedSourceTfvdFinalReadout_canonicalPrefix
+```
+
+Se uma futura família Hilbertiana geométrica satisfizer ainda o transporte
+interno
+
+\[
+\langle\Psi_p,\Psi_{q+1}\rangle=
+\langle\Psi_{p+1},\Psi_q\rangle,
+\]
+
+então `hasNativePolarizedCoefficientVectorEquation_iff_sixAnalysisJet_of_transport`
+reduz a Gram momental completa precisamente a esta única primeira coluna.
+Com as independências par/ímpar dessa família, o capstone
+
+```lean
+completedNativeRealHPCarrierCertificate_of_sixAnalysisJet_and_transport
+```
+
+entrega diretamente o certificado HP já existente, sem reconstruir Hankel,
+Jacobi ou teoria espectral.
+
+**Status honesto: PASS parcial — seam mínimo fechado, carrier positivo ainda
+aberto.** Os candidatos geométricos imediatos não podem ser promovidos por
+identificação informal:
+
+* a família concreta de kernel Green real-axis falha já no defeito central;
+* o Taylor TFVD enriched cru falha no coeficiente `(0,0)`;
+* o candidato causal coisométrico falha no seu defeito de Gram;
+* o carrier projectivo quiral realiza `dslope` por uma diferença assinada de
+  duas Grams Hilbertianas. Sua hilbertização positiva é equivalentemente uma
+  fronteira de contractividade, não uma consequência automática da TFVD.
+
+Portanto o próximo trabalho permitido não é declarar que a soma
+Gamma+correções é uma Gram. É construir, ou descartar em baixa ordem, uma
+transformação quiral/coisométrica dos canais corrected que prove **as duas**
+identidades acima para um carrier Hilbertiano fixo. O target de primeira
+coluna agora é literal e independente da sequência de momentos.
+
+O audit
+
+```text
+CarrySelfAdjointOperator/CompletedNativeCorrectedChiralFirstColumnGateAudit.lean
+```
+
+imprime axiomas tanto dos capstones novos quanto dos no-gos mais próximos.
+Todos os statements auditados dependem somente de `propext`,
+`Classical.choice` e `Quot.sound`.
