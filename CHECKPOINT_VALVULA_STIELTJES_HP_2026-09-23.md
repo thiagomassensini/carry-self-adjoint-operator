@@ -1276,3 +1276,261 @@ pode ser refutada por uma falha de `6I-H_N` ou `6I-K_N` sem que isso refute
 outra realização positiva dos momentos. O próximo teste decisivo desta rota é
 provar ou refutar precisamente esses dois bounds usando os dados
 TFVD/Green/`G_pre`, antes de tentar construir `lossMap` em toda generalidade.
+
+## 20. Continuação após a interrupção — o `lossMap` reencontra o Parseval das câmeras
+
+A observação “identidade antes de estimativa” levou à estrutura histórica
+
+\[
+R^*R+B^*B=I
+\]
+
+da câmera finita. Ela foi formalizada como continuação direta da rota B em
+[`CompletedNativeTfvdCameraParsevalLossChannel.lean`](CarrySelfAdjointOperator/CompletedNativeTfvdCameraParsevalLossChannel.lean).
+
+### 20.1. O canal corrigido e o canal complementar não precisam ser inventados
+
+A estrutura
+
+```lean
+CanonicalCompletedNativeTfvdCameraParsevalTransport C
+```
+
+recebe somente:
+
+1. um transporte complexo-linear `U` do carrier vertical TFVD/Green para uma
+   família finita de estados;
+2. a positividade definida do Gram de linhas da câmera;
+3. a conservação polarizada de pairing por `U`.
+
+Depois disso, os dois outputs são literalmente os objetos históricos:
+
+```text
+visibleMap = finiteCanonicalCameraHilbertReadout C ∘ U
+blindMap   = finiteCanonicalCameraBlindProjection C ∘ U
+```
+
+e o theorem `gramSplit` prova
+
+\[
+\langle Rx,Ry\rangle+\langle Bx,By\rangle=\langle x,y\rangle.
+\]
+
+Não há construção de um Gram alvo nem uma hipótese de PSD nessa identidade.
+
+### 20.2. O defeito exato é somente a costura do coeficiente visível
+
+Foi definido
+
+\[
+D_{\mathrm{vis}}(i,j)
+=C_6(i,j)-\langle R U B_i,R U B_j\rangle.
+\]
+
+O theorem compilado
+
+```lean
+blind_inner_eq_energyExcess_add_visibleCoefficientDefect
+```
+
+prova exatamente
+
+\[
+\boxed{
+\langle B U B_i,B U B_j\rangle
+=E(i,j)+D_{\mathrm{vis}}(i,j).
+}
+\]
+
+Como `E = rawGram - C₆`, isto é apenas Parseval rearranjado. Em particular:
+
+```lean
+realizesSixSourceVisibleCoefficient_iff_energyExcess
+```
+
+estabelece a equivalência literal
+
+\[
+\boxed{
+C_6(i,j)=\langle R U B_i,R U B_j\rangle
+\iff
+E(i,j)=\langle B U B_i,B U B_j\rangle.
+}
+
+Portanto a identificação visível e a identificação do `lossMap` não são dois
+gates independentes. São a mesma costura escrita nos dois lados da lei de
+conservação.
+
+### 20.3. Correção importante: não exigir injetividade global do readout
+
+A interface inicial da seção 19 exigia que `correctedMap` fosse injetivo no
+carrier inteiro. Isso é forte demais para uma projeção de câmera com canal
+cego não trivial. O que o certificado HP usa de fato é apenas a independência
+da família de incidências visíveis.
+
+A nova condição é:
+
+```lean
+HasVisibleIncidenceTransport
+```
+
+isto é, a existência de um `BR2BracketIncidenceJetTransport` para o jet
+visível. Com essa condição estritamente mais fraca, os theorems
+
+```lean
+toRealHPCarrierCertificate
+toStieltjesPositivity
+```
+
+entregam o mesmo downstream. A câmera pode ter kernel fora do span relevante;
+o que ela não pode fazer é colapsar as incidências que certificam os dois
+blocos Hankel.
+
+### 20.4. Um no-go novo: o transporte `U` não pode ser separável
+
+Foi testada a inclusão mais simples:
+
+\[
+U(x)=a\otimes x,
+\]
+
+com um perfil externo fixo de câmeras. O theorem
+
+```lean
+not_realizesSixSourceVisibleCoefficient_of_rankOneSourceTransport
+```
+
+descarta essa possibilidade. A razão é estrutural:
+
+- os brackets BR2 `B₀` e `B₂` são ortogonais;
+- uma câmera real aplicada ao mesmo perfil externo conserva esse zero;
+- o coeficiente visível desejado para esse par é `h₁`;
+- `h₁ ≠ 0` já está provado incondicionalmente.
+
+Logo o transporte correto precisa **misturar o índice vertical/BR2 com o
+índice de câmera ou proveniência**. Não basta copiar o estado vertical para
+várias câmeras com amplitudes fixas.
+
+Esse diagnóstico combina com os no-gos já existentes para a resposta causal
+translacional: um mecanismo estacionário preserva ortogonalidade demais e não
+cria os cruzamentos Hankel requeridos.
+
+## 21. A projeção ambiente de seis câmeras já é um splitting concreto — mas é outro carrier
+
+A arqueologia da rota encontrou
+[`CompletedNativeSixCameraAmbientEnergyTest.lean`](CarrySelfAdjointOperator/CompletedNativeSixCameraAmbientEnergyTest.lean).
+Esse arquivo já contém, sobre o estado ambiente normalizado real, a
+decomposição concreta
+
+\[
+\widehat A(z)=V_6(z)+H_6(z),
+\qquad
+\langle\widehat A(z),\widehat A(w)\rangle
+=\langle V_6(z),V_6(w)\rangle+
+ \langle H_6(z),H_6(w)\rangle.
+\]
+
+O complementar `H₆` não é um remainder abstrato: ele é exatamente o halo
+coerente global `P_global - P₆`. Isso confirma fortemente a leitura conceitual
+“energia desviada para o complemento invisível”.
+
+### 21.1. Guardrail: esse total não é ainda o `6I` literal do BR2
+
+O lado esquerdo acima é o Gram do carrier ambiente normalizado. O repo prova
+na ordem zero:
+
+\[
+\|\widehat A(0)\|^2>h_0.
+\]
+
+Ele não identifica esse Gram com `6δᵢⱼ`, e não existe hoje um transporte
+isométrico do jet BR2 completo para esse estado ambiente. Portanto não é
+válido concluir
+
+\[
+\langle H_6(i),H_6(j)\rangle=6\delta_{ij}-h_{i+j}
+\]
+
+apenas a partir do Parseval ambiente. Faltam precisamente:
+
+1. o transporte `Bᵢ ↦ Âᵢ` entre os carriers;
+2. a conservação do Gram bruto `6δᵢⱼ` nesse transporte;
+3. a identificação do output visível com `C₆(i,j)`.
+
+### 21.2. O teste central foi reduzido a doze coeficientes reais
+
+O novo arquivo
+[`CompletedNativeSixCameraAmbientVisibleCoefficient.lean`](CarrySelfAdjointOperator/CompletedNativeSixCameraAmbientVisibleCoefficient.lean)
+remove mais uma camada do candidato ambiente. Definindo as duas análises
+brancas de seis coordenadas
+
+\[
+a(z),b(z)\in\mathbb R^6,
+\]
+
+foi provada a fórmula polarizada exata
+
+\[
+\boxed{
+\langle V_6(z),V_6(w)\rangle
+=a(z)\!\cdot\!a(w)+b(z)\!\cdot\!b(w)
++i\bigl(a(z)\!\cdot\!b(w)-b(z)\!\cdot\!a(w)\bigr).
+}
+\]
+
+O theorem central é:
+
+```lean
+norm_sq_canonicalCompletedC3NormalizedAmbientSixCameraVisibleState_zero_eq_analysis
+```
+
+e fornece
+
+\[
+\boxed{
+\|V_6(0)\|^2=\|a(0)\|_{\mathbb R^6}^2+
+                 \|b(0)\|_{\mathbb R^6}^2.
+}
+\]
+
+Consequentemente, o gate central desse candidato concreto agora é a igualdade
+finita
+
+\[
+\boxed{
+\|a(0)\|^2+\|b(0)\|^2=h_0,
+}
+
+formalizada por
+
+```lean
+canonicalCompletedC3SixCameraHorizontal_central_energy_eq_excess_iff_analysis
+```
+
+Ela ainda não foi provada nem refutada. Mas já não é uma pergunta sobre uma
+norma implícita no carrier Naimark infinito: é uma conta explícita com as duas
+quadraturas e seis coordenadas brancas históricas.
+
+### 21.3. Próximo alvo mínimo atualizado
+
+Há agora dois testes concretos, em ordem:
+
+1. **sanity-check ambiente de grau zero:** calcular as doze coordenadas acima
+   e decidir se sua soma de quadrados é `h₀`;
+2. **se o teste passar:** construir o transporte não separável do jet BR2 para
+   a realização de câmera/proveniência e provar
+
+   \[
+   C_6(i,j)=\langle R U B_i,R U B_j\rangle
+   \quad\forall i,j.
+   \]
+
+O segundo passo fecha automaticamente o Gram cego como `EnergyExcess` e,
+junto da fidelidade das incidências visíveis, ativa o certificado HP e
+`CanonicalCompletedNativeStieltjesPositivity`. Se o primeiro passo falhar,
+ele refuta somente a projeção ambiente histórica `P₆` como realização do
+canal corrigido; não refuta a arquitetura Parseval nem outra escolha
+geométrica de `U`/readout.
+
+A auditoria dos novos theorems está em
+[`CompletedNativeTfvdCameraParsevalLossChannelAudit.lean`](CarrySelfAdjointOperator/CompletedNativeTfvdCameraParsevalLossChannelAudit.lean).
