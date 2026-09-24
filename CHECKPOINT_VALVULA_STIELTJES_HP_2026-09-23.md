@@ -2458,3 +2458,364 @@ realizesSixSourceVisibleCoefficient_iff_energyExcess
 
 identificará automaticamente o canal blind com `EnergyExcess`; então, e só
 então, o handoff HP/Stieltjes poderá ser aplicado.
+
+## 25. Kernel vetorial funcional six-source — a parte radial fecha por duas quadraturas, mas ainda não é o Gram visible
+
+### 25.1. O último vetor anterior à `greenForm` foi localizado e formalizado em todo cutoff
+
+O módulo novo
+
+```text
+CompletedNativeTfvdSixSourceSymplecticVectorKernel.lean
+```
+
+fecha a auditoria que faltava entre a análise TFVD six-source e a primeira
+scalarização Green. Para qualquer dado separado
+
+```lean
+data : CanonicalC3AllCutoffMixedSourceTfvdAnalysisData S
+```
+
+ele reconstrói, sem sintetizar os seis roles, os dois ports já existentes
+
+```lean
+canonicalC3SixSourceRecoveredGreenPorts :
+  FiniteC3GreenPortCarrier (3 * M) ×
+    FiniteC3GreenPortCarrier (3 * M).
+```
+
+Se esses ports são (x) (direto) e (y) (refletido), o estado vetorial
+funcional novo é literalmente
+
+
+\[
+\boxed{
+\mathcal V_M(z,w;\mathrm{data})
+=
+\bigl(
+N_{3M}x,\;
+N_{3M}y,\;
+N_{3M}(i y)
+\bigr),
+}
+\]
+
+com alvo
+
+```lean
+CanonicalC3SixSourceSymplecticNaimarkVectorCarrier
+  = CanonicalC3SixCameraSymplecticGreenCarrierHilbert.
+```
+
+Os três vetores são expostos pelas igualdades compiladas
+
+```lean
+canonicalC3SixSourceSymplecticNaimarkVector_direct
+canonicalC3SixSourceSymplecticNaimarkVector_reflected
+canonicalC3SixSourceSymplecticNaimarkVector_quarterTurnReflected.
+```
+
+Portanto o objeto anterior à `greenForm` não é hipotético: ele é uma família
+vetorial honesta, dependente de ((z,w)), com direct, reflected e
+quarter-turn ainda separados. Ele é construído exclusivamente da genealogia
+TFVD/recovery/Green/Naimark; nenhum momento, Hankel, fatorização PSD ou lift
+incidencial entra na definição.
+
+### 25.2. Identidade funcional exata encontrada — e a sua natureza correta
+
+As duas quadraturas reais são
+
+\[
+Q_0=\operatorname{realifiedGreenSkew}(N x,N y),
+\qquad
+Q_1=\operatorname{realifiedGreenSkew}(N x,N(i y)).
+\]
+
+O readout complexo é
+
+\[
+Q_0-iQ_1.
+\]
+
+O theorem novo
+
+```lean
+canonicalC3SixSourceSymplecticNaimarkReadout_eq_correctedBoundary
+```
+
+prova, para **todo** cutoff e todo dado six-source,
+
+\[
+\boxed{
+\operatorname{CorrectedBoundary}_M(z,w;\mathrm{data})
+=Q_0-iQ_1
+=\operatorname{greenForm}(x,y).
+}
+\]
+
+A especialização material é igualmente literal:
+
+```lean
+nativeC3SeededClockTfvdSixSourceSymplecticNaimarkReadout_eq_correctedBoundary
+nativeC3SeededClockTfvdSixSourceSymplecticNaimarkReadout_eq_ledgerRadial.
+```
+
+Logo o **kernel radial corrected** já tem uma realização vetorial funcional
+pré-momento e pré-jato. Isto é um PASS para a parte “identidade antes de
+estimativa” da busca.
+
+Mas a identidade é uma polarização **simplética**; ela não afirma
+
+\[
+Q_0-iQ_1=\langle V(z),V(w)\rangle.
+\]
+
+Cada (Q_k) usa `realifiedGreenSkew`, e não o produto interno positivo do
+carrier Naimark. A realização localiza rigorosamente a scalarização, mas não
+transforma por definição uma forma skew em Gram visible. Isso preserva o
+guardrail central da rota B.
+
+### 25.3. O último estado vetorial antes do `FinalReadout` é ainda maior
+
+O momento/coeficiente six-source não é extraído somente do canal radial. A
+fonte material normalizada usa o `FinalReadout`, e o ledger já existente o
+mantém explicitamente como estado Hilbertiano
+
+```lean
+CanonicalCompletedC3AllCutoffKernelLedgerHilbert.
+```
+
+O novo nome material
+
+```lean
+nativeC3SeededClockTfvdSixSourceKernelLedgerVector M z w
+```
+
+é a família canônica desse estado. Suas coordenadas são
+
+\[
+\boxed{
+(N x,\;N y,\;N(i y),\;
+  \mathrm{structural},\;\mathrm{tail},\;\Xi,\;\mathrm{chart}).
+}
+\]
+
+Portanto ele retém simultaneamente:
+
+- as três coordenadas Naimark usadas pelas quadraturas Green;
+- green provenance, off-diagonal e readout residual;
+- tail completion;
+- peso \(\Xi\) e archimedean chart.
+
+Os teoremas novos
+
+```lean
+nativeC3SeededClockTfvdSixSourceKernelLedgerVector_radial_eq_symplecticNaimark
+nativeC3SeededClockTfvdSixSourceKernelLedgerVector_final_eq_nativeFinalReadout
+```
+
+provam, respectivamente, que o canal radial é o readout do triple acima e
+que somente depois de todos esses canais serem preservados o `FinalReadout`
+material é tomado. A decomposição existente é literalmente
+
+\[
+\operatorname{FinalReadout}
+=\Xi\bigl(
+  \operatorname{radial}
+ +\operatorname{structural}
+ +\operatorname{tail}\bigr)
+ +\operatorname{chart}.
+\]
+
+Consequência prática: uma tentativa de usar apenas o triple Naimark radial
+como `correctedMap` para `C_6` seria prematura. Ela explicaria o corrected
+boundary, mas não demonstraria ainda que o **kernel final normalizado** do
+qual os coeficientes são extraídos seja o Gram visible.
+
+O segundo theorem é uma igualdade do **readout scalar** nativo com o readout
+do ledger canônico. Não se deve fortalecê-lo informalmente para uma nova
+igualdade vetorial de um `data` six-source arbitrário com o ledger inteiro:
+essa crosswalk completa ainda não foi construída. O que já é vetorial e
+diretamente functorial em `data` é exatamente o triple Green/Naimark da
+subseção anterior; para o ledger inteiro, a proveniência structural já é
+conhecida no source canônico, mas a promoção full-data continua parte do seam.
+
+### 25.4. O que existe para jatos — e o que ainda não comuta
+
+Há duas cadeias distintas, agora claramente separadas.
+
+Para a parte vetorial radial, existe a família
+
+```lean
+nativeC3SeededClockTfvdSixSourceOnePointSymplecticNaimarkVector :
+  ℂ → CanonicalC3SixSourceSymplecticNaimarkVectorCarrier
+```
+
+na fatia (w=0). A biblioteca também já contém o lema real-linear geral
+
+```lean
+iteratedDeriv_continuousLinearEquiv_comp
+```
+
+que mostra que uma equivalência contínua real-linear comuta com todos os
+jatos de uma família `ℝ → E`.
+
+Para os coeficientes materiais, porém, a cadeia formalizada atualmente é
+scalar e assinada:
+
+```lean
+nativeC3SeededClockTfvdSixSourceTowerCoefficient_eq_signedChiralDerivative
+```
+
+isto é,
+
+\[
+C_6(p,r)
+=\frac{1}{(p+r+1)!}\partial^{p+r+1}
+\left[
+i\,\bigl(K_+(0,z)-K_-(0,z)\bigr)
+\right]_{z=0}.
+\]
+
+Não foi encontrada uma prova que identifique esse jato scalar com o jato do
+triple Naimark, nem uma regra de derivação vetorial para a família complexa
+realificada que comute com o `FinalReadout` completo e produza vetores de
+`CarryVerticalL2`. Em particular, ainda não se pode definir honestamente
+
+\[
+e_n\longmapsto \frac{1}{n!}\partial^n\mathcal V(0)
+\]
+
+como o lift incidencial de rota B: falta primeiro a promoção positiva e a
+compatibilidade analítica de seus jatos. Não se construiu `J` por base nem se
+promoveu all-order.
+
+### 25.5. A Hilbertização chiral existente é informativa, mas não é o `P` procurado
+
+Existe um bloco positivo genuíno, com os dois estados
+
+```lean
+canonicalCompletedC3NormalizedFullWronskianPositiveChiralState
+canonicalCompletedC3NormalizedFullWronskianNegativeChiralState
+```
+
+e Gram de dois canais
+
+```lean
+canonicalCompletedC3NormalizedFullWronskianChiralBlockKernel.
+```
+
+Todo sample finito desse bloco é PSD pelo theorem
+
+```lean
+canonicalCompletedC3NormalizedFullWronskianChiralBlockKernel_posSemidef.
+```
+
+Contudo o scalar relevante é a assinatura
+
+\[
+\boxed{
+i\bigl(\langle V_+(0),V_+(z)\rangle
+-\langle V_-(0),V_-(z)\rangle\bigr),
+}
+\]
+
+e não o Gram do bloco direto. Assim, essa doubled-Hilbert realization explica
+de onde a forma assinada vem, mas não prova que ela seja uma compressão
+positiva ou o readout visible da câmera.
+
+Mais forte: a tentativa causal/coisométrica natural de transformar o
+readout chiral positivo em readout de câmera já possui no-go formal:
+
+```lean
+not_canonicalCompletedC3CausalChiralReadoutKernelCompatibleAt_of_im_pos.
+```
+
+Ela exclui essa **Hilbertização causal fixa** no semiplano superior; não
+exclui uma promoção incidencial TFVD/six-camera que preserve proveniência no
+span BR2. Portanto o bloco chiral é diagnóstico, não uma instância de `P`.
+
+### 25.6. Seam exato restante e status dos testes de baixa ordem
+
+Para o canal radial, o tipo da seta faltante está agora explícito:
+
+```lean
+CanonicalC3SymplecticNaimarkToFiniteCameraFamily :=
+  CanonicalC3SixSourceSymplecticNaimarkVectorCarrier →ₗ[ℝ]
+    FiniteHilbertFamily CanonicalC3SixCameraSlot
+      CanonicalCompletedTfvdGreenHilbertCarrier.
+```
+
+Ela teria de ser geométrica, não separável e provenance-aware. Em particular,
+não pode esquecer direct/reflected/quarter-turn e não pode ser o embedding
+rank-one já descartado. Para fechar a rota B, uma extensão dela também teria
+de explicar como structural, tail, \(\Xi\) e chart entram antes da extração
+dos jatos do `FinalReadout` — ou provar uma identidade que os transporte
+para o mesmo visible kernel.
+
+Nenhuma ponte formalizada foi encontrada de
+
+```lean
+RealifiedNaimarkComplexification
+```
+
+ou do triple/ledger acima para
+
+```lean
+FiniteHilbertFamily CanonicalC3SixCameraSlot CarryVerticalL2.
+```
+
+Consequentemente ainda não existe um candidato honesto de `U_0,U_1,U_2` que
+possa ser entregue ao readout Parseval. Os testes
+
+\[
+\langle R U_0,R U_2\rangle=C_6(0,2),
+\qquad
+\langle R U_1,R U_1\rangle=C_6(1,1)
+\]
+
+**não foram forçados** nem promovidos para all-order. O próximo teste mínimo
+continua exatamente esse, mas somente após uma seta bem tipada para a família
+de câmera finita e uma costura funcional que chegue ao `FinalReadout`, não
+apenas ao radial `CorrectedBoundary`.
+
+### 25.7. Conclusão operacional desta rodada
+
+O achado positivo é preciso:
+
+\[
+\boxed{
+\text{six-source TFVD}
+\to
+\text{ports Green recuperados}
+\to
+\text{triple Naimark vetorial}
+\to
+\text{duas quadraturas skew}
+\to
+\text{CorrectedBoundary}.
+}
+\]
+
+E, com todos os canais ainda presentes,
+
+\[
+\boxed{
+\text{six-source TFVD no locus canônico}
+\to
+\text{kernel ledger vetorial}
+\to
+\text{FinalReadout scalar}
+\to
+\text{jatos/coefficient tower}.
+}
+\]
+
+O que **não** foi encontrado é a seta positiva de compressão que substitua
+as quadraturas/assinatura por um Gram Hilbertiano visible da câmera finita.
+Assim a rota B avançou de “precisamos adivinhar um vetor” para um seam único e
+concreto: construir (ou localizar) a promoção provenance-aware do vetor
+Naimark/ledger para os slots `CarryVerticalL2`, com compatibilidade de kernel
+e jatos. Enquanto isso não existir, `6I=H+\mathrm{blind\ Gram}` permanece
+uma arquitetura formal pronta para receber a costura, não uma identidade
+concreta já demonstrada.
