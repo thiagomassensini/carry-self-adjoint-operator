@@ -2990,3 +2990,174 @@ propext, Classical.choice, Quot.sound.
 O commit remoto original foi integrado sem conflitos; os três arquivos da
 ponte são adicionais e não alteram a implementação existente do operador de
 altura, do certificado HP ou da torre Jacobi.
+
+## 27. Seam espectral mínimo: equivalência de zeros, não igualdade forçada
+
+### 27.1. Resultado confirmado
+
+O módulo novo
+
+```text
+MixedReturnHeightZeroEquivalenceBridge.lean
+```
+
+formaliza a interface estritamente mais fraca que a igualdade literal e que é
+suficiente para o *handoff* espectral:
+
+```lean
+IsZeroEquivalentCompletedNativeHeightReadout
+    {A : Type*} [Zero A] (readout : ℝ → A) : Prop :=
+  ∀ t : ℝ,
+    readout t = 0 ↔
+      completedNativeOperatorCharacteristic (t : ℂ) = 0.
+```
+
+O codomínio não é fixado em `ℂ`. Isso é deliberado: antes da leitura
+secular, a característica multibase física pode permanecer vetorial; e um
+residual/Potapov pode permanecer matricial. Basta provar que o seu `= 0`
+expressa a cegueira coletiva física e que esta ocorre exatamente nos zeros de
+
+\[
+F(t)=\texttt{completedNativeOperatorCharacteristic}(t).
+\]
+
+Não há scalarização arbitrária de roles multibase, nem novo operador, nessa
+interface.
+
+### 27.2. Construtor por gauge não nulo
+
+Para o caso em que o objeto final já é escalar, os dois constructors
+
+```lean
+IsZeroEquivalentCompletedNativeHeightReadout.of_nonvanishing_scalar_factor
+IsZeroEquivalentCompletedNativeHeightReadout.of_nonvanishing_scalar_factor_right
+```
+
+formalizam respectivamente
+
+\[
+R(t)=u(t)F(t),\ u(t)\ne0
+\qquad\text{ou}\qquad
+R(t)=F(t)u(t),\ u(t)\ne0.
+\]
+
+Assim a normalização estrutural de um secular reduzido, de um fator Potapov
+ou de uma gauge de completion pode ser removida somente no nível de zeros,
+desde que sua não-anulação seja realmente provada na reta real. O padrão já
+existia concretamente em
+`NativeCarrySpectralWeyl.Camera.CommonZeroSet`: um fator de câmera não nulo
+produz o mesmo locus de zeros, enquanto multiplicidade local é tratada como
+questão separada.
+
+### 27.3. Transporte downstream — sem nova estrutura espectral
+
+Dado o mesmo certificado já exigido pelo downstream,
+
+```lean
+certificate : CompletedNativeRealHPCarrierCertificate jet,
+```
+
+foram compilados:
+
+```lean
+certificate.zeroEquivalentReadout_zero_hasSignedHeightEigenvalue
+certificate.zeroEquivalentReadout_zero_iff_jacobiEigenvalue_inv_sq
+```
+
+Logo, para qualquer codomínio com zero,
+
+\[
+R(t)=0
+\Longrightarrow
+t\in\sigma_p(H_{\mathrm{signed\ height}}),
+\]
+
+e, se \(t\ne0\),
+
+\[
+R(t)=0
+\Longleftrightarrow
+(t^2)^{-1}\in\sigma_p(J).
+\]
+
+As provas chamam diretamente os theorems canônicos já usados pela ponte
+exata. A única operação nova é aplicar a direção apropriada da equivalência
+de zeros. Portanto a rota é precisamente
+
+\[
+\boxed{
+\text{característica multibase física}
+\to\text{zero-equivalência com }F
+\to\text{espectro signed-height já construído}.}
+\]
+
+### 27.4. Igualdade exata continua necessária em outro nível
+
+`IsExactCompletedNativeHeightReadout` implica a interface nova, e o
+`mixedReturnCompletedHeightCharacteristic` agora possui ambas. Porém não há
+conversa: equivalência de zeros não transporta automaticamente derivadas,
+coeficientes de Taylor, momentos, nem multiplicidades analíticas. Esta
+distinção é material, pois `CompletedNativeAtomicMultiplicity.lean` usa a
+ordem analítica local de `F` para calcular o resíduo/massa atômica Weyl.
+
+Assim a recomendação de arquitetura é:
+
+\[
+\begin{array}{rcl}
+\text{característica vetorial/matricial multibase}
+&\to& \text{provar cegueira coletiva}\;\Longleftrightarrow\;F=0,\\
+\text{secular escalar normalizado}
+&\to& uF\ \text{com }u\ne0\quad\text{(se existir)},\\
+\text{derivadas, jatos ou multiplicidade}
+&\to& \text{voltar a exigir identidade literal/analítica.}
+\end{array}
+\]
+
+### 27.5. Auditoria da arquitetura existente e próximo gate
+
+Não foi localizada uma implementação Lean de realização mínima multibase ou
+Potapov no repositório atual. Há, contudo, três peças que tornam a nova
+interface não especulativa:
+
+1. `MixedReturnNativeReadout.lean` já dá a igualdade literal do readout
+   mixed-return com `F` em toda a reta real;
+2. `CompletedNativeCameraUniversality.lean` normaliza qualquer câmera
+   suportada por seu fator não nulo e a identifica literalmente com `F`,
+   inclusive em todas as derivadas; e
+3. `NativeCarrySpectralWeyl.Camera.CommonZeroSet` já prova o mecanismo
+   abstrato concreto “fator não nulo \(\Rightarrow\) zeros comuns”, sem
+   confundi-lo com multiplicidade.
+
+Portanto o próximo seam da rota característica é único e anterior ao
+downstream:
+
+```text
+característica física vetorial/matricial
+  → prova de que zero = cegueira coletiva
+  → IsZeroEquivalentCompletedNativeHeightReadout
+  → signed-height/Jacobi já existentes.
+```
+
+Se a construção produzir um secular escalar, basta em vez disso uma
+fatorização real-axis `R = u * F` mais `∀ t, u t ≠ 0`. Nenhuma parte desse
+trabalho substitui ou descarrega a rota B:
+
+```text
+rota B: geometria six-source/câmera → certificado HP concreto;
+rota característica: zeros físicos → espectro, condicionado ao certificado HP.
+```
+
+### 27.6. Validação local
+
+Foram validados somente os módulos afetados, sem PR e sem Actions:
+
+```text
+lake build CarrySelfAdjointOperator.MixedReturnHeightZeroEquivalenceBridge
+lake env lean CarrySelfAdjointOperator/MixedReturnHeightZeroEquivalenceBridgeAudit.lean
+```
+
+O audit lista para os sete itens novos somente:
+
+```text
+propext, Classical.choice, Quot.sound.
+```

@@ -23,7 +23,7 @@ The repository already contains both ends:
    including the reduced signed-height operator whose eigenvalue is the height
    itself.
 
-## New interface
+## Exact interface
 
 The module `MixedReturnHeightSpectrumBridge.lean` introduces only
 
@@ -36,6 +36,54 @@ This is intentionally tiny.  Any future realization—minimal multibase
 characteristic, Potapov factor, boundary/Weyl readout, or a rigorously promoted
 cutoff limit—only needs to prove this equality to inherit the existing spectral
 route.
+
+## Zero-equivalent interface
+
+The companion module
+`MixedReturnHeightZeroEquivalenceBridge.lean` records the strictly weaker
+interface needed by the *spectral* handoff:
+
+```lean
+def IsZeroEquivalentCompletedNativeHeightReadout
+    {A : Type*} [Zero A] (readout : ℝ → A) : Prop :=
+  ∀ t : ℝ,
+    readout t = 0 ↔
+      completedNativeOperatorCharacteristic (t : ℂ) = 0
+```
+
+The codomain is deliberately not restricted to `ℂ`.  A physical multibase
+characteristic may remain vector-valued, or a matrix-valued residual may stay
+matrix-valued, until its own zero condition has been proved to mean collective
+blindness.  The new interface can then hand that zero condition directly to the
+already existing signed-height and Jacobi theorems.
+
+For a scalar reduced secular/Potapov readout, the module supplies the standard
+constructor
+
+```text
+readout(t) = unit(t) * completedNativeOperatorCharacteristic(t),
+unit(t) != 0
+---------------------------------------------------------------
+same real-height zero locus.
+```
+
+It also supplies the right-factor variant.  This is exactly the pattern
+already used by `NativeCarrySpectralWeyl.Camera.CommonZeroSet`: a nonvanishing
+camera factor gives equality of zero sets, while local zero multiplicity is
+kept as a separate question.
+
+This distinction is intentional:
+
+```text
+literal equality       -> derivatives, Taylor coefficients, moments,
+                          and multiplicity-sensitive arguments;
+zero equivalence       -> the point-spectrum handoff only.
+```
+
+Thus `mixedReturnCompletedHeightCharacteristic` has both interfaces: its
+already-proved literal equality induces zero equivalence, but the new
+interface lets a future physical multibase/Potapov realization stop as soon as
+it proves the correct real-axis collective zero condition.
 
 ## Concrete consequences
 
@@ -90,7 +138,9 @@ The next modules should be staged separately:
 
 4. **Limit readout identification.**
    Only after the limit characteristic has been identified with the canonical
-   completed-native characteristic should the present bridge be applied.
+   completed-native characteristic *or proved zero-equivalent to it on the
+   real axis* should the present bridge be applied.  Equality remains necessary
+   if the next result uses coefficients or derivatives rather than only zeros.
 
 5. **Global spectral completeness.**
    This remains a distinct theorem: the current repository already proves
