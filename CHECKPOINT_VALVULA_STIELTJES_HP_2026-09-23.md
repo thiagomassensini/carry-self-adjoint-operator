@@ -3161,3 +3161,210 @@ O audit lista para os sete itens novos somente:
 ```text
 propext, Classical.choice, Quot.sound.
 ```
+
+## 28. Cegueira coletiva multibase canônica → zero de `F`
+
+### 28.1. Resultado fechado nesta rodada
+
+O módulo
+
+```text
+CompletedNativeMultibaseCollectiveReadout.lean
+```
+
+fecha a versão mínima e já justificada no repositório da característica
+multibase: uma família de coordenadas de câmera **completadas e normalizadas**
+
+```lean
+completedNativeCameraFamilyReadout camera cutoff time : ι → ℂ
+```
+
+cuja coordenada `i` é
+
+```lean
+normalizedCompletedNativeCameraCharacteristic (camera i) (cutoff i) time.
+```
+
+Para cada câmera suportada (`2 ≤ camera i`), Gate A é literalmente o theorem
+
+```lean
+completedNativeCameraFamilyReadout_apply_eq
+```
+
+e diz
+
+\[
+R_i(t)=F(t).
+\]
+
+Ou seja, depois da normalização já formalizada em
+`CompletedNativeCameraUniversality.lean`, o caso `R_i=u_iF` ocorre com
+\(u_i=1\). Não foi necessário introduzir outra fatorização nem uma hipótese
+nova de não-anulação.
+
+Para uma família não vazia, Gate B está compilado como
+
+```lean
+completedNativeCameraFamilyReadout_eq_zero_iff_nativeZero
+```
+
+e prova puramente por coordenadas
+
+\[
+\boxed{
+(R_i(t))_{i\in\iota}=0
+\Longleftrightarrow
+F(t)=0.}
+\]
+
+No sentido \(\Rightarrow\), basta uma coordenada fornecida pela não-vacuidade;
+no outro sentido, todas as coordenadas são zero. Nenhuma positividade, HP,
+Weyl, dado numérico ou espectro participa dessa etapa.
+
+### 28.2. Secular root-free finito
+
+Se a família é finita, foi definido o defeito escalar canônico
+
+```lean
+completedNativeCameraFamilyRootFreeSecular camera cutoff time
+  = 4 * ∑ i, Complex.normSq (R_i time).
+```
+
+O theorem
+
+```lean
+completedNativeCameraFamilyRootFreeSecular_eq_zero_iff
+```
+
+prova a identidade algébrica
+
+\[
+4\sum_i|R_i(t)|^2=0
+\Longleftrightarrow
+(R_i(t))_i=0.
+\]
+
+Assim, para uma família finita não vazia suportada,
+
+\[
+\boxed{
+\texttt{completedNativeCameraFamilyRootFreeSecular}(t)=0
+\Longleftrightarrow F(t)=0.}
+\]
+
+Isso realiza a forma `4 |Phi|²` para o **vetor canônico de coordenadas
+completadas** e não usa uma estrutura Hilbertiana adicional. A positividade
+aqui é somente a não-negatividade elementar de somas de `Complex.normSq`; não
+é uma nova prova HP nem um argumento espectral.
+
+### 28.3. Instância concreta das seis câmeras
+
+O módulo especializa a construção para
+
+```text
+sixCamera : Fin 6 → ℕ = (2,3,4,5,6,7),
+```
+
+com cutoff independente em cada slot. Estão compilados:
+
+```lean
+completedNativeSixCameraCollectiveReadout_eq_zero_iff_nativeZero
+completedNativeSixCameraRootFreeSecular_eq_zero_iff_nativeZero
+completedNativeSixCameraCollectiveReadout_isZeroEquivalent
+completedNativeSixCameraRootFreeSecular_isZeroEquivalent.
+```
+
+Portanto tanto a cegueira coletiva vetorial canônica quanto seu secular
+root-free escalar entram diretamente em
+`IsZeroEquivalentCompletedNativeHeightReadout`.
+
+Dado o mesmo `CompletedNativeRealHPCarrierCertificate jet` já exigido pelo
+downstream, os corolários reutilizam — sem reconstruí-los — o bridge da seção
+27:
+
+\[
+\text{cegueira coletiva canônica em }t
+\Longrightarrow
+t\in\sigma_p(H_{\mathrm{signed\ height}}),
+\]
+
+e para \(t\ne0\),
+
+\[
+\text{cegueira coletiva canônica em }t
+\Longleftrightarrow
+(t^2)^{-1}\in\sigma_p(J).
+\]
+
+### 28.4. O que a auditoria encontrou — e o seam que continua aberto
+
+Há no repositório infraestrutura finita genuína de Gram, whitening e
+coisometria:
+
+```text
+NativeCarrySpectralWeyl.Finite.Gram
+NativeCarrySpectralWeyl.Finite.Whitening
+sixCameraInverseSqrt
+sixCameraLogOperator.
+```
+
+Ela prova a identidade de whitening do Gram e a auto-adjunticidade dos
+operadores de momento finitos. Porém **não** foi encontrado um objeto Lean que
+seja a órbita empírica
+
+\[
+Q_Ne^{-itL_N}j_N,
+\]
+
+nem uma realização Potapov mínima `S_N(z)`, nem uma comparação formal entre
+essa órbita e as coordenadas escalares completadas acima. O readout
+`mixedReturnCompletedCameraReadout` também já existe, mas é uma combinação
+escalar assinada de câmeras, não o vetor de cegueira coletiva.
+
+Assim, a conclusão correta não é que o \(Q_N\) experimental já foi
+formalizado. O que foi fechado é a rota canônica disponível hoje:
+
+\[
+\boxed{
+\text{câmeras completadas normalizadas}
+\to\text{cegueira coletiva}
+\Longleftrightarrow F=0.}
+\]
+
+O seam mínimo restante para identificar a característica física laboratorial é
+exatamente uma seta de comparação de zeros, finita e anterior a qualquer
+limite:
+
+```text
+Phi_N(t) = Q_N exp(-it L_N) j_N
+  = 0  ↔  completedNativeCameraFamilyReadout sixCamera cutoff t = 0.
+```
+
+Equivalentemente, se o objeto físico escolhido for um secular/defeito
+reduzido, basta provar
+
+```text
+Delta_N(t) = 0
+  ↔  completedNativeCameraFamilyRootFreeSecular sixCamera cutoff t = 0.
+```
+
+Somente depois dessa comparação a característica empírica pode usar a
+zero-equivalência já compilada. A promoção de cutoff/\(N\to\infty\), inclusive
+o possível colapso da versão whitened normalizada e a preferência pela versão
+desnormalizada \(\chi_N=C_Ne^{-itL_N}\alpha_N\), permanece explicitamente
+fora desta rodada.
+
+### 28.5. Validação
+
+Foram compilados somente os módulos novos/afetados:
+
+```text
+lake build CarrySelfAdjointOperator.CompletedNativeMultibaseCollectiveReadout
+lake env lean CarrySelfAdjointOperator/CompletedNativeMultibaseCollectiveReadoutAudit.lean
+```
+
+O audit dos onze itens expostos lista somente:
+
+```text
+propext, Classical.choice, Quot.sound.
+```
