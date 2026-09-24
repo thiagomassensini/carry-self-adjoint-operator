@@ -58,6 +58,57 @@ def boundarySynthesis
   map_smul' scalar state := by
     simp [smul_add]
 
+/-- Analyse a state into its boundary trace and its interior defect.  This is
+the static reconstruction form used by TFVD; unlike the cutoff move, it does
+not itself advance a representation boundary. -/
+def boundaryAnalysis
+    (trace : Y →ₗ[𝕜] P) (defect : Y →ₗ[𝕜] X) :
+    Y →ₗ[𝕜] (P × X) where
+  toFun state := (trace state, defect state)
+  map_add' left right := by
+    ext <;> simp
+  map_smul' scalar state := by
+    ext <;> simp
+
+/-- Exact recovery of a state from an interior defect and a boundary trace. -/
+def IsBoundaryReconstruction
+    (port : P →ₗ[𝕜] Y) (green : X →ₗ[𝕜] Y)
+    (trace : Y →ₗ[𝕜] P) (defect : Y →ₗ[𝕜] X) : Prop :=
+  port.comp trace + green.comp defect = LinearMap.id
+
+/-- The static identity `return ∘ trace + Green ∘ defect = I` is exactly a
+left inverse statement for analysis and synthesis. -/
+theorem isBoundaryReconstruction_iff_synthesis_comp_analysis_eq_id
+    (port : P →ₗ[𝕜] Y) (green : X →ₗ[𝕜] Y)
+    (trace : Y →ₗ[𝕜] P) (defect : Y →ₗ[𝕜] X) :
+    IsBoundaryReconstruction port green trace defect ↔
+      (boundarySynthesis port green).comp
+          (boundaryAnalysis trace defect) = LinearMap.id := by
+  constructor <;> intro h
+  · apply LinearMap.ext
+    intro state
+    simpa [IsBoundaryReconstruction, boundarySynthesis, boundaryAnalysis,
+      LinearMap.add_apply, LinearMap.comp_apply] using congrArg (fun map => map state) h
+  · apply LinearMap.ext
+    intro state
+    simpa [IsBoundaryReconstruction, boundarySynthesis, boundaryAnalysis,
+      LinearMap.add_apply, LinearMap.comp_apply] using congrArg (fun map => map state) h
+
+/-- Exact reconstruction makes the analysis map injective: its trace and
+defect together retain the whole input state. -/
+theorem boundaryAnalysis_injective_of_reconstruction
+    (port : P →ₗ[𝕜] Y) (green : X →ₗ[𝕜] Y)
+    (trace : Y →ₗ[𝕜] P) (defect : Y →ₗ[𝕜] X)
+    (hreconstruct : IsBoundaryReconstruction port green trace defect) :
+    Function.Injective (boundaryAnalysis trace defect) := by
+  have hleft : Function.LeftInverse (boundarySynthesis port green)
+      (boundaryAnalysis trace defect) := by
+    intro state
+    have hinv := (isBoundaryReconstruction_iff_synthesis_comp_analysis_eq_id
+      port green trace defect).mp hreconstruct
+    exact congrArg (fun map => map state) hinv
+  exact hleft.injective
+
 /-- The boundary equation says that the part lost by interior transport is
 exactly what emerges through the port. -/
 def IsBoundaryCompletedSynthesis

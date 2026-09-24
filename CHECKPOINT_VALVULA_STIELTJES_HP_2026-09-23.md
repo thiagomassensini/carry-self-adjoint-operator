@@ -4955,29 +4955,104 @@ identifica a construção abstrata literalmente com o Galerkin já formalizado:
 \boxed{A_N=S_N+c_Ne_{\rm last}^{\!*}=G_N^{-1}K_N.}
 \]
 
-### 35.4. Relação com TFVD/Green
+### 35.4. Instância TFVD/Green: reconstrução estática, não shift de cutoff
 
-O repositório já contém a reconstrução discreta de segunda ordem em
-`DiscreteValve.lean`:
+A costura com TFVD foi agora testada diretamente e compilada em
+`CarrySelfAdjointOperator/TfvdBoundaryCompletedTransport.lean`.
+
+Para (0<q<1), o carrier vertical existente já fornece os quatro mapas
 
 \[
-f=R(\operatorname{Tr}f)+G(Bf),
-\qquad B=(S-I)^2.
+\begin{aligned}
+\operatorname{Tr}_q &: H_{\rm vert}\to\mathbb C^2,\\
+B_q &: H_{\rm vert}\to H_{\rm vert},\\
+R_q &: \mathbb C^2\to H_{\rm vert},\\
+G_q &: H_{\rm vert}\to H_{\rm vert},
+\end{aligned}
 \]
 
-E contém a instância TFVD finita
+com a identidade literal
+
+\[
+\boxed{
+R_q\operatorname{Tr}_q+G_qB_q=I.
+}
+\]
+
+O bracket interno é a segunda diferença vestida, com a coordenada inicial
+reservada ao bordo:
+
+\[
+(B_qx)_{n+1}=q^{-1}x_{n+2}-2x_{n+1}+q x_n,
+\qquad
+\operatorname{Tr}_q x=(x_0,q^{-1}x_1-x_0).
+\]
+
+O novo adapter usa precisamente a API abstrata introduzida no capstone:
 
 ```lean
-finiteWeightedSlopeGreenResponse_add_boundaryReturn
+carryWeightedVerticalTfvdBoundaryAnalysis q
+carryWeightedVerticalTfvdBoundarySynthesis q hq0 hq1
+carryWeightedVerticalTfvd_isBoundaryReconstruction
+carryWeightedVerticalTfvdBoundarySynthesis_comp_analysis
+carryWeightedVerticalTfvdBoundaryAnalysis_injective
 ```
 
-que prova `Green response + boundary return = prefix state`.
+Em notação:
 
-Essas são reconstruções exatas do estado a partir de curvatura e traço, e
-pertencem à mesma família “interior + porto”.  Ainda não foi provado que o
-operador de avanço de cutoff da tail é o mesmo endomorfismo que qualquer
-transporte TFVD/Green interno; o ponto comum formalizado é a lei de
-reconstrução completada pelo bordo.
+\[
+\mathcal A_q(x)=(\operatorname{Tr}_qx,B_qx),
+\qquad
+\mathcal S_q(\tau,b)=R_q\tau+G_qb,
+\]
+
+e o theorem novo prova
+
+\[
+\boxed{\mathcal S_q\mathcal A_q=I.}
+\]
+
+Assim, `trace ⊕ bracket` é lossless no sentido correto: a análise é
+injetiva.  Não foi afirmado o inverso em pares arbitrários
+((\tau,b)): pares incompatíveis não devem ser promovidos a estados sem uma
+condição de compatibilidade adicional.
+
+Isto confirma a família estrutural “interior + porto”, mas também fixa a
+distinção necessária:
+
+\[
+\boxed{
+\begin{array}{rcl}
+\Sigma U_{\rm cut}&=&\Sigma
+\quad\text{(tail: mudança de representação)},\\[1mm]
+\mathcal S_q\mathcal A_q&=&I
+\quad\text{(TFVD: reconstrução estática)},\\[1mm]
+G_NA_N&=&K_N
+\quad\text{(Hankel: correção métrica de borda)}.
+\end{array}}
+\]
+
+Portanto a TFVD **não** fornece, por si só, o entrelaçamento falso
+
+\[
+\mathcal M S^*_{\rm tail}=A_{\rm mom}\mathcal M.
+\]
+
+Ela mostra onde entra o transporte de segunda ordem: dentro de (B_q), não
+como o avanço de cutoff (U_{\rm cut}).  O próximo seam genuíno, se for
+necessário, é um diagrama bidimensional entre mudança de cutoff da
+representação e extração de response/jets depois da síntese completa.
+
+No nível finito de coeficientes, o theorem já existente e agora exposto como
+adapter
+
+```lean
+finiteSlopeCoefficient_tfvdBoundaryReconstruction
+```
+
+prova que Green response mais boundary return é exatamente o prefixo
+sintetizado.  Isto conecta a mesma reconstrução à cadeia de jets sem usar
+momentos, PosDef, HP ou Stieltjes.
 
 ### 35.5. Guardrail renovado
 
@@ -5021,6 +5096,33 @@ lake build \
 ```
 
 O audit dos nove theorems novos/imediatos imprimiu somente:
+
+```text
+propext, Classical.choice, Quot.sound.
+```
+
+Nenhum push, PR ou GitHub Action foi acionado nesta rodada.
+
+### 35.7. Validação da costura TFVD
+
+Foram acrescentados:
+
+```text
+CarrySelfAdjointOperator/TfvdBoundaryCompletedTransport.lean
+CarrySelfAdjointOperator/TfvdBoundaryCompletedTransportAudit.lean
+```
+
+e executado localmente:
+
+```bash
+lake build \
+  CarrySelfAdjointOperator.BoundaryCompletedTransport \
+  CarrySelfAdjointOperator.TfvdBoundaryCompletedTransport \
+  CarrySelfAdjointOperator.BoundaryCompletedTransportAudit \
+  CarrySelfAdjointOperator.TfvdBoundaryCompletedTransportAudit
+```
+
+Os quatro theorems TFVD do adapter imprimem somente:
 
 ```text
 propext, Classical.choice, Quot.sound.
