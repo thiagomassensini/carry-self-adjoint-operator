@@ -2165,3 +2165,296 @@ pré-recuperação, incidencial e channel-separated. A lacuna restante não é
 mais ``achar uma energia positiva'': é construir a **ponte de compressão
 tipada** que transforme essa energia total nos canais visible/blind da câmera
 finita.
+
+## 24. Promoção six-source vetorial para six-camera — source roles, camera slots e o seam ainda aberto
+
+### 24.1. O último dado vetorial six-source existe e é anterior ao readout escalar
+
+O seeded clock não passa diretamente de um dado escalar a
+`nativeC3SeededClockTfvdSixSourceCorrectedBoundary`. Seu dado imediatamente
+anterior é
+
+```lean
+nativeC3SeededClockTfvdSixSourceAnalysis :
+  CanonicalC3AllCutoffMixedSourceTfvdAnalysisData S
+```
+
+isto é, seis valores de `NativeGpreFiniteTfvdAnalysisCarrier S`:
+
+
+\[
+\boxed{
+(\mathrm{ordinary},\mathrm{logJet})
+\times
+(z,w,\operatorname{reflected}z).
+}
+\]
+
+O novo módulo
+
+```text
+CompletedNativeTfvdSixSourceCameraPromotionAudit.lean
+```
+
+expõe esse produto por um tipo semântico explícito:
+
+```lean
+CanonicalC3SixSourceRole :=
+  CanonicalC3SixSourceParameterRole × CanonicalC3SixSourceChannelRole
+```
+
+com os teoremas de ida e volta
+
+```lean
+canonicalC3SixSourceRoleAnalysisData_roleAnalysis
+canonicalC3SixSourceRoleAnalysis_roleAnalysisData.
+```
+
+Assim ficou formalizado que nenhuma das seis análises foi contraída ou
+reordenada apenas para tornar o dado conveniente.
+
+O último objeto vetorial que entra **diretamente** no corrected boundary é o
+par
+
+```lean
+canonicalC3SixSourceRecoveredGreenPorts :
+  FiniteC3GreenPortCarrier (3 * M) ×
+    FiniteC3GreenPortCarrier (3 * M).
+```
+
+Ele é obtido reconstruindo separadamente a fonte direta `w` e a fonte
+refletida `z`. A igualdade literal
+
+```lean
+canonicalC3SixSourceRecoveredGreenPorts_correctedBoundary
+```
+
+diz apenas
+
+\[
+\operatorname{CorrectedBoundary}
+=
+\operatorname{greenForm}(\operatorname{directPort},
+  \operatorname{reflectedPort}).
+\]
+
+Isso fixa um guardrail importante: `greenForm` é uma leitura
+Green/simplética; ela **não** é, por si só, um Gram Hilbertiano positivo.
+
+Também existe a crosswalk vetorial, anterior a qualquer momento:
+
+```lean
+nativeC3SeededClockTfvdSixSource_vectorCrosswalk
+```
+
+que identifica a reconstrução lossless das seis análises com a fonte
+three-point do Green frame orientado. Ela preserva a fonte
+ordinary/log-jet antes da leitura scalar, mas não fornece por si uma família
+finita de `CarryVerticalL2`.
+
+### 24.2. Os seis source roles não são os seis camera slots
+
+Os slots históricos da câmera foram mantidos em outro tipo:
+
+```lean
+CanonicalC3SixCameraSlot := CanonicalC3SixCameraLeg × Fin 3
+```
+
+com `first` e `second` como as duas pernas geométricas. O label nativo é
+proveniente da construção C3 já existente:
+
+```lean
+canonicalC3SixCameraSlotLabel :
+  CanonicalC3SixCameraSlot → ℕ
+```
+
+e usa literalmente `firstC3CameraIndex` e `secondC3CameraIndex`, isto é, as
+câmeras `2,\ldots,7`.
+
+Portanto não foi criada nenhuma bijeção por posição entre
+
+\[
+(z,w,\operatorname{reflected}z)
+\times(\mathrm{ordinary},\mathrm{logJet})
+\]
+
+e
+
+\[
+(\mathrm{first\ C3\ leg},\mathrm{second\ C3\ leg})
+\times \operatorname{Fin}3.
+\]
+
+Uma promoção válida deve explicitar geometricamente como proveniência,
+porta, retorno, reflexão e os dois canais verticais determinam os slots
+externos. A coincidência de cardinalidade seis não é uma identificação.
+
+### 24.3. O tail canal-a-canal da promoção já está disponível
+
+Uma vez dada a promoção ausente
+
+```lean
+CanonicalC3SixSourceToCameraChannelAnalysis S :=
+  CanonicalC3AllCutoffMixedSourceTfvdAnalysisData S →ₗ[ℂ]
+    (ℕ →₀ NativeGpreFiniteTfvdAnalysisCarrier S),
+```
+
+a parte seguinte já é inteiramente tipada e não usa
+`cameraChannelSynthesis`:
+
+\[
+\begin{aligned}
+&\operatorname{CanonicalC3AllCutoffMixedSourceTfvdAnalysisData}(S)\\
+&\quad\xrightarrow{P}
+  \mathbb N\to_0\operatorname{NativeGpreFiniteTfvdAnalysisCarrier}(S)\\
+&\quad\xrightarrow{\texttt{cameraChannelTfvdReconstruction}}
+  \mathbb N\to_0\operatorname{CarryVerticalL2}\\
+&\quad\xrightarrow{\texttt{restrictCameraResolvedCarryVertical}}
+  \operatorname{FiniteHilbertFamily}(
+    \operatorname{CanonicalC3SixCameraSlot},
+    \operatorname{CarryVerticalL2}).
+\end{aligned}
+\]
+
+O mapa composto está formalizado como
+
+```lean
+canonicalC3SixSourceFiniteCameraFamilyOfPromotion.
+```
+
+Sua fórmula por slot,
+
+```lean
+canonicalC3SixSourceFiniteCameraFamilyOfPromotion_apply,
+```
+
+confirma que cada coordenada é reconstruída separadamente a partir da análise
+promovida no seu label geométrico. Não há síntese precoce na construção.
+
+### 24.4. Há dois arrows ausentes para a versão incidencial, não apenas um
+
+Para obter os vetores `U_i` da rota B a partir da incidência BR2, a promoção
+de source role para câmera não basta. A realização material six-source é
+paramétrica em `(z,w)`, enquanto a Parseval restrita recebe o ledger real de
+incidências. A auditoria isolou os dois arrows necessários:
+
+```lean
+J : (ℕ →₀ ℝ) →ₗ[ℝ]
+  CanonicalC3AllCutoffMixedSourceTfvdAnalysisData S
+
+P : CanonicalC3AllCutoffMixedSourceTfvdAnalysisData S →ₗ[ℂ]
+  (ℕ →₀ NativeGpreFiniteTfvdAnalysisCarrier S).
+```
+
+Em Lean eles são os tipos
+
+```lean
+BR2IncidenceToCanonicalC3SixSourceAnalysis S
+CanonicalC3SixSourceToCameraChannelAnalysis S.
+```
+
+Com ambos, a composição real-linear já construída é
+
+```lean
+br2CanonicalC3SixSourceFiniteCameraIncidenceMap :
+  (ℕ →₀ ℝ) →ₗ[ℝ]
+    FiniteHilbertFamily CanonicalC3SixCameraSlot
+      CanonicalCompletedTfvdGreenHilbertCarrier.
+```
+
+Ela é exatamente o tipo de entrada requerido por
+`CanonicalCompletedNativeTfvdCameraParsevalIncidenceTransport`.
+
+O primeiro arrow, `J`, é a lacuna adicional que fica invisível se se olha
+apenas para o scalar six-source: a torre scalar cria os coeficientes por
+readout e jatos, mas não fornece um jet **vetorial incidencial** nos seis
+roles. O segundo, `P`, é a costura geométrica principal source-role para
+camera-channel. Nenhum deles foi encontrado como instância existente.
+
+### 24.5. O packing six-camera existente não preenche esse tipo
+
+O mapa já formalizado
+
+```lean
+canonicalC3SixCameraSourceMap :
+  FiniteC3GreenPortCarrier 3 → RealifiedCameraComplexification
+```
+
+é fiel e preserva o vetor de porta, mas seu alvo é
+`RealifiedCameraComplexification`, não
+
+```lean
+FiniteHilbertFamily CanonicalC3SixCameraSlot CarryVerticalL2.
+```
+
+Além disso, o packing parte de um `FiniteC3GreenPortCarrier`, depois que as
+fontes foram reconstruídas, e não de `CanonicalC3AllCutoffMixedSourceTfvdAnalysisData`.
+Não foi encontrada ponte formalizada de `RealifiedCameraComplexification` para
+`CameraResolvedCarryVertical`, nem uma ponte que forneça `J` ou `P` acima.
+
+Isso explica por que não é válido declarar o packing Naimark histórico como
+instância da Parseval finita da rota B apenas por ambos terem “seis câmeras”.
+
+### 24.6. Teste de baixa ordem e no-go de um candidato próximo
+
+Não há nesta rodada um candidato `U_i` bem tipado que seja simultaneamente:
+
+1. uma imagem de incidências BR2;
+2. uma família finita de `CarryVerticalL2` para a Parseval histórica; e
+3. uma promoção dos seis roles que preserve direct/reflected,
+   ordinary/log-jet e provenance.
+
+Logo os testes
+
+\[
+\langle U_0,U_0\rangle=6,
+\quad
+\langle U_0,U_2\rangle=0,
+\quad
+\langle U_1,U_1\rangle=6,
+\]
+
+e os testes visible contra `C_6(0,2)` e `C_6(1,1)` ainda não podem ser
+instanciados honestamente. Não houve promoção all-order.
+
+Foi, porém, auditado o candidato vetorial próximo já existente: o carrier
+orientado ordinary/log-jet/residual levado ao fixed concrete positive carrier.
+Ele não é uma família six-camera da interface atual e já falha no seu primeiro
+teste métrico central. Os teoremas
+
+```lean
+canonicalC3FixedPositiveCarrier_centralDefect_ne_zero
+canonicalC3FixedPositiveCarrier_not_sixSourceSewing
+```
+
+registram, respectivamente,
+
+\[
+\operatorname{ConcretePositiveSewingDefect}(M,0,0)\ne0
+\]
+
+e a impossibilidade da sewing fixa. Esse é um no-go para essa métrica positiva
+concreta, não para uma futura promoção `J` e `P` nem para a arquitetura Parseval.
+
+### 24.7. Próximo seam mínimo e critério de continuação
+
+O próximo trabalho não é um bound nem uma fatorização de `6I-H`. É construir
+geometricamente `J` e `P` — ou um único mapa incidencial que fatora por ambos
+os níveis — e demonstrar antes de qualquer all-order:
+
+\[
+\begin{aligned}
+\langle U_i,U_j\rangle&=6\delta_{ij},\\
+\langle R U_0,R U_2\rangle&=C_6(0,2),\\
+\langle R U_1,R U_1\rangle&=C_6(1,1).
+\end{aligned}
+\]
+
+Somente se esses testes passarem, a equivalência já existente
+
+```lean
+realizesSixSourceVisibleCoefficient_iff_energyExcess
+```
+
+identificará automaticamente o canal blind com `EnergyExcess`; então, e só
+então, o handoff HP/Stieltjes poderá ser aplicado.

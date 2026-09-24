@@ -1,0 +1,27 @@
+import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceCameraPromotionAudit
+
+/-! # Audit: six-source TFVD finite-camera promotion seam -/
+
+namespace CarrySelfAdjointOperator
+
+#check CanonicalC3AllCutoffMixedSourceTfvdAnalysisData
+#check nativeC3SeededClockTfvdSixSourceAnalysis
+#check canonicalC3SixSourceRecoveredGreenPorts
+#check CanonicalC3SixSourceToCameraChannelAnalysis
+#check BR2IncidenceToCanonicalC3SixSourceAnalysis
+#check canonicalC3SixSourceFiniteCameraFamilyOfPromotion
+#check br2CanonicalC3SixSourceFiniteCameraIncidenceMap
+#check canonicalC3SixCameraSourceMap
+#check cameraChannelTfvdReconstruction
+#check restrictCameraResolvedCarryVertical
+
+#print axioms canonicalC3SixSourceRoleAnalysisData_roleAnalysis
+#print axioms canonicalC3SixSourceRoleAnalysis_roleAnalysisData
+#print axioms canonicalC3SixSourceFiniteCameraFamilyOfPromotion_apply
+#print axioms br2CanonicalC3SixSourceFiniteCameraIncidenceMap
+#print axioms nativeC3SeededClockTfvdSixSource_vectorCrosswalk
+#print axioms canonicalC3SixSourceRecoveredGreenPorts_correctedBoundary
+#print axioms canonicalC3FixedPositiveCarrier_not_sixSourceSewing
+#print axioms canonicalC3FixedPositiveCarrier_centralDefect_ne_zero
+
+end CarrySelfAdjointOperator
