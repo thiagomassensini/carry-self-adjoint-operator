@@ -4515,3 +4515,285 @@ Lake correspondentes. O audit imprime somente:
 ```text
 propext, Classical.choice, Quot.sound.
 ```
+
+## 34. Diagnóstico: shift de cutoff da cauda versus shift Hankel (2026-09-24)
+
+### 34.1. Veredito
+
+Esta rodada **não** encontrou um intertwiner linear natural
+
+\[
+\mathcal M B_{\rm tail}=A\mathcal M
+\]
+
+entre a cauda de centros alinhados e o operador de multiplicação da torre
+Hankel.  A razão não é uma lacuna de notação: os dois shifts agem em eixos
+distintos, e a passagem concreta que produz os momentos contém uma
+normalização não linear.
+
+O diagrama correto atualmente é:
+
+\[
+\begin{array}{ccccc}
+\text{centros alinhados / cutoff }N
+&\xrightarrow{\;N\mapsto N+1\;}&
+\text{centros alinhados / cutoff }N+1
+\\[1mm]
+\downarrow\;\text{head + tail, completion}
+&&\downarrow\;\text{head + tail, completion}
+\\[1mm]
+F
+&=&F
+\\[1mm]
+\downarrow\; -F'/(2F)
+&&\downarrow\; -F'/(2F)
+\\[1mm]
+\text{jets / primeira coluna}
+&\xrightarrow{\;p,q\text{ diagonal}\;}&
+\text{torre }C_{p,q}.
+\end{array}
+\]
+
+O primeiro shift é uma translação de **centros aritméticos**; o segundo é
+multiplicação pela variável de momento / transporte de **ordem de jet**.
+Eles só devem ser relacionados após o functor de completion e resposta
+normalizada, não por identificação direta de índices.
+
+### 34.2. Índices e shifts, sem identificação indevida
+
+| índice | objeto | operação que ele enumera | shift literal |
+|---|---|---|---|
+| `m` | `centerBracketTerm b s m` | centro alinhado aritmético | remove/avança um centro da cauda |
+| `N` | cutoff da câmera | início da cauda e tamanho do head | `N ↦ N+1` |
+| `n` | `canonicalCompletedNativeLogDerivativeMoment n` | ordem da série/jato normalizado | `n ↦ n+1` corresponde à multiplicação por `y` no modelo Stieltjes condicional |
+| `p,q` | torre polarizada `C_{p,q}` | duas ordens de jet | `C_{p,q+1}=C_{p+1,q}` |
+| `i,j` | seção Hankel | índices de monômios em um prefixo | `G_{ij}=h_{i+j}`, `K_{ij}=h_{i+j+1}` |
+
+A cauda literal é
+
+\[
+T_{b,N}(s)=\sum_{m\ge0}a_{b,N+m}(s),\qquad
+a_{b,k}(s)=\texttt{centerBracketTerm}(b,s,k),
+\]
+
+e agora possui o theorem compilado
+
+```lean
+finiteCameraPhysicalCompletionTail_succ
+```
+
+que prova, para `2 ≤ camera`,
+
+\[
+\boxed{T_{b,N+1}(t)=T_{b,N}(t)-a_{b,N}(\operatorname{nativeLine}(t)).}
+\]
+
+Depois de qualquer vestimenta diagonal não nula, essa é a versão conjugada do
+backward shift unilateral descrito nos laboratórios. Ela não é, por si, uma
+lei de avanço de ordem de momento.
+
+Do lado da torre, o theorem já existente e reexportado pelo diagnóstico é
+
+```lean
+canonicalCompletedNativeMomentTower_shift
+```
+
+isto é,
+
+\[
+\boxed{C_{p,q+1}=C_{p+1,q}.}
+\]
+
+É esta última identidade que dá `G_{i,j+1}=K_{ij}=G_{i+1,j}` após a separação
+de paridade.
+
+### 34.3. Álgebra finita de `G/K` formalizada
+
+Foi adicionado o módulo independente
+
+```text
+CarrySelfAdjointOperator/FiniteHankelShiftBoundaryCorrection.lean
+```
+
+Ele trabalha numa seção não vazia de dimensão `N + 1` e define o shift de
+elevação truncado `finiteHankelRaisingShift N`, orientação
+
+\[
+Se_j=e_{j+1}\quad(j<N),\qquad Se_N=0.
+\]
+
+Os theorems compilados mostram:
+
+\[
+K=GS+B,
+\]
+
+onde `B = finiteHankelShiftBoundaryCorrection` é nulo fora da coluna final e
+sua coluna final é exatamente a coluna final de `K`.  Em convenção de seção
+de dimensão `n`, isto é
+
+\[
+(K-GS)_{ij}=0\;(j<n-1),\qquad
+(K-GS)_{i,n-1}=K_{i,n-1}=h_{i+n}.
+\]
+
+Sob a hipótese condicional `hG : G.PosDef`, o módulo define
+
+\[
+A=G^{-1}K,
+\qquad
+c=Ae_{n-1}=G^{-1}Ke_{n-1},
+\]
+
+e prova literalmente
+
+\[
+\boxed{A=S+c e_{n-1}^{\!*}},
+\qquad
+\boxed{GA=K},
+\qquad
+\boxed{A^{\mathsf T}G=K}.
+\]
+
+Os nomes Lean são:
+
+```lean
+shiftedHankel_eq_hankelGram_mul_finiteHankelRaisingShift_add_boundary
+hankelGram_mul_finiteHankelGalerkinMultiplication
+finiteHankelGalerkinMultiplication_transpose_mul_hankelGram
+finiteHankelGalerkinMultiplication_eq_raisingShift_add_boundaryColumn
+```
+
+Também foi formalizada a identidade de whitening com a raiz positiva já usada
+no repo:
+
+\[
+G^{1/2}AG^{-1/2}=G^{-1/2}KG^{-1/2},
+\]
+
+e a simetria do lado direito, nos theorems:
+
+```lean
+finiteHankelSqrt_mul_galerkin_mul_inverseSqrt_eq_whitened
+finiteHankelWhitenedMultiplication_isSymm
+```
+
+A conservação
+\(e^{-itA*}G e^{-itA}=G\) é o corolário matricial padrão de
+\(A^{\mathsf T}G=GA\); ela foi verificada no laboratório abaixo, mas não foi
+adicionada como uma nova API de exponencial matricial porque não é necessária
+ao downstream Jacobi já existente.
+
+**Guardrail:** esta construção é álgebra de compressão condicional em
+`hG`. Ela não descarrega `CanonicalCompletedNativeStieltjesPositivity`, nem
+substitui a torre Jacobi projectiva baseada no LDL canônico. A positividade
+nativa all-order continua sendo o gate descrito nas seções anteriores.
+
+Sob uma representação Stieltjes (hipótese, não fato novo deste checkpoint),
+`A` é a compressão Galerkin de `p(y) ↦ y p(y)` em
+\(\operatorname{span}\{1,y,\ldots,y^{n-1}\}\). A coluna de bordo é
+precisamente o termo que sai do espaço, \(y\,y^{n-1}=y^n\).
+
+### 34.4. Onde a linearidade falha
+
+O repo fornece a genealogia concreta:
+
+```text
+bracket–TFVD Wronskian
+→ canonicalC3BracketTfvdNormalizedResponse
+→ Taylor coefficients
+→ odd coefficients = canonicalCompletedNativeLogDerivativeMoment.
+```
+
+O theorem compilado
+
+```lean
+canonicalC3BracketTfvdResponseJet_odd_eq_moment
+```
+
+reexporta a identificação em toda ordem. Mas a resposta é
+
+\[
+R(F)=-\frac{F'}{2F},
+\]
+
+não um operador linear de `F`. Para qualquer escalar não nulo,
+\(R(\lambda F)=R(F)\), enquanto um mapa linear não nulo teria
+\(L(\lambda F)=\lambda L(F)\). Portanto não há uma promoção natural,
+linear e homogênea da cauda/characterística crua diretamente para a sequência
+de momentos. O primeiro ponto exato de falha da tentativa ingênua é a divisão
+por `F` em `completedGreenNormalizedResponse`.
+
+Antes disso, a cauda ainda não determina sequer a característica por um mapa
+linear isolado: para um cutoff fixo, a característica completada é
+`head_N + tail_N`, uma soma afim no termo de tail. Depois da completion, a
+característica é cutoff-independent; os momentos também são
+cutoff-independent. Assim, deslocar o cutoff é uma mudança de apresentação,
+enquanto deslocar a ordem de momento é uma operação interna da série já
+normalizada.
+
+Os no-gos existentes reforçam essa separação: a realização causal BR2 falha a
+primeira igualdade Hankel em `BR2CausalShiftDefect.lean`, e o clock material
+de um bloco C3, embora satisfaça seu shift interno, possui energia de ordem
+zero incompatível com o momento nativo sem uma calibração adicional
+(`nativeBlockSeededData_zero_energy_ne_nativeMoment`).
+
+### 34.5. Laboratório reproduzível
+
+O script
+
+```text
+research/tail-hankel-shift-diagnosis-2026-09-24/tail_hankel_shift_lab.py
+```
+
+reimplementa a definição literal de `centerBracketTerm` e testou as câmeras
+`2,3,4,5,6,7`, cutoffs `8,16,32,64` e tempos `0`, `1` e
+`14.134725141734693790`, sem usar esse último número para construir qualquer
+carrier. A forma finita exata do shift de tail teve resíduo máximo
+
+\[
+6.59\times10^{-83}
+\]
+
+em aritmética de 80 dígitos. A compensação finita head/tail foi testada com o
+mesmo endpoint para os dois lados.
+
+O mesmo script testa a álgebra universal `G/K` num modelo Stieltjes atômico
+**declaradamente sintético**: para dimensões 2, 3 e 4, os resíduos de
+`K - G*S - B`, `GA-K`, `AᵀG-K`, da identidade de whitening e da conservação
+métrica exponenciada ficaram entre zero exato e aproximadamente
+\(2\times10^{-78}\) em aritmética de 80 dígitos. Isso valida a forma da
+álgebra; não é evidência de `PosDef` nativa concreta.
+
+O relatório JSON reproduzível foi salvo em:
+
+```text
+research/tail-hankel-shift-diagnosis-2026-09-24/tail_hankel_shift_lab_report.json
+```
+
+### 34.6. Validação e axiomas
+
+Foram acrescentados:
+
+```text
+CarrySelfAdjointOperator/TailCutoffMomentShiftDiagnosis.lean
+CarrySelfAdjointOperator/FiniteHankelShiftBoundaryCorrection.lean
+CarrySelfAdjointOperator/TailCutoffMomentShiftDiagnosisAudit.lean
+```
+
+e foi executado localmente:
+
+```bash
+lake build \
+  CarrySelfAdjointOperator.TailCutoffMomentShiftDiagnosis \
+  CarrySelfAdjointOperator.FiniteHankelShiftBoundaryCorrection \
+  CarrySelfAdjointOperator.TailCutoffMomentShiftDiagnosisAudit
+```
+
+O audit dos nove theorems novos/imediatos imprimiu somente:
+
+```text
+propext, Classical.choice, Quot.sound.
+```
+
+Nenhum push, PR ou GitHub Action foi acionado nesta rodada.
