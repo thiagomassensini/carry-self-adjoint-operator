@@ -4797,3 +4797,233 @@ propext, Classical.choice, Quot.sound.
 ```
 
 Nenhum push, PR ou GitHub Action foi acionado nesta rodada.
+
+## 35. Princípio do transporte completado pelo bordo (2026-09-24)
+
+O diagnóstico anterior de que os shifts da cauda e de Hankel **não** são um
+mesmo operador ganhou uma formulação positiva comum.  Eles são duas
+instâncias orientadas de uma mesma álgebra de defeito de bordo, mas com papéis
+distintos:
+
+\[
+\boxed{
+U_{\rm cut}\text{ muda a representação e desaparece após síntese},
+\qquad
+S_{\rm mom}\text{ propaga ordem dentro do objeto sintetizado}.
+}
+\]
+
+### 35.1. Forma de síntese
+
+O novo módulo
+`CarrySelfAdjointOperator/BoundaryCompletedTransport.lean` define, para
+mapas lineares
+
+\[
+\beta:X\to P,
+\qquad S:X\to X,
+\qquad J:P\to Y,
+\qquad R:X\to Y,
+\]
+
+o transporte e a síntese
+
+\[
+U(p,x)=(p+\beta x,Sx),
+\qquad
+\Sigma(p,x)=Jp+Rx.
+\]
+
+Ele prova literalmente a equivalência
+
+\[
+\boxed{
+J\beta+RS=R
+\iff
+\Sigma U=\Sigma.
+}
+\]
+
+Equivalentemente, o mesmo arquivo prova exatamente a escrita por defeito:
+
+\[
+\boxed{R(I-S)=J\beta.}
+\]
+
+Os theorems são:
+
+```lean
+boundarySynthesis_comp_boundaryCompletedTransport
+isBoundaryCompletedSynthesis_of_synthesis_invariant
+isBoundaryCompletedSynthesis_iff_synthesis_invariant
+isBoundaryCompletedSynthesis_iff_readout_id_sub_interior_eq_port_boundary
+```
+
+Assim, a frase “o defeito de transportar o interior é o que emerge pelo
+porto” ficou uma identidade formal, não apenas uma analogia.
+
+### 35.2. Instância literal da tail
+
+Para uma sequência somável `tail : ℕ → ℂ`, foram definidos
+
+\[
+S^*a=(a_{m+1})_{m\ge0},
+\qquad
+U_{\rm cut}(H,a)=(H+a_0,S^*a),
+\qquad
+\Sigma(H,a)=H+\sum_m a_m.
+\]
+
+O theorem
+
+```lean
+tailSynthesis_cutoffTransport
+```
+
+prova exatamente:
+
+\[
+\boxed{\Sigma U_{\rm cut}=\Sigma.}
+\]
+
+O domínio é explicitamente o de tails `Summable`; a soma não foi tratada
+indevidamente como funcional Hilbertiano em \(\ell^2\).
+
+Para a tail literal de `centerBracketTerm`, os theorems
+
+```lean
+finiteCameraPhysicalRawHead_succ_eq_add_centerBracketTerm
+finiteCameraPhysicalCutoffLedger_succ
+finiteCameraPhysicalCutoffLedger_synthesis_eq_completed
+finiteCameraPhysicalCutoffLedger_synthesis_succ
+```
+
+mostram que o ledger físico real
+
+\[
+L_N=\left(H_N,\,(a_{N+m})_{m\ge0}\right)
+\]
+
+evolui exatamente por esse `U_cut`, e sua síntese é a característica nativa
+completada.  Em particular, a independência de cutoff não é um limite:
+
+\[
+\boxed{
+H_{N+1}+T_{N+1}=H_N+T_N.
+}
+\]
+
+### 35.3. Forma métrica
+
+O mesmo módulo formaliza, para matrizes compatíveis,
+
+\[
+K-GS=d\beta,
+\qquad Gc=d,
+\qquad A=S+c\beta,
+\]
+
+e prova:
+
+\[
+\boxed{GA=K.}
+\]
+
+Se \(G\) e \(K\) são simétricas, também prova:
+
+\[
+\boxed{A^{\mathsf T}G=K=GA.}
+\]
+
+Os nomes são:
+
+```lean
+gram_mul_boundaryCompletedMetricTransport
+boundaryCompletedMetricTransport_transpose_mul_gram
+```
+
+A instanciação Hankel tem o espaço de bordo `Fin 1`, a coluna
+\(c=G^{-1}Ke_{\rm last}\) e o funcional de última coordenada.  O theorem
+
+```lean
+finiteHankel_boundaryCompletedMetricTransport_eq_galerkin
+```
+
+identifica a construção abstrata literalmente com o Galerkin já formalizado:
+
+\[
+\boxed{A_N=S_N+c_Ne_{\rm last}^{\!*}=G_N^{-1}K_N.}
+\]
+
+### 35.4. Relação com TFVD/Green
+
+O repositório já contém a reconstrução discreta de segunda ordem em
+`DiscreteValve.lean`:
+
+\[
+f=R(\operatorname{Tr}f)+G(Bf),
+\qquad B=(S-I)^2.
+\]
+
+E contém a instância TFVD finita
+
+```lean
+finiteWeightedSlopeGreenResponse_add_boundaryReturn
+```
+
+que prova `Green response + boundary return = prefix state`.
+
+Essas são reconstruções exatas do estado a partir de curvatura e traço, e
+pertencem à mesma família “interior + porto”.  Ainda não foi provado que o
+operador de avanço de cutoff da tail é o mesmo endomorfismo que qualquer
+transporte TFVD/Green interno; o ponto comum formalizado é a lei de
+reconstrução completada pelo bordo.
+
+### 35.5. Guardrail renovado
+
+O capstone não revoga o diagnóstico da seção 34:
+
+\[
+\boxed{
+U_{\rm cut}\not\mapsto S_{\rm mom}\text{ por um intertwiner linear natural.}
+}
+\]
+
+O correto é
+
+\[
+\mathcal M U_{\rm cut}=\mathcal M,
+\qquad
+\mathcal M=
+\text{jets}\circ\text{normalized response}\circ\Sigma,
+\]
+
+enquanto o shift de momentos só começa depois de `\Sigma` e da normalização
+não linear por \(F\).  A divisão em `completedGreenNormalizedResponse`
+continua sendo o primeiro ponto onde uma ponte tail \(\to\) momentos deixa de
+ser linear.
+
+### 35.6. Validação e axiomas
+
+Foram acrescentados:
+
+```text
+CarrySelfAdjointOperator/BoundaryCompletedTransport.lean
+CarrySelfAdjointOperator/BoundaryCompletedTransportAudit.lean
+```
+
+e foi executado localmente:
+
+```bash
+lake build \
+  CarrySelfAdjointOperator.BoundaryCompletedTransport \
+  CarrySelfAdjointOperator.BoundaryCompletedTransportAudit
+```
+
+O audit dos nove theorems novos/imediatos imprimiu somente:
+
+```text
+propext, Classical.choice, Quot.sound.
+```
+
+Nenhum push, PR ou GitHub Action foi acionado nesta rodada.

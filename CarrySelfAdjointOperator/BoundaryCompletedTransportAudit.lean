@@ -1,0 +1,15 @@
+import CarrySelfAdjointOperator.BoundaryCompletedTransport
+
+namespace CarrySelfAdjointOperator
+
+#print axioms boundarySynthesis_comp_boundaryCompletedTransport
+#print axioms isBoundaryCompletedSynthesis_of_synthesis_invariant
+#print axioms isBoundaryCompletedSynthesis_iff_readout_id_sub_interior_eq_port_boundary
+#print axioms tailSynthesis_cutoffTransport
+#print axioms finiteCameraPhysicalCutoffLedger_succ
+#print axioms finiteCameraPhysicalCutoffLedger_synthesis_succ
+#print axioms gram_mul_boundaryCompletedMetricTransport
+#print axioms boundaryCompletedMetricTransport_transpose_mul_gram
+#print axioms finiteHankel_boundaryCompletedMetricTransport_eq_galerkin
+
+end CarrySelfAdjointOperator
