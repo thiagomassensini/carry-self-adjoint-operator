@@ -1250,3 +1250,29 @@ A tarefa material mais concentrada passa a ser:
 junto de seu complemento corrigido injetivo `C` e da identidade pitagórica.
 Se essa construção for obtida, a passagem ao certificado HP e a Stieltjes
 all-order já está compilada no novo módulo.
+
+Há uma condição necessária que deve ser testada antes de investir numa
+construção complicada. Como todo Gram de um canal de perda é positivo
+semidefinido, a existência desse splitting implica, em toda ordem:
+
+\[
+\boxed{
+6I-H_N\succeq0,
+\qquad
+6I-K_N\succeq0.
+}
+\]
+
+Isso foi formalizado por:
+
+```lean
+energyExcess_hankelBlocks_posSemidef
+six_sub_nativeHankelBlocks_posSemidef
+```
+
+Esse upper-frame bound é **mais forte** do que a positividade Stieltjes do
+alvo. Portanto a rota de compressão lossless do carrier BR2 C3 de energia `6`
+pode ser refutada por uma falha de `6I-H_N` ou `6I-K_N` sem que isso refute
+outra realização positiva dos momentos. O próximo teste decisivo desta rota é
+provar ou refutar precisamente esses dois bounds usando os dados
+TFVD/Green/`G_pre`, antes de tentar construir `lossMap` em toda generalidade.

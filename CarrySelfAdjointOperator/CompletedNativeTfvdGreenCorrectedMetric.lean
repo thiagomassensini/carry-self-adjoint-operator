@@ -33,7 +33,7 @@ calibration `6 - h₀`.  In particular, an isometric or positive-augmentation
 correction cannot satisfy this interface.
 -/
 
-open scoped InnerProductSpace lp
+open scoped ComplexOrder InnerProductSpace lp
 
 namespace CarrySelfAdjointOperator
 
@@ -240,6 +240,69 @@ theorem sixSourceCenterLegCoefficient_eq_corrected_inner
   unfold correctedParityJet lossParityJet
   rw [hsplit]
   ring
+
+/-- Any geometric realization of the loss channel forces both same-parity
+finite excess blocks to be positive semidefinite.  This is the first honest
+falsification test for the proposed C3 compression. -/
+theorem energyExcess_hankelBlocks_posSemidef
+    (correction : CanonicalCompletedNativeTfvdGreenLosslessCorrection E Loss)
+    (M : ℕ) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (N : ℕ)
+    (hloss : correction.RealizesSixSourceEnergyExcess
+      M q hq0 hq1 S 3 1) :
+    (nativeC3SeededClockTfvdSixSourceBr2EnergyExcessEvenBlock
+        M q hq0 hq1 S N).PosSemidef ∧
+      (nativeC3SeededClockTfvdSixSourceBr2EnergyExcessOddBlock
+        M q hq0 hq1 S N).PosSemidef := by
+  constructor
+  · have heq :
+        nativeC3SeededClockTfvdSixSourceBr2EnergyExcessEvenBlock
+            M q hq0 hq1 S N =
+          Matrix.gram ℂ
+            (fun i : Fin N => correction.lossParityJet 3 1 (Sum.inl i)) := by
+      ext i j
+      unfold nativeC3SeededClockTfvdSixSourceBr2EnergyExcessEvenBlock
+      simp only [Matrix.gram, Matrix.of_apply]
+      exact (hloss (Sum.inl i) (Sum.inl j)).symm
+    rw [heq]
+    exact Matrix.posSemidef_gram ℂ _
+  · have heq :
+        nativeC3SeededClockTfvdSixSourceBr2EnergyExcessOddBlock
+            M q hq0 hq1 S N =
+          Matrix.gram ℂ
+            (fun i : Fin N => correction.lossParityJet 3 1 (Sum.inr i)) := by
+      ext i j
+      unfold nativeC3SeededClockTfvdSixSourceBr2EnergyExcessOddBlock
+      simp only [Matrix.gram, Matrix.of_apply]
+      exact (hloss (Sum.inr i) (Sum.inr j)).symm
+    rw [heq]
+    exact Matrix.posSemidef_gram ℂ _
+
+/-- In C3 the preceding necessary condition is exactly the all-order upper
+frame bound `H_N ≤ 6 I` for both native Hankel towers.  This requirement is
+strictly additional to positivity of the target moment Grams and may be used
+to validate or refute this particular lossless-compression route. -/
+theorem six_sub_nativeHankelBlocks_posSemidef
+    (correction : CanonicalCompletedNativeTfvdGreenLosslessCorrection E Loss)
+    (M : ℕ) (q : ℝ) (hqpos : 0 < q) (hq1 : q < 1)
+    (S : Finset NativeGpreBoundaryContext) (N : ℕ)
+    (hloss : correction.RealizesSixSourceEnergyExcess
+      M q hqpos.le hq1 S 3 1) :
+    (Matrix.of fun (i j : Fin N) =>
+        (if i = j then 6 else 0) -
+          (canonicalCompletedNativeLogDerivativeMoment
+            ((i : ℕ) + (j : ℕ)) : ℂ)).PosSemidef ∧
+      (Matrix.of fun (i j : Fin N) =>
+        (if i = j then 6 else 0) -
+          (canonicalCompletedNativeLogDerivativeMoment
+            ((i : ℕ) + (j : ℕ) + 1) : ℂ)).PosSemidef := by
+  have hblocks := correction.energyExcess_hankelBlocks_posSemidef
+    M q hqpos.le hq1 S N hloss
+  rw [nativeC3SeededClockTfvdSixSourceBr2EnergyExcess_evenBlock_eq
+      M q hqpos hq1 S N,
+    nativeC3SeededClockTfvdSixSourceBr2EnergyExcess_oddBlock_eq
+      M q hqpos hq1 S N] at hblocks
+  exact hblocks
 
 /-- A geometric loss-channel realization produces the concrete real HP
 carrier certificate.  Incidence independence is inherited through the
