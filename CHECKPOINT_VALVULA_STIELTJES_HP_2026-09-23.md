@@ -1534,3 +1534,305 @@ geométrica de `U`/readout.
 
 A auditoria dos novos theorems está em
 [`CompletedNativeTfvdCameraParsevalLossChannelAudit.lean`](CarrySelfAdjointOperator/CompletedNativeTfvdCameraParsevalLossChannelAudit.lean).
+
+## 22. Transporte Parseval restrito à incidência BR2 — interface mínima e auditoria da genealogia existente
+
+Esta seção responde à pergunta se a isometria global de
+`sourceTransport` era necessária. Ela **não é** necessária para o handoff HP.
+
+O novo módulo é
+[`CompletedNativeTfvdCameraParsevalIncidenceTransport.lean`](CarrySelfAdjointOperator/CompletedNativeTfvdCameraParsevalIncidenceTransport.lean).
+
+### 22.1. A interface mínima tem como domínio o ledger de incidências
+
+A estrutura nova
+
+```lean
+CanonicalCompletedNativeTfvdCameraParsevalIncidenceTransport C base radius
+```
+
+substitui o mapa global
+
+\[
+U:\operatorname{CarryVerticalL2}\to
+  \operatorname{FiniteHilbertFamily}(\mathrm{state},\operatorname{CarryVerticalL2})
+\]
+
+por um mapa somente real-linear
+
+\[
+U_{\rm inc}:(\mathbb N\to_0\mathbb R)\to
+  \operatorname{FiniteHilbertFamily}(\mathrm{state},\operatorname{CarryVerticalL2}).
+\]
+
+Ela pede apenas:
+
+1. `rowGramPosDef`, a hipótese geométrica já exigida para a câmera finita;
+2. para todo par de brackets da base e raio escolhidos,
+
+   \[
+   \langle U_{\rm inc}e_i,U_{\rm inc}e_j\rangle
+   =\langle B_i,B_j\rangle.
+   \]
+
+Como o mapa é real-linear, a igualdade por pares fornece a igualdade de
+pairings para todas as combinações reais finitas dessas incidências. Isso é
+exatamente o span usado pelas provas de independência par/ímpar.
+
+Não se pede:
+
+- isometria fora do ledger BR2;
+- uma extensão complexa do mapa para todo `CarryVerticalL2`;
+- injetividade do readout visível no carrier inteiro;
+- Hankel PSD, Stieltjes, HP ou fatorização dos momentos.
+
+Os jets de fonte, visível e cego são definidos somente a partir dessas
+incidências. O theorem
+
+```lean
+sourceParityJet_inner_eq_br2
+```
+
+é a costura métrica mínima, e `gramSplit` passa a provar diretamente
+
+\[
+\langle C_i,C_j\rangle+\langle L_i,L_j\rangle
+=\langle B_i,B_j\rangle
+\]
+
+no jet BR2, sem fazer afirmação fora dele.
+
+### 22.2. Todo candidato global anterior induz o novo candidato restrito
+
+Para o tipo global anterior, foi construída a conversão
+
+```lean
+CanonicalCompletedNativeTfvdCameraParsevalIncidenceTransport.ofGlobal
+```
+
+por composição explícita:
+
+\[
+U_{\rm inc}=
+U_{\rm global}\circ
+\texttt{br2CameraBracketProjectiveHilbertMap}.
+\]
+
+Os theorems
+
+```lean
+ofGlobal_sourceParityJet_eq
+ofGlobal_visibleParityJet_eq
+ofGlobal_blindParityJet_eq
+ofGlobal_hasVisibleIncidenceTransport
+```
+
+mostram que:
+
+- os jets fonte, visível e cego são os mesmos nos índices BR2;
+- a velha hipótese de fidelidade visível transfere sem nova condição;
+- a interface nova é de fato um enfraquecimento, e não outra teoria
+  incompatível.
+
+Também foram refeitos no nível restrito, sem hipótese global, os handoffs:
+
+```lean
+gramSplit
+blind_inner_eq_energyExcess_add_visibleCoefficientDefect
+realizesSixSourceVisibleCoefficient_iff_energyExcess
+toRealHPCarrierCertificate
+toStieltjesPositivity
+```
+
+Assim, a proposição material restante é ainda somente
+
+\[
+\boxed{
+C_6(i,j)=\langle R U_{\rm inc}e_i,R U_{\rm inc}e_j\rangle.
+}
+\]
+
+Se ela for provada junto da incidência visível fiel, Parseval fornece o canal
+cego como `EnergyExcess` e o downstream HP/Stieltjes é idêntico ao da rota
+global.
+
+### 22.3. Resultado da auditoria TFVD → recuperação → Hilbert projetivo
+
+A cadeia já existente foi seguida sem introduzir um novo readout:
+
+\[
+\text{BR2 incidence}
+\to
+\texttt{br2CameraBracketTfvdAnalysisMap}
+\to
+\texttt{br2FiniteTfvdHilbertRecovery}.
+\]
+
+O novo theorem
+
+```lean
+br2FiniteTfvdRecoveredParityJet_eq_projective
+```
+
+mostra, em toda ordem, que essa composição retorna exatamente
+
+\[
+\texttt{br2CameraBracketProjectiveHilbertParityJet}.
+\]
+
+Ou seja, ela é uma realização/reconstrução fiel do **total BR2 cru**. Ela
+não é ainda uma compressão de câmera e não fornece, por si só, um termo de
+perda.
+
+O packing fiel de seis câmeras em
+`CompletedTfvdGreenAllOrderIntertwining.lean` preserva uma igualdade vetorial
+das funções Green após packing e Naimark. Mas seus alvos são
+`CarryGammaComplexCamera` e `CarryGammaComplexNaimark`, enquanto o Parseval
+histórico usado nesta rota requer uma
+`FiniteHilbertFamily state CarryVerticalL2`. Não foi encontrado um mapa
+tipado existente que faça essa ponte e preserve o pairing BR2 no span de
+incidências.
+
+Não é lícito preencher essa lacuna identificando o packing fiel com uma
+compatibilidade Green global: os no-gos já documentados para o anchor/Gram
+de ordem zero continuam válidos.
+
+### 22.4. O defeito da cadeia existente é calculado exatamente
+
+O arquivo
+[`CompletedNativeTfvdCameraIncidenceCandidateAudit.lean`](CarrySelfAdjointOperator/CompletedNativeTfvdCameraIncidenceCandidateAudit.lean)
+define
+
+\[
+D_{\rm rec}(i,j)=C_6(i,j)-
+ \langle T_{\rm rec}(i),T_{\rm rec}(j)\rangle,
+\]
+
+onde `T_rec` é precisamente a análise TFVD finita seguida da reconstrução.
+
+Foram provadas as duas identificações estruturais:
+
+```lean
+br2FiniteTfvdRecoveredCoefficientDefect_eq_centerLegDefect
+br2FiniteTfvdRecoveredCoefficientDefect_eq_neg_energyExcess
+```
+
+Logo esse não é um residual novo nem uma estimativa. É exatamente o defeito
+de center-leg já conhecido, ou, na orientação da rota B,
+
+\[
+\boxed{D_{\rm rec}=-\operatorname{EnergyExcess}.}
+\]
+
+Isso localiza a falha da cadeia atual: ela ainda está antes da operação que
+deve mover esse excesso para um canal complementar.
+
+### 22.5. Teste mínimo: a cadeia recuperada falha antes de qualquer extensão all-order
+
+Para C3, raio um, o theorem
+
+```lean
+br2FiniteTfvdRecoveredParityJet_lowDegree_rawGram
+```
+
+calcula os quatro pairings diagnósticos do total recuperado:
+
+\[
+\begin{array}{c|cccc}
+(p,r) &(0,0)&(0,1)&(0,2)&(1,1)\\ \hline
+\langle T_{\rm rec,p},T_{\rm rec,r}\rangle
+&6&0&0&6.
+\end{array}
+\]
+
+Por outro lado,
+
+```lean
+nativeC3SeededClockTfvdSixSourceCenterLegCoefficient_lowDegree_hankel
+```
+
+prova a identidade Hankel material
+
+\[
+C_6(0,2)=C_6(1,1)=h_1.
+\]
+
+O total recuperado falha nessa mesma comparação por
+
+\[
+\langle T_{\rm rec,0},T_{\rm rec,2}\rangle-
+\langle T_{\rm rec,1},T_{\rm rec,1}\rangle=-6,
+\]
+
+formalizado por
+
+```lean
+br2FiniteTfvdRecoveredParityJet_firstHankelDefect_eq_neg_six
+```
+
+e, na orientação do defeito visível,
+
+\[
+D_{\rm rec}(0,2)-D_{\rm rec}(1,1)=6,
+\]
+
+formalizado por
+
+```lean
+br2FiniteTfvdRecoveredCoefficientDefect_firstHankelDefect_eq_six.
+```
+
+Portanto a composição TFVD/análise/reconstrução já existente está
+formalmente descartada como `correctedMap` ou canal visível. Ela permanece
+importante como origem fiel do total (6I), mas não é o `U` não separável
+que cria o Gram Hankel.
+
+### 22.6. Situação do candidato ambiente histórico
+
+A busca desta rodada não encontrou fórmula adicional para as doze
+coordenadas de
+`canonicalCompletedC3NormalizedAmbientSixCameraFstAnalysis` e
+`canonicalCompletedC3NormalizedAmbientSixCameraSndAnalysis` no centro. O
+sanity-check ambiente continua honestamente reduzido a
+
+\[
+\|a(0)\|^2+\|b(0)\|^2=h_0.
+\]
+
+Não foi assumida nem inferida essa igualdade. Ela continua sendo teste de uma
+realização ambiente específica, não substituto da costura BR2/TFVD/câmera.
+
+### 22.7. Próximo seam mínimo, agora sem ambiguidade de interface
+
+O objeto ainda ausente tem tipo conceitual:
+
+\[
+U_{\rm inc}:(\mathbb N\to_0\mathbb R)
+\longrightarrow
+\operatorname{FiniteHilbertFamily}(
+  \mathrm{state},\operatorname{CarryVerticalL2}),
+\]
+
+e deve satisfazer simultaneamente:
+
+1. preservação dos pairings de brackets no span BR2;
+2. `BR2BracketIncidenceJetTransport` para o output visível;
+3. a única igualdade material
+
+   \[
+   C_6(i,j)=\langle R U_{\rm inc}e_i,R U_{\rm inc}e_j\rangle.
+   \]
+
+O channel blind será então, automaticamente, o endereço geométrico de
+
+\[
+6\delta_{ij}-C_6(i,j).
+\]
+
+O primeiro lugar razoável para procurar esse `U_inc` não é mais a
+reconstrução TFVD pura — ela foi eliminada pelo defeito `-6` — mas um mapa
+que use juntamente as coordenadas de proveniência/retorno/residual ainda
+retidas antes da síntese e antes do packing Green global.
+
+A nova auditoria está em
+[`CompletedNativeTfvdCameraParsevalIncidenceTransportAudit.lean`](CarrySelfAdjointOperator/CompletedNativeTfvdCameraParsevalIncidenceTransportAudit.lean).
