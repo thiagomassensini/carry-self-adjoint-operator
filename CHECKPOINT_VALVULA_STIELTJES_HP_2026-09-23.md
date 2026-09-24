@@ -3845,3 +3845,186 @@ O audit dos treze theorems expostos lista somente:
 ```text
 propext, Classical.choice, Quot.sound.
 ```
+
+## 31. Estabilização exata do readout físico completado sob cutoff
+
+### 31.1. Resultado fechado
+
+O módulo
+
+```text
+CarrySelfAdjointOperator/FinitePhysicalSixCameraWhiteningBridge.lean
+```
+
+agora expõe
+
+```lean
+finiteSixCameraCompletedPhysicalReadout_cutoff_independent
+```
+
+e prova, para quaisquer `cutoff₁ cutoff₂ : ℕ` e `time : ℝ`, a igualdade
+vetorial literal
+
+\[
+\boxed{
+\widetilde C_{N_1}(t)=\widetilde C_{N_2}(t).
+}
+\]
+
+A prova é extensão nas seis coordenadas seguida de
+
+```lean
+completedNativeCharacteristic_cutoff_independent
+```
+
+aplicado a cada `sixCamera i`. As duas premissas desse theorem já são
+automáticas aqui: `two_le_sixCamera i` fornece a admissibilidade da câmera, e
+`nativeLine time ∈ nativeScalarDomain` é descarregado por `simp` e
+`norm_num`.
+
+Portanto, nesta camada não há uma convergência a provar:
+
+\[
+\boxed{
+H_N(t)+T_N(t)=\widetilde C(t)\qquad\text{para todo cutoff }N.
+}
+\]
+
+O head truncado `H_N` e a tail `T_N` continuam individualmente dependentes do
+cutoff. Apenas sua soma física completada estabiliza, e ela o faz
+**exatamente**, não assintoticamente.
+
+### 31.2. Compensação exata de cutoff
+
+Foram formalizados tanto o enunciado por câmera como o pacote vetorial de
+seis câmeras:
+
+```lean
+finiteCameraPhysicalRawHead_add_completionTail_cutoff_independent
+finiteCameraPhysicalRawHead_sub_eq_completionTail_sub
+finiteSixCameraPhysicalRawHead_sub_eq_completionTail_sub
+```
+
+Em particular,
+
+\[
+\boxed{
+H_{N_2}(t)-H_{N_1}(t)=T_{N_1}(t)-T_{N_2}(t).
+}
+\]
+
+Assim, elevar o cutoff não cria nem destrói informação no readout físico
+completado: desloca exatamente uma parcela da tail para o head. A descrição
+mais fiel é **exact cutoff compensation** (ou compensação exata de cutoff),
+e não um contratermo introduzido por uma aproximação.
+
+O theorem escalar já basta para qualquer família finita de câmeras
+suportadas: basta tomar as coordenadas `head + tail` e aplicar
+extensionalidade. Não foi criada outra API de família física apenas para
+reempacotar essa consequência.
+
+### 31.3. Representante cutoff-free, sem limite topológico
+
+Foi definida a apresentação canônica
+
+```lean
+canonicalCompletedSixCameraPhysicalReadout
+```
+
+por `finiteSixCameraCompletedPhysicalReadout 0`. O cutoff `0` é usado somente
+como representante seed-only da classe já provadamente independente de
+cutoff; ele não é uma escolha geométrica adicional. O theorem
+
+```lean
+finiteSixCameraCompletedPhysicalReadout_eq_canonical
+```
+
+prova literalmente
+
+\[
+\widetilde C_N(t)=\widetilde C(t).
+\]
+
+Não se usam `Tendsto`, filtros, completude, `lim` ou uma construção de
+Hilbert no infinito. A palavra “infinite” deve, portanto, ser evitada para
+este objeto: o nome `canonicalCompleted...` registra corretamente que se
+trata de uma apresentação cutoff-free por igualdade exata.
+
+O `completedNativeSixCameraCollectiveReadout` anterior permanece útil, mas
+não substitui esta nova definição: ele é o pacote de coordenadas **normalizadas**
+e é zero-equivalente; o novo objeto preserva literalmente os valores físicos
+não normalizados `raw head + whole-center tail`.
+
+### 31.4. Zero-set e downstream reutilizados
+
+Foram adicionados:
+
+```lean
+canonicalCompletedSixCameraPhysicalReadout_eq_zero_iff_nativeZero
+canonicalCompletedSixCameraPhysicalReadout_isZeroEquivalent
+canonicalCompletedSixCameraPhysicalReadout_zero_hasSignedHeightEigenvalue
+canonicalCompletedSixCameraPhysicalReadout_zero_iff_jacobiEigenvalue_inv_sq
+```
+
+Sob o mesmo `CompletedNativeRealHPCarrierCertificate` já exigido pelo
+downstream, conclui-se:
+
+\[
+\widetilde C(t)=0
+\Longrightarrow t\in\sigma_p(H_{\mathrm{signed\ height}}),
+\]
+
+e, se `t ≠ 0`,
+
+\[
+\widetilde C(t)=0
+\Longleftrightarrow(t^2)^{-1}\in\sigma_p(J).
+\]
+
+Nada de HP, Jacobi, Weyl ou do operador de altura foi reconstruído nesta
+rodada; são somente corolários do bridge zero-equivalente já existente.
+
+### 31.5. Whitening: o que é e o que não é independente de cutoff
+
+O theorem novo
+
+```lean
+finiteSixCameraCompletedPhysicalWhitenedReadout_eq_zero_iff_canonical_eq_zero
+```
+
+explicita a distinção correta. Para cada whitening `W_N` que tenha sua
+própria inversa à esquerda,
+
+\[
+W_N\widetilde C(t)=0
+\Longleftrightarrow\widetilde C(t)=0
+\Longleftrightarrow F(t)=0.
+\]
+
+Não foi provada — e não se deve inferir — a igualdade de valores
+
+\[
+W_{N_1}\widetilde C(t)=W_{N_2}\widetilde C(t),
+\]
+
+porque os whitenings concretos podem depender de `N`. A independência exata
+de cutoff pertence ao readout físico completado **antes** do whitening; após
+whitening, o que permanece fechado sem hipóteses extras é o zero-set.
+
+### 31.6. Validação desta rodada
+
+Foram verificados localmente os módulos diretamente afetados:
+
+```text
+lake env lean CarrySelfAdjointOperator/FinitePhysicalSixCameraWhiteningBridge.lean
+lake build CarrySelfAdjointOperator.FinitePhysicalSixCameraWhiteningBridge
+lake env lean CarrySelfAdjointOperator/FinitePhysicalSixCameraWhiteningBridgeAudit.lean
+```
+
+O audit foi estendido para a independência de cutoff, as duas identidades de
+compensação, o representante canônico e os corolários espectrais. Ele continua
+a reportar somente:
+
+```text
+propext, Classical.choice, Quot.sound.
+```

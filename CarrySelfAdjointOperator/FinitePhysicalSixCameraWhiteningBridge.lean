@@ -384,6 +384,99 @@ theorem finiteSixCameraCompletedPhysicalReadout_eq_completedNativeReadout
     finiteSixCameraPhysicalRawHead_add_completionTail_eq_completed]
   rfl
 
+/-- The completed physical six-camera vector is exactly independent of the
+geometric cutoff.  Each cutoff changes the raw finite head and the omitted
+whole-center tail, but their physical sum is the same six-coordinate
+completed characteristic.  This is an exact stabilization statement, not a
+limit assertion. -/
+theorem finiteSixCameraCompletedPhysicalReadout_cutoff_independent
+    (cutoff₁ cutoff₂ : ℕ) (time : ℝ) :
+    finiteSixCameraCompletedPhysicalReadout cutoff₁ time =
+      finiteSixCameraCompletedPhysicalReadout cutoff₂ time := by
+  rw [finiteSixCameraCompletedPhysicalReadout_eq_completedNativeReadout,
+    finiteSixCameraCompletedPhysicalReadout_eq_completedNativeReadout]
+  funext i
+  apply completedNativeCharacteristic_cutoff_independent (two_le_sixCamera i)
+  simp [nativeScalarDomain]
+  norm_num
+
+/-- Coordinate form of exact cutoff compensation.  Raising the cutoff moves
+precisely the increment of the finite head out of the completion tail, with
+opposite sign. -/
+theorem finiteCameraPhysicalRawHead_sub_eq_completionTail_sub
+    (camera cutoff₁ cutoff₂ : ℕ) (time : ℝ) (hcamera : 2 ≤ camera) :
+    finiteCameraPhysicalRawHead camera cutoff₂ time -
+        finiteCameraPhysicalRawHead camera cutoff₁ time =
+      finiteCameraPhysicalCompletionTail camera cutoff₁ time -
+        finiteCameraPhysicalCompletionTail camera cutoff₂ time := by
+  have hsum :
+      finiteCameraPhysicalRawHead camera cutoff₁ time +
+          finiteCameraPhysicalCompletionTail camera cutoff₁ time =
+        finiteCameraPhysicalRawHead camera cutoff₂ time +
+          finiteCameraPhysicalCompletionTail camera cutoff₂ time := by
+    rw [finiteCameraPhysicalRawHead_add_completionTail_eq_completed,
+      finiteCameraPhysicalRawHead_add_completionTail_eq_completed]
+    apply completedNativeCharacteristic_cutoff_independent hcamera
+    simp [nativeScalarDomain]
+    norm_num
+  calc
+    finiteCameraPhysicalRawHead camera cutoff₂ time -
+        finiteCameraPhysicalRawHead camera cutoff₁ time =
+      (finiteCameraPhysicalRawHead camera cutoff₂ time +
+          finiteCameraPhysicalCompletionTail camera cutoff₂ time) -
+        (finiteCameraPhysicalRawHead camera cutoff₁ time +
+          finiteCameraPhysicalCompletionTail camera cutoff₁ time) +
+        (finiteCameraPhysicalCompletionTail camera cutoff₁ time -
+          finiteCameraPhysicalCompletionTail camera cutoff₂ time) := by ring
+    _ = finiteCameraPhysicalCompletionTail camera cutoff₁ time -
+          finiteCameraPhysicalCompletionTail camera cutoff₂ time := by
+      rw [hsum]
+      ring
+
+/-- The scalar completed ledger is exactly cutoff-independent for every
+supported camera.  This is the coordinatewise fact from which the same
+statement for any finite supported family follows by extensionality; no new
+family-level physical structure is needed. -/
+theorem finiteCameraPhysicalRawHead_add_completionTail_cutoff_independent
+    (camera cutoff₁ cutoff₂ : ℕ) (time : ℝ) (hcamera : 2 ≤ camera) :
+    finiteCameraPhysicalRawHead camera cutoff₁ time +
+        finiteCameraPhysicalCompletionTail camera cutoff₁ time =
+      finiteCameraPhysicalRawHead camera cutoff₂ time +
+        finiteCameraPhysicalCompletionTail camera cutoff₂ time := by
+  rw [finiteCameraPhysicalRawHead_add_completionTail_eq_completed,
+    finiteCameraPhysicalRawHead_add_completionTail_eq_completed]
+  apply completedNativeCharacteristic_cutoff_independent hcamera
+  simp [nativeScalarDomain]
+  norm_num
+
+/-- Vector form of exact cutoff compensation for the historical six cameras.
+The finite head changes with the cutoff, but its increment is exactly the
+negative increment of the tail. -/
+theorem finiteSixCameraPhysicalRawHead_sub_eq_completionTail_sub
+    (cutoff₁ cutoff₂ : ℕ) (time : ℝ) :
+    finiteSixCameraPhysicalRawHead cutoff₂ time -
+        finiteSixCameraPhysicalRawHead cutoff₁ time =
+      finiteSixCameraPhysicalCompletionTail cutoff₁ time -
+        finiteSixCameraPhysicalCompletionTail cutoff₂ time := by
+  funext i
+  exact finiteCameraPhysicalRawHead_sub_eq_completionTail_sub
+    (sixCamera i) cutoff₁ cutoff₂ time (two_le_sixCamera i)
+
+/-- A cutoff-free name for the completed physical six-camera readout.  The
+seed-only cutoff `0` is used solely as a canonical representative; exact
+cutoff independence below proves that this choice carries no physical
+content.  This is not a topological `N → ∞` construction. -/
+def canonicalCompletedSixCameraPhysicalReadout (time : ℝ) : Fin 6 → ℂ :=
+  finiteSixCameraCompletedPhysicalReadout 0 time
+
+/-- Every finite head-plus-tail presentation is literally the canonical
+cutoff-free completed physical six-camera readout. -/
+theorem finiteSixCameraCompletedPhysicalReadout_eq_canonical
+    (cutoff : ℕ) (time : ℝ) :
+    finiteSixCameraCompletedPhysicalReadout cutoff time =
+      canonicalCompletedSixCameraPhysicalReadout time :=
+  finiteSixCameraCompletedPhysicalReadout_cutoff_independent cutoff 0 time
+
 /-- The unnormalized completed six-camera vector has the canonical completed
 native zero locus.  Individual factor normalizations are not needed for this
 zero-set statement. -/
@@ -432,6 +525,22 @@ theorem finiteSixCameraCompletedPhysicalReadout_isZeroEquivalent
       (finiteSixCameraCompletedPhysicalReadout cutoff) :=
   fun time => finiteSixCameraCompletedPhysicalReadout_eq_zero_iff_nativeZero cutoff time
 
+/-- The stabilized physical six-camera vector has the canonical completed
+native zero locus.  It is a representative of the exact cutoff-independent
+head-plus-tail object, not the normalized collective readout. -/
+theorem canonicalCompletedSixCameraPhysicalReadout_eq_zero_iff_nativeZero
+    (time : ℝ) :
+    canonicalCompletedSixCameraPhysicalReadout time = 0 ↔
+      completedNativeOperatorCharacteristic (time : ℂ) = 0 := by
+  exact finiteSixCameraCompletedPhysicalReadout_eq_zero_iff_nativeZero 0 time
+
+/-- The exact cutoff-free physical readout is ready for the existing
+zero-equivalent height-spectrum bridge. -/
+theorem canonicalCompletedSixCameraPhysicalReadout_isZeroEquivalent :
+    IsZeroEquivalentCompletedNativeHeightReadout
+      canonicalCompletedSixCameraPhysicalReadout :=
+  fun time => canonicalCompletedSixCameraPhysicalReadout_eq_zero_iff_nativeZero time
+
 /-- Whiten the *completed* physical vector by a supplied complex matrix.  The
 matrix is kept explicit: proving that it is the inverse square root of the
 literal finite Gram is a separate finite-Gram theorem. -/
@@ -471,6 +580,19 @@ theorem finiteSixCameraCompletedPhysicalWhitenedReadout_eq_zero_iff_nativeZero
     whitening whiteningInv cutoff time hleft,
     finiteSixCameraCompletedPhysicalReadout_eq_zero_iff_nativeZero]
 
+/-- A cutoff-dependent whitening does not need to have cutoff-independent
+values.  With its own left inverse, however, its zero locus is exactly that
+of the one stabilized unwhitened physical vector. -/
+theorem finiteSixCameraCompletedPhysicalWhitenedReadout_eq_zero_iff_canonical_eq_zero
+    (whitening whiteningInv : Matrix (Fin 6) (Fin 6) ℂ)
+    (cutoff : ℕ) (time : ℝ)
+    (hleft : whiteningInv * whitening = 1) :
+    finiteSixCameraCompletedPhysicalWhitenedReadout whitening cutoff time = 0 ↔
+      canonicalCompletedSixCameraPhysicalReadout time = 0 := by
+  rw [finiteSixCameraCompletedPhysicalWhitenedReadout_eq_zero_iff_completed_eq_zero
+    whitening whiteningInv cutoff time hleft,
+    finiteSixCameraCompletedPhysicalReadout_eq_canonical]
+
 /-- Zero-equivalent spectral handoff for a left-invertibly whitened completed
 physical six-camera readout. -/
 theorem finiteSixCameraCompletedPhysicalWhitenedReadout_isZeroEquivalent
@@ -509,6 +631,31 @@ theorem finiteSixCameraCompletedPhysicalReadout_zero_iff_jacobiEigenvalue_inv_sq
         ((time : ℂ) ^ 2)⁻¹ := by
   exact certificate.zeroEquivalentReadout_zero_iff_jacobiEigenvalue_inv_sq
     (finiteSixCameraCompletedPhysicalReadout_isZeroEquivalent cutoff) htime
+
+/-- Blindness of the exactly stabilized physical six-camera readout is an
+eigenvalue of the pre-existing signed-height operator.  No limit or new
+spectral construction occurs in this corollary. -/
+theorem canonicalCompletedSixCameraPhysicalReadout_zero_hasSignedHeightEigenvalue
+    (certificate : CompletedNativeRealHPCarrierCertificate jet)
+    {time : ℝ}
+    (hzero : canonicalCompletedSixCameraPhysicalReadout time = 0) :
+    LinearPMap.HasEigenvalue
+      certificate.toReducedMaximalSelfAdjointHeightData.selfAdjointData.complexification
+      (time : ℂ) := by
+  exact certificate.zeroEquivalentReadout_zero_hasSignedHeightEigenvalue
+    canonicalCompletedSixCameraPhysicalReadout_isZeroEquivalent hzero
+
+/-- Away from zero height, stabilized physical six-camera blindness is
+exactly the existing reciprocal-square Jacobi point-eigenvalue condition. -/
+theorem canonicalCompletedSixCameraPhysicalReadout_zero_iff_jacobiEigenvalue_inv_sq
+    (certificate : CompletedNativeRealHPCarrierCertificate jet)
+    {time : ℝ} (htime : time ≠ 0) :
+    canonicalCompletedSixCameraPhysicalReadout time = 0 ↔
+      LinearPMap.HasEigenvalue
+        certificate.completedJacobiEnergySelfAdjointData.complexification
+        ((time : ℂ) ^ 2)⁻¹ := by
+  exact certificate.zeroEquivalentReadout_zero_iff_jacobiEigenvalue_inv_sq
+    canonicalCompletedSixCameraPhysicalReadout_isZeroEquivalent htime
 
 /-- Signed-height corollary after any left-invertible whitening of the
 completed physical six-camera vector. -/
