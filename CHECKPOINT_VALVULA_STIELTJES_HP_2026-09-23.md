@@ -3368,3 +3368,226 @@ O audit dos onze itens expostos lista somente:
 ```text
 propext, Classical.choice, Quot.sound.
 ```
+
+## 29. Seam físico finito: whitening preserva kernel; a cauda de completamento permanece
+
+### 29.1. Resultado fechado nesta rodada
+
+O módulo novo
+
+```text
+FinitePhysicalSixCameraWhiteningBridge.lean
+```
+
+separa formalmente as duas questões que não podem ser confundidas na
+característica física finita.
+
+Primeiro, Gate A é agora um fato de álgebra linear compilado. Para matrizes
+arbitrárias sobre um corpo,
+
+```lean
+whitened_mulVec_eq_zero_iff_raw_mulVec_eq_zero_of_leftInverse
+```
+
+prova que, se `whiteningInv * whitening = 1`, então
+
+
+\[
+W(Cx)=0\Longleftrightarrow Cx=0.
+\]
+
+O resultado é deliberadamente complexo e não depende de positividade, de
+tempo, do gerador logarítmico, de HP ou de espectro. Logo é aplicável à forma
+física (Q_N=W_NC_N) assim que a realização concreta de (W_N) fornecer sua
+inversa à esquerda.
+
+Também foi compilada a especialização real já presente na biblioteca:
+
+```lean
+finiteCanonicalCameraReadout_mulVec_eq_zero_iff_raw_mulVec_eq_zero
+```
+
+Sob
+
+```lean
+(finiteCameraRowGram C).PosDef,
+```
+
+ela dá literalmente
+
+\[
+(CC^{\mathsf T})^{-1/2}Cx=0\Longleftrightarrow Cx=0.
+\]
+
+Assim a etapa de whitening não é uma estimativa, nem uma hipótese de
+positividade Hankel: é uma identidade de núcleo.
+
+### 29.2. Correspondência honesta dos objetos Lean
+
+O inventário corrigiu algumas possíveis ambiguidades de notação.
+
+| Notação do laboratório | Objeto Lean mais próximo | Estado |
+|---|---|---|
+| (C_N), matriz complexa literal das leituras | `NativeCarrySpectralWeyl.Limits.finiteCameraMatrix cutoff camera` | existe; para seis câmeras usar `camera = sixCamera` |
+| versão real da mesma matriz de coeficientes | `finiteLiteralSixCameraMatrix cutoff` | existe e tem Gram de linhas literal |
+| (W_N=(C_NC_N^*)^{-1/2}) finito | `positiveInverseSqrt (finiteCameraRowGram C)` no modelo real; `atlasSixCameraWhiteningMatrix cutoff` para o candidato com Gram finito normalizado | a definição existe; não há ainda prova global de `PosDef` do Gram literal finito nem bridge de complexificação que a instancie como o (W_N) físico |
+| whitening `sixCameraInverseSqrt` | `sixCameraInverseSqrt` | é o inverse square root do **Gram periódico limite**, não deve ser identificado automaticamente com o (W_N) físico de cutoff |
+| (L_N=\operatorname{diag}(\log(n+1))) | `CPFormal.Analytic.Cp.finiteRealSpectralGenerator N` | existe; `finiteRealSpectralEvolution N t` é sua evolução unitária |
+| `sixCameraLogOperator` | `NativeCarrySpectralWeyl.Finite.sixCameraLogOperator` | é o primeiro momento whitened no espaço das seis câmeras; não é o diagonal espectral (L_N) no espaço de estados |
+| (e^{-itL_N}\alpha_N) | `finiteRealSpectralStateVector N t` | existe e `finiteRealSpectralStateVector_eq_evolution_zero` prova exatamente a órbita a partir da semente crítica |
+| (j_N=\alpha_N/\lvert\alpha_N\rvert) | nenhum objeto nomeado separado | a normalização não nula é inofensiva para zeros; `smul_finiteCameraPhysicalRawReadout_eq_zero_iff` formaliza isso |
+
+Com isso foi definido o readout matricial genuinamente finito
+
+```lean
+finiteCameraPhysicalRawReadout cutoff camera time
+  : index → ℂ
+```
+
+pela expressão
+
+\[
+ C_N\,\psi_N(t),\qquad
+ \psi_N(t)=\texttt{finiteRealSpectralStateVector}\ N\ t.
+\]
+
+E, para qualquer whitening complexo explicitamente munido de inversa à
+esquerda, foi definido
+
+```lean
+finiteCameraPhysicalWhitenedReadout whitening cutoff camera time.
+```
+
+O theorem
+
+```lean
+finiteCameraPhysicalWhitenedReadout_eq_zero_iff_raw_eq_zero
+```
+
+é Gate A aplicado à órbita; portanto o whitening não cria nem remove
+cegueira coletiva.
+
+### 29.3. O resultado que impede um handoff falso para `F`
+
+O objeto canônico que entra em
+`CompletedNativeMultibaseCollectiveReadout.lean` não é o head bruto de
+cutoff. Por definição ele contém uma cauda analítica de células centrais
+inteiras. Para uma câmera,
+
+```lean
+finiteCameraPhysicalRawHead camera cutoff time
+finiteCameraPhysicalCompletionTail camera cutoff time
+```
+
+satisfazem a identidade literal compilada
+
+```lean
+finiteCameraPhysicalRawHead_add_completionTail_eq_completed
+```
+
+isto é,
+
+\[
+\boxed{
+H_{b,N}(t)+T_{b,N}(t)
+=\operatorname{completedNativeCharacteristic}(b,N,\operatorname{nativeLine}(t)).
+}
+\]
+
+Em particular, se (F(t)=0), a universalidade completada fornece
+
+\[
+\boxed{H_{b,N}(t)=-T_{b,N}(t).}
+\]
+
+Isso está registrado como
+
+```lean
+finiteCameraPhysicalRawHead_eq_neg_completionTail_of_nativeZero
+finiteSixCameraPhysicalRawHead_eq_neg_completionTail_of_nativeZero.
+```
+
+Consequentemente, no zero canônico,
+
+\[
+H_{b,N}(t)=0\Longleftrightarrow T_{b,N}(t)=0,
+\]
+
+e analogamente para o vetor das seis câmeras. Este é o resultado decisivo:
+**a passagem do head finito bruto para a característica completada é aditiva,
+e não um simples fator escalar não nulo.** Portanto não é legítimo concluir
+que um (C_Ne^{-itL_N}j_N) puramente truncado tem o mesmo zero-set de `F`
+apenas a partir da invariância de kernel sob whitening.
+
+### 29.4. Seam mínimo restante
+
+Há duas setas, de natureza diferente, ainda ausentes; a segunda é a
+substancial.
+
+```text
+finiteCameraMatrix cutoff sixCamera
+  * finiteRealSpectralStateVector (finiteFamilyWindow cutoff sixCamera) t
+  ──(stencil expansion ainda não nomeada)──►
+finiteBracketCharacteristic (sixCamera i) cutoff (nativeLine t)
+  ──(+ whole-center completion tail)──►
+completedNativeCharacteristic (sixCamera i) cutoff (nativeLine t)
+  ──(normalização já formalizada)──► F(t).
+```
+
+A primeira é uma igualdade finita de expansão de matriz/stencil. Os dois
+lados já usam literalmente os mesmos coeficientes `finiteCoefficientAt` e a
+mesma órbita de Dirichlet, mas o repositório ainda não possui o theorem que
+nomeia essa igualdade para `finiteCameraPhysicalRawReadout`.
+
+A segunda não é uma lacuna cosmética: é o acréscimo da cauda analítica
+inteira. Se o objeto físico final deve ser o readout completado, a rota limpa
+é definir/adicionar esse canal de cauda antes do handoff. Se se insistir no
+vetor puramente finito, é necessário provar a condição adicional
+
+\[
+\boxed{T_{6,N}(t)=0\quad\text{nos zeros de }F,}
+\]
+
+que não segue de whitening, da normalização de (j_N), nem da
+universalidade das câmeras completadas. Não foi assumida nem alegada nesta
+rodada.
+
+Logo, o enunciado correto atualmente fechado é
+
+\[
+W_N C_N\psi_N(t)=0\Longleftrightarrow C_N\psi_N(t)=0
+\]
+
+para qualquer (W_N) com inversa à esquerda; o enunciado
+
+\[
+Q_Ne^{-itL_N}j_N=0\Longleftrightarrow F(t)=0
+\]
+
+continua condicionado exatamente à integração do ledger de cauda (e à
+expansão matricial/stencil acima). Não se deve promover ainda para o bridge
+espectral de altura o readout finito sem esse adapter de completamento.
+
+### 29.5. Separação preservada e validação
+
+Nada nesta rodada altera:
+
+```text
+rota B: six-source/câmera → certificado HP concreto;
+rota característica canônica: câmeras completadas → F → espectro,
+  condicionado ao certificado HP;
+rota física finita: matriz/orbita/whitening → ainda requer completion-tail adapter.
+```
+
+Foram validados localmente, sem PR, push ou GitHub Actions:
+
+```text
+lake build CarrySelfAdjointOperator.FinitePhysicalSixCameraWhiteningBridge
+lake env lean CarrySelfAdjointOperator/FinitePhysicalSixCameraWhiteningBridgeAudit.lean
+```
+
+O audit dos seis theorems expostos lista somente:
+
+```text
+propext, Classical.choice, Quot.sound.
+```
