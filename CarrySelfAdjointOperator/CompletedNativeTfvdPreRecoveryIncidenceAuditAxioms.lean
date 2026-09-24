@@ -1,0 +1,28 @@
+import CarrySelfAdjointOperator.CompletedNativeTfvdPreRecoveryIncidenceAudit
+
+/-!
+# Axiom audit for the pre-recovery incidence prototype
+
+The audit covers the retained enriched TFVD bracket seam, the Parseval total
+dilation, its four-channel decomposition, and the exact low-degree no-go for
+using the undivided total as a visible channel.
+-/
+
+namespace CarrySelfAdjointOperator
+
+#check CanonicalC3BracketTfvdCompletionState
+#check CanonicalC3FourTraceSixCameraSource
+#check CanonicalC3FourTraceSixCameraSource.separatedFourTraceProjection
+#check CanonicalC3FourTraceSixCameraSource.greenPortProjection
+#check CanonicalC3FourTraceSixCameraSource.sixCameraGreenCarrierProjection
+#check NativeCarryC3Crosswalk.completedTfvdGreenLedgerC3Port
+
+#print axioms br2CausalTfvdPreRecoveryIncidenceState_bracket_eq
+#print axioms br2CausalTfvdParsevalGreenFrameIncidenceState_eq_bracket
+#print axioms br2CausalTfvdParsevalGreenFrameIncidenceState_inner_eq_br2
+#print axioms br2CausalTfvdParsevalGreenFrameIncidenceState_inner_eq_channelSum
+#print axioms br2CausalTfvdParsevalGreenFrameIncidenceState_lowDegree_total
+#print axioms br2CausalTfvdParsevalGreenFrameTotalCoefficientDefect_eq_neg_energyExcess
+#print axioms br2CausalTfvdParsevalGreenFrameTotalCoefficientDefect_firstHankel_eq_six
+
+end CarrySelfAdjointOperator

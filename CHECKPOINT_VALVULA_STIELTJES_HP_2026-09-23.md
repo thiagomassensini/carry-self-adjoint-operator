@@ -1836,3 +1836,332 @@ retidas antes da síntese e antes do packing Green global.
 
 A nova auditoria está em
 [`CompletedNativeTfvdCameraParsevalIncidenceTransportAudit.lean`](CarrySelfAdjointOperator/CompletedNativeTfvdCameraParsevalIncidenceTransportAudit.lean).
+
+## 23. Dilatação incidencial pré-recuperação — o total Parseval existe; a compressão visível ainda não
+
+Esta seção registra a rodada seguinte à interface incidencial restrita. A
+pergunta foi se a genealogia TFVD enriquecida já continha, **antes** de
+`br2FiniteTfvdHilbertRecovery`, uma dilatação das incidências BR2 cujo total
+fosse `6I` e cuja compressão six-camera fornecesse o primeiro cruzamento
+Hankel.
+
+O resultado é misto e é importante preservar as duas partes:
+
+1. existe uma dilatação incidencial pré-recuperação com total exatamente
+   isométrico ao BR2 e com os quatro canais Green-frame separados;
+2. ela ainda não vem equipada com a compressão finita que seria o
+   `correctedMap`, e tratá-la inteira como visível falha formalmente no
+   primeiro teste Hankel.
+
+O código da rodada está em
+[`CompletedNativeTfvdPreRecoveryIncidenceAudit.lean`](CarrySelfAdjointOperator/CompletedNativeTfvdPreRecoveryIncidenceAudit.lean),
+e a auditoria em
+[`CompletedNativeTfvdPreRecoveryIncidenceAuditAxioms.lean`](CarrySelfAdjointOperator/CompletedNativeTfvdPreRecoveryIncidenceAuditAxioms.lean).
+
+### 23.1. O primeiro carrier realmente incidencial e ainda enriquecido
+
+O primeiro objeto da genealogia que recebe uma incidência BR2 arbitrária e
+mantém as coordenadas TFVD antes de qualquer reconstrução é
+
+```lean
+NativeGpreFiniteTfvdAnalysisCarrier S
+```
+
+com a forma literal
+
+\[
+((\operatorname{CarryVerticalL2}\times(\mathbb C\times\mathbb C))
+ \times
+ (\operatorname{BoundaryValue}_S\times\operatorname{BoundaryFlux}_S)).
+\]
+
+Logo ele retém simultaneamente:
+
+- o bracket TFVD;
+- o trace TFVD;
+- a proveniência `G_pre` de valor;
+- a proveniência `G_pre` de fluxo/número.
+
+A composição incidencial concreta é
+
+\[
+\text{BR2 ledger}
+\xrightarrow{\text{causal Green response}}
+\operatorname{CarryVerticalL2}
+\xrightarrow{\text{nativeGpreFiniteTfvdAnalysis}}
+\operatorname{NativeGpreFiniteTfvdAnalysisCarrier}(S).
+\]
+
+Ela foi nomeada
+
+```lean
+br2CausalTfvdPreRecoveryIncidenceMap
+br2CausalTfvdPreRecoveryIncidenceState.
+```
+
+O theorem
+
+```lean
+br2CausalTfvdPreRecoveryIncidenceState_bracket_eq
+```
+
+mostra que a projeção de bracket desse estado enriquecido é exatamente o
+bracket BR2 literal:
+
+\[
+\operatorname{bracketProjection}(A_{q,S}e_i)=B_i.
+\]
+
+Isto é anterior à recuperação TFVD:
+`nativeGpreFiniteTfvdReconstruction` não aparece na definição nem na prova.
+
+### 23.2. Onde ficam os objetos C3 de quatro traces e six-camera
+
+Os objetos destacados na busca são reais e preservam a informação correta,
+mas estão em outra entrada da genealogia:
+
+```lean
+CanonicalC3BracketTfvdCompletionState M
+CanonicalC3FourTraceSixCameraSource
+```
+
+O primeiro recebe um parâmetro complexo `s`; o segundo recebe `z,w`. Eles
+retêm head de valor, head log-jet, ambos os tails, port Green direto e
+refletido. As projeções relevantes são:
+
+```lean
+separatedFourTraceProjection
+greenPortProjection
+sixCameraGreenCarrierProjection.
+```
+
+Os theorems
+
+```lean
+canonicalC3FourTraceSixCameraSource_separatedTrace_eq
+canonicalC3FourTraceSixCameraSource_greenPort_eq_bracket
+canonicalC3FourTraceSixCameraSource_symplecticCarrier_eq
+canonicalC3FourTraceSixCameraVectorBridge
+canonicalC3FourTraceSixCameraCompletedVectorBridge
+```
+
+confirmam que, para os estados canônicos parametrizados, os heads/tails e os
+três vetores Naimark coexistem antes de qualquer Wronskiano escalar.
+
+Mas eles **não** fornecem um mapa do ledger BR2, ou de
+`NativeGpreFiniteTfvdAnalysisCarrier S`, para esses estados. A cadeia
+
+```text
+incidência BR2
+  → análise TFVD enriquecida em S
+  → ledger C3 ordinary/logJet/residual
+  → port C3 de seis células
+  → família finita de estados verticais
+```
+
+não está formalizada. Em particular,
+`completedTfvdGreenLedgerC3Port` recebe um
+`CompletedTfvdGreenLedger` semeado por `s`; ele não recebe a análise de uma
+incidência BR2 arbitrária.
+
+Esse é o primeiro seam de tipos concreto, e não uma ausência de estimativa.
+
+### 23.3. Protótipo máximo já construível sem inventar a ponte
+
+Da coordenada de bracket do estado enriquecido, é possível aplicar a análise
+Parseval já existente do Green frame:
+
+\[
+W_{q,S}=
+\operatorname{ParsevalGreenFrame}
+\circ\operatorname{bracketProjection}
+\circ\operatorname{TFVDAnalysis}_{q,S}
+\circ\operatorname{CausalResponse}_{q}.
+\]
+
+Em Lean:
+
+```lean
+br2CausalTfvdParsevalGreenFrameIncidenceMap
+br2CausalTfvdParsevalGreenFrameIncidenceState.
+```
+
+É uma aplicação real-linear do ledger de incidências para
+`CanonicalCompletedGreenFrameCarrier`. O theorem
+
+```lean
+br2CausalTfvdParsevalGreenFrameIncidenceState_inner_eq_br2
+```
+
+prova a conservação total exata:
+
+\[
+\boxed{
+\langle W_i,W_j\rangle=\langle B_i,B_j\rangle.
+}
+\]
+
+Para C3/radius one, portanto,
+
+\[
+\langle W_0,W_0\rangle=6,
+\qquad
+\langle W_0,W_2\rangle=0,
+\qquad
+\langle W_1,W_1\rangle=6,
+\]
+
+formalizado por
+
+```lean
+br2CausalTfvdParsevalGreenFrameIncidenceState_lowDegree_total.
+```
+
+Esse é o lado total da hipótese de dilatação: a ortogonalidade BR2 sobrevive
+em um carrier maior e genuinamente dividido.
+
+### 23.4. A energia está em quatro canais, mas eles ainda não são a câmera finita da rota B
+
+O carrier de chegada de `W` é a soma ortogonal dos canais
+
+\[
+\boxed{
+\text{seed}\oplus\text{residual}\oplus\text{depth-one Green}\oplus\text{bulk Green}.
+}
+\]
+
+O theorem
+
+```lean
+br2CausalTfvdParsevalGreenFrameIncidenceState_inner_eq_channelSum
+```
+
+decompõe o produto interno exatamente como a soma dos quatro produtos de
+canais. Portanto este é de fato um endereço geométrico pré-síntese da
+energia, e não uma estimativa de norma.
+
+Contudo, este splitting **não é ainda** a decomposição histórica da câmera
+finita
+
+\[
+\operatorname{FiniteHilbertFamily}(\mathrm{state},
+  \operatorname{CarryVerticalL2})
+\xrightarrow{R\oplus B}
+\operatorname{FiniteHilbertFamily}(\mathrm{camera},
+  \operatorname{CarryVerticalL2})
+\oplus
+\operatorname{FiniteHilbertFamily}(\mathrm{state},
+  \operatorname{CarryVerticalL2}).
+\]
+
+Não existe neste ponto um `R` formalizado de
+`CanonicalCompletedGreenFrameCarrier` para essa família finita. Assim não é
+válido escolher arbitrariamente seed, residual, depth-one ou bulk como
+`visible`; tampouco é válido identificar o packing C3/Naimark global com esse
+readout sem um theorem de ponte.
+
+### 23.5. No-go de baixa ordem para o total inteiro como visível
+
+Para deixar explícito o que o protótipo **não** resolve, foi definido
+
+\[
+D_{\rm total}(i,j)=C_6(i,j)-\langle W_i,W_j\rangle.
+\]
+
+O theorem
+
+```lean
+br2CausalTfvdParsevalGreenFrameTotalCoefficientDefect_eq_neg_energyExcess
+```
+
+prova
+
+\[
+\boxed{D_{\rm total}=-\operatorname{EnergyExcess}.}
+\]
+
+É o mesmo defeito já observado para a recuperação TFVD crua. Isso é esperado:
+o mapa `W` preserva deliberadamente o total BR2.
+
+No primeiro teste Hankel:
+
+```lean
+br2CausalTfvdParsevalGreenFrameTotalCoefficientDefect_firstHankel_eq_six
+```
+
+\[
+D_{\rm total}(0,2)-D_{\rm total}(1,1)=6.
+\]
+
+Portanto:
+
+\[
+\boxed{
+\text{não promover }W\text{ como correctedMap ou visible channel.}
+}
+\]
+
+Esse no-go não descarta a rota B. Ele identifica exatamente o que falta:
+uma compressão não trivial dos canais retidos, não outra preservação do total.
+
+### 23.6. Resposta da rodada e próximo seam mínimo
+
+A resposta à pergunta desta rodada é:
+
+\[
+\boxed{
+\begin{array}{l}
+\text{Existe uma dilatação incidencial pré-recuperação com total }6I\\
+\text{e canais ortogonais explícitos;}\\
+\text{não existe ainda uma ponte formalizada que a comprima no readout}\\
+\text{six-camera finito e produza }C_6(0,2)=C_6(1,1).
+\end{array}}
+}
+\]
+
+Não há, portanto, theorem nesta rodada do formato
+
+```lean
+inner_visible_br2_enriched_zero_two_eq_h1
+```
+
+e não se deve promover para all-order.
+
+O próximo seam deve ser procurado com o tipo explícito
+
+```lean
+finiteTfvdSixCameraDilation :
+  NativeGpreFiniteTfvdAnalysisCarrier S →ₗ[ℝ]
+    FiniteHilbertFamily state CarryVerticalL2
+```
+
+ou, equivalentemente, como um mapa real-linear direto do ledger BR2 que
+**fatora pela análise enriquecida** e usa de modo não trivial bracket, trace,
+value-provenance e number-flux/proveniência. Para ser a ponte certa, ele deve
+ter:
+
+1. preservação do pairing BR2 no span incidencial;
+2. uma aplicação do readout `finiteCanonicalCameraHilbertReadout` bem tipada;
+3. a costura visível nos dois testes iniciais
+
+   \[
+   \langle RU_0,RU_2\rangle=C_6(0,2),
+   \qquad
+   \langle RU_1,RU_1\rangle=C_6(1,1);
+   \]
+
+4. nenhuma passagem por `br2FiniteTfvdHilbertRecovery` nem definição a
+   partir de momentos/Hankel.
+
+Somente depois disso `realizesSixSourceVisibleCoefficient_iff_energyExcess`
+transformará o complemento blind histórico em
+
+\[
+6I-H.
+\]
+
+O resultado positivo desta rodada é que o lado ``6I`` já tem uma realização
+pré-recuperação, incidencial e channel-separated. A lacuna restante não é
+mais ``achar uma energia positiva'': é construir a **ponte de compressão
+tipada** que transforme essa energia total nos canais visible/blind da câmera
+finita.
