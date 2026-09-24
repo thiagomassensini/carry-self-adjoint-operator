@@ -1,0 +1,50 @@
+import CarrySelfAdjointOperator.NativeBoundaryReadoutGammaNoGoAudit
+import CarrySelfAdjointOperator.CompletedNativeAmbientRadialIntertwiningNoGo
+import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceAmbientDslopeSewing
+import CarrySelfAdjointOperator.CovariantCameraTraceTransport
+import CarrySelfAdjointOperator.CompletedC3FinalReadoutKernelBridge
+import CarrySelfAdjointOperator.CompletedNativeTfvdCoefficientJets
+import CarrySelfAdjointOperator.NativeCyclicHPIntertwining
+
+/-!
+# Audit: native log-resolvent/Gamma versus the completed ledger kernel
+
+The native logarithmic resolvent is a genuine pre-moment Hilbert carrier.
+This audit deliberately records both halves of its status:
+
+* the logarithmic clock, atomwise jets, maximal-domain boundary source, and
+  positive Green identity are all available without an HP or moment premise;
+* the *literal* Gamma-to-completed-ledger sewing is refuted by an existing
+  off-axis counterexample, and the literal normalized ambient radial repair is
+  separately refuted.
+
+The four-channel ambient formula is therefore a provenance decomposition of
+the remaining corrected residual, not a proof that its residual vanishes.
+-/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms nativeLogGenerator_isSelfAdjoint
+#print axioms nativeLogHilbert_no_undampedCyclicSource
+#print axioms natDirichletTerm_operatorHeightParameter_eq_logOrbit
+#print axioms completedGreenForwardDifferenceJet_natDirichletTerm_tendsto
+#print axioms nativeOddLogPowerSlopeJet_linearIndependent
+
+#print axioms canonicalNativeBoundarySourceState_defectEquation
+#print axioms canonicalNativeBoundarySourceState_eq_gamma
+#print axioms canonicalNativeBoundarySource_ambientGreenDefect_eq_separation_mul_gram
+
+#print axioms canonicalCompletedC3AllCutoffRealKernelReadout_eq_dslope
+#print axioms canonicalCompletedC3AllCutoffRealAxisKernelForwardDifference_tendsto_moment
+#print axioms canonicalCompletedNativeGreenForwardDifferenceLimitParityJet_momentKernel
+
+#print axioms canonicalNativeBoundaryCompletedReadoutSewing_iff_defect_zero
+#print axioms canonicalNativeBoundaryCompletedReadoutSewing_iff_boundaryGreenSewing
+#print axioms not_canonicalNativeBoundaryCompletedReadoutSewing_of_cameraFive_counterexample
+#print axioms canonicalC3Gamma_isometricTransport_ne_native_diagonal
+
+#print axioms canonicalCompletedC3AmbientBoundary_sub_wronskian_eq_rawGamma_add_fullGramCorrection
+#print axioms canonicalCompletedC3NormalizedAmbientDslopeBoundaryDefect_eq_rawGamma_add_fullCorrection_div_weight
+#print axioms not_canonicalCompletedC3NormalizedAmbientRadialTiltBoundaryIntertwining
+
+end CarrySelfAdjointOperator

@@ -5296,3 +5296,121 @@ precisa; não transforma por si só a Gram causal positiva em Gram Hankel.
 Foi acrescentado o audit
 `ProjectiveValveFirstColumnMomentGateAudit.lean`. Nenhum push, PR ou GitHub
 Action foi acionado nesta rodada.
+
+### 35.10. Auditoria do carrier resolvente Gamma: genealogia correta, costura literal refutada
+
+A genealogia abaixo é de fato nativa e anterior aos momentos:
+
+\[
+L e_n=\log(n+1)e_n
+\longrightarrow
+\text{átomos Dirichlet/log-jets}
+\longrightarrow
+\text{fonte TFVD de bordo}
+\xrightarrow{(z-L)^{-1}}
+u_z
+\longrightarrow
+K_\Gamma(z,w).
+\]
+
+O repo prova, sem HP, Stieltjes ou uma Gram ajustada aos momentos:
+
+```lean
+nativeLogGenerator_isSelfAdjoint
+natDirichletTerm_operatorHeightParameter_eq_logOrbit
+completedGreenForwardDifferenceJet_natDirichletTerm_tendsto
+nativeOddLogPowerSlopeJet_linearIndependent
+canonicalNativeBoundarySourceState_defectEquation
+canonicalNativeBoundarySourceState_eq_gamma
+canonicalNativeBoundarySource_ambientGreenDefect_eq_separation_mul_gram
+```
+
+Isto confirma dois pontos importantes. Primeiro, os átomos são literalmente
+órbitas do clock \(\log n\), e seus jets são as potências de frequência com a
+fase e a normalização corretas. Segundo, a fonte harmônica bruta não é um
+vetor do Hilbert logarítmico:
+
+```lean
+nativeLogHilbert_no_undampedCyclicSource
+```
+
+O estado correto é, portanto, o estado de resolvente em domínio maximal,
+não \(L^p\alpha\) para uma fonte \(\alpha\in\ell^2\) inexistente. O ledger
+completado também chega aos momentos independentemente:
+
+```lean
+canonicalCompletedC3AllCutoffRealKernelReadout_eq_dslope
+canonicalCompletedC3AllCutoffRealAxisKernelForwardDifference_tendsto_moment
+canonicalCompletedNativeGreenForwardDifferenceLimitParityJet_momentKernel
+```
+
+Há, porém, um guardrail decisivo. A igualdade global literal
+
+\[
+K_\Gamma^{\rm norm}(z,w)=K_{\rm dslope}(z,w)
+\]
+
+é uma costura condicional (`CanonicalNativeBoundaryCompletedReadoutSewing`),
+mas **não é um seam aberto do Gamma bruto**. Ela é formalmente incompatível
+com contraexemplos diagonais off-axis arbitrariamente próximos do centro:
+
+```lean
+not_canonicalNativeBoundaryCompletedReadoutSewing_of_cameraFive_counterexample
+canonicalC3RawGammaWronskianDefect_ne_zero_near_imaginary_center
+canonicalC3Gamma_isometricTransport_ne_native_diagonal
+```
+
+Assim, não é correto tentar fechar o handoff pedindo simplesmente
+
+\[
+\boxed{\texttt{canonicalCompletedC3RawGammaWronskianDefect}=0.}
+\]
+
+Nem uma isometria linear arbitrária aplicada ao campo Gamma normalizado
+repara a discrepância diagonal já formalizada. Além disso, a tentativa
+literal de usar a Gram ambiente normalizada source-matched como reparo também
+tem no-go radial:
+
+```lean
+not_canonicalCompletedC3NormalizedAmbientRadialTiltBoundaryIntertwining
+```
+
+O que sobrevive como seam construtivo é a **decomposição de proveniência**
+do residual. A identidade exata
+
+```lean
+canonicalCompletedC3AmbientBoundary_sub_wronskian_eq_rawGamma_add_fullGramCorrection
+```
+
+prova
+
+\[
+\operatorname{AmbientBoundary}-W_F
+=D_\Gamma+D_{\rm corr},
+\]
+
+onde \(D_{\rm corr}\) conserva explicitamente três canais: Gamma--correção,
+correção--Gamma e correção--correção. A versão normalizada mantém o mesmo
+residual dividido apenas pelo peso característico canônico:
+
+```lean
+canonicalCompletedC3NormalizedAmbientDslopeBoundaryDefect_eq_rawGamma_add_fullCorrection_div_weight
+```
+
+Isso não fornece positividade nem sewing por si só; em particular não se deve
+tratar a soma dos canais como uma Gram positiva já identificada. A próxima
+rota permitida é procurar uma projeção/transformação quiral nova e
+explicitamente justificada desses canais de correção. Ela deve evitar os dois
+no-gos literais acima e provar uma nova igualdade de kernel antes de se
+aplicar o theorem de limites vetoriais/momentos.
+
+Foi acrescentado o audit:
+
+```text
+CarrySelfAdjointOperator/NativeBoundaryGammaLedgerStatusAudit.lean
+```
+
+Ele imprime os axiomas do clock, dos jets, do estado resolvente, da cadeia
+escalar de momentos, das equivalências de sewing, dos dois no-gos e da
+decomposição de residual. Nenhum HP, Jacobi, operador espectral novo, push,
+PR ou GitHub Action foi introduzido nesta auditoria.
