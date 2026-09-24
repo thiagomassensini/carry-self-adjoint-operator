@@ -4255,3 +4255,263 @@ espectrais. Ele reporta somente:
 ```text
 propext, Classical.choice, Quot.sound.
 ```
+
+## 33. Canal físico completado analítico e auditoria da realização lossless
+
+### 33.1. A extensão complexa correta já existe no ledger analítico
+
+O canal físico completo não precisa esperar uma construção Potapov para ser
+visto fora do eixo real.  O objeto escalar já usado pela completion,
+
+```lean
+completedNativeCharacteristic camera cutoff z
+```
+
+é, por definição, o head finito de stencil mais a série inteira dos centros
+omitidos.  A nova embalagem vetorial em
+`CompletedPhysicalSixCameraAnalyticReadout.lean` apenas preserva esse fato
+para as seis câmeras, sem inventar uma órbita finita inexistente:
+
+```lean
+finiteSixCameraPhysicalRawHeadComplex
+finiteSixCameraPhysicalCompletionTailComplex
+finiteSixCameraCompletedPhysicalReadoutComplex
+```
+
+e prova literalmente:
+
+```lean
+finiteSixCameraPhysicalRawHeadComplex_add_completionTailComplex_eq_completed
+```
+
+isto é,
+
+\[
+\widetilde C_N(z)=H_N(z)+T_N(z).
+\]
+
+Em cada coordenada e no `bracketDomain`, a mesma função é a característica
+de bracket já formalizada:
+
+```lean
+finiteSixCameraCompletedPhysicalReadoutComplex_apply_eq_bracketCharacteristic
+finiteSixCameraCompletedPhysicalReadoutComplex_apply_differentiableOn
+```
+
+Assim a holomorfia já disponível para a característica de bracket foi
+transportada formalmente, coordenada por coordenada, para o vetor completado.
+Não foi necessário introduzir uma segunda teoria de continuação analítica.
+
+Na linha nativa,
+
+\[
+\widetilde C_N(\operatorname{nativeLine}(t))
+=\texttt{finiteSixCameraCompletedPhysicalReadout}\ N\ t,
+\]
+
+com theorem
+`finiteSixCameraCompletedPhysicalReadoutComplex_nativeLine`.
+
+Importante: o nome *raw head complex* designa a extensão do stencil.  A
+igualdade com a órbita matricial física literal foi provada no repo na linha
+real; este checkpoint não afirma uma realização matricial exponencial finita
+para a tail em `z\in\mathbb C`.
+
+### 33.2. Whitening constante e decomposição visível correta
+
+O whitening literal finito construído na seção 32 não depende de `z`.  Foi
+portanto definida a função vetorial complexa
+
+```lean
+finitePhysicalSixCameraWhitenedCompletedReadoutComplex cutoff z
+```
+
+e provado o ledger estrutural:
+
+```lean
+finitePhysicalSixCameraWhitenedCompletedReadoutComplex_eq_head_add_completion
+```
+
+ou seja,
+
+\[
+\boxed{
+\widetilde\Phi_N(z)
+=\Phi_N^{\rm head}(z)+W_NT_N(z).
+}
+\]
+
+O segundo termo é uma contribuição **aditiva** de completion.  Não foi
+absorvido em gauge multiplicativo e não foi declarado um estado oculto sem
+proveniência.
+
+Na linha real a extensão é exatamente o canal físico já fechado:
+
+```lean
+finitePhysicalSixCameraWhitenedCompletedReadoutComplex_nativeLine
+finitePhysicalSixCameraWhitenedCompletedReadoutComplex_nativeLine_eq_zero_iff_nativeZero
+```
+
+Logo, para cada `1 ≤ cutoff`, continua válido
+
+\[
+\widetilde\Phi_N(\operatorname{nativeLine}(t))=0
+\iff F(t)=0.
+\]
+
+### 33.3. Secular root-free do canal físico, sem alegação Potapov
+
+Foi acrescentado o secular real de canal visível efetivo:
+
+```lean
+finitePhysicalSixCameraWhitenedCompletedRootFreeSecular cutoff time
+```
+
+com
+
+\[
+\Delta_N^{\rm phys}(t)
+=4\sum_{i:\operatorname{Fin}6}
+\left|\widetilde\Phi_N(t)_i\right|^2.
+\]
+
+Os theorems
+
+```lean
+finitePhysicalSixCameraWhitenedCompletedRootFreeSecular_eq_zero_iff
+finitePhysicalSixCameraWhitenedCompletedRootFreeSecular_eq_zero_iff_nativeZero
+finitePhysicalSixCameraWhitenedCompletedRootFreeSecular_isZeroEquivalent
+```
+
+provam, puramente por soma finita de quadrados,
+
+\[
+\boxed{\Delta_N^{\rm phys}(t)=0\iff F(t)=0.}
+\]
+
+Este é um secular root-free legítimo para o canal físico completado.  Ele
+**não** é ainda identificado com determinante, minor ativo ou defeito de
+round-trip de uma matriz Potapov; a igualdade com uma tal realização seria
+um theorem novo, não uma convenção de nomenclatura.
+
+Sob o `CompletedNativeRealHPCarrierCertificate` preexistente, os corolários
+curtos
+
+```lean
+finitePhysicalSixCameraWhitenedCompletedRootFreeSecular_zero_hasSignedHeightEigenvalue
+finitePhysicalSixCameraWhitenedCompletedRootFreeSecular_zero_iff_jacobiEigenvalue_inv_sq
+```
+
+também entregam o secular físico root-free ao mesmo signed-height/Jacobi
+downstream, sem criar nenhuma estrutura espectral adicional.
+
+### 33.4. Auditoria honesta: o que existe de lossless e o que não foi conectado
+
+A busca por `Potapov`, `colligation`, `Q_hid`, `O_N`, `active block` e
+`round trip` não encontrou implementação Lean da matriz laboratorial
+
+\[
+O_Ne^{izL_N}O_N^*,
+\]
+
+nem de seus blocos ativos/gauge.  As referências a Potapov em módulos de
+readout são guardrails documentais sobre uma realização futura; não são uma
+definição ou theorem que possa ser reutilizado.
+
+O repo possui, sim, realizações conservativas genuínas, mas em outra
+genealogia:
+
+* `finiteEnrichedMovingCameraTfvdState` fornece exatamente o par finito
+  visible/blind com Parseval, para uma família de estados
+  `FiniteHilbertFamily state CarryVerticalL2`;
+* `canonicalCompletedC3NaimarkState` e
+  `canonicalCompletedC3SixCameraSource` vivem nos carriers C3
+  TFVD/Green/Naimark completados;
+* `CanonicalNaimarkStateReadout` fornece a coisometria abstrata
+  `realifiedNaimarkAdjoint ∘ realifiedNaimarkPort = I`;
+* `CompletedC3GenuineBracketGreenTransport` fornece um ledger separado de
+  radial, off-diagonal, seam, provenance e prefixos Hilbertianos.
+
+Mas nenhuma dessas cadeias contém theorem de tipo/valor que identifique
+
+\[
+\sum_{m\ge0}
+\operatorname{centerBracketTerm}(b,z,m+N)
+\]
+
+com uma saída Green, boundary, return, blind ou Naimark.  O símbolo
+`completion` em alguns ledgers C3 significa completion de prefixos
+Hilbertianos; ele não é automaticamente a `finiteCameraPhysicalCompletionTail`
+da característica física.
+
+Há ainda dois guardrails formais já presentes:
+
+* `FiniteEnrichedCameraNaimarkEscapeIntertwining.lean` explicita que falta
+  uma ponte entre o projector finito de câmeras e o projector Naimark
+  completado, sob o nome
+  `NaimarkProjectorIntertwiningSeam`;
+* `CompletedNativeAllCameraPortAmbientNoGo.lean` elimina o porto Naimark
+  global histórico como canal de escape para o excesso ambiente.  Esse
+  no-go não refuta a tail física, mas impede que aquele porto seja reciclado
+  sem uma nova identificação.
+
+### 33.5. O menor seam restante para uma realização conservativa
+
+O próximo dado geométrico necessário não é outro secular nem uma nova prova
+espectral.  É uma realização de porto para a tail analítica, com uma leitura
+de seis câmeras compatível.  Conceitualmente, deve haver uma cadeia já
+proveniente de Green/return/whole-center:
+
+\[
+z\longmapsto X^{\rm tail}_N(z)
+\quad\xrightarrow{\;P_6\; }\quad
+T_N(z)\in\mathbb C^6,
+\]
+
+e uma realização para o head no mesmo carrier, tal que a leitura de
+`X^{head}_N(z)+X^{tail}_N(z)` seja `H_N(z)+T_N(z)`.  Só depois dessa seta
+estar formalizada faz sentido perguntar se o carrier ampliado é conservativo
+e construir uma coligação/characteristic matrix.
+
+Em termos de tipos atuais, a ponte precisa relacionar a saída física
+
+```lean
+finiteSixCameraPhysicalCompletionTailComplex cutoff : ℂ → Fin 6 → ℂ
+```
+
+com uma saída finita de um carrier como
+`RealifiedNaimarkComplexification` ou do par
+`FiniteHilbertFamily _ CarryVerticalL2`; hoje não há mapa de leitura nem
+theorem de igualdade que faça essa ligação.  Também não deve ser contornada
+por um embedding separável/rank-one, pois essa arquitetura já é incompatível
+com os no-gos da rota incidencial.
+
+Portanto o status desta rodada é:
+
+\[
+\boxed{
+\text{canal completado analítico e secular físico: FECHADOS};
+\quad
+\text{realização conservativa da tail: OPEN}.
+}
+\]
+
+Não há justificativa atual para afirmar que a antiga realização
+finito-dimensional do head implementa o canal completado, nem para promover
+automaticamente seus setores gauge/bloco ativo à nova característica.
+
+### 33.6. Validação
+
+Foram adicionados e verificados localmente:
+
+```text
+CarrySelfAdjointOperator/CompletedPhysicalSixCameraAnalyticReadout.lean
+CarrySelfAdjointOperator/CompletedPhysicalSixCameraAnalyticReadoutAudit.lean
+```
+
+Foram executados o `lake env lean` do módulo e do audit, e os dois targets
+Lake correspondentes. O audit imprime somente:
+
+```text
+propext, Classical.choice, Quot.sound.
+```
