@@ -1,0 +1,17 @@
+import CarrySelfAdjointOperator.CompletedNativeCameraResolvedSixSourceGreenPorts
+
+/-! Axiom audit for the camera-pair Green-boundary promotion. -/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalC3AllCutoffMixedSourceTfvdReconstruction_add
+#print axioms canonicalC3AllCutoffMixedSourceTfvdReconstruction_finset_sum
+#print axioms canonicalC3AllCutoffMixedSourceTfvdDirectGreenPort_finset_sum
+#print axioms canonicalC3AllCutoffMixedSourceTfvdReflectedGreenPort_finset_sum
+#print axioms cameraResolvedSeededClockAffineSixSourceReconstruction_sum_eq_prefix
+#print axioms cameraResolvedDirectGreenPort_sum_eq_canonical
+#print axioms cameraResolvedReflectedGreenPort_sum_eq_canonical
+#print axioms canonicalC3AllCutoffMixedSourceTfvdCorrectedBoundary_eq_cameraPairwise
+#print axioms canonicalC3CameraResolvedCorrectedGreenKernel_sum_eq_correctedBoundary
+
+end CarrySelfAdjointOperator
