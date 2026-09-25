@@ -1,0 +1,18 @@
+import CarrySelfAdjointOperator.CompletedNativeIndependentReflectedDependency
+
+/-!
+# Axiom audit: independent-reflected dependency and radial obstruction
+
+The first group certifies the extensional separation of the two Green ports.
+The second group certifies the minimal analytic obstruction: the radial
+normalization sees `-Im v` before any physical section is taken.
+-/
+
+#print axioms CarrySelfAdjointOperator.cameraResolvedIndependentReflectedSixSourceReconstruction_wSource_independent
+#print axioms CarrySelfAdjointOperator.cameraResolvedIndependentReflectedSixSourceReconstruction_reflectedZSource_independent_u
+#print axioms CarrySelfAdjointOperator.cameraResolvedIndependentReflectedDirectGreenPort_independent
+#print axioms CarrySelfAdjointOperator.cameraResolvedIndependentReflectedReflectedGreenPort_independent_u
+#print axioms CarrySelfAdjointOperator.canonicalC3CameraResolvedIndependentReflectedGreenKernel_independent_u
+#print axioms CarrySelfAdjointOperator.canonicalC3IndependentReflectedRadialDisplacement_not_differentiableAt_zero
+#print axioms CarrySelfAdjointOperator.canonicalC3IndependentReflectedRadialDisplacement_not_analyticAt_zero
+#print axioms CarrySelfAdjointOperator.cameraResolvedIndependentReflectedReflectedGreenPort_fst_apply
