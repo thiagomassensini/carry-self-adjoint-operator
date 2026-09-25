@@ -1,0 +1,10 @@
+import CarrySelfAdjointOperator.CompletedNativeCameraResolvedPairwiseAnalyticNoGo
+
+namespace CarrySelfAdjointOperator
+
+#print axioms complexConjugation_not_differentiableAt_zero
+#print axioms operatorHeightParameter_analyticAt_zero
+#print axioms reflectedParameter_operatorHeightParameter_not_differentiableAt_zero
+#print axioms reflectedParameter_operatorHeightParameter_not_analyticAt_zero
+
+end CarrySelfAdjointOperator
