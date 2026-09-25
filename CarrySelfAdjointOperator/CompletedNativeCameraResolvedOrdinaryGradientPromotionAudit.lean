@@ -1,0 +1,13 @@
+import CarrySelfAdjointOperator.CompletedNativeCameraResolvedOrdinaryGradientPromotion
+
+/-! Axiom audit for the affine ordinary-gradient and six-source promotion. -/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms cameraComplexSynthesis_cameraResolvedOrdinaryDirichletGradient
+#print axioms finiteCameraResolvedOrdinarySlopePrefixStateAt_synthesis_eq_completedTfvd
+#print axioms cameraResolvedSeededClockOrdinaryParameterAnalyses_synthesis_eq_role
+#print axioms cameraResolvedSeededClockAffineSixSourceAnalysis_synthesis_eq_canonical
+#print axioms cameraResolvedSeededClockAffineSixSourceCameraAnalysis_sum_eq_canonical
+
+end CarrySelfAdjointOperator

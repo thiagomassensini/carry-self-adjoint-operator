@@ -1,0 +1,12 @@
+import CarrySelfAdjointOperator.CompletedNativeCameraResolvedOrdinaryAffineSeed
+
+/-! Axiom audit for the affine ordinary-boundary capstones. -/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalOrdinaryBoundarySeed_add_gradientPrefix_eq_blockValue
+#print axioms canonicalOrdinaryAffineSeededData_eq_nativeBlockSeededData
+#print axioms seededRecover_canonicalOrdinaryAffineSeededData
+#print axioms canonicalOrdinaryBoundarySeed_parameter_eq_one
+
+end CarrySelfAdjointOperator
