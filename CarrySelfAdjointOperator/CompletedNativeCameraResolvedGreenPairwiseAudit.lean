@@ -1,0 +1,21 @@
+import CarrySelfAdjointOperator.CompletedNativeCameraResolvedGreenPairwise
+import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceCameraPromotionAudit
+import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceSymplecticVectorKernel
+
+/-! Axiom audit for the camera-pair Green expansion. -/
+
+open CarrySelfAdjointOperator
+
+#print axioms CarrySelfAdjointOperator.greenForm_finset_sum_left
+#print axioms CarrySelfAdjointOperator.greenForm_finset_sum_right
+#print axioms CarrySelfAdjointOperator.greenForm_finset_sum_pairwise
+#print axioms CarrySelfAdjointOperator.canonicalC3AllCutoffMixedSourceTfvdFinalReadout_eq_components
+
+/-! The following checks deliberately expose the two still-uninstantiated
+promotion types; they are not assumptions supplied by this audit. -/
+#check CarrySelfAdjointOperator.CanonicalC3SixSourceToCameraChannelAnalysis
+#check CarrySelfAdjointOperator.CanonicalC3SymplecticNaimarkToFiniteCameraFamily
+
+#print axioms CarrySelfAdjointOperator.cameraChannelTfvdReconstruction_analysis_synthesis
+#print axioms CarrySelfAdjointOperator.canonicalC3SixSourceSymplecticNaimarkReadout_eq_correctedBoundary
+#print axioms CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceKernelLedgerVector_final_eq_nativeFinalReadout
