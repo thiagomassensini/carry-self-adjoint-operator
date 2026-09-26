@@ -1,0 +1,15 @@
+import CarrySelfAdjointOperator.CompletedNativeIndependentReflectedUndressedGreenPairwiseNoGo
+
+/-!
+# Axiom audit for the diagonal undressed-pair no-go
+-/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms greenForm_undressedGreenPort_eq_zero
+#print axioms canonicalC3CameraResolvedIndependentReflectedUndressedGreenKernel_eq_zero
+#print axioms canonicalC3IndependentReflectedUndressedGreen_no_center_pairwise_witness
+#print axioms canonicalC3IndependentReflectedUndressedGreen_no_center_atlas_witness
+#print axioms canonicalC3IndependentReflectedUndressedGreen_no_pairwise_witness
+
+end CarrySelfAdjointOperator
