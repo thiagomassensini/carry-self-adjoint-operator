@@ -1,0 +1,28 @@
+import CarrySelfAdjointOperator.CompletedNativeHolomorphicGreenNontrivialWitness
+
+/-!
+# Axiom audit for the nontrivial holomorphic C3 Green witness
+
+The audit covers only the central source, finite-atlas, and holomorphic first
+jet witness theorems added in this round.  It makes no assertion that every
+camera pair, or any individual TFVD channel, is nonzero.
+-/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalC3CameraResolvedHolomorphicCenterState_direct_eq_reflected
+#print axioms canonicalC3CameraResolvedIndependentReflectedHolomorphicGreenJetCoefficient_one_eq_scaledCentralInner
+#print axioms canonicalC3CameraResolvedHolomorphicGreenFirstJet_eq_tfvdFourChannel
+#print axioms holomorphicC3Eigenvalue_deriv_zero_ne_zero
+#print axioms canonicalC3IndependentReflectedSixSourceReconstruction_center_eq_prefix
+#print axioms canonicalC3IndependentReflectedUndressedDirectCenterState_eq_prefix
+#print axioms canonicalC3HolomorphicCenterPrefix_ne_zero
+#print axioms canonicalC3HolomorphicCenterAtlasState_direct_eq_reflected
+#print axioms canonicalC3IndependentReflectedUndressedDirectCenterLeg_ne_zero
+#print axioms exists_canonicalC3CameraResolvedHolomorphicDirectCenterState_ne_zero
+#print axioms exists_cameraPair_holomorphicCenterInner_ne_zero
+#print axioms exists_cameraPair_holomorphicGreenFirstJet_ne_zero
+#print axioms exists_cameraPair_holomorphicGreenTfvdFourChannel_ne_zero
+#print axioms exists_cameraPair_holomorphicGreenKernel_ne_zero
+
+end CarrySelfAdjointOperator
