@@ -1,0 +1,30 @@
+import CarrySelfAdjointOperator.CompletedNativeHolomorphicGreenMomentGenealogy
+
+/-!
+# Axiom audit for the holomorphic Green/moment genealogy
+
+The audit includes the exact port-level historical crosswalk, the historical
+four-corner provenance identities, the completed scalar first-variation and
+forward-difference readouts, and the explicitly conditional downstream
+moment-to-height interfaces.  It does not assert the missing bridge from the
+new independent-reflected holomorphic kernel to the historical four-corner
+component.
+-/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalC3HolomorphicGreenPort_eq_historicalHolomorphicPrefix
+#print axioms radialGreenDress_finset_sum
+#print axioms cameraResolvedIndependentReflectedHolomorphicDirectGreenPort_sum_eq_canonical
+#print axioms cameraResolvedIndependentReflectedHolomorphicReflectedGreenPort_sum_eq_canonical
+#print axioms canonicalC3IndependentReflectedHolomorphicGreenBoundary_eq_cameraPairwise
+#print axioms canonicalCompletedNativeHistoricalFourCornerGreenComponent_eq
+#print axioms canonicalCompletedNativeHistoricalFourCornerPrefix_eq_inner
+#print axioms canonicalCompletedNativeHistoricalFourCornerPrefix_eq_logJetReconstruction
+#print axioms canonicalCompletedNativeFixedCenterLedgerFirstVariation_eq_h0
+#print axioms canonicalCompletedNativeFinalRealReadout_eq_dslope
+#print axioms canonicalCompletedNativeFinalRealReadout_forwardDifference_tendsto_moment
+#print axioms holomorphicGreenMomentInterface_implies_finiteHeightOperator
+#print axioms holomorphicGreenMomentInterface_implies_nativeGeometryChain
+
+end CarrySelfAdjointOperator
