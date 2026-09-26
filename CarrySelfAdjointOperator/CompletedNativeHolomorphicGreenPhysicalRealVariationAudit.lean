@@ -1,0 +1,36 @@
+import CarrySelfAdjointOperator.CompletedNativeHolomorphicGreenPhysicalRealVariation
+
+/-!
+# Axiom audit for the physical-real first-variation bridge
+
+The capstones deliberately distinguish the nonzero real diagonal variation
+of the holomorphic camera-pair kernel from the identically zero real-line
+pullback of the phase-normalized physical presentation.
+-/
+
+open CarrySelfAdjointOperator
+
+#print axioms
+  CarrySelfAdjointOperator.canonicalC3CameraResolvedIndependentReflectedHolomorphicGreenKernel_independent_u
+#print axioms
+  CarrySelfAdjointOperator.deriv_canonicalC3CameraResolvedIndependentReflectedHolomorphicRealDiagonalGreen_zero_eq_firstJet
+#print axioms
+  CarrySelfAdjointOperator.exists_cameraPair_deriv_holomorphicRealDiagonalGreen_ne_zero
+#print axioms
+  CarrySelfAdjointOperator.deriv_canonicalC3IndependentReflectedHolomorphicRealDiagonalGreen_zero_eq_cameraPairwiseFirstJetSum
+#print axioms
+  CarrySelfAdjointOperator.deriv_canonicalC3IndependentReflectedHolomorphicRealDiagonalGreen_zero_eq_logClockCentralInnerSum
+#print axioms
+  CarrySelfAdjointOperator.canonicalC3PhysicalRealParameter_conj
+#print axioms
+  CarrySelfAdjointOperator.canonicalC3PhysicalRealGreen_eq_historicalFourCorner
+#print axioms
+  CarrySelfAdjointOperator.canonicalC3MixedRadialCoefficient_operatorHeightParameter_ofReal_eq_zero
+#print axioms
+  CarrySelfAdjointOperator.canonicalC3IndependentReflectedPhysicalRealGreen_eq_zero
+#print axioms
+  CarrySelfAdjointOperator.deriv_canonicalC3HistoricalFourCornerPhysicalReal_zero
+#print axioms
+  CarrySelfAdjointOperator.deriv_canonicalC3IndependentReflectedPhysicalRealPhaseComplement_zero
+#print axioms
+  CarrySelfAdjointOperator.deriv_canonicalC3IndependentReflectedPhysicalRealGreen_zero_eq_holomorphicFirstJetSum_add_phaseComplement
