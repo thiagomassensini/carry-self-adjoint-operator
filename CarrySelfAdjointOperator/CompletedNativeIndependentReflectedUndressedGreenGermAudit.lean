@@ -1,0 +1,21 @@
+import CarrySelfAdjointOperator.CompletedNativeIndependentReflectedUndressedGreenGerm
+
+/-!
+# Axiom audit for local sewn undressed Green vanishing
+
+This audit records the local total-carrier and sewn camera-sum results.  The
+camera theorem is deliberately a finite-sum statement and is not an audit of
+any individual camera-pair kernel.
+-/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalC3IndependentReflectedUndressedGreenCarrier_powerSeriesCoefficient_eq_zero
+#print axioms canonicalC3IndependentReflectedUndressedGreenCarrier_powerSeries_eq_zero
+#print axioms canonicalC3IndependentReflectedUndressedGreenCarrier_eventuallyEq_zero
+#print axioms canonicalC3IndependentReflectedUndressedGreenCameraPairwiseSum_eventuallyEq_zero
+#print axioms canonicalC3IndependentReflectedNormalizedResponse_eventuallyEq_compensation
+#print axioms canonicalC3BracketTfvdSixAnalysisRealResponse_eventuallyEq_nonGreen
+#print axioms canonicalC3BracketTfvdSixAnalysisRealResponse_eventuallyEq_fixedCenterLedger
+
+end CarrySelfAdjointOperator
