@@ -1,0 +1,18 @@
+import CarrySelfAdjointOperator.MinimalNativeCarryConfinementCapstone
+import CarrySelfAdjointOperator.CompletedC3GreenWronskianSameState
+
+namespace CarrySelfAdjointOperator
+
+#check CanonicalCompletedC3GlobalBoundaryNoLeakOnGenuineKernel
+#check finalGenuineZeroConfinement_of_globalBoundaryNoLeakOnGenuineKernel
+
+/-! The following iff is inspected only as an audit.  The capstone above does
+not invoke either direction, so it cannot conceal the critical-line conclusion
+inside its boundary-naturality hypothesis. -/
+#check normalizedGreenLimit_eq_F_negFprimeWronskian_at_genuineZero_iff
+
+#print axioms minimalNativeCarryRepresentation
+#print axioms minimalNativeCarryBoundaryNaturality_to_confinement
+#print axioms minimalNativeCarryConfinementCapstone
+
+end CarrySelfAdjointOperator
