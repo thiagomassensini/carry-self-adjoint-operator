@@ -238,10 +238,10 @@ theorem canonicalNative_no_finite_complex_recurrence
           ∑ r : Fin (d + 1),
             (coeff r * polarizedGreenMomentCoefficient
               canonicalCompletedNativeLogDerivativeMoment (n + (r : ℕ)) 0).re := by
-      simpa using (map_sum (Complex.reCLM)
+      exact map_sum (Complex.reCLM)
         (fun r : Fin (d + 1) => coeff r * polarizedGreenMomentCoefficient
           canonicalCompletedNativeLogDerivativeMoment (n + (r : ℕ)) 0)
-        (Finset.univ : Finset (Fin (d + 1))))
+        (Finset.univ : Finset (Fin (d + 1)))
     rw [hsum] at h
     simpa [Complex.mul_re, canonicalPolarizedFirstColumn_re,
       canonicalPolarizedFirstColumn_im] using h
@@ -258,10 +258,10 @@ theorem canonicalNative_no_finite_complex_recurrence
           ∑ r : Fin (d + 1),
             (coeff r * polarizedGreenMomentCoefficient
               canonicalCompletedNativeLogDerivativeMoment (n + (r : ℕ)) 0).im := by
-      simpa using (map_sum (Complex.imCLM)
+      exact map_sum (Complex.imCLM)
         (fun r : Fin (d + 1) => coeff r * polarizedGreenMomentCoefficient
           canonicalCompletedNativeLogDerivativeMoment (n + (r : ℕ)) 0)
-        (Finset.univ : Finset (Fin (d + 1))))
+        (Finset.univ : Finset (Fin (d + 1)))
     rw [hsum] at h
     simpa [Complex.mul_im, canonicalPolarizedFirstColumn_re,
       canonicalPolarizedFirstColumn_im] using h

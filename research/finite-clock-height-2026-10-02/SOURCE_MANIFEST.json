@@ -1,0 +1,17 @@
+{
+  "purpose": "Exact historical source snapshots for the finite clock/height forensic ledger; numerics are not proof",
+  "files": {
+    "native_autoadjunto.py": {
+      "sha256": "aaa2f5860f2bbb10373017176c3d6dca0a674bdbe13f141cf23efbeede774396",
+      "snapshot_source": "/home/thlinux/finite-clock-jet-height-artifacts-2026-10-02/historical/native_autoadjunto.py"
+    },
+    "native_carry_r2_height_operator_parallel_order_audit.py": {
+      "sha256": "c829bd77d4553d0c2699a224df4dafe7095471467570f4c065080e42b7509e40",
+      "snapshot_source": "/home/thlinux/finite-clock-jet-height-artifacts-2026-10-02/historical/native_carry_r2_height_operator_parallel_order_audit.py"
+    },
+    "native_carry_selfadjoint_operator_demo.py": {
+      "sha256": "de10b88fc7939b5cb8e6c2fb8768dd7279ef301bf1c9f78b236825fbea24051d",
+      "snapshot_source": "/home/thlinux/finite-clock-jet-height-artifacts-2026-10-02/historical/native_carry_selfadjoint_operator_demo.py"
+    }
+  }
+}

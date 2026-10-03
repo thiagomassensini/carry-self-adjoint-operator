@@ -52,8 +52,8 @@ Carrier status after the ambient and literal-carrier audits:
   reconstruction/provenance candidates, not yet a Pick realization).
 
 No square root of `I - T* T`, Kolmogorov/RKHS factorization, Cholesky,
-Stieltjes positivity, Jacobi conclusion, zero hypothesis, `sorry`, `admit`,
-or new axiom is used here.
+Stieltjes positivity, Jacobi conclusion, zero hypothesis, proof placeholder,
+or additional foundational assumption is used here.
 -/
 
 open scoped ComplexConjugate InnerProductSpace

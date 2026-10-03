@@ -313,7 +313,7 @@ def quotientLIEOfLinearIsometryEquiv
       ((K.map e.toLinearEquiv.toLinearMap : Submodule ℂ F) : Set F) =
     Metric.infDist x (K : Set E)
   rw [Submodule.map_coe]
-  convert (Metric.infDist_image e.isometry (x := x) (t := (K : Set E))) using 1 <;> rfl
+  convert (Metric.infDist_image e.isometry (x := x) (t := (K : Set E))) using 1; rfl
 
 end
 

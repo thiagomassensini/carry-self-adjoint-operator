@@ -170,7 +170,7 @@ theorem canonicalC2Geometry_native_source_valve_green_preGram
               sameEdgeRecoveredReflectedGradient n
                 (positiveDirichletGradient z n)
                 (positiveLogDirichletGradient z n))) ∧
-      (∀ {z w : ℂ} (hz : 0 < z.re) (hzUpper : z.re < 1)
+      (∀ {z w : ℂ} (_hz : 0 < z.re) (hzUpper : z.re < 1)
           (hw : 0 < w.re),
         canonicalCompletedC3RawMixedWronskian z w =
             canonicalC3MixedRadialCoefficient z w *

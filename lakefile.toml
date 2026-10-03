@@ -1,6 +1,6 @@
 name = "CarrySelfAdjointOperator"
 version = "0.1.0"
-defaultTargets = ["CarrySelfAdjointOperator"]
+defaultTargets = ["CarrySelfAdjointOperator", "CarrySelfAdjointOperator.RecoveredC2GreenAudit"]
 
 [[lean_lib]]
 name = "CarrySelfAdjointOperator"
@@ -9,3 +9,8 @@ name = "CarrySelfAdjointOperator"
 name = "NativeCarryC3Crosswalk"
 git = "https://github.com/thiagomassensini/native-carry-c3-crosswalk.git"
 rev = "150cfc7fb08da96bf8117f15869cc2b819d593c2"
+
+[[require]]
+name = "geometry-of-numbers"
+git = "https://github.com/thiagomassensini/geometry-of-numbers.git"
+rev = "d7cc54f5c485320f1fada33118e9e6101488819a"

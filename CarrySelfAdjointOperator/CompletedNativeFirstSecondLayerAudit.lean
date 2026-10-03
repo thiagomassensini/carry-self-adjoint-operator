@@ -713,7 +713,7 @@ theorem not_canonicalProjectiveCarryGreen_polarizedMomentEquation
   ProjectiveValve.not_canonicalProjectiveCarryGreenMomentEquation moments
 
 /-- The precise remaining material condition is the existing first-column
-transport, not a positivity axiom. -/
+transport, with no postulated positivity assumption. -/
 theorem seededClock_correctedBoundaryTransport_iff_sameEdge
     {ι : Type*} [Fintype ι]
     (M : ℕ) (block : ι → SeededClockBlock) :

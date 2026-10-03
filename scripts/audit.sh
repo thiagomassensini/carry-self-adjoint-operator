@@ -39,4 +39,7 @@ lake build --wfail CarrySelfAdjointOperator.Audit
 lake build --wfail CarrySelfAdjointOperator.BR2Audit
 lake build --wfail CarrySelfAdjointOperator.OrderAudit
 
+lake build --wfail CarrySelfAdjointOperator.RecoveredC2GreenAudit
+lake env lean CarrySelfAdjointOperator/RecoveredC2GreenAudit.lean
+
 echo "kernel audit passed"

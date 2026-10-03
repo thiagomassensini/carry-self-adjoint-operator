@@ -1,3 +1,7 @@
+**Consolidação de 2/10/2026:** a cadeia C2/Green/Parseval e os módulos finitos
+recuperados estão descritos no [índice de recuperação](docs/RECOVERY_2026-10-02.md),
+com hashes, limites matemáticos e comandos de auditoria.
+
 # Carry Self-Adjoint Operator
 
 Lean 4 formalization of a native-carry construction of finite and completed

@@ -1,0 +1,5 @@
+import GeometryOfNumbers.Analysis.C2GlobalPhysicalBranchCanary
+import GreenFrame.Concrete.Analysis.ConcreteSplitBounds
+#check GeometryOfNumbers.Analysis.globalCriticalPhysicalBranchIsometry
+#check GreenFrame.Concrete.concreteAnalysisOperator
+#check GreenFrame.Concrete.concreteAnalysisOperator_norm_sq_bounds

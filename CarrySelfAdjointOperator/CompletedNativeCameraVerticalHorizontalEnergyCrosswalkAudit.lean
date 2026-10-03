@@ -5,7 +5,7 @@ import CarrySelfAdjointOperator.CompletedNativeCameraVerticalHorizontalEnergyCro
 
 The declarations audited here are algebraic transport and finite Hilbert-space
 identities.  The ambient embedding in the crosswalk is an uninhabited-by-API
-test interface, not a postulated theorem or an axiom.
+test interface, with no postulated theorem or additional foundational assumption.
 -/
 
 #print axioms CarrySelfAdjointOperator.cameraLogHorizontalContribution_synthesis_eq_log_cameraHorizontal

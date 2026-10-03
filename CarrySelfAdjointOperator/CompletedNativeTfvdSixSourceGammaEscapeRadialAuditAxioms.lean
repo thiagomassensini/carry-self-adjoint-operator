@@ -5,7 +5,7 @@ import CarrySelfAdjointOperator.CompletedNativeTfvdSixSourceGammaEscapeRadialAud
 
 The residual keeps the existing Pick/dslope normalizations literal and makes
 no semidefinite or factorization assumption.  These checks guard that the
-remaining sewing condition was not hidden behind an additional axiom.
+remaining sewing condition was not hidden behind an additional foundational assumption.
 -/
 
 #print axioms CarrySelfAdjointOperator.canonicalCompletedNativeRadialChiralPickSampleMatrix_apply_eq_cauchyFactor

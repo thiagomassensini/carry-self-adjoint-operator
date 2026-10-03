@@ -268,14 +268,8 @@ theorem historicalPostT0TowerLogClock_intertwining
         (historicalTowerLogClock Ctx p x) =
       historicalPostT0TowerLogClock Ctx p
         ((LinearMap.ker (historicalQFull Ctx)).mkQ x) := by
-  simpa [historicalTowerLogClock, historicalPostT0TowerLogClock,
-    historicalPostT0TowerNumber] using
-    (probe_inducedEndOfKernelStable_smul_intertwining
-      (historicalQFull Ctx)
-      (historicalTowerNumberFull Ctx)
-      (historicalQJH_towerNumber_kernel_invariant Ctx)
-      (Real.log (p : ℝ) : ℂ)
-      x)
+  simp [historicalTowerLogClock, historicalPostT0TowerLogClock,
+    historicalPostT0TowerNumber]
 
 /-- The literal `(d_J,j)=(1,3),(2,3)` gauge from the Python audit. -/
 def historicalJHGaugeFactor (Ctx : Type*) (ctx : HistoricalJHContext Ctx) :
