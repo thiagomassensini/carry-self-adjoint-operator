@@ -71,5 +71,18 @@
     "NaturalNativeSourceValveGreenProvenance",
     "HistoricalPostT0TowerHilbertScale"
   ],
-  "additional_merged_base_audit": "MergedSeededBoundaryAudit"
+  "additional_merged_base_audit": "MergedSeededBoundaryAudit",
+  "validation": {
+    "complete_audit": "PASS",
+    "warnings": 0,
+    "errors": 0,
+    "public_theorem_coverage": 282,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "log": "/home/thlinux/formalization-recovery-20261002-233654/carry-final-audit.log",
+    "log_sha256": "e5cfe15881b6a0d9ad1ed64dc02bf2985421f228b729b52cdd10267eae3e11ee"
+  }
 }
