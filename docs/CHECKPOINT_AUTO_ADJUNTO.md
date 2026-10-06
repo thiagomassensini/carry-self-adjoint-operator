@@ -1819,3 +1819,20 @@ Nenhum theorem atual fornece
 `inner (W (T z)) (W (T w)) = GreenBoundary(z,w)` nem identifica esse
 produto positivo com `canonicalNativeBoundaryReadout`. O resultado correto
 permanece Caso D, com o gate estrutural explicitamente preservado.
+
+
+## 2026-10-06 — unconditional six-frame upper bound
+
+Initial main: `62b1c0d6b18e70b4c156c3bdf0253893fdb27a35`.
+The exact necessary C3 bounds `6I-H_N` and `6I-shiftedH_N` are now proved
+PSD at every cutoff by `canonicalCompletedNative_six_sub_hankelPair_posSemidef`,
+without correction or loss-realization assumptions. The actual canonical
+moment recurrence and the already local theta cosine representation give
+`|h_n| <= (1/2)(3/4)^n` and quadratic-form norm bound `2`.
+
+This passes the upper-energy test only. The literal BR2 center-leg no-go is
+preserved. A geometrically constructed loss map realizing the full polarized
+six-source excess, its lossless split and corrected-map injectivity remain
+open. No native Hankel lower positivity or HP certificate is concluded.
+The existing Mellin/theta provenance is explicit, not replaced by a fitted
+carrier or external moment table. See `CANONICAL_SIX_FRAME_UPPER_BOUND.md`.

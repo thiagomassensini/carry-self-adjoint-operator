@@ -909,6 +909,16 @@
     ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_zero_zero_eq_positiveChiralDerivative_of_sameEdgeTransport"}
     ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_zero_zero_eq_negNegativeChiralDerivative_of_sameEdgeTransport"}
     ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_firstColumn_eq_chiralBlockSignature_of_sameEdgeTransport"}
-    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_firstColumn_eq_polarizedGreenMoment_of_sameEdgeTransport"}
+    ,{"qualified": "CarrySelfAdjointOperator.seededClockAtlasCoefficient_firstColumn_eq_polarizedGreenMoment_of_sameEdgeTransport"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeRealEvenCharacteristicCoefficient_eq_cosineMoment_allOrder"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeThetaTailMoment_factorial_upper"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeRealEvenCharacteristicCoefficient_zero_ge_third"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeRealEvenCharacteristicCoefficient_succ_abs_upper"},
+    {"qualified": "CarrySelfAdjointOperator.completedNativeRealEvenCharacteristicCoefficient_succ_relative_bound"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeLogDerivativeMoment_explicit_decay"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeHankel_quadratic_norm_le_two"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNative_six_sub_hankel_posSemidef"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNative_six_sub_hankelPair_posSemidef"},
+    {"qualified": "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceBr2EnergyExcess_blocks_posSemidef_unconditional"}
   ]
 }

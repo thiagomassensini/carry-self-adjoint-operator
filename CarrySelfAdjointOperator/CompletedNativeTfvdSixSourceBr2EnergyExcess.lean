@@ -19,9 +19,11 @@ explicit: on the literal C3 samples the BR2 Gram is `6 I`, whereas the
 subtracted term is the existing canonical Hankel moment matrix.
 
 No corrected all-order jet, compression, or HP certificate is asserted here:
-those require the still-unproved operator upper bound `H_N ≤ 6 I` for every
-literal BR2 finite block (and a compatible geometric realization of its
-defect factor), rather than a correction defined from a target Hankel matrix.
+the operator upper bound `H_N ≤ 6 I` is now proved unconditionally in
+`CompletedNativeSixFrameUpperBound`, using the existing canonical theta
+representation and recurrence. A compatible geometric realization of the
+defect factor remains open; a target-defined Gram factor is not such a
+realization.
 -/
 
 open scoped ComplexOrder InnerProductSpace lp
