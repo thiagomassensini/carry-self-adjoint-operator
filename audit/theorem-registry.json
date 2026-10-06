@@ -1019,6 +1019,17 @@
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_cross_eq_bracketTfvd_wronskian_sum"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.bracketTfvd_wronskian_eq_corrected_green_ledger"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_cross_eq_corrected_green_ledger"},
-    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_cross_eventually_eq_corrected_green_ledger"}
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_cross_eventually_eq_corrected_green_ledger"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedGreenFrameSynthesis_preserves_weightedTrace"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedGreenFrameSynthesis_weightedTfvd_reconstruction"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrientedRecoveredHilbertPresentation"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrientedRecoveredHilbertPresentation_eq_existing"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrientedRecoveredHilbertPresentation_dressed_eq_existing"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrientedRealAxisWrapper_eq_of_re_eq"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrientedGreenFramePrefixState_zero"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3BracketTfvdCompletedTracePair_zero_value_ne_zero"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrientedRealAxisWrapper_radial_eq_center"},
+    {"qualified": "CarrySelfAdjointOperator.no_linear_orientedPrefix_completedValue_readout"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrientedGreenFrameCarrier_not_parallelogram"}
   ]
 }
