@@ -2081,3 +2081,18 @@ storage sign was proved. The single remaining construction is a continuous
 full-source Hilbert family realizing the entire corrected Wronskian by its
 inner product. The dedicated audit checks all new proof closures for forbidden
 downstream inputs. See `ORIENTED_COMPLETED_SOURCE_DIVISION_FREE_GREEN_AUDIT.md`.
+
+
+## 2026-10-06 — Directed momentos archive consultation
+
+Normative main at entry: `f005b9c82fa774af27079b2b1669b8a724800b69`.
+Archive: `llm:~/momentos`, `206b06b`; its four untracked campaign files preserved.
+Seventeen Green/clock Lean bundle files are byte-identical to current main.
+The useful scalar completion evidence points to the existing triangular
+boundary dressing and its mixed archimedean Green correction. It does not
+supply a positive Hilbert witness. Archived factor/product-state sewing still
+assumes both component division-free representations; no theorem was promoted
+from that conditional interface. No numerical campaign, source edit or new
+Lean declaration was introduced. The continuous full-source Hilbert sewing
+remains the only gate. See the appended consultation in
+`ORIENTED_COMPLETED_SOURCE_DIVISION_FREE_GREEN_AUDIT.md`.

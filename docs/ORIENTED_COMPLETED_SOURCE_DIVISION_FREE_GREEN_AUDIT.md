@@ -374,3 +374,149 @@ dependency sources and canonical objects are unchanged.
 identify the completed mixed Green form with a positive Hilbert product.
 The new local obstructions exclude current maximum-norm use and redundant
 presentation repair; they do not refute a larger geometric sewing theory.
+
+
+## 2026-10-06 — Directed consultation of `llm:~/momentos/`
+
+### Checkpoints and preservation
+
+This follow-up starts from normative main
+`f005b9c82fa774af27079b2b1669b8a724800b69` after `git pull --ff-only`
+reported already up to date. The main working tree was clean.
+The research archive is `/home/thlinux/momentos` on `llm`, at
+`206b06b` (`Add canonical TFVD valve note`). It has four preexisting untracked
+campaign `run.json` files. No archive file, campaign, checkpoint or
+experimental worktree was changed or executed.
+
+The archive is historical/numerical evidence, not a replacement formal base.
+Its README explicitly separates completed moment identification from the
+still-needed Green metric sewing. It is not one Lean project at its root.
+
+### Exact comparison with main
+
+Seventeen Lean files copied into the archive's `CarrySelfAdjointOperator/`
+bundle directories were compared byte for byte with their same-named main
+modules. **All seventeen are identical**:
+
+| Bundle | Compared modules, including audits |
+|---|---|
+| `c2_base_two_work` | `C2BaseTwoGreenLedger`, its audit |
+| `c2_green_bridge_work` | `C2GlobalGreenBridge`, its audit |
+| `c2_green_temporal_mean_work` | `C2GreenTemporalMeanCanary`, its audit |
+| `c2_green_whitening_genealogy_work` | `C2GreenWhiteningGenealogy`, its audit |
+| `c2_material_log_transport_work` | `GreenStateMaterialLogGenerator`, its audit |
+| `c2_pre_stencil_work` | `C2GreenPreStencilCanary`, its audit |
+| `green_material_unitary_evolution_work` | `GreenStateMaterialEvolution`, `GreenParsevalMaterialEvolution`, `GreenMaterialEvolutionAudit` |
+| `green_parseval_material_operator_work` | `GreenParsevalMaterialLogOperator`, its audit |
+
+These results supply no unported new source witness. Their proven scope is
+valuable: conservative pre-stencil recovery, a genuine stencil frame defect,
+and unitary transport of the material log generator. A positive base-two
+camera contribution or positive temporal mean on its specific C2 input is
+not nonnegativity of the full completed chiral mixed pairing for every
+coefficient vector. Material time is not the radial sample index.
+
+The archived canonical valve note has SHA-256
+`7b4b7946413191eb5135be5d835346242962454041635316a2ce4bf12bd94e33`,
+identical to the historical note already read in the main investigation.
+It therefore supplies no additional version of that genealogy.
+
+### Useful scalar-completion evidence
+
+`AUDITORIA_CORRECTED_MOMENTS_VS_CANONICAL_RECURRENCE.md` explicitly distinguishes
+raw `U(t²) = |Z(t)|²` from the normalized completed characteristic `Φ(u)`.
+Its scalar germ identity is
+
+\[
+\Phi(u)^2 = \frac{U(u)}{U(0)}(1+4u)
+ \prod_{m\ge1}\left(1+\frac{u}{(2m+1/2)^2}\right)^{-1}.
+\]
+
+That report identifies historical corrected moments and the canonical scalar
+recurrence, but explicitly states that the product-limit deduction and
+Python identification are **not a new compiled Lean bridge**. Its high
+precision results do not construct the missing Hilbert mixed-form witness.
+The current source-first moment identification remains closed independently.
+
+`native_carry_tail_boundary_autoadjoint_test.py` expressly calls its finite
+boundary factor an inserted candidate and its comparison a scalar completion
+benchmark, not a geometric TFVD return construction. No run of that script,
+Jacobi construction, spectral fitting or matrix factorization was used here.
+
+### Current formal counterpart: the triangular dressing
+
+The following existing main declarations were checked directly in
+`NativeBoundaryArchimedeanDressingSeparation.lean`:
+
+* `nativeArchimedeanBoundaryDressing`;
+* `canonicalNativeUndressedScalarBoundaryPair_eq_normalizedTfvdTrace`;
+* `canonicalCompletedC3ScalarBoundaryPair_eq_nativeArchimedeanBoundaryDressing`;
+* `canonicalCompletedC3ScalarGreenForm_eq_scaledNative_add_archimedeanCorrection`;
+* `canonicalArchimedeanBoundaryGreenCorrection_eq_derivative`.
+
+Let `A = nativeXiCompletionFactor`, `Z = nativeHeightScalar`, and
+`F = A * Z`. The companion transformation is precisely
+
+\[
+(-Z',Z)\longmapsto\bigl(A(-Z')-A'Z,\ AZ\bigr).
+\]
+
+Thus completion is not common scalar multiplication of both traces.
+With the existing C3 Green-form argument order, its full product rule is
+
+\[
+\mathcal G_{\rm completed}(z,w)
+ = \overline{A(z)}A(w)\mathcal G_{\rm native}(z,w)
+ + \bigl(\overline{A'(z)}A(w)-\overline{A(z)}A'(w)\bigr)
+   \overline{Z(z)}Z(w).
+\]
+
+The exact theorem has the existing genuine-strip hypotheses. It is a scalar
+Green-form identity, including the derivative correction and all its signs;
+it does not claim that either summand separately is a positive Hilbert
+kernel. No orthogonality, positivity of a new completion channel or lossless
+lift from its scalar traces is inferred.
+
+This gives a concrete audit target for future sewing: preserve this whole
+mixed correction in the source-level metric identity. The previous
+repackaging equality and no-gos remain unchanged.
+
+### The tempting product-state route is still conditional
+
+The archived `CompletedGreenMomentJets.lean` already has
+`completedNativeC3ProductLedger_greenRepresentationOn_of_factors`.
+The current main still has it, and its premises still include BOTH
+
+```lean
+hxi : HasDivisionFreeGreenRepresentation
+  nativeXiCompletionFactor nativeXiCompletionBoundaryCompanion xiState
+
+hnative : HasDivisionFreeGreenRepresentation
+  nativeHeightScalar nativeHeightScalarBoundaryCompanion
+  canonicalCompletedOperatorC3HilbertState
+```
+
+`weightedProductGreenState`, `HasDivisionFreeGreenRepresentation.mul`, and
+`completedNativeC3ProductLedgerState` already provide the product packaging.
+They do not construct those two factor representations. They cannot be
+cited as an unconditional completed witness. No additional direct sum or
+assumption wrapper was created.
+
+The archived structural Green-frame readout and BR2 dslope bridge likewise
+receive `hkernel`; they do not prove it. Their presence does not change the
+source-first dependency firewall.
+
+### Result of the consultation
+
+**ARCHIVE_PROVENANCE_CONFIRMED; DIVISION_FREE_HILBERT_SEWING_STILL_OPEN.**
+
+The archive helps identify the exact completion correction that a metric
+sewing must preserve. It contains no newly discovered unconditional witness
+for the current gate. The single typed obligation remains the continuous
+full-source Hilbert division-free representation stated above. This follow-up
+adds documentation only, no Lean theorem, no sign premise and no new carrier.
+
+Validation passed: the full package and root audit with `--wfail`,
+`static audit passed`, `kernel audit passed`, and `git diff --check`.
+Logs are retained under
+`/tmp/momentos-consultation-validation/`. Archive dirty files remain untouched.
