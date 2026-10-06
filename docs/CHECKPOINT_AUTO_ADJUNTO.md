@@ -1926,3 +1926,33 @@ arrow at this stage. Whether BR2 is the correct source remains unproved.
 
 See `docs/AFFINE_SIX_SOURCE_ROLE_INTERFACE_AUDIT.md` for declarations,
 provenance, the exact typed obligation, and validation/publication ledger.
+
+
+## 2026-10-06 — Independent prime-depth geometric moment recurrence
+
+STATUS: `PASS_PRIME_DEPTH_GEOMETRIC_MOMENT_RECURRENCE`.
+Initial main: `247448fa1a51f42163d7106315f22f05237e55d1`.
+
+`PrimeDepthGeometricMomentRecurrence` extracts its real sequence from the
+existing prime-depth completed response, not from target moments or BR2.
+The product-response identity, Leibniz and factorial/parity reduction supply
+the source recurrence. Orders zero, one and two are exposed before the
+canonical comparison. Reality is derived from the same recurrence.
+Only the final theorem applies `IsLogDerivativeMomentSequence.unique` to
+identify the sequence with the canonical recursive one.
+
+A transitive declaration-body check covers all nine source roots and excludes
+canonical moment definitions, matrices/operators and literal BR2 jets. The
+structured bracket-TFVD head/tail source already gives the same scalar Taylor
+readout. This is not a vector-jet Gram or a derivation of archimedean completion.
+The next vector-source step is an all-order linear readout lift preserving
+that normalization, boundary, tails and completion.
+
+The audit distinguishes actual pinned finite C2 odd-core extraction and
+connected Richardson defects from a universal Mangoldt/cutoff identity.
+The existing pre-Gram polarized equation and projective curvature comparison
+already use canonical moment identification; neither is used as the new
+independent recurrence proof. BR2 is reserved for possible later strictness.
+
+See `docs/PRIME_DEPTH_GEOMETRIC_MOMENT_SOURCE_PROVENANCE.md` for the exact
+source/type map, local finite identities, remaining boundaries and validations.

@@ -954,6 +954,16 @@
     {"qualified": "CarrySelfAdjointOperator.no_homogeneous_incidence_map_realizes_fixed_ordinary_seed"},
     {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineIncidenceLiftOfVariation"},
     {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineIncidenceLiftOfVariation_analysis"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineIncidenceLiftOfVariation_valuePairing"}
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineIncidenceLiftOfVariation_valuePairing"},
+    {"qualified": "CarrySelfAdjointOperator.primeDepthGeometricMoment"},
+    {"qualified": "CarrySelfAdjointOperator.primeDepthResponse_oddCoefficient_recurrence"},
+    {"qualified": "CarrySelfAdjointOperator.primeDepthGeometricMoment_zero"},
+    {"qualified": "CarrySelfAdjointOperator.primeDepthGeometricMoment_one"},
+    {"qualified": "CarrySelfAdjointOperator.primeDepthGeometricMoment_two"},
+    {"qualified": "CarrySelfAdjointOperator.primeDepthGeometricMoment_isLogDerivativeMomentSequence"},
+    {"qualified": "CarrySelfAdjointOperator.primeDepthResponse_oddCoefficient_im_zero"},
+    {"qualified": "CarrySelfAdjointOperator.primeDepthGeometricMoment_coe"},
+    {"qualified": "CarrySelfAdjointOperator.primeDepthGeometricMoment_eq_bracketTfvdReadoutTaylor"},
+    {"qualified": "CarrySelfAdjointOperator.primeDepthGeometricMoment_eq_canonical"}
   ]
 }
