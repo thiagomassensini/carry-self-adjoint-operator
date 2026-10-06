@@ -1,0 +1,38 @@
+import CarrySelfAdjointOperator.BR2EnrichedPreRecoveryCorrelationCanary
+import Lean
+
+open Lean Elab Command
+elab "#assert_br2_enriched_correlation_axioms " id:ident : command => do
+  let decl ← liftCoreM <| realizeGlobalConstNoOverloadWithInfo id
+  let deps ← collectAxioms decl
+  let allowed := #[`propext, `Classical.choice, `Quot.sound]
+  for name in deps do
+    unless allowed.contains name do
+      throwError "Unexpected foundational dependency: {decl} depends on {name}"
+
+namespace CarrySelfAdjointOperator
+#assert_br2_enriched_correlation_axioms br2EnrichedCorrelationContext
+#print axioms br2EnrichedCorrelationContext
+#assert_br2_enriched_correlation_axioms br2EnrichedCorrelationAtlas
+#print axioms br2EnrichedCorrelationAtlas
+#assert_br2_enriched_correlation_axioms br2EnrichedCorrelationContext_cell
+#print axioms br2EnrichedCorrelationContext_cell
+#assert_br2_enriched_correlation_axioms br2EnrichedCorrelationContext_valueCoefficient_ne_zero
+#print axioms br2EnrichedCorrelationContext_valueCoefficient_ne_zero
+#assert_br2_enriched_correlation_axioms br2CausalTfvdPreRecoveryIncidenceState_eq_fullAnalysis
+#print axioms br2CausalTfvdPreRecoveryIncidenceState_eq_fullAnalysis
+#assert_br2_enriched_correlation_axioms br2CausalTfvdPreRecoveryIncidenceState_value_apply
+#print axioms br2CausalTfvdPreRecoveryIncidenceState_value_apply
+#assert_br2_enriched_correlation_axioms br2CausalGreenResponse_C3_zero_two_at_ten
+#print axioms br2CausalGreenResponse_C3_zero_two_at_ten
+#assert_br2_enriched_correlation_axioms br2EnrichedPreRecovery_value02_pairing_eq
+#print axioms br2EnrichedPreRecovery_value02_pairing_eq
+#assert_br2_enriched_correlation_axioms br2EnrichedPreRecovery_value02_pairing_ne_zero
+#print axioms br2EnrichedPreRecovery_value02_pairing_ne_zero
+#assert_br2_enriched_correlation_axioms br2EnrichedCorrelationContext_cell_eq_second_even_right_leg
+#print axioms br2EnrichedCorrelationContext_cell_eq_second_even_right_leg
+#assert_br2_enriched_correlation_axioms br2CausalTfvdPreRecoveryIncidenceState_trace_eq_zero
+#print axioms br2CausalTfvdPreRecoveryIncidenceState_trace_eq_zero
+#assert_br2_enriched_correlation_axioms br2CausalTfvdPreRecoveryIncidenceState_eq_analysisGreenBracket
+#print axioms br2CausalTfvdPreRecoveryIncidenceState_eq_analysisGreenBracket
+end CarrySelfAdjointOperator

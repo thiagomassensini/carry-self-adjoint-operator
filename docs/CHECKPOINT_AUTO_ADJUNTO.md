@@ -1868,3 +1868,35 @@ independent nonseparable blueprint but starts from finite camera coordinates,
 not arbitrary BR2 states. The existing endpoint-plus-Poisson identity recovers
 the source Gram; it does not identify the compressed six-source coefficient.
 No new measure or atlas was substituted for the requested transport.
+
+
+## 2026-10-06 — Enriched BR2 pre-recovery correlation canary
+
+STATUS: `PARTIAL_BR2_SIX_SOURCE_CAMERA_PROMOTION`.
+Initial main: `ff90e00b213b05b9d48c9f77459ac7f5d3d8f6c1`.
+
+A directed type audit found the boundary-aware ordinary parameter-family
+camera resolver already present on main. The independent-reflected camera
+construction retains six roles per camera, and does not instantiate the
+scaffold's arbitrary-datum single-analysis camera promotion. The first
+missing arrow remains the geometric enriched-BR2-to-six-role lift.
+
+The new `BR2EnrichedPreRecoveryCorrelationCanary` gives positive source-level
+evidence: at `q = 1/2`, the active native Cp context at cell 10 (right leg of
+the second even C3 bracket) pairs the causal order-zero and order-two value
+coordinates as `−a²/128 ≠ 0`. No target moment is used. The full causal TFVD
+trace is also proved zero, so it cannot be silently identified with the
+canonical ordinary unit seed. All enriched fields remain intact.
+
+No `incidenceLift`, `promotion`, or finite-camera `U` was fabricated. Hence
+no total or visible Gram canary for such a `U` is asserted. This is not yet
+`visible02 = h₁` or a blind/loss realization. The previous six-frame bounds,
+Parseval split and conditional blind compensation are preserved.
+
+See `docs/BR2_SIX_SOURCE_CAMERA_PROMOTION_INVESTIGATION.md` for the exact
+diagram, first missing map, declaration registry and validation ledger.
+
+The causal enriched datum is also proved equal to full analysis of the
+Green reconstruction of its bracket. The nonzero coordinate pairing therefore
+does not assert additional independent source degrees of freedom; neither
+this recovery nor its pairing is a six-source visible-coefficient theorem.

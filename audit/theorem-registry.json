@@ -925,6 +925,18 @@
     {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.visible_inner_eq_zero_of_sourceChannelOrthogonal"},
     {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.not_realizesSixSourceVisibleCoefficient_of_even01_sourceChannelOrthogonal"},
     {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.exists_even01_sourceChannel_pairing_ne_zero_of_realizes"},
-    {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.blind_even01_eq_neg_nativeMoment_one_of_realizes"}
+    {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.blind_even01_eq_neg_nativeMoment_one_of_realizes"},
+    {"qualified": "CarrySelfAdjointOperator.br2EnrichedCorrelationContext"},
+    {"qualified": "CarrySelfAdjointOperator.br2EnrichedCorrelationAtlas"},
+    {"qualified": "CarrySelfAdjointOperator.br2EnrichedCorrelationContext_cell"},
+    {"qualified": "CarrySelfAdjointOperator.br2EnrichedCorrelationContext_valueCoefficient_ne_zero"},
+    {"qualified": "CarrySelfAdjointOperator.br2CausalTfvdPreRecoveryIncidenceState_eq_fullAnalysis"},
+    {"qualified": "CarrySelfAdjointOperator.br2CausalTfvdPreRecoveryIncidenceState_value_apply"},
+    {"qualified": "CarrySelfAdjointOperator.br2CausalGreenResponse_C3_zero_two_at_ten"},
+    {"qualified": "CarrySelfAdjointOperator.br2EnrichedPreRecovery_value02_pairing_eq"},
+    {"qualified": "CarrySelfAdjointOperator.br2EnrichedPreRecovery_value02_pairing_ne_zero"},
+    {"qualified": "CarrySelfAdjointOperator.br2EnrichedCorrelationContext_cell_eq_second_even_right_leg"},
+    {"qualified": "CarrySelfAdjointOperator.br2CausalTfvdPreRecoveryIncidenceState_trace_eq_zero"},
+    {"qualified": "CarrySelfAdjointOperator.br2CausalTfvdPreRecoveryIncidenceState_eq_analysisGreenBracket"}
   ]
 }
