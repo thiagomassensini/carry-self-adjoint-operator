@@ -1002,6 +1002,17 @@
     {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_odd_odd_tendsto"},
     {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_even_odd_tendsto"},
     {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_odd_even_tendsto"},
-    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_two_two_tendsto"}
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_two_two_tendsto"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.sourceValue"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.sourceCompanion"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_pair_eq_bracketTfvd"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.incident_synthesis_eq_source"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.returned_synthesis_eq_source"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.norm_chiral_balance_eq_source_cross"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_total_energy"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_re_eq_source_cross"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.integral_flux_re_eq_source_cross"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_eventually_eq_source_cross"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_one_eventually_eq_source_cross"}
   ]
 }

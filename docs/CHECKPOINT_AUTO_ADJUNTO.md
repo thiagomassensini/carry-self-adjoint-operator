@@ -2011,3 +2011,28 @@ No BR2 source, Hankel positivity, fitted metric or moment-defined vector
 enters the construction. README records this signed kernel route separately
 from source/readout provenance. See
 `docs/PROJECTIVE_CHIRAL_FORWARD_DIFFERENCE_MOMENT_PAIRING.md`.
+
+
+## 2026-10-06 — Complete source trace of accumulated chiral storage
+
+STATUS: `PARTIAL_SOURCE_FIRST_CHIRAL_RETURN_STORAGE_POSITIVITY`.
+Initial main: `e6d82dc0bf70db0b3c080e09f4015a1d3404507b`.
+
+The unchanged Cauchy carrier now contains explicit finite syntheses of the
+completed TFVD value/companion trace (F,-F'), normalized only by the existing
+positive chiral coordinate. Every cutoff has exactly the same complete-source
+readout. Incidence is C+iV and return is C-iV. Their total energy is
+2*(norm(C)^2+norm(V)^2), whereas accumulated storage is precisely
+4*Im(inner V C), including all cross terms. This also equals the existing
+integrated flux. Finite denominator regularity is automatic eventually,
+uniformly in all coefficients and internal radii.
+
+The mixed orientation sign is still open. No complementary source channel,
+all-order contractivity, Pick/Herglotz/dslope PSD or strictness is asserted.
+The existing positive ReturnMetric/Green norm has a distinct kernel; the
+conditional diagonal sqrt defect assumes contraction. Neither supplies the
+required independent uniform sign. No new moment sign premise, positive
+certificate, fitted metric or BR2 input is used in the source identity.
+
+See `docs/CHIRAL_RETURN_SOURCE_STORAGE_AUDIT.md` for the candidate inventory,
+exact source vectors, audit and single typed sign obligation.

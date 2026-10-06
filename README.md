@@ -82,6 +82,24 @@ Hilbert Gram, or transport identifying these radial difference vectors with
 the earlier prime-depth trace jets is asserted. See the
 [signed-pairing report](docs/PROJECTIVE_CHIRAL_FORWARD_DIFFERENCE_MOMENT_PAIRING.md).
 
+
+The accumulated-return frontier is now expressed directly in complete source
+vectors by `CompletedNativeChiralReturnSourceTrace`. With `V` the Cauchy
+synthesis of the completed value trace and `C` that of its companion `-F'`,
+`ChiralReturn.storage_one_eventually_eq_source_cross` proves, for every finite
+family and every coefficient vector,
+`Re storage = 4 * Im inner V C`. The same vectors reconstruct incidence as
+`C + i V` and return as `C - i V`; their total-energy identity controls the
+sum of the two energies, not their dominance.
+
+Status: `PARTIAL_SOURCE_FIRST_CHIRAL_RETURN_STORAGE_POSITIVITY`.
+The single open sign is eventual nonnegativity of this complete-source mixed
+pairing for **all** coefficients. No nonnegative complementary channel,
+all-order contractivity or Pick/Herglotz/dslope PSD is claimed. Existing
+one/two-point sign results are diagnostics, not a uniform source proof.
+Strictness remains separate. See the
+[source-storage audit](docs/CHIRAL_RETURN_SOURCE_STORAGE_AUDIT.md).
+
 BR2 is not used as the source of the canonical moment sequence. It remains a
 possible downstream independence/strictness mechanism only if a proved
 transport to the final vector family is supplied. Earlier BR2, carrier and
