@@ -1956,3 +1956,32 @@ independent recurrence proof. BR2 is reserved for possible later strictness.
 
 See `docs/PRIME_DEPTH_GEOMETRIC_MOMENT_SOURCE_PROVENANCE.md` for the exact
 source/type map, local finite identities, remaining boundaries and validations.
+
+
+## 2026-10-06 — Normalized prime-depth structural vector jets
+
+STATUS: `PASS_PRIME_DEPTH_NORMALIZED_RESPONSE_VECTOR_JET_LIFT`.
+Initial main: `71accfc85da3427e4cda993fff57e32ab170f746`.
+
+The existing four completed Wronskian sectors (head, exact tail,
+archimedean completion and chart correction) now support all-order normalized
+vector jets in a standard finite Hilbert family. A single fixed continuous
+linear Wronskian readout returns the source-first geometric moment at every
+order. The finite lower-triangular normalizer is proved from vector Leibniz
+with factorial coefficients and is coherent under increasing cutoffs.
+Orders zero, one and two precede the public all-order theorem. Only the final
+corollary uses the previous canonical-moment uniqueness identification.
+
+The focused audit covers every public declaration and traverses 6,282 source
+closure declarations without canonical moment, Hankel, Jacobi/height or
+literal BR2 jet inputs. The existing complete structured TFVD source is
+projected to its geometric trace carriers; no lossless Hilbert isometry of
+all original coordinates is asserted. The resulting finite-dimensional trace
+family is not asserted to realize the all-order moment Gram or its strictness.
+No material clock intertwining or Krylov claim is made.
+
+README now records the current source-first chain on published main and the
+limited downstream role of BR2. The next question is a geometric pairing/
+realization for the source coefficients; equality of fixed readouts alone
+does not close that question. See
+`docs/PRIME_DEPTH_NORMALIZED_RESPONSE_VECTOR_JET_LIFT.md`.

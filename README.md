@@ -10,6 +10,60 @@ characteristic and its logarithmic moments. It does **not** accept a zero
 table, target heights, a fitted Jacobi matrix, or a scanned spectral parameter
 as input.
 
+## Canonical source provenance — current kernel-checked route
+
+This section records the verified source route on published `main`:
+
+```text
+carry / C2 center-core
+→ prime-depth ledger
+→ log n
+→ native log slope / logJet
+→ completed TFVD head + exact value/logJet tails
+→ completed prime-depth normalized response
+→ geometric moment recurrence
+→ canonical moment sequence by uniqueness
+→ future geometric Gram/Stieltjes/Jacobi/height identification
+```
+
+The source-first declarations are:
+
+- `primeDepthLogLedger_eq_log`;
+- `finitePrimeDepthGeneratedLogSlopePrefixState_eq_completedTfvdLogJetPrefix`;
+- `primeDepthGeometricMoment`;
+- `primeDepthGeometricMoment_isLogDerivativeMomentSequence`;
+- `primeDepthGeometricMoment_eq_canonical`;
+- `primeDepthGeometricMoment_eq_bracketTfvdReadoutTaylor`.
+
+The geometric sequence is defined from the odd coefficients of the completed
+prime-depth response. Its recurrence is proved before identification with the
+canonical sequence by `IsLogDerivativeMomentSequence.unique`.
+The historical name “C2 hybrid operator” refers here to a chain of components;
+no equivalence with one declaration bearing that name is asserted.
+
+The scalar source provenance is closed. The new
+`PrimeDepthNormalizedResponseVectorJet` module also closes an all-order
+**structural trace vector lift with a fixed continuous linear readout**:
+`primeDepthNormalizedResponseVectorJet_readout`. It retains the existing
+head, exact tail, archimedean completion and chart-correction sectors, and
+normalizes their vector jets by a coherent finite triangular convolution.
+No moment value defines the vectors or the transform.
+
+This carrier is a finite Hilbert family of existing completed Wronskian
+trace carriers. It is a vector projection after completed TFVD reconstruction,
+not a claimed lossless Hilbert embedding of every original TFVD coordinate.
+No moment Gram identification, clock intertwining, Krylov independence or
+strict positivity follows from the readout theorem. The next gate is the
+appropriate geometric pairing/realization; the equality of readouts alone
+does not determine an inner product kernel. See the
+[vector-lift report](docs/PRIME_DEPTH_NORMALIZED_RESPONSE_VECTOR_JET_LIFT.md).
+
+BR2 is not used as the source of the canonical moment sequence. It remains a
+possible downstream independence/strictness mechanism only if a proved
+transport to the final vector family is supplied. Earlier BR2, carrier and
+operator routes below are historical, downstream or alternative interfaces;
+they do not replace the source-first provenance above.
+
 ## Canonical Closed Handoff: Native/Genuine Certificate to Self-Adjoint Height
 
 The canonical closed interface between native moment geometry and the existing
