@@ -100,6 +100,17 @@ one/two-point sign results are diagnostics, not a uniform source proof.
 Strictness remains separate. See the
 [source-storage audit](docs/CHIRAL_RETURN_SOURCE_STORAGE_AUDIT.md).
 
+The mixed orientation now has an exact crosswalk to the **corrected** C3
+Green/TFVD ledger, retaining every ordered Cauchy cross term. The new
+`ChiralReturn.source_cross_eventually_eq_corrected_green_ledger` is uniform
+in cutoff, coefficients and internal radius on each finite radial family.
+Its Green-port term is accompanied by all five existing provenance,
+off-diagonal, readout, tail and archimedean/chart corrections. This is a
+signed identity, not a positivity proof or an identification with the
+all-bases `GreenFrame.Concrete` stencil defect. The missing source-to-stencil
+morphism is recorded in the
+[Green crosswalk audit](docs/COMPLETED_SOURCE_GREEN_DEFECT_CROSSWALK_AUDIT.md).
+
 BR2 is not used as the source of the canonical moment sequence. It remains a
 possible downstream independence/strictness mechanism only if a proved
 transport to the final vector family is supplied. Earlier BR2, carrier and

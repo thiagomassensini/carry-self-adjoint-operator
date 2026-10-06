@@ -1013,6 +1013,12 @@
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_re_eq_source_cross"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.integral_flux_re_eq_source_cross"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_eventually_eq_source_cross"},
-    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_one_eventually_eq_source_cross"}
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_one_eventually_eq_source_cross"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_cross_eq_cauchy_greenForm"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.mixed_synthesis_eq_wronskian_sum"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_cross_eq_bracketTfvd_wronskian_sum"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.bracketTfvd_wronskian_eq_corrected_green_ledger"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_cross_eq_corrected_green_ledger"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_cross_eventually_eq_corrected_green_ledger"}
   ]
 }

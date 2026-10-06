@@ -2036,3 +2036,18 @@ certificate, fitted metric or BR2 input is used in the source identity.
 
 See `docs/CHIRAL_RETURN_SOURCE_STORAGE_AUDIT.md` for the candidate inventory,
 exact source vectors, audit and single typed sign obligation.
+
+
+## 2026-10-06 — Complete source to corrected Green ledger
+
+Base main: `c7d46e3093fa39359a0c47a43159b5b12e1ac466`.
+Status: `PARTIAL_COMPLETED_SOURCE_TO_GREEN_PORT`.
+The source mixed orientation is now expanded into every ordered completed
+TFVD Wronskian and transported through the existing Green ledger, retaining
+all five correction channels. The eventual identity is uniform in cutoff,
+coefficients and internal radius on each finite radial family.
+The Cauchy specialization of the existing skew Green form is explicit.
+Neither a positive norm defect nor a source-to-GreenFrame stencil morphism
+is inferred. Camera cross-residual cancellation does not cancel the full
+structural ledger. No existing canonical definition or metric was changed.
+See `COMPLETED_SOURCE_GREEN_DEFECT_CROSSWALK_AUDIT.md` for types and evidence.
