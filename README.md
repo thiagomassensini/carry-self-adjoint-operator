@@ -111,6 +111,26 @@ all-bases `GreenFrame.Concrete` stencil defect. The missing source-to-stencil
 morphism is recorded in the
 [Green crosswalk audit](docs/COMPLETED_SOURCE_GREEN_DEFECT_CROSSWALK_AUDIT.md).
 
+The oriented completed-source audit now localizes the next Hilbert sewing
+gate. Bounded Green synthesis preserves **both weighted vertical boundary
+coordinates** and the full TFVD reconstruction. However, the current raw
+oriented carrier uses a maximum product norm that fails the parallelogram
+identity. Recovering its two channels, applying existing Parseval analysis,
+and complexifying the retained residual reproduces exactly the older
+concrete positive candidate already excluded by its normalized-kernel defect;
+it supplies no new division-free witness. Exact completion tails remain
+separate from a homogeneous finite prefix: the zero prefix cannot linearly
+read out the nonzero completed central value. The complex real-axis wrapper
+also retains only the real parameter. These are local presentation/scope
+obstructions, not a no-go for a larger complete geometric realization.
+
+Status: `PARTIAL_ORIENTED_COMPLETED_SOURCE_DIVISION_FREE_GREEN_REPRESENTATION`.
+The open construction is a continuous, source-derived complex Hilbert state
+satisfying the **full division-free Green identity**. The projective-valve
+roundtrip preserves boundary and curvature data but does not by itself
+provide this metric identity. No new positivity, contractivity or strictness
+is claimed. See the [oriented source audit](docs/ORIENTED_COMPLETED_SOURCE_DIVISION_FREE_GREEN_AUDIT.md).
+
 BR2 is not used as the source of the canonical moment sequence. It remains a
 possible downstream independence/strictness mechanism only if a proved
 transport to the final vector family is supplied. Earlier BR2, carrier and

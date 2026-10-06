@@ -2051,3 +2051,33 @@ Neither a positive norm defect nor a source-to-GreenFrame stencil morphism
 is inferred. Camera cross-residual cancellation does not cancel the full
 structural ledger. No existing canonical definition or metric was changed.
 See `COMPLETED_SOURCE_GREEN_DEFECT_CROSSWALK_AUDIT.md` for types and evidence.
+
+
+## 2026-10-06 — Oriented source presentation and complete-boundary audit
+
+Initial main: `19ba7534471e9c13271f2476ea354851167e4e94`.
+Status: `PARTIAL_ORIENTED_COMPLETED_SOURCE_DIVISION_FREE_GREEN_REPRESENTATION`.
+
+The existing bounded synthesis recovers both weighted TFVD boundary
+coordinates and the complete Green-plus-return identity. The raw oriented
+product norm is not a Hilbert norm: two channel vectors refute its
+parallelogram law. Its natural recovered/Parseval/complexified presentation
+is exactly the already rejected concrete positive state after the unchanged
+completion factor. No new metric or canonical source was introduced.
+
+The oriented zero-cutoff prefix is zero, while its separately tail-completed
+trace has nonzero central value. Consequently a homogeneous linear functional
+on prefixes alone cannot implement all cutoff-completed values. The complex
+real-axis wrapper also sends every canonical imaginary radial sample to the
+same central source state. These are localized no-gos and scope checks.
+
+The historical TFVD/projective-valve note was checked against current APIs.
+Boundary recovery, additive/multiplicative valve naturality and the formal
+reconstruction equivalence are preserved. They do not establish the missing
+Hilbert metric sewing or identify projective depth with the spectral variable.
+
+No division-free Hilbert witness, normalized positive kernel or all-order
+storage sign was proved. The single remaining construction is a continuous
+full-source Hilbert family realizing the entire corrected Wronskian by its
+inner product. The dedicated audit checks all new proof closures for forbidden
+downstream inputs. See `ORIENTED_COMPLETED_SOURCE_DIVISION_FREE_GREEN_AUDIT.md`.
