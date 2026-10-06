@@ -2096,3 +2096,26 @@ from that conditional interface. No numerical campaign, source edit or new
 Lean declaration was introduced. The continuous full-source Hilbert sewing
 remains the only gate. See the appended consultation in
 `ORIENTED_COMPLETED_SOURCE_DIVISION_FREE_GREEN_AUDIT.md`.
+
+
+## 2026-10-06 — Completion product rule inside the chiral source vectors
+
+Initial main: `4df95cc02e353a18c504e6dd5aa2c774015407e0`.
+Statuses: `PASS_CHIRAL_SOURCE_COMPLETION_VECTOR_SPLIT` and
+`PASS_CHIRAL_COMPLETION_SIGNED_GREEN_PAIRING`; the positive division-free
+Hilbert sewing remains partial.
+
+The unchanged Cauchy L²[0,1] source companion splits exactly into the
+xi-weighted native companion and -A' times the native value. Both finite
+vector channels have the same completed normalized TFVD trace provenance at
+every cutoff. Their skew pairings equal the weighted native Green form and
+the existing archimedean Green correction, with all ordered cross terms kept.
+Storage equals their summed orientations eventually for every coefficient
+vector and internal radius, with the existing common regularity threshold.
+
+The analytic-center factor cancellation and the one-/two-sample algebra
+canaries passed. No individual channel sign, positive complement, global
+Hilbert witness, contractivity or Pick PSD is claimed. Fifteen public roots
+passed the source-first dependency firewall (5299 declarations) and the
+standard axiom footprint. No moments or target Gram define the new vectors.
+See `CHIRAL_RETURN_COMPLETION_VECTOR_SPLIT.md`.

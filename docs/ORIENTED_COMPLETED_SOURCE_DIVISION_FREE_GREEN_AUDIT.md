@@ -520,3 +520,18 @@ Validation passed: the full package and root audit with `--wfail`,
 `static audit passed`, `kernel audit passed`, and `git diff --check`.
 Logs are retained under
 `/tmp/momentos-consultation-validation/`. Archive dirty files remain untouched.
+
+
+## Follow-up: vector completion and signed mixed-form sewing
+
+Starting from `4df95cc`, `CompletedNativeChiralReturnCompletionSplit` now
+splits the actual Cauchy source companion into its xi-weighted native part
+and its completion derivative part. Both have the same completed TFVD trace
+provenance at every cutoff. Their skew pairings realize the weighted native
+Green form and the existing archimedean correction, with all cross terms
+retained. The analytic-center cancellation and one-/two-sample canaries
+passed. The new fifteen public declarations passed the source dependency
+firewall and standard trust footprint. This is a signed-form crosswalk, not
+a positive Hilbert witness or contractivity proof. The continuous full-source
+division-free Hilbert sewing remains open. See
+[the vector-split report](CHIRAL_RETURN_COMPLETION_VECTOR_SPLIT.md).

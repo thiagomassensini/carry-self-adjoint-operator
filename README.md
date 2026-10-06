@@ -111,6 +111,24 @@ all-bases `GreenFrame.Concrete` stencil defect. The missing source-to-stencil
 morphism is recorded in the
 [Green crosswalk audit](docs/COMPLETED_SOURCE_GREEN_DEFECT_CROSSWALK_AUDIT.md).
 
+The product-rule completion is now separated **inside the unchanged Cauchy
+source vectors**, by `CompletedNativeChiralReturnCompletionSplit`:
+`sourceCompanion = nativeDressedCompanion + completionCompanion`.
+The second vector is precisely the existing `-A' * Z` channel, with the
+original chiral denominator. Its skew pairing with the full value vector is
+exactly the archimedean Green correction summed over every ordered sample
+pair. The weighted native Green term is transported in the same carrier.
+Both channels have the same tail-completed TFVD provenance at every cutoff.
+
+The center canary retains the exact factor-jet cancellation; the two-sample
+canary retains both off-diagonal terms. Storage equals the sum of these two
+signed orientations eventually, uniformly in all coefficient vectors and
+internal radii on each finite sample family. This is a **vector completion
+split and signed Green-form transport**, not a positive Hilbert norm,
+contractivity proof or division-free Hilbert witness. The independent metric
+sewing gate remains open. See the
+[completion vector-split report](docs/CHIRAL_RETURN_COMPLETION_VECTOR_SPLIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
