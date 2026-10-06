@@ -1900,3 +1900,29 @@ The causal enriched datum is also proved equal to full analysis of the
 Green reconstruction of its bracket. The nonzero coordinate pairing therefore
 does not assert additional independent source degrees of freedom; neither
 this recovery nor its pairing is a six-source visible-coefficient theorem.
+
+
+## 2026-10-06 — Fixed seed plus six-role analysis variation
+
+STATUS: `PARTIAL_AFFINE_SIX_SOURCE_ROLE_LIFT`.
+
+The homogeneous BR2 incidence interface is honest for its actual target:
+six gradient TFVD analyses with no global ordinary seed field. At cutoff
+zero that target is zero. The complete boundary-aware source instead has
+fixed ordinary seed one and logJet seed zero, outside those analyses.
+
+`CanonicalC3SixSourceAffineRoleInterface` exposes their exact decomposition
+using a standard product and standard affine assembly. It compares directly
+with the existing canonical affine camera ledger. Only a homogeneous map
+into the *complete seeded carrier* is excluded by the zero-input argument;
+that no-go does not exclude the original variation interface.
+
+Affine seed insertion preserves every datum and native value-coordinate
+pairing of a supplied variation. A provenance-correct BR2-to-six-role
+variation has not been constructed; native value is not silently identified
+with ordinary. The previous enriched BR2 correlation remains intact, but
+its actual transport into a six-source role is still the single missing
+arrow at this stage. Whether BR2 is the correct source remains unproved.
+
+See `docs/AFFINE_SIX_SOURCE_ROLE_INTERFACE_AUDIT.md` for declarations,
+provenance, the exact typed obligation, and validation/publication ledger.

@@ -937,6 +937,23 @@
     {"qualified": "CarrySelfAdjointOperator.br2EnrichedPreRecovery_value02_pairing_ne_zero"},
     {"qualified": "CarrySelfAdjointOperator.br2EnrichedCorrelationContext_cell_eq_second_even_right_leg"},
     {"qualified": "CarrySelfAdjointOperator.br2CausalTfvdPreRecoveryIncidenceState_trace_eq_zero"},
-    {"qualified": "CarrySelfAdjointOperator.br2CausalTfvdPreRecoveryIncidenceState_eq_analysisGreenBracket"}
+    {"qualified": "CarrySelfAdjointOperator.br2CausalTfvdPreRecoveryIncidenceState_eq_analysisGreenBracket"},
+    {"qualified": "CarrySelfAdjointOperator.CanonicalC3AffineSixRoleAnalysisCarrier"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceRoleAnalysisLinearMap"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceFixedRoleSeed"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceRoleVariationEmbedding"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceRoleAffineAssembly"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceRoleAffineAssembly_seed"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceRoleAffineAssembly_analysis"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceRoleAffineAssembly_sub"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineRoleState"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineRoleState_eq_fixedSeed_add_variation"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineRoleState_eq_existing_cameraLedger"},
+    {"qualified": "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceAnalysis_zero_cutoff"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineRoleState_zero_cutoff"},
+    {"qualified": "CarrySelfAdjointOperator.no_homogeneous_incidence_map_realizes_fixed_ordinary_seed"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineIncidenceLiftOfVariation"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineIncidenceLiftOfVariation_analysis"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3SixSourceAffineIncidenceLiftOfVariation_valuePairing"}
   ]
 }
