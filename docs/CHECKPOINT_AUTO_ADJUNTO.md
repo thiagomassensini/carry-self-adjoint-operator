@@ -1985,3 +1985,29 @@ limited downstream role of BR2. The next question is a geometric pairing/
 realization for the source coefficients; equality of fixed readouts alone
 does not close that question. See
 `docs/PRIME_DEPTH_NORMALIZED_RESPONSE_VECTOR_JET_LIFT.md`.
+
+
+## 2026-10-06 — Signed projective/chiral finite-difference pairing
+
+STATUS: `PASS_PROJECTIVE_CHIRAL_FORWARD_DIFFERENCE_MOMENT_PAIRING`.
+Initial main: `384ae67c156cde5d81e07247dfc6d7179eeb1b44`.
+
+Finite combinations of the existing shifted radial projective/chiral state
+now realize the exact normalized mixed differences of the polarized dslope
+kernel. The first slot normalization is conjugated; both L2 chiral channels
+remain separate. Finite regularity is automatic eventually on every stencil.
+The existing two-step radial scalar limit, restricted along (k,k), yields all
+polarized coefficients, then the prime-depth moments by previous uniqueness.
+
+Literal-order canaries (0,0), (0,1), (1,1) give g0, zero, g1; (2,2) gives g2.
+Even-even and odd-odd limits give g_(p+q) and g_(p+q+1); both mixed limits vanish.
+No finite mixed orthogonality, vector convergence, positive Hilbert Gram or
+identification with the earlier normalized trace jets is asserted.
+
+PASS_PAIRING is not PASS_POSITIVITY. The next independent property is
+`CanonicalCompletedNativeRadialChiralMultiplierEventuallyContractive`,
+equivalently the existing eventual radial Pick/sample positivity gate.
+No BR2 source, Hankel positivity, fitted metric or moment-defined vector
+enters the construction. README records this signed kernel route separately
+from source/readout provenance. See
+`docs/PROJECTIVE_CHIRAL_FORWARD_DIFFERENCE_MOMENT_PAIRING.md`.

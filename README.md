@@ -53,10 +53,34 @@ This carrier is a finite Hilbert family of existing completed Wronskian
 trace carriers. It is a vector projection after completed TFVD reconstruction,
 not a claimed lossless Hilbert embedding of every original TFVD coordinate.
 No moment Gram identification, clock intertwining, Krylov independence or
-strict positivity follows from the readout theorem. The next gate is the
-appropriate geometric pairing/realization; the equality of readouts alone
-does not determine an inner product kernel. See the
+strict positivity follows from the readout theorem. Equality of those
+readouts alone does not determine an inner product kernel. See the
 [vector-lift report](docs/PRIME_DEPTH_NORMALIZED_RESPONSE_VECTOR_JET_LIFT.md).
+
+
+A separate kernel route is now closed in
+`CompletedNativeProjectiveChiralForwardDifference`:
+
+```text
+prime-depth geometric moments
++ projective/chiral signed geometric form
+→ polarized dslope kernel on regular shifted radial samples
+→ all-order finite-difference pairing limit
+```
+
+`projectiveChiralDifferenceJet_pairing_tendsto_primeDepthCoefficient`
+identifies every signed pairing limit with the corresponding polarized
+prime-depth coefficient. The four parity blocks give `g_(i+j)`,
+`g_(i+j+1)`, zero and zero. Literal derivative-order canaries `(0,0)`,
+`(0,1)`, `(1,1)` have limits `g0`, zero, `g1`; `(2,2)` gives `g2`.
+
+The projective/chiral form realizes the moment kernel **as a signed geometric
+pairing limit**. Positivity remains a separate contractivity/Pick gate:
+`CanonicalCompletedNativeRadialChiralMultiplierEventuallyContractive`.
+`PASS_PAIRING` is not `PASS_POSITIVITY`. No vector convergence, positive
+Hilbert Gram, or transport identifying these radial difference vectors with
+the earlier prime-depth trace jets is asserted. See the
+[signed-pairing report](docs/PROJECTIVE_CHIRAL_FORWARD_DIFFERENCE_MOMENT_PAIRING.md).
 
 BR2 is not used as the source of the canonical moment sequence. It remains a
 possible downstream independence/strictness mechanism only if a proved

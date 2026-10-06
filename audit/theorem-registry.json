@@ -988,6 +988,20 @@
     {"qualified": "CarrySelfAdjointOperator.primeDepthNormalizedResponseVectorJet_readout_one"},
     {"qualified": "CarrySelfAdjointOperator.primeDepthNormalizedResponseVectorJet_readout_two"},
     {"qualified": "CarrySelfAdjointOperator.primeDepthNormalizedResponseVectorJet_readout"},
-    {"qualified": "CarrySelfAdjointOperator.primeDepthNormalizedResponseVectorJet_readout_canonical"}
+    {"qualified": "CarrySelfAdjointOperator.primeDepthNormalizedResponseVectorJet_readout_canonical"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralForm_smul"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_pairing_eq_weightedSum"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_pairing_eq_dslope"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_pairing_eventuallyEq_dslope"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_pairing_canaries"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_pairing_tendsto_coefficient"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_pairing_canary_limits"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_pairing_tendsto_primeDepthCoefficient"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_even_even_tendsto"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_odd_odd_tendsto"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_even_odd_tendsto"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_odd_even_tendsto"},
+    {"qualified": "CarrySelfAdjointOperator.projectiveChiralDifferenceJet_two_two_tendsto"}
   ]
 }
