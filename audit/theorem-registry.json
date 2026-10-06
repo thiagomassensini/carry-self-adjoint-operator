@@ -1030,6 +1030,21 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalC3BracketTfvdCompletedTracePair_zero_value_ne_zero"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrientedRealAxisWrapper_radial_eq_center"},
     {"qualified": "CarrySelfAdjointOperator.no_linear_orientedPrefix_completedValue_readout"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrientedGreenFrameCarrier_not_parallelogram"}
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3OrientedGreenFrameCarrier_not_parallelogram"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3BracketTfvdNormalizedTracePair_eq_native"},
+    {"qualified": "CarrySelfAdjointOperator.nativeArchimedeanCompanionChannels_zero_cancel"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalArchimedeanBoundaryGreenCorrection_zero_cancel"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.nativeDressedCompanion"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.completionCompanion"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.sourceValue_eq_native_product"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.sourceCompanion_eq_native_add_completion"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.companion_channels_eq_bracketTfvd"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.completion_pairing_skew_eq_archimedean_sum"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.native_pairing_skew_eq_weighted_green_sum"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_pairing_skew_eq_product_green_sum"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.completion_orientation_eq_archimedean_sum"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_cross_eq_native_add_completion"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.sourceCompanion_eventually_eq_native_add_completion"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_eventually_eq_native_add_completion"}
   ]
 }
