@@ -919,6 +919,12 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNativeHankel_quadratic_norm_le_two"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNative_six_sub_hankel_posSemidef"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedNative_six_sub_hankelPair_posSemidef"},
-    {"qualified": "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceBr2EnergyExcess_blocks_posSemidef_unconditional"}
+    {"qualified": "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceBr2EnergyExcess_blocks_posSemidef_unconditional"},
+    {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.visible_inner_eq_sourceChannelGram"},
+    {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.realizesSixSourceVisibleCoefficient_iff_sourceChannelGram"},
+    {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.visible_inner_eq_zero_of_sourceChannelOrthogonal"},
+    {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.not_realizesSixSourceVisibleCoefficient_of_even01_sourceChannelOrthogonal"},
+    {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.exists_even01_sourceChannel_pairing_ne_zero_of_realizes"},
+    {"qualified": "CarrySelfAdjointOperator.CanonicalCompletedNativeTfvdCameraParsevalTransport.blind_even01_eq_neg_nativeMoment_one_of_realizes"}
   ]
 }

@@ -1836,3 +1836,35 @@ six-source excess, its lossless split and corrected-map injectivity remain
 open. No native Hankel lower positivity or HP certificate is concluded.
 The existing Mellin/theta provenance is explicit, not replaced by a fitted
 carrier or external moment table. See `CANONICAL_SIX_FRAME_UPPER_BOUND.md`.
+
+
+## 2026-10-06 — Nonseparable camera Parseval source correlation gate
+
+STATUS: `PARTIAL_GEOMETRIC_PARSEVAL_SOURCE_TRANSPORT`.
+Missing construction: `MISSING_NONSEPARABLE_SOURCE_INTERTWINER`.
+Initial main: `0eb9c94c5150430e11150065d223624cbfc70f60`.
+
+A directed audit of BR2 incidence, enriched TFVD recovery/six-source,
+finite camera, Green Parseval and Naimark maps found no instantiated
+geometric `H → FiniteHilbertFamily state H` source isometry with the
+six-source visible coefficient theorem. This is an inventory finding,
+not a universal nonexistence theorem.
+
+The new `CompletedNativeTfvdCameraSourceCorrelationGate` proves the exact
+camera-weighted source-channel Gram formula. It rules out every transport
+whose C3 even-zero/even-one source-channel pairings all vanish, without
+requiring rank one. Any realizing candidate must have a nonzero such
+pairing; Parseval then forces the blind even01 pairing to be `−h₁`.
+The four concrete canaries remain open because no justified transport was
+constructed. No target-fitted factorization, loss map, positivity premise,
+new metric, or downstream certificate was introduced.
+
+See `docs/NONSEPARABLE_CAMERA_PARSEVAL_TRANSPORT_INVESTIGATION.md` for the
+exact type inventory, theorem names, provenance and validation ledger.
+
+The subsequently supplied C2/Haar, defect-probe, POVM and all-bases notes
+were audited read-only. Their support-dependent dilation offers an
+independent nonseparable blueprint but starts from finite camera coordinates,
+not arbitrary BR2 states. The existing endpoint-plus-Poisson identity recovers
+the source Gram; it does not identify the compressed six-source coefficient.
+No new measure or atlas was substituted for the requested transport.

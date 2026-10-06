@@ -475,3 +475,5 @@ import CarrySelfAdjointOperator.FiniteHistoricalChebyshev
 import CarrySelfAdjointOperator.CompletedNativeSeededAffineBoundaryLedger
 
 import CarrySelfAdjointOperator.CompletedNativeSixFrameUpperBound
+
+import CarrySelfAdjointOperator.CompletedNativeTfvdCameraSourceCorrelationGate
