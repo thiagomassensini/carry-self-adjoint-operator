@@ -1097,6 +1097,19 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalC3AngularLogRoleProbe"},
     {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularRoleProbe_corrections_zero"},
     {"qualified": "CarrySelfAdjointOperator.canonicalC3AngularLogRoleProbe_mixedProvenance"},
-    {"qualified": "CarrySelfAdjointOperator.not_ordinaryAngularCorrection_eq_mixedGreenProvenance_on_all_sources"}
+    {"qualified": "CarrySelfAdjointOperator.not_ordinaryAngularCorrection_eq_mixedGreenProvenance_on_all_sources"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleEdge"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTriple"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTrace"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleEdge_prefix"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTriple_prefix_eq_historical"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTriple_prefix_eq_enriched"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTriple_prefix_decomposition"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTrace_prefix_eq_vertexFlux"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTrace_prefix_decomposition"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTrace_prefix_eq_cutoff_add_bulk"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTrace_one_zero"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3CurrentMixedProvenance_one_zero"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTrace_ne_currentMixedProvenance_one_zero"}
   ]
 }
