@@ -2274,3 +2274,33 @@ Thirteen declarations pass the source firewall (3524 reachable declarations),
 with at most standard Lean foundations. No moments, HP, Hankel, Jacobi/height,
 Herglotz or BR2 input. See
 `REFLECTED_LOGJET_COMMUTATOR_MIXED_CROSSWALK_AUDIT.md`.
+
+
+## 2026-10-07 — Actual adjacent-clock Green/boundary form transport
+
+Initial main: `b1541f7924358be30a8a45d06aa9ee7a9024aec8`.
+Status: `PASS_FINITE_ADJACENT_CLOCK_GREEN_BOUNDARY_TRANSPORT`.
+
+The source-first discrete product rules for the existing material log gradient
+are proved in both endpoint orientations. They decompose each actual
+adjacent mixed leg, for independent z,w, into the common-node log frequency
+times the ordinary wedge plus the explicit two outer-node log-gap terms.
+The node is material integer n+2, not C2 depth or operator height.
+Both components are retained per leg before summation. The same canonical
+Hilbert prefixes realize these channels literally, and the Green provenance
+is exactly their sum minus the existing reflected Green port.
+
+Complete finite head synthesis retains the old ordered crosses and all four
+synthesis discrepancies, including the final I rotation. Required outer
+samples are reconstructed by the same ordinary prefix and its global unit
+seed, up through the last node from all 3M gradients. No homogeneous seed
+readout or raw nodal l2 state is constructed. The same-parameter local
+ordinary wedge vanishes, leaving precisely log-gap return minus Green.
+
+The first-cell leg canaries and diagonal reduction are kernel checked.
+Fifteen declarations pass the source firewall (3481 reachable declarations)
+with only standard Lean foundations, without moments, HP, Hankel,
+Jacobi/height, Herglotz or BR2 input. No individual-channel limit,
+completed cancellation, positive complementary channel or storage sign is
+claimed. The existing same-edge no-go is preserved. See
+`ADJACENT_CLOCK_GREEN_BOUNDARY_TRANSPORT_AUDIT.md`.

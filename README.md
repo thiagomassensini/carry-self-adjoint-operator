@@ -224,6 +224,27 @@ independent-parameter mixed ledger, with all its boundary/cross terms.
 No positive complementary channel is inferred. See the
 [reflected logJet / mixed-form audit](docs/REFLECTED_LOGJET_COMMUTATOR_MIXED_CROSSWALK_AUDIT.md).
 
+The actual adjacent-edge finite form transport is now closed in
+`CompletedC3AdjacentClockGreenTransport`, independently of the historical
+reflected contraction. The discrete product rule for `Delta(log * sample)`
+yields, at each mixed leg, the log of its shared material node times the
+ordinary adjacent wedge, plus two explicit endpoint/log-gap terms.
+These two channels remain separated before finite synthesis.
+
+`canonicalC3MixedPrefixGreenProvenance_clockTransport` identifies their sum
+minus the unchanged Green port with the current mixed provenance for
+independent z,w. `canonicalC3MixedPrefixHead_clockTransport` retains every
+ordered off-diagonal term and the existing four synthesis residuals. The
+return samples are reconstructed from the same ordinary prefix plus its
+certified global unit seed; no raw nodal l2 state is created. On z=w, the
+local ordinary wedge vanishes, leaving the log-gap return minus Green.
+
+Status: `PASS_FINITE_ADJACENT_CLOCK_GREEN_BOUNDARY_TRANSPORT`.
+This closes finite form transport, not positivity or a limit of the separate
+channels. A geometric complementary norm identity for the complete source
+balance, with tail/completion corrections retained, is still open. See the
+[adjacent-clock transport audit](docs/ADJACENT_CLOCK_GREEN_BOUNDARY_TRANSPORT_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
