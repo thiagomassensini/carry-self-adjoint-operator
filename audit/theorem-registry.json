@@ -1067,6 +1067,11 @@
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.coisometricEscapeBoundarySynthesis_eq_zero"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_re_eq_coisometricEnergy_sub_fourChannelBalance"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.coisometricSource_comparison_eventually"},
-    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.coisometricResponse_escape_eq_zero"}
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.coisometricResponse_escape_eq_zero"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientInducedSource_mem_port_iff_leak_zero"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientResponse_eq_gammaPort_add_resolvedLeak"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientResponse_exists_gamma_iff_leak_zero"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientResponse_no_gammaPort_at_witness"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientResponse_inner_eq_gammaLeak_fourTerms"}
   ]
 }
