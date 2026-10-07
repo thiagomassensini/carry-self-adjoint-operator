@@ -226,3 +226,15 @@ Logs on llm: `/tmp/chiral-polarized-build.log`,
 All listed checks passed. Final main/origin/GitHub agreement and the publication
 SHA are recorded in the delivery. No dependency source or archive file was
 modified; Foundation and canonical metrics are unchanged.
+
+
+## Follow-up — Concrete coisometric candidate and its unchanged correction
+
+`CompletedNativeChiralReturnCoisometricSewing` now compares the full Q with
+the concrete geometric camera synthesis A. Exact radial cancellation yields
+Q(c,d) = 2 inner A(c) A(d) + 2i E(c,d), retaining the existing four-channel
+coisometric/Wronskian discrepancy E. The known Naimark escape contributes
+zero to this boundary pairing; it does not supply E. The camera candidate
+matches iff E vanishes, with no vanishing or sign supplied. The broader
+source-derived complementary channel remains open. See
+`COISOMETRIC_PYTHAGOREAN_RETURN_CHANNEL_AUDIT.md`.

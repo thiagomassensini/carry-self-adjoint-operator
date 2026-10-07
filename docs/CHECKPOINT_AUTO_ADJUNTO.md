@@ -2143,3 +2143,29 @@ channel whose Gram is this signed difference. Isometric repackaging alone
 preserves the difference. No positivity, contractivity, new metric,
 lossless inversion of trace, or global Hilbert Green witness is claimed.
 See `POLARIZED_GREEN_PYTHAGOREAN_AUDIT.md`.
+
+
+## 2026-10-06 — Testing existing Pythagoras on the completed chiral return
+
+Initial main: `00aea824c29fe5da8d8ff020a68600963d933742`.
+Statuses: `PASS_COMPLETED_SOURCE_COISOMETRIC_DEFECT_LOCALIZATION` and
+`PARTIAL_PYTHAGOREAN_RETURN_CHANNEL_IDENTIFICATION`.
+
+The concrete coisometric camera is synthesized with the original source
+normalization before pairing. The existing radial Cauchy/separation identity
+cancels exactly, giving Q(c,d) = 2 inner A(c) A(d) + 2i E(c,d), with E the
+weighted synthesis of the already defined four geometric correction channels.
+Storage is exactly 2 norm A(c)^2 - 2 Im E(c,c). The eventual comparison is
+uniform in the full coefficient families and internal radii. No moment target,
+calibrated metric or complementary energy is used to construct a vector.
+
+The existing induced-source escape remains invisible to this complete
+boundary pairing after all cross terms. The response itself has zero escape,
+while the induced source's independent leak has not been discarded.
+The Bessel/provenance split remains conditioned on common fixed readouts in
+a real Hilbert carrier; it is not identified with the complex chiral return.
+The remaining candidate-specific sewing test is the vanishing of E, not a
+new assumption wrapper. No positivity or global Green witness is claimed.
+Ten roots and one-/two-sample identity canaries passed the source firewall
+(6713 declarations), with only standard Lean foundations. See
+`COISOMETRIC_PYTHAGOREAN_RETURN_CHANNEL_AUDIT.md`.

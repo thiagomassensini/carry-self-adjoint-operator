@@ -146,6 +146,25 @@ Reconstruction or Parseval conservation alone does not identify it; no
 positivity, contractivity or strictness follows yet. See the
 [polarized Green / Pythagorean audit](docs/POLARIZED_GREEN_PYTHAGOREAN_AUDIT.md).
 
+The existing coisometric camera split is now compared with the **same complete
+chiral source**, in `CompletedNativeChiralReturnCoisometricSewing`. The old
+radial Cauchy Gram cancels the old Green spectral separation exactly. The
+camera vectors are synthesized before pairing, and the result is
+`Q(c,d) = 2 inner A(c) A(d) + 2i E(c,d)`, where E is the complete weighted
+synthesis of the already geometric four-channel coisometric/Wronskian defect.
+The storage diagonal is `2 norm A(c)^2 - 2 Im E(c,c)`.
+
+Status: `PASS_COMPLETED_SOURCE_COISOMETRIC_DEFECT_LOCALIZATION`;
+`PARTIAL_PYTHAGOREAN_RETURN_CHANNEL_IDENTIFICATION`. The camera candidate
+matches exactly iff that synthesized defect vanishes; no vanishing or sign
+is assumed. The known induced-source escape has zero contribution to this
+boundary pairing, even after independent coefficient syntheses. The response
+itself has zero escape because it already lies in the promoted camera range;
+this does not erase the induced source's distinct retained leak. No positive
+completed-native kernel, return/complement identification, or strictness is
+claimed. See the
+[coisometric Pythagorean return audit](docs/COISOMETRIC_PYTHAGOREAN_RETURN_CHANNEL_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
