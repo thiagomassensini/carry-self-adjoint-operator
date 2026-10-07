@@ -1045,6 +1045,18 @@
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.completion_orientation_eq_archimedean_sum"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.source_cross_eq_native_add_completion"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.sourceCompanion_eventually_eq_native_add_completion"},
-    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_eventually_eq_native_add_completion"}
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_eventually_eq_native_add_completion"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.chiral_pairing_balance"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.chiral_pairing_total"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_greenForm"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_self_eq_storage"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_conj_symm"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.chiral_pairing_balance_isometry"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarized_mixed_synthesis_eq_wronskian_sum"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_bracketTfvd_sum"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_corrected_green_ledger"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_native_add_completion"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eventually_complete"}
   ]
 }
