@@ -2119,3 +2119,27 @@ Hilbert witness, contractivity or Pick PSD is claimed. Fifteen public roots
 passed the source-first dependency firewall (5299 declarations) and the
 standard axiom footprint. No moments or target Gram define the new vectors.
 See `CHIRAL_RETURN_COMPLETION_VECTOR_SPLIT.md`.
+
+
+## 2026-10-06 — Complete-source polarized Green / Pythagorean gate
+
+Initial main: `96c1d10a332cfc8c5d01e565cb00b2b837b2b9ef`.
+Statuses: `PASS_COMPLETED_SOURCE_POLARIZED_GREEN_BALANCE` and
+`PARTIAL_POLARIZED_GREEN_PYTHAGOREAN_SEWING`.
+
+Both complete Cauchy source syntheses precede contraction. The exact
+Hermitian incidence-minus-return pairing equals 2i times the existing Green
+form, the completed TFVD Wronskian sum and its unchanged full corrected
+ledger, with independent c,d and r,s. All ordered cross terms, tail,
+completion, provenance, off-diagonal and readout residual channels remain.
+The diagonal is unchanged real storage; one common eventual threshold works
+for all cutoffs, coefficient families and internal radii. Native/completion
+separation occurs in the vectors on both sides, with no orthogonality assumed.
+
+One/two-sample identities and twelve public roots passed the dedicated
+source firewall (6183 declarations), with only standard Lean foundations.
+The conservation candidates do not supply a source-derived complementary
+channel whose Gram is this signed difference. Isometric repackaging alone
+preserves the difference. No positivity, contractivity, new metric,
+lossless inversion of trace, or global Hilbert Green witness is claimed.
+See `POLARIZED_GREEN_PYTHAGOREAN_AUDIT.md`.

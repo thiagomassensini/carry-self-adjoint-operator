@@ -129,6 +129,23 @@ contractivity proof or division-free Hilbert witness. The independent metric
 sewing gate remains open. See the
 [completion vector-split report](docs/CHIRAL_RETURN_COMPLETION_VECTOR_SPLIT.md).
 
+The complete-source balance is now polarized in
+`CompletedNativeChiralReturnPolarizedGreen`, with **independent coefficient
+families** and internal radii. `polarizedSourceBalance_eq_corrected_green_ledger`
+keeps every ordered cross term and all existing completion/boundary corrections.
+Its Hermitian diagonal is exactly the unchanged real storage; the conservative
+total-energy sum also polarizes. A common complex isometric repackaging
+preserves the signed balance exactly.
+
+Status: `PASS_COMPLETED_SOURCE_POLARIZED_GREEN_BALANCE`;
+`PARTIAL_POLARIZED_GREEN_PYTHAGOREAN_SEWING`. The geometric Pythagorean gate is
+still to identify an actual complementary source channel D satisfying
+`inner incidence incidence - inner return return = inner D D` for independent
+coefficient families. No such positive channel is constructed here.
+Reconstruction or Parseval conservation alone does not identify it; no
+positivity, contractivity or strictness follows yet. See the
+[polarized Green / Pythagorean audit](docs/POLARIZED_GREEN_PYTHAGOREAN_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw

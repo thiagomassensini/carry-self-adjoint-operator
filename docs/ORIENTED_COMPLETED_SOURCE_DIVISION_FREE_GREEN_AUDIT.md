@@ -535,3 +535,21 @@ firewall and standard trust footprint. This is a signed-form crosswalk, not
 a positive Hilbert witness or contractivity proof. The continuous full-source
 division-free Hilbert sewing remains open. See
 [the vector-split report](CHIRAL_RETURN_COMPLETION_VECTOR_SPLIT.md).
+
+
+## 2026-10-06 follow-up — Polarized Pythagorean test after complete synthesis
+
+Published base: `96c1d10a332cfc8c5d01e565cb00b2b837b2b9ef`.
+`CompletedNativeChiralReturnPolarizedGreen` now exposes the independent-leg
+Hermitian balance, equal to the existing full corrected Green ledger.
+Its diagonal is the old real storage; no sign has been added. The exact
+factor is +2i times `greenForm` and -2i times the reversed mixed orientation.
+All ordered terms and all correction channels are retained. The source
+firewall passed for twelve public roots (6183 declarations).
+
+The single finite Pythagorean sewing obligation is to find a source-derived
+Hilbert complementary channel realizing that polarized difference as its
+inner product. Existing conservative material splits and symplectic camera
+maps have not supplied this identification for the completed Cauchy family.
+The global continuous division-free Hilbert representation remains open.
+See `POLARIZED_GREEN_PYTHAGOREAN_AUDIT.md` for the exact typed obligation.
