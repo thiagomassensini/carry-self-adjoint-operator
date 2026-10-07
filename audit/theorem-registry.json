@@ -1145,6 +1145,19 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AdjacentClockCorrectedReadout_eq_correctedGreenNumerator"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AdjacentClockCorrectedReadout_zero"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_adjacentClockCorrectedLedger"},
-    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_nonnegative_iff_coisometricCorrection_le_energy"}
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_nonnegative_iff_coisometricCorrection_le_energy"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.affineRadialMultiplierProbe"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.affineRadialReturnedProbe"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.affineRadialProbe_opposite_energy"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.affineRadialProbe_opposite_energy_neg"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.affineRadialProbe_sample_norm_le_one"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.affineRadialProbe_tendsto_center"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.affineRadialProbe_uniform_control_not_energy_dominance"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.nativeChiralQuotient_center_eq_neg_one"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.nativeChiralQuotient_reflection_reciprocal"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.affineRadialProbe_reflection_product"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.nativeRadialSourceCurvature"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.nativeRadialSource_tangent"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.nativeRadialSource_tangent_uniform"}
   ]
 }
