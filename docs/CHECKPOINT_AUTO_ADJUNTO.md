@@ -2336,3 +2336,29 @@ Twenty declarations pass source firewalls: completion closure 3553,
 corrected-ledger closure 7030, with at most standard Lean foundations.
 No moments, HP, Hankel, Jacobi/height, Herglotz or BR2 proof inputs. See
 `COMPLETED_ADJACENT_CLOCK_ENERGY_FRONTIER_AUDIT.md`.
+
+
+## 2026-10-07 — Uniform chiral energy-bound test / affine control obstruction
+
+Initial main: `f9aa8107c4648a4a799cd699dfd40db1eb6e4a30`.
+`PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY` remains unchanged.
+Local status: `NO_GO_AFFINE_RADIAL_SAMPLE_CONTROL_AS_ENERGY_PROOF`.
+
+On the original scaled Cauchy vectors, the diagnostic multiplier
+`-1+a(n+1)/(k+1)` has opposite-coefficient energy exactly
+`-a²/(6(k+1))`. For any positive a and any prescribed sample error, the
+two samples are eventually individually contractive and uniformly near -1,
+while the complete synthesis balance remains strictly negative.
+The diagnostic is NOT the actual completed source and no native-source
+nonpositivity is inferred. All cross terms are retained before the norm.
+
+The actual complete characteristic supplies its raw radial-curvature
+tangent, uniformly on each finite sample family, and the reciprocal germ
+`q(-z)q(z)=1`, independently of canonical moments. The affine probe loses
+this reciprocal constraint at second order. Neither reciprocal reflection
+nor the tangent alone is declared sufficient for energy dominance.
+The original uniform four-channel correction bound is still the one open
+obligation. Thirteen declarations pass source/axiom audits; closure 5475,
+with at most standard Lean foundations. No moments, HP, Stieltjes, Hankel,
+Jacobi/height, Herglotz or BR2 proof inputs. See
+`CHIRAL_RETURN_UNIFORM_ENERGY_BOUND_TEST.md`.

@@ -269,6 +269,18 @@ side. Absolute convergence and orthogonal total-energy conservation do not
 supply a positive complementary channel or storage dominance. See the
 [completed clock / energy frontier audit](docs/COMPLETED_ADJACENT_CLOCK_ENERGY_FRONTIER_AUDIT.md).
 
+The next uniform-bound test rules out an **affine sample-control shortcut**.
+In `CompletedNativeChiralReturnLinearizationObstruction`, two samples on the
+unchanged Cauchy carrier can each be contractive and arbitrarily close to
+`-1`, yet their complete opposite-coefficient synthesis has exact balance
+`-a^2/(6(k+1)) < 0`. This diagnostic is not the native quotient; it refutes
+that approximation strategy, not the completed source. Independently, the
+actual source has a uniform finite-family curvature tangent and the exact
+reciprocal germ `q(-z) q(z)=1`, without moment premises. Affine truncation
+loses that germ at second order. The all-coefficient four-channel energy
+bound remains open; no new positivity or complementary norm is asserted.
+See the [uniform energy-bound test](docs/CHIRAL_RETURN_UNIFORM_ENERGY_BOUND_TEST.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
