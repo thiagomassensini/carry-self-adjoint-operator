@@ -2245,3 +2245,32 @@ parameters before any completed limit.
 Fourteen declarations pass the source firewall (5710 reachable declarations),
 with only standard Lean foundations. No moments, HP, Hankel, Jacobi/height,
 BR2 or positivity input. See `ORDINARY_ANGULAR_MIXED_ROLE_CROSSWALK_AUDIT.md`.
+
+
+## 2026-10-07 — Reflected logJet commutator/residual versus adjacent mixed form
+
+Initial main: `0875a32a90b718fd6378ac46c8c580f45bcda1c3`.
+Statuses: `PASS_REFLECTED_LOGJET_PREFIX_COMMUTATOR_RESIDUAL_CROSSWALK` and
+`NO_GO_DIRECT_REFLECTED_SAME_EDGE_AS_CURRENT_ADJACENT_MIXED_PROVENANCE`.
+
+The existing mixed carrier retains both role pairs needed by the historical
+conjugated same-edge logJet wedge. Its exact two-parameter coordinate
+formula is exposed; only the old reflected specialization `z=w=s` is used
+for the commutator/cutoff theorems. The full three-edge vector is recovered
+through the enriched TFVD roundtrip before scalar synthesis. It equals the
+old Green triple plus commutator plus explicit residual. The whole-prefix
+trace equals the retained moving endpoint plus cross bulk.
+
+The two forms still differ on an actual canonical finite prefix: at `M=1`,
+`z=w=0`, the reflected trace is `-log(4)/12-log(2)/3-log(3)/12`, nonzero,
+while the current adjacent-edge mixed provenance is zero. The parameters
+here lie outside the critical strip. This no-go excludes direct universal
+finite substitution, not critical-strip or completed equality, nor the
+full corrected ledger. The gap is shifted-edge form transport with the
+current boundary/off-diagonal/readout channels; not a missing source role.
+No fitted metric, source inversion or positive complementary channel.
+
+Thirteen declarations pass the source firewall (3524 reachable declarations),
+with at most standard Lean foundations. No moments, HP, Hankel, Jacobi/height,
+Herglotz or BR2 input. See
+`REFLECTED_LOGJET_COMMUTATOR_MIXED_CROSSWALK_AUDIT.md`.

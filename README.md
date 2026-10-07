@@ -206,6 +206,24 @@ and the existing logJet commutator **and residual**; no complementary positive
 channel or positivity is inferred. See the
 [ordinary/mixed-role audit](docs/ORDINARY_ANGULAR_MIXED_ROLE_CROSSWALK_AUDIT.md).
 
+The subsequent logJet test is now closed in
+`CompletedC3ReflectedLogJetCommutatorCrosswalk`. The reflected **same-edge**
+ordinary/logJet triple is recovered from the same retained carrier and its
+enriched TFVD roundtrip, before synthesis. Its finite ledger is exactly
+Green + logJet commutator + the existing vertex/cutoff residual; the moving
+endpoint and cross bulk are both retained.
+
+It still does not equal the current **adjacent-edge** mixed provenance:
+on the canonical one-cell prefix at `s=0`, the reflected trace is
+`-log(4)/12 - log(2)/3 - log(3)/12`, whereas current mixed provenance is zero.
+This refutes direct universal finite substitution, including the residual.
+It does not refute critical-strip or completed sewing: that canary is
+outside the critical strip and compares only the provenance component.
+The remaining gate is an actual shifted-edge form transport for the
+independent-parameter mixed ledger, with all its boundary/cross terms.
+No positive complementary channel is inferred. See the
+[reflected logJet / mixed-form audit](docs/REFLECTED_LOGJET_COMMUTATOR_MIXED_CROSSWALK_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
