@@ -245,6 +245,30 @@ channels. A geometric complementary norm identity for the complete source
 balance, with tail/completion corrections retained, is still open. See the
 [adjacent-clock transport audit](docs/ADJACENT_CLOCK_GREEN_BOUNDARY_TRANSPORT_AUDIT.md).
 
+The adjacent clock channels now have **independent absolute completion** in
+`CompletedC3AdjacentClockCompletion`. Existing ordinary l1 and logJet l2
+states dominate both channels; their complete-cell sums converge as a pair,
+before addition. The current Green provenance converges to these two source
+limits minus the unchanged completed radial Green kernel.
+
+`CompletedNativeAdjacentClockCorrectedLedger` transports the same channels
+inside the existing fully retained ledger, with ordered crosses, four
+synthesis residuals, exact tail, Xi and archimedean/chart completion. Its
+final readout equals the completed `(F,-F')` Wronskian at every cutoff and
+reproduces the full independently polarized ChiralReturn balance. Empty
+material cutoff still retains the exact tail/chart readout. No trace inverse
+or target-defined Hilbert state is introduced.
+
+Statuses: `PASS_COMPLETED_ADJACENT_CLOCK_CHANNELS`;
+`PASS_COMPLETED_CHIRAL_CLOCK_LEDGER_CROSSWALK`;
+`PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY`.
+The existing camera-energy identity isolates the remaining uniform bound:
+`Im(fourChannelBalance(c,c)) <= norm(cameraSource(c))^2`, eventually for each
+finite family and for all coefficients. The new equivalence proves neither
+side. Absolute convergence and orthogonal total-energy conservation do not
+supply a positive complementary channel or storage dominance. See the
+[completed clock / energy frontier audit](docs/COMPLETED_ADJACENT_CLOCK_ENERGY_FRONTIER_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw

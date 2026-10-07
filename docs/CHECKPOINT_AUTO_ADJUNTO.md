@@ -2304,3 +2304,35 @@ Jacobi/height, Herglotz or BR2 input. No individual-channel limit,
 completed cancellation, positive complementary channel or storage sign is
 claimed. The existing same-edge no-go is preserved. See
 `ADJACENT_CLOCK_GREEN_BOUNDARY_TRANSPORT_AUDIT.md`.
+
+
+## 2026-10-07 — Completed adjacent channels / full chiral ledger
+
+Initial main: `499d5c3556dce18898c736ba221d3af38a0099d7`.
+Statuses: `PASS_COMPLETED_ADJACENT_CLOCK_CHANNELS`;
+`PASS_COMPLETED_CHIRAL_CLOCK_LEDGER_CROSSWALK`;
+`PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY`.
+
+The two geometric adjacent-clock channels are independently absolutely
+summable using the existing ordinary l1 and logJet l2 states, a literal log
+step bound and pointwise decay of native Dirichlet values. Whole C3 cell
+partial sums converge as a pair before addition. The same mixed provenance
+converges to both completed observations minus the unchanged radial Green
+kernel. No cancellation, raw nodal l2 or new Hardy theory is used.
+
+The source-derived clock observation is sewn into the SAME complete global
+ledger: ordered cross terms, four synthesis residuals, exact tail, Xi and
+archimedean/chart channels remain retained. It equals the completed source
+Wronskian at every cutoff. Arbitrary independent coefficient/radius syntheses
+in ChiralReturn retain all ordered Cauchy pairings; the readout's sample
+arguments keep the existing j,i order. At cutoff zero, exact tail and chart
+remain. No new positive state, complementary norm or sign is constructed.
+
+The pre-existing camera-energy identity gives an explicit equivalence:
+nonnegative storage iff the imaginary four-channel correction is bounded
+by camera source energy. The uniform all-coefficient bound remains open;
+its truth is not inferred from absolute convergence or the ledger norm.
+Twenty declarations pass source firewalls: completion closure 3553,
+corrected-ledger closure 7030, with at most standard Lean foundations.
+No moments, HP, Hankel, Jacobi/height, Herglotz or BR2 proof inputs. See
+`COMPLETED_ADJACENT_CLOCK_ENERGY_FRONTIER_AUDIT.md`.
