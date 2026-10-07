@@ -297,6 +297,20 @@ Status: `PASS_FINITE_COMPLETED_SOURCE_RETURN_TRANSFER`;
 `PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY` remains open at that quantitative
 norm bound. See the [geometric return-transfer test](docs/CHIRAL_RETURN_GEOMETRIC_TRANSFER_TEST.md).
 
+The exact transfer bound now has a source-first **Euler boundary / nonlinear
+remainder decomposition** in `CompletedNativeChiralReturnEulerBoundary`.
+The original Cauchy degree action has a polarized boundary identity. Its
+coefficient is the raw completed characteristic curvature, proved strictly
+positive from the upstream theta cosine-kernel integrals, independently of
+canonical logarithmic moments. Full storage equals that nonnegative boundary
+energy plus the exact signed source remainder; the completed quotient is
+never replaced by a tangent. The boundary energy vanishes on cancelling
+coefficient families, so it supplies no sign for the remaining pairing.
+The same norm <=1 gate is exactly the all-coefficient lower bound for that
+remainder, keeping the boundary-energy allowance and original quantifiers.
+Status: `PASS_SOURCE_EULER_BOUNDARY_ENERGY`; overall storage positivity remains
+partial. See the [boundary / remainder audit](docs/CHIRAL_RETURN_EULER_BOUNDARY_REMAINDER_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw

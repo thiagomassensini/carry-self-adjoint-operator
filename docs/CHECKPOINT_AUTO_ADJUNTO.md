@@ -2395,3 +2395,38 @@ Twenty declarations pass standard-foundation and transitive source audits;
 closure 6719. No moments, HP, Stieltjes, Hankel, Jacobi/height, Herglotz or BR2
 proof input. Full validation and publication are recorded in
 `CHIRAL_RETURN_GEOMETRIC_TRANSFER_TEST.md` and the delivery summary.
+
+
+## 2026-10-07 — Source Euler boundary / exact nonlinear return remainder
+
+Initial main: `ad4255a13223467720b07746484a1796b9d350d1`.
+Status: `PASS_SOURCE_EULER_BOUNDARY_ENERGY`.
+`PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY` remains open.
+
+The degree generator on the ORIGINAL Cauchy half densities has an exact
+polarized boundary form for arbitrary independent coefficient families.
+The completed source's raw curvature supplies its degree scale, with strict
+positivity from the already proved upstream theta cosine integrals. These
+raw source integrals are not the canonical logarithmic moments. No HP,
+Hankel, Herglotz positivity certificate or BR2 input is used.
+
+The complete normalized value coefficients and exact native log slope split
+vectorially into degree synthesis plus the full nonlinear remainder. The
+same accumulated storage is a nonnegative boundary contribution PLUS a
+signed remainder pairing. No Taylor truncation, target metric, new positive
+state or complementary squared norm is substituted for that remainder.
+The original completion/tails and every interference term remain retained.
+
+The boundary term is zero on sum-zero data. The first opposite-coefficient
+native canary has storage exactly (k+1)/3 times (2 Re b0 - Re b1). This is
+the ACTUAL completed slope, not the prior affine diagnostic. Its sign is not
+inferred from the strictly positive boundary coefficient.
+
+Original amplitude normalization is invertible on the existing eventual
+regular source. The kernel proves the norm <=1 obligation equivalent to the
+quantitative remainder lower bound, with forall N, eventually k, forall d.
+Nonnegative remainder everywhere would be stronger and is not required or
+assumed. The exact all-order lower bound remains the single open obligation.
+Twenty-three declarations pass source/axiom audits; closure 5547, with at
+most standard Lean foundations. See
+`CHIRAL_RETURN_EULER_BOUNDARY_REMAINDER_AUDIT.md` for commands and validation.
