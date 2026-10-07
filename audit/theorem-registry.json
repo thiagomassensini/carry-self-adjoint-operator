@@ -1158,6 +1158,26 @@
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.affineRadialProbe_reflection_product"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.nativeRadialSourceCurvature"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.nativeRadialSource_tangent"},
-    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.nativeRadialSource_tangent_uniform"}
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.nativeRadialSource_tangent_uniform"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialIncidentSynthesis"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnedSynthesis"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialIncidentSynthesis_injective"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.RadialIncidentSpan"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialIncidentCoordinates"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialIncidentVector"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialIncidentVector_coe"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialIncidentVector_norm"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnTransfer"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnTransfer_exact"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnTransfer_unique"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnedSynthesis_eq_incident_multiply"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnTransfer_mem_incidentSpan"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnTransfer_source_pair"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnTransfer_polarized_balance"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_one_eq_finiteTransfer_energy"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnTransfer_norm_le_one_iff_storage"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnTransfer_eventually_norm_le_one_iff_storage"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnTransfer_basis"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialReturnTransfer_norm_le_one_iff_cameraCorrection"}
   ]
 }
