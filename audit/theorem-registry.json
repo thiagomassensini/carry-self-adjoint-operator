@@ -1125,6 +1125,26 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalC3MixedPrefixGreenProvenance_sameParameter"},
     {"qualified": "CarrySelfAdjointOperator.canonicalC3Sample_eq_seed_add_gradientPrefix"},
     {"qualified": "CarrySelfAdjointOperator.canonicalC3Sample_eq_seed_add_completedGradientPrefix"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockReturn_eq_seededPrefix"}
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockReturn_eq_seededPrefix"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3PositiveLogGap_norm_le_one"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3PositiveValue_norm_le_one"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockReturn_norm_le"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentMixedWedge_norm_le"},
+    {"qualified": "CarrySelfAdjointOperator.summable_norm_canonicalC3AdjacentClockReturn"},
+    {"qualified": "CarrySelfAdjointOperator.summable_norm_canonicalC3AdjacentOrdinaryClock"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockBlockChannels"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockBlockChannels_summable_norm"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3CompletedAdjacentClockChannels"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockFiniteSum_eq_blocks"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockChannels_tendsto_completed"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3MixedGreenProvenance_tendsto_clockCompletion"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AdjacentClockCorrectedReadout"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AdjacentClockCorrectedReadout_eq_existingLedger"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AdjacentClockCorrectedReadout_eq_sixChannelReadout"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AdjacentClockCorrectedReadout_eq_completedWronskian"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AdjacentClockCorrectedReadout_eq_correctedGreenNumerator"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AdjacentClockCorrectedReadout_zero"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_adjacentClockCorrectedLedger"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_nonnegative_iff_coisometricCorrection_le_energy"}
   ]
 }
