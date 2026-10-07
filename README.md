@@ -177,6 +177,19 @@ source orthogonality is not assumed after resolvent transport. The existing
 four-channel boundary/Wronskian sewing obligation remains open. See the
 [Gamma port boundary test](docs/GAMMA_PORT_COMPLETED_SOURCE_BOUNDARY_TEST.md).
 
+The resolved port/leak expansion is now compared with the material/completion
+Green readout after **both** characteristic and separation regularization:
+`D4/(2*conj(F(z))*F(w)*(w-conj(z))) = four resolved pairings - dslope`.
+The same difference is exactly the existing regularized radial correction
+ledger, eventually on each entry, with material and completion kept separate.
+Status: `PASS_REGULARIZED_GAMMA_LEAK_MATERIAL_COMPLETION_DEFECT_IDENTITY`.
+This is a source-first discrepancy identity, not Hilbert kernel sewing.
+A separate diagnostic preserves the old strictly positive central excess
+of the literal normalized ambient Gram; rearranging the channels does not
+remove it. No completion/leak identification or termwise cancellation is
+claimed. See the
+[regularized source comparison](docs/REGULARIZED_GAMMA_LEAK_MATERIAL_COMPLETION_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw

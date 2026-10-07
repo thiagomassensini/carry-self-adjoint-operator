@@ -2192,3 +2192,28 @@ interface does not discharge it. No dependency update or source fitting.
 Five public theorems pass the source firewall (6049 reachable declarations),
 with only standard Lean foundations. See
 `GAMMA_PORT_COMPLETED_SOURCE_BOUNDARY_TEST.md`.
+
+
+## 2026-10-07 — Regularized resolved-leak/material-completion comparison
+
+Initial main: `2dff4668300e7918b1afda4bf8276ddb46ab6eee`.
+Status: `PASS_REGULARIZED_GAMMA_LEAK_MATERIAL_COMPLETION_DEFECT_IDENTITY`.
+
+The existing normalized ambient response is the normalized Gamma port plus
+the normalized resolved leak, in the same complex Naimark Hilbert carrier.
+Its Gram contains all four ordered pairings. The complete four-channel
+coisometric/Wronskian discrepancy, divided by both the old characteristic
+weight and separation, equals that four-pairing minus the old polarized
+material/completion Green readout. With regularity/nonzero F, the latter
+readout is dslope. The existing regularized radial correction ledger is
+identified eventually with precisely this difference at every cutoff/entry.
+
+No equality of the two kernels or vector carriers is inferred. A separate
+comparison diagnostic preserves the pre-existing strictly positive central
+excess: the literal normalized ambient Gram still fails sewing. Completion
+is not leak; the four correction channels are not matched nominally to the
+four Gram terms. The distinct radial sampling grids are preserved.
+Eleven public declarations pass the source firewall (6482 reachable declarations),
+with only standard Lean foundations. Moment/excess diagnostics are kept
+outside those source-first proof closures. See
+`REGULARIZED_GAMMA_LEAK_MATERIAL_COMPLETION_AUDIT.md`.
