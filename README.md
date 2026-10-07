@@ -190,6 +190,22 @@ remove it. No completion/leak identification or termwise cancellation is
 claimed. See the
 [regularized source comparison](docs/REGULARIZED_GAMMA_LEAK_MATERIAL_COMPLETION_AUDIT.md).
 
+The historical angular ordinary correction is now read exactly from the
+retained ordinary prefixes of the current mixed carrier, in
+`CompletedC3OrdinaryAngularMixedRoleCrosswalk`. Complete finite angular
+synthesis equals the reflected ordinary prefix pairing plus all local and
+ordered off-diagonal corrections. Removing these corrections and applying
+the existing radial coefficient recovers the finite bracket Green readout.
+
+This is not the mixed ordinary/logJet sewing: a one-cell finite-support
+probe has historical corrections `0` but current mixed Green provenance
+`-1`. Thus an ordinary-only correction cannot replace that mixed observation
+on the full carrier. This local no-go does not exclude a crosswalk on the
+constrained canonical orbit. The next comparison must retain both roles
+and the existing logJet commutator **and residual**; no complementary positive
+channel or positivity is inferred. See the
+[ordinary/mixed-role audit](docs/ORDINARY_ANGULAR_MIXED_ROLE_CROSSWALK_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw

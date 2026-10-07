@@ -2217,3 +2217,31 @@ Eleven public declarations pass the source firewall (6482 reachable declarations
 with only standard Lean foundations. Moment/excess diagnostics are kept
 outside those source-first proof closures. See
 `REGULARIZED_GAMMA_LEAK_MATERIAL_COMPLETION_AUDIT.md`.
+
+
+## 2026-10-07 — Historical ordinary angular / current mixed-role comparison
+
+Initial main: `8521cf31e399a2644b85918cb4cf16041269d343`.
+Statuses: `PASS_ORDINARY_ANGULAR_PREFIX_GREEN_CROSSWALK` and
+`NO_GO_ORDINARY_ONLY_CORRECTION_AS_FULL_MIXED_PROVENANCE`.
+
+The original angular weights `1,2,0` and material indices `3m,3m+1,3m+2`
+are read from the ordinary components of the existing full mixed carrier.
+The historical scalar pairing, after full finite synthesis, equals its
+reflected ordinary prefix inner product plus the existing local and every
+ordered off-diagonal correction. The bracket Green readout equals the
+existing radial coefficient times this corrected ordinary pairing, at
+`z=w=s`. No metric is changed and no completed term is canceled.
+
+A finite-support one-cell probe varies only the z-source logJet while
+holding every ordinary component fixed. Both historical corrections are
+zero, whereas current mixed Green provenance is `-a`. At `a=1` this refutes
+the universal substitution on the full mixed carrier. The probe is not
+claimed to be a canonical orbit, so that separate comparison is not refuted.
+The remaining comparison must use the ordinary/logJet pair with the existing
+logJet commutator-plus-vertex/cutoff residual, preserving independent
+parameters before any completed limit.
+
+Fourteen declarations pass the source firewall (5710 reachable declarations),
+with only standard Lean foundations. No moments, HP, Hankel, Jacobi/height,
+BR2 or positivity input. See `ORDINARY_ANGULAR_MIXED_ROLE_CROSSWALK_AUDIT.md`.
