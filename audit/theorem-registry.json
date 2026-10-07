@@ -1057,6 +1057,16 @@
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_bracketTfvd_sum"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_corrected_green_ledger"},
     {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_native_add_completion"},
-    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eventually_complete"}
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eventually_complete"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialCauchy_inner_mul_separation"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.coisometricSourceSynthesis"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.coisometricFourChannelBalance"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.radialBracketWronskian_eq_coisometricGram_sub_defect"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_coisometricGram_add_fourChannelBalance"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_coisometricGram_iff_fourChannelBalance_zero"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.coisometricEscapeBoundarySynthesis_eq_zero"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.storage_re_eq_coisometricEnergy_sub_fourChannelBalance"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.coisometricSource_comparison_eventually"},
+    {"qualified": "CarrySelfAdjointOperator.ChiralReturn.coisometricResponse_escape_eq_zero"}
   ]
 }
