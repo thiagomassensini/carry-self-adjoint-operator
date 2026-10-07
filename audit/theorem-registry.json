@@ -1072,6 +1072,17 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientResponse_eq_gammaPort_add_resolvedLeak"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientResponse_exists_gamma_iff_leak_zero"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientResponse_no_gammaPort_at_witness"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientResponse_inner_eq_gammaLeak_fourTerms"}
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3AmbientResponse_inner_eq_gammaLeak_fourTerms"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NormalizedGammaPortResponse"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NormalizedResolvedLeakResponse"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NormalizedAmbientResponse_eq_gammaPort_add_resolvedLeak"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NormalizedGammaLeakPairing"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3NormalizedAmbientKernel_eq_gammaLeakPairing"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RegularizedFourChannel_eq_gammaLeak_sub_materialCompletion"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RegularizedFourChannel_eq_gammaLeak_sub_dslope"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RegularizedAmbientDefect_eq_gammaLeak_sub_dslope"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3Dslope_eq_materialCompletion_div"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RegularizedAmbientDefect_eq_gammaLeak_sub_materialCompletion"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RegularizedLedger_eventually_eq_gammaLeak_sub_materialCompletion"}
   ]
 }
