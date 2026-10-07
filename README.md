@@ -165,6 +165,18 @@ completed-native kernel, return/complement identification, or strictness is
 claimed. See the
 [coisometric Pythagorean return audit](docs/COISOMETRIC_PYTHAGOREAN_RETURN_CHANNEL_AUDIT.md).
 
+The upstream spectral-Weyl Gamma port has now been tested against the **same
+complete induced source**, in `CompletedNativeChiralReturnGammaPortTest`.
+The completed response is exactly Gamma of its canonical port source plus
+the resolvent of its retained leak. At the existing geometric leak witness,
+**no camera source at all** gives that same complete response through Gamma
+at the same parameter. This is a local no-go for the literal port-only
+realization, not for the complete scalar kernel or eventual radial sewing.
+The polarized response identity retains both ordered port/leak cross terms;
+source orthogonality is not assumed after resolvent transport. The existing
+four-channel boundary/Wronskian sewing obligation remains open. See the
+[Gamma port boundary test](docs/GAMMA_PORT_COMPLETED_SOURCE_BOUNDARY_TEST.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw

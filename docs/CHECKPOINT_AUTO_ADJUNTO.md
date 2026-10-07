@@ -2169,3 +2169,26 @@ new assumption wrapper. No positivity or global Green witness is claimed.
 Ten roots and one-/two-sample identity canaries passed the source firewall
 (6713 declarations), with only standard Lean foundations. See
 `COISOMETRIC_PYTHAGOREAN_RETURN_CHANNEL_AUDIT.md`.
+
+
+## 2026-10-06 — Upstream Gamma port versus the complete induced source
+
+Initial main: `ecdaf2456c3dc3a6105eeae17f505826d085e58c`.
+Statuses: `PASS_COMPLETED_RESPONSE_GAMMA_PORT_LEAK_DECOMPOSITION` and
+`NO_GO_GAMMA_PORT_ONLY_REALIZATION_OF_COMPLETED_RESPONSE`.
+
+The same completed TFVD response is Gamma of the canonical coisometric
+camera source plus the resolvent of its retained leak. A Gamma camera source
+producing that exact vector at the same parameter exists iff the leak is
+zero. The old nonzero-leak witness now excludes **every** camera source at
+that point, not only the former canonical TFVD choice. This does not refute
+all-order eventual radial sewing or a larger completed carrier.
+
+The response Gram expansion retains port-port, port-leak, leak-port, and
+leak-leak pairings. No resolved orthogonality, positivity, or boundary/trace
+inversion is supplied. The scalar Wronskian sewing still requires the
+existing four-channel defect equation; the generic upstream Green/camera
+interface does not discharge it. No dependency update or source fitting.
+Five public theorems pass the source firewall (6049 reachable declarations),
+with only standard Lean foundations. See
+`GAMMA_PORT_COMPLETED_SOURCE_BOUNDARY_TEST.md`.
