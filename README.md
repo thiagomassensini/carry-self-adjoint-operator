@@ -311,6 +311,22 @@ remainder, keeping the boundary-energy allowance and original quantifiers.
 Status: `PASS_SOURCE_EULER_BOUNDARY_ENERGY`; overall storage positivity remains
 partial. See the [boundary / remainder audit](docs/CHIRAL_RETURN_EULER_BOUNDARY_REMAINDER_AUDIT.md).
 
+`CompletedNativeChiralReturnGreenBoundaryTower` now proves the **all-order
+polarized Green boundary identity** for powers of the original Cauchy degree
+synthesis, with independent coefficient families and every ordered boundary
+cross retained. The raw fourth-order source discriminant is strictly negative
+by the existing theta-kernel inequality. It supplies a second nonnegative
+boundary energy, for the degree slope. Full storage is exactly two
+nonnegative boundary squares plus a signed higher-source defect, including
+its negative curvature cost. The squares use the unchanged complex norm and
+source-curvature ratio; they do not define a new metric or positive state.
+The exact full response, tails and completion remain in the higher correction.
+The three-coefficient canary `(1,-2,1)` cancels value and slope and exposes the
+next native-source combination. Its sign and the joint all-coefficient bound
+are still open here. Status: `PASS_COMPLETED_SOURCE_GREEN_BOUNDARY_TOWER`;
+all-order storage positivity remains partial. See the
+[Green boundary tower audit](docs/CHIRAL_RETURN_GREEN_BOUNDARY_TOWER_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw

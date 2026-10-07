@@ -2430,3 +2430,40 @@ assumed. The exact all-order lower bound remains the single open obligation.
 Twenty-three declarations pass source/axiom audits; closure 5547, with at
 most standard Lean foundations. See
 `CHIRAL_RETURN_EULER_BOUNDARY_REMAINDER_AUDIT.md` for commands and validation.
+
+
+## 2026-10-07 — All-order Cauchy Green boundary tower / retained higher defect
+
+Initial main: `5399220e988ca2bf5028abf64f39e7fd9c9ce837`.
+Local status: `PASS_COMPLETED_SOURCE_GREEN_BOUNDARY_TOWER`.
+`PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY` remains unchanged.
+
+The original half-density Cauchy degree powers satisfy an all-order
+polarized Green identity, keeping arbitrary independent coefficient data
+and every alternating ordered boundary jet pairing. These jets are endpoint
+jets of the Cauchy polynomial synthesis, not an unproved relabeling of C2
+or material depth. The cubic form retains its value/curvature cross and
+signed slope energy. No norm, source or sampling grid is changed.
+
+The raw source cubic scale is fixed by F(0), F''(0), F''''(0) and the
+radial grid. Its strict negative sign follows from the existing upstream
+theta-source fourth-integral inequality, independently of canonical
+logarithmic moments. This gives a second nonnegative boundary energy.
+All higher source orders remain in the exact vector correction, not a
+Taylor truncation. The complete response and tail/Xi/chart provenance remain.
+
+Storage is exactly two nonnegative boundary squares plus the signed higher
+correction minus its explicit curvature cost. Completing the scalar boundary
+square in the existing complex norm introduces no fitted metric or new
+positive Hilbert state. On zero value and slope, the original degree and
+cubic contributions vanish; the shifted square and its negative cost must
+still be kept. The fixed `(1,-2,1)` canary reads the actual three native
+slopes as (k+1)/15*(5 Re b0 - 4 Re b1 + Re b2), with no sign asserted.
+
+The exact norm <=1 obligation remains the joint higher-correction lower
+bound, with forall N, eventually k, forall coefficients. The value/curvature
+cross is not removed and nonnegative higher defect is not assumed.
+Twenty-five declarations pass source/axiom audits: closure 5555, at most
+standard Lean foundations. No canonical moments, HP, Hankel, Jacobi/height,
+Herglotz or BR2 proof inputs. See
+`CHIRAL_RETURN_GREEN_BOUNDARY_TOWER_AUDIT.md` for full validation and scope.
