@@ -2362,3 +2362,36 @@ obligation. Thirteen declarations pass source/axiom audits; closure 5475,
 with at most standard Lean foundations. No moments, HP, Stieltjes, Hankel,
 Jacobi/height, Herglotz or BR2 proof inputs. See
 `CHIRAL_RETURN_UNIFORM_ENERGY_BOUND_TEST.md`.
+
+
+## 2026-10-07 — Exact finite completed-source return transfer
+
+Initial main: `8fd27ece4200b60e6bf02c9dccc9214870da3932`.
+Status: `PASS_FINITE_COMPLETED_SOURCE_RETURN_TRANSFER`.
+`PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY` remains unchanged.
+
+The actual half-density monomial synthesis is injective for every k,N on
+the existing Cauchy Lp carrier. Its intrinsic finite span inherits that
+UNCHANGED norm. Incident coordinate recovery, independent of the quotient,
+composed with the actual completed returned synthesis defines a unique
+bounded finite transfer. It returns to the same span. Finite-dimensional
+boundedness provides no constant one and no infinite extension.
+
+The source-facing action is exactly C+I V -> C-I V on the original regular
+denominators; arbitrary independent coefficient syntheses retain every cross
+term in the polarized energy identity. The complete source quotient keeps
+the existing TFVD tails and Xi/chart completion. No scalar trace inverse
+into a structured TFVD state or moment-defined map is claimed.
+
+The kernel identifies the remaining norm <=1 gate EXACTLY with storage
+nonnegativity, also with the existing complete camera-correction bound under
+its original regularity. The all-order quantifiers remain forall N,
+eventually k, forall coefficients. Existing ambient Naimark projections
+were not identified with this Cauchy transfer and no contraction is inferred
+from their own conservation laws. Basis canaries use the native quotient
+unchanged at every finite sample.
+
+Twenty declarations pass standard-foundation and transitive source audits;
+closure 6719. No moments, HP, Stieltjes, Hankel, Jacobi/height, Herglotz or BR2
+proof input. Full validation and publication are recorded in
+`CHIRAL_RETURN_GEOMETRIC_TRANSFER_TEST.md` and the delivery summary.

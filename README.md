@@ -281,6 +281,22 @@ loses that germ at second order. The all-coefficient four-channel energy
 bound remains open; no new positivity or complementary norm is asserted.
 See the [uniform energy-bound test](docs/CHIRAL_RETURN_UNIFORM_ENERGY_BOUND_TEST.md).
 
+The actual completed chiral return now has a **unique finite transfer**
+`ChiralReturn.radialReturnTransfer k N` on its intrinsic incident Cauchy span.
+The original half-density monomials recover the finite coefficients at every
+order, independently of the returned quotient; the transfer applies exactly
+that unchanged completed quotient. Its full polarized energy defect equals
+the existing source balance, retaining independent syntheses and cross terms.
+The original Cauchy norm is unchanged. Finite-dimensional boundedness is
+proved; a source-derived ambient compression and the bound `norm(T) <= 1`
+are not. The kernel proves that this bound is exactly equivalent to storage
+nonnegativity with the original `for every N, eventually k, for every c`
+quantifiers. No moments, HP or BR2 input supplies the transfer.
+
+Status: `PASS_FINITE_COMPLETED_SOURCE_RETURN_TRANSFER`;
+`PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY` remains open at that quantitative
+norm bound. See the [geometric return-transfer test](docs/CHIRAL_RETURN_GEOMETRIC_TRANSFER_TEST.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
