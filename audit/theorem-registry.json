@@ -1083,6 +1083,20 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RegularizedAmbientDefect_eq_gammaLeak_sub_dslope"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3Dslope_eq_materialCompletion_div"},
     {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RegularizedAmbientDefect_eq_gammaLeak_sub_materialCompletion"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RegularizedLedger_eventually_eq_gammaLeak_sub_materialCompletion"}
+    {"qualified": "CarrySelfAdjointOperator.canonicalCompletedC3RegularizedLedger_eventually_eq_gammaLeak_sub_materialCompletion"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularBlockReadout"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularLocalCorrectionReadout"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularOffDiagonalReadout"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularScalarReadout"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularBlockReadout_prefix"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularLocalCorrectionReadout_prefix_eq_historical"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularOffDiagonalReadout_prefix_eq_historical"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularScalarReadout_prefix_eq_historical"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularPrefix_ledger"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3BracketGreenReadout_eq_radial_mul_correctedAngular"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AngularLogRoleProbe"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3OrdinaryAngularRoleProbe_corrections_zero"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AngularLogRoleProbe_mixedProvenance"},
+    {"qualified": "CarrySelfAdjointOperator.not_ordinaryAngularCorrection_eq_mixedGreenProvenance_on_all_sources"}
   ]
 }
