@@ -1110,6 +1110,21 @@
     {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTrace_prefix_eq_cutoff_add_bulk"},
     {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTrace_one_zero"},
     {"qualified": "CarrySelfAdjointOperator.canonicalC3CurrentMixedProvenance_one_zero"},
-    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTrace_ne_currentMixedProvenance_one_zero"}
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3ReflectedLogRoleTrace_ne_currentMixedProvenance_one_zero"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3LogGradient_right_productRule"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3LogGradient_left_productRule"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockChannels"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockChannels_eq_mixedWedge"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentMaterialLegIndex"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3MixedLegWedge_at_materialIndex"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockChannelFamily"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3MixedPrefixLeg_clockTransport"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3MixedPrefixGreenProvenance_clockTransport"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3MixedPrefixHead_clockTransport"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockChannels_sameParameter_first"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3MixedPrefixGreenProvenance_sameParameter"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3Sample_eq_seed_add_gradientPrefix"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3Sample_eq_seed_add_completedGradientPrefix"},
+    {"qualified": "CarrySelfAdjointOperator.canonicalC3AdjacentClockReturn_eq_seededPrefix"}
   ]
 }
