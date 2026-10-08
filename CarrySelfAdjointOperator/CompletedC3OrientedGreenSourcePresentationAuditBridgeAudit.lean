@@ -21,10 +21,15 @@ elab "#assert_oriented_green_source " ids:ident+ : command => do
       -- but use no BR2 incidence; their types and values are still traversed.
       let text := (Lean.privateToUserName name).toString
       let lower := text.toLower
+      -- Classical Mathlib theta FUNCTIONS, reached by raw analytic integral
+      -- facts, are unrelated to spectral Jacobi operators. Only these exact
+      -- declarations are exempted; every other Jacobi name stays forbidden.
+      let classicalTheta := text == "jacobiTheta₂" ||
+        text == "jacobiTheta₂_term" || text == "jacobiTheta₂_term._proof_1"
       if text.startsWith "CarrySelfAdjointOperator.CompletedNativeRealHPCarrierCertificate" ||
           text.startsWith "CarrySelfAdjointOperator.CanonicalCompletedNativeStieltjes" ||
           text.startsWith "CarrySelfAdjointOperator.canonicalCompletedNativeLogDerivativeMoment" ||
-          (lower.contains "hankel") || (lower.contains "jacobi") ||
+          (lower.contains "hankel") || (lower.contains "jacobi" && !classicalTheta) ||
           (lower.contains "heightoperator") || (lower.contains "finiteheight") ||
           (lower.contains "signedheight") || (lower.contains "stieltjes") ||
           (lower.contains "momentgrampositivity") ||
