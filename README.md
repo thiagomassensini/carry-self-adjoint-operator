@@ -540,6 +540,24 @@ be bounded above by full Gamma energy, for all finite coefficient families.
 Neither this sign nor arbitrary-N contractivity is asserted. See the
 [all-order Gamma correction audit](docs/CHIRAL_RETURN_ALL_ORDER_GAMMA_CORRECTION_BOUND_AUDIT.md).
 
+The **first surviving Green boundary pairing is now exact in every
+cancellation sector**, in `CompletedNativeChiralReturnFirstSurvivingBoundary`.
+When the first r and s Euler boundary jets vanish on two complete sources,
+the first surviving degree r+s+1 retains exactly their r/s boundary cross.
+On the diagonal this is a signed rank-one boundary square. The actual
+completed source storage and raw Gamma correction keep that term PLUS the
+exact higher vector remainder. One eventual threshold for each finite N
+works for all cancellation depths and coefficients; no source sign is
+assumed. The seven-node vector `[1,-6,15,-20,15,-6,1]` cancels the six lower
+boundary jets and retains a nonzero complete incident state. Its exact gap
+is the full seven-slope combination `[429,-572,429,-208,65,-12,1]`, with scale
+`(k+1)/12012`. The first source jet allowed by the cancellations is order
+thirteen. Neither that coefficient's sign nor a bound/rate for the higher remainder is claimed.
+Status: `PASS_ALL_ORDER_FIRST_SURVIVING_GREEN_BOUNDARY`, with
+`PARTIAL_ALL_ORDER_CHIRAL_RETURN_CORRECTION_BOUND` unchanged. The arbitrary-N
+one-sided Gamma bound remains open. See the
+[first-surviving boundary audit](docs/CHIRAL_RETURN_FIRST_SURVIVING_BOUNDARY_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw

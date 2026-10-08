@@ -1,0 +1,31 @@
+First surviving boundary validation
+Base: 355769eca51c0848aed1248976e88d5377c80baa (main)
+2026-10-08T18:28:58.730056+00:00
+
+$ lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnFirstSurvivingBoundary
+Build completed successfully (9535 jobs).
+Full remote log: /tmp/chiral-first-surviving-focused.log
+
+$ lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnFirstSurvivingBoundary CarrySelfAdjointOperator.CompletedNativeChiralReturnFirstSurvivingBoundaryAudit
+Build completed successfully (9625 jobs).
+Full remote log: /tmp/chiral-first-surviving-audit.log
+
+$ lake build --wfail CarrySelfAdjointOperator
+Build completed successfully (9872 jobs).
+Full remote log: /tmp/chiral-first-surviving-root.log
+
+$ lake build --wfail CarrySelfAdjointOperator.Audit
+Build completed successfully (9994 jobs).
+Full remote log: /tmp/chiral-first-surviving-root-audit.log
+
+$ bash scripts/static_audit.sh
+static audit passed
+Full remote log: /tmp/chiral-first-surviving-static.log
+
+$ bash scripts/audit.sh
+kernel audit passed
+Full remote log: /tmp/chiral-first-surviving-full-audit.log
+
+git diff --check: passed before publication.
+Source placeholder/trust-escape scan: passed in static_audit.sh.
+Existing untracked C2OddTfvdTransport/C2OddTfvdTransportAudit preserved.

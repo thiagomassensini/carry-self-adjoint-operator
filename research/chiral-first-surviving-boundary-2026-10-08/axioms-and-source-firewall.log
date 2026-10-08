@@ -1,0 +1,42 @@
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:8:0: 'CarrySelfAdjointOperator.ChiralReturn.radialEulerPower_firstSurviving_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:10:0: 'CarrySelfAdjointOperator.ChiralReturn.radialEulerPower_firstSurviving_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:12:0: 'CarrySelfAdjointOperator.ChiralReturn.radialCompletedOddSourceRemainder_step' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:14:0: 'CarrySelfAdjointOperator.ChiralReturn.storage_one_cancellation_eq_firstBoundary_add_higher' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:16:0: 'CarrySelfAdjointOperator.ChiralReturn.rawGammaCorrection_cancellation_gap_eq_firstBoundary_add_higher' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:18:0: 'CarrySelfAdjointOperator.ChiralReturn.rawGammaCorrection_cancellation_higher_abs_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:20:0: 'CarrySelfAdjointOperator.ChiralReturn.rawGammaCorrection_cancellation_eventually_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:22:0: 'CarrySelfAdjointOperator.ChiralReturn.sixthDifference' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:24:0: 'CarrySelfAdjointOperator.ChiralReturn.sixthDifference_mem_radialBoundaryJetKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:26:0: 'CarrySelfAdjointOperator.ChiralReturn.sixthDifference_first_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:28:0: 'CarrySelfAdjointOperator.ChiralReturn.radialIncidentSynthesis_sixthDifference_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:30:0: 'CarrySelfAdjointOperator.ChiralReturn.storage_one_sixthDifference_eq_thirteenth_add_higher' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:32:0: 'CarrySelfAdjointOperator.ChiralReturn.storage_one_sixthDifference_eq_seven_slopes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:34:0: 'CarrySelfAdjointOperator.ChiralReturn.sixthDifference_gammaGap_eventually_eq_seven_slopes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFirstSurvivingBoundaryAudit.lean:35:0: Oriented Green source dependency closure checked: 6388 declarations
+All fourteen declarations passed #assert_prime_depth_source_axioms and #assert_oriented_green_source.
