@@ -915,6 +915,147 @@ theorem completedNativeRealEvenCharacteristicCoefficient_five_eq_xiCosineMoment 
   norm_num [smul_eq_mul]
   ring
 
+/-! ## Twelfth derivative of the SAME raw cosine source -/
+
+private def completedNativeXiCosineTransformEleventh (t : ℝ) : ℝ :=
+  ∫ u in Ioi (0 : ℝ),
+    (u ^ 11 * completedNativeXiCosineKernel u) * Real.sin (t * u)
+
+private def completedNativeXiCosineTransformTwelfth (t : ℝ) : ℝ :=
+  ∫ u in Ioi (0 : ℝ),
+    (u ^ 12 * completedNativeXiCosineKernel u) * Real.cos (t * u)
+
+private theorem hasDerivAt_completedNativeXiCosineTransformTenth (t : ℝ) :
+    HasDerivAt completedNativeXiCosineTransformTenth
+      (completedNativeXiCosineTransformEleventh t) t := by
+  have hf := (integrableOn_pow_mul_completedNativeXiCosineKernel 10).neg
+  have huf : IntegrableOn
+      (fun u : ℝ ↦ u * (-(u ^ 10 * completedNativeXiCosineKernel u)))
+      (Ioi (0 : ℝ)) := by
+    apply (integrableOn_pow_mul_completedNativeXiCosineKernel 11).neg.congr
+    exact Filter.Eventually.of_forall (fun u ↦ by simp only [Pi.neg_apply]; ring)
+  have h := hasDerivAt_integral_mul_cos hf huf t
+  refine (h.congr_of_eventuallyEq ?_).congr_deriv ?_
+  · exact Filter.Eventually.of_forall (fun _ ↦ rfl)
+  · unfold completedNativeXiCosineTransformEleventh
+    apply integral_congr_ae
+    exact Filter.Eventually.of_forall (fun u ↦ by simp only [Pi.neg_apply]; ring)
+
+private theorem hasDerivAt_completedNativeXiCosineTransformEleventh (t : ℝ) :
+    HasDerivAt completedNativeXiCosineTransformEleventh
+      (completedNativeXiCosineTransformTwelfth t) t := by
+  have hf := integrableOn_pow_mul_completedNativeXiCosineKernel 11
+  have huf : IntegrableOn
+      (fun u : ℝ ↦ u * (u ^ 11 * completedNativeXiCosineKernel u))
+      (Ioi (0 : ℝ)) := by
+    apply (integrableOn_pow_mul_completedNativeXiCosineKernel 12).congr
+    exact Filter.Eventually.of_forall (fun u ↦ by ring)
+  have h := hasDerivAt_integral_mul_sin hf huf t
+  refine (h.congr_of_eventuallyEq ?_).congr_deriv ?_
+  · exact Filter.Eventually.of_forall (fun _ ↦ rfl)
+  · unfold completedNativeXiCosineTransformTwelfth
+    apply integral_congr_ae
+    exact Filter.Eventually.of_forall (fun u ↦ by ring)
+
+private theorem iteratedDeriv_twelve_completedNativeXiCosineTransform_ofReal_zero :
+    iteratedDeriv 12
+        (fun t : ℝ ↦ (completedNativeXiCosineTransformReal t : ℂ)) 0 =
+      (completedNativeXiCosineMoment 6 : ℂ) := by
+  have hfirst : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformReal t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformFirst t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformReal t).ofReal_comp.deriv
+  have hsecond : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformFirst t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformSecond t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformFirst t).ofReal_comp.deriv
+  have hthird : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformSecond t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformThird t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformSecond t).ofReal_comp.deriv
+  have hfourth : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformThird t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformFourth t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformThird t).ofReal_comp.deriv
+  have hfifth : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformFourth t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformFifth t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformFourth t).ofReal_comp.deriv
+  have hsixth : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformFifth t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformSixth t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformFifth t).ofReal_comp.deriv
+  have hseventh : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformSixth t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformSeventh t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformSixth t).ofReal_comp.deriv
+  have heighth : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformSeventh t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformEighth t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformSeventh t).ofReal_comp.deriv
+  have hninth : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformEighth t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformNinth t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformEighth t).ofReal_comp.deriv
+  have htenth : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformNinth t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformTenth t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformNinth t).ofReal_comp.deriv
+  have heleventh : deriv
+      (fun t : ℝ ↦ (completedNativeXiCosineTransformTenth t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformEleventh t : ℂ) := by
+    funext t
+    exact (hasDerivAt_completedNativeXiCosineTransformTenth t).ofReal_comp.deriv
+  rw [show 12 = Nat.succ 11 by norm_num, iteratedDeriv_succ,
+    show 11 = Nat.succ 10 by norm_num, iteratedDeriv_succ,
+    show 10 = Nat.succ 9 by norm_num, iteratedDeriv_succ,
+    show 9 = Nat.succ 8 by norm_num, iteratedDeriv_succ,
+    show 8 = Nat.succ 7 by norm_num, iteratedDeriv_succ,
+    show 7 = Nat.succ 6 by norm_num, iteratedDeriv_succ,
+    show 6 = Nat.succ 5 by norm_num, iteratedDeriv_succ,
+    show 5 = Nat.succ 4 by norm_num, iteratedDeriv_succ,
+    show 4 = Nat.succ 3 by norm_num, iteratedDeriv_succ,
+    show 3 = Nat.succ 2 by norm_num, iteratedDeriv_succ,
+    show 2 = Nat.succ 1 by norm_num, iteratedDeriv_succ,
+    iteratedDeriv_one, hfirst, hsecond, hthird, hfourth, hfifth, hsixth,
+    hseventh, heighth, hninth, htenth, heleventh]
+  rw [(hasDerivAt_completedNativeXiCosineTransformEleventh 0).ofReal_comp.deriv]
+  congr 1
+  unfold completedNativeXiCosineTransformTwelfth completedNativeXiCosineMoment
+  apply integral_congr_ae
+  exact Filter.Eventually.of_forall (fun u ↦ by simp)
+
+/-- The same concrete cosine kernel determines the twelfth native derivative. -/
+theorem iteratedDeriv_twelve_completedNativeOperatorCharacteristic_zero :
+    iteratedDeriv 12 completedNativeOperatorCharacteristic 0 =
+      (completedNativeXiCosineMoment 6 : ℂ) := by
+  have haxis :
+      (fun t : ℝ ↦ completedNativeOperatorCharacteristic (t : ℂ)) =
+        fun t : ℝ ↦ (completedNativeXiCosineTransformReal t : ℂ) := by
+    funext t
+    simpa [completedNativeXiCosineTransformReal] using
+      XiThetaCosine.completedNative_eq_xiCosineKernel t
+  calc
+    iteratedDeriv 12 completedNativeOperatorCharacteristic (0 : ℂ) =
+        iteratedDeriv 12
+          (fun t : ℝ ↦ completedNativeOperatorCharacteristic (t : ℂ)) 0 :=
+      (iteratedDeriv_completedNativeOperatorCharacteristic_comp_ofReal 12 0).symm
+    _ = iteratedDeriv 12
+          (fun t : ℝ ↦ (completedNativeXiCosineTransformReal t : ℂ)) 0 := by rw [haxis]
+    _ = (completedNativeXiCosineMoment 6 : ℂ) :=
+      iteratedDeriv_twelve_completedNativeXiCosineTransform_ofReal_zero
+
+
 end
 
 end CarrySelfAdjointOperator
