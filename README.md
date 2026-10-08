@@ -327,6 +327,20 @@ are still open here. Status: `PASS_COMPLETED_SOURCE_GREEN_BOUNDARY_TOWER`;
 all-order storage positivity remains partial. See the
 [Green boundary tower audit](docs/CHIRAL_RETURN_GREEN_BOUNDARY_TOWER_AUDIT.md).
 
+`CompletedNativeChiralReturnBoundaryCancellation` now constructs the nested
+endpoint-jet cancellation sectors in the **original Cauchy geometry**.
+For every r<N, a nonzero incident state survives after the first r jets
+vanish; no fixed finite set of these jets controls the complete incident
+norm. The all-order polarized Green identity kills the corresponding lower
+odd degree energies on that sector. The source's own odd derivative jets
+and its **exact full vector remainder** are synthesized before readout;
+storage on the sector is precisely the real pairing with that remainder.
+The four-sample `(1,-3,3,-1)` canary retains the actual native slopes.
+No remainder sign, new metric, positive dilation or all-order contractivity
+is asserted. Status: `PASS_SOURCE_BOUNDARY_CANCELLATION_HIERARCHY`; overall
+storage positivity stays partial. See the
+[cross-repository and cancellation audit](docs/CROSS_REPOSITORY_GREEN_BOUNDARY_CANCELLATION_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
