@@ -365,13 +365,35 @@ unchanged complex norm. The four-coordinate alternating Green face is
 strictly positive for every nonzero complex jet. An exact transverse Taylor
 identity retains the analytic eighth-order remainder, and a separate
 all-cutoff storage identity retains the entire higher vector remainder.
-These identities do **not** equate the finite face with the full radial
-storage. The next finite gate is uniform control of that remainder and of the
-higher boundary coordinates under the four-sample boundary reconstruction.
-Full four-sample positivity and all-order contractivity remain open.
+Those identities alone do **not** equate the finite face with the full
+radial storage. That checkpoint left uniform control of the remainder and
+higher boundary coordinates open; the subsequent Fin 4 result below closes
+this finite gate. All-order contractivity remains open.
 Status: `PASS_SOURCE_FIRST_MIXED_BOUNDARY_JET_CONTROL`, with overall storage
 positivity still partial. See the
 [mixed source-jet audit](docs/CHIRAL_RETURN_MIXED_SOURCE_JETS_AUDIT.md).
+
+`CompletedNativeChiralReturnFourBoundaryReconstruction`,
+`CompletedNativeChiralReturnFourSampleRegularization` and
+`CompletedNativeChiralReturnFourSampleStorage` now close **the full Fin 4
+storage gate**, source-first. The inverse Euler boundary chart at nodes
+1,2,3,4 retains every coefficient and every higher boundary jet. Its radial
+regularization retains the entire analytic source remainder and all Cauchy
+cross terms. Compactness and homogeneity give one radial threshold for all
+coefficient vectors, and a positive uniform bound by the sum of squared
+scaled boundary jets. The original chiral family has strictly positive
+storage on every nonzero vector, and the existing finite return transfer
+has norm at most one, eventually in k, for **N=4**.
+
+Status: `PASS_SOURCE_FIRST_FULL_FOUR_SAMPLE_STORAGE_POSITIVITY` and
+`PASS_FULL_FOUR_SAMPLE_RETURN_CONTRACTIVITY`.
+No metric, moments, HP/Stieltjes, Hankel, Jacobi/height or BR2 supply the sign.
+The compact unit sphere belongs only to the existing finite coefficient
+chart; the source's Cauchy metric is unchanged. The all-order statement
+`forall N, eventually k, forall c, Re(storage k c 1) >= 0` is still open.
+The next cutoff N=5 needs the next source boundary-face sign; no extrapolation
+from N=4 is asserted. See the
+[full four-sample storage audit](docs/CHIRAL_RETURN_FULL_FOUR_SAMPLE_STORAGE_AUDIT.md).
 
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
