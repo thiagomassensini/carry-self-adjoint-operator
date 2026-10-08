@@ -462,6 +462,21 @@ The new source sign and full N=6 remainder transfer remain open;
 **no N=6 or all-order contractivity is claimed**. See the
 [six-sample boundary gate audit](docs/CHIRAL_RETURN_SIX_SAMPLE_BOUNDARY_GATE_AUDIT.md).
 
+The finite TFVD pullback proposal has now passed an operator-identity test:
+`radialReturn_eventually_no_finiteTfvdShift_spanIntertwiner` rules out
+identifying the ACTUAL source return with the truncating finite shift, even
+after any invertible TFVD analysis/reconstruction. The truncating shift has
+no nonzero-eigenvalue eigenvector; the native return acts on each original
+incident feature by its completed quotient, nonzero near the centered value
+`-1`. This obstruction holds already at N=1 and uses neither a metric change
+nor a positivity premise. Status:
+`NO_GO_FINITE_TFVD_TRUNCATING_SHIFT_AS_CHIRAL_RETURN`.
+It excludes only this faithful shift realization, not an ambient conservative
+transport with an additional compression. Full boundary reconstruction and
+all crosses remain necessary. The N=6 integral sign and all-order storage
+frontier are unchanged. See the
+[TFVD shift versus chiral return audit](docs/TFVD_TRUNCATING_SHIFT_CHIRAL_RETURN_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw

@@ -1,0 +1,19 @@
+Repository: thiagomassensini/carry-self-adjoint-operator
+Branch: main
+Initial SHA: 5cb33f416930716832e6b5cb254befd91993c31c
+Lean: v4.32.0
+
+PASS source-module
+PASS source-audit
+PASS root
+PASS root-audit
+PASS static-audit
+PASS full-audit
+PASS whitespace
+
+Dedicated audit: 6 public declarations, 5257 source dependencies
+Footprint: [propext, Classical.choice, Quot.sound] or subset
+Detailed logs: llm:/tmp/chiral-tfvd-shift-validation/
+Status: NO_GO_FINITE_TFVD_TRUNCATING_SHIFT_AS_CHIRAL_RETURN
+Scope: injective exact intertwining with finite truncated shift and any invertible finite analysis
+N=6 raw source sign and arbitrary-N storage positivity remain open
