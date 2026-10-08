@@ -1,0 +1,39 @@
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:8:0: 'CarrySelfAdjointOperator.ChiralReturn.gammaSourceSynthesis' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:10:0: 'CarrySelfAdjointOperator.ChiralReturn.rawGammaWronskianBalance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:12:0: 'CarrySelfAdjointOperator.ChiralReturn.radialThreeCorrections_eq_gammaGram_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:14:0: 'CarrySelfAdjointOperator.ChiralReturn.coisometricFourChannelBalance_eq_rawGamma_add_gram_difference' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:16:0: 'CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_gammaGram_add_rawGammaBalance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:18:0: 'CarrySelfAdjointOperator.ChiralReturn.storage_re_eq_gammaEnergy_sub_rawGammaBalance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:20:0: 'CarrySelfAdjointOperator.ChiralReturn.coisometricCorrection_le_energy_iff_rawGammaCorrection_le_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:22:0: 'CarrySelfAdjointOperator.ChiralReturn.rawGammaCorrection_energy_gap_eq_source_cross' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:24:0: 'CarrySelfAdjointOperator.ChiralReturn.rawGammaCorrection_energy_gap_abs_le_sourceNorms' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:26:0: 'CarrySelfAdjointOperator.ChiralReturn.rawGammaCorrection_comparison_eventually_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:28:0: 'CarrySelfAdjointOperator.ChiralReturn.rawGammaCorrection_six_eventually_lt_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:30:0: 'CarrySelfAdjointOperator.ChiralReturn.coisometricCorrection_six_eventually_lt_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:32:0: 'CarrySelfAdjointOperator.ChiralReturn.rawGammaCorrection_six_eventually_boundary_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:33:0: Oriented Green source dependency closure checked: 6772 declarations
+Build completed successfully (9624 jobs).

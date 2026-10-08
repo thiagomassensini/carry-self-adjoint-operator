@@ -1,0 +1,38 @@
+Abbreviated validation transcript; indicated full logs remain on llm.
+UTC: 2026-10-08T17:57:21.531836+00:00
+Audited base: 65f6cdea21896ac13fc7c11135977459abe56a03
+Two unrelated pre-existing C2 untracked files are preserved.
+
+COMMAND: lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnGammaCorrectionCancellation CarrySelfAdjointOperator.CompletedNativeChiralReturnGammaCorrectionCancellationAudit
+FULL LOG: /tmp/gamma-cancellation-focused.log
+RESULT: PASS
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:71:0: Oriented Green source dependency closure checked: 6214 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:33:0: Oriented Green source dependency closure checked: 6772 declarations
+Build completed successfully (9624 jobs).
+
+COMMAND: lake build --wfail CarrySelfAdjointOperator
+FULL LOG: /tmp/gamma-cancellation-root-build.log
+RESULT: PASS
+Build completed successfully (9871 jobs).
+
+COMMAND: lake build --wfail CarrySelfAdjointOperator.Audit
+FULL LOG: /tmp/gamma-cancellation-root-audit-build.log
+RESULT: PASS
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGreenFormCrosswalkAudit.lean:53:0: Chiral Green source dependency closure checked: 6157 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSourceTraceAudit.lean:59:0: Storage source dependency closure checked: 5312 declarations
+Build completed successfully (9992 jobs).
+
+COMMAND: bash scripts/static_audit.sh
+FULL LOG: /tmp/gamma-cancellation-static-audit.log
+RESULT: PASS
+static audit passed
+
+COMMAND: bash scripts/audit.sh
+FULL LOG: /tmp/gamma-cancellation-full-audit.log
+RESULT: PASS
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSourceTraceAudit.lean:59:0: Storage source dependency closure checked: 5312 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellationAudit.lean:33:0: Oriented Green source dependency closure checked: 6772 declarations
+kernel audit passed
+
+COMMAND: git diff --check
+RESULT: PASS

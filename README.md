@@ -518,6 +518,28 @@ Statuses: `PASS_SOURCE_FIRST_FULL_SIX_SAMPLE_STORAGE_POSITIVITY` and
 Arbitrary-N positivity and strictness on an all-order carrier remain open.
 See the [full six-sample storage audit](docs/CHIRAL_RETURN_FULL_SIX_SAMPLE_STORAGE_AUDIT.md).
 
+The **all-order coisometric correction bound has been reduced to ONE raw
+Gamma--Wronskian channel**, in
+`CompletedNativeChiralReturnGammaCorrectionCancellation`.
+Complete Gamma synthesis uses the original radial nodes and completed source
+weights. `coisometricFourChannelBalance_eq_rawGamma_add_gram_difference`
+proves that the other three correction channels are exactly the difference
+of the coisometric and full Gamma Grams. This identity retains independent
+coefficient families and every ordered cross; its cancellation requires no
+positivity premise. Consequently, for every finite N, actual source storage
+is `2 * Gamma energy - 2 * Im(raw Gamma--Wronskian balance)`.
+One eventual radial threshold for each N controls all coefficients and
+internal radii simultaneously. Cauchy--Schwarz provides an all-order
+**two-sided size bound**, not the needed one-sided sign.
+The existing source-certified N=6 storage gives strict correction domination
+and a positive scaled-boundary margin in that family.
+Statuses: `PASS_ALL_ORDER_GAMMA_CORRECTION_CANCELLATION` and
+`PARTIAL_ALL_ORDER_CHIRAL_RETURN_CORRECTION_BOUND`.
+The remaining all-order obligation is exactly that the imaginary raw balance
+be bounded above by full Gamma energy, for all finite coefficient families.
+Neither this sign nor arbitrary-N contractivity is asserted. See the
+[all-order Gamma correction audit](docs/CHIRAL_RETURN_ALL_ORDER_GAMMA_CORRECTION_BOUND_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
