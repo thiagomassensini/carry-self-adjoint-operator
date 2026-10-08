@@ -1,0 +1,19 @@
+Repository: thiagomassensini/carry-self-adjoint-operator
+Branch: main
+Initial SHA: fbc9636836be11a42e10109abb2d9a406cb29c8d
+Lean: v4.32.0
+
+PASS eleventh-source
+PASS six-boundary
+PASS dedicated-audit
+PASS root
+PASS root-audit
+PASS static-audit
+PASS full-audit
+PASS whitespace
+
+Dedicated audit: 23 public declarations, 5536 source dependencies
+Footprint: [propext, Classical.choice, Quot.sound] or subset
+Detailed logs: llm:/tmp/chiral-six-boundary-validation/
+Status: PARTIAL_SOURCE_FIRST_SIX_SAMPLE_STORAGE_POSITIVITY
+Open source sign: nativeSourceTwelfthMixedNumerator(mu_0,...,mu_6) > 0

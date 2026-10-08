@@ -444,6 +444,24 @@ The next finite test is the source-derived N=6 boundary face and its exact
 remainder transfer. See the
 [full five-sample storage audit](docs/CHIRAL_RETURN_FULL_FIVE_SAMPLE_STORAGE_AUDIT.md).
 
+The next **N=6 boundary gate is now localized**, in
+`CompletedNativeChiralReturnEleventhSourceJet` and
+`CompletedNativeChiralReturnSixBoundaryFace`. The twelfth characteristic
+derivative and eleventh log-source derivative follow from the same raw
+cosine integrals and division-free source recurrence. Exact vector synthesis
+retains the entire twelfth-order remainder before mixed readout. The new
+odd three-coordinate face retains every cross term, while the even face
+reuses its existing source certificate. Strict positivity of the complete
+six-coordinate boundary face is equivalent to ONE raw-integral inequality:
+`0 < nativeSourceTwelfthMixedNumerator(mu_0,...,mu_6)`.
+An exact rational witness proves that the previous independent theta box,
+even with positive raw Xi entries and the previous mixed sign, does not
+force this next sign. This is a bound obstruction, not a counterexample to
+the actual source. Status: `PARTIAL_SOURCE_FIRST_SIX_SAMPLE_STORAGE_POSITIVITY`.
+The new source sign and full N=6 remainder transfer remain open;
+**no N=6 or all-order contractivity is claimed**. See the
+[six-sample boundary gate audit](docs/CHIRAL_RETURN_SIX_SAMPLE_BOUNDARY_GATE_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
