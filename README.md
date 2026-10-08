@@ -341,6 +341,21 @@ is asserted. Status: `PASS_SOURCE_BOUNDARY_CANCELLATION_HIERARCHY`; overall
 storage positivity stays partial. See the
 [cross-repository and cancellation audit](docs/CROSS_REPOSITORY_GREEN_BOUNDARY_CANCELLATION_AUDIT.md).
 
+`CompletedNativeChiralReturnSeventhSourceJet` and
+`CompletedNativeChiralReturnFourSamplePositivity` now close a **finite
+higher-remainder sign** source-first. Raw theta integral bounds and the
+local division-free identity `(-F'/F) F = -F'` give a strictly positive
+seventh source derivative. The exact completed four-sample canary
+`(1,-3,3,-1)` retains an analytic eighth-order remainder; its full storage
+is eventually positive with a source-derived margin of order `(k+1)^(-6)`.
+Homogeneity proves the same strict sign for **every nonzero vector in the
+four-sample three-jet cancellation sector**, with one radial threshold.
+The metric, source tails and completion are unchanged. This does not prove
+full four-sample positivity or all-order contractivity: mixed sectors and
+arbitrary orders still need the combined source bound. Status:
+`PASS_SOURCE_FIRST_FOUR_SAMPLE_CANCELLATION_POSITIVITY`. See the
+[source-jet / canary audit](docs/CHIRAL_RETURN_FOUR_SAMPLE_SOURCE_POSITIVITY_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
