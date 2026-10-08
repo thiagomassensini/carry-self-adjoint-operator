@@ -133,8 +133,8 @@ Finally the existing `radialReturnTransfer_norm_le_one_iff_storage` gives
 ## Scope and one next gate
 
 No Hankel/Gram or positive Hilbert realization was constructed from target
-data. No moment sign, HP certificate, Stieltjes, Jacobi/height or BR2 is an
-input. Positivity of a local flux integrand is neither required nor proved.
+data. No canonical-moment sign, HP certificate, Stieltjes, Jacobi/height or
+BR2 is an input. Previously certified raw cosine-integral signs are reused. Positivity of a local flux integrand is neither required nor proved.
 
 The next finite gate is the analogous source-derived boundary-face sign
 for N=5, involving the next raw source odd derivative and the enlarged even

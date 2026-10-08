@@ -387,7 +387,8 @@ has norm at most one, eventually in k, for **N=4**.
 
 Status: `PASS_SOURCE_FIRST_FULL_FOUR_SAMPLE_STORAGE_POSITIVITY` and
 `PASS_FULL_FOUR_SAMPLE_RETURN_CONTRACTIVITY`.
-No metric, moments, HP/Stieltjes, Hankel, Jacobi/height or BR2 supply the sign.
+No new metric, canonical moments, HP/Stieltjes, Hankel, Jacobi/height or BR2
+supply the sign; the bounds come from the previously certified raw source integrals.
 The compact unit sphere belongs only to the existing finite coefficient
 chart; the source's Cauchy metric is unchanged. The all-order statement
 `forall N, eventually k, forall c, Re(storage k c 1) >= 0` is still open.
