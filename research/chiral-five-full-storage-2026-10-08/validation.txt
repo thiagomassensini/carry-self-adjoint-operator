@@ -1,0 +1,23 @@
+Full five-sample source storage validation
+Initial main: 76a08cb87ee5f055f80924a48fd979271ec0cbf9
+Lean: v4.32.0; execution host: llm
+
+PASS lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnFiveSampleRegularization
+PASS lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnFiveSampleStorage
+PASS lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnFiveSampleStorageAudit
+PASS lake build --wfail CarrySelfAdjointOperator
+PASS lake build --wfail CarrySelfAdjointOperator.Audit
+PASS bash scripts/static_audit.sh
+PASS bash scripts/audit.sh
+PASS git diff --check
+All 38 public declarations passed axiom assertions and transitive source audit.
+Allowed footprint: [propext, Classical.choice, Quot.sound].
+
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFiveSampleStorageAudit.lean:65:0: 'CarrySelfAdjointOperator.radialFiveSourceTemplate_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFiveSampleStorageAudit.lean:77:0: 'CarrySelfAdjointOperator.storage_one_original_fiveSample_eventually_pos' depends on axioms: [propext,
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFiveSampleStorageAudit.lean:79:0: 'CarrySelfAdjointOperator.radialReturnTransfer_five_eventually_norm_le_one' depends on axioms: [propext,
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFiveSampleStorageAudit.lean:81:0: 'CarrySelfAdjointOperator.storage_one_fiveSample_eventually_boundary_coercive' depends on axioms: [propext,
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnFiveSampleStorageAudit.lean:82:0: Oriented Green source dependency closure checked: 5830 declarations
+
+Detailed logs: /tmp/chiral-five-full-storage-validation/
+Scope: full N=5 storage, including entire analytic remainder. Arbitrary N remains open.

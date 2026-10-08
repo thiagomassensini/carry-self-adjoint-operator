@@ -423,10 +423,26 @@ Green boundary face, retaining both parity sectors and every cross term.
 Status: `PASS_SOURCE_FIRST_FIVE_BOUNDARY_ENERGY_POSITIVITY`.
 The old independent-box obstruction remains valid. No source amplitude,
 metric, carrier or readout has been fitted to the inequality.
-**Full N=5 storage and all-order contractivity remain open.** The next gate
-is uniform transfer of the complete radial synthesis, including its exact
-higher remainder, to this positive boundary face. See the
+At that boundary-only checkpoint, full N=5 storage and all-order
+contractivity remained open. The subsequent transfer is recorded below. See the
 [raw source integral sign audit](docs/CHIRAL_RETURN_FIVE_SOURCE_INTEGRAL_POSITIVITY_AUDIT.md).
+
+The **full N=5 storage transfer is now closed**, including the entire
+analytic tenth-order remainder and every mixed Cauchy cross term.
+`storage_one_original_fiveSample_eventually_pos` proves one radial threshold
+for **all** nonzero `Fin 5 → ℂ` coefficients. The exact inverse Euler chart,
+continuous full-source regularization and compact finite unit margin give
+`storage_one_fiveSample_eventually_boundary_coercive`. The existing return
+operator satisfies `radialReturnTransfer_five_eventually_norm_le_one`.
+Status: `PASS_SOURCE_FIRST_FULL_FIVE_SAMPLE_STORAGE_POSITIVITY` and
+`PASS_FULL_FIVE_SAMPLE_RETURN_CONTRACTIVITY`.
+The source synthesis is completed before mixed readout; its Cauchy metric
+is unchanged. No canonical moment positivity, HP/Stieltjes, Hankel,
+spectral Jacobi/height or BR2 supplies this sign.
+**Arbitrary-N storage positivity and all-order contractivity remain open.**
+The next finite test is the source-derived N=6 boundary face and its exact
+remainder transfer. See the
+[full five-sample storage audit](docs/CHIRAL_RETURN_FULL_FIVE_SAMPLE_STORAGE_AUDIT.md).
 
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
