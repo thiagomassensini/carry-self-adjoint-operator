@@ -1,0 +1,16 @@
+Initial main: 2c99dca09181e82368ba035eef6b8267e6d3416a
+Scope: exact complete seven-coordinate boundary source sign reduction.
+No seventh-face sign, N=7 storage positivity or arbitrary-N positivity claimed.
+Pre-existing untracked C2OddTfvdTransport{,Audit}.lean preserved.
+PASS modules: lake build --wfail CarrySelfAdjointOperator.CompletedNativeXiCosineMoments CarrySelfAdjointOperator.CompletedNativeChiralReturnThirteenthSourceJet CarrySelfAdjointOperator.CompletedNativeChiralReturnSevenBoundaryFace CarrySelfAdjointOperator.CompletedNativeChiralReturnSevenBoundaryRegularization
+PASS source-audit: lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnSevenBoundaryFaceAudit
+PASS library: lake build --wfail CarrySelfAdjointOperator
+PASS library-audit: lake build --wfail CarrySelfAdjointOperator.Audit
+PASS static: bash scripts/static_audit.sh
+PASS kernel: bash scripts/audit.sh
+PASS diff: git diff --check
+PASS direct-source-audit: lake env lean dedicated audit
+Axiom bound: propext, Classical.choice, Quot.sound or subset; every new public declaration checked.
+Source closure: rejects canonical moments, HP/Stieltjes, Hankel, Jacobi/height, Herglotz, BR2.
+Logs for full commands: /tmp/chiral-seven-validation-*.log on llm.
+Public additions checked: 39. Final transitive source-only closure: 5756 declarations.

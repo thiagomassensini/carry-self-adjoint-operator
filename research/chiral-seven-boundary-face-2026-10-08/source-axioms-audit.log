@@ -1,0 +1,96 @@
+'CarrySelfAdjointOperator.iteratedDeriv_fourteen_completedNativeOperatorCharacteristic_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceThirteenthNumerator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceLogSlope_thirteenth_derivative_eq_rawCharacteristicJet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceOddBoundaryCoefficient_six_rawCharacteristicJet_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceLogSlope_thirteenth_derivative_eq_integralRatio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceOddBoundaryCoefficient_six_integral_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceOddBoundaryCoefficient_six_cast_jet' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceLogSlope_twelfth_derivative_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceTransverseSlope_seven_exact_remainder' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenBoundaryEnergy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenCoupling0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenCoupling1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenCoupling2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenDiscriminant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenBoundaryEnergy_sewing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenBoundaryEnergy_pos_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryExtension' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryEnergy_eq_alternating_green' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryEnergy_pos_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryEnergy_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryEnergy_real_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryEnergy_uniform_margin_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenDiscriminant_pos_iff_coefficient_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryPivot' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryPivot_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryPivot_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryEnergy_uniform_margin_iff_integral_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenHigherBoundaryCoefficient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundary_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundary_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundary_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundaryEnergy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundaryEnergy_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundaryEnergy_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenSourcePrefix_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundaryEnergy_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenSourcePrefix_energy_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 5756 declarations

@@ -580,6 +580,26 @@ source-derived positive margin. Neither full seven-sample positivity nor
 the arbitrary-N Gamma inequality is asserted. See the
 [seven-sample remainder audit](docs/CHIRAL_RETURN_SEVEN_SAMPLE_REMAINDER_BOUND_AUDIT.md).
 
+The **complete seven-coordinate boundary face is now reduced exactly to
+one raw source sign**, in `CompletedNativeChiralReturnSevenBoundaryFace`.
+All even and odd coordinates and their crosses are retained. The kernel
+proves that a uniform positive margin exists if and only if
+`0 < nativeSourceSevenEvenDiscriminant`; it does not assert that sign.
+`CompletedNativeChiralReturnThirteenthSourceJet` derives the new coefficient
+directly from the original division-free source recurrence and the raw
+cosine integral through degree fourteen. No canonical moment input or
+changed metric enters this reduction.
+The exact finite-prefix bridge in
+`CompletedNativeChiralReturnSevenBoundaryRegularization` also proves that
+the mixed readout of the whole vector prefix in the original Cauchy carrier
+converges to that complete boundary face; higher Euler coordinates remain
+present at every finite step.
+Status: `PASS_SEVEN_BOUNDARY_EXACT_SOURCE_SIGN_REDUCTION`, with
+`PARTIAL_SEVEN_BOUNDARY_SOURCE_MARGIN`. The single remaining source
+inequality is recorded explicitly in the
+[seven-coordinate source sign audit](docs/CHIRAL_RETURN_SEVEN_BOUNDARY_FACE_SOURCE_SIGN_AUDIT.md).
+N=7 storage positivity and arbitrary-N contractivity remain open.
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
