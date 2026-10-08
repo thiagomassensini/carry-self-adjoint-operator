@@ -575,12 +575,12 @@ h_k = 1/(k+1).
 This follows from exact radial scaling, continuity, finite-sphere
 compactness and quadratic homogeneity, without a positivity premise.
 Status: `PASS_SEVEN_SAMPLE_COMPLETE_SOURCE_REMAINDER_BOUND`.
-The next finite gate is the complete seven-coordinate boundary face's
-source-derived positive margin. Neither full seven-sample positivity nor
+That remainder checkpoint left the complete seven-coordinate boundary
+source margin as its next finite gate; the closure is recorded below. Neither full seven-sample positivity nor
 the arbitrary-N Gamma inequality is asserted. See the
 [seven-sample remainder audit](docs/CHIRAL_RETURN_SEVEN_SAMPLE_REMAINDER_BOUND_AUDIT.md).
 
-The **complete seven-coordinate boundary face is now reduced exactly to
+The **exact-reduction checkpoint for the complete seven-coordinate boundary face isolates
 one raw source sign**, in `CompletedNativeChiralReturnSevenBoundaryFace`.
 All even and odd coordinates and their crosses are retained. The kernel
 proves that a uniform positive margin exists if and only if
@@ -594,11 +594,29 @@ The exact finite-prefix bridge in
 the mixed readout of the whole vector prefix in the original Cauchy carrier
 converges to that complete boundary face; higher Euler coordinates remain
 present at every finite step.
-Status: `PASS_SEVEN_BOUNDARY_EXACT_SOURCE_SIGN_REDUCTION`, with
+Reduction-checkpoint status: `PASS_SEVEN_BOUNDARY_EXACT_SOURCE_SIGN_REDUCTION`, with
 `PARTIAL_SEVEN_BOUNDARY_SOURCE_MARGIN`. The single remaining source
 inequality is recorded explicitly in the
 [seven-coordinate source sign audit](docs/CHIRAL_RETURN_SEVEN_BOUNDARY_FACE_SOURCE_SIGN_AUDIT.md).
 N=7 storage positivity and arbitrary-N contractivity remain open.
+
+The **seven-coordinate source margin is now certified**, in
+`CompletedNativeChiralReturnFourteenthSourceIntegral`. The kernel proves
+`nativeSourceSevenEvenDiscriminant_pos` directly from the unchanged raw
+Xi/theta integrals, and then derives
+`nativeSourceSevenBoundaryEnergy_uniform_margin` for the COMPLETE boundary
+face with every cross retained. The new quadrature keeps the cubic Taylor
+terms, certifies their fourth-derivative error, uses existing precise pi
+bounds, integrates to 9/8 and retains all tails. This refines enclosures;
+it does not change the source, camera, amplitude or metric.
+The exact raw source polynomial has a certified positive margin on those
+integral boxes. Canonical moments, HP/Stieltjes, Hankel, Jacobi/height and
+BR2 are absent from the capstone dependency closure.
+Status: `PASS_SEVEN_BOUNDARY_SOURCE_MARGIN`.
+The next gate is full N=7 radial storage: combine the boundary margin with
+the actual finite-prefix convergence and the already proved uniform
+complete remainder bound. No arbitrary-N contractivity is claimed.
+See the [seven-boundary source margin audit](docs/CHIRAL_RETURN_SEVEN_BOUNDARY_SOURCE_MARGIN_AUDIT.md).
 
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary

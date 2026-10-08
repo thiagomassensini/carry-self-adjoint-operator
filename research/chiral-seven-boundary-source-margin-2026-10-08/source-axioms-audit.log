@@ -1,0 +1,95 @@
+'CarrySelfAdjointOperator.thetaFirstModeThird' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFirstModeFourth' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.hasDerivAt_thetaFirstModeSecond_cubic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.hasDerivAt_thetaFirstModeThird' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFirstMode_cubic_derivatives' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFirstMode_cubic_remainder' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFirstMode_precise_node_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFirstMode_antitone_cubic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFirstModeFourth_cell_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaCubicCellMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFirstMode_weighted_cubic_cell_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.thetaFirstMode_cubic_node_derivative_bounds' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.integral_thetaFirstMode_weighted_tail_le_fourteen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.completedNativeThetaTailMoment_finite_upper_fourteen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.completedNativeThetaTailMoment_finite_lower_fourteen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceFourteenthMixedNumerator' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenDiscriminant_integral_formula' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceFourteenthMixedNumerator_thetaIntegral_box_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceFourteenthMixedNumerator_integral_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenDiscriminant_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenEvenBoundaryEnergy_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryEnergy_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryEnergy_uniform_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceThetaIntegral_fourteenth_box_0' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceThetaIntegral_fourteenth_box_2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceThetaIntegral_fourteenth_box_4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceThetaIntegral_fourteenth_box_6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceThetaIntegral_fourteenth_box_8' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceThetaIntegral_fourteenth_box_10' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceThetaIntegral_fourteenth_box_12' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceThetaIntegral_fourteenth_box_14' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_eq_sum_cells' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_lower_0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_upper_0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_lower_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_upper_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_lower_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_upper_4' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_lower_6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_upper_6' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_lower_8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_upper_8' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_lower_10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_upper_10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_lower_12' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_upper_12' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_lower_14' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.thetaFourteenth_integral_upper_14' depends on axioms: [propext, Classical.choice, Quot.sound]
+Oriented Green source dependency closure checked: 5572 declarations

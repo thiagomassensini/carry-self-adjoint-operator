@@ -1,0 +1,17 @@
+Initial main: c073588076b8e6bb4710e5801cf7d9a9b66ea683
+Scope: strict sign and uniform margin of the original complete seven-coordinate source boundary face.
+Full N=7 storage and arbitrary-N contractivity are not claimed.
+Pre-existing untracked C2OddTfvdTransport{,Audit}.lean preserved.
+Generator reproduction: all 184 generated Lean files reproduced byte-for-byte with exact rational arithmetic on local host.
+PASS modules: lake build --wfail CarrySelfAdjointOperator.CompletedNativeThetaCubicQuadrature CarrySelfAdjointOperator.CompletedNativeThetaFourteenthTail CarrySelfAdjointOperator.CompletedNativeThetaFourteenthSourceCertificate CarrySelfAdjointOperator.CompletedNativeChiralReturnFourteenthSourcePolynomial CarrySelfAdjointOperator.CompletedNativeThetaFourteenthPolynomialEnclosure CarrySelfAdjointOperator.CompletedNativeChiralReturnFourteenthSourceIntegral
+PASS source-audit: lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnFourteenthSourceIntegralAudit
+PASS library: lake build --wfail CarrySelfAdjointOperator
+PASS library-audit: lake build --wfail CarrySelfAdjointOperator.Audit
+PASS static: bash scripts/static_audit.sh
+PASS kernel: bash scripts/audit.sh
+PASS diff: git diff --check
+PASS staged-diff: git diff --cached --check
+PASS direct-source-audit: lake env lean dedicated audit
+Axiom bound: propext, Classical.choice, Quot.sound or subset.
+Source closure: rejects canonical moments, HP/Stieltjes, Hankel, Jacobi/height, Herglotz, BR2.
+Full logs: /tmp/chiral-seven-margin-validation-*.log on llm.
