@@ -1,0 +1,77 @@
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:7:0: 'CarrySelfAdjointOperator.radialSixBoundaryInverseCoefficients' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:9:0: 'CarrySelfAdjointOperator.radialSixBoundaryReconstruct' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:11:0: 'CarrySelfAdjointOperator.radialSixBoundaryReconstruct_jets' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:13:0: 'CarrySelfAdjointOperator.radialSixBoundaryReconstruct_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:15:0: 'CarrySelfAdjointOperator.radialSixScaledBoundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:17:0: 'CarrySelfAdjointOperator.radialSixNormalizedBoundaryInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:19:0: 'CarrySelfAdjointOperator.radialSixScaledBoundary_input' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:21:0: 'CarrySelfAdjointOperator.radialSixNormalizedBoundaryInput_scaled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:23:0: 'CarrySelfAdjointOperator.radialSixHigherBoundaryCoefficient' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:25:0: 'CarrySelfAdjointOperator.radialSixRegularizedBoundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:27:0: 'CarrySelfAdjointOperator.radialSixRegularizedInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:29:0: 'CarrySelfAdjointOperator.radialSixRegularizedInput_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:31:0: 'CarrySelfAdjointOperator.radialSixRegularizedBoundary_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:33:0: 'CarrySelfAdjointOperator.radialSixRegularizedBoundary_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:35:0: 'CarrySelfAdjointOperator.radialSixRegularizedBoundaryEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:37:0: 'CarrySelfAdjointOperator.radialSixRegularizedRemainderEnergy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:39:0: 'CarrySelfAdjointOperator.radialSixRegularizedStorage' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:41:0: 'CarrySelfAdjointOperator.radialSixRegularizedStorage_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:43:0: 'CarrySelfAdjointOperator.radialSixRegularizedBoundary_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:45:0: 'CarrySelfAdjointOperator.radialSixRegularizedInput_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:47:0: 'CarrySelfAdjointOperator.radialSixRegularizedStorage_continuousAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:49:0: 'CarrySelfAdjointOperator.radialSixRegularizedBoundary_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:51:0: 'CarrySelfAdjointOperator.radialSixRegularizedInput_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:53:0: 'CarrySelfAdjointOperator.radialSixRegularizedStorage_eventually_pos_on_unit' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:55:0: 'CarrySelfAdjointOperator.radialSixRegularizedStorage_eventually_unit_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:57:0: 'CarrySelfAdjointOperator.radialSixSourceTemplate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:59:0: 'CarrySelfAdjointOperator.radialSixSourceTemplate_synthesis' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:61:0: 'CarrySelfAdjointOperator.radialSixSourcePrefix_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:63:0: 'CarrySelfAdjointOperator.radialSixSourceRemainder_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:65:0: 'CarrySelfAdjointOperator.radialSixSourceTemplate_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:67:0: 'CarrySelfAdjointOperator.radialSixSourceTemplate_eventually_eq_slopes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:69:0: 'CarrySelfAdjointOperator.storage_one_sixSample_eventually_regularized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:71:0: 'CarrySelfAdjointOperator.radialSixNormalizedBoundaryInput_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:73:0: 'CarrySelfAdjointOperator.storage_one_sixSample_normalized_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:75:0: 'CarrySelfAdjointOperator.storage_one_sixSample_eventually_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:77:0: 'CarrySelfAdjointOperator.storage_one_original_sixSample_eventually_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:79:0: 'CarrySelfAdjointOperator.radialReturnTransfer_six_eventually_norm_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:81:0: 'CarrySelfAdjointOperator.storage_one_sixSample_eventually_boundary_coercive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:83:0: 'CarrySelfAdjointOperator.chiralMultiplier_six_eventually_contractive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:84:0: Oriented Green source dependency closure checked: 5839 declarations
+Build completed successfully (9623 jobs).

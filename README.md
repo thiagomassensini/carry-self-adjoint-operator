@@ -490,10 +490,33 @@ Green boundary face, including both parity sectors and all cross terms.
 Status: `PASS_SOURCE_FIRST_SIX_BOUNDARY_ENERGY_POSITIVITY`.
 The Liu–Mao enclosure investigation is cited in the code as motivation;
 external coefficient intervals are not proof premises.
-The next gate is uniform transport of the **full twelfth-order remainder**
-into N=6 finite-step storage. N=6 storage contractivity and arbitrary-N
-positivity are not claimed. See the
+At that source-sign checkpoint, the next gate was uniform transport of the
+**full twelfth-order remainder** into N=6 finite-step storage. That gate is
+closed in the checkpoint below; arbitrary-N positivity remains open. See the
 [order-twelve source sign audit](docs/CHIRAL_RETURN_TWELFTH_SOURCE_INTEGRAL_SIGN_AUDIT.md).
+
+The **full N=6 storage remainder gate is now closed**, in
+`CompletedNativeChiralReturnSixSampleStorage`.
+`storage_one_original_sixSample_eventually_pos` proves strict positivity of
+actual completed source storage for every nonzero six-coordinate coefficient
+vector, with ONE eventual radial threshold independent of the vector.
+The source reconstruction uses the existing six radial nodes and Euler
+boundary coordinates. Full vector synthesis retains the exact order-twelve
+analytic remainder and all Cauchy cross terms before the mixed readout.
+Its regularized remainder carries a factor of the existing radial step;
+continuity and compactness transfer the already certified source boundary
+energy uniformly. No new Hardy bound or positivity assumption is used.
+`storage_one_sixSample_eventually_boundary_coercive` supplies a positive
+uniform lower bound in the scaled boundary chart.
+`radialReturnTransfer_six_eventually_norm_le_one` and
+`chiralMultiplier_six_eventually_contractive` give finite N=6 return
+contractivity by the existing storage equivalences. The source and Cauchy
+metric are unchanged; this does not assert a uniform operator-norm gap as
+the radial step tends to zero.
+Statuses: `PASS_SOURCE_FIRST_FULL_SIX_SAMPLE_STORAGE_POSITIVITY` and
+`PASS_FULL_SIX_SAMPLE_RETURN_CONTRACTIVITY`.
+Arbitrary-N positivity and strictness on an all-order carrier remain open.
+See the [full six-sample storage audit](docs/CHIRAL_RETURN_FULL_SIX_SAMPLE_STORAGE_AUDIT.md).
 
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary

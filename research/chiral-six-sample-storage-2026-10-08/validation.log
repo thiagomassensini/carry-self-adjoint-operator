@@ -1,0 +1,43 @@
+Abbreviated validation transcript; full logs remain at the indicated llm paths.
+UTC: 2026-10-08T17:31:51.176929+00:00
+Audited source base: 8f56632c85e56c884d16cad7acd103a04d0784f2
+Working tree includes two unrelated pre-existing untracked C2 files.
+
+COMMAND: lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnSixBoundaryReconstruction
+FULL LOG: /tmp/six-reconstruction-build.log
+RESULT: PASS
+Build completed successfully (9370 jobs).
+
+COMMAND: lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnSixSampleStorage CarrySelfAdjointOperator.CompletedNativeChiralReturnSixSampleStorageAudit
+FULL LOG: /tmp/six-full-focused-build.log
+RESULT: PASS
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:71:0: Oriented Green source dependency closure checked: 6214 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSixSampleStorageAudit.lean:84:0: Oriented Green source dependency closure checked: 5839 declarations
+Build completed successfully (9623 jobs).
+
+COMMAND: lake build --wfail CarrySelfAdjointOperator
+FULL LOG: /tmp/six-root-build.log
+RESULT: PASS
+Build completed successfully (9870 jobs).
+
+COMMAND: lake build --wfail CarrySelfAdjointOperator.Audit
+FULL LOG: /tmp/six-root-audit-build.log
+RESULT: PASS
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGreenFormCrosswalkAudit.lean:53:0: Chiral Green source dependency closure checked: 6157 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSourceTraceAudit.lean:59:0: Storage source dependency closure checked: 5312 declarations
+Build completed successfully (9990 jobs).
+
+COMMAND: bash scripts/static_audit.sh
+FULL LOG: /tmp/six-static-audit.log
+RESULT: PASS
+static audit passed
+
+COMMAND: bash scripts/audit.sh
+FULL LOG: /tmp/six-full-audit.log
+RESULT: PASS
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnGreenFormCrosswalkAudit.lean:53:0: Chiral Green source dependency closure checked: 6157 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSourceTraceAudit.lean:59:0: Storage source dependency closure checked: 5312 declarations
+kernel audit passed
+
+COMMAND: git diff --check
+RESULT: PASS
