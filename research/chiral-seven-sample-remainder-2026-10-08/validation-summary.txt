@@ -1,0 +1,23 @@
+Initial main: 47ec4f54ee5a9d58da2d20254f86347ac4275261
+Branch: main. Initial HEAD = main = origin/main after git pull --ff-only.
+Status: PASS_SEVEN_SAMPLE_COMPLETE_SOURCE_REMAINDER_BOUND
+New public declarations: 26.
+Focused audit: PASS; source-only dependency closure: 5717 declarations.
+All new axiom footprints: [propext, Classical.choice, Quot.sound].
+New modules --wfail: PASS.
+Focused audit --wfail: PASS.
+Root CarrySelfAdjointOperator --wfail: PASS (9875 jobs).
+Root CarrySelfAdjointOperator.Audit --wfail: PASS (9998 jobs).
+bash scripts/static_audit.sh: PASS.
+bash scripts/audit.sh: PASS; final line kernel audit passed.
+git diff --check: PASS; repeated before commit including staged additions.
+No new sign premise, source, Hilbert metric, target moment or fitted coefficient.
+A single positive finite constant and radial threshold work for all Fin 7 inputs.
+The norm on the RHS is the existing finite Pi coordinate norm.
+Seven-sample boundary face positivity is OPEN.
+The all-order one-sided raw Gamma-Wronskian inequality is OPEN.
+Preserved user untracked files, excluded from commits:
+  CarrySelfAdjointOperator/C2OddTfvdTransport.lean
+  CarrySelfAdjointOperator/C2OddTfvdTransportAudit.lean
+The working tree is therefore not globally clean; task changes are committed.
+Full validation logs remain in /tmp/chiral-seven-*.log on llm.

@@ -1,0 +1,59 @@
+chiral-seven-reconstruction
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Build completed successfully (9536 jobs).
+
+chiral-seven-source14
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+✔ [9537/9537] Built CarrySelfAdjointOperator.CompletedNativeChiralReturnFourteenthSourceRemainder (7.4s)
+Build completed successfully (9537 jobs).
+
+chiral-seven-bound
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+✔ [9538/9538] Built CarrySelfAdjointOperator.CompletedNativeChiralReturnSevenRemainderBound (7.3s)
+Build completed successfully (9538 jobs).
+
+chiral-seven-focused-audit
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:60:0: 'CarrySelfAdjointOperator.radialSevenOriginalSourceRemainder_eventually_abs_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:61:0: Oriented Green source dependency closure checked: 5717 declarations
+Build completed successfully (9628 jobs).
+
+chiral-seven-root-build
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+✔ [9874/9875] Built CarrySelfAdjointOperator (5.7s)
+Build completed successfully (9875 jobs).
+
+chiral-seven-root-audit
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2799:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockAtlas_noGo_of_greenMomentKernel_and_incidenceTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (9998 jobs).
+
+chiral-seven-static
+static audit passed
+
+chiral-seven-full-audit
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:130:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_c2Source_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8903 jobs).
+kernel audit passed
+
+chiral-seven-final-modules
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:60:0: 'CarrySelfAdjointOperator.radialSevenOriginalSourceRemainder_eventually_abs_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:61:0: Oriented Green source dependency closure checked: 5717 declarations
+Build completed successfully (9628 jobs).

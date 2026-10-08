@@ -552,11 +552,33 @@ assumed. The seven-node vector `[1,-6,15,-20,15,-6,1]` cancels the six lower
 boundary jets and retains a nonzero complete incident state. Its exact gap
 is the full seven-slope combination `[429,-572,429,-208,65,-12,1]`, with scale
 `(k+1)/12012`. The first source jet allowed by the cancellations is order
-thirteen. Neither that coefficient's sign nor a bound/rate for the higher remainder is claimed.
+thirteen. That checkpoint did not establish its coefficient's sign or the higher remainder rate.
 Status: `PASS_ALL_ORDER_FIRST_SURVIVING_GREEN_BOUNDARY`, with
 `PARTIAL_ALL_ORDER_CHIRAL_RETURN_CORRECTION_BOUND` unchanged. The arbitrary-N
 one-sided Gamma bound remains open. See the
 [first-surviving boundary audit](docs/CHIRAL_RETURN_FIRST_SURVIVING_BOUNDARY_AUDIT.md).
+
+The **complete seven-sample analytic remainder now has a uniform O(h)
+bound**, in `CompletedNativeChiralReturnSevenRemainderBound`. The geometric
+Euler boundary map at nodes 1,...,7 is inverted exactly and retains all
+source coefficients. The actual completed transverse source supplies its
+own Taylor prefix through degree thirteen and analytic order-fourteen
+remainder. Full synthesis precedes the Cauchy mixed readout; all 49 index
+pairings remain. In the existing scaled boundary coordinates x, one
+constant C>0 and one radial threshold work for every input:
+
+```text
+abs(complete mixed remainder) <= C * h_k * norm(x)^2,
+h_k = 1/(k+1).
+```
+
+This follows from exact radial scaling, continuity, finite-sphere
+compactness and quadratic homogeneity, without a positivity premise.
+Status: `PASS_SEVEN_SAMPLE_COMPLETE_SOURCE_REMAINDER_BOUND`.
+The next finite gate is the complete seven-coordinate boundary face's
+source-derived positive margin. Neither full seven-sample positivity nor
+the arbitrary-N Gamma inequality is asserted. See the
+[seven-sample remainder audit](docs/CHIRAL_RETURN_SEVEN_SAMPLE_REMAINDER_BOUND_AUDIT.md).
 
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary

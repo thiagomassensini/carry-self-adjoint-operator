@@ -1,0 +1,60 @@
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:10:0: 'CarrySelfAdjointOperator.radialSevenBoundaryInverseCoefficients' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:12:0: 'CarrySelfAdjointOperator.radialSevenBoundaryReconstruct' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:14:0: 'CarrySelfAdjointOperator.radialSevenBoundaryReconstruct_jets' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:16:0: 'CarrySelfAdjointOperator.radialSevenBoundaryReconstruct_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:18:0: 'CarrySelfAdjointOperator.radialSevenScaledBoundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:20:0: 'CarrySelfAdjointOperator.radialSevenNormalizedBoundaryInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:22:0: 'CarrySelfAdjointOperator.radialSevenScaledBoundary_input' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:24:0: 'CarrySelfAdjointOperator.radialSevenNormalizedBoundaryInput_scaled' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:26:0: 'CarrySelfAdjointOperator.radialSevenRegularizedInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:28:0: 'CarrySelfAdjointOperator.radialSevenRegularizedInput_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:30:0: 'CarrySelfAdjointOperator.radialSevenSourceTaylorPrefix' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:32:0: 'CarrySelfAdjointOperator.radialSevenSourceTaylorTemplate' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:34:0: 'CarrySelfAdjointOperator.radialSevenSourceTaylorTemplate_eventually_eq_slopes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:36:0: 'CarrySelfAdjointOperator.radialSevenSourceTaylorRemainderSynthesis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:38:0: 'CarrySelfAdjointOperator.radialSevenRegularizedRemainderEnergy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:40:0: 'CarrySelfAdjointOperator.radialSevenSourceTaylorTemplate_synthesis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:42:0: 'CarrySelfAdjointOperator.radialSevenSourceRemainder_energy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:44:0: 'CarrySelfAdjointOperator.radialSevenRegularizedInput_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:46:0: 'CarrySelfAdjointOperator.radialSevenRegularizedInput_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:48:0: 'CarrySelfAdjointOperator.radialSevenRemainderQuadraticReadout' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:50:0: 'CarrySelfAdjointOperator.radialSevenRemainderQuadraticReadout_continuousAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:52:0: 'CarrySelfAdjointOperator.radialSevenRemainderQuadraticReadout_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:54:0: 'CarrySelfAdjointOperator.radialSevenRemainderQuadraticReadout_eventually_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:56:0: 'CarrySelfAdjointOperator.radialSevenRegularizedRemainderEnergy_eventually_abs_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:58:0: 'CarrySelfAdjointOperator.radialSevenSourceTaylorRemainder_eventually_abs_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:60:0: 'CarrySelfAdjointOperator.radialSevenOriginalSourceRemainder_eventually_abs_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenRemainderBoundAudit.lean:61:0: Oriented Green source dependency closure checked: 5717 declarations
+Build completed successfully (9628 jobs).
