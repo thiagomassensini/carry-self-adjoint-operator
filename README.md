@@ -356,6 +356,23 @@ arbitrary orders still need the combined source bound. Status:
 `PASS_SOURCE_FIRST_FOUR_SAMPLE_CANCELLATION_POSITIVITY`. See the
 [source-jet / canary audit](docs/CHIRAL_RETURN_FOUR_SAMPLE_SOURCE_POSITIVITY_AUDIT.md).
 
+`CompletedNativeChiralReturnMixedSourceJets` now controls the **mixed
+four-coordinate boundary jet face** source-first. Its coefficients are
+factorial-normalized derivatives of the actual `-F'/F` source. Both parity
+blocks retain their cross terms; raw sixth/eighth integral certificates give
+strictly positive discriminants and an exact square completion in the
+unchanged complex norm. The four-coordinate alternating Green face is
+strictly positive for every nonzero complex jet. An exact transverse Taylor
+identity retains the analytic eighth-order remainder, and a separate
+all-cutoff storage identity retains the entire higher vector remainder.
+These identities do **not** equate the finite face with the full radial
+storage. The next finite gate is uniform control of that remainder and of the
+higher boundary coordinates under the four-sample boundary reconstruction.
+Full four-sample positivity and all-order contractivity remain open.
+Status: `PASS_SOURCE_FIRST_MIXED_BOUNDARY_JET_CONTROL`, with overall storage
+positivity still partial. See the
+[mixed source-jet audit](docs/CHIRAL_RETURN_MIXED_SOURCE_JETS_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
