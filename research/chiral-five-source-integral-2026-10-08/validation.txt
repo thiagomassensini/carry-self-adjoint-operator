@@ -1,0 +1,101 @@
+Validated on llm, Lean v4.32.0, repository main based on 9085b6142049fb2c36f99c1041f0ce183d24956d.
+
+PASS: lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnTenthSourceIntegral
+PASS: lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnTenthSourceIntegralAudit
+PASS: lake build --wfail CarrySelfAdjointOperator
+PASS: lake build --wfail CarrySelfAdjointOperator.Audit
+PASS: bash scripts/static_audit.sh
+PASS: bash scripts/audit.sh
+PASS: git diff --check
+PASS: exact regeneration and byte comparison of all generated certificate files
+
+Focused print-axioms and transitive source audit output:
+
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:7:0: 'CarrySelfAdjointOperator.thetaFirstModeSecond_cell_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:9:0: 'CarrySelfAdjointOperator.thetaFirstMode_curvature_tangent' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:11:0: 'CarrySelfAdjointOperator.thetaFirstMode_curvature_chord' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:13:0: 'CarrySelfAdjointOperator.thetaFirstMode_weighted_curvature_cell_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:15:0: 'CarrySelfAdjointOperator.thetaFirstMode_weighted_curvature_cell_upper' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:17:0: 'CarrySelfAdjointOperator.thetaTailMode_le_decaying_geometric' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:19:0: 'CarrySelfAdjointOperator.thetaTail_le_first_add_decaying' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:21:0: 'CarrySelfAdjointOperator.integral_thetaFirstMode_weighted_tail_le_ten' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:23:0: 'CarrySelfAdjointOperator.completedNativeThetaTailMoment_finite_upper_decaying' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:25:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_lower_0' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:27:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_upper_0' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:29:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_curvature_box_0' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:31:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_lower_2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:33:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_upper_2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:35:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_curvature_box_2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:37:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_lower_4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:39:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_upper_4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:41:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_curvature_box_4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:43:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_lower_6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:45:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_upper_6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:47:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_curvature_box_6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:49:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_lower_8' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:51:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_upper_8' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:53:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_curvature_box_8' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:55:0: 'CarrySelfAdjointOperator.thetaSource_curvature_integral_upper_10' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:57:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_curvature_box_10' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:59:0: 'CarrySelfAdjointOperator.nativeSourceTenthMixedNumerator_thetaIntegral_box_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:61:0: 'CarrySelfAdjointOperator.nativeSourceTenthMixedNumerator_gt_rational' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:63:0: 'CarrySelfAdjointOperator.nativeSourceTenthMixedNumerator_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:65:0: 'CarrySelfAdjointOperator.nativeSourceFiveEvenDiscriminant_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:67:0: 'CarrySelfAdjointOperator.nativeSourceFiveEvenBoundaryEnergy_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:69:0: 'CarrySelfAdjointOperator.nativeSourceFiveBoundaryEnergy_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTenthSourceIntegralAudit.lean:70:0: Oriented Green source dependency closure checked: 5305 declarations
+Build completed successfully (9457 jobs).

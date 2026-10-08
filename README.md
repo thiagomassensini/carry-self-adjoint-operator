@@ -408,10 +408,25 @@ is positive. An exact rational witness proves that the previous refined
 integral box and jet signs alone do **not** force that new sign; this is an
 obstruction to those bounds, not a counterexample to the canonical source.
 Status: `PARTIAL_SOURCE_FIRST_FIVE_SAMPLE_STORAGE_POSITIVITY`.
-No N=5 or all-order contractivity is claimed. The next task is a sharper
-source-integral certificate for that single inequality, followed by full
-remainder control. See the
+No N=5 or all-order contractivity was claimed at that checkpoint. See the
 [five-sample boundary gate audit](docs/CHIRAL_RETURN_FIVE_SAMPLE_BOUNDARY_GATE_AUDIT.md).
+
+The next raw-integral sign is now closed in
+`CompletedNativeChiralReturnTenthSourceIntegral`. Curvature-corrected
+quadrature of the same theta source, with all higher modes and exact
+Xi/theta integrations by parts, proves
+`nativeSourceTenthMixedNumerator_gt_rational`: the original mixed source
+polynomial is strictly larger than `10^-13`. Consequently
+`nativeSourceFiveEvenDiscriminant_pos` and
+`nativeSourceFiveBoundaryEnergy_pos` certify the entire five-coordinate
+Green boundary face, retaining both parity sectors and every cross term.
+Status: `PASS_SOURCE_FIRST_FIVE_BOUNDARY_ENERGY_POSITIVITY`.
+The old independent-box obstruction remains valid. No source amplitude,
+metric, carrier or readout has been fitted to the inequality.
+**Full N=5 storage and all-order contractivity remain open.** The next gate
+is uniform transfer of the complete radial synthesis, including its exact
+higher remainder, to this positive boundary face. See the
+[raw source integral sign audit](docs/CHIRAL_RETURN_FIVE_SOURCE_INTEGRAL_POSITIVITY_AUDIT.md).
 
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
