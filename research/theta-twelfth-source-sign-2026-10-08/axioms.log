@@ -1,0 +1,59 @@
+ℹ [9616/9616] Built CarrySelfAdjointOperator.CompletedNativeChiralReturnTwelfthSourceIntegralAudit (6.6s)
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:7:0: 'CarrySelfAdjointOperator.thetaFirstModeSecond_antitone' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:9:0: 'CarrySelfAdjointOperator.thetaFirstModeSecond_endpoint_cell_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:11:0: 'CarrySelfAdjointOperator.thetaFirstMode_weighted_curvature_node_lower' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:13:0: 'CarrySelfAdjointOperator.thetaFirstModeFirst_node_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:15:0: 'CarrySelfAdjointOperator.thetaFirstMode_tail_le_fortyFive' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:17:0: 'CarrySelfAdjointOperator.integral_thetaFirstMode_weighted_tail_le_twelve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:19:0: 'CarrySelfAdjointOperator.integral_thetaFirstMode_weighted_tail_ge_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:21:0: 'CarrySelfAdjointOperator.completedNativeThetaTailMoment_finite_upper_twelve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:23:0: 'CarrySelfAdjointOperator.completedNativeThetaTailMoment_finite_lower_twelve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:25:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_twelfth_box_0' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:27:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_twelfth_box_2' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:29:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_twelfth_box_4' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:31:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_twelfth_box_6' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:33:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_twelfth_box_8' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:35:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_twelfth_box_10' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:37:0: 'CarrySelfAdjointOperator.nativeSourceThetaIntegral_twelfth_box_12' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:39:0: 'CarrySelfAdjointOperator.nativeSourceTwelfthMixedNumerator_thetaIntegral_box_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:41:0: 'CarrySelfAdjointOperator.nativeSourceTwelfthMixedNumerator_gt_rational' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:43:0: 'CarrySelfAdjointOperator.nativeSourceTwelfthMixedNumerator_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:45:0: 'CarrySelfAdjointOperator.nativeSourceSixOddDiscriminant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:47:0: 'CarrySelfAdjointOperator.nativeSourceSixOddBoundaryEnergy_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:49:0: 'CarrySelfAdjointOperator.nativeSourceSixBoundaryEnergy_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnTwelfthSourceIntegralAudit.lean:50:0: Oriented Green source dependency closure checked: 5314 declarations
+Build completed successfully (9616 jobs).

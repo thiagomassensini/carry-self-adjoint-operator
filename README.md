@@ -458,7 +458,7 @@ An exact rational witness proves that the previous independent theta box,
 even with positive raw Xi entries and the previous mixed sign, does not
 force this next sign. This is a bound obstruction, not a counterexample to
 the actual source. Status: `PARTIAL_SOURCE_FIRST_SIX_SAMPLE_STORAGE_POSITIVITY`.
-The new source sign and full N=6 remainder transfer remain open;
+At that checkpoint, the new source sign and full N=6 remainder transfer remained open;
 **no N=6 or all-order contractivity is claimed**. See the
 [six-sample boundary gate audit](docs/CHIRAL_RETURN_SIX_SAMPLE_BOUNDARY_GATE_AUDIT.md).
 
@@ -473,9 +473,27 @@ nor a positivity premise. Status:
 `NO_GO_FINITE_TFVD_TRUNCATING_SHIFT_AS_CHIRAL_RETURN`.
 It excludes only this faithful shift realization, not an ambient conservative
 transport with an additional compression. Full boundary reconstruction and
-all crosses remain necessary. The N=6 integral sign and all-order storage
-frontier are unchanged. See the
+all crosses remain necessary. The shift obstruction leaves the separate
+source-integral sign and all-order storage questions unchanged. See the
 [TFVD shift versus chiral return audit](docs/TFVD_TRUNCATING_SHIFT_CHIRAL_RETURN_AUDIT.md).
+
+The **N=6 raw source sign is now closed**, in
+`CompletedNativeChiralReturnTwelfthSourceIntegral`.
+`nativeSourceTwelfthMixedNumerator_gt_rational` proves
+`P12(mu_0,...,mu_6) > 10^-19` using only the existing theta source:
+sharper decreasing-curvature cell bounds, a positive piece of the actual
+tail, a tighter upper tail bound, every higher mode, and exact Xi/theta
+integrations by parts. The original source, coefficients and metric are
+unchanged. `nativeSourceSixOddDiscriminant_pos` and
+`nativeSourceSixBoundaryEnergy_pos` then certify the whole six-coordinate
+Green boundary face, including both parity sectors and all cross terms.
+Status: `PASS_SOURCE_FIRST_SIX_BOUNDARY_ENERGY_POSITIVITY`.
+The Liu–Mao enclosure investigation is cited in the code as motivation;
+external coefficient intervals are not proof premises.
+The next gate is uniform transport of the **full twelfth-order remainder**
+into N=6 finite-step storage. N=6 storage contractivity and arbitrary-N
+positivity are not claimed. See the
+[order-twelve source sign audit](docs/CHIRAL_RETURN_TWELFTH_SOURCE_INTEGRAL_SIGN_AUDIT.md).
 
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary

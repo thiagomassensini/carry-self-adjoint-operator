@@ -1,0 +1,22 @@
+Audited base main: 7205c30ff900be815d29a603f7c36d183e0a6002
+PASS lake build --wfail CarrySelfAdjointOperator.CompletedNativeThetaSharpCurvature
+PASS lake build --wfail CarrySelfAdjointOperator.CompletedNativeThetaDecayingTail
+PASS all generated source node/cell modules (serialized batches)
+PASS lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnTwelfthSourceIntegral
+PASS lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnTwelfthSourceIntegralAudit
+PASS lake build --wfail CarrySelfAdjointOperator
+PASS lake build --wfail CarrySelfAdjointOperator.Audit
+PASS bash scripts/static_audit.sh
+PASS bash scripts/audit.sh
+PASS git diff --check
+PASS exact generator reproduction (local SymPy, copied unchanged main inputs)
+PASS source dependency traversal: 5314 declarations, unchanged firewall
+New capstone axioms: [propext, Classical.choice, Quot.sound]
+Full runtime logs on llm:
+/tmp/twelfth-batches-build.log
+/tmp/twelfth-root-build.log
+/tmp/twelfth-root-audit-build.log
+/tmp/twelfth-static-audit.log
+/tmp/twelfth-full-audit.log
+Two unrelated preexisting C2 files remain untracked and are excluded.
+No finite-step N=6 storage or all-order positivity claim.
