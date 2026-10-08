@@ -396,6 +396,23 @@ The next cutoff N=5 needs the next source boundary-face sign; no extrapolation
 from N=4 is asserted. See the
 [full four-sample storage audit](docs/CHIRAL_RETURN_FULL_FOUR_SAMPLE_STORAGE_AUDIT.md).
 
+The next N=5 source gate is now isolated exactly in
+`CompletedNativeChiralReturnNinthSourceJet` and
+`CompletedNativeChiralReturnFiveBoundaryFace`. The ninth derivative comes
+from the original division-free source recurrence and raw cosine integrals.
+The exact tenth-order remainder is retained in vector synthesis before any
+mixed readout. The five-coordinate Green boundary face retains both parity
+sectors and all crosses. Its new even sector is strictly positive exactly
+when the displayed raw-integral polynomial `nativeSourceTenthMixedNumerator`
+is positive. An exact rational witness proves that the previous refined
+integral box and jet signs alone do **not** force that new sign; this is an
+obstruction to those bounds, not a counterexample to the canonical source.
+Status: `PARTIAL_SOURCE_FIRST_FIVE_SAMPLE_STORAGE_POSITIVITY`.
+No N=5 or all-order contractivity is claimed. The next task is a sharper
+source-integral certificate for that single inequality, followed by full
+remainder control. See the
+[five-sample boundary gate audit](docs/CHIRAL_RETURN_FIVE_SAMPLE_BOUNDARY_GATE_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw
