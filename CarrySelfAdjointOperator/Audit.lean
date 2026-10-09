@@ -1,3 +1,7 @@
+import CarrySelfAdjointOperator.CompletedNativeChiralJetStorageTransportAudit
+
+import CarrySelfAdjointOperator.CompletedNativeChiralJetEnergyControlAudit
+
 import CarrySelfAdjointOperator.MaterialCenterLegClockObservabilityAudit
 
 import CarrySelfAdjointOperator.CompletedNativeChiralBoundaryJetTransportAudit
