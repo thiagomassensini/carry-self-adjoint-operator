@@ -1918,3 +1918,31 @@ inequalities alone can have zero limit. The historical cumulative/Naimark
 colligation is not identified with these chiral channels by any current theorem.
 No old C3 positive Gram is repaired or fitted, and no height operator is rebuilt.
 See [the surgical source audit](docs/SURGICAL_TFVD_CHIRAL_POSITIVITY_TRANSPORT_AUDIT.md).
+
+
+### Local material-clock center/leg observability — 2026-10-09
+
+`centerLegClockJet_injective` recovers the three finite samples at
+`c-radius,c,c+radius` from bracket readouts at material clock orders 0,1,2,
+for `0 < radius < c`. The clock is the restriction of the EXISTING diagonal
+`log(material integer)` generator; its zero-order readout is exactly the
+native Cp bracket. The sample `(1,0,-1)` is invisible at order zero and
+visible at order one, without inserting any moment values.
+
+`cameraBlockClockJet_injective` extends the same argument to a block of
+`2h+1` consecutive positive material nodes: orders `0,...,2h` suffice for
+`h >= 1` and `c > h`. Its zero-order geometric weights are certified as the
+sum of the radius-1,...,h native brackets before scalar readout.
+Mathlib's weighted Vandermonde argument provides recovery; no metric changes.
+
+`adjacentMaterialLogGap_difference_eq` identifies the positive REAL imbalance
+coefficient as `log(1+1/((n+1)*(n+3)))`. The adjacent return is decomposed into
+its symmetric and imbalance pieces with BOTH complex source products retained.
+A positive coefficient does not provide a sign for its complex amplitude.
+
+Status: `PASS_LOCAL_CENTER_LEG_CLOCK_OBSERVABILITY` and
+`PASS_ADJACENT_MATERIAL_LOG_GAP_DECOMPOSITION`. These are local algebraic
+results, not all-order completed-energy positivity or a height operator.
+No identification of this local clock jet with the completed chiral difference
+jet is claimed. The completed chiral dominance/sign gate remains open.
+See [the local material-clock audit](docs/MATERIAL_CENTER_LEG_CLOCK_OBSERVABILITY_AUDIT.md).

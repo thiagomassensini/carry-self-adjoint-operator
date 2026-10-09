@@ -1,0 +1,70 @@
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:67:0: 'CarrySelfAdjointOperator.GreenStateMaterialDynamics.greenStateMaterialEvolution_mem_domain_of_hasDerivative_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:70:0: 'CarrySelfAdjointOperator.GreenStateMaterialDynamics.greenStateMaterialEvolution_differentiableAt_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:73:0: 'CarrySelfAdjointOperator.GreenStateMaterialDynamics.c2GlobalGreenInput_evolution_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:76:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.parsevalRangeMaterialEvolution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:79:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.parsevalRangeMaterialEvolution_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:82:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.parsevalRangeMaterialEvolution_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:85:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.parsevalRangeMaterialEvolution_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:88:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:91:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:94:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.parsevalRange_inverse_projection_eq_adjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:97:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_apply_adjoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:100:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_norm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:103:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:106:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:109:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:112:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_intertwining' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:115:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_eq_self_of_mem_orthogonal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:118:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_stronglyContinuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:121:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_hasDerivative_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:124:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_derivative_on_range' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:127:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_c2Source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/GreenMaterialEvolutionAudit.lean:130:0: 'CarrySelfAdjointOperator.GreenParsevalMaterialDynamics.greenParsevalMaterialEvolution_c2Source_add' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (8903 jobs).
+kernel audit passed

@@ -1,0 +1,68 @@
+ℹ [3780/3985] Replayed NativeCarrySpectralWeyl.Finite.StepDensity
+info: NativeCarrySpectralWeyl/Finite/StepDensity.lean:68:4: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3794/3985] Replayed CPFormal.Analytic.CpGenuineSecondDifferenceIdentity
+info: CPFormal/Analytic/CpGenuineSecondDifferenceIdentity.lean:114:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3795/3985] Replayed CPFormal.Analytic.CpGenuineTiltProductRule
+info: CPFormal/Analytic/CpGenuineTiltProductRule.lean:285:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3824/3985] Replayed CPFormal.Analytic.CpFiniteScalarSynthesis
+info: CPFormal/Analytic/CpFiniteScalarSynthesis.lean:133:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3861/3985] Replayed CPFormal.Analytic.CpGenuineGprePrimeAmplitudeUpgrade
+info: CPFormal/Analytic/CpGenuineGprePrimeAmplitudeUpgrade.lean:46:14: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: CPFormal/Analytic/CpGenuineGprePrimeAmplitudeUpgrade.lean:46:14: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3934/3985] Replayed NativeCarrySpectralWeyl.Infinite.WeylUnbounded
+info: NativeCarrySpectralWeyl/Infinite/WeylUnbounded.lean:649:14: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: NativeCarrySpectralWeyl/Infinite/WeylUnbounded.lean:693:14: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+info: NativeCarrySpectralWeyl/Infinite/WeylUnbounded.lean:701:16: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+ℹ [3946/3985] Replayed CPFormal.Analytic.CpNativeGpreTfvdCommutatorTowerSource
+info: CPFormal/Analytic/CpNativeGpreTfvdCommutatorTowerSource.lean:135:2: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Build completed successfully (4012 jobs).

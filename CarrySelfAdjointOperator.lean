@@ -1,3 +1,6 @@
+import CarrySelfAdjointOperator.MaterialCenterLegClockObservability
+import CarrySelfAdjointOperator.AdjacentMaterialLogGapDecomposition
+
 import CarrySelfAdjointOperator.CompletedNativeChiralBoundaryJetTransport
 
 import CarrySelfAdjointOperator.CompletedNativeChiralEvenBoundaryHeightHandoff

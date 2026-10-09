@@ -1,0 +1,70 @@
+info: CarrySelfAdjointOperator/PrimeDepthGeometricMomentRecurrenceAudit.lean:57:0: 'CarrySelfAdjointOperator.primeDepthGeometricMoment_isLogDerivativeMomentSequence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/PrimeDepthGeometricMomentRecurrenceAudit.lean:59:0: 'CarrySelfAdjointOperator.primeDepthResponse_oddCoefficient_im_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/PrimeDepthGeometricMomentRecurrenceAudit.lean:61:0: 'CarrySelfAdjointOperator.primeDepthGeometricMoment_coe' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/PrimeDepthGeometricMomentRecurrenceAudit.lean:63:0: 'CarrySelfAdjointOperator.primeDepthGeometricMoment_eq_bracketTfvdReadoutTaylor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/PrimeDepthGeometricMomentRecurrenceAudit.lean:65:0: 'CarrySelfAdjointOperator.primeDepthGeometricMoment_eq_canonical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/PrimeDepthGeometricMomentRecurrenceAudit.lean:66:0: Source-first dependency closure checked: 5243 declarations
+ℹ [9287/9288] Replayed CarrySelfAdjointOperator.CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:50:0: 'CarrySelfAdjointOperator.canonicalCompletedGreenFrameSynthesis_preserves_weightedTrace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:52:0: 'CarrySelfAdjointOperator.canonicalCompletedGreenFrameSynthesis_weightedTfvd_reconstruction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:54:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedRecoveredHilbertPresentation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:56:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedRecoveredHilbertPresentation_eq_existing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:58:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedRecoveredHilbertPresentation_dressed_eq_existing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:60:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedRealAxisWrapper_eq_of_re_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:62:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedGreenFramePrefixState_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:64:0: 'CarrySelfAdjointOperator.canonicalC3BracketTfvdCompletedTracePair_zero_value_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:66:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedRealAxisWrapper_radial_eq_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:68:0: 'CarrySelfAdjointOperator.no_linear_orientedPrefix_completedValue_readout' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:70:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedGreenFrameCarrier_not_parallelogram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:71:0: Oriented Green source dependency closure checked: 6214 declarations
+ℹ [9288/9288] Built CarrySelfAdjointOperator.MaterialCenterLegClockObservabilityAudit (7.8s)
+info: CarrySelfAdjointOperator/MaterialCenterLegClockObservabilityAudit.lean:28:0: 'CarrySelfAdjointOperator.centerLegClockJet_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/MaterialCenterLegClockObservabilityAudit.lean:29:0: 'CarrySelfAdjointOperator.centerLegClockJet_nativeBracket' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/MaterialCenterLegClockObservabilityAudit.lean:30:0: 'CarrySelfAdjointOperator.centerLegInvisibleSample_clock_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/MaterialCenterLegClockObservabilityAudit.lean:31:0: 'CarrySelfAdjointOperator.cameraBlockClockJet_nativeRadiusSum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/MaterialCenterLegClockObservabilityAudit.lean:32:0: 'CarrySelfAdjointOperator.cameraBlockClockJet_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/MaterialCenterLegClockObservabilityAudit.lean:33:0: 'CarrySelfAdjointOperator.adjacentMaterialLogGap_difference_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/MaterialCenterLegClockObservabilityAudit.lean:34:0: 'CarrySelfAdjointOperator.adjacentMaterialLogGap_difference_re_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/MaterialCenterLegClockObservabilityAudit.lean:35:0: 'CarrySelfAdjointOperator.canonicalC3AdjacentClockReturn_eq_symmetric_add_imbalance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/MaterialCenterLegClockObservabilityAudit.lean:36:0: Oriented Green source dependency closure checked: 2011 declarations
+Build completed successfully (9288 jobs).

@@ -1,0 +1,19 @@
+'CarrySelfAdjointOperator.centerLegClockJet_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.centerLegClockJet_nativeBracket' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.centerLegInvisibleSample_clock_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.cameraBlockClockJet_nativeRadiusSum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.cameraBlockClockJet_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.adjacentMaterialLogGap_difference_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.adjacentMaterialLogGap_difference_re_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.canonicalC3AdjacentClockReturn_eq_symmetric_add_imbalance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 2011 declarations

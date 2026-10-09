@@ -1,0 +1,70 @@
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:11:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeIncidenceProjectiveMap_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:12:0: 'CarrySelfAdjointOperator.ProjectiveValve.fromProjective_nativeIncidenceProjectiveMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:13:0: 'CarrySelfAdjointOperator.ProjectiveValve.coeff_fromProjective_nativeIncidenceProjectiveMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:14:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeIncidenceProjectiveMap_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:15:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeIncidenceProjectiveMap_sum_eq_zero_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:16:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeBracketProjectiveCurvature' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:17:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeBracketProjectiveCurvature_centerCoefficient' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:18:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeBracketProjectiveCurvature_linearIndependent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:19:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeBracketProjectiveCurvature_even_linearIndependent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:20:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeBracketProjectiveCurvature_odd_linearIndependent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:21:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeBracketProjectiveCurvature_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:22:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeBracketProjectiveDirection' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:23:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeBracketProjectiveDirection_independent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:24:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeBracketProjectiveDirection_finiteSpan_finrank' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:25:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeBracketProjectiveDirection_finiteSpan_eq_iSup_orbits' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:26:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeIncidenceProjectiveEquivRange' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:27:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeProjectiveCoreToHilbert' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:28:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeProjectiveCoreToHilbert_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:29:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeProjectiveCoreToHilbert_incidence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveNativeIncidenceAudit.lean:30:0: 'CarrySelfAdjointOperator.ProjectiveValve.nativeProjectiveCoreToHilbert_bracket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+ℹ [10079/10081] Replayed CarrySelfAdjointOperator.CompletedNativeChiralReturnLinearizationObstruction
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnLinearizationObstruction.lean:205:4: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+✔ [10080/10081] Built CarrySelfAdjointOperator (6.4s)
+Build completed successfully (10081 jobs).
