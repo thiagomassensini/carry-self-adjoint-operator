@@ -1853,3 +1853,24 @@ it creates no fitted metric, moment Gram or new spectral operator.
 The next gate is the N-indexed complete boundary chart and each dimension's
 raw-source coercivity. A uniform-in-N radius is a distinct stronger problem.
 See [the relative-correction and spectrum audit](docs/CHIRAL_RETURN_SEVEN_RELATIVE_CORRECTION_SPECTRUM_AUDIT.md).
+
+
+### Reverse source-first all-order storage audit — 2026-10-08
+
+`nativeSourceOddBoundaryCoefficient_eq_twice_primeDepthGeometricMoment`
+now identifies EVERY raw odd coefficient of the original `-F'/F` source with
+`2 * g_j`, without using the canonical recursive moment sequence. The full
+finite alternating Green tower, including every ordered cross, is exactly
+four times the corresponding normalized prime-depth coefficient tower.
+Even and odd limiting blocks have indices `i+j` and `i+j+1`; these
+coefficient identities do not provide a positive Hilbert Gram.
+
+The reverse audit finds no existing unconditional arbitrary-N boundary
+coercivity proof. Positive TFVD/Green/provenance Grams need their SAME-source
+kernel identification; Gamma/coisometric cancellation still leaves the raw
+signed Gamma--Wronskian correction. Existing HP/Hankel consumers are not
+used upstream. No N=8 certificate, new carrier or sign hypothesis is added.
+Status: `PASS_SOURCE_BOUNDARY_COEFFICIENT_PROVENANCE_ALL_ORDER`;
+all-order source boundary positivity remains open, separately from the
+already-proved fixed-dimension relative-control mechanism.
+See [the reverse source-first storage audit](docs/CHIRAL_STORAGE_ALL_ORDER_REVERSE_SOURCE_AUDIT.md).

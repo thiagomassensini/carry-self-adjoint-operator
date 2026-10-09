@@ -1,0 +1,14 @@
+Initial main: d0671e8127b93a178405aae3b4b7cf031d9a437d
+Remote validation host: llm
+new-builds: exit 0; log /tmp/chiral-reverse-new-builds.log
+coefficient-kernel: exit 0; log /tmp/chiral-reverse-coefficient-kernel.log
+full-build: exit 0; log /tmp/chiral-reverse-full-build.log
+umbrella-audit-build: exit 0; log /tmp/chiral-reverse-umbrella-audit-build.log
+static-audit: exit 0; log /tmp/chiral-reverse-static-audit.log
+kernel-audit: exit 0; log /tmp/chiral-reverse-kernel-audit.log
+whitespace: exit 0; log /tmp/chiral-reverse-whitespace.log
+placeholder scan: clean
+Allowed axioms: propext, Classical.choice, Quot.sound or subset
+Source closure: canonical moments, HP/Stieltjes, Hankel, Jacobi/height, Herglotz, BR2 rejected
+Open boundary coercivity signature: type-checked Prop only, not a proof
+All-order positivity: not claimed

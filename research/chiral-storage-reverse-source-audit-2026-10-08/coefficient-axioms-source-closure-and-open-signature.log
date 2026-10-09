@@ -1,0 +1,29 @@
+'CarrySelfAdjointOperator.completedNativeOperatorLogDerivative_eq_twice_greenResponse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceOddBoundaryCoefficient_eq_twice_primeDepthGeometricMoment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceOddBoundaryCoefficient_weighted_eq_primeDepth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceEvenBoundaryCoefficient_eq_polarizedPrimeDepth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceOddBoundaryCoefficient_eq_polarizedPrimeDepth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceOddGreenTower_eq_primeDepth' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 5221 declarations
+∀ (N : ℕ),
+  ∃ ε,
+    0 < ε ∧
+      ∀ (x : Fin N → ℂ),
+        let b := fun a => if ha : a < N then x ⟨a, ha⟩ else 0;
+        ε * ‖x‖ ^ 2 ≤
+          2 *
+            ∑ j ∈ Finset.range N,
+              (-1) ^ j * CarrySelfAdjointOperator.nativeSourceOddBoundaryCoefficient j *
+                ∑ a ∈ Finset.range (2 * j + 1), (-1) ^ a * ((starRingEnd ℂ) (b a) * b (2 * j - a)).re : Prop
