@@ -1,0 +1,43 @@
+'CarrySelfAdjointOperator.radialSevenOddSourceTemplate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedStorage' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedStorage_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedStorage_continuousAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenOddSourceTemplate_synthesis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenOddSourceTemplate_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenOddSourceTemplate_eventually_eq_slopes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_sevenSample_eventually_regularized' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedStorage_eventually_unit_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenNormalizedBoundaryInput_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_sevenSample_normalized_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_sevenSample_eventually_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_original_sevenSample_eventually_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialReturnTransfer_seven_eventually_norm_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_sevenSample_eventually_boundary_coercive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.chiralMultiplier_seven_eventually_contractive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 5848 declarations

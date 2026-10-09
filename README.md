@@ -618,6 +618,32 @@ the actual finite-prefix convergence and the already proved uniform
 complete remainder bound. No arbitrary-N contractivity is claimed.
 See the [seven-boundary source margin audit](docs/CHIRAL_RETURN_SEVEN_BOUNDARY_SOURCE_MARGIN_AUDIT.md).
 
+The **complete seven-node radial storage gate is now closed**, in
+`CompletedNativeChiralReturnSevenSampleStorage`. The SAME completed
+source and Cauchy synthesis give a uniform positive storage margin:
+one sufficiently large radial index works for **every** coefficient
+vector in `Fin 7 → ℂ`, including the cancellation directions.
+`storage_one_original_sevenSample_eventually_pos` and
+`storage_one_sevenSample_eventually_boundary_coercive` retain every
+higher reconstructed coordinate and the full analytic remainder.
+`chiralMultiplier_seven_eventually_contractive` is a corollary for N=7.
+Status: `PASS_SEVEN_SAMPLE_SOURCE_STORAGE_POSITIVITY`.
+
+`CompletedNativeChiralReturnSevenMarginLoss` also identifies why the
+boundary energy does not pass unchanged at finite step: B7 has first
+correction `28*h*x6`, creating signed even/odd crosses. The FULL storage's
+first correction is `112*(-c4*Re(conj(x1)*x6) +
+c5*Re(conj(x3)*x6) - c6*Re(conj(x5)*x6))`, with source-derived raw
+coefficients. Its sign can be negative or positive; the kernel proves
+actual storage below/above the limiting face in explicit directions.
+The actual analytic remainder has zero first-order storage contribution
+by source parity. A reduced uniform margin still survives; no metric
+or source amplitude is adjusted. Canonical moments, HP/Stieltjes,
+Hankel, Jacobi/height and BR2 are absent from the new source dependency
+closures. No arbitrary-N contractivity or all-order positivity is claimed.
+The next gate is N=8 or a genuine dimension-uniform source argument.
+See the [complete seven-storage and margin-loss audit](docs/CHIRAL_RETURN_SEVEN_SAMPLE_STORAGE_MARGIN_AUDIT.md).
+
 The oriented completed-source audit now localizes the next Hilbert sewing
 gate. Bounded Green synthesis preserves **both weighted vertical boundary
 coordinates** and the full TFVD reconstruction. However, the current raw

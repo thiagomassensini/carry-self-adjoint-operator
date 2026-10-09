@@ -1,0 +1,58 @@
+'CarrySelfAdjointOperator.nativeSourceLogSlope_fourteenth_derivative_eq_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceTransverseSlope_seven_exact_remainder_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenOddSourceTemplate_eventually_eq_slopes_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenBoundaryMarginLoss' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedStorage_margin_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenHigherBoundaryCoefficient_seven_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundary_hasDerivAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenBoundaryFirstCorrection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundaryEnergy_hasDerivAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenBoundaryMarginLoss_hasDerivAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenMarginLossDirection' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenBoundaryFirstCorrection_direction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceOddBoundaryCoefficient_four_pos_from_face' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenBoundaryFirstCorrection_loss_direction_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenBoundaryFirstCorrection_gain_direction_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedRemainderEnergy_hasDerivAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedStorage_hasDerivAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_sevenSample_eventually_regularized_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_sevenSample_first_correction_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_sevenSample_eventually_below_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_sevenSample_eventually_above_boundary' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 5591 declarations

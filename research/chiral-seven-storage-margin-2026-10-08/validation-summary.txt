@@ -1,0 +1,32 @@
+Initial HEAD/main/origin/main: 84dce314e98251fbb2ceaddd33a6262f5dff80fc
+Initial published tree: two pre-existing untracked C2OddTfvdTransport files retained.
+PASS modules
+PASS dedicated-audits
+PASS storage-kernel
+PASS loss-kernel
+PASS library
+PASS umbrella-audit
+PASS static-audit
+PASS full-audit
+PASS diff-check
+Capstones are source-only: no canonical moment sign, HP/Stieltjes, Hankel, Jacobi/height, Herglotz or BR2 premise.
+Axiom footprint: at most [propext, Classical.choice, Quot.sound]; see the two dedicated logs.
+Only N=7 is closed; arbitrary-N remains open.
+PASS new-module placeholder scan (no matches)
+
+Commands executed:
+lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnSevenSampleStorage CarrySelfAdjointOperator.CompletedNativeChiralReturnSevenSourceRemainderParity CarrySelfAdjointOperator.CompletedNativeChiralReturnSevenMarginLoss
+lake build --wfail CarrySelfAdjointOperator.CompletedNativeChiralReturnSevenSampleStorageAudit CarrySelfAdjointOperator.CompletedNativeChiralReturnSevenMarginLossAudit
+lake env lean CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenSampleStorageAudit.lean
+lake env lean CarrySelfAdjointOperator/CompletedNativeChiralReturnSevenMarginLossAudit.lean
+lake build --wfail CarrySelfAdjointOperator
+lake build --wfail CarrySelfAdjointOperator.Audit
+bash scripts/static_audit.sh
+bash scripts/audit.sh
+git diff --check
+
+Source dependency closures checked: storage 5848, margin loss 5591 declarations.
+All 37 new public declarations have an allowed standard footprint.
+Pre-existing GitHub Actions on the initial published main reported startup_failure.
+This validation is the successful full Lean kernel/audit run on llm; CI status is reported separately.
+PASS git diff --cached --check for each semantic commit
