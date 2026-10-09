@@ -1,0 +1,70 @@
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:53:0: 'CarrySelfAdjointOperator.nativeSourceOddBoundaryPhase_fromParity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:55:0: 'CarrySelfAdjointOperator.nativeSourceBoundaryFromParity_phases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:57:0: 'CarrySelfAdjointOperator.nativeSourceBoundaryPhase_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:58:0: Oriented Green source dependency closure checked: 5228 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:67:0: 'CarrySelfAdjointOperator.nativeSourceEvenBoundary_positive_iff_stieltjes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:68:0: Even-boundary closure checked without downstream consumers: 5082 declarations
+ℹ [9634/9635] Replayed CarrySelfAdjointOperator.CompletedNativeChiralJetEnergyControlAudit
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetEnergyControlAudit.lean:36:0: 'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_eventually_energy_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetEnergyControlAudit.lean:38:0: 'CarrySelfAdjointOperator.nativeSourceFiniteBoundaryEnergy_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetEnergyControlAudit.lean:40:0: 'CarrySelfAdjointOperator.nativeSourceFiniteBoundaryEnergy_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetEnergyControlAudit.lean:42:0: 'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_six_eventually_relative_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetEnergyControlAudit.lean:44:0: 'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_six_eventually_dominant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetEnergyControlAudit.lean:45:0: Oriented Green source dependency closure checked: 5126 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetEnergyControlAudit.lean:48:0: Even-boundary closure checked without downstream consumers: 5664 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetEnergyControlAudit.lean:52:0: Chiral-control closure without Hankel/Stieltjes: 5673 declarations
+ℹ [9635/9635] Replayed CarrySelfAdjointOperator.CompletedNativeChiralJetStorageTransportAudit
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:10:0: 'CarrySelfAdjointOperator.nativeSourceChiralJetInputMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:12:0: 'CarrySelfAdjointOperator.nativeSourceChiralJetInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:14:0: 'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_eq_originalSource' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:16:0: 'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_energy_eq_storage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:18:0: 'CarrySelfAdjointOperator.nativeSourceChiralJetInput_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:20:0: 'CarrySelfAdjointOperator.nativeSourceChiralJetInput_eventually_bijective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:22:0: 'CarrySelfAdjointOperator.storage_one_chiralJetInput_eventually_energy_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:24:0: 'CarrySelfAdjointOperator.storage_one_chiralJetInput_six_eventually_relative_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:26:0: 'CarrySelfAdjointOperator.storage_one_chiralJetInput_six_eventually_coercive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:28:0: 'CarrySelfAdjointOperator.storage_one_chiralJetInput_allCoefficients_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:30:0: 'CarrySelfAdjointOperator.rawGamma_chiralJetInput_eventually_energy_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:32:0: 'CarrySelfAdjointOperator.rawGamma_chiralJetInput_six_eventually_coercive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:33:0: Oriented Green source dependency closure checked: 5238 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:41:0: Even-boundary closure checked without downstream consumers: 6581 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralJetStorageTransportAudit.lean:48:0: Chiral-control closure without Hankel/Stieltjes: 6631 declarations
+Build completed successfully (9635 jobs).

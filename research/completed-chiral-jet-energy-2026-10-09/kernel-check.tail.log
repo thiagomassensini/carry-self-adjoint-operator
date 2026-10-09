@@ -1,0 +1,18 @@
+'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_eventually_energy_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceFiniteBoundaryEnergy_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceFiniteBoundaryEnergy_six' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_six_eventually_relative_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_six_eventually_dominant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 5126 declarations
+Even-boundary closure checked without downstream consumers: 5664 declarations
+Chiral-control closure without Hankel/Stieltjes: 5673 declarations

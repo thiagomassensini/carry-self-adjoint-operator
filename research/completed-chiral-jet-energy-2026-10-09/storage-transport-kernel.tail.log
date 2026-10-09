@@ -1,0 +1,35 @@
+'CarrySelfAdjointOperator.nativeSourceChiralJetInputMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceChiralJetInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_eq_originalSource' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_energy_eq_storage' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceChiralJetInput_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceChiralJetInput_eventually_bijective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_chiralJetInput_eventually_energy_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_chiralJetInput_six_eventually_relative_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_chiralJetInput_six_eventually_coercive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_chiralJetInput_allCoefficients_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.rawGamma_chiralJetInput_eventually_energy_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.rawGamma_chiralJetInput_six_eventually_coercive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 5238 declarations
+Even-boundary closure checked without downstream consumers: 6581 declarations
+Chiral-control closure without Hankel/Stieltjes: 6631 declarations

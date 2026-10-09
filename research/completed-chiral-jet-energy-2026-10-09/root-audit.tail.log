@@ -1,0 +1,70 @@
+info: CarrySelfAdjointOperator/Audit.lean:2796:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_completedNormalizedCamera_eq_commonCharacteristic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2797:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_cameraMoments_eq_canonical' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2798:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_correctedChiralCoefficient_eq_cameraMoments' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2799:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_finiteHead_add_exactTail_eq_factor_mul_nativeScalar' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2800:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_completedPackagedNativeJet_eq_head_add_exactTail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2801:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_completedPackagedNativeJet_zero_normalized_eq_commonCharacteristic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2802:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_packagedFiniteNativeOperatorJet_eq_complex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2803:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_normalizedCamera_iteratedDeriv_eq_common' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2804:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_correctedChiralCoefficient_odd_eq_cameraMoment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2805:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockFirstColumn_eq_cameraPolarizedMoment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2806:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockGreenMomentKernel_of_correctedTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2807:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockCoefficient_eq_fourAtomPowerSum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2808:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockAtlasCoefficient_eq_finiteAtomicPowerSum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2809:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockBoundaryResidual_zero_iff_correctedTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2810:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockBoundaryResidual_eq_atomicPowerSum_sub_cameraTarget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2811:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockBlockCharacteristic_root' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2812:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockAtlasCharacteristic_root' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2813:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockAtlasCoefficient_recurrence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2814:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockAtlas_target_recurrence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2815:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockAtlas_canonicalTarget_recurrence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2816:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockAtlas_noGo_of_stieltjesPositivity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2817:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockBoundaryResidual_not_identically_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/Audit.lean:2818:0: 'CarrySelfAdjointOperator.canonicalC2Geometry_seededClockAtlas_noGo_of_greenMomentKernel_and_incidenceTransport' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10221 jobs).

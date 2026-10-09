@@ -1946,3 +1946,56 @@ results, not all-order completed-energy positivity or a height operator.
 No identification of this local clock jet with the completed chiral difference
 jet is claimed. The completed chiral dominance/sign gate remains open.
 See [the local material-clock audit](docs/MATERIAL_CENTER_LEG_CLOCK_OBSERVABILITY_AUDIT.md).
+
+
+### Complete signed chiral jet energy control — 2026-10-09
+
+`nativeSourceProjectiveBoundaryJetSynthesis_eventually_energy_control` proves
+that, for EVERY fixed n and tolerance eta>0, one eventual radial threshold
+works for ALL coefficient directions simultaneously:
+`abs(2*(norm(J_plus)^2-norm(J_minus)^2)-E_(2n)(x)) <= eta*norm(x)^2`.
+The old completed vector synthesis and all finite-step ordered crosses remain.
+The norm on coefficient functions is the existing finite Pi norm, used only
+for an error estimate; no metric or source is changed. No boundary sign is
+assumed, and no dimension-independent threshold is asserted.
+
+The ALREADY certified six-source face is reused through exact raw-energy
+identification. This yields
+`nativeSourceProjectiveBoundaryJetSynthesis_six_eventually_relative_control`
+and `nativeSourceProjectiveBoundaryJetSynthesis_six_eventually_dominant`:
+the ACTUAL two chiral jet channels have a positive difference bounded below
+by `epsilon*norm(x)^2`, eventually uniformly over the six-coordinate sector.
+No new six-dimensional source certificate or N=8 calculation is introduced.
+
+Statuses: `PASS_FIXED_DIMENSION_COMPLETE_CHIRAL_ENERGY_CONTROL` and
+`PASS_CERTIFIED_SIX_JET_CHIRAL_DOMINANCE`. These are not arbitrary-order
+storage positivity. The all-order raw boundary strict sign remains open;
+the local material-clock observability alone does not supply it. No unproved
+identification between the material clock, completed chiral difference jets,
+or original radial storage is assumed.
+See [the completed chiral energy-control audit](docs/COMPLETED_CHIRAL_JET_ENERGY_CONTROL_AUDIT.md).
+
+
+#### Whole-vector sewing to original storage
+
+`nativeSourceProjectiveBoundaryJetSynthesis_eq_originalSource` now proves the
+EXACT pair of incoming/returned syntheses, with one shared geometric input map
+`nativeSourceChiralJetInput`. Its coefficients are the OLD signed binomial
+forward differences, factorial/grid normalization, boundary phases and
+completed projective amplitude. No moment values define this map.
+`nativeSourceChiralJetInput_eventually_bijective` proves it covers ALL original
+coefficients in each fixed even finite family, without asserting an isometry
+or dimension-uniform conditioning.
+
+Consequently `storage_one_chiralJetInput_eventually_energy_control` controls
+ORIGINAL complete storage in these jet coordinates, retaining all analytic
+completion and crossed terms. The exact scale is `D_jet = 2*Re(storage)`.
+`rawGamma_chiralJetInput_eventually_energy_control` gives the same bound for
+`4*(Gamma energy - raw Gamma correction)` by the old three-channel cancellation.
+The existing six-source margin also yields strict storage/Gamma-gap control
+in this SAME chart. Status: `PASS_GEOMETRIC_CHIRAL_JET_STORAGE_TRANSPORT`.
+
+The remaining all-order sign is still the actual raw inequality
+`E_(2n)(x)>0` for every n>=1 and nonzero x. The new error control supplies no
+sign for an indefinite/degenerate boundary. No positive Hankel/HP certificate,
+N=8 certificate, new metric or height operator is used to supply that sign.
