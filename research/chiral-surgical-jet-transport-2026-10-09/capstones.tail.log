@@ -1,0 +1,17 @@
+'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_pairing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_pairing_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_energy_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 5218 declarations
+Even-boundary closure checked without downstream consumers: 5599 declarations

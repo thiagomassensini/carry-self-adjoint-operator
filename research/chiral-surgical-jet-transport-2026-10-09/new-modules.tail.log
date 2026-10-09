@@ -1,0 +1,70 @@
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:54:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedRecoveredHilbertPresentation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:56:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedRecoveredHilbertPresentation_eq_existing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:58:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedRecoveredHilbertPresentation_dressed_eq_existing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:60:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedRealAxisWrapper_eq_of_re_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:62:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedGreenFramePrefixState_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:64:0: 'CarrySelfAdjointOperator.canonicalC3BracketTfvdCompletedTracePair_zero_value_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:66:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedRealAxisWrapper_radial_eq_center' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:68:0: 'CarrySelfAdjointOperator.no_linear_orientedPrefix_completedValue_readout' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:70:0: 'CarrySelfAdjointOperator.canonicalCompletedC3OrientedGreenFrameCarrier_not_parallelogram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedC3OrientedGreenSourcePresentationAuditBridgeAudit.lean:71:0: Oriented Green source dependency closure checked: 6214 declarations
+ℹ [9401/9402] Replayed CarrySelfAdjointOperator.CompletedNativeChiralEvenBoundaryAudit
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:45:0: 'CarrySelfAdjointOperator.nativeSourceFiniteBoundaryEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:47:0: 'CarrySelfAdjointOperator.nativeSourceFiniteBoundaryEnergy_eq_coefficient_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:49:0: 'CarrySelfAdjointOperator.nativeSourceFiniteBoundaryEnergy_even_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:51:0: 'CarrySelfAdjointOperator.nativeSourceEvenBoundaryPhase_fromParity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:53:0: 'CarrySelfAdjointOperator.nativeSourceOddBoundaryPhase_fromParity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:55:0: 'CarrySelfAdjointOperator.nativeSourceBoundaryFromParity_phases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:57:0: 'CarrySelfAdjointOperator.nativeSourceBoundaryPhase_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:58:0: Oriented Green source dependency closure checked: 5228 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:67:0: 'CarrySelfAdjointOperator.nativeSourceEvenBoundary_positive_iff_stieltjes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralEvenBoundaryAudit.lean:68:0: Even-boundary closure checked without downstream consumers: 5082 declarations
+ℹ [9402/9402] Replayed CarrySelfAdjointOperator.CompletedNativeChiralBoundaryJetTransportAudit
+info: CarrySelfAdjointOperator/CompletedNativeChiralBoundaryJetTransportAudit.lean:10:0: 'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralBoundaryJetTransportAudit.lean:12:0: 'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_pairing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralBoundaryJetTransportAudit.lean:14:0: 'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralBoundaryJetTransportAudit.lean:16:0: 'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_pairing_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralBoundaryJetTransportAudit.lean:18:0: 'CarrySelfAdjointOperator.nativeSourceProjectiveBoundaryJetSynthesis_energy_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/CompletedNativeChiralBoundaryJetTransportAudit.lean:19:0: Oriented Green source dependency closure checked: 5218 declarations
+info: CarrySelfAdjointOperator/CompletedNativeChiralBoundaryJetTransportAudit.lean:23:0: Even-boundary closure checked without downstream consumers: 5599 declarations
+Build completed successfully (9402 jobs).

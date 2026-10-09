@@ -1,0 +1,70 @@
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:15:0: 'CarrySelfAdjointOperator.ProjectiveValve.not_c3_rawMomentEquation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:16:0: 'CarrySelfAdjointOperator.ProjectiveValve.not_c3_rawGreenMomentKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:17:0: 'CarrySelfAdjointOperator.ProjectiveValve.not_c3_rawHPCarrierCertificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:18:0: 'CarrySelfAdjointOperator.canonicalBR2CarryAmplitudeRatio_eq_carryAmplitude' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:19:0: 'CarrySelfAdjointOperator.canonicalBR2CarryAmplitudeRatio_pow_eq_carryAmplitude' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:20:0: 'CarrySelfAdjointOperator.canonicalBR2CarryAmplitudeRatio_pow_sq_eq_carryMass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:21:0: 'CarrySelfAdjointOperator.canonicalCarryGreenKernel_eq_depthAmplitude' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:22:0: 'CarrySelfAdjointOperator.canonicalCarryGreenKernel_sq_eq_depthMass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:23:0: 'CarrySelfAdjointOperator.canonicalCarryTfvd_inner_eq_fourChannel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:24:0: 'CarrySelfAdjointOperator.ProjectiveValve.canonicalProjectiveCarryGreenMap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:25:0: 'CarrySelfAdjointOperator.ProjectiveValve.canonicalProjectiveCarryGreenMap_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:26:0: 'CarrySelfAdjointOperator.ProjectiveValve.projectiveIncidenceRawJet_canonicalCarryGreen' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:27:0: 'CarrySelfAdjointOperator.ProjectiveValve.realHPCarrierCertificate_of_canonicalCarryGreenMomentEquation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:28:0: 'CarrySelfAdjointOperator.carryVerticalL2UnilateralShift_add_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:29:0: 'CarrySelfAdjointOperator.carryVerticalL2UnilateralShift_inner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:30:0: 'CarrySelfAdjointOperator.carryVerticalL2WeightedGreen_unilateralShift' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:31:0: 'CarrySelfAdjointOperator.carryVerticalL2UnilateralShift_single_value' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:32:0: 'CarrySelfAdjointOperator.br2C3VerticalState_succ_eq_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:33:0: 'CarrySelfAdjointOperator.br2C3CausalResponse_succ_eq_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:34:0: 'CarrySelfAdjointOperator.not_br2C3CausalResponse_coefficientEquation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:35:0: 'CarrySelfAdjointOperator.ProjectiveValve.not_canonicalProjectiveCarryGreenMomentEquation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ProjectiveValveMomentFrontierAudit.lean:37:0: 'CarryGeometry.arithmeticCarryUniversality' depends on axioms: [propext, Classical.choice, Quot.sound]
+ℹ [10077/10079] Replayed CarrySelfAdjointOperator.CompletedNativeChiralReturnLinearizationObstruction
+info: CarrySelfAdjointOperator/CompletedNativeChiralReturnLinearizationObstruction.lean:205:4: Try this:
+  [apply] ring_nf
+
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+✔ [10078/10079] Built CarrySelfAdjointOperator (5.8s)
+Build completed successfully (10079 jobs).

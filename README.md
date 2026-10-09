@@ -1899,3 +1899,22 @@ margin or dimension-uniform radial radius. The analytic problem of transferring
 this limiting face to arbitrary-dimensional finite-step storage remains
 separate; its crosses and complete remainder are retained.
 See [the minimal boundary gate audit](docs/EVEN_BOUNDARY_STIELTJES_MINIMAL_GATE_AUDIT.md).
+
+
+### Surgical jet-sector positivity transport — 2026-10-09
+
+`nativeSourceProjectiveBoundaryJetSynthesis` combines the EXISTING completed
+projective/chiral difference jets with the inherited raw boundary phases.
+Its polarized pairing retains all finite-step crosses for independent inputs.
+`nativeSourceProjectiveBoundaryJetSynthesis_energy_tendsto` proves, all-order,
+`2*(norm(J_plus)^2 - norm(J_minus)^2) -> E_(2n)` after full synthesis.
+This is a signed geometric transport, without a positivity premise.
+
+Status: `PASS_COMPLETE_CHIRAL_JET_BOUNDARY_TRANSPORT`;
+positivity remains `PARTIAL_JET_RESTRICTED_CHIRAL_DOMINANCE`.
+The first sign seam is dominance on the actual finite even/odd jet sectors.
+A nonvanishing limiting gap is still needed for strictness; finite strict
+inequalities alone can have zero limit. The historical cumulative/Naimark
+colligation is not identified with these chiral channels by any current theorem.
+No old C3 positive Gram is repaired or fitted, and no height operator is rebuilt.
+See [the surgical source audit](docs/SURGICAL_TFVD_CHIRAL_POSITIVITY_TRANSPORT_AUDIT.md).
