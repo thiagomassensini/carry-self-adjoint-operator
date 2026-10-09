@@ -1,0 +1,9 @@
+import CarrySelfAdjointOperator.CompletedNativeChiralEvenBoundaryHeightHandoff
+import CarrySelfAdjointOperator.CompletedNativeChiralEvenBoundaryAudit
+
+/-! Downstream consumer only: its dependency on the old height construction is
+intentional and is never used as a proof of the upstream strict sign. -/
+namespace CarrySelfAdjointOperator
+#assert_prime_depth_source_axioms nativeGeometry_to_finiteHeight_chain_of_evenBoundary
+#print axioms nativeGeometry_to_finiteHeight_chain_of_evenBoundary
+end CarrySelfAdjointOperator

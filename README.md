@@ -1874,3 +1874,28 @@ Status: `PASS_SOURCE_BOUNDARY_COEFFICIENT_PROVENANCE_ALL_ORDER`;
 all-order source boundary positivity remains open, separately from the
 already-proved fixed-dimension relative-control mechanism.
 See [the reverse source-first storage audit](docs/CHIRAL_STORAGE_ALL_ORDER_REVERSE_SOURCE_AUDIT.md).
+
+
+### Minimal even-boundary gate to the existing height chain — 2026-10-08
+
+`nativeSourceFiniteBoundaryEnergy_even_split` now proves the whole finite
+limiting-face parity decomposition, including every ordered cross:
+`E_(2n) = 4 * (Q_g(y) + Q_shifted_g(z))`, with the inherited phases
+`y_i = (-1)^i x_(2i)` and `z_i = (-1)^i x_(2i+1)`.
+The signed reindexing is invertible; no metric or operator is changed.
+
+`nativeSourceEvenBoundary_positive_iff_stieltjes` proves that strict positivity
+of these raw even faces for EVERY `n >= 1` and nonzero complex input is exactly
+`CanonicalCompletedNativeStieltjesPositivity`. The canonical sequence enters
+only after the source-first split, through the existing uniqueness theorem.
+`nativeGeometry_to_finiteHeight_chain_of_evenBoundary` feeds that same raw
+inequality to the OLD camera/Jacobi/height capstone. This handoff is conditional:
+the all-order raw strict sign remains open. It is not supplied by the existence
+of the old operator machinery.
+
+Status: `PASS_EVEN_BOUNDARY_STIELTJES_EQUIVALENCE`;
+`OPEN_EVEN_BOUNDARY_STRICT_SIGN_ALL_ORDER`. Route A needs no quantitative
+margin or dimension-uniform radial radius. The analytic problem of transferring
+this limiting face to arbitrary-dimensional finite-step storage remains
+separate; its crosses and complete remainder are retained.
+See [the minimal boundary gate audit](docs/EVEN_BOUNDARY_STIELTJES_MINIMAL_GATE_AUDIT.md).

@@ -1,0 +1,22 @@
+'CarrySelfAdjointOperator.nativeSourceFiniteBoundaryEnergy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceFiniteBoundaryEnergy_eq_coefficient_sum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceFiniteBoundaryEnergy_even_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceEvenBoundaryPhase_fromParity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceOddBoundaryPhase_fromParity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceBoundaryFromParity_phases' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceBoundaryPhase_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+Oriented Green source dependency closure checked: 5228 declarations
+'CarrySelfAdjointOperator.nativeSourceEvenBoundary_positive_iff_stieltjes' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Even-boundary closure checked without downstream consumers: 5082 declarations
