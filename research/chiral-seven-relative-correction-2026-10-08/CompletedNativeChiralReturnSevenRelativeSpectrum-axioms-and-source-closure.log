@@ -1,0 +1,14 @@
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenFirstCorrectionMatrix' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenParityCoordinates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.nativeSourceSevenBoundaryMatrix_quadratic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenFirstCorrectionMatrix_quadratic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenOddCouplingCofactor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenFirstCorrection_pencil_det' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 5369 declarations

@@ -1,0 +1,20 @@
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundary_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedBoundaryEnergy_smul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedStorage_smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedStorage_eventually_relative_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_sevenSample_eventually_relative_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.radialSevenRegularizedStorage_positive_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.storage_one_sevenSample_eventually_relative_sandwich' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 5553 declarations

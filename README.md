@@ -1831,3 +1831,25 @@ bash scripts/audit.sh
 The audit rejects `sorry`, checks the theorem surface, and reports the axioms
 used by the exported results. GitHub Actions builds the exact dependency
 checkout recorded by the repository.
+
+
+### Fixed dimension and the complete relative storage correction — 2026-10-08
+
+The new relative-control checkpoint distinguishes `forall N, exists h_N`
+from the stronger `exists h0, forall N`. Positivity at every finite order
+requires only the former. No dimension-uniform radius is assumed.
+For N=7, `storage_one_sevenSample_eventually_relative_control` controls the
+COMPLETE finite-step correction, including all crosses and the entire
+analytic remainder, by any prescribed `eta * E7`. The corresponding
+sandwich retains `(1-eta) * E7` and bounds storage above by `(1+eta) * E7`.
+`fixedFiniteQuadratic_positive_radius` provides the fixed-dimension
+analytic mechanism once that dimension's source margin is certified.
+It does not certify the still-open source margins in arbitrary dimension.
+
+`radialSevenFirstCorrection_relative_spectrum` also computes the exact
+source-derived first-correction pencil: five zero modes and two opposite
+roots `+kappa7`, `-kappa7`. This analyzes the EXISTING boundary energy;
+it creates no fitted metric, moment Gram or new spectral operator.
+The next gate is the N-indexed complete boundary chart and each dimension's
+raw-source coercivity. A uniform-in-N radius is a distinct stronger problem.
+See [the relative-correction and spectrum audit](docs/CHIRAL_RETURN_SEVEN_RELATIVE_CORRECTION_SPECTRUM_AUDIT.md).

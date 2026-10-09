@@ -1,0 +1,7 @@
+'CarrySelfAdjointOperator.fixedFiniteQuadratic_relative_control' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.fixedFiniteQuadratic_positive_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+Oriented Green source dependency closure checked: 2591 declarations

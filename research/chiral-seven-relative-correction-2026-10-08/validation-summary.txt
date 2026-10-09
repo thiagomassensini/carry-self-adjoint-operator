@@ -1,0 +1,15 @@
+Initial main: 45cf224813a4a786832ae7f14d755860fc48452b
+Remote validation host: llm
+new-builds: exit 0; log /tmp/chiral-relative-new-builds.log
+FiniteQuadraticRelativeControl-kernel: exit 0; log /tmp/chiral-relative-FiniteQuadraticRelativeControl-kernel.log
+CompletedNativeChiralReturnSevenRelativeControl-kernel: exit 0; log /tmp/chiral-relative-CompletedNativeChiralReturnSevenRelativeControl-kernel.log
+CompletedNativeChiralReturnSevenRelativeSpectrum-kernel: exit 0; log /tmp/chiral-relative-CompletedNativeChiralReturnSevenRelativeSpectrum-kernel.log
+CompletedNativeChiralReturnSevenRelativeRadius-kernel: exit 0; log /tmp/chiral-relative-CompletedNativeChiralReturnSevenRelativeRadius-kernel.log
+full-build: exit 0; log /tmp/chiral-relative-full-build.log
+umbrella-audit-build: exit 0; log /tmp/chiral-relative-umbrella-audit-build.log
+static-audit: exit 0; log /tmp/chiral-relative-static-audit.log
+kernel-audit: exit 0; log /tmp/chiral-relative-kernel-audit.log
+whitespace: exit 0; log /tmp/chiral-relative-whitespace.log
+placeholder scan: clean
+Capstones: only propext, Classical.choice, Quot.sound or subset
+Source dependency closure: canonical moments, HP/Stieltjes, Hankel, Jacobi/height, Herglotz, BR2 rejected
