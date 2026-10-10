@@ -73,10 +73,16 @@ modelo especificado; **EXPERIMENTAL** = evidência numérica, não prova geral.
 
 ### C. Mapa dos módulos
 
+Último checkpoint científico integrado à `main`: [PR #67](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/67),
+merge `2a7840e6257512925f436cf9ad02e3a749bf232f`; conteúdo validado `223cf24828e0cd6c2a45859543f64bffa2f1e0f1`.
+31 teoremas/41 declarações da conexão por log-gaps e do transporte seeded,
+com auditoria oficial no llm e source integrado idêntico ao validado.
+GitHub Actions teve startup_failure sem jobs; merge normal, sem bypass.
+
 Checkpoint científico material–quiral: `efa50ea61d59efa6584bea572e624d26d95f1d39`,
 [PR #66](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/66):
 15 teoremas/17 declarações, com identidade assinada e dois no-gos precisos.
-Último checkpoint científico integrado à `main`: merge `25865cf08bfddb90723fc80100d77a93d411f33e`.
+Checkpoint anterior integrado à `main`: merge `25865cf08bfddb90723fc80100d77a93d411f33e`.
 PR #66 confirmado MERGED; source Lean idêntico ao conteúdo auditado no llm.
 
 

@@ -468,3 +468,10 @@ theorem sourceCoordinatePair_jet_signed_defect_expansion (n k r s : ℕ)
 - Nenhum linter foi desabilitado. Não foram usados experimentos numéricos: canários 2/4/6 são especializações dos teoremas gerais exatos.
 
 Logs integrais: `/tmp/log-gap-axioms.log`, `/tmp/log-gap-full-audit.log`. Publicação, commits e main são confirmados no checkpoint final abaixo.
+
+## Integração confirmada
+
+[PR #67](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/67) MERGED por procedimento normal em `2a7840e6257512925f436cf9ad02e3a749bf232f`.
+Commit científico validado: `223cf24828e0cd6c2a45859543f64bffa2f1e0f1`. Main local e origin/main confirmadas no merge; ancestralidade e diff vazio dos módulos Lean, scripts, registros e pins verificados. O commit documental seguinte somente registra esse estado no índice.
+
+Runs Actions 38091661128 e 38091655602 terminaram em startup_failure. A API confirmou zero jobs no primeiro; gh run view aponta possível problema de workflow, sem diagnóstico específico. Não inferimos billing nem falha Lean, nem declaramos Actions aprovadas. Nenhuma proteção foi contornada.
