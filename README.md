@@ -1,3 +1,157 @@
+# Carry Self-Adjoint Operator
+
+## START HERE — Estado atual da teoria
+
+Mapa canônico de retomada, atualizado em 10/10/2026. **Não escalarizar antes
+da síntese completa.** Carry é a relação de compatibilidade entre decomposições
+posicionais. A investigação procura uma realização fiel da fonte completada,
+com seus canais originais, antes das consequências de momentos e alturas.
+
+### A. Visão estrutural
+
+```text
+Geometria posicional do Carry
+        ↓
+Relações multibase / câmeras
+        ↓
+Ledger relacional de log(n)
+        ↓
+Relógio material e jets all-order
+        ↓
+Síntese vetorial das câmeras
+        ↓
+Green / Parseval
+        ↓
+TFVD enriquecido + retorno de bordo
+        │ COSTURA AINDA ABERTA
+        ↓
+Carrier projetivo / quiral completado
+        ↓
+Forma assinada da fonte original
+        │ SINAL ALL-ORDER ABERTO
+        ↓
+Realizações de momentos e operadores de alturas
+```
+
+As setas representam uma ordem de investigação; os teoremas abaixo delimitam
+as passagens realizadas e seus carriers. Em particular, a linha bruta de câmera,
+os samples Dirichlet, os slopes TFVD e os coeficientes de jets radiais têm
+índices e normalizações distintos. O kernel relacional de divisibilidade não
+define sozinho o relógio. A sequência normalizada de momentos e sua
+universalidade analítica são conhecidas; uma realização **positiva all-order
+da fonte física assinada** continua aberta.
+
+### B. Quadro de resultados
+
+**PROVADO** = kernel-checked, sem hipóteses matemáticas novas; **CONDICIONAL** =
+hipóteses explícitas; **ABERTO** = obrigação pendente; **NO-GO** = obstrução no
+modelo especificado; **EXPERIMENTAL** = evidência numérica, não prova geral.
+
+| Status | Resultado efetivo | Fonte / limite |
+|---|---|---|
+| PROVADO | Ledger completo de vozes/multiplicidades e palavras ordenadas sintetiza `log(n)^r` | `relationalWordJetSynthesis_eq_materialJet`; não identifica vozes primas com labels de câmera |
+| PROVADO | Pairing material depende de `r+s`; torre cresce sob o relógio existente | `materialJet_pairing`, `materialClock_maps_jetTower`; Hilbert finito |
+| PROVADO | Gram físico bruto = cutoff × Gram periódico + resíduo literal | `materialCameraPairing_zero_eq_periodicGram_add_residue`; igualdade sem resíduo só no cutoff alinhado |
+| PROVADO | Jets finitos transportados isometricamente a Green/Parseval | `finiteParsevalMaterialEmbedding_allOrder_step`; domínio do operador logarítmico verificado |
+| PROVADO | Slopes materiais reproduzem coeficientes TFVD independentes; canais ordinário/log convergem juntos | `materialTfvdEnrichedTaylorPrefix_tendsto`; cada ordem fixa |
+| PROVADO | Resposta Green **mais** retorno de bordo converge ao prefixo vetorial material | `materialTfvdTaylorPrefix_Green_response_boundary_tendsto`; câmera suportada, cutoff e ordem fixos |
+| PROVADO | Síntese projetiva = `(Incident(Ux), Returned(Ux))`; energia original assinada | `nativeSourceProjectiveBoundaryJetSynthesis_eq_originalSource`, `...energy_eq_storage`; controle eventual em dimensão fixa |
+| PROVADO | Canário: ambas as pernas e todos os crosses retidos; comutador material–`U` calculado em toda ordem | [MaterialChiralCoordinateCanary](CarrySelfAdjointOperator/MaterialChiralCoordinateCanary.lean); reutilização direta de coordenadas, não costura física certificada |
+| NO-GO | Reutilizar a mesma coordenada como posição material e ordem radial não faz `U` entrelaçar o relógio | `sourceCoordinateInput_two_eventually_not_clock_intertwiner`; chart regular de dimensão 2, defeito já na ordem 1 |
+| CONDICIONAL | Jacobi/altura independentes da câmera após igualdade dos momentos | `completedNativeCamera_finiteJacobi_independent`; positividade/realização exigidas separadamente |
+| ABERTO | Costura física enriquecida com o carrier quiral completado | `OPEN_MATERIAL_TO_COMPLETED_CHIRAL_SOURCE_SEWING` |
+| ABERTO | Sinal estrito da energia original em toda dimensão | `OPEN_SOURCE_BOUNDARY_POSITIVITY_ALL_ORDER`; não segue da costura nem do Gram físico |
+
+### C. Mapa dos módulos
+
+Checkpoint científico material–quiral: `efa50ea61d59efa6584bea572e624d26d95f1d39`,
+[PR #66](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/66):
+15 teoremas/17 declarações, com identidade assinada e dois no-gos precisos.
+O SHA do merge e a confirmação de integração podem ser consultados nessa PR.
+
+
+O [PR #65](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/65)
+foi integrado à `main` pelo merge `0f6b063ef9cfa75f698b900bad277a3a04519110`,
+incluindo o HEAD `1010999a0b7898bc150692f543bf22af1d12bd25`: 50 teoremas,
+70 declarações públicas auditadas. Auditoria oficial reexecutada no `ssh llm`;
+GitHub Actions teve `startup_failure` sem jobs, não uma execução Lean aprovada.
+
+| Módulo | Função e dependência principal |
+|---|---|
+| [RelationalMaterialClockAllOrder](CarrySelfAdjointOperator/RelationalMaterialClockAllOrder.lean) | Palavra completa de vozes relacionais → potências do relógio; ledger `MultibaseCameraLogTfvdChannelTransport` |
+| [FiniteMultibaseMaterialJetTower](CarrySelfAdjointOperator/FiniteMultibaseMaterialJetTower.lean) | Rows literais, pairings, crosses, torre e defeito Gram; `FiniteMaterialClockJets` e Gram bruto |
+| [FiniteMultibaseMaterialBracketTransport](CarrySelfAdjointOperator/FiniteMultibaseMaterialBracketTransport.lean) | Máscaras diagonais e síntese seed/centros; fibras C2 somente onde demonstradas |
+| [FiniteMaterialCameraGreenTransport](CarrySelfAdjointOperator/FiniteMaterialCameraGreenTransport.lean) | Embedding no Green State e Parseval existentes, isometria/domínio/clock; no-go crítico |
+| [FiniteMaterialTfvdJetTransport](CarrySelfAdjointOperator/FiniteMaterialTfvdJetTransport.lean) | Diferenças de samples, fases/fatoriais, TFVD enriquecido, Green + bordo; Taylor completion independente |
+| [FiniteMultibaseMaterialJetTransportAudit](CarrySelfAdjointOperator/FiniteMultibaseMaterialJetTransportAudit.lean) | `#print axioms` e guard de todas as 70 declarações; checker de cobertura |
+| [MaterialChiralCoordinateCanary](CarrySelfAdjointOperator/MaterialChiralCoordinateCanary.lean) | Canários 0/1, pair original assinado e defeito all-order do chart `U`; não define outro relógio |
+
+Detalhes: [transporte material all-order](docs/MULTIBASE_MATERIAL_ALL_ORDER_TRANSPORT.md)
+e [auditoria material–quiral](docs/MATERIAL_CHIRAL_SEWING_CANARY.md).
+
+### D. Resultados all-order anteriores
+
+- [`completedNativeCameraUniversality`](CarrySelfAdjointOperator/CompletedNativeCameraUniversality.lean): normalização head + tail exato dá a característica comum e seus jets. Igualdade escalar não fornece realização vetorial positiva.
+- [`AllOrderLogJet.nativeMoment_eq_finiteFactors_add_remainder`](CarrySelfAdjointOperator/AllOrderLogJetLedger.lean): fatores finitos e resto explícito; não eliminar o resto analítico.
+- [`c2FiniteCamera_allOrderReadout_eq_seed_add_fiberBracketSum`](CarrySelfAdjointOperator/C2LiteralCameraAllOrderJetCrosswalk.lean): crosswalk literal C2, seed e fibras `(core,depth)`; não generalizar silenciosamente a todas as bases.
+- [`ChiralReturn.radialEulerPower_green_boundary`](CarrySelfAdjointOperator/CompletedNativeChiralReturnGreenBoundaryTower.lean): identidade Green assinada com os crosses radiais; verificar a assinatura no módulo.
+- [`ChiralReturn.storage_one_eq_odd_green_tower_and_remainder`](CarrySelfAdjointOperator/CompletedNativeChiralReturnMixedSourceJets.lean): torre Green ímpar **mais resto**, com regularidade e fatores originais.
+
+### E. Obstruções fundamentais e seus escopos
+
+1. `finiteMaterialGradient_not_injective`: o gradiente finito perde o canal
+   constante. `sourceCoordinatePair_two_eventually_not_factor_through_gradient`
+   mostra que o par quiral completo do canário também não passa só pelos slopes.
+   `finiteMaterial_seed_gradient_injective` recupera a informação
+   mantendo o seed; isso não completa automaticamente a fonte analítica.
+2. `finiteParsevalMaterialEmbedding_critical_no_limit`: no modelo nodal crítico,
+   a energia isometricamente transportada é a soma harmônica divergente.
+   Slopes TFVD têm outro limite já provado; não renormalizar a métrica nodal.
+3. [`SeparatedCenterClockObstruction`](https://github.com/thiagomassensini/geometry-of-numbers):
+   nenhum bloco limitado fixo de centro/pernas contém fielmente todas as frequências
+   logarítmicas dos cutoffs; distinguir a fonte viva do pin usado pelo projeto.
+4. O span periódico original de seis câmeras não é invariante pela segunda
+   diferença simétrica: no-go finito no [PR #15 Weyl](https://github.com/thiagomassensini/native-carry-spectral-weyl/pull/15).
+   Esse PR não é uma dependência integrada aqui; manter o complemento em qualquer
+   compressão. Não alterar pins para fingir disponibilidade.
+5. Um Gram físico positivo não certifica a forma quiral assinada. Seu valor é
+   `2*(‖J₊x‖²-‖J₋x‖²)`, não uma soma de normas.
+6. O canário `U` direto não comuta com o relógio material já na dimensão 2.
+   O defeito é literal e não é descartado como bordo: o mapa precisa de uma
+   verdadeira relação entre posição material e ordem radial.
+
+### F. Próximo gate e ordem de pesquisa
+
+**OPEN_MATERIAL_TO_COMPLETED_CHIRAL_SOURCE_SEWING**: construir, a partir da
+geometria, o mapa dos estados materiais/seed/slopes/Green/TFVD aos coeficientes
+dos jets radiais completados. Preservar máscaras, todas as câmeras, ambas as
+pernas, quadraturas, fases, fatoriais, amplitudes, correções e bordo. A simples
+reutilização do vetor `Fin (2*n)` está refutada como entrelaçamento dinâmico.
+O comutador all-order no canário é uma obrigação explícita para um candidato
+futuro; não fechar o gate com igualdade de readouts.
+
+Depois, e **independentemente**, **OPEN_SOURCE_BOUNDARY_POSITIVITY_ALL_ORDER**:
+demonstrar `∀ n≥1, ∀ x≠0, E_(2*n)(x)>0` para a fonte original, sem HP,
+positividade Hankel ou medida postuladas. Resultados positivos em um setor
+finito não são uniformes em toda dimensão.
+
+### Retomada operacional e atualização permanente
+
+Servidor exclusivo: `ssh llm`; repo `/home/thlinux/carry-self-adjoint-operator`.
+Manter privado. Ler instruções aplicáveis, status, branch, HEAD e pins antes de
+editar. Executar target `--wfail`, audits de axiomas, `bash scripts/static_audit.sh`,
+`bash scripts/audit.sh` e `git diff --check`. Publicar e integrar por procedimento
+normal quando permitido; registrar separadamente falhas de GitHub Actions.
+
+Toda formalização relevante atualiza **este índice no mesmo conjunto de commits**:
+nome exato, conteúdo, hipóteses, módulo, efeito sobre gates e próxima pendência.
+Detalhes e assinaturas extensas ficam em `docs/`. A história abaixo foi preservada;
+referências históricas à “current main” devem ser lidas com seus checkpoints.
+
+---
+
+## Histórico preservado
+
 **Consolidação de 2/10/2026:** a cadeia C2/Green/Parseval e os módulos finitos
 recuperados estão descritos no [índice de recuperação](docs/RECOVERY_2026-10-02.md),
 com hashes, limites matemáticos e comandos de auditoria.

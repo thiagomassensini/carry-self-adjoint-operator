@@ -5,6 +5,10 @@ cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
 
+# Material-to-chiral coordinate canaries and full public axiom guard.
+lake build --wfail CarrySelfAdjointOperator.MaterialChiralCoordinateCanaryAudit
+lake env lean CarrySelfAdjointOperator/MaterialChiralCoordinateCanaryAudit.lean
+
 # Material all-order vector transport and exact public axiom surface.
 lake build --wfail CarrySelfAdjointOperator.FiniteMultibaseMaterialJetTransportAudit
 lake env lean CarrySelfAdjointOperator/FiniteMultibaseMaterialJetTransportAudit.lean
