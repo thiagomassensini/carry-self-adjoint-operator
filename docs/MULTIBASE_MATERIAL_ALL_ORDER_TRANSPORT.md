@@ -597,3 +597,11 @@ theorem materialTfvdTaylorPrefix_Green_response_boundary_tendsto
       Filter.atTop (nhds (materialTfvdTaylorPrefix N r))
 
 ```
+
+## Publicação e situação da main
+
+Implementação completa validada: `78a30bd1f7995ad6a41a82081399c2113fb6cb08`, após o commit inicial `e4750c7a4a6c729fe03e8b12053a70d279f7cd5e`. Branch publicada: `agent/multibase-material-jet-transport`. PR: [#65](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/65).
+
+A `main` permanece em `1645a7c439efe909158d451402ce9408267d1a6e`. A execução [38054583802](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38054583802), referente ao SHA completo validado, terminou em `startup_failure` antes de criar jobs. Os runs anteriores 38053905940 e 38053903086 tiveram o mesmo estado. A API identifica o caminho sintético `BuildFailed`, workflow sem nome/deletado; `gh run view` indica possível problema de workflow, sem expor diagnóstico específico. Não há justificativa para atribuir esta falha a billing nem à prova Lean. O detalhe causal não é disponibilizado nas APIs consultadas.
+
+Nenhuma integração foi forçada: as verificações GitHub não chegaram a executar. A branch e o PR mantêm toda implementação publicada. Os dois arquivos untracked preexistentes C2OddTfvdTransport.lean e C2OddTfvdTransportAudit.lean permanecem intocados. Nenhum pin/toolchain foi alterado, nem worktree novo deixado para trás. O log integral da auditoria realizada no llm acompanha esta entrega.
