@@ -67,7 +67,8 @@ modelo especificado; **EXPERIMENTAL** = evidência numérica, não prova geral.
 Checkpoint científico material–quiral: `efa50ea61d59efa6584bea572e624d26d95f1d39`,
 [PR #66](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/66):
 15 teoremas/17 declarações, com identidade assinada e dois no-gos precisos.
-O SHA do merge e a confirmação de integração podem ser consultados nessa PR.
+Último checkpoint científico integrado à `main`: merge `25865cf08bfddb90723fc80100d77a93d411f33e`.
+PR #66 confirmado MERGED; source Lean idêntico ao conteúdo auditado no llm.
 
 
 O [PR #65](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/65)

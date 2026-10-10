@@ -277,3 +277,7 @@ Conteúdo científico validado: `efa50ea61d59efa6584bea572e624d26d95f1d39`, no [
 Os runs 38085882105 e 38085880048 terminaram em startup_failure antes de jobs.
 Não são builds Lean de Actions. O procedimento de integração usa merge normal,
 sem bypass; o SHA final de main é registrado na entrega após verificar o merge.
+
+## Integração confirmada
+
+PR #66 MERGED por procedimento normal em `25865cf08bfddb90723fc80100d77a93d411f33e`. Main local e origin/main confirmadas nesse SHA após pull --ff-only. O diff dos módulos Lean, scripts, registros, pins e toolchain entre o commit científico efa50ea e a main integrada é vazio. O checkpoint documental seguinte registra este merge, sem mudanças matemáticas. PR #65 permanece integrado pelo merge 0f6b063. A ausência de jobs Actions foi mantida separada da validação no llm.
