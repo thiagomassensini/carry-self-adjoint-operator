@@ -1296,6 +1296,23 @@
     {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.relationalWordJetSynthesis"},
     {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.relationalWordJetSynthesis_eq_materialJet"},
     {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.relationalWordJet_cameraMaterialAction"},
-    {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.relationalCameraWordJet_synthesis"}
+    {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.relationalCameraWordJet_synthesis"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinateInput"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinatePair"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinatePair_eq_existingSynthesis"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinatePair_injective"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinatePair_two_not_factor_through_gradient"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinatePair_two_eventually_not_factor_through_gradient"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinatePair_signed_pairing"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinatePair_energy_eq_storage"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinateInput_materialJet_commutator"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinateInput_order_zero"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.projectiveChiralDifferenceJet_zero"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.projectiveChiralDifferenceJet_one"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinateInput_two_zero"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinateInput_two_one"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinateInput_two_clock_defect"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinateInput_two_not_clock_intertwiner"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialChiralCanary.sourceCoordinateInput_two_eventually_not_clock_intertwiner"}
   ]
 }
