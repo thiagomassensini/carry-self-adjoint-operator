@@ -1280,6 +1280,8 @@
     {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.finiteMaterialTaylorGradient_apply"},
     {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.materialTfvdTaylorPrefix"},
     {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.materialTfvdTaylorPrefix_eq_canonical"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.materialTfvdTaylorPrefix_eq_geometricGreenTaylor"},
+    {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.materialTfvdTaylorPrefix_Green_response_boundary_tendsto"},
     {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.materialTfvdTaylorPrefix_tendsto"},
     {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.materialTfvdEnrichedTaylorPrefix"},
     {"qualified": "CarrySelfAdjointOperator.MaterialCameraJets.materialTfvdEnrichedTaylorPrefix_tendsto"},

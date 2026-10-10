@@ -266,9 +266,9 @@ carriers originais. Hankel, Jacobi, alturas e HP não são conclusões deste PR.
 
 ## Validação
 
-Os cinco módulos novos têm 48 teoremas públicos, 18 definições públicas e
+Os cinco módulos novos têm 50 teoremas públicos, 18 definições públicas e
 duas abreviações públicas.
-A auditoria dedicada lista todas as 68 declarações com `#print axioms` e um
+A auditoria dedicada lista todas as 70 declarações com `#print axioms` e um
 guard fundacional que só aceita propext, Classical.choice e Quot.sound.
 O registro público existente foi estendido, e um checker verifica a cobertura
 exata deste novo namespace. Root e Audit importam a superfície nova;
@@ -291,12 +291,12 @@ bash scripts/audit.sh
 git diff --check
 ```
 
-Resultado observado no llm: o target TFVD com seus pré-requisitos passou
-(9157 jobs); a superfície relacional e a auditoria dedicada passaram
-(9175 jobs); o build do root público passou (10088 jobs), seguido de Audit
-(10227 jobs), BR2Audit, OrderAudit e RecoveredC2GreenAudit.
+Resultado observado no llm: o target relacional final, incluindo os dois
+novos transportes resposta/bordo, passou (9174 jobs); a auditoria dedicada
+passou (9175 jobs). O script oficial completo validou o root público, Audit,
+BR2Audit, OrderAudit e RecoveredC2GreenAudit.
 O script oficial terminou com `kernel audit passed`. O checker confirmou
-68 declarações/48 teoremas e o guard explícito não encontrou axiomas fora
+70 declarações/50 teoremas e o guard explícito não encontrou axiomas fora
 do conjunto fundacional permitido. O scan não encontrou trust escapes.
 Os comandos com `--wfail` passaram, e `git diff --check` passou.
 Mensagens informativas antigas de ring não são warnings.
@@ -564,5 +564,36 @@ theorem relationalCameraWordJet_synthesis {N : ℕ} (b M r : ℕ)
     (x : FiniteRealSpectralHilbert N) :
     relationalWordJetSynthesis N r (relationalWordJet r (cameraMaterialAction b M x)) =
       materialJet r (cameraMaterialAction b M x)
+
+```
+
+## Ligação adicional: resposta Green e retorno de bordo
+
+`materialTfvdTaylorPrefix_eq_geometricGreenTaylor` identifica o vetor material com o prefixo Taylor geométrico definido independentemente. `materialTfvdTaylorPrefix_Green_response_boundary_tendsto` transporta a resposta Green **mais seu retorno de bordo literal** ao mesmo vetor, em toda ordem fixa e para cada câmera suportada. O resultado reutiliza `canonicalCompletedC3DirichletGradient_response_add_boundary_rawJet_tendsto`; não descarta o bordo.
+
+Neste crosswalk, `N = finiteCameraWindow b M + 1` conta arestas, e a ação material usa `N+1` amostras. Esse carrier difere da linha bruta de câmera com `finiteFamilyWindow`: nenhuma igualdade entre seus Grams é inferida. A forma quiral assinada da fonte completada continua exigindo o transporte enriquecido indicado acima.
+
+```lean
+theorem materialTfvdTaylorPrefix_eq_geometricGreenTaylor (b M r : ℕ) :
+    let N := NativeCarrySpectralWeyl.Limits.finiteCameraWindow b M + 1
+    materialTfvdTaylorPrefix N r =
+      finiteSlopeCoefficientSynthesisLinearMap N
+        (canonicalCompletedC3DirichletGradientTaylorCoefficientPrefix b M r)
+
+theorem materialTfvdTaylorPrefix_Green_response_boundary_tendsto
+    {b : ℕ} (hb : FiniteNativeCarryOperator.Camera.IsSupported b) (M r : ℕ) :
+    let N := NativeCarrySpectralWeyl.Limits.finiteCameraWindow b M + 1
+    Filter.Tendsto
+      (fun k : ℕ =>
+        completedGreenForwardDifferenceJet
+            (fun z => canonicalCompletedC3DirichletGradientBracketGreenResponse
+              b M (operatorHeightParameter z))
+            (canonicalGreenJetStep k) r +
+          finiteWeightedSlopeBoundaryReturnLinearMap
+              (canonicalBR2CarryAmplitudeRatio b)
+              (canonicalBR2CarryAmplitudeRatio_pos hb).le
+              (canonicalBR2CarryAmplitudeRatio_lt_one hb) N
+            (canonicalCompletedC3DirichletGradientCoefficientRawJet b M k r))
+      Filter.atTop (nhds (materialTfvdTaylorPrefix N r))
 
 ```
