@@ -21,6 +21,7 @@ python3 -m json.tool audit/br2-theorem-registry.json >/dev/null
 python3 -m json.tool audit/order-theorem-registry.json >/dev/null
 python3 scripts/check_material_camera_jet_registry.py
 python3 scripts/check_material_chiral_canary_registry.py
+python3 scripts/check_log_gap_connection_registry.py
 bash -n scripts/audit.sh scripts/static_audit.sh
 
 echo "static audit passed"

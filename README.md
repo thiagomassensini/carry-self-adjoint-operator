@@ -57,6 +57,15 @@ modelo especificado; **EXPERIMENTAL** = evidência numérica, não prova geral.
 | PROVADO | Resposta Green **mais** retorno de bordo converge ao prefixo vetorial material | `materialTfvdTaylorPrefix_Green_response_boundary_tendsto`; câmera suportada, cutoff e ordem fixos |
 | PROVADO | Síntese projetiva = `(Incident(Ux), Returned(Ux))`; energia original assinada | `nativeSourceProjectiveBoundaryJetSynthesis_eq_originalSource`, `...energy_eq_storage`; controle eventual em dimensão fixa |
 | PROVADO | Canário: ambas as pernas e todos os crosses retidos; comutador material–`U` calculado em toda ordem | [MaterialChiralCoordinateCanary](CarrySelfAdjointOperator/MaterialChiralCoordinateCanary.lean); reutilização direta de coordenadas, não costura física certificada |
+| [RelationalLogGapCommutator](CarrySelfAdjointOperator/RelationalLogGapCommutator.lean) | Interface linear fiel de U, identidade de potência, caminhos logarítmicos e suporte/nilpotência |
+| [SeededMaterialLogConnection](CarrySelfAdjointOperator/SeededMaterialLogConnection.lean) | Inversa nodal explícita, operador seed/arestas, produto all-order, crosswalk C3 e limite com seed |
+| [ChiralLogGapDefectTransport](CarrySelfAdjointOperator/ChiralLogGapDefectTransport.lean) | Síntese vetorial das arestas nas duas pernas e expansão assinada com todos os crosses |
+| [LogGapConnectionAudit](CarrySelfAdjointOperator/LogGapConnectionAudit.lean) | Guard e `#print axioms` de 41 declarações (31 teoremas), checker de cobertura |
+
+| PROVADO | Comutador operatorial all-order, log-gaps, contribuições por arestas e suporte estrito; matriz nilpotente em dimensão finita | `sourceCoordinateEnd_commutator_power`, `sourceCoordinateInput_commutator_edgeFlux`, `logCommutatorMatrix_nilpotent`; nilpotência não elimina energia assinada |
+| PROVADO | Equivalência seed + gradiente e operador explícito de arestas entrelaçam o relógio material | `materialSeedGradientEquiv`, `seededMaterialJet_intertwines`, `seededMaterialJet_eq_clock_power`; sem unitariedade ou inverso infinito |
+| PROVADO | Samples materiais dão os vetores C3 ordinário/log e os dois canais adjacentes; seed + TFVD enriquecido converge | `finiteDirichletSamples_mixedAdjacentClock`, `criticalSeededTfvdEnrichedTaylor_tendsto`; ordem fixa |
+| PROVADO | Defeito vetorial por arestas passa por incident/returned; pairing contém base, dois crosses e defeito–defeito | `sourceRadialPair_defect_eq_edgeSynthesis`, `sourceCoordinatePair_jet_signed_defect_expansion`; válido no candidato de coordenadas, não certifica origem física radial |
 | NO-GO | Reutilizar a mesma coordenada como posição material e ordem radial não faz `U` entrelaçar o relógio | `sourceCoordinateInput_two_eventually_not_clock_intertwiner`; chart regular de dimensão 2, defeito já na ordem 1 |
 | CONDICIONAL | Jacobi/altura independentes da câmera após igualdade dos momentos | `completedNativeCamera_finiteJacobi_independent`; positividade/realização exigidas separadamente |
 | ABERTO | Costura física enriquecida com o carrier quiral completado | `OPEN_MATERIAL_TO_COMPLETED_CHIRAL_SOURCE_SEWING` |
@@ -88,7 +97,8 @@ GitHub Actions teve `startup_failure` sem jobs, não uma execução Lean aprovad
 | [MaterialChiralCoordinateCanary](CarrySelfAdjointOperator/MaterialChiralCoordinateCanary.lean) | Canários 0/1, pair original assinado e defeito all-order do chart `U`; não define outro relógio |
 
 Detalhes: [transporte material all-order](docs/MULTIBASE_MATERIAL_ALL_ORDER_TRANSPORT.md)
-e [auditoria material–quiral](docs/MATERIAL_CHIRAL_SEWING_CANARY.md).
+e [auditoria material–quiral](docs/MATERIAL_CHIRAL_SEWING_CANARY.md), além da
+[conexão logarítmica e defeito relacional](docs/RELATIONAL_LOG_GAP_CONNECTION.md).
 
 ### D. Resultados all-order anteriores
 
@@ -128,8 +138,16 @@ geometria, o mapa dos estados materiais/seed/slopes/Green/TFVD aos coeficientes
 dos jets radiais completados. Preservar máscaras, todas as câmeras, ambas as
 pernas, quadraturas, fases, fatoriais, amplitudes, correções e bordo. A simples
 reutilização do vetor `Fin (2*n)` está refutada como entrelaçamento dinâmico.
-O comutador all-order no canário é uma obrigação explícita para um candidato
-futuro; não fechar o gate com igualdade de readouts.
+O comutador all-order já tem decomposição por arestas e transporte de seu
+defeito pelas duas pernas da fonte. Ainda falta a correspondência geométrica
+independente entre posição material e ordem/nó radial, incluindo completion e
+bordo; não fechar o gate com igualdade de readouts.
+
+Checkpoints desta conexão (31 teoremas/41 declarações):
+
+- **PASS_LOG_GAP_COMMUTATOR_DECOMPOSITION**: exato em toda ordem e dimensão finita, incluindo suporte e canários 2/4/6.
+- **PASS_SEEDED_MATERIAL_CLOCK_TRANSPORT**: equivalência e fórmula explícita entrelaçadas; C3 local e limite TFVD com seed comprovados. Nenhum inverso infinito limitado ou unitariedade inferidos.
+- **PASS_MATERIAL_CHIRAL_ENRICHED_SEWING**: **não obtido**. `OPEN_MATERIAL_TO_COMPLETED_CHIRAL_SOURCE_SEWING` continua aberto; o transporte de um defeito de coordenadas não identifica a fonte física.
 
 Depois, e **independentemente**, **OPEN_SOURCE_BOUNDARY_POSITIVITY_ALL_ORDER**:
 demonstrar `∀ n≥1, ∀ x≠0, E_(2*n)(x)>0` para a fonte original, sem HP,
