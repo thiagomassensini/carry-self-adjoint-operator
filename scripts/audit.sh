@@ -5,6 +5,10 @@ cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
 
+# Material all-order vector transport and exact public axiom surface.
+lake build --wfail CarrySelfAdjointOperator.FiniteMultibaseMaterialJetTransportAudit
+lake env lean CarrySelfAdjointOperator/FiniteMultibaseMaterialJetTransportAudit.lean
+
 # Check the observable quotient and native C3 clock/readout graph.
 lake build --wfail CarrySelfAdjointOperator.ObservableJetAudit
 
