@@ -5,6 +5,10 @@ cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
 
+# Relational log-gap connection, explicit seeded transport and signed defects.
+lake build --wfail CarrySelfAdjointOperator.LogGapConnectionAudit
+lake env lean CarrySelfAdjointOperator/LogGapConnectionAudit.lean
+
 # Material-to-chiral coordinate canaries and full public axiom guard.
 lake build --wfail CarrySelfAdjointOperator.MaterialChiralCoordinateCanaryAudit
 lake env lean CarrySelfAdjointOperator/MaterialChiralCoordinateCanaryAudit.lean
