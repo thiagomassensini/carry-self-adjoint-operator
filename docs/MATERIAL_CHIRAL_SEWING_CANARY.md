@@ -270,3 +270,10 @@ worktrees; os worktrees antigos foram apenas inventariados e preservados.
 - Não houve experimentos numéricos nesta etapa; o defeito e os no-gos são exatos e kernel-checked.
 
 Logs no llm: `/tmp/pr65-integration-audit.log`, `/tmp/material-chiral-canary-axioms.log`, `/tmp/material-chiral-full-audit.log`. Cópias integrais acompanham a entrega. Publicação e sincronização final registradas no checkpoint de entrega.
+
+## Checkpoint publicado
+
+Conteúdo científico validado: `efa50ea61d59efa6584bea572e624d26d95f1d39`, no [PR #66](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/66).
+Os runs 38085882105 e 38085880048 terminaram em startup_failure antes de jobs.
+Não são builds Lean de Actions. O procedimento de integração usa merge normal,
+sem bypass; o SHA final de main é registrado na entrega após verificar o merge.

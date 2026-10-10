@@ -64,6 +64,12 @@ modelo especificado; **EXPERIMENTAL** = evidência numérica, não prova geral.
 
 ### C. Mapa dos módulos
 
+Checkpoint científico material–quiral: `efa50ea61d59efa6584bea572e624d26d95f1d39`,
+[PR #66](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/66):
+15 teoremas/17 declarações, com identidade assinada e dois no-gos precisos.
+O SHA do merge e a confirmação de integração podem ser consultados nessa PR.
+
+
 O [PR #65](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/65)
 foi integrado à `main` pelo merge `0f6b063ef9cfa75f698b900bad277a3a04519110`,
 incluindo o HEAD `1010999a0b7898bc150692f543bf22af1d12bd25`: 50 teoremas,
