@@ -1354,6 +1354,23 @@
     {"qualified": "CarrySelfAdjointOperator.LogGapConnection.sourceCoordinateJetDefect_eq_edgeSynthesis"},
     {"qualified": "CarrySelfAdjointOperator.LogGapConnection.sourceRadialPair_defect_eq_edgeSynthesis"},
     {"qualified": "CarrySelfAdjointOperator.LogGapConnection.sourceCoordinatePair_jet_eq_base_add_defect"},
-    {"qualified": "CarrySelfAdjointOperator.LogGapConnection.sourceCoordinatePair_jet_signed_defect_expansion"}
+    {"qualified": "CarrySelfAdjointOperator.LogGapConnection.sourceCoordinatePair_jet_signed_defect_expansion"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.radialChiralEdgeChannels"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.radialChiralAnalyticResidual"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.radialProjectiveEdge_eq_threeChannels"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.radialAnalyticResidual_incident"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.radialAnalyticResidual_returned"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.radialAnalyticResidual_zero_iff"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.radialAnalyticResidual_zero_iff_regular"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.projectiveFirstJet_eq_threeChannels"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.sourcePair_two_eq_seed_and_edge"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.firstEdgeCoefficientLift"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.sourcePair_clock_eq_firstPhysicalEdgeLift"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.sourcePair_clock_eq_threeChannels"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.sourcePair_firstEdge_signed_nine_sectors"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.firstEdgeSupportedTfvdLift"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.firstEdgeSupportedTfvdLift_on_synthesis"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.firstEdgeGreenBoundary_source_state_sewing"},
+    {"qualified": "CarrySelfAdjointOperator.FirstEdgeSewing.no_isometric_firstNode_identification"}
   ]
 }
