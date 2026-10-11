@@ -76,7 +76,18 @@ modelo especificado; **EXPERIMENTAL** = evidência numérica, não prova geral.
 
 ### C. Mapa dos módulos
 
-Último checkpoint científico integrado à `main`: [PR #68](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/68),
+Último checkpoint científico integrado à `main`: [PR #69](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/69),
+merge `2259b572ae40b86d416a41b54bf369787b2cb898`; conteúdo validado
+`e4c909820435e93f0ed5b3ece6a3b41e85b9e251`: 37 teoremas/55 declarações novas,
+24 declarações anteriores rechecadas. Incidência/bulk, traços clockados, avanço
+completado e no-go do port geométrico sob inputs literais; costura física e
+primeira coluna de momentos continuam abertas.
+Auditoria oficial final no llm passou; source integrado idêntico ao auditado.
+Actions [38176923612](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38176923612):
+`startup_failure`, zero jobs, causa específica não confirmada; merge normal sem bypass.
+[Auditoria e próximo gate](docs/NATIVE_INCIDENCE_MATERIAL_CHIRAL_PORT_AUDIT.md).
+
+Checkpoint anterior da primeira aresta: [PR #68](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/68),
 merge `2de24a47c891afb76f2bf34f73f65e25d53d0a35`; conteúdo validado
 `9d47f5ec6e383ac80c1d8760d94681cb30f65c74`: 13 teoremas/17 declarações,
 três canais radiais e costura finita da primeira aresta clocked no chart original.

@@ -877,8 +877,18 @@ Verificações no llm concluídas, 11/10/2026:
 
 O log completo da execução final é `/tmp/native-ports-full-audit-final.log`;
 auditoria de proveniência em `/tmp/native-ports-provenance-audit.log`.
-O estado de Actions e SHAs será registrado após a publicação. Validação no llm
-não é execução de GitHub Actions. Nenhum experimento numérico foi usado como prova.
+Publicação e integração verificadas:
+
+- Conteúdo científico: `e4c909820435e93f0ed5b3ece6a3b41e85b9e251`.
+- [PR #69](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/69): MERGED, merge `2259b572ae40b86d416a41b54bf369787b2cb898`, normal, sem admin/bypass.
+- `main` contém o conteúdo científico; ancestralidade e igualdade de módulos, root, audits, registro e scripts com o checkout validado foram verificadas.
+- Actions do HEAD científico: runs `38176920954` e `38176923612`, `startup_failure`.
+- API do [run 38176923612](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38176923612): `path=BuildFailed`, `event=pull_request`, `total_count=0`, `jobs=[]`; nenhum job Lean foi iniciado.
+- `gh run view` sugere problema de workflow, mas não fornece diagnóstico específico; não se atribuiu causa a YAML, quota ou cobrança.
+- Antes do merge: PR CLEAN/MERGEABLE, nenhuma revisão bloqueante/status check listado; API da branch `protected=false`. Merge normal aceito, sem contorno de proteção.
+- Branch da tarefa será removida após integrar e sincronizar o registro documental; worktrees anteriores não pertencentes à tarefa permanecem intactos.
+
+Validação no llm não é execução de GitHub Actions. Nenhum experimento numérico foi usado como prova.
 
 ### Dependências fundamentais por declaração
 
