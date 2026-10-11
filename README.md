@@ -2,7 +2,7 @@
 
 ## START HERE — Estado atual da teoria
 
-Mapa canônico de retomada, atualizado em 10/10/2026. **Não escalarizar antes
+Mapa canônico de retomada, atualizado em 11/10/2026. **Não escalarizar antes
 da síntese completa.** Carry é a relação de compatibilidade entre decomposições
 posicionais. A investigação procura uma realização fiel da fonte completada,
 com seus canais originais, antes das consequências de momentos e alturas.
@@ -63,6 +63,10 @@ modelo especificado; **EXPERIMENTAL** = evidência numérica, não prova geral.
 | PROVADO | Defeito vetorial por arestas passa por incident/returned; pairing contém base, dois crosses e defeito–defeito | `sourceRadialPair_defect_eq_edgeSynthesis`, `sourceCoordinatePair_jet_signed_defect_expansion`; válido no candidato de coordenadas, não certifica origem física radial |
 | NO-GO | Reutilizar a mesma coordenada como posição material e ordem radial não faz `U` entrelaçar o relógio | `sourceCoordinateInput_two_eventually_not_clock_intertwiner`; chart regular de dimensão 2, defeito já na ordem 1 |
 | CONDICIONAL | Jacobi/altura independentes da câmera após igualdade dos momentos | `completedNativeCamera_finiteJacobi_independent`; positividade/realização exigidas separadamente |
+| PROVADO | Stencil positivo nativo levanta ao Cauchy com bulk `(1-u)^2`; traços físicos e offset half-density/grau certificados | `nativeBracket_profile_bulk`, `nativeBracket_derivative_one`, `radialHalfDensityTrace_eq_degreeJet_sub_half`; lift algébrico, sem isometria postulada |
+| PROVADO | Avanço geométrico conserva seed e os saltos reais A/q, com telescoping nas duas pernas originais | `completedPair_advance_residual`, `completedSource_geometric_telescope`; residual analítico não identificado com retorno TFVD |
+| NO-GO | Port geométrico independente com seed/gradiente não reproduz o input literal da fonte | `geometricSeededPort_constant_no_go`, `constantSeed_input_first_coordinate_defect_ne_zero`; dimensão 2, regularidade original eventual; canário da fonte em 2/4/6 |
+| NO-GO | Relógio material gera traço de bordo não nulo no bracket mínimo | `firstNativeBracket_clock_no_boundaryZero_profile`; kernel de traço em três nós, não impossibilidade de transporte enriquecido |
 | ABERTO | Costura física enriquecida com o carrier quiral completado | `OPEN_MATERIAL_TO_COMPLETED_CHIRAL_SOURCE_SEWING` |
 | ABERTO | Sinal estrito da energia original em toda dimensão | `OPEN_SOURCE_BOUNDARY_POSITIVITY_ALL_ORDER`; não segue da costura nem do Gram físico |
 | PROVADO | Produto radial vetorial em três canais: diferença da feature, salto de amplitude completada e salto do quociente quiral | `radialProjectiveEdge_eq_threeChannels`; toda aresta radial, duas pernas originais |
@@ -114,11 +118,16 @@ GitHub Actions teve `startup_failure` sem jobs, não uma execução Lean aprovad
 | [SeededMaterialLogConnection](CarrySelfAdjointOperator/SeededMaterialLogConnection.lean) | Inversa nodal explícita, operador seed/arestas, produto all-order, crosswalk C3 e limite com seed |
 | [ChiralLogGapDefectTransport](CarrySelfAdjointOperator/ChiralLogGapDefectTransport.lean) | Síntese vetorial das arestas nas duas pernas e expansão assinada com todos os crosses |
 | [LogGapConnectionAudit](CarrySelfAdjointOperator/LogGapConnectionAudit.lean) | Guard e `#print axioms` de 41 declarações (31 teoremas), checker de cobertura |
+| [NativeIncidenceCauchyPorts](CarrySelfAdjointOperator/NativeIncidenceCauchyPorts.lean) | Lift do stencil original, avanço Cauchy, saltos completados, port independente e defeito literal/polarizado |
+| [NativeIncidenceClockBoundary](CarrySelfAdjointOperator/NativeIncidenceClockBoundary.lean) | Bulk, derivadas reais certificadas, traços do relógio e no-go finito do bordo |
+| [NativeIncidenceCauchyPortsAudit](CarrySelfAdjointOperator/NativeIncidenceCauchyPortsAudit.lean) / [SourceProvenanceAudit](CarrySelfAdjointOperator/NativeIncidenceSourceProvenanceAudit.lean) | 55 declarações/37 teoremas novos e 24 declarações reutilizadas, tipos/axiomas e canários 2/4/6 |
 
 Detalhes: [transporte material all-order](docs/MULTIBASE_MATERIAL_ALL_ORDER_TRANSPORT.md)
 e [auditoria material–quiral](docs/MATERIAL_CHIRAL_SEWING_CANARY.md), além da
 [conexão logarítmica e defeito relacional](docs/RELATIONAL_LOG_GAP_CONNECTION.md) e
 [comparação vetorial da primeira aresta](docs/FIRST_EDGE_CHIRAL_STATE_COMPARISON.md).
+
+Relatório desta rodada: [incidências nativas e primeiros ports material–quiral](docs/NATIVE_INCIDENCE_MATERIAL_CHIRAL_PORT_AUDIT.md).
 
 ### D. Resultados all-order anteriores
 
@@ -169,6 +178,12 @@ Checkpoints da conexão por log-gaps (31 teoremas/41 declarações) e da primeir
 - **PASS_SEEDED_MATERIAL_CLOCK_TRANSPORT**: equivalência e fórmula explícita entrelaçadas; C3 local e limite TFVD com seed comprovados. Nenhum inverso infinito limitado ou unitariedade inferidos.
 - **PASS_FIRST_EDGE_CLOCKED_SOURCE_CHART_SEWING**: primeira aresta após o relógio, dimensão 2/ordem 1; Green + retorno de bordo levantam ao par quiral do chart existente. Três canais radiais e nove setores assinados preservados; [relatório](docs/FIRST_EDGE_CHIRAL_STATE_COMPARISON.md). Não identifica fisicamente índices material/radial em toda ordem.
 - **PASS_MATERIAL_CHIRAL_ENRICHED_SEWING**: **não obtido**. `OPEN_MATERIAL_TO_COMPLETED_CHIRAL_SOURCE_SEWING` continua aberto; o transporte de um defeito de coordenadas não identifica a fonte física.
+
+**OPEN_NATIVE_PORT_TO_SOURCE_FIRST_COLUMN**: os ports independentes precisam gerar
+os coeficientes radiais com h/fases/fatoriais e completion verdadeiros. A coluna
+seed de U é conhecida só no lado fonte; não é uma coluna de momentos derivada
+da geometria. O port geométrico proposto falha sob a identificação literal dos
+inputs; seu defeito está preservado, sem fechamento artificial do gate.
 
 Depois, e **independentemente**, **OPEN_SOURCE_BOUNDARY_POSITIVITY_ALL_ORDER**:
 demonstrar `∀ n≥1, ∀ x≠0, E_(2*n)(x)>0` para a fonte original, sem HP,

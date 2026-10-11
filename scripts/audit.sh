@@ -5,6 +5,12 @@ cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
 
+# Independent native incidence ports and literal-input source obstructions.
+lake build --wfail CarrySelfAdjointOperator.NativeIncidenceCauchyPortsAudit
+lake env lean CarrySelfAdjointOperator/NativeIncidenceCauchyPortsAudit.lean
+lake build --wfail CarrySelfAdjointOperator.NativeIncidenceSourceProvenanceAudit
+lake env lean CarrySelfAdjointOperator/NativeIncidenceSourceProvenanceAudit.lean
+
 # First material edge, completed chiral state and full signed channels.
 lake build --wfail CarrySelfAdjointOperator.FirstEdgeChiralStateComparisonAudit
 lake env lean CarrySelfAdjointOperator/FirstEdgeChiralStateComparisonAudit.lean
