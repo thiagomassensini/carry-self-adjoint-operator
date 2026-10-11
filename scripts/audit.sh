@@ -5,6 +5,10 @@ cd "$(dirname "$0")/.."
 
 bash scripts/static_audit.sh
 
+# First material edge, completed chiral state and full signed channels.
+lake build --wfail CarrySelfAdjointOperator.FirstEdgeChiralStateComparisonAudit
+lake env lean CarrySelfAdjointOperator/FirstEdgeChiralStateComparisonAudit.lean
+
 # Relational log-gap connection, explicit seeded transport and signed defects.
 lake build --wfail CarrySelfAdjointOperator.LogGapConnectionAudit
 lake env lean CarrySelfAdjointOperator/LogGapConnectionAudit.lean

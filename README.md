@@ -57,11 +57,6 @@ modelo especificado; **EXPERIMENTAL** = evidência numérica, não prova geral.
 | PROVADO | Resposta Green **mais** retorno de bordo converge ao prefixo vetorial material | `materialTfvdTaylorPrefix_Green_response_boundary_tendsto`; câmera suportada, cutoff e ordem fixos |
 | PROVADO | Síntese projetiva = `(Incident(Ux), Returned(Ux))`; energia original assinada | `nativeSourceProjectiveBoundaryJetSynthesis_eq_originalSource`, `...energy_eq_storage`; controle eventual em dimensão fixa |
 | PROVADO | Canário: ambas as pernas e todos os crosses retidos; comutador material–`U` calculado em toda ordem | [MaterialChiralCoordinateCanary](CarrySelfAdjointOperator/MaterialChiralCoordinateCanary.lean); reutilização direta de coordenadas, não costura física certificada |
-| [RelationalLogGapCommutator](CarrySelfAdjointOperator/RelationalLogGapCommutator.lean) | Interface linear fiel de U, identidade de potência, caminhos logarítmicos e suporte/nilpotência |
-| [SeededMaterialLogConnection](CarrySelfAdjointOperator/SeededMaterialLogConnection.lean) | Inversa nodal explícita, operador seed/arestas, produto all-order, crosswalk C3 e limite com seed |
-| [ChiralLogGapDefectTransport](CarrySelfAdjointOperator/ChiralLogGapDefectTransport.lean) | Síntese vetorial das arestas nas duas pernas e expansão assinada com todos os crosses |
-| [LogGapConnectionAudit](CarrySelfAdjointOperator/LogGapConnectionAudit.lean) | Guard e `#print axioms` de 41 declarações (31 teoremas), checker de cobertura |
-
 | PROVADO | Comutador operatorial all-order, log-gaps, contribuições por arestas e suporte estrito; matriz nilpotente em dimensão finita | `sourceCoordinateEnd_commutator_power`, `sourceCoordinateInput_commutator_edgeFlux`, `logCommutatorMatrix_nilpotent`; nilpotência não elimina energia assinada |
 | PROVADO | Equivalência seed + gradiente e operador explícito de arestas entrelaçam o relógio material | `materialSeedGradientEquiv`, `seededMaterialJet_intertwines`, `seededMaterialJet_eq_clock_power`; sem unitariedade ou inverso infinito |
 | PROVADO | Samples materiais dão os vetores C3 ordinário/log e os dois canais adjacentes; seed + TFVD enriquecido converge | `finiteDirichletSamples_mixedAdjacentClock`, `criticalSeededTfvdEnrichedTaylor_tendsto`; ordem fixa |
@@ -70,6 +65,10 @@ modelo especificado; **EXPERIMENTAL** = evidência numérica, não prova geral.
 | CONDICIONAL | Jacobi/altura independentes da câmera após igualdade dos momentos | `completedNativeCamera_finiteJacobi_independent`; positividade/realização exigidas separadamente |
 | ABERTO | Costura física enriquecida com o carrier quiral completado | `OPEN_MATERIAL_TO_COMPLETED_CHIRAL_SOURCE_SEWING` |
 | ABERTO | Sinal estrito da energia original em toda dimensão | `OPEN_SOURCE_BOUNDARY_POSITIVITY_ALL_ORDER`; não segue da costura nem do Gram físico |
+| PROVADO | Produto radial vetorial em três canais: diferença da feature, salto de amplitude completada e salto do quociente quiral | `radialProjectiveEdge_eq_threeChannels`; toda aresta radial, duas pernas originais |
+| PROVADO | Primeira aresta material após o relógio: resposta Green + bordo, no prefixo TFVD suportado, levanta ao estado quiral do chart existente | `firstEdgeGreenBoundary_source_state_sewing`; dimensão 2/ordem 1, não certifica proveniência física all-order |
+| PROVADO | Residual analítico nulo exige amplitude constante e salto do quociente ponderado nulo; nove setores assinados preservados | `radialAnalyticResidual_zero_iff`, `sourcePair_firstEdge_signed_nine_sectors`; nenhum sinal postulado |
+| NO-GO | Isometria que envia individualmente os dois nós materiais aos endpoints incident completados | `no_isometric_firstNode_identification`; amplitudes não nulas, não exclui transporte não unitário enriquecido |
 
 ### C. Mapa dos módulos
 
@@ -101,10 +100,16 @@ GitHub Actions teve `startup_failure` sem jobs, não uma execução Lean aprovad
 | [FiniteMaterialTfvdJetTransport](CarrySelfAdjointOperator/FiniteMaterialTfvdJetTransport.lean) | Diferenças de samples, fases/fatoriais, TFVD enriquecido, Green + bordo; Taylor completion independente |
 | [FiniteMultibaseMaterialJetTransportAudit](CarrySelfAdjointOperator/FiniteMultibaseMaterialJetTransportAudit.lean) | `#print axioms` e guard de todas as 70 declarações; checker de cobertura |
 | [MaterialChiralCoordinateCanary](CarrySelfAdjointOperator/MaterialChiralCoordinateCanary.lean) | Canários 0/1, pair original assinado e defeito all-order do chart `U`; não define outro relógio |
+| [FirstEdgeChiralStateComparison](CarrySelfAdjointOperator/FirstEdgeChiralStateComparison.lean) | Três canais radiais independentes, lift do prefixo TFVD de uma aresta, nove crosses e no-go isométrico de endpoints |
+| [RelationalLogGapCommutator](CarrySelfAdjointOperator/RelationalLogGapCommutator.lean) | Interface linear fiel de U, identidade de potência, caminhos logarítmicos e suporte/nilpotência |
+| [SeededMaterialLogConnection](CarrySelfAdjointOperator/SeededMaterialLogConnection.lean) | Inversa nodal explícita, operador seed/arestas, produto all-order, crosswalk C3 e limite com seed |
+| [ChiralLogGapDefectTransport](CarrySelfAdjointOperator/ChiralLogGapDefectTransport.lean) | Síntese vetorial das arestas nas duas pernas e expansão assinada com todos os crosses |
+| [LogGapConnectionAudit](CarrySelfAdjointOperator/LogGapConnectionAudit.lean) | Guard e `#print axioms` de 41 declarações (31 teoremas), checker de cobertura |
 
 Detalhes: [transporte material all-order](docs/MULTIBASE_MATERIAL_ALL_ORDER_TRANSPORT.md)
 e [auditoria material–quiral](docs/MATERIAL_CHIRAL_SEWING_CANARY.md), além da
-[conexão logarítmica e defeito relacional](docs/RELATIONAL_LOG_GAP_CONNECTION.md).
+[conexão logarítmica e defeito relacional](docs/RELATIONAL_LOG_GAP_CONNECTION.md) e
+[comparação vetorial da primeira aresta](docs/FIRST_EDGE_CHIRAL_STATE_COMPARISON.md).
 
 ### D. Resultados all-order anteriores
 
@@ -149,10 +154,11 @@ defeito pelas duas pernas da fonte. Ainda falta a correspondência geométrica
 independente entre posição material e ordem/nó radial, incluindo completion e
 bordo; não fechar o gate com igualdade de readouts.
 
-Checkpoints desta conexão (31 teoremas/41 declarações):
+Checkpoints da conexão por log-gaps (31 teoremas/41 declarações) e da primeira aresta (13 teoremas/17 declarações):
 
 - **PASS_LOG_GAP_COMMUTATOR_DECOMPOSITION**: exato em toda ordem e dimensão finita, incluindo suporte e canários 2/4/6.
 - **PASS_SEEDED_MATERIAL_CLOCK_TRANSPORT**: equivalência e fórmula explícita entrelaçadas; C3 local e limite TFVD com seed comprovados. Nenhum inverso infinito limitado ou unitariedade inferidos.
+- **PASS_FIRST_EDGE_CLOCKED_SOURCE_CHART_SEWING**: primeira aresta após o relógio, dimensão 2/ordem 1; Green + retorno de bordo levantam ao par quiral do chart existente. Três canais radiais e nove setores assinados preservados; [relatório](docs/FIRST_EDGE_CHIRAL_STATE_COMPARISON.md). Não identifica fisicamente índices material/radial em toda ordem.
 - **PASS_MATERIAL_CHIRAL_ENRICHED_SEWING**: **não obtido**. `OPEN_MATERIAL_TO_COMPLETED_CHIRAL_SOURCE_SEWING` continua aberto; o transporte de um defeito de coordenadas não identifica a fonte física.
 
 Depois, e **independentemente**, **OPEN_SOURCE_BOUNDARY_POSITIVITY_ALL_ORDER**:
