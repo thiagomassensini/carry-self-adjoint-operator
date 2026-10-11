@@ -886,7 +886,7 @@ Publicação e integração verificadas:
 - API do [run 38176923612](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38176923612): `path=BuildFailed`, `event=pull_request`, `total_count=0`, `jobs=[]`; nenhum job Lean foi iniciado.
 - `gh run view` sugere problema de workflow, mas não fornece diagnóstico específico; não se atribuiu causa a YAML, quota ou cobrança.
 - Antes do merge: PR CLEAN/MERGEABLE, nenhuma revisão bloqueante/status check listado; API da branch `protected=false`. Merge normal aceito, sem contorno de proteção.
-- Branch da tarefa será removida após integrar e sincronizar o registro documental; worktrees anteriores não pertencentes à tarefa permanecem intactos.
+- Branch da tarefa removida local e remotamente após integração e sincronização; worktrees anteriores não pertencentes à tarefa permanecem intactos. Somente os dois arquivos não rastreados preexistentes continuam no checkout.
 
 Validação no llm não é execução de GitHub Actions. Nenhum experimento numérico foi usado como prova.
 
