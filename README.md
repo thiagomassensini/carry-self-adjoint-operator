@@ -72,7 +72,16 @@ modelo especificado; **EXPERIMENTAL** = evidência numérica, não prova geral.
 
 ### C. Mapa dos módulos
 
-Último checkpoint científico integrado à `main`: [PR #67](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/67),
+Último checkpoint científico integrado à `main`: [PR #68](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/68),
+merge `2de24a47c891afb76f2bf34f73f65e25d53d0a35`; conteúdo validado
+`9d47f5ec6e383ac80c1d8760d94681cb30f65c74`: 13 teoremas/17 declarações,
+três canais radiais e costura finita da primeira aresta clocked no chart original.
+Auditoria oficial no llm passou; source integrado idêntico ao auditado.
+Actions [38106601528](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38106601528):
+`startup_failure`, zero jobs, causa específica não confirmada; merge normal sem bypass.
+[Relatório e limites](docs/FIRST_EDGE_CHIRAL_STATE_COMPARISON.md).
+
+Checkpoint anterior da conexão por log-gaps: [PR #67](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/67),
 merge `2a7840e6257512925f436cf9ad02e3a749bf232f`; conteúdo validado `223cf24828e0cd6c2a45859543f64bffa2f1e0f1`.
 31 teoremas/41 declarações da conexão por log-gaps e do transporte seeded,
 com auditoria oficial no llm e source integrado idêntico ao validado.

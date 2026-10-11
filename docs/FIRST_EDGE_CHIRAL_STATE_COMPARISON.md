@@ -283,4 +283,14 @@ Validação no servidor llm, concluída em 10/10/2026:
 - Histórico do README preservado byte a byte; pins/toolchain sem alteração.
 - Arquivos não rastreados preexistentes `C2OddTfvdTransport.lean` e `C2OddTfvdTransportAudit.lean` preservados.
 
-Os SHAs e o estado de GitHub Actions serão registrados após a publicação. A auditoria no llm não é uma execução bem-sucedida de Actions.
+Publicação e integração:
+
+- Conteúdo científico: `9d47f5ec6e383ac80c1d8760d94681cb30f65c74`.
+- [PR #68](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/68): MERGED por procedimento normal, sem admin/bypass.
+- Merge em `main`: `2de24a47c891afb76f2bf34f73f65e25d53d0a35`; ancestralidade e igualdade dos módulos/scripts/registro com o conteúdo auditado verificadas.
+- Actions no HEAD publicado: runs `38106598884` e `38106601528`, ambos `startup_failure`.
+- API do [run 38106601528](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38106601528): `path=BuildFailed`, `event=pull_request`, `jobs=[]`, `total_count=0`.
+- `gh run view` sugere problema de workflow, mas não informa diagnóstico específico. Não foi confirmada uma causa de YAML, quota ou cobrança; nenhum job Lean rodou em Actions.
+- Antes do merge, PR `CLEAN/MERGEABLE`, sem status checks listados; API da branch informava `protected=false`. API de rulesets indisponível com HTTP 403. O merge normal foi aceito pelo GitHub, sem contorno de proteção.
+
+A auditoria no llm não é uma execução bem-sucedida de Actions. O repositório permaneceu privado. O README e este relatório registram o checkpoint científico sem tentar incluir o SHA do próprio commit de documentação.
