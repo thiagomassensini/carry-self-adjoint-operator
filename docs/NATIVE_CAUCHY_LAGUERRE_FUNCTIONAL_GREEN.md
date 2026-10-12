@@ -25,7 +25,7 @@ Para todos `r,j`, `laguerreMode_feature` identifica o overlap funcional com a co
 - F3: somente a redução da matriz all-order à expressão binomial fechada continua aberta.
 - F4: domínio maximal, auto-adjunção do relógio geométrico e cálculo funcional.
 - F5: inverso Green no Hilbert original, aplicado à fonte completada.
-- F6: compressão do operador físico e vazamento do complemento.
+- F6: extensão das compressões para todos os cortes R; aqui o corte 0–2 é funcionalmente certificado.
 - F7: transporte das duas entradas completas, controle de cauda e costura física multibase. A forma assinada não foi declarada positiva.
 
 ## Validação
@@ -41,3 +41,9 @@ Todos os elementos da matriz funcional são identificados como somas finitas exa
 PR F1: #73; commit `9e989338943cce9d918df687104d71377002a329`; merge `ed58af5b39df24d36358216284a380aeb47cc8c7`. O build completo de main passou após o merge. As execuções externas 38290535010 e 38290478230 deram `startup_failure`; a infraestrutura não executou a prova Lean.
 
 Validação F3: módulo isolado e build completo `--wfail` aprovados; 20 declarações públicas auditadas, somente os axiomas padrão.
+
+## F6 — Compressão física e entrada exterior
+
+`NativePhysicalLaguerreCompression.lean` constrói a projeção ortogonal verdadeira sobre o span dos três modos certificados. O teorema `physicalFirstThree_compression_square` comprime `M_u²` antes de substituir o operador comprimido. `physicalFirstThreeLeakage_eq_gram` identifica o vazamento como `B* B`; sua positividade é certificada. `physicalFirstThree_outside_input` retém `P M_u² (I-P) h` para uma entrada física arbitrária. Não se presume que a entrada pertence ao subespaço truncado.
+
+Validação F6: módulo isolado, build completo `--wfail` (10117 jobs) e auditoria das 11 declarações públicas, incluindo a instância de dimensão finita, aprovados com apenas os axiomas padrão.

@@ -1,3 +1,4 @@
+import CarrySelfAdjointOperator.NativePhysicalLaguerreCompression
 import CarrySelfAdjointOperator.NativeIntervalMultiplier
 import CarrySelfAdjointOperator.NativeLaguerreLpModes
 import CarrySelfAdjointOperator.NativeCompletedFiniteGreenResidual
