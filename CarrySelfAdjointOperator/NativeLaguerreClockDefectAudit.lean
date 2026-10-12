@@ -1,0 +1,11 @@
+import CarrySelfAdjointOperator.NativeLaguerreClockDefect
+
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.featureDerivativeFormula
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.fullJacobiRow
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.fullJacobiRow_eq_derivativeFormula
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.cutoffJacobiRow
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.finite_clock_defect_entry
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.finite_clock_defect_seed
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.materialClockMatrix
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.material_clock_commutator_entry
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.material_clock_does_not_commute
