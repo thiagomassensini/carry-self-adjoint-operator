@@ -67,3 +67,5 @@ O adaptador `continuousPairToSource_physical_advance` liga o avanço previamente
 `physicalCompletedFiniteGreen_signed_pairing` usa duas entradas independentes. `physicalCompletedFiniteGreen_four_sectors` conserva principal–principal, principal–resíduo, resíduo–principal e resíduo–resíduo depois do inverso. A primeira entrada permanece conjugada pela forma original. Resíduo com autopairing nulo não autoriza apagar cruzamentos.
 
 PR F4: #75; commit `4aaf4b419dff3446f09fdf4d792dce888710ca5d`; merge `a668b28b5cf52b0c4992e367de2de73ced1d3a07`; main revalidada.
+
+Validação F5/F7: módulo isolado, build completo `--wfail` (10119 jobs), todas as 25 declarações públicas auditadas com apenas os axiomas padrão. O log inclui também quatro declarações reproduzidas da dependência C3; a auditoria distingue os nomes novos. A cota de cauda π segue aberta. Não foi enunciada a desigualdade de ordem falsa `D H D ≤ θ² H`.
