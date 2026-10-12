@@ -1,71 +1,122 @@
-# Realização funcional Cauchy–Laguerre e Green
+# Realização funcional Cauchy–Laguerre, relógio e Green
 
-## Entrada e escopo
+Data: 12/10/2026. Execução e certificação no servidor `llm`, por SSH, no repositório `/home/thlinux/carry-self-adjoint-operator`.
 
-O trabalho começou em `main` no commit `9f801d4abb45e246a8d020d2b3af4f763b3d743c`, depois da integração dos PRs #70–#72. Todos os 16 pins do manifesto coincidem com os HEADs efetivos dos pacotes. Lean `v4.32.0`; mathlib `81a5d257c8e410db227a6665ed08f64fea08e997`. Nenhum pin ou métrica foi alterado. Os dois arquivos de trabalho não rastreados `C2OddTfvdTransport*.lean` foram preservados.
+A rodada certificou **79 teoremas novos, 25 definições públicas e 2 instâncias**. Todas as 106 declarações têm auditoria `#print axioms`. O resultado central é funcional: avanço radial, relógio geométrico maximal auto-adjunto, inverso Green e compressões físicas foram construídos no Hilbert original. A completude Laguerre continua aberta.
 
-A instrução principal é o prompt funcional de 12/10/2026; a pesquisa consolidada fornece o contexto matemático. Os resultados dos PRs anteriores são reutilizados. CI externo está bloqueado por pagamento, conforme informado pelo responsável: execução com zero jobs é inconclusiva. A evidência matemática deste relatório é o build local no `llm` e a auditoria de axiomas.
+## Entrada, proveniência e dependências
 
-## F1 — Modos mensuráveis e momentos
+HEAD inicial após atualização por fast-forward: `9f801d4abb45e246a8d020d2b3af4f763b3d743c`, com os PRs #70, #71 e #72 já integrados. Eles foram reutilizados: Gram e features do #70; avanço por série e álgebra de compressão do #71; válvula, dois traços, síntese completada e resíduos do #72.
 
-`NativeLaguerreLogMoments.lean` prova integrabilidade e o valor de todos os momentos, para `n : ℕ` e `a > -1`:
+O prompt funcional `PROMPT_CODEX_LAGUERRE_FUNCIONAL_GREEN_2026-10-12.md` foi a instrução principal explicitamente adotada pelo usuário. A pesquisa consolidada foi usada como contexto matemático. Nenhuma afirmação da pesquisa foi promovida a teorema sem corpo de prova.
 
-`∫₀¹ u^a (-log u)^n du = n! / (a+1)^(n+1)`.
+Lean `leanprover/lean4:v4.32.0`; Lake `5.0.0-src+8c9756b`. Os 16 pins abaixo foram conferidos contra os HEADs efetivos dos pacotes antes e depois do trabalho. Nenhuma dependência, métrica ou constante física foi ajustada.
 
-A prova usa a substituição verdadeira `u = exp(-t)` e a integral Gamma existente no mathlib. Não usa testes numéricos nem uma tabela finita de momentos.
+| Pacote | Pin e HEAD efetivo |
+|---|---|
+| `geometry-of-numbers` | `d7cc54f5c485320f1fada33118e9e6101488819a` |
+| `NativeCarryC3Crosswalk` | `150cfc7fb08da96bf8117f15869cc2b819d593c2` |
+| `mathlib` | `81a5d257c8e410db227a6665ed08f64fea08e997` |
+| `CarryGeometry` | `1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4` |
+| `NativeCarrySpectralWeyl` | `298d83c9351e308a5213b9f5ac32e44087f98a9f` |
+| `CPFormal` | `65d50f6db1208708e109982ba97e1d51d3039956` |
+| `plausible` | `e12c1910fe855cbfc38803cd4e55543906d5fa62` |
+| `LeanSearchClient` | `c5d5b8fe6e5158def25cd28eb94e4141ad97c843` |
+| `importGraph` | `7e9612bf0b9ee66db3cb5b9988a35afc706f5a12` |
+| `proofwidgets` | `6e311e2a844da9b2cc3971187df2fe0066947b93` |
+| `aesop` | `a7dbf0c63b694e47f425f3dcddbc0e178bb432d3` |
+| `Qq` | `38d591e778f100aec9762bb582f9c7f55f50e9dc` |
+| `batteries` | `023ce7d62a0531e22a5331e20b587817a80d49ff` |
+| `FiniteNativeCarryOperator` | `00e9d6beb17226545abf5ddf90bbfede6c7146b0` |
+| `GreenFrame` | `cd2d838bee67ad23f869a02f8ed9f0a0feb926fa` |
+| `Cli` | `88679d088c9720c27ebdf2ba4dafe17341747f94` |
 
-`NativeLaguerreLpModes.lean` constrói todos os `λ_r = L_r(-log u)` como classes no espaço complexo original `Lp ℂ 2 volume`, com representante certificado quase em toda parte. Prova a integrabilidade quadrática de todos os graus logarítmicos e seus produtos internos fatoriais. A ortonormalidade foi provada para as ordens 0, 1 e 2; ortonormalidade all-order ainda não foi demonstrada.
+Os arquivos não rastreados `C2OddTfvdTransport.lean` e `C2OddTfvdTransportAudit.lean` permaneceram intactos. SHA256, respectivamente: `5bfe06e8d15432c4d6cab6719dc22a0376019243f3e896329ea9ab9dd7458cb0` e `b6f05d0241058885da362b5cb20d3968d704a667da3ffc443714a69f3564623c`. Não foram criados novos worktrees nem repositório público.
 
-Para todos `r,j`, `laguerreMode_feature` identifica o overlap funcional com a coluna `feature r j` já certificada pelo PR #70. `laguerreMode_radial_state` mantém a amplitude física `√(k+1)` exatamente uma vez. Não se representa um modo logarítmico não constante como função contínua no intervalo fechado.
+## Dicionário de tipos
 
-## Gates ainda abertos nesta etapa
+| Objeto | Construção efetivamente usada |
+|---|---|
+| `H` | `CanonicalCompletedNativeChiralCauchyCarrier`, isto é, `Lp ℂ 2 volume` sobre `unitInterval` |
+| `λ_r` | `laguerreMode r`, classe mensurável `L_r(-log u)` em H; não uma função contínua no intervalo fechado |
+| `φ_(k,j)` | `completedNativeRadialChiralCauchyState k j`, com meia-densidade `sqrt(u) u^j` e amplitude `sqrt(k+1)` |
+| `M_u` | `physicalRadialAdvance : H →L[ℂ] H`, multiplicação pelo u original |
+| `T` | `geometricLogClock : H →ₗ.[ℂ] H`, multiplicação maximal por `log u` |
+| domínio de T | `geometricClockDomain = {h : H | MemLp ((log u) h) 2 volume}` |
+| `R_q` | `physicalGreenResolvent`, multiplicação por `(1-q u)^(-1)`; `0 ≤ q < 1` |
+| `G_q` | `physicalGreenOperator = q M_u R_q²`, no H original |
+| duas pernas | `CanonicalCompletedNativeProjectiveChiralCarrier = H × H`, canais retidos separadamente |
+| fonte completada | `physicalCompletedFiniteSource k x`, literalmente a combinação `Finsupp` dos estados completados originais |
+| resíduo | `physicalCompletedFiniteResidual k x`, literalmente a combinação dos resíduos analíticos originais |
+| `q` e `χ_(k,j)` | q TFVD é real; χ é o quociente Hermite–Biehler complexo, variável com o endereço; não são identificados |
+| `P_R` | `laguerreFiniteProjection R`, projeção ortogonal sobre o span de `λ_0,…,λ_R`; sua construção não assume ortonormalidade all-order |
 
-- F1: ortonormalidade all-order.
-- F2: `OPEN_LAGUERRE_COMPLETENESS`; não existe nesta etapa uma equivalência unitária sobre todo o espaço físico.
-- F3: somente a redução da matriz all-order à expressão binomial fechada continua aberta.
-- F4: Jacobi all-order e `OPEN_FUNCTIONAL_CALCULUS`; domínio maximal, densidade, auto-adjunção e fechamento estão certificados.
-- F5: extensão além de entradas de suporte finito; reconstrução funcional da fonte finita completada está certificada.
-- F6: extensão das compressões para todos os cortes R; aqui o corte 0–2 é funcionalmente certificado.
-- F7: cota de cauda com constante universal π e costura física multibase. O transporte de duas entradas completas e seus quatro setores é certificado; a forma assinada não foi declarada positiva.
+A densidade do domínio do relógio é uma prova independente. Ela não implica densidade do span Laguerre.
 
-## Validação
+## Teoremas certificados e limites por gate
 
-O módulo funcional compila isoladamente. O arquivo `NativeLaguerreLpModesAudit.lean` imprime os axiomas de todas as 14 declarações públicas novas. Todas as 14 declarações usam apenas `propext`, `Classical.choice` e `Quot.sound`. `lake build --wfail` completo passou no llm com 10115 jobs.
+| Gate | Resultado desta rodada | O que continua OPEN |
+|---|---|---|
+| F1 | PASS para todos os momentos, construção de todos os modos e overlaps físicos em toda ordem; ortonormalidade nas ordens 0–2 | Ortonormalidade all-order |
+| F2 | OPEN_LAGUERRE_COMPLETENESS | Densidade do span Laguerre, sobrejetividade e equivalência unitária global com ℓ² |
+| F3 | PASS para operador físico limitado, auto-adjunto, positivo, `0 ≤ M_u ≤ I`, shift exato e soma funcional de momentos em toda ordem | Redução universal da matriz integral à fórmula binomial; a fórmula fechada foi provada nas ordens 0–2 |
+| F4 | PASS para domínio maximal denso, auto-adjunção, fechamento, domínio de todos os modos e estados nativos; Jacobi 0–2 | Jacobi all-order e OPEN_FUNCTIONAL_CALCULUS; transporte entre câmeras além da identidade mensurável de escala |
+| F5 | PASS para inversos, cota de norma, Green físico e reconstrução da fonte completada de suporte finito com dois traços e todos os resíduos | Extensão a dados infinitos sob hipóteses de convergência e regularidade; tradução por uma unitária Laguerre ainda inexistente |
+| F6 | PASS para todos os cortes R: projeção física, vazamento positivo, válvula comprimida e entrada exterior | Fórmula racional fechada all-order de `M_u²` nas coordenadas Laguerre |
+| F7 | PASS para duas entradas independentes e quatro setores após a reconstrução completa | Cota de cauda com constante π, limites co-finais uniformes, OPEN_TYPED_MATERIAL_RADIAL_MULTIBASE_SEWING e OPEN_ALL_ORDER_SIGNED_POSITIVITY |
 
-## F3 — Avanço no Hilbert original
+Não houve novo NO_GO nesta rodada. Os defeitos multibase `59/54` e `-157/54` são registros anteriores do anexo, com convenções distintas; não foram reclassificados como impossibilidade geral nem como novos teoremas Lean.
 
-`NativeIntervalMultiplier.lean` constrói multiplicação limitada por qualquer coeficiente contínuo e, em particular, o operador físico `M_u`. Prova `M_u φ_j = φ_(j+1)`, preservando a meia-densidade e a amplitude radial. Prova auto-adjunção, norma no máximo 1 e positividade de `M_u` e `I-M_u`. Isso é positividade do operador radial no Hilbert original, sem implicação de positividade da forma assinada de duas pernas.
+- **F1 — [integral_logarithmic_moment](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeLaguerreLogMoments.lean#L43):** Para todo n natural e a > -1, prova a integral verdadeira `∫₀¹ u^a (-log u)^n = n!/(a+1)^(n+1)` e sua integrabilidade, por mudança de variável e Gamma.
+- **F1 — [laguerreMode_first_three_orthonormal](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeLaguerreLpModes.lean#L83):** Ortonormalidade funcional das ordens 0, 1 e 2, no H original.
+- **F1 — [laguerreMode_feature](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeLaguerreLpModes.lean#L130):** Para todo r,j, o overlap com a meia-densidade é a feature já certificada no #70. A amplitude física é mantida exatamente uma vez por [laguerreMode_radial_state](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeLaguerreLpModes.lean#L150).
+- **F3 — [physicalRadialAdvance_feature](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeIntervalMultiplier.lean#L74):** Avança a coluna física por um endereço. [physicalRadialAdvance_isSelfAdjoint](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeIntervalMultiplier.lean#L167), [physicalRadialAdvance_norm_le_one](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeIntervalMultiplier.lean#L172), [physicalRadialAdvance_isPositive](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeIntervalMultiplier.lean#L180) e [physicalRadialAdvance_complement_isPositive](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeIntervalMultiplier.lean#L186) certificam as propriedades do operador original.
+- **F3 — [physicalRadialAdvance_matrix_moment_sum](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeIntervalMultiplier.lean#L216):** Identifica todas as entradas funcionais como somas finitas exatas de momentos Gamma. [physicalRadialAdvance_first_three_matrix](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeIntervalMultiplier.lean#L233) certifica a forma binomial no bloco 0–2. A identidade fechada universal exige ainda uma prova combinatória; não foi inferida de entradas finitas.
+- **F4 — [geometricLogClock_adjoint_eq](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeGeometricLogClock.lean#L219):** Identifica o adjunto com o operador maximal original, usando o regularizador M_u e o multiplicador contínuo u log u. Daí [geometricLogClock_isSelfAdjoint](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeGeometricLogClock.lean#L224) e [geometricLogClock_isClosed](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeGeometricLogClock.lean#L228). Não depende de completude Laguerre.
+- **F4 — [laguerreMode_mem_geometricClockDomain](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeGeometricLogClock.lean#L244):** Todos os modos pertencem ao domínio. [completedNativeRadialChiralCauchyState_mem_geometricClockDomain](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeGeometricLogClock.lean#L334) conserva os estados nativos com amplitude; [geometricLogClock_laguerre_expansion](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeGeometricLogClock.lean#L264) dá a ação exata no núcleo em toda ordem.
+- **F4 — [geometricLogClock_first_three_Jacobi](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeGeometricLogClock.lean#L292):** Linhas Jacobi 0–2 como igualdades de vetores. [geometricClock_exp_canary](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeGeometricLogClock.lean#L301) prova `exp(log u)=u` a.e.; não é declarado um teorema de cálculo funcional de operadores. [weyl_literal_log_coordinate_shift](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativeGeometricLogClock.lean#L341) mantém a constante literal 1 e log ell do Weyl.
+- **F5 — [physicalGreenResolvent_left_inverse](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalGreenResolvent.lean#L40):** Inverso esquerdo de I-qM_u; [physicalGreenResolvent_right_inverse](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalGreenResolvent.lean#L53) prova o direito e [physicalGreenResolvent_norm_le](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalGreenResolvent.lean#L65) a norma ≤ (1-q)^(-1). Os inversos existem no H inteiro para 0 ≤ q < 1.
+- **F5 — [physicalGreenOperator_as_multiplier](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalGreenResolvent.lean#L98):** Realiza q u/(1-q u)². [physicalGreenOperator_isPositive](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalGreenResolvent.lean#L105) e [physicalGreenOperator_isSelfAdjoint](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalGreenResolvent.lean#L119) pertencem ao operador Green no H original, sem implicação de positividade da forma assinada.
+- **F5 — [physicalCompletedFiniteGreen_reconstruct](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalGreenResolvent.lean#L201):** Para 0 < q < 1 e toda entrada Finsupp x, reconstrói o vetor completado original nas duas pernas. Reutiliza o numerador do #72 e o adaptador [continuousPairToSource_physical_advance](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalGreenResolvent.lean#L136).
+- **F6 — [physicalFiniteLeakage_eq_gram](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalLaguerreCompression.lean#L49):** Para todo R, identifica E_R com B*B; [physicalFiniteLeakage_isPositive](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalLaguerreCompression.lean#L68) prova positividade. Não pressupõe uma equivalência unitária global.
+- **F6 — [physicalFinite_scaled_valve_compression](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalLaguerreCompression.lean#L116):** Comprime a válvula inteira q^(-1)(I-qM_u)², com q ≠ 0, e conserva q E_R. [physicalFinite_valve_outside_input](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalLaguerreCompression.lean#L126) retém explicitamente `P_R D_q (I-P_R) h` para toda entrada original h.
+- **F7 — [physicalCompletedFiniteGreen_signed_pairing](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalGreenResolvent.lean#L221):** Duas entradas independentes são reconstruídas antes do pairing original; a primeira é conjugada pela convenção do inner product.
+- **F7 — [physicalCompletedFiniteGreen_four_sectors](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/94dabb94163e70dade825fc30b5b3e178ba92f16/CarrySelfAdjointOperator/NativePhysicalGreenResolvent.lean#L234):** Mantém principal–principal, principal–resíduo, resíduo–principal e resíduo–resíduo depois do inverso. Resíduo com autopairing nulo não apaga cruzamentos.
 
-Todos os elementos da matriz funcional são identificados como somas finitas exatas de momentos Gamma. A forma binomial `choose(r+s,r)/2^(r+s+1)` foi provada para as ordens 0–2. Não se utiliza uma inversa unitária Laguerre.
+A fonte continua sendo a síntese completada original, com amplitude normalizada e quociente HB nativos. O numerador retém bulk, seed, `t₀`, `t₁`, `E b`, `E x`, `M_u E x` e `E Sx`. Nenhuma amplitude completada é invertida sem hipótese de regularidade. Não se aplica a positividade de M_u ou G_q à diferença assinada dos canais.
 
-PR F1: #73; commit `9e989338943cce9d918df687104d71377002a329`; merge `ed58af5b39df24d36358216284a380aeb47cc8c7`. O build completo de main passou após o merge. As execuções externas 38290535010 e 38290478230 deram `startup_failure`; a infraestrutura não executou a prova Lean.
+A cota de cauda não foi substituída por `D H D ≤ θ² H`. A identidade de cauda do #70 permanece válida; falta a prova formal da cota de operador de Hilbert `‖H_M‖ ≤ π` e das hipóteses uniformes de amplitude/quociente para limites co-finais. Isso é uma obrigação de prova aberta, não uma refutação matemática.
 
-Validação F3: módulo isolado e build completo `--wfail` aprovados; 20 declarações públicas auditadas, somente os axiomas padrão.
+## Commits, PRs e validação
 
-## F6 — Compressão física e entrada exterior
+| Bloco | PR | Commits de implementação | Merge em main |
+|---|---|---|---|
+| F1 | [#73](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/73) | [`9e98933`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/9e989338943cce9d918df687104d71377002a329) | [`ed58af5`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/ed58af5b39df24d36358216284a380aeb47cc8c7) |
+| F3 / F6 inicial | [#74](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/74) | [`1a8b7c8`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/1a8b7c86a156f4c106c641a48030ef279e179616), [`8a9a342`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/8a9a342b9c5b61175d56019b0dda13b7ee4089c6) | [`2002f30`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/2002f3058927952d2e5249b66c99277783291949) |
+| F4 | [#75](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/75) | [`4aaf4b4`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/4aaf4b419dff3446f09fdf4d792dce888710ca5d) | [`a668b28`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/a668b28b5cf52b0c4992e367de2de73ced1d3a07) |
+| F5 / F7 | [#76](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/76) | [`0d1f281`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/0d1f281e7775c5154141da1f308c47984c56c132), [`f335ff9`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/f335ff9fef8ffbdff978c961a8c8024918770931) | [`d93ced6`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/d93ced61f1a9bb4cd5b056e109885c48b9022eef) |
+| F6 todo R / relatório | [#77](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/77) | [`94dabb9`](https://github.com/thiagomassensini/carry-self-adjoint-operator/commit/94dabb94163e70dade825fc30b5b3e178ba92f16) | Merge após a validação local e deste relatório |
 
-`NativePhysicalLaguerreCompression.lean` constrói a projeção ortogonal verdadeira sobre o span dos três modos certificados. O teorema `physicalFirstThree_compression_square` comprime `M_u²` antes de substituir o operador comprimido. `physicalFirstThreeLeakage_eq_gram` identifica o vazamento como `B* B`; sua positividade é certificada. `physicalFirstThree_outside_input` retém `P M_u² (I-P) h` para uma entrada física arbitrária. Não se presume que a entrada pertence ao subespaço truncado.
+Cada branch começou da main atualizada. Os merges #73–#76 foram seguidos por novo build completo da main antes do próximo PR. A API anterior do corte de três modos foi mantida como especialização R=2; seus resultados não foram repetidos como se fossem novidades independentes.
 
-Validação F6: módulo isolado, build completo `--wfail` (10117 jobs) e auditoria das 11 declarações públicas, incluindo a instância de dimensão finita, aprovados com apenas os axiomas padrão.
+Comandos executados, sempre no llm e com o toolchain pinado:
 
-## F4 — Relógio geométrico maximal
+```bash
+PATH=/home/thlinux/.elan/bin:$PATH lake env lean CarrySelfAdjointOperator/<Modulo>.lean
+PATH=/home/thlinux/.elan/bin:$PATH lake build CarrySelfAdjointOperator.<Modulo>Audit --wfail
+PATH=/home/thlinux/.elan/bin:$PATH lake build --wfail
+```
 
-`NativeGeometricLogClock.lean` define multiplicação por `log u` no domínio maximal `{f : H | MemLp ((log u) f) 2 volume}`. Prova que esse domínio é denso, que o adjunto coincide com o operador original, e portanto que o relógio é auto-adjunto e fechado. A prova usa o regularizador físico `M_u`, injetivo quase em toda parte, e o produto limitado e contínuo `u log u`. Não depende de completude Laguerre.
+Na revisão final, as cinco auditorias foram construídas juntas e seus nomes comparados ao inventário das 106 declarações públicas. Resultado: **106/106**, sem `sorryAx` ou axiomas adicionais; somente `propext`, `Classical.choice`, `Quot.sound`. O inventário separa 79 teoremas, 25 definições e 2 instâncias. Declarações reproduzidas de dependências nos logs não são contadas como resultados novos.
 
-Todos os monômios logarítmicos, todos os modos Laguerre e todas as colunas de meia-densidade nativas, com sua amplitude, pertencem ao domínio. A ação no núcleo logarítmico e sua expansão em qualquer ordem são exatas. As linhas Jacobi 0–2 foram verificadas como igualdades de vetores físicos. A identidade `exp(log u)=u` é provada quase em toda parte; isso é um canário espectral e não um teorema de cálculo funcional de operadores. A coordenada Weyl literal `1+log(ell*u)` mantém `1+log ell` e `log u`; não se identifica o relógio material diagonal com esse relógio geométrico.
+Builds completos aprovados: F1 10115 jobs; F3 10116; F6 inicial 10117; F4 10118; F5/F7 e F6 em todo R 10119. Os módulos também passaram isoladamente. Não foram usados experimentos numéricos como prova nesta rodada.
 
-PR F3/F6: #74; commits `1a8b7c8` e `8a9a342`; merge `2002f3058927952d2e5249b66c99277783291949`; main revalidada com `--wfail`.
+Logs locais: `.lake/laguerre-functional-audit/`, incluindo `final-axioms.log`, `final-build.log`, `certified-declarations.json`, `pins.json` e `ci-status.json`.
 
-Validação F4: módulo isolado, build completo `--wfail` (10118 jobs), auditoria de todas as 21 declarações públicas; somente os axiomas padrão.
+O CI externo está bloqueado por pagamento, conforme informado pelo usuário. Foram inspecionadas execuções com `startup_failure` e `jobs=[]`, por exemplo [38290535010](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38290535010), [38291730918](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38291730918), [38292324024](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38292324024) e [38293182210](https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38293182210). Zero jobs é inconclusivo: o certificado matemático apresentado é o Lean local no llm. Os merges foram autorizados expressamente nesse cenário.
 
-## F5/F7 — Inverso físico e pairing com todos os setores
+## Próximas obrigações de prova
 
-`NativePhysicalGreenResolvent.lean` constrói o multiplicador recíproco `(1-q u)^(-1)` para `0 ≤ q < 1`, prova os inversos esquerdo e direito de `I-q M_u`, e a cota de norma `(1-q)^(-1)`. Constrói `q M_u (I-q M_u)^(-2)` no Hilbert original; sua positividade e auto-adjunção pertencem somente ao operador Green nesse Hilbert.
+A próxima ponte analítica é provar a ortonormalidade all-order e a densidade Laguerre, em vez de presumir uma unitária. A matriz física já tem fórmula exata por momentos; falta reduzir essa soma ao binomial para quaisquer r,s. O relógio maximal é auto-adjunto, mas ainda faltam a recorrência Jacobi em toda ordem e uma passagem tipada ao cálculo funcional de exp.
 
-O adaptador `continuousPairToSource_physical_advance` liga o avanço previamente certificado ao operador verdadeiro nas duas pernas. `physicalCompletedFiniteGreen_reconstruct` resolve a fonte completada de suporte finito, antes do pairing, preservando os dois traços, o bulk e os termos `E b`, `E x`, `M_u E x` e `E Sx`. O fator q é o do inverso da válvula original; não há fonte intermediária normalizada nem truncamento da entrada.
-
-`physicalCompletedFiniteGreen_signed_pairing` usa duas entradas independentes. `physicalCompletedFiniteGreen_four_sectors` conserva principal–principal, principal–resíduo, resíduo–principal e resíduo–resíduo depois do inverso. A primeira entrada permanece conjugada pela forma original. Resíduo com autopairing nulo não autoriza apagar cruzamentos.
-
-PR F4: #75; commit `4aaf4b419dff3446f09fdf4d792dce888710ca5d`; merge `a668b28b5cf52b0c4992e367de2de73ced1d3a07`; main revalidada.
-
-Validação F5/F7: módulo isolado, build completo `--wfail` (10119 jobs), todas as 25 declarações públicas auditadas com apenas os axiomas padrão. O log inclui também quatro declarações reproduzidas da dependência C3; a auditoria distingue os nomes novos. A cota de cauda π segue aberta. Não foi enunciada a desigualdade de ordem falsa `D H D ≤ θ² H`.
+Para as fronteiras físicas, faltam a cota de cauda π com controle uniforme de amplitudes/quotientes e o dicionário independente material–radial multibase. A positividade da forma assinada em toda ordem permanece uma questão separada. Nenhuma dessas etapas foi declarada concluída por Gram positivo, canário finito ou auto-adjunção do multiplicador radial.
