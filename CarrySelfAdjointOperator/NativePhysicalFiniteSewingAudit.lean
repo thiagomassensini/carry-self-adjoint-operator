@@ -1,0 +1,93 @@
+import CarrySelfAdjointOperator.NativePhysicalFiniteSewing
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.PhysicalSewing
+
+#check finRadialCoefficients
+#print axioms finRadialCoefficients
+#check finRadialCoefficients_apply
+#print axioms finRadialCoefficients_apply
+#check finRadialCoefficients_outside
+#print axioms finRadialCoefficients_outside
+#check physicalCompletedFiniteSource_fin
+#print axioms physicalCompletedFiniteSource_fin
+#check physicalFiniteSewing_capstone
+#print axioms physicalFiniteSewing_capstone
+#check extendMaterial
+#print axioms extendMaterial
+#check materialPolynomial_extend
+#print axioms materialPolynomial_extend
+#check physicalEndpointJetInput_extend
+#print axioms physicalEndpointJetInput_extend
+#check finRadialCoefficients_extend
+#print axioms finRadialCoefficients_extend
+#check finiteProjectiveSource_extend
+#print axioms finiteProjectiveSource_extend
+#check materialStencilPolynomial
+#print axioms materialStencilPolynomial
+#check materialStencilPolynomial_atom
+#print axioms materialStencilPolynomial_atom
+#check materialStencilPolynomial_bracket
+#print axioms materialStencilPolynomial_bracket
+#check materialStencilPolynomial_camera
+#print axioms materialStencilPolynomial_camera
+#check materialStencilHalfWindow
+#print axioms materialStencilHalfWindow
+#check materialStencilCoefficients
+#print axioms materialStencilCoefficients
+#check materialStencilCoefficients_polynomial
+#print axioms materialStencilCoefficients_polynomial
+#check materialStencil_physicalFiniteSewing
+#print axioms materialStencil_physicalFiniteSewing
+#check originalBracket_physicalFiniteSewing
+#print axioms originalBracket_physicalFiniteSewing
+#check originalCamera_physicalFiniteSewing
+#print axioms originalCamera_physicalFiniteSewing
+#check physicalEndpointJetInput_extended_last_zero
+#print axioms physicalEndpointJetInput_extended_last_zero
+#check finRadialCoefficients_coeff
+#print axioms finRadialCoefficients_coeff
+#check finiteTrace0_polynomial
+#print axioms finiteTrace0_polynomial
+#check finiteTrace1_polynomial
+#print axioms finiteTrace1_polynomial
+#check finiteTraces_from_entireEndpointChart
+#print axioms finiteTraces_from_entireEndpointChart
+#check firstMaterialBracketCoefficients
+#print axioms firstMaterialBracketCoefficients
+#check firstMaterialBracket_polynomial
+#print axioms firstMaterialBracket_polynomial
+#check firstMaterialBracket_endpoint_canary
+#print axioms firstMaterialBracket_endpoint_canary
+
+#audit_physical_sewing
+  finRadialCoefficients
+  finRadialCoefficients_apply
+  finRadialCoefficients_outside
+  physicalCompletedFiniteSource_fin
+  physicalFiniteSewing_capstone
+  extendMaterial
+  materialPolynomial_extend
+  physicalEndpointJetInput_extend
+  finRadialCoefficients_extend
+  finiteProjectiveSource_extend
+  materialStencilPolynomial
+  materialStencilPolynomial_atom
+  materialStencilPolynomial_bracket
+  materialStencilPolynomial_camera
+  materialStencilHalfWindow
+  materialStencilCoefficients
+  materialStencilCoefficients_polynomial
+  materialStencil_physicalFiniteSewing
+  originalBracket_physicalFiniteSewing
+  originalCamera_physicalFiniteSewing
+  physicalEndpointJetInput_extended_last_zero
+  finRadialCoefficients_coeff
+  finiteTrace0_polynomial
+  finiteTrace1_polynomial
+  finiteTraces_from_entireEndpointChart
+  firstMaterialBracketCoefficients
+  firstMaterialBracket_polynomial
+  firstMaterialBracket_endpoint_canary
+end CarrySelfAdjointOperator.PhysicalSewing

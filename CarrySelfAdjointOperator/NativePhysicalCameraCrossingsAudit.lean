@@ -1,0 +1,48 @@
+import CarrySelfAdjointOperator.NativePhysicalCameraCrossings
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.PhysicalSewing
+
+#check physicalPair_signed_camera_crosses
+#print axioms physicalPair_signed_camera_crosses
+#check physicalPair_camera_fourSectors
+#print axioms physicalPair_camera_fourSectors
+#check twoPortSignedTail
+#print axioms twoPortSignedTail
+#check twoPort_signed_headTail
+#print axioms twoPort_signed_headTail
+#check twoPort_camera_headTail
+#print axioms twoPort_camera_headTail
+#check twoPortPolarizedHeadTail
+#print axioms twoPortPolarizedHeadTail
+#check twoPortSynthesis_add_secondDefect
+#print axioms twoPortSynthesis_add_secondDefect
+#check twoPort_camera_defect_fourHeadTails
+#print axioms twoPort_camera_defect_fourHeadTails
+#check cameraDefectFamily_faithful
+#print axioms cameraDefectFamily_faithful
+#check cameraDefectCancellation_canary
+#print axioms cameraDefectCancellation_canary
+#check originalMaterialBracket_threeChannels
+#print axioms originalMaterialBracket_threeChannels
+#check originalC2_camera_literal
+#print axioms originalC2_camera_literal
+#check originalNaturalCamera_literal
+#print axioms originalNaturalCamera_literal
+
+#audit_physical_sewing
+  physicalPair_signed_camera_crosses
+  physicalPair_camera_fourSectors
+  twoPortSignedTail
+  twoPort_signed_headTail
+  twoPort_camera_headTail
+  twoPortPolarizedHeadTail
+  twoPortSynthesis_add_secondDefect
+  twoPort_camera_defect_fourHeadTails
+  cameraDefectFamily_faithful
+  cameraDefectCancellation_canary
+  originalMaterialBracket_threeChannels
+  originalC2_camera_literal
+  originalNaturalCamera_literal
+end CarrySelfAdjointOperator.PhysicalSewing

@@ -1,0 +1,66 @@
+import CarrySelfAdjointOperator.NativePhysicalEndpointEncoder
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.PhysicalSewing
+
+#check materialPolynomial
+#print axioms materialPolynomial
+#check endpointGauge
+#print axioms endpointGauge
+#check physicalEndpointJetInput
+#print axioms physicalEndpointJetInput
+#check physicalEndpointJetInput_finite
+#print axioms physicalEndpointJetInput_finite
+#check endpointDerivative_div_factorial
+#print axioms endpointDerivative_div_factorial
+#check material_taylor_reconstruct
+#print axioms material_taylor_reconstruct
+#check material_taylor_coeff
+#print axioms material_taylor_coeff
+#check nativeSourceJetOrderPhase_sq
+#print axioms nativeSourceJetOrderPhase_sq
+#check endpointGauge_ne_zero
+#print axioms endpointGauge_ne_zero
+#check endpointTaylorPolynomial
+#print axioms endpointTaylorPolynomial
+#check endpointTaylorPolynomial_encode
+#print axioms endpointTaylorPolynomial_encode
+#check physicalEndpointJetInput_injective
+#print axioms physicalEndpointJetInput_injective
+#check decodedEndpointCoefficients
+#print axioms decodedEndpointCoefficients
+#check decodedEndpointCoefficients_encode
+#print axioms decodedEndpointCoefficients_encode
+#check physicalEndpointJetInput_decode
+#print axioms physicalEndpointJetInput_decode
+#check physicalEndpointJetInput_factorials
+#print axioms physicalEndpointJetInput_factorials
+#check physicalEndpointJetInput_nativeSourceInput
+#print axioms physicalEndpointJetInput_nativeSourceInput
+#check finiteProjectiveSource
+#print axioms finiteProjectiveSource
+#check physicalEndpointJetInput_wholeSource
+#print axioms physicalEndpointJetInput_wholeSource
+
+#audit_physical_sewing
+  materialPolynomial
+  endpointGauge
+  physicalEndpointJetInput
+  physicalEndpointJetInput_finite
+  endpointDerivative_div_factorial
+  material_taylor_reconstruct
+  material_taylor_coeff
+  nativeSourceJetOrderPhase_sq
+  endpointGauge_ne_zero
+  endpointTaylorPolynomial
+  endpointTaylorPolynomial_encode
+  physicalEndpointJetInput_injective
+  decodedEndpointCoefficients
+  decodedEndpointCoefficients_encode
+  physicalEndpointJetInput_decode
+  physicalEndpointJetInput_factorials
+  physicalEndpointJetInput_nativeSourceInput
+  finiteProjectiveSource
+  physicalEndpointJetInput_wholeSource
+end CarrySelfAdjointOperator.PhysicalSewing

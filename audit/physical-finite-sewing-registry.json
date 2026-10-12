@@ -1,0 +1,221 @@
+{
+  "namespace": "CarrySelfAdjointOperator.PhysicalSewing",
+  "base_commit": "91b1c52372d74db8956607183766c042e204a796",
+  "public_declarations": 154,
+  "allowed_foundational_dependencies": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "modules": [
+    {
+      "module": "NativePhysicalCameraCrossings",
+      "declarations": [
+        "physicalPair_signed_camera_crosses",
+        "physicalPair_camera_fourSectors",
+        "twoPortSignedTail",
+        "twoPort_signed_headTail",
+        "twoPort_camera_headTail",
+        "twoPortPolarizedHeadTail",
+        "twoPortSynthesis_add_secondDefect",
+        "twoPort_camera_defect_fourHeadTails",
+        "cameraDefectFamily_faithful",
+        "cameraDefectCancellation_canary",
+        "originalMaterialBracket_threeChannels",
+        "originalC2_camera_literal",
+        "originalNaturalCamera_literal"
+      ]
+    },
+    {
+      "module": "NativePhysicalEndpointCompletion",
+      "declarations": [
+        "completionForwardDifference",
+        "descFactorial_choose_shift",
+        "endpointCompletion_column_sum",
+        "endpointCompletionMatrix",
+        "endpointCompletion",
+        "physicalEndpointJetInput_eq_taylor",
+        "physicalEndpointJetInput_completion"
+      ]
+    },
+    {
+      "module": "NativePhysicalEndpointEncoder",
+      "declarations": [
+        "materialPolynomial",
+        "endpointGauge",
+        "physicalEndpointJetInput",
+        "physicalEndpointJetInput_finite",
+        "endpointDerivative_div_factorial",
+        "material_taylor_reconstruct",
+        "material_taylor_coeff",
+        "nativeSourceJetOrderPhase_sq",
+        "endpointGauge_ne_zero",
+        "endpointTaylorPolynomial",
+        "endpointTaylorPolynomial_encode",
+        "physicalEndpointJetInput_injective",
+        "decodedEndpointCoefficients",
+        "decodedEndpointCoefficients_encode",
+        "physicalEndpointJetInput_decode",
+        "physicalEndpointJetInput_factorials",
+        "physicalEndpointJetInput_nativeSourceInput",
+        "finiteProjectiveSource",
+        "physicalEndpointJetInput_wholeSource"
+      ]
+    },
+    {
+      "module": "NativePhysicalFiniteSewing",
+      "declarations": [
+        "finRadialCoefficients",
+        "finRadialCoefficients_apply",
+        "finRadialCoefficients_outside",
+        "physicalCompletedFiniteSource_fin",
+        "physicalFiniteSewing_capstone",
+        "extendMaterial",
+        "materialPolynomial_extend",
+        "physicalEndpointJetInput_extend",
+        "finRadialCoefficients_extend",
+        "finiteProjectiveSource_extend",
+        "materialStencilPolynomial",
+        "materialStencilPolynomial_atom",
+        "materialStencilPolynomial_bracket",
+        "materialStencilPolynomial_camera",
+        "materialStencilHalfWindow",
+        "materialStencilCoefficients",
+        "materialStencilCoefficients_polynomial",
+        "materialStencil_physicalFiniteSewing",
+        "originalBracket_physicalFiniteSewing",
+        "originalCamera_physicalFiniteSewing",
+        "physicalEndpointJetInput_extended_last_zero",
+        "finRadialCoefficients_coeff",
+        "finiteTrace0_polynomial",
+        "finiteTrace1_polynomial",
+        "finiteTraces_from_entireEndpointChart",
+        "firstMaterialBracketCoefficients",
+        "firstMaterialBracket_polynomial",
+        "firstMaterialBracket_endpoint_canary"
+      ]
+    },
+    {
+      "module": "NativePhysicalLaguerreObservability",
+      "declarations": [
+        "rho_injective",
+        "laguerreFirstMomentMatrix",
+        "laguerreFirstMoments",
+        "laguerreFirstMomentMatrix_vandermonde",
+        "laguerreFirstMomentMatrix_det_ne_zero",
+        "laguerreFirstMoments_injective",
+        "laguerreFirstMoments_decode",
+        "twoPortLaguerreFirstMoments_injective",
+        "laguerreFirstMoments_secondPortDefect",
+        "shortHead_synthetic_canary",
+        "shortHead_cannot_determine_synthetic_secondPort",
+        "mixedPhysicalProbes_headTail",
+        "mixedPhysicalProbes_tail_as_originalGram"
+      ]
+    },
+    {
+      "module": "NativePhysicalMaterialProducer",
+      "declarations": [
+        "materialStencilRadialCoefficients",
+        "originalMaterialCompletedSource",
+        "originalMaterialCompletedSource_eq_physical",
+        "materialStencilRadialCoefficients_eq_fin",
+        "originalMaterial_wholeSource_capstone",
+        "originalMaterialCompletedSource_atom",
+        "originalMaterialCompletedSource_bracket",
+        "originalMaterialCompletedSource_camera",
+        "polynomialIntervalRepresentative",
+        "materialStencilPolynomial_matches_originalProfile",
+        "originalMaterialBracket_profile_provenance",
+        "originalMaterialCamera_profile_provenance"
+      ]
+    },
+    {
+      "module": "NativePhysicalMixedProbes",
+      "declarations": [
+        "secondPortDefect",
+        "mixedPhysicalProbes",
+        "mixedProbeScale",
+        "mixedPhysicalProbes_formula",
+        "mixedProbeScale_ne_zero",
+        "mixedPhysicalProbes_faithful",
+        "mixedPhysicalProbes_decode",
+        "mixedPhysicalProbes_diagnostic",
+        "diagonalDefect_autopairing_zero",
+        "nonzeroDiagonalDefect_detected",
+        "realConstantGauge_preserves_graph_form",
+        "realConstantGauge_detected"
+      ]
+    },
+    {
+      "module": "NativePhysicalObservableCapstone",
+      "declarations": [
+        "mixedPhysicalProbe_originalColumn",
+        "physicalCandidate_wholePair_iff_probes",
+        "physicalFiniteObservable_capstone",
+        "originalMaterial_observable_capstone"
+      ]
+    },
+    {
+      "module": "NativePhysicalTfvdSecondPort",
+      "declarations": [
+        "tfvdStateTracePair",
+        "tfvdStateTracePair_canonical",
+        "tfvdStateResponse",
+        "tfvdStateResponse_threeChannels",
+        "tfvdStateResponse_divisionFree",
+        "tfvdCanonicalResponse_eq_original",
+        "tfvdCanonicalResponse_regular_denominators",
+        "tfvdStateHeadResponse",
+        "tfvdStateHeadTail_responseDefect",
+        "tfvdMaterialSecondCoefficients",
+        "tfvdMaterialWholeSource",
+        "tfvdMaterialWholeSource_canonical",
+        "materialSourceChannels_eq_tfvdReadouts",
+        "tfvdHeadTail_secondVector",
+        "tfvdHeadTail_endpointVector",
+        "tfvdHeadTail_exactEndpointDefect",
+        "originalRadialNodes_strip_of_cutoff",
+        "materialSourceValue_normalization",
+        "materialSourceCompanion_normalization",
+        "materialSourceChannels_reconstruct",
+        "tfvdCanonicalSecondPort_endpointCompletion"
+      ]
+    },
+    {
+      "module": "NativePhysicalTwoPortChart",
+      "declarations": [
+        "portHalfNormalization",
+        "portHalfNormalization_sq",
+        "portHalfNormalization_star",
+        "twoPortReconstruct",
+        "twoPortChart",
+        "twoPortChart_reconstruct",
+        "twoPortReconstruct_chart",
+        "twoPortSynthesis",
+        "twoPortSynthesis_chart",
+        "twoPortSynthesis_injective",
+        "twoPortEndpointEncoding",
+        "twoPortEndpointReconstruction",
+        "twoPortEndpoint_reconstruct_entire_pair",
+        "twoPort_signed_form",
+        "originalResponse",
+        "normalized_chiral_twoPorts",
+        "normalized_chiral_gap_and_response",
+        "radialResponse",
+        "finiteProjectiveSource_eq_twoPorts"
+      ]
+    },
+    {
+      "module": "NativePhysicalValveExtension",
+      "declarations": [
+        "finiteValveCoefficients",
+        "finiteValve_outside",
+        "finiteValve_zeroExtension",
+        "finiteValve_terminal_coordinates",
+        "finiteValve_polynomial",
+        "finiteValve_physicalGreen"
+      ]
+    }
+  ]
+}

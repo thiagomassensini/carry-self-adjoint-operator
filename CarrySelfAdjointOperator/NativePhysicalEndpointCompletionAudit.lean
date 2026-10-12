@@ -1,0 +1,30 @@
+import CarrySelfAdjointOperator.NativePhysicalEndpointCompletion
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.PhysicalSewing
+
+#check completionForwardDifference
+#print axioms completionForwardDifference
+#check descFactorial_choose_shift
+#print axioms descFactorial_choose_shift
+#check endpointCompletion_column_sum
+#print axioms endpointCompletion_column_sum
+#check endpointCompletionMatrix
+#print axioms endpointCompletionMatrix
+#check endpointCompletion
+#print axioms endpointCompletion
+#check physicalEndpointJetInput_eq_taylor
+#print axioms physicalEndpointJetInput_eq_taylor
+#check physicalEndpointJetInput_completion
+#print axioms physicalEndpointJetInput_completion
+
+#audit_physical_sewing
+  completionForwardDifference
+  descFactorial_choose_shift
+  endpointCompletion_column_sum
+  endpointCompletionMatrix
+  endpointCompletion
+  physicalEndpointJetInput_eq_taylor
+  physicalEndpointJetInput_completion
+end CarrySelfAdjointOperator.PhysicalSewing
