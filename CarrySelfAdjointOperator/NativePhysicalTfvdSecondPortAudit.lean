@@ -1,0 +1,72 @@
+import CarrySelfAdjointOperator.NativePhysicalTfvdSecondPort
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.PhysicalSewing
+
+#check tfvdStateTracePair
+#print axioms tfvdStateTracePair
+#check tfvdStateTracePair_canonical
+#print axioms tfvdStateTracePair_canonical
+#check tfvdStateResponse
+#print axioms tfvdStateResponse
+#check tfvdStateResponse_threeChannels
+#print axioms tfvdStateResponse_threeChannels
+#check tfvdStateResponse_divisionFree
+#print axioms tfvdStateResponse_divisionFree
+#check tfvdCanonicalResponse_eq_original
+#print axioms tfvdCanonicalResponse_eq_original
+#check tfvdCanonicalResponse_regular_denominators
+#print axioms tfvdCanonicalResponse_regular_denominators
+#check tfvdStateHeadResponse
+#print axioms tfvdStateHeadResponse
+#check tfvdStateHeadTail_responseDefect
+#print axioms tfvdStateHeadTail_responseDefect
+#check tfvdMaterialSecondCoefficients
+#print axioms tfvdMaterialSecondCoefficients
+#check tfvdMaterialWholeSource
+#print axioms tfvdMaterialWholeSource
+#check tfvdMaterialWholeSource_canonical
+#print axioms tfvdMaterialWholeSource_canonical
+#check materialSourceChannels_eq_tfvdReadouts
+#print axioms materialSourceChannels_eq_tfvdReadouts
+#check tfvdHeadTail_secondVector
+#print axioms tfvdHeadTail_secondVector
+#check tfvdHeadTail_endpointVector
+#print axioms tfvdHeadTail_endpointVector
+#check tfvdHeadTail_exactEndpointDefect
+#print axioms tfvdHeadTail_exactEndpointDefect
+#check originalRadialNodes_strip_of_cutoff
+#print axioms originalRadialNodes_strip_of_cutoff
+#check materialSourceValue_normalization
+#print axioms materialSourceValue_normalization
+#check materialSourceCompanion_normalization
+#print axioms materialSourceCompanion_normalization
+#check materialSourceChannels_reconstruct
+#print axioms materialSourceChannels_reconstruct
+#check tfvdCanonicalSecondPort_endpointCompletion
+#print axioms tfvdCanonicalSecondPort_endpointCompletion
+
+#audit_physical_sewing
+  tfvdStateTracePair
+  tfvdStateTracePair_canonical
+  tfvdStateResponse
+  tfvdStateResponse_threeChannels
+  tfvdStateResponse_divisionFree
+  tfvdCanonicalResponse_eq_original
+  tfvdCanonicalResponse_regular_denominators
+  tfvdStateHeadResponse
+  tfvdStateHeadTail_responseDefect
+  tfvdMaterialSecondCoefficients
+  tfvdMaterialWholeSource
+  tfvdMaterialWholeSource_canonical
+  materialSourceChannels_eq_tfvdReadouts
+  tfvdHeadTail_secondVector
+  tfvdHeadTail_endpointVector
+  tfvdHeadTail_exactEndpointDefect
+  originalRadialNodes_strip_of_cutoff
+  materialSourceValue_normalization
+  materialSourceCompanion_normalization
+  materialSourceChannels_reconstruct
+  tfvdCanonicalSecondPort_endpointCompletion
+end CarrySelfAdjointOperator.PhysicalSewing

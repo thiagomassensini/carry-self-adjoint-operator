@@ -1,0 +1,45 @@
+import CarrySelfAdjointOperator.NativePhysicalMixedProbes
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.PhysicalSewing
+
+#check secondPortDefect
+#print axioms secondPortDefect
+#check mixedPhysicalProbes
+#print axioms mixedPhysicalProbes
+#check mixedProbeScale
+#print axioms mixedProbeScale
+#check mixedPhysicalProbes_formula
+#print axioms mixedPhysicalProbes_formula
+#check mixedProbeScale_ne_zero
+#print axioms mixedProbeScale_ne_zero
+#check mixedPhysicalProbes_faithful
+#print axioms mixedPhysicalProbes_faithful
+#check mixedPhysicalProbes_decode
+#print axioms mixedPhysicalProbes_decode
+#check mixedPhysicalProbes_diagnostic
+#print axioms mixedPhysicalProbes_diagnostic
+#check diagonalDefect_autopairing_zero
+#print axioms diagonalDefect_autopairing_zero
+#check nonzeroDiagonalDefect_detected
+#print axioms nonzeroDiagonalDefect_detected
+#check realConstantGauge_preserves_graph_form
+#print axioms realConstantGauge_preserves_graph_form
+#check realConstantGauge_detected
+#print axioms realConstantGauge_detected
+
+#audit_physical_sewing
+  secondPortDefect
+  mixedPhysicalProbes
+  mixedProbeScale
+  mixedPhysicalProbes_formula
+  mixedProbeScale_ne_zero
+  mixedPhysicalProbes_faithful
+  mixedPhysicalProbes_decode
+  mixedPhysicalProbes_diagnostic
+  diagonalDefect_autopairing_zero
+  nonzeroDiagonalDefect_detected
+  realConstantGauge_preserves_graph_form
+  realConstantGauge_detected
+end CarrySelfAdjointOperator.PhysicalSewing

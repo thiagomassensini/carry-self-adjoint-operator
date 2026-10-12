@@ -1,0 +1,48 @@
+import CarrySelfAdjointOperator.NativePhysicalLaguerreObservability
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.PhysicalSewing
+
+#check rho_injective
+#print axioms rho_injective
+#check laguerreFirstMomentMatrix
+#print axioms laguerreFirstMomentMatrix
+#check laguerreFirstMoments
+#print axioms laguerreFirstMoments
+#check laguerreFirstMomentMatrix_vandermonde
+#print axioms laguerreFirstMomentMatrix_vandermonde
+#check laguerreFirstMomentMatrix_det_ne_zero
+#print axioms laguerreFirstMomentMatrix_det_ne_zero
+#check laguerreFirstMoments_injective
+#print axioms laguerreFirstMoments_injective
+#check laguerreFirstMoments_decode
+#print axioms laguerreFirstMoments_decode
+#check twoPortLaguerreFirstMoments_injective
+#print axioms twoPortLaguerreFirstMoments_injective
+#check laguerreFirstMoments_secondPortDefect
+#print axioms laguerreFirstMoments_secondPortDefect
+#check shortHead_synthetic_canary
+#print axioms shortHead_synthetic_canary
+#check shortHead_cannot_determine_synthetic_secondPort
+#print axioms shortHead_cannot_determine_synthetic_secondPort
+#check mixedPhysicalProbes_headTail
+#print axioms mixedPhysicalProbes_headTail
+#check mixedPhysicalProbes_tail_as_originalGram
+#print axioms mixedPhysicalProbes_tail_as_originalGram
+
+#audit_physical_sewing
+  rho_injective
+  laguerreFirstMomentMatrix
+  laguerreFirstMoments
+  laguerreFirstMomentMatrix_vandermonde
+  laguerreFirstMomentMatrix_det_ne_zero
+  laguerreFirstMoments_injective
+  laguerreFirstMoments_decode
+  twoPortLaguerreFirstMoments_injective
+  laguerreFirstMoments_secondPortDefect
+  shortHead_synthetic_canary
+  shortHead_cannot_determine_synthetic_secondPort
+  mixedPhysicalProbes_headTail
+  mixedPhysicalProbes_tail_as_originalGram
+end CarrySelfAdjointOperator.PhysicalSewing

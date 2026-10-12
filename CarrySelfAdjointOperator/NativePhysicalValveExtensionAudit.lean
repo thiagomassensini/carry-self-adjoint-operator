@@ -1,0 +1,27 @@
+import CarrySelfAdjointOperator.NativePhysicalValveExtension
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.PhysicalSewing
+
+#check finiteValveCoefficients
+#print axioms finiteValveCoefficients
+#check finiteValve_outside
+#print axioms finiteValve_outside
+#check finiteValve_zeroExtension
+#print axioms finiteValve_zeroExtension
+#check finiteValve_terminal_coordinates
+#print axioms finiteValve_terminal_coordinates
+#check finiteValve_polynomial
+#print axioms finiteValve_polynomial
+#check finiteValve_physicalGreen
+#print axioms finiteValve_physicalGreen
+
+#audit_physical_sewing
+  finiteValveCoefficients
+  finiteValve_outside
+  finiteValve_zeroExtension
+  finiteValve_terminal_coordinates
+  finiteValve_polynomial
+  finiteValve_physicalGreen
+end CarrySelfAdjointOperator.PhysicalSewing

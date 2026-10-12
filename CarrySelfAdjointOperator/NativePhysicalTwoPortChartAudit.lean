@@ -1,0 +1,66 @@
+import CarrySelfAdjointOperator.NativePhysicalTwoPortChart
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.PhysicalSewing
+
+#check portHalfNormalization
+#print axioms portHalfNormalization
+#check portHalfNormalization_sq
+#print axioms portHalfNormalization_sq
+#check portHalfNormalization_star
+#print axioms portHalfNormalization_star
+#check twoPortReconstruct
+#print axioms twoPortReconstruct
+#check twoPortChart
+#print axioms twoPortChart
+#check twoPortChart_reconstruct
+#print axioms twoPortChart_reconstruct
+#check twoPortReconstruct_chart
+#print axioms twoPortReconstruct_chart
+#check twoPortSynthesis
+#print axioms twoPortSynthesis
+#check twoPortSynthesis_chart
+#print axioms twoPortSynthesis_chart
+#check twoPortSynthesis_injective
+#print axioms twoPortSynthesis_injective
+#check twoPortEndpointEncoding
+#print axioms twoPortEndpointEncoding
+#check twoPortEndpointReconstruction
+#print axioms twoPortEndpointReconstruction
+#check twoPortEndpoint_reconstruct_entire_pair
+#print axioms twoPortEndpoint_reconstruct_entire_pair
+#check twoPort_signed_form
+#print axioms twoPort_signed_form
+#check originalResponse
+#print axioms originalResponse
+#check normalized_chiral_twoPorts
+#print axioms normalized_chiral_twoPorts
+#check normalized_chiral_gap_and_response
+#print axioms normalized_chiral_gap_and_response
+#check radialResponse
+#print axioms radialResponse
+#check finiteProjectiveSource_eq_twoPorts
+#print axioms finiteProjectiveSource_eq_twoPorts
+
+#audit_physical_sewing
+  portHalfNormalization
+  portHalfNormalization_sq
+  portHalfNormalization_star
+  twoPortReconstruct
+  twoPortChart
+  twoPortChart_reconstruct
+  twoPortReconstruct_chart
+  twoPortSynthesis
+  twoPortSynthesis_chart
+  twoPortSynthesis_injective
+  twoPortEndpointEncoding
+  twoPortEndpointReconstruction
+  twoPortEndpoint_reconstruct_entire_pair
+  twoPort_signed_form
+  originalResponse
+  normalized_chiral_twoPorts
+  normalized_chiral_gap_and_response
+  radialResponse
+  finiteProjectiveSource_eq_twoPorts
+end CarrySelfAdjointOperator.PhysicalSewing
