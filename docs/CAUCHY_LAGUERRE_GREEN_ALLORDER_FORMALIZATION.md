@@ -69,7 +69,8 @@ Namespace F/G: `CarrySelfAdjointOperator.NativeCauchyPorts`.
 | `daa89be` | NativeCompletedFiniteGreenResidual.lean | `finiteTfvdBulk_succ`, `finiteCoefficientValve_two_traces`, `completedFiniteSynthesis_shift`, `completedFiniteSynthesis_valve`, `completedFiniteGreen_corrected_numerator`, `completedFiniteSynthesis_to_original`, `completedFiniteResidual_to_original_channels`, `regular_finiteResidual_signed_pairing_zero`, `completed_residual_four_sectors` |
 
 Commits de exportação/documentação dos lotes 1 e 2: `db1ac48`, `5706c5d`.
-O último commit de exportação/documentação está identificado no HEAD do PR do lote 3.
+Exportação/documentação do lote 3: `713ce2b`; a revisão final do relatório
+registra URLs e o CI observado sem alterar fontes Lean.
 As declarações completas e respectivas linhas constam no arquivo JSON de auditoria
 entregue junto ao relatório; os módulos `*Audit.lean` são os checks reproduzíveis.
 
@@ -175,12 +176,15 @@ equivalência unitária, transportar o domínio maximal do log e os resolventes 
 * [PR #71](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/71):
   avanço/relógio/compressão, base PR #70, HEAD
   `5706c5dc501447086b7a8cc06dc0521b6de82c35`.
-* Lote 3: PR incremental sobre #71 com Green finito/residual e este relatório;
-  URL e HEAD são registrados no comprovante de entrega.
+* [PR #72](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/72):
+  Green finito/residual e este relatório, base PR #71; commit de exportação
+  auditado `713ce2bf7a37fc0456a84eb6b3afc19ba2b3c412`.
 
-CI dos PRs #70/#71: `startup_failure`, zero jobs. Runs de PR
-38282396010 / 38283373250, respectivamente. Isso é CI externo inconclusivo;
-não é resultado de compilação Lean. Estado do CI do lote 3 consta no comprovante.
+CI observado nos três commits de exportação dos PRs #70/#71/#72:
+`startup_failure`, zero jobs. Runs de PR 38282396010 / 38283373250 /
+38284065002, respectivamente. Isso é CI externo inconclusivo, não um resultado
+de compilação Lean. O comprovante local registra o HEAD final publicado e o
+CI observado após a revisão apenas documental deste relatório.
 
 Nenhum merge automático. `main` local/remoto não recebeu estes commits, conforme
 o prompt principal. As branches publicadas permanecem disponíveis para revisão.
