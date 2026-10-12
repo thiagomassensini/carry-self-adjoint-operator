@@ -23,7 +23,7 @@ Para todos `r,j`, `laguerreMode_feature` identifica o overlap funcional com a co
 - F1: ortonormalidade all-order.
 - F2: `OPEN_LAGUERRE_COMPLETENESS`; não existe nesta etapa uma equivalência unitária sobre todo o espaço físico.
 - F3: somente a redução da matriz all-order à expressão binomial fechada continua aberta.
-- F4: domínio maximal, auto-adjunção do relógio geométrico e cálculo funcional.
+- F4: Jacobi all-order e `OPEN_FUNCTIONAL_CALCULUS`; domínio maximal, densidade, auto-adjunção e fechamento estão certificados.
 - F5: inverso Green no Hilbert original, aplicado à fonte completada.
 - F6: extensão das compressões para todos os cortes R; aqui o corte 0–2 é funcionalmente certificado.
 - F7: transporte das duas entradas completas, controle de cauda e costura física multibase. A forma assinada não foi declarada positiva.
@@ -47,3 +47,13 @@ Validação F3: módulo isolado e build completo `--wfail` aprovados; 20 declara
 `NativePhysicalLaguerreCompression.lean` constrói a projeção ortogonal verdadeira sobre o span dos três modos certificados. O teorema `physicalFirstThree_compression_square` comprime `M_u²` antes de substituir o operador comprimido. `physicalFirstThreeLeakage_eq_gram` identifica o vazamento como `B* B`; sua positividade é certificada. `physicalFirstThree_outside_input` retém `P M_u² (I-P) h` para uma entrada física arbitrária. Não se presume que a entrada pertence ao subespaço truncado.
 
 Validação F6: módulo isolado, build completo `--wfail` (10117 jobs) e auditoria das 11 declarações públicas, incluindo a instância de dimensão finita, aprovados com apenas os axiomas padrão.
+
+## F4 — Relógio geométrico maximal
+
+`NativeGeometricLogClock.lean` define multiplicação por `log u` no domínio maximal `{f : H | MemLp ((log u) f) 2 volume}`. Prova que esse domínio é denso, que o adjunto coincide com o operador original, e portanto que o relógio é auto-adjunto e fechado. A prova usa o regularizador físico `M_u`, injetivo quase em toda parte, e o produto limitado e contínuo `u log u`. Não depende de completude Laguerre.
+
+Todos os monômios logarítmicos, todos os modos Laguerre e todas as colunas de meia-densidade nativas, com sua amplitude, pertencem ao domínio. A ação no núcleo logarítmico e sua expansão em qualquer ordem são exatas. As linhas Jacobi 0–2 foram verificadas como igualdades de vetores físicos. A identidade `exp(log u)=u` é provada quase em toda parte; isso é um canário espectral e não um teorema de cálculo funcional de operadores. A coordenada Weyl literal `1+log(ell*u)` mantém `1+log ell` e `log u`; não se identifica o relógio material diagonal com esse relógio geométrico.
+
+PR F3/F6: #74; commits `1a8b7c8` e `8a9a342`; merge `2002f3058927952d2e5249b66c99277783291949`; main revalidada com `--wfail`.
+
+Validação F4: módulo isolado, build completo `--wfail` (10118 jobs), auditoria de todas as 21 declarações públicas; somente os axiomas padrão.
