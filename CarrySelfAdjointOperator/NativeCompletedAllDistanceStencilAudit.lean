@@ -1,0 +1,5 @@
+import CarrySelfAdjointOperator.NativeCompletedAllDistanceStencil
+
+#print axioms CarrySelfAdjointOperator.FirstEdgeSewing.edge_telescope
+#print axioms CarrySelfAdjointOperator.FirstEdgeSewing.completed_stencil_all_distance
+#print axioms CarrySelfAdjointOperator.FirstEdgeSewing.completed_stencil_linear_transport

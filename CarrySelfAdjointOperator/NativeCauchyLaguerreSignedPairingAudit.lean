@@ -1,0 +1,10 @@
+import CarrySelfAdjointOperator.NativeCauchyLaguerreSignedPairing
+
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.matrixPairing
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.laguerreReadout
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.returnedCoefficients
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.signedTail
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.head_matrixPairing
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.matrixPairing_head_tail
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.incident_inner_eq_matrixPairing
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.original_signed_pairing_head_tail
