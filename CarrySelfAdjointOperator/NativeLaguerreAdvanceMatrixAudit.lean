@@ -1,0 +1,9 @@
+import CarrySelfAdjointOperator.NativeLaguerreAdvanceMatrix
+
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.advanceEntry
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.advanceEntry_symmetric
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.advanceEntry_nonneg
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.advance_closed_feature
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.hasSum_advance_feature
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.tsum_advance_feature
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.advance_seed_entry
