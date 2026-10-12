@@ -1,3 +1,4 @@
+import CarrySelfAdjointOperator.NativeIntervalMultiplier
 import CarrySelfAdjointOperator.NativeLaguerreLpModes
 import CarrySelfAdjointOperator.NativeCompletedFiniteGreenResidual
 import CarrySelfAdjointOperator.NativeLaguerreAdvanceMatrix
