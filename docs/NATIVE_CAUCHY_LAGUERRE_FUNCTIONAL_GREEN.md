@@ -24,9 +24,9 @@ Para todos `r,j`, `laguerreMode_feature` identifica o overlap funcional com a co
 - F2: `OPEN_LAGUERRE_COMPLETENESS`; não existe nesta etapa uma equivalência unitária sobre todo o espaço físico.
 - F3: somente a redução da matriz all-order à expressão binomial fechada continua aberta.
 - F4: Jacobi all-order e `OPEN_FUNCTIONAL_CALCULUS`; domínio maximal, densidade, auto-adjunção e fechamento estão certificados.
-- F5: inverso Green no Hilbert original, aplicado à fonte completada.
+- F5: extensão além de entradas de suporte finito; reconstrução funcional da fonte finita completada está certificada.
 - F6: extensão das compressões para todos os cortes R; aqui o corte 0–2 é funcionalmente certificado.
-- F7: transporte das duas entradas completas, controle de cauda e costura física multibase. A forma assinada não foi declarada positiva.
+- F7: cota de cauda com constante universal π e costura física multibase. O transporte de duas entradas completas e seus quatro setores é certificado; a forma assinada não foi declarada positiva.
 
 ## Validação
 
@@ -57,3 +57,15 @@ Todos os monômios logarítmicos, todos os modos Laguerre e todas as colunas de 
 PR F3/F6: #74; commits `1a8b7c8` e `8a9a342`; merge `2002f3058927952d2e5249b66c99277783291949`; main revalidada com `--wfail`.
 
 Validação F4: módulo isolado, build completo `--wfail` (10118 jobs), auditoria de todas as 21 declarações públicas; somente os axiomas padrão.
+
+## F5/F7 — Inverso físico e pairing com todos os setores
+
+`NativePhysicalGreenResolvent.lean` constrói o multiplicador recíproco `(1-q u)^(-1)` para `0 ≤ q < 1`, prova os inversos esquerdo e direito de `I-q M_u`, e a cota de norma `(1-q)^(-1)`. Constrói `q M_u (I-q M_u)^(-2)` no Hilbert original; sua positividade e auto-adjunção pertencem somente ao operador Green nesse Hilbert.
+
+O adaptador `continuousPairToSource_physical_advance` liga o avanço previamente certificado ao operador verdadeiro nas duas pernas. `physicalCompletedFiniteGreen_reconstruct` resolve a fonte completada de suporte finito, antes do pairing, preservando os dois traços, o bulk e os termos `E b`, `E x`, `M_u E x` e `E Sx`. O fator q é o do inverso da válvula original; não há fonte intermediária normalizada nem truncamento da entrada.
+
+`physicalCompletedFiniteGreen_signed_pairing` usa duas entradas independentes. `physicalCompletedFiniteGreen_four_sectors` conserva principal–principal, principal–resíduo, resíduo–principal e resíduo–resíduo depois do inverso. A primeira entrada permanece conjugada pela forma original. Resíduo com autopairing nulo não autoriza apagar cruzamentos.
+
+PR F4: #75; commit `4aaf4b419dff3446f09fdf4d792dce888710ca5d`; merge `a668b28b5cf52b0c4992e367de2de73ced1d3a07`; main revalidada.
+
+Validação F5/F7: módulo isolado, build completo `--wfail` (10119 jobs), todas as 25 declarações públicas auditadas com apenas os axiomas padrão. O log inclui também quatro declarações reproduzidas da dependência C3; a auditoria distingue os nomes novos. A cota de cauda π segue aberta. Não foi enunciada a desigualdade de ordem falsa `D H D ≤ θ² H`.
