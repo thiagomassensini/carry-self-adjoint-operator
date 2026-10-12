@@ -1,0 +1,23 @@
+import CarrySelfAdjointOperator.NativeCauchyLaguerreExactGram
+
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.rho
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.feature
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.cauchyEntry
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.rho_pos
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.rho_lt_one
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.rho_eq_original
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.feature_eq_original
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.rho_eq_one_sub_inv
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.feature_polynomial_moment
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.cauchy_one_step
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.cauchy_head_tail_orders
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.cauchyMatrix
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.featureMatrix
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.tailDiagonal
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.cauchyMatrix_eq_gram
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.cauchyMatrix_posDef
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.exact_gram_head_tail
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.head_posSemidef
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.tail_posSemidef
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.tail_entry_tendsto_zero
+#print axioms CarrySelfAdjointOperator.NativeLaguerre.head_entry_tendsto_cauchy
