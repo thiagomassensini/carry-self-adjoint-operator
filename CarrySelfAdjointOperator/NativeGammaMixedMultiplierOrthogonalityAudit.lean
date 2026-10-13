@@ -1,0 +1,28 @@
+import CarrySelfAdjointOperator.NativeGammaMixedMultiplierOrthogonality
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeRealSixNaimarkSynthesis
+#print axioms nativeRealSixNaimarkSynthesis
+#check nativeRealSixNaimarkSynthesis_coeFn
+#print axioms nativeRealSixNaimarkSynthesis_coeFn
+#check nativeRealSixNaimarkSynthesis_mixed_coeFn
+#print axioms nativeRealSixNaimarkSynthesis_mixed_coeFn
+#check nativeMixed_multiplier_orthogonal
+#print axioms nativeMixed_multiplier_orthogonal
+#check nativeSixCameraSynthesis_naimark_re
+#print axioms nativeSixCameraSynthesis_naimark_re
+#check nativeSixCameraSynthesis_naimark_im
+#print axioms nativeSixCameraSynthesis_naimark_im
+
+#audit_physical_sewing
+  nativeRealSixNaimarkSynthesis
+  nativeRealSixNaimarkSynthesis_coeFn
+  nativeRealSixNaimarkSynthesis_mixed_coeFn
+  nativeMixed_multiplier_orthogonal
+  nativeSixCameraSynthesis_naimark_re
+  nativeSixCameraSynthesis_naimark_im
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

@@ -7,6 +7,10 @@ import re
 root = Path(__file__).resolve().parents[1]
 registry = json.loads((root / "audit/gamma-cauchy-transport-registry.json").read_text())
 total = 0
+registered = {module["module"] for module in registry["modules"]}
+available = {path.stem for path in (root / "CarrySelfAdjointOperator").glob("NativeGamma*.lean")
+             if not path.stem.endswith("Audit")}
+assert registered == available, f"Unregistered Gamma modules: {registered ^ available}"
 for module in registry["modules"]:
     name = module["module"]
     source = (root / f"CarrySelfAdjointOperator/{name}.lean").read_text()

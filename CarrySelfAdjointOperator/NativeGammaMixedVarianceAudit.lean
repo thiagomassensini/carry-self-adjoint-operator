@@ -1,0 +1,37 @@
+import CarrySelfAdjointOperator.NativeGammaMixedVariance
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeMixedResolventVariance
+#print axioms nativeMixedResolventVariance
+#check nativeMixedGamma_ward
+#print axioms nativeMixedGamma_ward
+#check nativeMixedCauchy_norm_ledger
+#print axioms nativeMixedCauchy_norm_ledger
+#check nativeMixedResolventVariance_exact
+#print axioms nativeMixedResolventVariance_exact
+#check nativeMixedResolventVariance_nonnegative
+#print axioms nativeMixedResolventVariance_nonnegative
+#check nativeMixedCauchy_C9_readout
+#print axioms nativeMixedCauchy_C9_readout
+#check nativeMixedCauchy_C9_energy_lower_bound
+#print axioms nativeMixedCauchy_C9_energy_lower_bound
+#check nativeMixedResolventVariance_C9_lower_bound
+#print axioms nativeMixedResolventVariance_C9_lower_bound
+#check nativeMixedResolventVariance_witness_positive
+#print axioms nativeMixedResolventVariance_witness_positive
+
+#audit_physical_sewing
+  nativeMixedResolventVariance
+  nativeMixedGamma_ward
+  nativeMixedCauchy_norm_ledger
+  nativeMixedResolventVariance_exact
+  nativeMixedResolventVariance_nonnegative
+  nativeMixedCauchy_C9_readout
+  nativeMixedCauchy_C9_energy_lower_bound
+  nativeMixedResolventVariance_C9_lower_bound
+  nativeMixedResolventVariance_witness_positive
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

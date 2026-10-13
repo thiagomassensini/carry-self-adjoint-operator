@@ -1,0 +1,25 @@
+import CarrySelfAdjointOperator.NativeGammaExteriorGramPositivity
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeFiniteGram_pairing
+#print axioms nativeFiniteGram_pairing
+#check nativeGammaHaloMatrix_quadratic
+#print axioms nativeGammaHaloMatrix_quadratic
+#check nativeGammaGlobalEscape_synthesis
+#print axioms nativeGammaGlobalEscape_synthesis
+#check nativeGammaEscapeMatrix_quadratic
+#print axioms nativeGammaEscapeMatrix_quadratic
+#check nativeGammaExteriorGrams_nonnegative
+#print axioms nativeGammaExteriorGrams_nonnegative
+
+#audit_physical_sewing
+  nativeFiniteGram_pairing
+  nativeGammaHaloMatrix_quadratic
+  nativeGammaGlobalEscape_synthesis
+  nativeGammaEscapeMatrix_quadratic
+  nativeGammaExteriorGrams_nonnegative
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

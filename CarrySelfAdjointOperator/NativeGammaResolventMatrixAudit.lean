@@ -1,0 +1,43 @@
+import CarrySelfAdjointOperator.NativeGammaResolventMatrix
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeSixCameraGram_isHermitian
+#print axioms nativeSixCameraGram_isHermitian
+#check nativeSixCameraProjection_analysisPairing
+#print axioms nativeSixCameraProjection_analysisPairing
+#check nativeGammaCauchyMatrix
+#print axioms nativeGammaCauchyMatrix
+#check nativeGammaHaloMatrix
+#print axioms nativeGammaHaloMatrix
+#check nativeGammaEscapeMatrix
+#print axioms nativeGammaEscapeMatrix
+#check nativeGammaCauchyMatrix_analysis
+#print axioms nativeGammaCauchyMatrix_analysis
+#check nativeGammaCauchyMatrix_compressedGram
+#print axioms nativeGammaCauchyMatrix_compressedGram
+#check nativeGammaResolvent_matrixIdentity
+#print axioms nativeGammaResolvent_matrixIdentity
+#check nativeGammaResolvent_matrixIdentity_divided
+#print axioms nativeGammaResolvent_matrixIdentity_divided
+#check nativeGammaHermitianImaginary
+#print axioms nativeGammaHermitianImaginary
+#check nativeGammaResolvent_upperHalfPlane
+#print axioms nativeGammaResolvent_upperHalfPlane
+
+#audit_physical_sewing
+  nativeSixCameraGram_isHermitian
+  nativeSixCameraProjection_analysisPairing
+  nativeGammaCauchyMatrix
+  nativeGammaHaloMatrix
+  nativeGammaEscapeMatrix
+  nativeGammaCauchyMatrix_analysis
+  nativeGammaCauchyMatrix_compressedGram
+  nativeGammaResolvent_matrixIdentity
+  nativeGammaResolvent_matrixIdentity_divided
+  nativeGammaHermitianImaginary
+  nativeGammaResolvent_upperHalfPlane
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

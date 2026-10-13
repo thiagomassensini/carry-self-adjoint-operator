@@ -1,0 +1,28 @@
+import CarrySelfAdjointOperator.NativeGammaComplexLinearState
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeComplexContinuousBlock
+#print axioms nativeComplexContinuousBlock
+#check nativeComplexGamma
+#print axioms nativeComplexGamma
+#check nativeComplexGamma_eq_original
+#print axioms nativeComplexGamma_eq_original
+#check carryGammaComplexState_complex_smul
+#print axioms carryGammaComplexState_complex_smul
+#check carryGammaComplexState_re
+#print axioms carryGammaComplexState_re
+#check carryGammaComplexState_im
+#print axioms carryGammaComplexState_im
+
+#audit_physical_sewing
+  nativeComplexContinuousBlock
+  nativeComplexGamma
+  nativeComplexGamma_eq_original
+  carryGammaComplexState_complex_smul
+  carryGammaComplexState_re
+  carryGammaComplexState_im
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

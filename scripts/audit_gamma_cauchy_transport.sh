@@ -17,7 +17,7 @@ mapfile -t modules < <(python3 -c 'import json; print("\n".join(m["module"] for 
 for module in "${modules[@]}"; do
   printf 'Checking %s\n' "$module"
   lake build --wfail "CarrySelfAdjointOperator.${module}Audit" > "$log_dir/${module}-build.log" 2>&1
-  lake env lean "CarrySelfAdjointOperator/${module}Audit.lean" > "$log_dir/${module}-kernel.log" 2>&1
+  lake env lean -E warning "CarrySelfAdjointOperator/${module}Audit.lean" > "$log_dir/${module}-kernel.log" 2>&1
 done
 
 sha256sum CarrySelfAdjointOperator/NativeGamma*.lean audit/gamma-cauchy-transport-registry.json \
