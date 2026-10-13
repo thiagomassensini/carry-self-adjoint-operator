@@ -98,5 +98,23 @@ theorem materialCameraLift_diagonal_rescaling_not_isometric (d : Fin 6 → ℂ)
     materialCameraGram_one_two_three, nativeSixCameraGram_two_three] at h
   exact (mul_ne_zero (mul_ne_zero (star_ne_zero.mpr h0) (by norm_num)) h1) h
 
+/-- The effective native orientation, for arbitrary independent ambient pairs.
+The exterior is retained with the native sign, not discarded by projection. -/
+theorem nativeGammaNativeOrientation_materialLedger (C : ℕ)
+    (p t : CarryGammaComplexCamera × CarryGammaComplexCamera) :
+    inner ℂ p.2 t.1 - inner ℂ p.1 t.2 =
+      matrixPairing (cauchyMatrix (materialCameraWindow C))
+        (materialCameraLift C (nativeSixCameraCoordinates p.2))
+        (materialCameraLift C (nativeSixCameraCoordinates t.1)) -
+      matrixPairing (cauchyMatrix (materialCameraWindow C))
+        (materialCameraLift C (nativeSixCameraCoordinates p.1))
+        (materialCameraLift C (nativeSixCameraCoordinates t.2)) -
+      gammaMaterialMetricFormDefect C p t +
+      (inner ℂ (nativeSixCameraExterior p.2) (nativeSixCameraExterior t.1) -
+        inner ℂ (nativeSixCameraExterior p.1) (nativeSixCameraExterior t.2)) := by
+  have h := nativeGammaPairForm_materialLedger C p t
+  unfold nativeGammaPairForm gammaMaterialExteriorForm at h
+  linear_combination -h
+
 end
 end CarrySelfAdjointOperator.GammaMaterialSewing

@@ -21,6 +21,9 @@ namespace CarrySelfAdjointOperator.GammaMaterialSewing
 #check nativeGammaWholePair_camera_fourHeadTails
 #print axioms nativeGammaWholePair_camera_fourHeadTails
 
+#check nativeGammaNativeOrientation_materialHeadTailLedger
+#print axioms nativeGammaNativeOrientation_materialHeadTailLedger
+
 #audit_physical_sewing
   gammaPhysicalPairHeadTail
   gammaPhysicalPair_headTail
@@ -30,4 +33,5 @@ namespace CarrySelfAdjointOperator.GammaMaterialSewing
   nativeGammaMismatch_materialHeadTailLedger
   nativeGammaCamera_graph_plus_defect
   nativeGammaWholePair_camera_fourHeadTails
+  nativeGammaNativeOrientation_materialHeadTailLedger
 end CarrySelfAdjointOperator.GammaMaterialSewing

@@ -14,8 +14,11 @@ Pins mantidos, sem atualizacao de dependencias:
 - CPFormal: `65d50f6db1208708e109982ba97e1d51d3039956`.
 
 O anexo Investigacao_Transporte_Gamma_Cauchy_2026-10-12.md foi lido
-integralmente. SHA256:
+integralmente em sua versao original. SHA256 dessa versao:
 `4e079630363277c0a4da39b309c6cdca0125057bec39f6664c4f51e7fd153213`.
+A revisao de 13/10/2026, com 1257 linhas, tambem foi lida integralmente.
+SHA256 da revisao:
+`c974e99413b32eef221ac850e1e4044bf8da91884eef95d298adef2ed658951c`.
 Os seus decimais e programa nao sao certificados Lean. Nenhuma avaliacao
 numerica de F, zeta ou theta participa das novas provas.
 
@@ -26,7 +29,7 @@ reutilizada, nao substituida por uma metrica ajustada.
 
 No pin efetivo, `NativeCarrySpectralWeyl.Boundary.greenForm` e
 `inner x.2 y.1 - inner x.1 y.2`. Para o par literal `(a,b)` isto e
-o oposto da convencao do pedido:
+o oposto da convencao inicialmente proposta no pedido:
 
 \[
 g((a,b),(a',b'))=\langle a,b'\rangle-\langle b,a'\rangle.
@@ -55,6 +58,16 @@ os dois ledgers coincidem exatamente quando `g=0`.
 no par canonico em `4+i/8`, para TODO C e k. A prova usa a negatividade
 estrita anti-Herglotz do bloco Cauchy original e a fonte canonica nao nula.
 Nao e um impedimento ao transporte enriquecido: o ledger corrigido fecha.
+
+A revisao historica do objetivo em 13/10/2026 ja incorpora esta correcao.
+`nativeGammaNativeOrientation_materialLedger` explicita a orientacao
+nativa para DOIS pares ambientes arbitrarios, sem regularidade de F ou
+hipotese espectral. O setor exterior tem literalmente o sinal
+`inner Qb Qa' - inner Qa Qb'`. Sua versao
+`nativeGammaNativeOrientation_materialHeadTailLedger` conserva, para
+todo C e R, as caudas de ambos os produtos materiais e os vetores Q
+no carrier nativo. Ela compoe com `gammaMaterialMetricFormDefect_headTail`
+para expandir tambem os produtos fisicos presentes em Delta.
 
 ## Projecao nativa
 
@@ -263,10 +276,10 @@ publicas, incluindo definicoes e adaptadores, esta no registro JSON.
 | NativeGammaMaterialPolynomialProvenance | materialCameraPolynomial_C2; materialNaturalCameraPolynomial |
 | NativeGammaMaterialDecoder | materialCameraLift_maxDegreeMinor; materialCameraDecode_lift |
 | NativeGammaMaterialTransport | gammaMaterialTransport_roundtrip; gammaMaterialTransport_injective |
-| NativeGammaMaterialMetric | gammaMaterialTransport_metricLedger; materialCameraGram_one_two_three |
+| NativeGammaMaterialMetric | gammaMaterialTransport_metricLedger; materialCameraGram_one_two_three; nativeGammaNativeOrientation_materialLedger |
 | NativeGammaMaterialGraphDefect | gammaMaterialGraphDefect_entirePair; gammaMaterialGraphDefect_faithful |
 | NativeGammaMaterialCrossings | nativeGammaCameraWholePair_sum; nativeGammaCameraDefects_faithful |
-| NativeGammaMaterialHeadTailLedger | nativeGammaMismatch_materialHeadTailLedger; nativeGammaWholePair_camera_fourHeadTails |
+| NativeGammaMaterialHeadTailLedger | nativeGammaMismatch_materialHeadTailLedger; nativeGammaWholePair_camera_fourHeadTails; nativeGammaNativeOrientation_materialHeadTailLedger |
 | NativeGammaMismatchLedger | nativeGammaMismatch_materialDefectLedger; nativeGammaMismatch_proposedLedgerDifference |
 | NativeGammaOrientationObstruction | nativeGammaMismatch_proposedLedger_fails_at_witness |
 | NativeGammaObservableTransportCapstone | nativeGammaObservableTransport_capstone; gammaMaterialFirstPort_correctedGreen |
@@ -274,7 +287,7 @@ publicas, incluindo definicoes e adaptadores, esta no registro JSON.
 ## Validacao efetiva
 
 Registro publico: `audit/gamma-cauchy-transport-registry.json`, com
-208 declaracoes em 20 modulos pequenos, cada um com Audit correspondente.
+210 declaracoes em 20 modulos pequenos, cada um com Audit correspondente.
 Cada Audit contem #check, #print axioms e o guard transitivo dos tipos e
 corpos. Apenas propext, Classical.choice e Quot.sound sao permitidos.
 
@@ -290,7 +303,8 @@ diretamente, valida o registro e a auditoria estatica, faz o build raiz
 estado local e SHA256 das fontes ficam em
 `.lake/gamma-cauchy-transport-audit/`.
 
-Resultado da rodada integral: PASS, executado no host llm, codigo de saida 0.
+Resultado da rodada integral original do PR #79: PASS, executado no host
+llm, codigo de saida 0, com as 208 declaracoes entao presentes.
 Os 20 builds individuais dos Audits com --wfail e as 20 execucoes diretas
 passaram. A maior clausura de dependencias auditada foi 7134 constantes,
 no capstone. As 208 declaracoes passam o guard dos tipos e corpos, com
@@ -304,3 +318,25 @@ As mensagens informativas antigas de ring nao sao warnings nem falhas.
 git diff --check e a verificacao dos SHA256 completam o registro.
 CI externa e registrada separadamente; jobs que nao iniciam nao substituem
 qualquer destes comandos Lean efetivamente executados.
+
+## Revalidacao e complemento de 13/10/2026
+
+Base do complemento: main `870b64774a45061e13ca8edf4de96b1f51c8fbb7`.
+O objetivo atualizado e o anexo revisado apresentam a meta como historico
+integrado, com a orientacao corrigida. A conferencia requisito por requisito
+preservou o capstone aplicado, o produtor Cauchy independente e a testemunha
+original. Foram acrescentadas somente as duas versoes explicitas do ledger
+AMBIENTE na orientacao nativa, incluindo o setor exterior invertido e os
+dois produtos materiais com suas caudas. Nenhuma definicao anterior mudou.
+
+Os dois alvos Audit afetados passaram com --wfail e apenas os fundamentos
+permitidos. A superficie publica passa de 208 para 210 declaracoes, sem
+acrescentar modulos ou atualizar dependencias. O procedimento integral
+e o mesmo script acima; seus novos logs ficam em
+`.lake/gamma-native-orientation-audit/`.
+
+Resultado da nova rodada integral no llm: PASS, saida 0. Todos os 20
+Audits passaram --wfail e execucao direta; o registro das 210 declaracoes,
+a auditoria estatica, o build raiz --wfail e scripts/audit.sh passaram.
+Os SHA256 registrados coincidem com as fontes entregues. A orientacao
+nativa geral nao acrescenta hipoteses nem fundamentos permitidos.
