@@ -2520,3 +2520,26 @@ closure 7134), with only propext, Classical.choice and Quot.sound. The root
 --wfail build, static checks and original scripts/audit.sh passed on llm.
 See `GAMMA_CAUCHY_MATERIAL_EXTERIOR_TRANSPORT.md`, the public JSON registry
 and `scripts/audit_gamma_cauchy_transport.sh` for formulas and reproduction.
+
+## 2026-10-13 - Explicit native orientation for arbitrary ambient Gamma pairs
+
+Base: `870b64774a45061e13ca8edf4de96b1f51c8fbb7`, after PR #79.
+The updated historical objective and revised attachment were read in full.
+Their corrected native orientation is now stated directly for arbitrary
+independent ambient pairs by `nativeGammaNativeOrientation_materialLedger`.
+Its head/tail version holds for every C,R, retaining the native exterior
+sector `<Qb,Qa'>-<Qa,Qb'>` separately from both Laguerre tails. These results
+compose the certified auxiliary ledger; no source, Cauchy candidate,
+normalization, projection, metric, or dependency pin is changed.
+
+The two affected Audit targets passed --wfail and the transitive type/body
+guard with only propext, Classical.choice and Quot.sound. The public surface
+is 210 declarations in the same 20 modules. The first global obligation is
+still the vanishing of the existing Gamma/native projection mismatch for
+the original family, not independent vanishing of each ledger term. The
+original canonical C9 exterior is retained. No global closure is assumed.
+
+The complete 210-root procedure passed on llm: all 20 --wfail Audit builds,
+all direct kernel/type/body guards, registry, static audit, root --wfail
+build and original integration audit. Only the three accepted foundations
+remain. Effective source hashes match the validated bytes.

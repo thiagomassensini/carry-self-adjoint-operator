@@ -6,7 +6,7 @@
     "Classical.choice",
     "Quot.sound"
   ],
-  "public_declarations": 208,
+  "public_declarations": 210,
   "modules": [
     {
       "module": "NativeGammaC9Analytic",
@@ -215,7 +215,8 @@
         "nativeGammaReferenceDefect_headTail",
         "nativeGammaMismatch_materialHeadTailLedger",
         "nativeGammaCamera_graph_plus_defect",
-        "nativeGammaWholePair_camera_fourHeadTails"
+        "nativeGammaWholePair_camera_fourHeadTails",
+        "nativeGammaNativeOrientation_materialHeadTailLedger"
       ]
     },
     {
@@ -234,7 +235,8 @@
         "nativeSixCameraGram_two_three",
         "materialCameraGram_one_two_three",
         "materialCameraLift_literal_not_isometric",
-        "materialCameraLift_diagonal_rescaling_not_isometric"
+        "materialCameraLift_diagonal_rescaling_not_isometric",
+        "nativeGammaNativeOrientation_materialLedger"
       ]
     },
     {

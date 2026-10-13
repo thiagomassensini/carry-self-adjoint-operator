@@ -87,5 +87,22 @@ theorem nativeGammaWholePair_camera_fourHeadTails (C k R : ℕ) (z w : ℂ)
   have h := nativeGammaCamera_fourHeadTails C k R z w hz hw
   simpa only [nativeGammaCamera_graph_plus_defect, nativeGammaCameraWholePair_sum] using h
 
+/-- The native exterior and the Laguerre tails remain separate in the
+effective native orientation, with two arbitrary ambient inputs. -/
+theorem nativeGammaNativeOrientation_materialHeadTailLedger (C R : ℕ)
+    (p t : CarryGammaComplexCamera × CarryGammaComplexCamera) :
+    inner ℂ p.2 t.1 - inner ℂ p.1 t.2 =
+      gammaPhysicalPairHeadTail (materialCameraWindow C) R
+        (materialCameraLift C (nativeSixCameraCoordinates p.2))
+        (materialCameraLift C (nativeSixCameraCoordinates t.1)) -
+      gammaPhysicalPairHeadTail (materialCameraWindow C) R
+        (materialCameraLift C (nativeSixCameraCoordinates p.1))
+        (materialCameraLift C (nativeSixCameraCoordinates t.2)) -
+      gammaMaterialMetricFormDefect C p t +
+      (inner ℂ (nativeSixCameraExterior p.2) (nativeSixCameraExterior t.1) -
+        inner ℂ (nativeSixCameraExterior p.1) (nativeSixCameraExterior t.2)) := by
+  rw [nativeGammaNativeOrientation_materialLedger,
+    gammaPhysicalPair_headTail _ R, gammaPhysicalPair_headTail _ R]
+
 end
 end CarrySelfAdjointOperator.GammaMaterialSewing

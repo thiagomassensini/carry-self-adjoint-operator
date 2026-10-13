@@ -33,6 +33,9 @@ namespace CarrySelfAdjointOperator.GammaMaterialSewing
 #check materialCameraLift_diagonal_rescaling_not_isometric
 #print axioms materialCameraLift_diagonal_rescaling_not_isometric
 
+#check nativeGammaNativeOrientation_materialLedger
+#print axioms nativeGammaNativeOrientation_materialLedger
+
 #audit_physical_sewing
   materialCameraLiftMatrix
   materialCameraGram
@@ -48,4 +51,5 @@ namespace CarrySelfAdjointOperator.GammaMaterialSewing
   materialCameraGram_one_two_three
   materialCameraLift_literal_not_isometric
   materialCameraLift_diagonal_rescaling_not_isometric
+  nativeGammaNativeOrientation_materialLedger
 end CarrySelfAdjointOperator.GammaMaterialSewing
