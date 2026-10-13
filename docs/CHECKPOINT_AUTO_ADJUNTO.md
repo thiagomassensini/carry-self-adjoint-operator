@@ -2616,3 +2616,84 @@ are preserved in the delivery manifest. See
 `RESOLVENTE_MISTO_EXTERIORES_CRUZAMENTOS.md`, the updated public registry
 and `scripts/audit_gamma_cauchy_transport.sh` for the requirement audit
 and reproduction. All prior checkpoint sections remain unchanged.
+
+## 2026-10-13 - Conjugate collision refutes current native source-locus compatibility
+
+Base: `3d8ea36e504bf24769ef9cc53e7337d48dc9c819`, after PR #81.
+Status: `PASS_CONJUGATE_COLLISION_OBSTRUCTION_AND_COUPLED_COMPLETION`.
+`PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY` remains unchanged.
+
+This entry supersedes the previous OPEN status of universal vanishing of
+the named native projection mismatch. The literal proposition
+CanonicalCompletedC3NativeSourceLocusGreenCompatibility has now been
+REFUTED, unconditionally, by genuine off-axis conjugate source pairs
+arbitrarily close to the center. The correct joint vector transport
+remains open. This is not an impossibility of every transport, operator,
+positive geometric realization or the Carry theory.
+
+The original whole Gamma states and undivided boundary readout give
+Mismatch(z,conj z)=-W_N(conj z,z) on the genuine strip. Both original
+mixed/complement Green readouts also vanish in this collision, without
+erasing their vectors, exteriors or material crossing balances. Gamma is
+NEVER extended to the real center. Explicit admissibility proofs produce
+the family z=i t, w=-i t for 0<|t|<1/2.
+
+The new analytic proof differentiates the LITERAL xi completion factor:
+Im A'(0)=exp(-log(pi)/4)/16 *
+  (log(pi)*Gamma_R(1/4)-Gamma_R'(1/4)) > 0.
+Gamma_R'(1/4)<=0 is proved from the pinned Gamma antitonicity theorem and
+conversion of the derivative within the interval to the ordinary one.
+Its equality to the real part of the complex derivative uses the original
+real restriction. Strict negativity of the Gamma derivative is NOT
+inferred from strict monotonicity. No numerical Gamma, N, F or zeta value
+is used. A'(0) is nonzero unconditionally; first-jet product cancellation
+and N(0) nonzero then give N'(0) nonzero unconditionally.
+
+The original central reflections yield W_N(0,0)=-2 N(0)N'(0), nonzero.
+Continuity of the SCALAR function W_N(-i t,i t) produces epsilon>0,
+epsilon<=1/2, with the ORIGINAL mismatch nonzero for EVERY 0<t<epsilon.
+The universal proposition and its genuine-strip restriction are both
+refuted. Separately, the previously conditional obstruction to the literal
+positive C3 Green representation is now unconditional. These two targets
+are not conflated. The actual mismatch also has the nonzero punctured
+limit 2 N(0)N'(0), on an admissible parameter subtype with a proved NeBot
+filter; no fictitious Gamma value at zero is introduced.
+
+The corrected material ledger remains
+-M-A-v*H eta'+eta*H v'-2 NativeScalar. Its WHOLE total and its literal
+head/tail version are nonzero at the counterexamples for every C,k,R,
+including C=0. No individual metric/reference/graph term is declared
+nonzero. For C>=1 the original enriched transport still reconstructs
+both complete Gamma boundary pairs at those very counterexamples.
+Native Q/C9, global Naimark escape, Laguerre tails and Jacobi borders
+remain distinct. The original 36 ordered camera pairs and four sectors
+and all finite resolvent/source results remain preserved.
+
+Both companion channels A(0)C_N(0) and C_A(0)N(0) are nonzero, while their
+oriented sum is zero. Both norm-weighted factor Wronskian terms are also
+nonzero and cancel. Thus the completion channel is indispensable IN THIS
+IDENTITY, not a fitted positive norm. The original Cauchy source companion
+split is applied before pairing and reconstructs both incident/returned
+legs with the original denominators. A new polarized product sum handles
+independent sizes, depths, coefficients and radii, keeping every ordered
+physical crossing and both native/completion factors. No new corrector,
+metric, amplitude or Gamma producer is defined from the target.
+
+Five new modules and 43 public declarations extend the unchanged previous
+362 roots to 405 declarations in 41 modules. The complete procedure passed
+on llm from 2026-10-13T16:44:02Z to 16:59:08Z: all --wfail Audit builds,
+direct -E warning kernel/type/body guards, inventory, static checks,
+root --wfail build (10171 jobs) and integration audit (8903 jobs).
+Only propext, Classical.choice and Quot.sound remain; maximum closure
+7134. Pins, C2 work and historical checkpoints are preserved. Logs,
+publication hashes and post-integration revalidation are in the delivery
+manifest. See `COLISAO_CONJUGADA_DERIVADA_E_COMPLETION.md` and the updated
+public registry for the full requirement audit.
+
+The first global construction obligation is the correct joint vector
+transport preserving native/completion coupling and chart differences.
+The REFUTED current universal proposition must not be reintroduced as an
+opaque assumption. A modified proposition excluding conjugate collisions
+is a different question; no unproved local Gamma continuity is assumed
+to decide it here. The current Gamma is not identified with the dressed F
+chart, and the earlier dressed-chart no-go results remain preserved.

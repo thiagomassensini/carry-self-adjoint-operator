@@ -1,12 +1,12 @@
 {
-  "base_commit": "ce860946bd0cfcac639fb465eb69667e1d9b8367",
+  "base_commit": "3d8ea36e504bf24769ef9cc53e7337d48dc9c819",
   "namespace": "CarrySelfAdjointOperator.GammaMaterialSewing",
   "accepted_axioms": [
     "propext",
     "Classical.choice",
     "Quot.sound"
   ],
-  "public_declarations": 362,
+  "public_declarations": 405,
   "modules": [
     {
       "module": "NativeGammaC9Analytic",
@@ -548,6 +548,74 @@
         "nativeGammaResolvent_threeSector_orthogonal",
         "nativeGammaResolvent_fullGram",
         "nativeGammaResolvent_threeSector_Gram"
+      ]
+    },
+    {
+      "module": "NativeGammaCenteredDerivative",
+      "declarations": [
+        "realGamma_quarter_deriv_nonpos",
+        "complexGamma_quarter_hasDerivAt",
+        "complexGamma_quarter_deriv_re",
+        "nativeXiCompletionFactor_deriv_zero_formula",
+        "nativeXiCompletionFactor_deriv_zero_im_formula",
+        "nativeXiCompletionFactor_deriv_zero_im_pos",
+        "nativeXiCompletionFactor_deriv_zero_ne_zero",
+        "nativeHeightScalar_deriv_zero_ne_zero",
+        "nativeHeightScalar_centerWronskian_eq",
+        "nativeHeightScalar_centerWronskian_ne_zero",
+        "not_nativeC3GreenRepresentationOn"
+      ]
+    },
+    {
+      "module": "NativeGammaCollisionMaterialLedger",
+      "declarations": [
+        "nativeGammaMaterialLedgerTotal",
+        "nativeGammaMaterialHeadTailLedgerTotal",
+        "nativeGammaMaterialLedgerTotal_eq_mismatch",
+        "nativeGammaMaterialHeadTailLedgerTotal_eq_mismatch",
+        "nativeGammaCollision_materialLedgers_eq_Wronskian",
+        "nativeGammaCollision_materialCounterexampleFamily",
+        "nativeGammaCollision_transportCounterexampleFamily"
+      ]
+    },
+    {
+      "module": "NativeGammaConjugateCollisionIdentity",
+      "declarations": [
+        "nativeConjugate_offAxis",
+        "nativeGammaConjugate_boundaryReadout_zero",
+        "nativeGammaConjugate_mixedResponse_zero",
+        "nativeGammaConjugate_mixedComplementReadouts_zero",
+        "nativeSourceLocusMismatch_conjugateCollision",
+        "nativeImaginaryCollision_admissible",
+        "nativeSourceLocusMismatch_imaginaryCollision"
+      ]
+    },
+    {
+      "module": "NativeGammaConjugateCollisionObstruction",
+      "declarations": [
+        "nativeConjugateWronskian",
+        "nativeConjugateWronskian_zero",
+        "nativeConjugateWronskian_continuousAt_zero",
+        "nativeConjugateWronskian_eventually_ne_zero",
+        "nativeSourceLocusMismatch_conjugateCounterexampleFamily",
+        "nativeSourceLocusMismatch_counterexamples_arbitrarily_close",
+        "not_canonicalCompletedC3NativeSourceLocusGreenCompatibility",
+        "not_nativeSourceLocusGreenCompatibility_genuineStrip",
+        "NativeCollisionParameter",
+        "nativeCollisionParameter_filter_neBot",
+        "nativeSourceLocusMismatch_conjugateCollision_tendsto"
+      ]
+    },
+    {
+      "module": "NativeGammaCoupledCompletionObstruction",
+      "declarations": [
+        "nativeCompanion_centerChannels_cancel_nontrivially",
+        "nativeXi_native_centerWronskians_cancel_nontrivially",
+        "nativeXi_native_centerNormWeightedWronskians_cancel_nontrivially",
+        "nativeXiCompletionFactor_centerWronskian_ne_zero",
+        "nativeArchimedean_centerCorrection_cancel_nontrivially",
+        "nativeCoupledCompletion_originalSource_legs",
+        "nativeCoupledCompletion_source_polarized_product_sum"
       ]
     }
   ]
