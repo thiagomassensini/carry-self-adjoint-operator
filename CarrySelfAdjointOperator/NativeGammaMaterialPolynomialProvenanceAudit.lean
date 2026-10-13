@@ -1,0 +1,18 @@
+import CarrySelfAdjointOperator.NativeGammaMaterialPolynomialProvenance
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check materialCameraPolynomial_C2
+#print axioms materialCameraPolynomial_C2
+#check materialNaturalCameraPolynomial
+#print axioms materialNaturalCameraPolynomial
+#check materialCameraLift_zero_cutoff_not_injective
+#print axioms materialCameraLift_zero_cutoff_not_injective
+
+#audit_physical_sewing
+  materialCameraPolynomial_C2
+  materialNaturalCameraPolynomial
+  materialCameraLift_zero_cutoff_not_injective
+end CarrySelfAdjointOperator.GammaMaterialSewing

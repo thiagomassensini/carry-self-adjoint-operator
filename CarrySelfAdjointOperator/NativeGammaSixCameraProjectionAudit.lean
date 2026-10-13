@@ -1,0 +1,51 @@
+import CarrySelfAdjointOperator.NativeGammaSixCameraProjection
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeSixCameraGram_det
+#print axioms nativeSixCameraGram_det
+#check nativeSixCameraGram_isUnit
+#print axioms nativeSixCameraGram_isUnit
+#check nativeSixCameraCoordinates
+#print axioms nativeSixCameraCoordinates
+#check nativeSixCameraCoordinates_synthesis
+#print axioms nativeSixCameraCoordinates_synthesis
+#check nativeSixCameraProjection
+#print axioms nativeSixCameraProjection
+#check nativeSixCameraExterior
+#print axioms nativeSixCameraExterior
+#check nativeSixCameraProjection_roundtrip
+#print axioms nativeSixCameraProjection_roundtrip
+#check nativeSixCameraExterior_synthesis
+#print axioms nativeSixCameraExterior_synthesis
+#check nativeSixCameraProjection_idempotent
+#print axioms nativeSixCameraProjection_idempotent
+#check nativeSixCameraAnalysis_exterior
+#print axioms nativeSixCameraAnalysis_exterior
+#check nativeSixCameraSynthesis_inner_any
+#print axioms nativeSixCameraSynthesis_inner_any
+#check nativeSixCameraExterior_orthogonal
+#print axioms nativeSixCameraExterior_orthogonal
+#check nativeSixCameraProjection_metricLedger
+#print axioms nativeSixCameraProjection_metricLedger
+#check nativeSixCameraProjection_range
+#print axioms nativeSixCameraProjection_range
+
+#audit_physical_sewing
+  nativeSixCameraGram_det
+  nativeSixCameraGram_isUnit
+  nativeSixCameraCoordinates
+  nativeSixCameraCoordinates_synthesis
+  nativeSixCameraProjection
+  nativeSixCameraExterior
+  nativeSixCameraProjection_roundtrip
+  nativeSixCameraExterior_synthesis
+  nativeSixCameraProjection_idempotent
+  nativeSixCameraAnalysis_exterior
+  nativeSixCameraSynthesis_inner_any
+  nativeSixCameraExterior_orthogonal
+  nativeSixCameraProjection_metricLedger
+  nativeSixCameraProjection_range
+end CarrySelfAdjointOperator.GammaMaterialSewing

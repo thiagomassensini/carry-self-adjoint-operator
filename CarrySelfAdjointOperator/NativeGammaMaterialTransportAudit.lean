@@ -1,0 +1,42 @@
+import CarrySelfAdjointOperator.NativeGammaMaterialTransport
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check physicalRadialFiniteReadout
+#print axioms physicalRadialFiniteReadout
+#check physicalRadialFiniteReadout_synthesis
+#print axioms physicalRadialFiniteReadout_synthesis
+#check physicalRadialFiniteDecode
+#print axioms physicalRadialFiniteDecode
+#check physicalRadialFiniteDecode_synthesis
+#print axioms physicalRadialFiniteDecode_synthesis
+#check physicalFinitePairDecode
+#print axioms physicalFinitePairDecode
+#check physicalFinitePairDecode_synthesis
+#print axioms physicalFinitePairDecode_synthesis
+#check GammaMaterialTransportCarrier
+#print axioms GammaMaterialTransportCarrier
+#check gammaMaterialTransport
+#print axioms gammaMaterialTransport
+#check gammaMaterialReconstruct
+#print axioms gammaMaterialReconstruct
+#check gammaMaterialTransport_roundtrip
+#print axioms gammaMaterialTransport_roundtrip
+#check gammaMaterialTransport_injective
+#print axioms gammaMaterialTransport_injective
+
+#audit_physical_sewing
+  physicalRadialFiniteReadout
+  physicalRadialFiniteReadout_synthesis
+  physicalRadialFiniteDecode
+  physicalRadialFiniteDecode_synthesis
+  physicalFinitePairDecode
+  physicalFinitePairDecode_synthesis
+  GammaMaterialTransportCarrier
+  gammaMaterialTransport
+  gammaMaterialReconstruct
+  gammaMaterialTransport_roundtrip
+  gammaMaterialTransport_injective
+end CarrySelfAdjointOperator.GammaMaterialSewing

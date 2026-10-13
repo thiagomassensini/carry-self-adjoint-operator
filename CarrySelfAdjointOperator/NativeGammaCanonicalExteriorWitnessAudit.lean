@@ -1,0 +1,36 @@
+import CarrySelfAdjointOperator.NativeGammaCanonicalExteriorWitness
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeCanonicalGammaPair_original
+#print axioms nativeCanonicalGammaPair_original
+#check nativeC9WitnessPoint_height
+#print axioms nativeC9WitnessPoint_height
+#check nativeC9WitnessPoint_strip
+#print axioms nativeC9WitnessPoint_strip
+#check nativeCanonicalGammaCoefficients_cameraSix_ne_zero
+#print axioms nativeCanonicalGammaCoefficients_cameraSix_ne_zero
+#check nativeC9CanonicalGammaCauchyReadout
+#print axioms nativeC9CanonicalGammaCauchyReadout
+#check canonicalGammaCauchyTrace_C9_nonzero
+#print axioms canonicalGammaCauchyTrace_C9_nonzero
+#check canonicalGammaCauchyTrace_hasExterior
+#print axioms canonicalGammaCauchyTrace_hasExterior
+#check canonicalGammaCauchyTrace_not_in_sixCameras
+#print axioms canonicalGammaCauchyTrace_not_in_sixCameras
+#check originalCanonicalGammaCauchyTrace_hasExterior
+#print axioms originalCanonicalGammaCauchyTrace_hasExterior
+
+#audit_physical_sewing
+  nativeCanonicalGammaPair_original
+  nativeC9WitnessPoint_height
+  nativeC9WitnessPoint_strip
+  nativeCanonicalGammaCoefficients_cameraSix_ne_zero
+  nativeC9CanonicalGammaCauchyReadout
+  canonicalGammaCauchyTrace_C9_nonzero
+  canonicalGammaCauchyTrace_hasExterior
+  canonicalGammaCauchyTrace_not_in_sixCameras
+  originalCanonicalGammaCauchyTrace_hasExterior
+end CarrySelfAdjointOperator.GammaMaterialSewing

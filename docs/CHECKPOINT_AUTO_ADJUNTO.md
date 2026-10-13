@@ -2467,3 +2467,56 @@ Twenty-five declarations pass source/axiom audits: closure 5555, at most
 standard Lean foundations. No canonical moments, HP, Hankel, Jacobi/height,
 Herglotz or BR2 proof inputs. See
 `CHIRAL_RETURN_GREEN_BOUNDARY_TOWER_AUDIT.md` for full validation and scope.
+
+## 2026-10-12 - Green/Gamma material transport with canonical C9 exterior
+
+Initial main: `83b77dceb93235604881990458ce979d44367da3`, after PR #78.
+Local status: `PASS_GAMMA_MATERIAL_TRANSPORT_WITH_OBSERVABLE_EXTERIOR`.
+`PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY` remains unchanged.
+
+The original complex six-camera synthesis has its original Gram. Its fixed
+Gram inverse extracts coordinates only. The orthogonal projection preserves
+the complete exterior, with whole-vector reconstruction and an independent
+two-input inner-product ledger. The literal C2-C7 material lift retains seeds,
+centers and all radii. Its degree minor has determinant one for every C>=1;
+the resulting enriched pair transport is injective and has an explicit
+decoder. C=0 is degenerate, and the literal C=1 lift is not isometric, also
+after nonzero diagonal rescaling. No fitted metric or source inverse is used.
+
+A kernel-checked analytic witness proves that the ORIGINAL canonical Cauchy
+trace at z=4+i/8 lies outside the six-camera span. The exact native periodic
+profiles certify u9-perp, norm squared 9012/139, and the C9 readout selecting
+only camera label 6. Its integral has strictly positive real part. The true
+canonical C6 coordinate is 3^(-s)-2^(-s), nonzero for Re s>0; here s=3/8+4i.
+No evaluation of F, zeta or a synthetic theta is used. Thus Qb_z is retained
+as a native vector even though the canonical exterior sector of the Green
+form vanishes because Qa_z=0.
+
+The candidate second material port is produced independently by the original
+Cauchy operator, then projected and lifted. Faithful mixed probes detect
+its complete finite graph defect. Camera families are retained before the
+sum; every ordered camera pair and all four sectors keep their exact
+Laguerre tails. The native Q complement is not the Laguerre tail.
+
+The effective pin has Boundary.greenForm(x,y)=<x.2,y.1>-<x.1,y.2>, OPPOSITE
+to the g convention in the task's informal formula. Keeping the existing
+mismatch and the requested reference A gives the certified corrected ledger:
+Mismatch=-M-A-v*H eta'+eta*H v'-2 NativeScalar. The proposed plus ledger
+differs by -2g and is proved FALSE on the canonical witness, for every C,k.
+This sign obstruction is not turned into an assumption. The corrected
+applied capstone reconstructs the whole original Gamma pair and retains
+all defects; it does not assert Gamma/native mismatch zero.
+
+The global reference dictionary A and vanishing of eta remain open. The
+existing NativeSourceLocusGreenCompatibility/NativeGreenInverseTraceSewing
+criteria remain conditional. The new C9 witness rules out dropping the
+native exterior to close the next sewing. There is no universal Weyl-Cauchy
+isometry, clock identification, infinite-support result, Laguerre completeness
+or global signed-form positivity claim. Y remains literally 1+log x.
+
+Twenty modules and 208 public declarations passed individual --wfail builds,
+direct kernel audits and a transitively checked type/body guard (largest
+closure 7134), with only propext, Classical.choice and Quot.sound. The root
+--wfail build, static checks and original scripts/audit.sh passed on llm.
+See `GAMMA_CAUCHY_MATERIAL_EXTERIOR_TRANSPORT.md`, the public JSON registry
+and `scripts/audit_gamma_cauchy_transport.sh` for formulas and reproduction.

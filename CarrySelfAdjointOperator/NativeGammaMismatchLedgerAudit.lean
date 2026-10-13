@@ -1,0 +1,42 @@
+import CarrySelfAdjointOperator.NativeGammaMismatchLedger
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeCanonicalGammaPair
+#print axioms nativeCanonicalGammaPair
+#check gammaPhysicalGreenScale
+#print axioms gammaPhysicalGreenScale
+#check gammaPhysicalGreenScale_form
+#print axioms gammaPhysicalGreenScale_form
+#check nativeGammaMetricDefect
+#print axioms nativeGammaMetricDefect
+#check nativeGammaReferenceDefect
+#print axioms nativeGammaReferenceDefect
+#check nativeGammaCanonicalExterior_sector_zero
+#print axioms nativeGammaCanonicalExterior_sector_zero
+#check nativeGammaPairForm_original
+#print axioms nativeGammaPairForm_original
+#check physicalSecondDefect_polarizedLedger
+#print axioms physicalSecondDefect_polarizedLedger
+#check nativeGammaUserOrientation_materialDefectLedger
+#print axioms nativeGammaUserOrientation_materialDefectLedger
+#check nativeGammaMismatch_materialDefectLedger
+#print axioms nativeGammaMismatch_materialDefectLedger
+#check nativeGammaMismatch_proposedLedgerDifference
+#print axioms nativeGammaMismatch_proposedLedgerDifference
+
+#audit_physical_sewing
+  nativeCanonicalGammaPair
+  gammaPhysicalGreenScale
+  gammaPhysicalGreenScale_form
+  nativeGammaMetricDefect
+  nativeGammaReferenceDefect
+  nativeGammaCanonicalExterior_sector_zero
+  nativeGammaPairForm_original
+  physicalSecondDefect_polarizedLedger
+  nativeGammaUserOrientation_materialDefectLedger
+  nativeGammaMismatch_materialDefectLedger
+  nativeGammaMismatch_proposedLedgerDifference
+end CarrySelfAdjointOperator.GammaMaterialSewing

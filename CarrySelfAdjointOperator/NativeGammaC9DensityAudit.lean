@@ -1,0 +1,30 @@
+import CarrySelfAdjointOperator.NativeGammaC9Density
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeC9Density
+#print axioms nativeC9Density
+#check nativeC9Density_literal
+#print axioms nativeC9Density_literal
+#check nativeC9Density_integrable
+#print axioms nativeC9Density_integrable
+#check nativeC9Density_mass_zero
+#print axioms nativeC9Density_mass_zero
+#check nativeC9Beta_real_density
+#print axioms nativeC9Beta_real_density
+#check nativeC9Density_outside
+#print axioms nativeC9Density_outside
+#check nativeC9Beta_real_density_interval
+#print axioms nativeC9Beta_real_density_interval
+
+#audit_physical_sewing
+  nativeC9Density
+  nativeC9Density_literal
+  nativeC9Density_integrable
+  nativeC9Density_mass_zero
+  nativeC9Beta_real_density
+  nativeC9Density_outside
+  nativeC9Beta_real_density_interval
+end CarrySelfAdjointOperator.GammaMaterialSewing

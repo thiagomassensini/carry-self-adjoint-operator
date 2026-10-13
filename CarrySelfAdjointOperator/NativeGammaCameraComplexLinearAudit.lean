@@ -1,0 +1,54 @@
+import CarrySelfAdjointOperator.NativeGammaCameraComplexLinear
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeComplexCameraBlock
+#print axioms nativeComplexCameraBlock
+#check nativeComplexCameraBlock_re
+#print axioms nativeComplexCameraBlock_re
+#check nativeComplexCameraBlock_im
+#print axioms nativeComplexCameraBlock_im
+#check realifiedCameraBlock_complex_smul
+#print axioms realifiedCameraBlock_complex_smul
+#check nativeComplexCauchy
+#print axioms nativeComplexCauchy
+#check nativeComplexCauchy_apply
+#print axioms nativeComplexCauchy_apply
+#check nativeComplexCauchy_I
+#print axioms nativeComplexCauchy_I
+#check nativeComplexCameraVector
+#print axioms nativeComplexCameraVector
+#check nativeComplexCameraVector_inner
+#print axioms nativeComplexCameraVector_inner
+#check nativeSixCameraGram
+#print axioms nativeSixCameraGram
+#check nativeSixCameraGram_entry
+#print axioms nativeSixCameraGram_entry
+#check nativeSixCameraSynthesis
+#print axioms nativeSixCameraSynthesis
+#check nativeSixCameraAnalysis
+#print axioms nativeSixCameraAnalysis
+#check nativeSixCameraAnalysis_synthesis
+#print axioms nativeSixCameraAnalysis_synthesis
+#check nativeSixCameraSynthesis_inner
+#print axioms nativeSixCameraSynthesis_inner
+
+#audit_physical_sewing
+  nativeComplexCameraBlock
+  nativeComplexCameraBlock_re
+  nativeComplexCameraBlock_im
+  realifiedCameraBlock_complex_smul
+  nativeComplexCauchy
+  nativeComplexCauchy_apply
+  nativeComplexCauchy_I
+  nativeComplexCameraVector
+  nativeComplexCameraVector_inner
+  nativeSixCameraGram
+  nativeSixCameraGram_entry
+  nativeSixCameraSynthesis
+  nativeSixCameraAnalysis
+  nativeSixCameraAnalysis_synthesis
+  nativeSixCameraSynthesis_inner
+end CarrySelfAdjointOperator.GammaMaterialSewing

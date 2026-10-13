@@ -1,0 +1,39 @@
+import CarrySelfAdjointOperator.NativeGammaC9Analytic
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeCauchyReal_integrableOn
+#print axioms nativeCauchyReal_integrableOn
+#check nativeCauchyReal_strictMono
+#print axioms nativeCauchyReal_strictMono
+#check nativeCauchyIntervalIntegral_real
+#print axioms nativeCauchyIntervalIntegral_real
+#check nativeCauchyReal_integral_split
+#print axioms nativeCauchyReal_integral_split
+#check nativeC9Beta_real_centered
+#print axioms nativeC9Beta_real_centered
+#check nativeC9Beta_real_pos
+#print axioms nativeC9Beta_real_pos
+#check nativeC9WitnessPoint
+#print axioms nativeC9WitnessPoint
+#check log_six_lt_two
+#print axioms log_six_lt_two
+#check nativeC9WitnessPoint_admissible
+#print axioms nativeC9WitnessPoint_admissible
+#check nativeC9Beta_witness_ne_zero
+#print axioms nativeC9Beta_witness_ne_zero
+
+#audit_physical_sewing
+  nativeCauchyReal_integrableOn
+  nativeCauchyReal_strictMono
+  nativeCauchyIntervalIntegral_real
+  nativeCauchyReal_integral_split
+  nativeC9Beta_real_centered
+  nativeC9Beta_real_pos
+  nativeC9WitnessPoint
+  log_six_lt_two
+  nativeC9WitnessPoint_admissible
+  nativeC9Beta_witness_ne_zero
+end CarrySelfAdjointOperator.GammaMaterialSewing

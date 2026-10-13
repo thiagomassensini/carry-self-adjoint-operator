@@ -1,0 +1,51 @@
+import CarrySelfAdjointOperator.NativeGammaMaterialMetric
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check materialCameraLiftMatrix
+#print axioms materialCameraLiftMatrix
+#check materialCameraGram
+#print axioms materialCameraGram
+#check materialCameraMetricDefect
+#print axioms materialCameraMetricDefect
+#check materialCameraGram_pairing
+#print axioms materialCameraGram_pairing
+#check materialCameraMetricDefect_pairing
+#print axioms materialCameraMetricDefect_pairing
+#check gammaMaterialTransport_metricLedger
+#print axioms gammaMaterialTransport_metricLedger
+#check nativeGammaPairForm
+#print axioms nativeGammaPairForm
+#check gammaMaterialMetricFormDefect
+#print axioms gammaMaterialMetricFormDefect
+#check gammaMaterialExteriorForm
+#print axioms gammaMaterialExteriorForm
+#check nativeGammaPairForm_materialLedger
+#print axioms nativeGammaPairForm_materialLedger
+#check nativeSixCameraGram_two_three
+#print axioms nativeSixCameraGram_two_three
+#check materialCameraGram_one_two_three
+#print axioms materialCameraGram_one_two_three
+#check materialCameraLift_literal_not_isometric
+#print axioms materialCameraLift_literal_not_isometric
+#check materialCameraLift_diagonal_rescaling_not_isometric
+#print axioms materialCameraLift_diagonal_rescaling_not_isometric
+
+#audit_physical_sewing
+  materialCameraLiftMatrix
+  materialCameraGram
+  materialCameraMetricDefect
+  materialCameraGram_pairing
+  materialCameraMetricDefect_pairing
+  gammaMaterialTransport_metricLedger
+  nativeGammaPairForm
+  gammaMaterialMetricFormDefect
+  gammaMaterialExteriorForm
+  nativeGammaPairForm_materialLedger
+  nativeSixCameraGram_two_three
+  materialCameraGram_one_two_three
+  materialCameraLift_literal_not_isometric
+  materialCameraLift_diagonal_rescaling_not_isometric
+end CarrySelfAdjointOperator.GammaMaterialSewing

@@ -1,0 +1,48 @@
+import CarrySelfAdjointOperator.NativeGammaC9Exterior
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeCameraNine
+#print axioms nativeCameraNine
+#check nativeC9ProjectedCoefficients
+#print axioms nativeC9ProjectedCoefficients
+#check nativeC9Exterior
+#print axioms nativeC9Exterior
+#check nativeC9Exterior_literal
+#print axioms nativeC9Exterior_literal
+#check nativeC9_camera_analysis
+#print axioms nativeC9_camera_analysis
+#check nativeC9_projected_solve
+#print axioms nativeC9_projected_solve
+#check nativeC9Coordinates_exact
+#print axioms nativeC9Coordinates_exact
+#check nativeC9Exterior_eq_Q
+#print axioms nativeC9Exterior_eq_Q
+#check nativeC9Exterior_orthogonal
+#print axioms nativeC9Exterior_orthogonal
+#check nativeC9Exterior_norm_squared
+#print axioms nativeC9Exterior_norm_squared
+#check nativeC9Beta
+#print axioms nativeC9Beta
+#check nativeC9CauchyReadout_column
+#print axioms nativeC9CauchyReadout_column
+#check nativeC9CauchyReadout_selectsCameraSix
+#print axioms nativeC9CauchyReadout_selectsCameraSix
+
+#audit_physical_sewing
+  nativeCameraNine
+  nativeC9ProjectedCoefficients
+  nativeC9Exterior
+  nativeC9Exterior_literal
+  nativeC9_camera_analysis
+  nativeC9_projected_solve
+  nativeC9Coordinates_exact
+  nativeC9Exterior_eq_Q
+  nativeC9Exterior_orthogonal
+  nativeC9Exterior_norm_squared
+  nativeC9Beta
+  nativeC9CauchyReadout_column
+  nativeC9CauchyReadout_selectsCameraSix
+end CarrySelfAdjointOperator.GammaMaterialSewing

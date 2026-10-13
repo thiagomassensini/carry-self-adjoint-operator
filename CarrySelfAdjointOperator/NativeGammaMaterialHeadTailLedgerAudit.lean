@@ -1,0 +1,33 @@
+import CarrySelfAdjointOperator.NativeGammaMaterialHeadTailLedger
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check gammaPhysicalPairHeadTail
+#print axioms gammaPhysicalPairHeadTail
+#check gammaPhysicalPair_headTail
+#print axioms gammaPhysicalPair_headTail
+#check materialCameraMetricDefect_pairing_sub
+#print axioms materialCameraMetricDefect_pairing_sub
+#check gammaMaterialMetricFormDefect_headTail
+#print axioms gammaMaterialMetricFormDefect_headTail
+#check nativeGammaReferenceDefect_headTail
+#print axioms nativeGammaReferenceDefect_headTail
+#check nativeGammaMismatch_materialHeadTailLedger
+#print axioms nativeGammaMismatch_materialHeadTailLedger
+#check nativeGammaCamera_graph_plus_defect
+#print axioms nativeGammaCamera_graph_plus_defect
+#check nativeGammaWholePair_camera_fourHeadTails
+#print axioms nativeGammaWholePair_camera_fourHeadTails
+
+#audit_physical_sewing
+  gammaPhysicalPairHeadTail
+  gammaPhysicalPair_headTail
+  materialCameraMetricDefect_pairing_sub
+  gammaMaterialMetricFormDefect_headTail
+  nativeGammaReferenceDefect_headTail
+  nativeGammaMismatch_materialHeadTailLedger
+  nativeGammaCamera_graph_plus_defect
+  nativeGammaWholePair_camera_fourHeadTails
+end CarrySelfAdjointOperator.GammaMaterialSewing

@@ -1,0 +1,57 @@
+import CarrySelfAdjointOperator.NativeGammaMaterialCameraLift
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check materialStencilPolynomial_coeff_address
+#print axioms materialStencilPolynomial_coeff_address
+#check materialCameraWindow
+#print axioms materialCameraWindow
+#check materialCameraPolynomial
+#print axioms materialCameraPolynomial
+#check materialCameraLift
+#print axioms materialCameraLift
+#check materialCameraLift_literal
+#print axioms materialCameraLift_literal
+#check materialCameraTopDegree
+#print axioms materialCameraTopDegree
+#check materialCamera_seed_below_top
+#print axioms materialCamera_seed_below_top
+#check materialCamera_center_at_top
+#print axioms materialCamera_center_at_top
+#check materialCamera_top_coefficient
+#print axioms materialCamera_top_coefficient
+#check materialCamera_coeff_above_top
+#print axioms materialCamera_coeff_above_top
+#check materialCamera_natDegree
+#print axioms materialCamera_natDegree
+#check materialCamera_monic
+#print axioms materialCamera_monic
+#check materialCamera_top_lt_window
+#print axioms materialCamera_top_lt_window
+#check materialCamera_window_polynomial
+#print axioms materialCamera_window_polynomial
+#check materialCameraLift_basis
+#print axioms materialCameraLift_basis
+#check materialCameraLift_zero_cutoff_degenerate
+#print axioms materialCameraLift_zero_cutoff_degenerate
+
+#audit_physical_sewing
+  materialStencilPolynomial_coeff_address
+  materialCameraWindow
+  materialCameraPolynomial
+  materialCameraLift
+  materialCameraLift_literal
+  materialCameraTopDegree
+  materialCamera_seed_below_top
+  materialCamera_center_at_top
+  materialCamera_top_coefficient
+  materialCamera_coeff_above_top
+  materialCamera_natDegree
+  materialCamera_monic
+  materialCamera_top_lt_window
+  materialCamera_window_polynomial
+  materialCameraLift_basis
+  materialCameraLift_zero_cutoff_degenerate
+end CarrySelfAdjointOperator.GammaMaterialSewing
