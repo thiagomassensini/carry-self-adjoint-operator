@@ -1,0 +1,48 @@
+import CarrySelfAdjointOperator.NativeCauchyLaguerreLedgers
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.NativeLaguerre
+
+#check physicalFiniteSynthesis_inner
+#print axioms physicalFiniteSynthesis_inner
+#check laguerreFinitePair
+#print axioms laguerreFinitePair
+#check laguerreFinitePair_eq_original
+#print axioms laguerreFinitePair_eq_original
+#check laguerreFiniteHeadTailPair
+#print axioms laguerreFiniteHeadTailPair
+#check laguerreFiniteHeadTailPair_eq_original
+#print axioms laguerreFiniteHeadTailPair_eq_original
+#check laguerreFiniteHeadTailPair_eq_old_ledger
+#print axioms laguerreFiniteHeadTailPair_eq_old_ledger
+#check laguerreMaterialReferenceDefect
+#print axioms laguerreMaterialReferenceDefect
+#check laguerreMaterialReferenceDefect_eq_original
+#print axioms laguerreMaterialReferenceDefect_eq_original
+#check laguerreMaterialLedger
+#print axioms laguerreMaterialLedger
+#check laguerreMaterialLedger_eq_original
+#print axioms laguerreMaterialLedger_eq_original
+#check laguerreMaterialLedger_eq_mismatch
+#print axioms laguerreMaterialLedger_eq_mismatch
+#check laguerreMaterialLedger_counterexampleFamily
+#print axioms laguerreMaterialLedger_counterexampleFamily
+#check laguerreNativeOrientation_materialLedger
+#print axioms laguerreNativeOrientation_materialLedger
+
+#audit_physical_sewing
+  physicalFiniteSynthesis_inner
+  laguerreFinitePair
+  laguerreFinitePair_eq_original
+  laguerreFiniteHeadTailPair
+  laguerreFiniteHeadTailPair_eq_original
+  laguerreFiniteHeadTailPair_eq_old_ledger
+  laguerreMaterialReferenceDefect
+  laguerreMaterialReferenceDefect_eq_original
+  laguerreMaterialLedger
+  laguerreMaterialLedger_eq_original
+  laguerreMaterialLedger_eq_mismatch
+  laguerreMaterialLedger_counterexampleFamily
+  laguerreNativeOrientation_materialLedger
+end CarrySelfAdjointOperator.NativeLaguerre

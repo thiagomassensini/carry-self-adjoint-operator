@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "base_commit": "46f98fe3a37ce21bb7015af15285be5b061b5031",
+  "namespace": "CarrySelfAdjointOperator.NativeLaguerre",
+  "public_declarations": 104,
+  "modules": [
+    {
+      "module": "NativeCauchyLaguerreColumns",
+      "declarations": [
+        "feature_product_summable",
+        "feature_product_hasSum",
+        "laguerreColumn",
+        "inner_laguerreColumn",
+        "laguerreColumn_physicalGram",
+        "physicalCauchySynthesis",
+        "laguerreColumnSynthesis",
+        "laguerreColumnSynthesis_inner",
+        "laguerreColumnSynthesis_norm"
+      ]
+    },
+    {
+      "module": "NativeCauchyLaguerreIsometry",
+      "declarations": [
+        "physicalCauchySpan",
+        "physicalCauchySpan_eq_span",
+        "physicalCauchyClosure",
+        "PhysicalCauchySpace",
+        "physicalCauchySpaceComplete",
+        "physicalCauchyEmbedding",
+        "physicalCauchyEmbedding_dense",
+        "cauchyLaguerreExtension",
+        "cauchyLaguerreExtension_synthesis",
+        "cauchyLaguerreExtension_norm",
+        "cauchyLaguerreIsometry",
+        "cauchyLaguerreIsometry_synthesis",
+        "physicalCauchyFeature",
+        "cauchyLaguerreIsometry_feature",
+        "laguerreColumnSynthesis_apply",
+        "physicalCauchySynthesis_laguerreMode",
+        "cauchyLaguerreIsometry_coordinate",
+        "cauchyLaguerreIsometry_inner",
+        "cauchyLaguerreIsometry_range_isClosed"
+      ]
+    },
+    {
+      "module": "NativeCauchyLaguerreShift",
+      "declarations": [
+        "backwardShift_laguerreColumn",
+        "physicalShiftSynthesis",
+        "physicalShiftSynthesis_intertwines",
+        "physicalCauchyShift",
+        "physicalCauchyShift_synthesis",
+        "physicalCauchyShift_intertwines",
+        "physicalCauchyShift_feature",
+        "physicalCauchyShift_norm_le",
+        "physicalCauchyShift_opNorm_le_one",
+        "physicalCauchyShift_zero",
+        "physicalCauchyShift_add",
+        "physicalCauchyShift_eq_pow",
+        "backwardShift_preserves_physicalRange",
+        "laguerreHead",
+        "laguerreHead_idempotent",
+        "laguerreHead_isSelfAdjoint",
+        "laguerreHead_tendsto",
+        "laguerreHead_residual_energy_tendsto_zero",
+        "backwardShift_tendsto_zero",
+        "physicalCauchyShift_tendsto_zero"
+      ]
+    },
+    {
+      "module": "NativeCauchyLaguerreHeadTail",
+      "declarations": [
+        "laguerreHead_inner",
+        "physicalCauchy_head_tail_inner",
+        "PhysicalHeadTailSpace",
+        "physicalHeadTailLinear",
+        "physicalHeadTailLinear_inner",
+        "physicalHeadTailIsometry",
+        "physicalCauchy_head_tail_energy",
+        "laguerreHead_refines",
+        "physicalHeadTail_refinement",
+        "physicalFiniteSynthesis",
+        "physicalFiniteSynthesis_coe",
+        "physicalFiniteSynthesis_injective",
+        "physicalFiniteHead",
+        "shortHead_full_physical_tail",
+        "physicalCauchyShift_tail_opNorm_eq_one"
+      ]
+    },
+    {
+      "module": "NativeCauchyHardyStep",
+      "declarations": [
+        "physicalHalfDensity",
+        "physicalHalfDensity_rpow",
+        "integral_physicalHalfDensity",
+        "hardyStep_physicalHalfDensity",
+        "physicalFiniteFunction",
+        "hardyStep_physicalFiniteFunction",
+        "physicalFiniteSynthesis_ae",
+        "physicalCauchyShift_one_hardy_core"
+      ]
+    },
+    {
+      "module": "NativeCauchyLaguerreSources",
+      "declarations": [
+        "radialCauchyState_mem",
+        "sourceValue_mem",
+        "sourceCompanion_mem",
+        "nativeDressedCompanion_mem",
+        "completionCompanion_mem",
+        "originalIncident_mem",
+        "originalReturned_mem",
+        "physicalSourceValue",
+        "physicalSourceCompanion",
+        "physicalNativeCompanion",
+        "physicalCompletionCompanion",
+        "physicalOriginalIncident",
+        "physicalOriginalReturned",
+        "cauchyLaguerreIsometry_radial",
+        "cauchyLaguerre_originalSource_legs",
+        "physicalSourceChannels",
+        "cauchyLaguerre_nine_source_crossings",
+        "cauchyLaguerre_nine_source_crossings_headTail",
+        "cauchyLaguerre_originalSource_chiral_balance",
+        "cauchyLaguerre_source_polarized_product_sum"
+      ]
+    },
+    {
+      "module": "NativeCauchyLaguerreLedgers",
+      "declarations": [
+        "physicalFiniteSynthesis_inner",
+        "laguerreFinitePair",
+        "laguerreFinitePair_eq_original",
+        "laguerreFiniteHeadTailPair",
+        "laguerreFiniteHeadTailPair_eq_original",
+        "laguerreFiniteHeadTailPair_eq_old_ledger",
+        "laguerreMaterialReferenceDefect",
+        "laguerreMaterialReferenceDefect_eq_original",
+        "laguerreMaterialLedger",
+        "laguerreMaterialLedger_eq_original",
+        "laguerreMaterialLedger_eq_mismatch",
+        "laguerreMaterialLedger_counterexampleFamily",
+        "laguerreNativeOrientation_materialLedger"
+      ]
+    }
+  ]
+}

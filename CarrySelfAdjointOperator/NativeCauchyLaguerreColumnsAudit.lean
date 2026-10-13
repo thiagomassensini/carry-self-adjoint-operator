@@ -1,0 +1,36 @@
+import CarrySelfAdjointOperator.NativeCauchyLaguerreColumns
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.NativeLaguerre
+
+#check feature_product_summable
+#print axioms feature_product_summable
+#check feature_product_hasSum
+#print axioms feature_product_hasSum
+#check laguerreColumn
+#print axioms laguerreColumn
+#check inner_laguerreColumn
+#print axioms inner_laguerreColumn
+#check laguerreColumn_physicalGram
+#print axioms laguerreColumn_physicalGram
+#check physicalCauchySynthesis
+#print axioms physicalCauchySynthesis
+#check laguerreColumnSynthesis
+#print axioms laguerreColumnSynthesis
+#check laguerreColumnSynthesis_inner
+#print axioms laguerreColumnSynthesis_inner
+#check laguerreColumnSynthesis_norm
+#print axioms laguerreColumnSynthesis_norm
+
+#audit_physical_sewing
+  feature_product_summable
+  feature_product_hasSum
+  laguerreColumn
+  inner_laguerreColumn
+  laguerreColumn_physicalGram
+  physicalCauchySynthesis
+  laguerreColumnSynthesis
+  laguerreColumnSynthesis_inner
+  laguerreColumnSynthesis_norm
+end CarrySelfAdjointOperator.NativeLaguerre
