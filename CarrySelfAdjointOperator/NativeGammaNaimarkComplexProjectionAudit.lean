@@ -1,0 +1,61 @@
+import CarrySelfAdjointOperator.NativeGammaNaimarkComplexProjection
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeComplexificationMap
+#print axioms nativeComplexificationMap
+#check nativeComplexNaimarkPort
+#print axioms nativeComplexNaimarkPort
+#check nativeComplexNaimarkAdjoint
+#print axioms nativeComplexNaimarkAdjoint
+#check nativeComplexNaimarkPort_eq_original
+#print axioms nativeComplexNaimarkPort_eq_original
+#check nativeComplexNaimarkAdjoint_eq_original
+#print axioms nativeComplexNaimarkAdjoint_eq_original
+#check nativeComplexNaimarkPort_inner
+#print axioms nativeComplexNaimarkPort_inner
+#check nativeComplexNaimarkPort_norm
+#print axioms nativeComplexNaimarkPort_norm
+#check nativeComplexNaimarkIsometry
+#print axioms nativeComplexNaimarkIsometry
+#check nativeComplexNaimark_adjoint_inner
+#print axioms nativeComplexNaimark_adjoint_inner
+#check nativeComplexNaimark_hilbertAdjoint
+#print axioms nativeComplexNaimark_hilbertAdjoint
+#check nativeComplexNaimarkAdjoint_port
+#print axioms nativeComplexNaimarkAdjoint_port
+#check nativeComplexNaimarkAdjoint_gamma
+#print axioms nativeComplexNaimarkAdjoint_gamma
+#check nativeGammaGlobalEscape
+#print axioms nativeGammaGlobalEscape
+#check nativeGammaGlobalEscape_eq_original
+#print axioms nativeGammaGlobalEscape_eq_original
+#check nativeGammaGlobalEscape_roundtrip
+#print axioms nativeGammaGlobalEscape_roundtrip
+#check nativeGammaGlobalEscape_orthogonal
+#print axioms nativeGammaGlobalEscape_orthogonal
+#check nativeGammaGlobalEscape_orthogonal_reverse
+#print axioms nativeGammaGlobalEscape_orthogonal_reverse
+
+#audit_physical_sewing
+  nativeComplexificationMap
+  nativeComplexNaimarkPort
+  nativeComplexNaimarkAdjoint
+  nativeComplexNaimarkPort_eq_original
+  nativeComplexNaimarkAdjoint_eq_original
+  nativeComplexNaimarkPort_inner
+  nativeComplexNaimarkPort_norm
+  nativeComplexNaimarkIsometry
+  nativeComplexNaimark_adjoint_inner
+  nativeComplexNaimark_hilbertAdjoint
+  nativeComplexNaimarkAdjoint_port
+  nativeComplexNaimarkAdjoint_gamma
+  nativeGammaGlobalEscape
+  nativeGammaGlobalEscape_eq_original
+  nativeGammaGlobalEscape_roundtrip
+  nativeGammaGlobalEscape_orthogonal
+  nativeGammaGlobalEscape_orthogonal_reverse
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

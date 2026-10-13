@@ -1,0 +1,58 @@
+import CarrySelfAdjointOperator.NativeGammaMixedMaterialBalance
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeGammaSourcePair
+#print axioms nativeGammaSourcePair
+#check nativeGammaMixedPair
+#print axioms nativeGammaMixedPair
+#check nativeGammaComplementPair
+#print axioms nativeGammaComplementPair
+#check nativeCanonicalGammaMixedPair_literal
+#print axioms nativeCanonicalGammaMixedPair_literal
+#check nativeCanonicalGammaComplementPair_literal
+#print axioms nativeCanonicalGammaComplementPair_literal
+#check nativeGammaMixedPairs_roundtrip
+#print axioms nativeGammaMixedPairs_roundtrip
+#check nativeCanonicalGammaMixedPairs_roundtrip
+#print axioms nativeCanonicalGammaMixedPairs_roundtrip
+#check nativeGammaMaterialAmbientPair
+#print axioms nativeGammaMaterialAmbientPair
+#check nativeGammaMaterialAmbientDefect
+#print axioms nativeGammaMaterialAmbientDefect
+#check nativeGammaMaterialAmbientPair_add
+#print axioms nativeGammaMaterialAmbientPair_add
+#check nativeGammaMaterialAmbientDefect_add
+#print axioms nativeGammaMaterialAmbientDefect_add
+#check nativeGammaMixedPairs_Green_crossings
+#print axioms nativeGammaMixedPairs_Green_crossings
+#check nativeGammaMixedPairs_materialCrossBalance
+#print axioms nativeGammaMixedPairs_materialCrossBalance
+#check nativeGammaMaterialAmbientGreenHeadTail
+#print axioms nativeGammaMaterialAmbientGreenHeadTail
+#check nativeGammaMaterialAmbientGreenHeadTail_eq_form
+#print axioms nativeGammaMaterialAmbientGreenHeadTail_eq_form
+#check nativeGammaMixedPairs_materialHeadTailCrossBalance
+#print axioms nativeGammaMixedPairs_materialHeadTailCrossBalance
+
+#audit_physical_sewing
+  nativeGammaSourcePair
+  nativeGammaMixedPair
+  nativeGammaComplementPair
+  nativeCanonicalGammaMixedPair_literal
+  nativeCanonicalGammaComplementPair_literal
+  nativeGammaMixedPairs_roundtrip
+  nativeCanonicalGammaMixedPairs_roundtrip
+  nativeGammaMaterialAmbientPair
+  nativeGammaMaterialAmbientDefect
+  nativeGammaMaterialAmbientPair_add
+  nativeGammaMaterialAmbientDefect_add
+  nativeGammaMixedPairs_Green_crossings
+  nativeGammaMixedPairs_materialCrossBalance
+  nativeGammaMaterialAmbientGreenHeadTail
+  nativeGammaMaterialAmbientGreenHeadTail_eq_form
+  nativeGammaMixedPairs_materialHeadTailCrossBalance
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

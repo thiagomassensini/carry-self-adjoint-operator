@@ -1,0 +1,34 @@
+import CarrySelfAdjointOperator.NativeGammaThreeSectorResolvent
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeGammaResponseCoordinates
+#print axioms nativeGammaResponseCoordinates
+#check nativeGammaResponseHalo
+#print axioms nativeGammaResponseHalo
+#check nativeGammaResolvent_threeSector_roundtrip
+#print axioms nativeGammaResolvent_threeSector_roundtrip
+#check nativeGammaResolvent_camera_halo_orthogonal
+#print axioms nativeGammaResolvent_camera_halo_orthogonal
+#check nativeGammaResolvent_halo_camera_orthogonal
+#print axioms nativeGammaResolvent_halo_camera_orthogonal
+#check nativeGammaResolvent_threeSector_orthogonal
+#print axioms nativeGammaResolvent_threeSector_orthogonal
+#check nativeGammaResolvent_fullGram
+#print axioms nativeGammaResolvent_fullGram
+#check nativeGammaResolvent_threeSector_Gram
+#print axioms nativeGammaResolvent_threeSector_Gram
+
+#audit_physical_sewing
+  nativeGammaResponseCoordinates
+  nativeGammaResponseHalo
+  nativeGammaResolvent_threeSector_roundtrip
+  nativeGammaResolvent_camera_halo_orthogonal
+  nativeGammaResolvent_halo_camera_orthogonal
+  nativeGammaResolvent_threeSector_orthogonal
+  nativeGammaResolvent_fullGram
+  nativeGammaResolvent_threeSector_Gram
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

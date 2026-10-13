@@ -2543,3 +2543,76 @@ The complete 210-root procedure passed on llm: all 20 --wfail Audit builds,
 all direct kernel/type/body guards, registry, static audit, root --wfail
 build and original integration audit. Only the three accepted foundations
 remain. Effective source hashes match the validated bytes.
+
+## 2026-10-13 - Mixed resolvent, two exteriors and material crossing balance
+
+Base: `ce860946bd0cfcac639fb465eb69667e1d9b8367`, after PR #80.
+Status: `PASS_MIXED_RESOLVENT_EXTERIORS_AND_MATERIAL_CROSS_BALANCE`.
+`PARTIAL_COMPLETED_SOURCE_ENERGY_POSITIVITY` remains unchanged.
+
+The original periodic profiles certify the mixed mode pointwise: its
+density is 32, 50 and 66 on (0,3], (3,4] and (4,6], and its only nonzero
+camera pairing is with label C6, equal to one third of that density.
+Consequently both mixed/complement Gamma pairings vanish for independent
+sources and ALL off-axis parameters, including omega=conj(z). The proof
+uses the original bounded multipliers and both quadratures, not division
+by omega-conj(z) and not a postulated orthogonality condition.
+
+The complex Naimark port, its Hilbert adjoint and the original readout are
+identified on the original complexification. The full Gamma state has a
+three-sector vector roundtrip: six-camera response, coherent native halo,
+and global Naimark escape. All sectors are pairwise orthogonal for two
+independent inputs and parameters. Their full Gram yields the undivided
+matrix resolvent identity, including parameter collision. The diagonal
+identity has the literal anti-Herglotz sign for (z-(1+log x))^(-1), and
+both exterior Grams are nonnegative. No signed chiral positivity follows.
+
+Both second ports of the canonical mixed and complementary pairs are
+produced by the ORIGINAL Cauchy operator. Their native and material pairs
+sum to the original whole pair. Each material mixed crossing balances
+exactly with the existing metric defect: g_H+M_C=0, for all material
+cutoffs, including zero. The corresponding head/tail balances retain
+both physical tails for every Laguerre cutoff. Individual material
+crossings, arbitrary camera crossings and the second-port exteriors are
+not erased. The preexisting 36 ordered camera pairs and four sectors,
+transport decoder and faithful graph-defect probes remain available.
+
+C9 selects exactly the mixed C6 coefficient. Cauchy-Schwarz supplies an
+exact exterior-energy lower bound for arbitrary coefficients and for the
+ORIGINAL canonical source. The bound is strictly positive at 4+i/8 by
+the existing analytic witness. The mixed response is explicitly
+(-9 I_3-8 I_4+33 I_6)/139 as a compression, not a whole-space eigenvector
+identity. Its resolvent variance equals the sum of native-halo and global
+escape energies, is nonnegative off-axis, and is strictly positive at
+4+i/8. No decimal test or evaluation of F/zeta is a proof premise.
+
+The EXISTING canonicalCompletedC3NativeSourceLocusProjectionMismatch is
+reduced to the explicit mixed response, the original Gamma pairing of
+the source remainder, and the UNDRESSED completedGreenWronskian of
+nativeHeightScalar/nativeHeightScalarBoundaryCompanion in argument order
+(omega,z). Its identification with the corrected PR #79 ledger retains
+-M-A-v*H eta'+eta*H v'-2 NativeScalar. The Genuine strip is used only for
+the existing mismatch/Wronskian dictionary; off-axis assumptions suffice
+for the resolvent identities. C>=1 is retained only for decoding, not for
+the crossing balances. No regularity of F or radial denominator is added
+to statements that do not use it.
+
+The first global obligation is still to compare the complementary
+response with the required undressed Wronskian contribution and decide
+global vanishing of the named mismatch. The mixed reduction does not
+assume or prove that vanishing. The existing raw completed-F no-go
+endpoints, unequal seeds, distinct clocks, native/global exteriors,
+Laguerre tails and Jacobi borders are preserved. There is no fitted
+normalization, pin update, universal isometry or infinite-support claim.
+
+Sixteen new modules and 152 public declarations extend the audited
+surface to 362 declarations in 36 modules. The complete procedure passed
+on llm from 2026-10-13T05:27:45Z to 05:45:55Z: all --wfail Audit builds,
+all direct -E warning kernel/type/body guards, inventory, static checks,
+root --wfail build (10166 jobs) and original integration audit (8903 jobs).
+Only propext, Classical.choice and Quot.sound remain; maximum dependency
+closure is 7134. Logs, publication hashes and post-integration validation
+are preserved in the delivery manifest. See
+`RESOLVENTE_MISTO_EXTERIORES_CRUZAMENTOS.md`, the updated public registry
+and `scripts/audit_gamma_cauchy_transport.sh` for the requirement audit
+and reproduction. All prior checkpoint sections remain unchanged.

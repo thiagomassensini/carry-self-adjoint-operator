@@ -1,0 +1,37 @@
+import CarrySelfAdjointOperator.NativeGammaMixedProfiles
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeSixPeriodicMean
+#print axioms nativeSixPeriodicMean
+#check nativeSixPeriodicMean_eq_original
+#print axioms nativeSixPeriodicMean_eq_original
+#check nativeCameraFiber
+#print axioms nativeCameraFiber
+#check nativeMixedFiber
+#print axioms nativeMixedFiber
+#check nativeMixedDensity
+#print axioms nativeMixedDensity
+#check nativeCameraFiber_inner
+#print axioms nativeCameraFiber_inner
+#check nativeMixedFiber_camera_inner
+#print axioms nativeMixedFiber_camera_inner
+#check nativeMixedFiber_norm_sq
+#print axioms nativeMixedFiber_norm_sq
+#check nativeMixedFiber_complement_inner
+#print axioms nativeMixedFiber_complement_inner
+
+#audit_physical_sewing
+  nativeSixPeriodicMean
+  nativeSixPeriodicMean_eq_original
+  nativeCameraFiber
+  nativeMixedFiber
+  nativeMixedDensity
+  nativeCameraFiber_inner
+  nativeMixedFiber_camera_inner
+  nativeMixedFiber_norm_sq
+  nativeMixedFiber_complement_inner
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

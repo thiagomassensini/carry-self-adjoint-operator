@@ -1,0 +1,58 @@
+import CarrySelfAdjointOperator.NativeGammaMixedSource
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeMixedRay
+#print axioms nativeMixedRay
+#check nativeMixedVector
+#print axioms nativeMixedVector
+#check nativeMixedUnitVector
+#print axioms nativeMixedUnitVector
+#check nativeMixedCoefficients
+#print axioms nativeMixedCoefficients
+#check nativeMixedComplement
+#print axioms nativeMixedComplement
+#check nativeMixedCoefficients_cameraSix
+#print axioms nativeMixedCoefficients_cameraSix
+#check nativeMixedComplement_cameraSix
+#print axioms nativeMixedComplement_cameraSix
+#check nativeMixedCoefficients_roundtrip
+#print axioms nativeMixedCoefficients_roundtrip
+#check nativeMixedVector_eq_original
+#print axioms nativeMixedVector_eq_original
+#check nativeMixedVector_inner_synthesis
+#print axioms nativeMixedVector_inner_synthesis
+#check nativeMixedVector_norm_sq
+#print axioms nativeMixedVector_norm_sq
+#check nativeMixedUnitVector_norm_sq
+#print axioms nativeMixedUnitVector_norm_sq
+#check nativeMixedCoefficients_pack
+#print axioms nativeMixedCoefficients_pack
+#check nativeMixedComplement_pack
+#print axioms nativeMixedComplement_pack
+#check nativeCanonicalMixedSource_eq_original
+#print axioms nativeCanonicalMixedSource_eq_original
+#check nativeCanonicalComplementSource_eq_original
+#print axioms nativeCanonicalComplementSource_eq_original
+
+#audit_physical_sewing
+  nativeMixedRay
+  nativeMixedVector
+  nativeMixedUnitVector
+  nativeMixedCoefficients
+  nativeMixedComplement
+  nativeMixedCoefficients_cameraSix
+  nativeMixedComplement_cameraSix
+  nativeMixedCoefficients_roundtrip
+  nativeMixedVector_eq_original
+  nativeMixedVector_inner_synthesis
+  nativeMixedVector_norm_sq
+  nativeMixedUnitVector_norm_sq
+  nativeMixedCoefficients_pack
+  nativeMixedComplement_pack
+  nativeCanonicalMixedSource_eq_original
+  nativeCanonicalComplementSource_eq_original
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

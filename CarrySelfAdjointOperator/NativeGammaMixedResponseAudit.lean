@@ -1,0 +1,37 @@
+import CarrySelfAdjointOperator.NativeGammaMixedResponse
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeMixedCauchyResponse
+#print axioms nativeMixedCauchyResponse
+#check nativeMixedCauchy_camera_readout
+#print axioms nativeMixedCauchy_camera_readout
+#check nativeMixedCauchy_responseCoordinates
+#print axioms nativeMixedCauchy_responseCoordinates
+#check nativeMixedCauchy_compression
+#print axioms nativeMixedCauchy_compression
+#check nativeMixedCauchy_unit_compression
+#print axioms nativeMixedCauchy_unit_compression
+#check nativeMixedUnitVector_exterior_orthogonal
+#print axioms nativeMixedUnitVector_exterior_orthogonal
+#check nativeMixedCauchy_unit_readout
+#print axioms nativeMixedCauchy_unit_readout
+#check nativeMixedGammaKernel
+#print axioms nativeMixedGammaKernel
+#check nativeMixedGammaKernel_greenIdentity
+#print axioms nativeMixedGammaKernel_greenIdentity
+
+#audit_physical_sewing
+  nativeMixedCauchyResponse
+  nativeMixedCauchy_camera_readout
+  nativeMixedCauchy_responseCoordinates
+  nativeMixedCauchy_compression
+  nativeMixedCauchy_unit_compression
+  nativeMixedUnitVector_exterior_orthogonal
+  nativeMixedCauchy_unit_readout
+  nativeMixedGammaKernel
+  nativeMixedGammaKernel_greenIdentity
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

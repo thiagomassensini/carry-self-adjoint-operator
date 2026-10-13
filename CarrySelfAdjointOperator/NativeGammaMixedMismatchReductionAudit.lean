@@ -1,0 +1,31 @@
+import CarrySelfAdjointOperator.NativeGammaMixedMismatchReduction
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeCanonicalGamma_cameraSix_eq_powers
+#print axioms nativeCanonicalGamma_cameraSix_eq_powers
+#check nativeMixedVector_eq_sqrt_unit
+#print axioms nativeMixedVector_eq_sqrt_unit
+#check nativeMixedGammaKernel_unnormalized
+#print axioms nativeMixedGammaKernel_unnormalized
+#check nativeCanonicalMixedGamma_Gram
+#print axioms nativeCanonicalMixedGamma_Gram
+#check nativeCanonicalGamma_boundary_mixedReduction
+#print axioms nativeCanonicalGamma_boundary_mixedReduction
+#check nativeGammaMismatch_mixedComplementReduction
+#print axioms nativeGammaMismatch_mixedComplementReduction
+#check nativeGammaMismatch_mixedReduction_materialLedger
+#print axioms nativeGammaMismatch_mixedReduction_materialLedger
+
+#audit_physical_sewing
+  nativeCanonicalGamma_cameraSix_eq_powers
+  nativeMixedVector_eq_sqrt_unit
+  nativeMixedGammaKernel_unnormalized
+  nativeCanonicalMixedGamma_Gram
+  nativeCanonicalGamma_boundary_mixedReduction
+  nativeGammaMismatch_mixedComplementReduction
+  nativeGammaMismatch_mixedReduction_materialLedger
+
+end CarrySelfAdjointOperator.GammaMaterialSewing

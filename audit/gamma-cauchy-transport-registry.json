@@ -1,12 +1,12 @@
 {
-  "base_commit": "83b77dceb93235604881990458ce979d44367da3",
+  "base_commit": "ce860946bd0cfcac639fb465eb69667e1d9b8367",
   "namespace": "CarrySelfAdjointOperator.GammaMaterialSewing",
   "accepted_axioms": [
     "propext",
     "Classical.choice",
     "Quot.sound"
   ],
-  "public_declarations": 210,
+  "public_declarations": 362,
   "modules": [
     {
       "module": "NativeGammaC9Analytic",
@@ -316,6 +316,238 @@
         "nativeSixCameraExterior_orthogonal",
         "nativeSixCameraProjection_metricLedger",
         "nativeSixCameraProjection_range"
+      ]
+    },
+    {
+      "module": "NativeGammaC9EnergyBound",
+      "declarations": [
+        "nativeC9Exterior_readout_exterior",
+        "nativeC9CauchyReadout_mixedDuality",
+        "nativeC9CauchyReadout_complement_zero",
+        "nativeC9CauchyReadout_mixed_eq_full",
+        "nativeC9Exterior_energy_bound",
+        "nativeC9CauchyExterior_energy_bound",
+        "nativeC9CauchyExterior_energy_bound_divided",
+        "nativeCanonicalGammaCauchyExterior_energy_lower_bound",
+        "nativeCanonicalGammaCauchyExterior_energy_witness"
+      ]
+    },
+    {
+      "module": "NativeGammaComplexLinearState",
+      "declarations": [
+        "nativeComplexContinuousBlock",
+        "nativeComplexGamma",
+        "nativeComplexGamma_eq_original",
+        "carryGammaComplexState_complex_smul",
+        "carryGammaComplexState_re",
+        "carryGammaComplexState_im"
+      ]
+    },
+    {
+      "module": "NativeGammaExteriorGramPositivity",
+      "declarations": [
+        "nativeFiniteGram_pairing",
+        "nativeGammaHaloMatrix_quadratic",
+        "nativeGammaGlobalEscape_synthesis",
+        "nativeGammaEscapeMatrix_quadratic",
+        "nativeGammaExteriorGrams_nonnegative"
+      ]
+    },
+    {
+      "module": "NativeGammaMixedMaterialBalance",
+      "declarations": [
+        "nativeGammaSourcePair",
+        "nativeGammaMixedPair",
+        "nativeGammaComplementPair",
+        "nativeCanonicalGammaMixedPair_literal",
+        "nativeCanonicalGammaComplementPair_literal",
+        "nativeGammaMixedPairs_roundtrip",
+        "nativeCanonicalGammaMixedPairs_roundtrip",
+        "nativeGammaMaterialAmbientPair",
+        "nativeGammaMaterialAmbientDefect",
+        "nativeGammaMaterialAmbientPair_add",
+        "nativeGammaMaterialAmbientDefect_add",
+        "nativeGammaMixedPairs_Green_crossings",
+        "nativeGammaMixedPairs_materialCrossBalance",
+        "nativeGammaMaterialAmbientGreenHeadTail",
+        "nativeGammaMaterialAmbientGreenHeadTail_eq_form",
+        "nativeGammaMixedPairs_materialHeadTailCrossBalance"
+      ]
+    },
+    {
+      "module": "NativeGammaMixedMismatchReduction",
+      "declarations": [
+        "nativeCanonicalGamma_cameraSix_eq_powers",
+        "nativeMixedVector_eq_sqrt_unit",
+        "nativeMixedGammaKernel_unnormalized",
+        "nativeCanonicalMixedGamma_Gram",
+        "nativeCanonicalGamma_boundary_mixedReduction",
+        "nativeGammaMismatch_mixedComplementReduction",
+        "nativeGammaMismatch_mixedReduction_materialLedger"
+      ]
+    },
+    {
+      "module": "NativeGammaMixedMultiplierOrthogonality",
+      "declarations": [
+        "nativeRealSixNaimarkSynthesis",
+        "nativeRealSixNaimarkSynthesis_coeFn",
+        "nativeRealSixNaimarkSynthesis_mixed_coeFn",
+        "nativeMixed_multiplier_orthogonal",
+        "nativeSixCameraSynthesis_naimark_re",
+        "nativeSixCameraSynthesis_naimark_im"
+      ]
+    },
+    {
+      "module": "NativeGammaMixedOrthogonality",
+      "declarations": [
+        "nativeMixedRay_re",
+        "nativeMixedRay_im",
+        "nativeGammaMixedRay_complement_orthogonal",
+        "nativeGamma_mixed_complement_orthogonal",
+        "nativeGamma_complement_mixed_orthogonal",
+        "nativeCanonicalGamma_mixed_complement_orthogonal",
+        "nativeCanonicalGamma_mixed_complement_Gram"
+      ]
+    },
+    {
+      "module": "NativeGammaMixedProfiles",
+      "declarations": [
+        "nativeSixPeriodicMean",
+        "nativeSixPeriodicMean_eq_original",
+        "nativeCameraFiber",
+        "nativeMixedFiber",
+        "nativeMixedDensity",
+        "nativeCameraFiber_inner",
+        "nativeMixedFiber_camera_inner",
+        "nativeMixedFiber_norm_sq",
+        "nativeMixedFiber_complement_inner"
+      ]
+    },
+    {
+      "module": "NativeGammaMixedResolventCapstone",
+      "declarations": [
+        "nativeCanonicalGamma_resolventThreeSectorRoundtrip",
+        "nativeCanonicalGammaMaterialAmbientPair_literal",
+        "nativeCanonicalGammaMaterialMixedPairs_roundtrip",
+        "nativeGammaMixedTransport_capstone",
+        "nativeGammaMixedResolvent_capstone"
+      ]
+    },
+    {
+      "module": "NativeGammaMixedResponse",
+      "declarations": [
+        "nativeMixedCauchyResponse",
+        "nativeMixedCauchy_camera_readout",
+        "nativeMixedCauchy_responseCoordinates",
+        "nativeMixedCauchy_compression",
+        "nativeMixedCauchy_unit_compression",
+        "nativeMixedUnitVector_exterior_orthogonal",
+        "nativeMixedCauchy_unit_readout",
+        "nativeMixedGammaKernel",
+        "nativeMixedGammaKernel_greenIdentity"
+      ]
+    },
+    {
+      "module": "NativeGammaMixedSource",
+      "declarations": [
+        "nativeMixedRay",
+        "nativeMixedVector",
+        "nativeMixedUnitVector",
+        "nativeMixedCoefficients",
+        "nativeMixedComplement",
+        "nativeMixedCoefficients_cameraSix",
+        "nativeMixedComplement_cameraSix",
+        "nativeMixedCoefficients_roundtrip",
+        "nativeMixedVector_eq_original",
+        "nativeMixedVector_inner_synthesis",
+        "nativeMixedVector_norm_sq",
+        "nativeMixedUnitVector_norm_sq",
+        "nativeMixedCoefficients_pack",
+        "nativeMixedComplement_pack",
+        "nativeCanonicalMixedSource_eq_original",
+        "nativeCanonicalComplementSource_eq_original"
+      ]
+    },
+    {
+      "module": "NativeGammaMixedVariance",
+      "declarations": [
+        "nativeMixedResolventVariance",
+        "nativeMixedGamma_ward",
+        "nativeMixedCauchy_norm_ledger",
+        "nativeMixedResolventVariance_exact",
+        "nativeMixedResolventVariance_nonnegative",
+        "nativeMixedCauchy_C9_readout",
+        "nativeMixedCauchy_C9_energy_lower_bound",
+        "nativeMixedResolventVariance_C9_lower_bound",
+        "nativeMixedResolventVariance_witness_positive"
+      ]
+    },
+    {
+      "module": "NativeGammaNaimarkComplexProjection",
+      "declarations": [
+        "nativeComplexificationMap",
+        "nativeComplexNaimarkPort",
+        "nativeComplexNaimarkAdjoint",
+        "nativeComplexNaimarkPort_eq_original",
+        "nativeComplexNaimarkAdjoint_eq_original",
+        "nativeComplexNaimarkPort_inner",
+        "nativeComplexNaimarkPort_norm",
+        "nativeComplexNaimarkIsometry",
+        "nativeComplexNaimark_adjoint_inner",
+        "nativeComplexNaimark_hilbertAdjoint",
+        "nativeComplexNaimarkAdjoint_port",
+        "nativeComplexNaimarkAdjoint_gamma",
+        "nativeGammaGlobalEscape",
+        "nativeGammaGlobalEscape_eq_original",
+        "nativeGammaGlobalEscape_roundtrip",
+        "nativeGammaGlobalEscape_orthogonal",
+        "nativeGammaGlobalEscape_orthogonal_reverse"
+      ]
+    },
+    {
+      "module": "NativeGammaNaimarkHaloEscape",
+      "declarations": [
+        "nativeComplexGlobalNaimarkProjection",
+        "nativeComplexGlobalNaimarkEscape",
+        "nativeComplexGlobalNaimarkProjection_eq_realComplexification",
+        "nativeComplexGlobalNaimarkEscape_eq_realComplexification",
+        "nativeGammaGlobalEscape_eq_globalProjectionEscape",
+        "nativeComplexSixCameraNaimarkProjection",
+        "nativeComplexSixCameraNaimarkEscape",
+        "nativeComplexSixCameraNaimarkProjection_range",
+        "nativeComplexSixCameraNaimarkProjection_idempotent",
+        "nativeComplexSixCameraNaimarkEscape_orthogonal",
+        "nativeGammaSixCameraEscape_eq_halo_add_globalEscape",
+        "nativeGammaSixCameraEscape_pairing"
+      ]
+    },
+    {
+      "module": "NativeGammaResolventMatrix",
+      "declarations": [
+        "nativeSixCameraGram_isHermitian",
+        "nativeSixCameraProjection_analysisPairing",
+        "nativeGammaCauchyMatrix",
+        "nativeGammaHaloMatrix",
+        "nativeGammaEscapeMatrix",
+        "nativeGammaCauchyMatrix_analysis",
+        "nativeGammaCauchyMatrix_compressedGram",
+        "nativeGammaResolvent_matrixIdentity",
+        "nativeGammaResolvent_matrixIdentity_divided",
+        "nativeGammaHermitianImaginary",
+        "nativeGammaResolvent_upperHalfPlane"
+      ]
+    },
+    {
+      "module": "NativeGammaThreeSectorResolvent",
+      "declarations": [
+        "nativeGammaResponseCoordinates",
+        "nativeGammaResponseHalo",
+        "nativeGammaResolvent_threeSector_roundtrip",
+        "nativeGammaResolvent_camera_halo_orthogonal",
+        "nativeGammaResolvent_halo_camera_orthogonal",
+        "nativeGammaResolvent_threeSector_orthogonal",
+        "nativeGammaResolvent_fullGram",
+        "nativeGammaResolvent_threeSector_Gram"
       ]
     }
   ]

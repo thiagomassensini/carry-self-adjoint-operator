@@ -1,0 +1,31 @@
+import CarrySelfAdjointOperator.NativeGammaMixedOrthogonality
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeMixedRay_re
+#print axioms nativeMixedRay_re
+#check nativeMixedRay_im
+#print axioms nativeMixedRay_im
+#check nativeGammaMixedRay_complement_orthogonal
+#print axioms nativeGammaMixedRay_complement_orthogonal
+#check nativeGamma_mixed_complement_orthogonal
+#print axioms nativeGamma_mixed_complement_orthogonal
+#check nativeGamma_complement_mixed_orthogonal
+#print axioms nativeGamma_complement_mixed_orthogonal
+#check nativeCanonicalGamma_mixed_complement_orthogonal
+#print axioms nativeCanonicalGamma_mixed_complement_orthogonal
+#check nativeCanonicalGamma_mixed_complement_Gram
+#print axioms nativeCanonicalGamma_mixed_complement_Gram
+
+#audit_physical_sewing
+  nativeMixedRay_re
+  nativeMixedRay_im
+  nativeGammaMixedRay_complement_orthogonal
+  nativeGamma_mixed_complement_orthogonal
+  nativeGamma_complement_mixed_orthogonal
+  nativeCanonicalGamma_mixed_complement_orthogonal
+  nativeCanonicalGamma_mixed_complement_Gram
+
+end CarrySelfAdjointOperator.GammaMaterialSewing
