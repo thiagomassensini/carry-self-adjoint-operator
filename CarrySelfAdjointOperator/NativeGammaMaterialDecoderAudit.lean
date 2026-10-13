@@ -1,0 +1,39 @@
+import CarrySelfAdjointOperator.NativeGammaMaterialDecoder
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check materialCameraDegreeOrder
+#print axioms materialCameraDegreeOrder
+#check materialCamera_ordered_degrees
+#print axioms materialCamera_ordered_degrees
+#check materialCameraTopMinor
+#print axioms materialCameraTopMinor
+#check materialCameraLift_maxDegreeMinor
+#print axioms materialCameraLift_maxDegreeMinor
+#check materialCameraTopMinor_isUnit
+#print axioms materialCameraTopMinor_isUnit
+#check materialCameraTopReadout
+#print axioms materialCameraTopReadout
+#check materialCameraTopReadout_lift
+#print axioms materialCameraTopReadout_lift
+#check materialCameraLift_injective
+#print axioms materialCameraLift_injective
+#check materialCameraDecode
+#print axioms materialCameraDecode
+#check materialCameraDecode_lift
+#print axioms materialCameraDecode_lift
+
+#audit_physical_sewing
+  materialCameraDegreeOrder
+  materialCamera_ordered_degrees
+  materialCameraTopMinor
+  materialCameraLift_maxDegreeMinor
+  materialCameraTopMinor_isUnit
+  materialCameraTopReadout
+  materialCameraTopReadout_lift
+  materialCameraLift_injective
+  materialCameraDecode
+  materialCameraDecode_lift
+end CarrySelfAdjointOperator.GammaMaterialSewing

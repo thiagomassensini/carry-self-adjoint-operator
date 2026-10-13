@@ -1,0 +1,21 @@
+import CarrySelfAdjointOperator.NativeGammaOrientationObstruction
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeGammaPairForm_self_im
+#print axioms nativeGammaPairForm_self_im
+#check nativeCanonicalGammaPairForm_witness_ne_zero
+#print axioms nativeCanonicalGammaPairForm_witness_ne_zero
+#check nativeGammaMismatch_proposedLedger_iff
+#print axioms nativeGammaMismatch_proposedLedger_iff
+#check nativeGammaMismatch_proposedLedger_fails_at_witness
+#print axioms nativeGammaMismatch_proposedLedger_fails_at_witness
+
+#audit_physical_sewing
+  nativeGammaPairForm_self_im
+  nativeCanonicalGammaPairForm_witness_ne_zero
+  nativeGammaMismatch_proposedLedger_iff
+  nativeGammaMismatch_proposedLedger_fails_at_witness
+end CarrySelfAdjointOperator.GammaMaterialSewing

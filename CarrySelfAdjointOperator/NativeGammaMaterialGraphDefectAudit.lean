@@ -1,0 +1,36 @@
+import CarrySelfAdjointOperator.NativeGammaMaterialGraphDefect
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeGammaMaterialFirstPort
+#print axioms nativeGammaMaterialFirstPort
+#check nativeGammaMaterialSecondPort
+#print axioms nativeGammaMaterialSecondPort
+#check nativeGammaMaterialGraphDefect
+#print axioms nativeGammaMaterialGraphDefect
+#check nativeGammaMaterialProbes
+#print axioms nativeGammaMaterialProbes
+#check gammaMaterialGraphDefect_entirePair
+#print axioms gammaMaterialGraphDefect_entirePair
+#check gammaMaterialGraphDefect_probeFormula
+#print axioms gammaMaterialGraphDefect_probeFormula
+#check gammaMaterialGraphDefect_faithful
+#print axioms gammaMaterialGraphDefect_faithful
+#check gammaMaterialGraphDefect_decode
+#print axioms gammaMaterialGraphDefect_decode
+#check gammaMaterialGraphDefect_vs_completedSource
+#print axioms gammaMaterialGraphDefect_vs_completedSource
+
+#audit_physical_sewing
+  nativeGammaMaterialFirstPort
+  nativeGammaMaterialSecondPort
+  nativeGammaMaterialGraphDefect
+  nativeGammaMaterialProbes
+  gammaMaterialGraphDefect_entirePair
+  gammaMaterialGraphDefect_probeFormula
+  gammaMaterialGraphDefect_faithful
+  gammaMaterialGraphDefect_decode
+  gammaMaterialGraphDefect_vs_completedSource
+end CarrySelfAdjointOperator.GammaMaterialSewing

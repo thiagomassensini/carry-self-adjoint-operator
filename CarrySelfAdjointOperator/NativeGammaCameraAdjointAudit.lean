@@ -1,0 +1,30 @@
+import CarrySelfAdjointOperator.NativeGammaCameraAdjoint
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeSixCameraEuclideanSynthesis
+#print axioms nativeSixCameraEuclideanSynthesis
+#check nativeSixCameraEuclideanSynthesis_apply
+#print axioms nativeSixCameraEuclideanSynthesis_apply
+#check nativeSixCameraEuclideanSynthesis_single
+#print axioms nativeSixCameraEuclideanSynthesis_single
+#check nativeSixCameraEuclideanAdjoint
+#print axioms nativeSixCameraEuclideanAdjoint
+#check nativeSixCamera_adjoint_synthesis
+#print axioms nativeSixCamera_adjoint_synthesis
+#check nativeSixCameraProjection_selfadjoint
+#print axioms nativeSixCameraProjection_selfadjoint
+#check nativeSixCameraProjection_orthogonalProjection
+#print axioms nativeSixCameraProjection_orthogonalProjection
+
+#audit_physical_sewing
+  nativeSixCameraEuclideanSynthesis
+  nativeSixCameraEuclideanSynthesis_apply
+  nativeSixCameraEuclideanSynthesis_single
+  nativeSixCameraEuclideanAdjoint
+  nativeSixCamera_adjoint_synthesis
+  nativeSixCameraProjection_selfadjoint
+  nativeSixCameraProjection_orthogonalProjection
+end CarrySelfAdjointOperator.GammaMaterialSewing

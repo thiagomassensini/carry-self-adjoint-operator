@@ -1,0 +1,63 @@
+import CarrySelfAdjointOperator.NativeGammaMaterialCrossings
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeGammaCameraSource
+#print axioms nativeGammaCameraSource
+#check nativeGammaCameraTrace
+#print axioms nativeGammaCameraTrace
+#check nativeGammaCameraFirstPort
+#print axioms nativeGammaCameraFirstPort
+#check nativeGammaCameraSecondPort
+#print axioms nativeGammaCameraSecondPort
+#check nativeGammaCameraGraphPort
+#print axioms nativeGammaCameraGraphPort
+#check nativeGammaCameraDefect
+#print axioms nativeGammaCameraDefect
+#check sum_cameraCoefficients
+#print axioms sum_cameraCoefficients
+#check nativeGammaCameraSource_sum
+#print axioms nativeGammaCameraSource_sum
+#check nativeGammaCameraTrace_sum
+#print axioms nativeGammaCameraTrace_sum
+#check nativeGammaCameraFirstPort_sum
+#print axioms nativeGammaCameraFirstPort_sum
+#check nativeGammaCameraSecondPort_sum
+#print axioms nativeGammaCameraSecondPort_sum
+#check nativeGammaCameraGraphPort_sum
+#print axioms nativeGammaCameraGraphPort_sum
+#check nativeGammaCameraDefect_sum
+#print axioms nativeGammaCameraDefect_sum
+#check twoPortSynthesis_sum
+#print axioms twoPortSynthesis_sum
+#check nativeGammaCameraWholePair_sum
+#print axioms nativeGammaCameraWholePair_sum
+#check nativeGammaCameraDefects_faithful
+#print axioms nativeGammaCameraDefects_faithful
+#check nativeGammaMaterialProbes_headTail
+#print axioms nativeGammaMaterialProbes_headTail
+#check nativeGammaCamera_fourHeadTails
+#print axioms nativeGammaCamera_fourHeadTails
+
+#audit_physical_sewing
+  nativeGammaCameraSource
+  nativeGammaCameraTrace
+  nativeGammaCameraFirstPort
+  nativeGammaCameraSecondPort
+  nativeGammaCameraGraphPort
+  nativeGammaCameraDefect
+  sum_cameraCoefficients
+  nativeGammaCameraSource_sum
+  nativeGammaCameraTrace_sum
+  nativeGammaCameraFirstPort_sum
+  nativeGammaCameraSecondPort_sum
+  nativeGammaCameraGraphPort_sum
+  nativeGammaCameraDefect_sum
+  twoPortSynthesis_sum
+  nativeGammaCameraWholePair_sum
+  nativeGammaCameraDefects_faithful
+  nativeGammaMaterialProbes_headTail
+  nativeGammaCamera_fourHeadTails
+end CarrySelfAdjointOperator.GammaMaterialSewing

@@ -1,0 +1,42 @@
+import CarrySelfAdjointOperator.NativeGammaCanonicalSource
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeC3PackedCoefficients
+#print axioms nativeC3PackedCoefficients
+#check cameraEmbedding_single_eq_smul
+#print axioms cameraEmbedding_single_eq_smul
+#check nativeSixCameraSynthesis_pack
+#print axioms nativeSixCameraSynthesis_pack
+#check nativeCanonicalGammaCoefficients
+#print axioms nativeCanonicalGammaCoefficients
+#check nativeCanonicalGammaSource
+#print axioms nativeCanonicalGammaSource
+#check nativeCanonicalGammaCauchyTrace
+#print axioms nativeCanonicalGammaCauchyTrace
+#check nativeCanonicalGammaSource_eq_synthesis
+#print axioms nativeCanonicalGammaSource_eq_synthesis
+#check nativeCanonicalGammaSource_noExterior
+#print axioms nativeCanonicalGammaSource_noExterior
+#check nativeCanonicalGammaSource_coordinates
+#print axioms nativeCanonicalGammaSource_coordinates
+#check nativeCanonicalGammaCoefficients_cameraSix
+#print axioms nativeCanonicalGammaCoefficients_cameraSix
+#check positiveDirichletGradient_one_ne_zero
+#print axioms positiveDirichletGradient_one_ne_zero
+
+#audit_physical_sewing
+  nativeC3PackedCoefficients
+  cameraEmbedding_single_eq_smul
+  nativeSixCameraSynthesis_pack
+  nativeCanonicalGammaCoefficients
+  nativeCanonicalGammaSource
+  nativeCanonicalGammaCauchyTrace
+  nativeCanonicalGammaSource_eq_synthesis
+  nativeCanonicalGammaSource_noExterior
+  nativeCanonicalGammaSource_coordinates
+  nativeCanonicalGammaCoefficients_cameraSix
+  positiveDirichletGradient_one_ne_zero
+end CarrySelfAdjointOperator.GammaMaterialSewing

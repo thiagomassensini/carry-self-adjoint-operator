@@ -1,0 +1,45 @@
+import CarrySelfAdjointOperator.NativeGammaCauchyIntegral
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.GammaMaterialSewing
+
+#check nativeCauchyKernel
+#print axioms nativeCauchyKernel
+#check nativeCauchyKernel_real
+#print axioms nativeCauchyKernel_real
+#check nativeCauchyKernel_imag
+#print axioms nativeCauchyKernel_imag
+#check nativeCauchyKernel_literal
+#print axioms nativeCauchyKernel_literal
+#check nativeCauchyKernel_measurable
+#print axioms nativeCauchyKernel_measurable
+#check nativeCauchyKernel_bound
+#print axioms nativeCauchyKernel_bound
+#check nativeCauchyKernel_integrableOn
+#print axioms nativeCauchyKernel_integrableOn
+#check nativeCauchyIntervalIntegral
+#print axioms nativeCauchyIntervalIntegral
+#check nativeCauchyIntervalIntegral_endpoint_zero
+#print axioms nativeCauchyIntervalIntegral_endpoint_zero
+#check boundedMultiplier_camera_inner
+#print axioms boundedMultiplier_camera_inner
+#check cameraOverlap_integral
+#print axioms cameraOverlap_integral
+#check nativeComplexCamera_Cauchy_integral
+#print axioms nativeComplexCamera_Cauchy_integral
+
+#audit_physical_sewing
+  nativeCauchyKernel
+  nativeCauchyKernel_real
+  nativeCauchyKernel_imag
+  nativeCauchyKernel_literal
+  nativeCauchyKernel_measurable
+  nativeCauchyKernel_bound
+  nativeCauchyKernel_integrableOn
+  nativeCauchyIntervalIntegral
+  nativeCauchyIntervalIntegral_endpoint_zero
+  boundedMultiplier_camera_inner
+  cameraOverlap_integral
+  nativeComplexCamera_Cauchy_integral
+end CarrySelfAdjointOperator.GammaMaterialSewing
