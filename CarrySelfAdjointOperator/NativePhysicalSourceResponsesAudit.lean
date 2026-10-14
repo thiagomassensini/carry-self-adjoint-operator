@@ -1,0 +1,141 @@
+import CarrySelfAdjointOperator.NativePhysicalSourceResponses
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.NativeLaguerre
+
+#check diskResponseCoefficient
+#print axioms diskResponseCoefficient
+#check diskPhysicalResolvent
+#print axioms diskPhysicalResolvent
+#check diskPhysicalResolvent_left_inverse
+#print axioms diskPhysicalResolvent_left_inverse
+#check diskPhysicalResolvent_right_inverse
+#print axioms diskPhysicalResolvent_right_inverse
+#check diskPhysicalResolvent_norm_le
+#print axioms diskPhysicalResolvent_norm_le
+#check diskPhysicalResponse
+#print axioms diskPhysicalResponse
+#check diskPhysicalResponse_ae
+#print axioms diskPhysicalResponse_ae
+#check diskPhysicalResponse_equation
+#print axioms diskPhysicalResponse_equation
+#check diskPhysicalResponse_zero
+#print axioms diskPhysicalResponse_zero
+#check physicalEnergyCoefficient
+#print axioms physicalEnergyCoefficient
+#check physicalEnergyFactor
+#print axioms physicalEnergyFactor
+#check physicalEnergyFactor_isSelfAdjoint
+#print axioms physicalEnergyFactor_isSelfAdjoint
+#check physicalEnergyFactor_sq
+#print axioms physicalEnergyFactor_sq
+#check physicalEnergyFactor_energy
+#print axioms physicalEnergyFactor_energy
+#check diskPhysicalParityResponse
+#print axioms diskPhysicalParityResponse
+#check diskPhysicalResponse_kernel_eq_gram
+#print axioms diskPhysicalResponse_kernel_eq_gram
+#check diskPhysicalResponsePrefix
+#print axioms diskPhysicalResponsePrefix
+#check diskPhysicalResponsePrefix_equation
+#print axioms diskPhysicalResponsePrefix_equation
+#check physicalRadialAdvance_apply_norm_le
+#print axioms physicalRadialAdvance_apply_norm_le
+#check physicalRadialAdvance_pow_norm_le
+#print axioms physicalRadialAdvance_pow_norm_le
+#check diskPhysicalResponsePrefix_tail
+#print axioms diskPhysicalResponsePrefix_tail
+#check diskPhysicalResponsePrefix_error_le
+#print axioms diskPhysicalResponsePrefix_error_le
+#check diskPhysicalResponsePrefix_tendsto
+#print axioms diskPhysicalResponsePrefix_tendsto
+#check diskPhysicalEnergyPrefix_tendsto
+#print axioms diskPhysicalEnergyPrefix_tendsto
+#check diskCompletedSourceResponse
+#print axioms diskCompletedSourceResponse
+#check diskCompletedSourceResponse_equation
+#print axioms diskCompletedSourceResponse_equation
+#check diskCompletedSourceResponse_original_legs
+#print axioms diskCompletedSourceResponse_original_legs
+#check diskCompletedSourceResponse_nine_crossings_tendsto
+#print axioms diskCompletedSourceResponse_nine_crossings_tendsto
+#check diskPhysicalNativeResidual
+#print axioms diskPhysicalNativeResidual
+#check diskPhysicalResponse_native_kernel_defect
+#print axioms diskPhysicalResponse_native_kernel_defect
+#check physicalRadialAdvance_mem_cauchyClosure
+#print axioms physicalRadialAdvance_mem_cauchyClosure
+#check diskPhysicalResponsePrefix_mem_cauchyClosure
+#print axioms diskPhysicalResponsePrefix_mem_cauchyClosure
+#check diskPhysicalResponse_mem_cauchyClosure
+#print axioms diskPhysicalResponse_mem_cauchyClosure
+#check diskCauchyResponse
+#print axioms diskCauchyResponse
+#check diskCauchyResponse_laguerre_coordinate
+#print axioms diskCauchyResponse_laguerre_coordinate
+#check diskPhysicalIncidentSeed_zero_readout
+#print axioms diskPhysicalIncidentSeed_zero_readout
+#check diskPhysicalIncidentSeed_zero_ne_nativeMoment
+#print axioms diskPhysicalIncidentSeed_zero_ne_nativeMoment
+#check physicalRadialAdvance_pow_seed
+#print axioms physicalRadialAdvance_pow_seed
+#check diskPhysicalIncidentSeed_prefix_readout
+#print axioms diskPhysicalIncidentSeed_prefix_readout
+#check centeredCompletedValueSource
+#print axioms centeredCompletedValueSource
+#check centeredCompletedValueSource_eq
+#print axioms centeredCompletedValueSource_eq
+#check centeredCompletedValueSource_zero_readout
+#print axioms centeredCompletedValueSource_zero_readout
+#check centeredCompletedValueSource_zero_ne_nativeMoment
+#print axioms centeredCompletedValueSource_zero_ne_nativeMoment
+#check centeredCompletedValueSource_not_native_cyclic_response
+#print axioms centeredCompletedValueSource_not_native_cyclic_response
+
+#audit_physical_sewing
+  diskResponseCoefficient
+  diskPhysicalResolvent
+  diskPhysicalResolvent_left_inverse
+  diskPhysicalResolvent_right_inverse
+  diskPhysicalResolvent_norm_le
+  diskPhysicalResponse
+  diskPhysicalResponse_ae
+  diskPhysicalResponse_equation
+  diskPhysicalResponse_zero
+  physicalEnergyCoefficient
+  physicalEnergyFactor
+  physicalEnergyFactor_isSelfAdjoint
+  physicalEnergyFactor_sq
+  physicalEnergyFactor_energy
+  diskPhysicalParityResponse
+  diskPhysicalResponse_kernel_eq_gram
+  diskPhysicalResponsePrefix
+  diskPhysicalResponsePrefix_equation
+  physicalRadialAdvance_apply_norm_le
+  physicalRadialAdvance_pow_norm_le
+  diskPhysicalResponsePrefix_tail
+  diskPhysicalResponsePrefix_error_le
+  diskPhysicalResponsePrefix_tendsto
+  diskPhysicalEnergyPrefix_tendsto
+  diskCompletedSourceResponse
+  diskCompletedSourceResponse_equation
+  diskCompletedSourceResponse_original_legs
+  diskCompletedSourceResponse_nine_crossings_tendsto
+  diskPhysicalNativeResidual
+  diskPhysicalResponse_native_kernel_defect
+  physicalRadialAdvance_mem_cauchyClosure
+  diskPhysicalResponsePrefix_mem_cauchyClosure
+  diskPhysicalResponse_mem_cauchyClosure
+  diskCauchyResponse
+  diskCauchyResponse_laguerre_coordinate
+  diskPhysicalIncidentSeed_zero_readout
+  diskPhysicalIncidentSeed_zero_ne_nativeMoment
+  physicalRadialAdvance_pow_seed
+  diskPhysicalIncidentSeed_prefix_readout
+  centeredCompletedValueSource
+  centeredCompletedValueSource_eq
+  centeredCompletedValueSource_zero_readout
+  centeredCompletedValueSource_zero_ne_nativeMoment
+  centeredCompletedValueSource_not_native_cyclic_response
+end CarrySelfAdjointOperator.NativeLaguerre

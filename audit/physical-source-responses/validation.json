@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "date_utc": "2026-10-14T02:58:00.888662+00:00",
+  "base_commit": "6807c7dad752ef0a9596c063411d8301a63b6609",
+  "host": "llm",
+  "public_roots": 44,
+  "definitions": 11,
+  "theorems": 33,
+  "type_body_guard_closure": 6399,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "checks": {
+    "focused_build_wfail": "PASS",
+    "focused_direct_kernel_E_warning": "PASS",
+    "static_audit": "PASS",
+    "cauchy_inventory": "169 public roots in 9 modules",
+    "root_build_wfail": "PASS (10181 jobs)",
+    "integration_build_wfail": "PASS (10317 jobs)"
+  },
+  "legacy_suite_scope": "Focused new module, static registries, root and global Audit were checked. The full per-module legacy Cauchy script was not rerun.",
+  "toolchain": "Lean (version 4.32.0, x86_64-unknown-linux-gnu, commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)",
+  "preserved_files_sha256": {
+    "CarrySelfAdjointOperator/C2OddTfvdTransport.lean": "5bfe06e8d15432c4d6cab6719dc22a0376019243f3e896329ea9ab9dd7458cb0",
+    "CarrySelfAdjointOperator/C2OddTfvdTransportAudit.lean": "b6f05d0241058885da362b5cb20d3968d704a667da3ffc443714a69f3564623c",
+    "lake-manifest.json": "822866313e377adcb9c6249680ed67ceb47682af1bb0cd3cc5203554786bcfeb"
+  },
+  "source_sha256": {
+    "CarrySelfAdjointOperator/NativePhysicalSourceResponses.lean": "71847c13526cfa62735eb901e16fa97e5bdd6efb9523a8d3a674fdb286685952",
+    "CarrySelfAdjointOperator/NativePhysicalSourceResponsesAudit.lean": "d0dcc80b6da87dc5997bc59e74e700e4ead43c5656c98f2b9dc4330b8217b5c6",
+    "CarrySelfAdjointOperator.lean": "8b906715521aa1942636921a5074ab8f7c2f7ef7b12b3d7de6da0ba2cfe8c077",
+    "CarrySelfAdjointOperator/Audit.lean": "5fa1e2f926de90c9fe655faffd8165bb9d49a90de281fdc5c2784f8622d9a580",
+    "audit/cauchy-laguerre-isometry-registry.json": "5d2fc9b0eb05e249135f61b29cf57310aaf846094afc8c3fd5d623c6d8e7577d",
+    "docs/physical-source-responses.md": "40c29dc3031cad3d1056cc09f92ae76142119b216644d7f636e598cb831f3a70",
+    "README.md": "2754dbfa7bcf6dab2ff4fdb7db232f7899911664c5481ad574128782f01a0192"
+  },
+  "constructed": {
+    "physical_multiplier_inverse": "(I-z^2 M_u)^(-1), norm z<1",
+    "source_channels": [
+      "value",
+      "native companion",
+      "completion companion"
+    ],
+    "response_and_energy_prefix_limits": "proved for each fixed source",
+    "closed_cauchy_membership": "proved",
+    "nine_ordered_crossings": "retained with independent prefix orders"
+  },
+  "negative_result": "The centered completed value port has cyclic mass 1/2 rather than native h0<1/16. Any exact quadratic graph response at zero has x=source, independently of its operator value.",
+  "still_open": [
+    "construct a native spectral energy port from the full source jets and boundary return",
+    "identify the resulting cyclic readout with the original native characteristic",
+    "prove the positive native two-variable kernel on that carrier",
+    "no limit across radial k or original source cutoff is asserted"
+  ],
+  "new_numerical_campaign": false
+}
