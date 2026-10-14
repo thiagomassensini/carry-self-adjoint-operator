@@ -1,0 +1,82 @@
+import CarrySelfAdjointOperator.NativeMomentPrefixNoBootstrap
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+namespace CarrySelfAdjointOperator
+set_option maxHeartbeats 0
+
+#check sourceMomentMatrix
+#print axioms sourceMomentMatrix
+#check sourceMomentCoupling
+#print axioms sourceMomentCoupling
+#check sourceMomentQuadratic
+#print axioms sourceMomentQuadratic
+#check sourceMomentSchur
+#print axioms sourceMomentSchur
+#check sourceMomentMatrix_isHermitian
+#print axioms sourceMomentMatrix_isHermitian
+#check sourceMomentQuadratic_snoc
+#print axioms sourceMomentQuadratic_snoc
+#check sourceMomentSchur_sewing
+#print axioms sourceMomentSchur_sewing
+#check sourceMomentSchur_critical_direction
+#print axioms sourceMomentSchur_critical_direction
+#check sourceMomentMatrix_succ_posDef_iff
+#print axioms sourceMomentMatrix_succ_posDef_iff
+#check sourceMomentMatrix_all_posDef_iff_schur
+#print axioms sourceMomentMatrix_all_posDef_iff_schur
+#check nativeSourceSchurRemainder
+#print axioms nativeSourceSchurRemainder
+#check nativeSourceSchurRemainder_eq
+#print axioms nativeSourceSchurRemainder_eq
+#check nativeSourceBoundary_all_pos_iff_sourceSchur
+#print axioms nativeSourceBoundary_all_pos_iff_sourceSchur
+#check radialReturnTransfer_all_orders_of_sourceSchur
+#print axioms radialReturnTransfer_all_orders_of_sourceSchur
+#check sourceLogMomentMajorant
+#print axioms sourceLogMomentMajorant
+#check sourceLogMomentMajorant_pos
+#print axioms sourceLogMomentMajorant_pos
+#check prefixOnlyNegativeExtension
+#print axioms prefixOnlyNegativeExtension
+#check prefixOnlyNegativeExtension_eq
+#print axioms prefixOnlyNegativeExtension_eq
+#check prefixOnlyNegativeExtension_sharp_bound
+#print axioms prefixOnlyNegativeExtension_sharp_bound
+#check prefixOnlyNegativeExtension_both_prefixes
+#print axioms prefixOnlyNegativeExtension_both_prefixes
+#check prefixOnlyNegativeExtension_next_coupling
+#print axioms prefixOnlyNegativeExtension_next_coupling
+#check prefixOnlyNegativeExtension_finite_source_recurrence
+#print axioms prefixOnlyNegativeExtension_finite_source_recurrence
+#check prefixOnlyNegativeExtension_next_not_posSemidef
+#print axioms prefixOnlyNegativeExtension_next_not_posSemidef
+#check finite_native_prefix_and_decay_do_not_force_next_sign
+#print axioms finite_native_prefix_and_decay_do_not_force_next_sign
+
+#audit_physical_sewing
+  sourceMomentMatrix
+  sourceMomentCoupling
+  sourceMomentQuadratic
+  sourceMomentSchur
+  sourceMomentMatrix_isHermitian
+  sourceMomentQuadratic_snoc
+  sourceMomentSchur_sewing
+  sourceMomentSchur_critical_direction
+  sourceMomentMatrix_succ_posDef_iff
+  sourceMomentMatrix_all_posDef_iff_schur
+  nativeSourceSchurRemainder
+  nativeSourceSchurRemainder_eq
+  nativeSourceBoundary_all_pos_iff_sourceSchur
+  radialReturnTransfer_all_orders_of_sourceSchur
+  sourceLogMomentMajorant
+  sourceLogMomentMajorant_pos
+  prefixOnlyNegativeExtension
+  prefixOnlyNegativeExtension_eq
+  prefixOnlyNegativeExtension_sharp_bound
+  prefixOnlyNegativeExtension_both_prefixes
+  prefixOnlyNegativeExtension_next_coupling
+  prefixOnlyNegativeExtension_finite_source_recurrence
+  prefixOnlyNegativeExtension_next_not_posSemidef
+  finite_native_prefix_and_decay_do_not_force_next_sign
+
+end CarrySelfAdjointOperator
