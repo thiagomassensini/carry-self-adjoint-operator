@@ -2,7 +2,7 @@
   "schema_version": 1,
   "base_commit": "46f98fe3a37ce21bb7015af15285be5b061b5031",
   "namespace": "CarrySelfAdjointOperator.NativeLaguerre",
-  "public_declarations": 104,
+  "public_declarations": 125,
   "modules": [
     {
       "module": "NativeCauchyLaguerreColumns",
@@ -141,6 +141,37 @@
         "laguerreMaterialLedger_eq_mismatch",
         "laguerreMaterialLedger_counterexampleFamily",
         "laguerreNativeOrientation_materialLedger"
+      ]
+    },
+    {
+      "module": "NativeCauchyLaguerreResolventDefect",
+      "namespace": "CarrySelfAdjointOperator",
+      "opens": [
+        "HeightResolventGreenDefect",
+        "NativeLaguerre"
+      ],
+      "declarations": [
+        "quadraticResidual",
+        "parityState",
+        "parityGram",
+        "parityGram_eq_inner",
+        "readoutKernel",
+        "vectorDefectNumerator",
+        "weightedReadout_sub_parityGram",
+        "readoutKernel_sub_parityGram",
+        "readoutKernel_eq_parityState_inner",
+        "norm_readoutKernel_sub_parityGram_le",
+        "characteristicResidual",
+        "characteristicKernel",
+        "characteristicKernel_sub_readoutKernel",
+        "characteristicKernel_sub_parityGram",
+        "norm_characteristicKernel_sub_parityGram_le",
+        "characteristicKernel_eq_limit_parityGram",
+        "isometry_map_graph_residual",
+        "isometry_graph_residual_norm",
+        "isometry_parity_gram",
+        "cauchyLaguerre_graph_residual_norm",
+        "cauchyLaguerre_parity_resolvent_gram"
       ]
     }
   ]

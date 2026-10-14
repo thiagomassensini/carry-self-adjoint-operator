@@ -2219,3 +2219,7 @@ The remaining all-order sign is still the actual raw inequality
 `E_(2n)(x)>0` for every n>=1 and nonzero x. The new error control supplies no
 sign for an indefinite/degenerate boundary. No positive Hankel/HP certificate,
 N=8 certificate, new metric or height operator is used to supply that sign.
+
+### Estudo de resolventes e defeito Green — 13/10/2026
+
+A ponte do resolvente quadrático para o kernel Green agora retém dois resíduos explícitos: o da equação vetorial e o da característica original. A identidade, a cota e o critério de limite dos dois setores foram formalizados em `NativeCauchyLaguerreResolventDefect`; a isometria física preserva o resíduo e o Gram. O replay finito usa as matrizes de `momentos` e um jet independente da característica, sem extrair alturas. Isso não constrói o certificado físico de momentos nem prova positividade assinada all-order. Veja [o estudo e seus limites](docs/height-resolvent-green-defect.md).

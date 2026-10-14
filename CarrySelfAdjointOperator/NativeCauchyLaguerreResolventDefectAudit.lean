@@ -1,0 +1,73 @@
+import CarrySelfAdjointOperator.NativeCauchyLaguerreResolventDefect
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator
+open HeightResolventGreenDefect NativeLaguerre
+
+#check quadraticResidual
+#print axioms quadraticResidual
+#check parityState
+#print axioms parityState
+#check parityGram
+#print axioms parityGram
+#check parityGram_eq_inner
+#print axioms parityGram_eq_inner
+#check readoutKernel
+#print axioms readoutKernel
+#check vectorDefectNumerator
+#print axioms vectorDefectNumerator
+#check weightedReadout_sub_parityGram
+#print axioms weightedReadout_sub_parityGram
+#check readoutKernel_sub_parityGram
+#print axioms readoutKernel_sub_parityGram
+#check readoutKernel_eq_parityState_inner
+#print axioms readoutKernel_eq_parityState_inner
+#check norm_readoutKernel_sub_parityGram_le
+#print axioms norm_readoutKernel_sub_parityGram_le
+#check characteristicResidual
+#print axioms characteristicResidual
+#check characteristicKernel
+#print axioms characteristicKernel
+#check characteristicKernel_sub_readoutKernel
+#print axioms characteristicKernel_sub_readoutKernel
+#check characteristicKernel_sub_parityGram
+#print axioms characteristicKernel_sub_parityGram
+#check norm_characteristicKernel_sub_parityGram_le
+#print axioms norm_characteristicKernel_sub_parityGram_le
+#check characteristicKernel_eq_limit_parityGram
+#print axioms characteristicKernel_eq_limit_parityGram
+#check isometry_map_graph_residual
+#print axioms isometry_map_graph_residual
+#check isometry_graph_residual_norm
+#print axioms isometry_graph_residual_norm
+#check isometry_parity_gram
+#print axioms isometry_parity_gram
+#check cauchyLaguerre_graph_residual_norm
+#print axioms cauchyLaguerre_graph_residual_norm
+#check cauchyLaguerre_parity_resolvent_gram
+#print axioms cauchyLaguerre_parity_resolvent_gram
+
+#audit_physical_sewing
+  quadraticResidual
+  parityState
+  parityGram
+  parityGram_eq_inner
+  readoutKernel
+  vectorDefectNumerator
+  weightedReadout_sub_parityGram
+  readoutKernel_sub_parityGram
+  readoutKernel_eq_parityState_inner
+  norm_readoutKernel_sub_parityGram_le
+  characteristicResidual
+  characteristicKernel
+  characteristicKernel_sub_readoutKernel
+  characteristicKernel_sub_parityGram
+  norm_characteristicKernel_sub_parityGram_le
+  characteristicKernel_eq_limit_parityGram
+  isometry_map_graph_residual
+  isometry_graph_residual_norm
+  isometry_parity_gram
+  cauchyLaguerre_graph_residual_norm
+  cauchyLaguerre_parity_resolvent_gram
+end CarrySelfAdjointOperator
