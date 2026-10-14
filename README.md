@@ -2223,3 +2223,7 @@ N=8 certificate, new metric or height operator is used to supply that sign.
 ### Estudo de resolventes e defeito Green — 13/10/2026
 
 A ponte do resolvente quadrático para o kernel Green agora retém dois resíduos explícitos: o da equação vetorial e o da característica original. A identidade, a cota e o critério de limite dos dois setores foram formalizados em `NativeCauchyLaguerreResolventDefect`; a isometria física preserva o resíduo e o Gram. O replay finito usa as matrizes de `momentos` e um jet independente da característica, sem extrair alturas. Isso não constrói o certificado físico de momentos nem prova positividade assinada all-order. Veja [o estudo e seus limites](docs/height-resolvent-green-defect.md).
+
+### Respostas físicas concretas e obstrução do porto no centro
+
+`NativePhysicalSourceResponses` constrói `(I-z²M_u)⁻¹` no L² original para `|z|<1`, aplica-o aos três canais completados e prova os limites dos setores de resposta e energia, conservando os cruzamentos. O readout próprio dessa candidata não é identificado com o Weyl nativo: o porto de valor completado direto falha já em `h₀`, independentemente de mudar apenas o operador. A construção das respostas espectrais nativas continua aberta. Veja [a tentativa, a cota exata e seu no-go específico](docs/physical-source-responses.md).
