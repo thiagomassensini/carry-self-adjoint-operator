@@ -3,14 +3,17 @@ import Mathlib.Algebra.Algebra.Basic
 import CarrySelfAdjointOperator.CompletedNativeChiralJetStorageTransport
 import Mathlib.Analysis.InnerProductSpace.StarOrder
 import Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow.Basic
+import Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.PosPart.Basic
 
 /-!
 # Source-derived energy ports for the complete chiral return
 
 The defect is computed from the original finite return transfer on its incident
 span, with the inherited Cauchy inner product. No moment Gram defines the port.
-A positive factorization is used only after source contractivity is proved.
-The unconditional application in this module is the existing seven-source sector.
+A positive factorization of the entire energy is used only after source
+contractivity is proved. The unconditional Jordan construction keeps both
+positive and negative channels; its difference is the original source energy.
+The existing seven-source sector has an independently proved contraction.
 -/
 namespace CarrySelfAdjointOperator.ChiralReturn
 open scoped BigOperators ComplexConjugate InnerProductSpace CStarAlgebra
@@ -417,6 +420,114 @@ theorem radialReturnEnergyJet_seven_even_odd_inner_tendsto (i : Fin 4) (j : Fin 
     radialReturnEnergyJet_seven_inner_tendsto
       ⟨2*i.val, by omega⟩ ⟨2*j.val+1, by omega⟩
 
+
+/-! ## Unconditional Jordan channels of the actual source defect
+
+Both channels use the original incident norm and the same physical L2 measure.
+No sign is imposed on the full defect. The negative channel remains explicit.
+-/
+
+/-- Positive spectral part of the ORIGINAL return defect. -/
+def radialReturnPositiveDefect (k N : ℕ) :
+    RadialIncidentSpan k N →L[ℂ] RadialIncidentSpan k N :=
+  (radialReturnEnergyDefect k N)⁺
+
+/-- Negative spectral part of the ORIGINAL return defect, kept as data. -/
+def radialReturnNegativeDefect (k N : ℕ) :
+    RadialIncidentSpan k N →L[ℂ] RadialIncidentSpan k N :=
+  (radialReturnEnergyDefect k N)⁻
+
+theorem radialReturnPositiveDefect_nonneg (k N : ℕ) :
+    0 ≤ radialReturnPositiveDefect k N := CFC.posPart_nonneg _
+
+theorem radialReturnNegativeDefect_nonneg (k N : ℕ) :
+    0 ≤ radialReturnNegativeDefect k N := CFC.negPart_nonneg _
+
+/-- Exact signed decomposition, before any positivity claim. -/
+theorem radialReturnDefect_jordan (k N : ℕ) :
+    radialReturnPositiveDefect k N - radialReturnNegativeDefect k N =
+      radialReturnEnergyDefect k N :=
+  CFC.posPart_sub_negPart _ (radialReturnEnergyDefect_selfAdjoint k N)
+
+/-- Source-derived positive channel. Its Gram is NOT declared the whole energy. -/
+def radialReturnJordanPositivePort (k N : ℕ) :
+    RadialIncidentSpan k N →L[ℂ] CanonicalCompletedNativeChiralCauchyCarrier :=
+  ((radialIncidentSynthesis k N).range.subtypeL :
+    RadialIncidentSpan k N →L[ℂ] CanonicalCompletedNativeChiralCauchyCarrier).comp
+      (CFC.sqrt (radialReturnPositiveDefect k N))
+
+/-- Source-derived negative channel on the SAME physical L2. -/
+def radialReturnJordanNegativePort (k N : ℕ) :
+    RadialIncidentSpan k N →L[ℂ] CanonicalCompletedNativeChiralCauchyCarrier :=
+  ((radialIncidentSynthesis k N).range.subtypeL :
+    RadialIncidentSpan k N →L[ℂ] CanonicalCompletedNativeChiralCauchyCarrier).comp
+      (CFC.sqrt (radialReturnNegativeDefect k N))
+
+private theorem source_sqrt_port_inner (k N : ℕ)
+    (a : RadialIncidentSpan k N →L[ℂ] RadialIncidentSpan k N) (ha : 0 ≤ a)
+    (x y : RadialIncidentSpan k N) :
+    inner ℂ (CFC.sqrt a x) (CFC.sqrt a y) = inner ℂ x (a y) := by
+  have hs : IsSelfAdjoint (CFC.sqrt a) := (CFC.sqrt_nonneg a).isSelfAdjoint
+  have hsq := CFC.sqrt_mul_sqrt_self a ha
+  have hsym : inner ℂ (CFC.sqrt a x) (CFC.sqrt a y) =
+      inner ℂ x (CFC.sqrt a (CFC.sqrt a y)) := hs.isSymmetric _ _
+  rw [hsym]
+  change inner ℂ x ((CFC.sqrt a * CFC.sqrt a) y) = _
+  rw [hsq]
+
+theorem radialReturnJordanPositivePort_inner (k N : ℕ) (x y : RadialIncidentSpan k N) :
+    inner ℂ (radialReturnJordanPositivePort k N x) (radialReturnJordanPositivePort k N y) =
+      inner ℂ x (radialReturnPositiveDefect k N y) := by
+  exact source_sqrt_port_inner k N _ (radialReturnPositiveDefect_nonneg k N) x y
+
+theorem radialReturnJordanNegativePort_inner (k N : ℕ) (x y : RadialIncidentSpan k N) :
+    inner ℂ (radialReturnJordanNegativePort k N x) (radialReturnJordanNegativePort k N y) =
+      inner ℂ x (radialReturnNegativeDefect k N y) := by
+  exact source_sqrt_port_inner k N _ (radialReturnNegativeDefect_nonneg k N) x y
+
+/-- Every independent-input crossing survives in the two positive channels.
+Their DIFFERENCE, rather than either Gram alone, is the original source energy. -/
+theorem radialReturnJordanPorts_pairing (k N : ℕ) (x y : RadialIncidentSpan k N) :
+    inner ℂ (radialReturnJordanPositivePort k N x) (radialReturnJordanPositivePort k N y) -
+      inner ℂ (radialReturnJordanNegativePort k N x) (radialReturnJordanNegativePort k N y) =
+        inner ℂ x y - inner ℂ (radialReturnTransfer k N x) (radialReturnTransfer k N y) := by
+  rw [radialReturnJordanPositivePort_inner, radialReturnJordanNegativePort_inner]
+  have hsub : inner ℂ x (radialReturnPositiveDefect k N y) -
+      inner ℂ x (radialReturnNegativeDefect k N y) =
+      inner ℂ x ((radialReturnPositiveDefect k N - radialReturnNegativeDefect k N) y) :=
+    (inner_sub_right x _ _).symm
+  rw [hsub]
+  change inner ℂ x ((radialReturnPositiveDefect k N - radialReturnNegativeDefect k N) y) = _
+  rw [radialReturnDefect_jordan]
+  exact radialReturnEnergyDefect_pairing k N x y
+
+/-- Unconditional original storage = positive port energy - negative port energy. -/
+theorem radialReturnJordanPorts_storage (k N : ℕ) (c : Fin N → ℂ) :
+    ‖radialReturnJordanPositivePort k N (radialIncidentVector k N c)‖^2 -
+      ‖radialReturnJordanNegativePort k N (radialIncidentVector k N c)‖^2 =
+        (storage k c 1).re := by
+  have h := congrArg Complex.re (radialReturnJordanPorts_pairing k N
+    (radialIncidentVector k N c) (radialIncidentVector k N c))
+  simpa [inner_self_eq_norm_sq_to_K, ← Complex.ofReal_pow,
+    storage_one_eq_finiteTransfer_energy] using h
+
+/-- Under independently proved contraction, the new positive channel agrees
+with the old source energy port. -/
+theorem radialReturnJordanPositivePort_eq_energyPort (k N : ℕ)
+    (hc : ‖radialReturnTransfer k N‖ ≤ 1) :
+    radialReturnJordanPositivePort k N = radialReturnEnergyPort k N := by
+  have hp : radialReturnPositiveDefect k N = radialReturnEnergyDefect k N :=
+    (CFC.posPart_eq_self _).mpr (radialReturnEnergyDefect_nonneg k N hc)
+  simp only [radialReturnJordanPositivePort, radialReturnEnergyPort, hp]
+
+/-- Under independently proved contraction, the negative channel is zero. -/
+theorem radialReturnJordanNegativePort_eq_zero (k N : ℕ)
+    (hc : ‖radialReturnTransfer k N‖ ≤ 1) :
+    radialReturnJordanNegativePort k N = 0 := by
+  have hn : radialReturnNegativeDefect k N = 0 :=
+    (CFC.negPart_eq_zero_iff _ (radialReturnEnergyDefect_selfAdjoint k N)).mpr
+      (radialReturnEnergyDefect_nonneg k N hc)
+  simp [radialReturnJordanNegativePort, hn]
 
 end
 end CarrySelfAdjointOperator.ChiralReturn
