@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "date_utc": "2026-10-14T02:15:18.941395+00:00",
+  "base_commit": "a777f9c2b7d1b267a3f30cd4309af5cde9dd539e",
+  "momentos_head": "a54f267365d5d8c965376734b17b10ae89ed3f74",
+  "toolchain": [
+    "Lean (version 4.32.0, x86_64-unknown-linux-gnu, commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)",
+    "Lake version 5.0.0-src+8c9756b (Lean version 4.32.0)"
+  ],
+  "public_declarations": {
+    "definitions": 7,
+    "theorems": 14,
+    "total": 21
+  },
+  "type_body_guard_closure": 5492,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "focused_build_wfail": "PASS",
+  "focused_direct_kernel_E_warning": "PASS",
+  "static_audit": "PASS",
+  "root_build_wfail_jobs": 10180,
+  "integration_build_wfail_jobs": 10315,
+  "full_cauchy_suite": "PASS",
+  "module_guard_roots": {
+    "NativeCauchyHardyStep-kernel.log": 8,
+    "NativeCauchyLaguerreColumns-kernel.log": 9,
+    "NativeCauchyLaguerreHeadTail-kernel.log": 15,
+    "NativeCauchyLaguerreIsometry-kernel.log": 19,
+    "NativeCauchyLaguerreLedgers-kernel.log": 13,
+    "NativeCauchyLaguerreResolventDefect-kernel.log": 21,
+    "NativeCauchyLaguerreShift-kernel.log": 20,
+    "NativeCauchyLaguerreSources-kernel.log": 20
+  },
+  "cauchy_inventory": "Cauchy-Laguerre inventory passed: 125 public roots in 8 modules",
+  "preserved_inventory": "Gamma/material inventory passed: 405 public declarations in 41 modules",
+  "preserved_files_sha256": {
+    "CarrySelfAdjointOperator/C2OddTfvdTransport.lean": "5bfe06e8d15432c4d6cab6719dc22a0376019243f3e896329ea9ab9dd7458cb0",
+    "CarrySelfAdjointOperator/C2OddTfvdTransportAudit.lean": "b6f05d0241058885da362b5cb20d3968d704a667da3ffc443714a69f3564623c",
+    "lake-manifest.json": "822866313e377adcb9c6249680ed67ceb47682af1bb0cd3cc5203554786bcfeb"
+  },
+  "source_and_data_sha256": {
+    "CarrySelfAdjointOperator/NativeCauchyLaguerreResolventDefect.lean": "8f064ac084806c79ba4f316d13a89f7a5dff3acf3f3861594ed9029f365078f7",
+    "CarrySelfAdjointOperator/NativeCauchyLaguerreResolventDefectAudit.lean": "f65f82ef53bc242f768a6db949088776036a83ad127e7b655e455cc781e80e15",
+    "CarrySelfAdjointOperator.lean": "f91ceabc132fc1b5a609f681171370cef693f024bde3c7a680a9b4aecc854757",
+    "CarrySelfAdjointOperator/Audit.lean": "364fd76fdd423366f0624112f20836289e102673158e9086f4e204f82d11a212",
+    "audit/cauchy-laguerre-isometry-registry.json": "5c834989b4e89c7444a90a07c8767abcdaf06fc7857777f07a05b0053aa7bad9",
+    "scripts/study_height_resolvent_green_defect.py": "a01e7a77753246ac1ddec5043061d2a8337693722f75b34d743935d17d7da55f",
+    "docs/height-resolvent-green-defect.md": "6cae2d42c8eae0638a6a2ecc33dc46fc82191b20b1bbfde6e4bd452e7d27d166",
+    "audit/height-resolvent-green-study/summary.json": "6f1e06fac1f2cb55e7f5f5003c055fa3f4a08e09620d84f1b527fba0edd0c992",
+    "audit/height-resolvent-green-study/states.json.gz": "1fe82e913931b235e5eff75948827b2802111424c2755f9477777b396dba6115"
+  },
+  "finite_replay": {
+    "status": "PASS",
+    "cases": 9,
+    "dps": 180,
+    "scope": "Finite numerical identities on saved decimal matrices and independent finite Phi polynomial. No native EM bound, infinite tail theorem, or physical Green Gram identification."
+  },
+  "open_obligations": [
+    "Construct responses from the completed physical source with the correct energy operator",
+    "Prove convergence of both response sectors in a common physical Hilbert carrier",
+    "Prove vector residuals and original-characteristic residuals tend to zero",
+    "Connect the resulting kernel to the canonical coefficient Gram and independent parity jets",
+    "No new native EM remainder or unknown infinite tail bound is provided"
+  ]
+}
