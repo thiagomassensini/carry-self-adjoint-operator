@@ -1,0 +1,20 @@
+NativeCauchyHardyStep-kernel.log
+Physical sewing public roots: 8; type/body dependency closure: 5378; foundational guard passed
+NativeCauchyLaguerreColumns-kernel.log
+Physical sewing public roots: 9; type/body dependency closure: 5046; foundational guard passed
+NativeCauchyLaguerreHeadTail-kernel.log
+Physical sewing public roots: 15; type/body dependency closure: 5531; foundational guard passed
+NativeCauchyLaguerreIsometry-kernel.log
+Physical sewing public roots: 19; type/body dependency closure: 5400; foundational guard passed
+NativeCauchyLaguerreLedgers-kernel.log
+Physical sewing public roots: 13; type/body dependency closure: 7242; foundational guard passed
+NativeCauchyLaguerreShift-kernel.log
+Physical sewing public roots: 20; type/body dependency closure: 5687; foundational guard passed
+NativeCauchyLaguerreSources-kernel.log
+Physical sewing public roots: 20; type/body dependency closure: 5695; foundational guard passed
+ Quot.sound]
+✔ [10178/10179] Built CarrySelfAdjointOperator (9.0s)
+Build completed successfully (10179 jobs).
+ Quot.sound]
+Build completed successfully (8903 jobs).
+kernel audit passed

@@ -92,7 +92,7 @@ $$
 x\longmapsto(P_R\mathcal Ux,\;S_{R+1}x).
 $$
 
-O segundo componente continua sendo um vetor físico. Para entradas independentes,
+O segundo componente continua sendo um vetor físico. Aqui `P_R` é a máscara de coordenadas no alvo ℓ²; a identificação com a projeção no L² de `NativePhysicalLaguerreCompression` exigiria uma prova própria. Para entradas independentes,
 
 $$
 \langle x,y\rangle=
@@ -151,3 +151,21 @@ Novas construções físicas: colunas literais em ℓ², isometria no fecho e id
 Fronteiras abertas: completude Laguerre em todo L² e sobrejetividade; ponte universal Weyl/Γ→Cauchy; identificação de relógios; extensão ou contração do retorno quiral original; controle uniforme de fontes crescentes; cálculo funcional global; positividade física assinada. O passo `S_1=I−Hardy` não é identificado com o retorno quiral `Q_k`. O mismatch refutado permanece explicitamente não nulo.
 
 Não foram usados canários numéricos como certificados nesta construção. Resultados de CI sem jobs não contam como validação Lean.
+
+## Execução observada e checkpoint
+
+Código certificado: `43950ea35260fbb4317105d8e32721484cf3c262`. Os dois scripts completos terminaram com sucesso, incluindo builds raiz com 10.179 jobs, auditorias estáticas e o script geral de integração. São 104 novas raízes (72 teoremas, 29 definições, duas abreviações e uma instância) mais 405 raízes anteriores, em 48 módulos ao todo.
+
+| Módulo novo | Raízes públicas | Fecho transitivo de tipos e corpos |
+| --- | ---: | ---: |
+| NativeCauchyHardyStep | 8 | 5378 |
+| NativeCauchyLaguerreColumns | 9 | 5046 |
+| NativeCauchyLaguerreHeadTail | 15 | 5531 |
+| NativeCauchyLaguerreIsometry | 19 | 5400 |
+| NativeCauchyLaguerreLedgers | 13 | 7242 |
+| NativeCauchyLaguerreShift | 20 | 5687 |
+| NativeCauchyLaguerreSources | 20 | 5695 |
+
+Evidências persistidas em `research/cauchy-laguerre-isometry-2026-10-13/`: `validation.json`, arquivos completos de logs dos dois scripts, logs de kernel, resumos, hashes de fontes e a fotografia da CI externa. As execuções do GitHub no commit de código retornaram `startup_failure` com `jobs=[]`; a CI externa é inconclusiva, e não é a evidência de validação Lean.
+
+Os dois arquivos C2 não rastreados no checkout principal mantiveram os hashes `5bfe06e8d15432c4d6cab6719dc22a0376019243f3e896329ea9ab9dd7458cb0` e `b6f05d0241058885da362b5cb20d3968d704a667da3ffc443714a69f3564623c`. O manifest também manteve o hash registrado acima.

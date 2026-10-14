@@ -1,0 +1,20 @@
+{
+  "classification": "inconclusive_external_ci",
+  "code_commit": "43950ea35260fbb4317105d8e32721484cf3c262",
+  "runs": [
+    {
+      "id": 38487281592,
+      "conclusion": "startup_failure",
+      "status": "completed",
+      "jobs": [],
+      "url": "https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38487281592"
+    },
+    {
+      "id": 38487274935,
+      "conclusion": "startup_failure",
+      "status": "completed",
+      "jobs": [],
+      "url": "https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38487274935"
+    }
+  ]
+}
