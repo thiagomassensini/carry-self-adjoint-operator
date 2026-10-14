@@ -1,0 +1,66 @@
+import CarrySelfAdjointOperator.NativeCauchyLaguerreIsometry
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.NativeLaguerre
+
+#check physicalCauchySpan
+#print axioms physicalCauchySpan
+#check physicalCauchySpan_eq_span
+#print axioms physicalCauchySpan_eq_span
+#check physicalCauchyClosure
+#print axioms physicalCauchyClosure
+#check PhysicalCauchySpace
+#print axioms PhysicalCauchySpace
+#check physicalCauchySpaceComplete
+#print axioms physicalCauchySpaceComplete
+#check physicalCauchyEmbedding
+#print axioms physicalCauchyEmbedding
+#check physicalCauchyEmbedding_dense
+#print axioms physicalCauchyEmbedding_dense
+#check cauchyLaguerreExtension
+#print axioms cauchyLaguerreExtension
+#check cauchyLaguerreExtension_synthesis
+#print axioms cauchyLaguerreExtension_synthesis
+#check cauchyLaguerreExtension_norm
+#print axioms cauchyLaguerreExtension_norm
+#check cauchyLaguerreIsometry
+#print axioms cauchyLaguerreIsometry
+#check cauchyLaguerreIsometry_synthesis
+#print axioms cauchyLaguerreIsometry_synthesis
+#check physicalCauchyFeature
+#print axioms physicalCauchyFeature
+#check cauchyLaguerreIsometry_feature
+#print axioms cauchyLaguerreIsometry_feature
+#check laguerreColumnSynthesis_apply
+#print axioms laguerreColumnSynthesis_apply
+#check physicalCauchySynthesis_laguerreMode
+#print axioms physicalCauchySynthesis_laguerreMode
+#check cauchyLaguerreIsometry_coordinate
+#print axioms cauchyLaguerreIsometry_coordinate
+#check cauchyLaguerreIsometry_inner
+#print axioms cauchyLaguerreIsometry_inner
+#check cauchyLaguerreIsometry_range_isClosed
+#print axioms cauchyLaguerreIsometry_range_isClosed
+
+#audit_physical_sewing
+  physicalCauchySpan
+  physicalCauchySpan_eq_span
+  physicalCauchyClosure
+  PhysicalCauchySpace
+  physicalCauchySpaceComplete
+  physicalCauchyEmbedding
+  physicalCauchyEmbedding_dense
+  cauchyLaguerreExtension
+  cauchyLaguerreExtension_synthesis
+  cauchyLaguerreExtension_norm
+  cauchyLaguerreIsometry
+  cauchyLaguerreIsometry_synthesis
+  physicalCauchyFeature
+  cauchyLaguerreIsometry_feature
+  laguerreColumnSynthesis_apply
+  physicalCauchySynthesis_laguerreMode
+  cauchyLaguerreIsometry_coordinate
+  cauchyLaguerreIsometry_inner
+  cauchyLaguerreIsometry_range_isClosed
+end CarrySelfAdjointOperator.NativeLaguerre

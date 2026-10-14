@@ -1,0 +1,69 @@
+import CarrySelfAdjointOperator.NativeCauchyLaguerreSources
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.NativeLaguerre
+
+#check radialCauchyState_mem
+#print axioms radialCauchyState_mem
+#check sourceValue_mem
+#print axioms sourceValue_mem
+#check sourceCompanion_mem
+#print axioms sourceCompanion_mem
+#check nativeDressedCompanion_mem
+#print axioms nativeDressedCompanion_mem
+#check completionCompanion_mem
+#print axioms completionCompanion_mem
+#check originalIncident_mem
+#print axioms originalIncident_mem
+#check originalReturned_mem
+#print axioms originalReturned_mem
+#check physicalSourceValue
+#print axioms physicalSourceValue
+#check physicalSourceCompanion
+#print axioms physicalSourceCompanion
+#check physicalNativeCompanion
+#print axioms physicalNativeCompanion
+#check physicalCompletionCompanion
+#print axioms physicalCompletionCompanion
+#check physicalOriginalIncident
+#print axioms physicalOriginalIncident
+#check physicalOriginalReturned
+#print axioms physicalOriginalReturned
+#check cauchyLaguerreIsometry_radial
+#print axioms cauchyLaguerreIsometry_radial
+#check cauchyLaguerre_originalSource_legs
+#print axioms cauchyLaguerre_originalSource_legs
+#check physicalSourceChannels
+#print axioms physicalSourceChannels
+#check cauchyLaguerre_nine_source_crossings
+#print axioms cauchyLaguerre_nine_source_crossings
+#check cauchyLaguerre_nine_source_crossings_headTail
+#print axioms cauchyLaguerre_nine_source_crossings_headTail
+#check cauchyLaguerre_originalSource_chiral_balance
+#print axioms cauchyLaguerre_originalSource_chiral_balance
+#check cauchyLaguerre_source_polarized_product_sum
+#print axioms cauchyLaguerre_source_polarized_product_sum
+
+#audit_physical_sewing
+  radialCauchyState_mem
+  sourceValue_mem
+  sourceCompanion_mem
+  nativeDressedCompanion_mem
+  completionCompanion_mem
+  originalIncident_mem
+  originalReturned_mem
+  physicalSourceValue
+  physicalSourceCompanion
+  physicalNativeCompanion
+  physicalCompletionCompanion
+  physicalOriginalIncident
+  physicalOriginalReturned
+  cauchyLaguerreIsometry_radial
+  cauchyLaguerre_originalSource_legs
+  physicalSourceChannels
+  cauchyLaguerre_nine_source_crossings
+  cauchyLaguerre_nine_source_crossings_headTail
+  cauchyLaguerre_originalSource_chiral_balance
+  cauchyLaguerre_source_polarized_product_sum
+end CarrySelfAdjointOperator.NativeLaguerre

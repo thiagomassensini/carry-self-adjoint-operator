@@ -1,0 +1,33 @@
+import CarrySelfAdjointOperator.NativeCauchyHardyStep
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.NativeLaguerre
+
+#check physicalHalfDensity
+#print axioms physicalHalfDensity
+#check physicalHalfDensity_rpow
+#print axioms physicalHalfDensity_rpow
+#check integral_physicalHalfDensity
+#print axioms integral_physicalHalfDensity
+#check hardyStep_physicalHalfDensity
+#print axioms hardyStep_physicalHalfDensity
+#check physicalFiniteFunction
+#print axioms physicalFiniteFunction
+#check hardyStep_physicalFiniteFunction
+#print axioms hardyStep_physicalFiniteFunction
+#check physicalFiniteSynthesis_ae
+#print axioms physicalFiniteSynthesis_ae
+#check physicalCauchyShift_one_hardy_core
+#print axioms physicalCauchyShift_one_hardy_core
+
+#audit_physical_sewing
+  physicalHalfDensity
+  physicalHalfDensity_rpow
+  integral_physicalHalfDensity
+  hardyStep_physicalHalfDensity
+  physicalFiniteFunction
+  hardyStep_physicalFiniteFunction
+  physicalFiniteSynthesis_ae
+  physicalCauchyShift_one_hardy_core
+end CarrySelfAdjointOperator.NativeLaguerre

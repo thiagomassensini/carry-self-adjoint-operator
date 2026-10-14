@@ -1,0 +1,69 @@
+import CarrySelfAdjointOperator.NativeCauchyLaguerreShift
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.NativeLaguerre
+
+#check backwardShift_laguerreColumn
+#print axioms backwardShift_laguerreColumn
+#check physicalShiftSynthesis
+#print axioms physicalShiftSynthesis
+#check physicalShiftSynthesis_intertwines
+#print axioms physicalShiftSynthesis_intertwines
+#check physicalCauchyShift
+#print axioms physicalCauchyShift
+#check physicalCauchyShift_synthesis
+#print axioms physicalCauchyShift_synthesis
+#check physicalCauchyShift_intertwines
+#print axioms physicalCauchyShift_intertwines
+#check physicalCauchyShift_feature
+#print axioms physicalCauchyShift_feature
+#check physicalCauchyShift_norm_le
+#print axioms physicalCauchyShift_norm_le
+#check physicalCauchyShift_opNorm_le_one
+#print axioms physicalCauchyShift_opNorm_le_one
+#check physicalCauchyShift_zero
+#print axioms physicalCauchyShift_zero
+#check physicalCauchyShift_add
+#print axioms physicalCauchyShift_add
+#check physicalCauchyShift_eq_pow
+#print axioms physicalCauchyShift_eq_pow
+#check backwardShift_preserves_physicalRange
+#print axioms backwardShift_preserves_physicalRange
+#check laguerreHead
+#print axioms laguerreHead
+#check laguerreHead_idempotent
+#print axioms laguerreHead_idempotent
+#check laguerreHead_isSelfAdjoint
+#print axioms laguerreHead_isSelfAdjoint
+#check laguerreHead_tendsto
+#print axioms laguerreHead_tendsto
+#check laguerreHead_residual_energy_tendsto_zero
+#print axioms laguerreHead_residual_energy_tendsto_zero
+#check backwardShift_tendsto_zero
+#print axioms backwardShift_tendsto_zero
+#check physicalCauchyShift_tendsto_zero
+#print axioms physicalCauchyShift_tendsto_zero
+
+#audit_physical_sewing
+  backwardShift_laguerreColumn
+  physicalShiftSynthesis
+  physicalShiftSynthesis_intertwines
+  physicalCauchyShift
+  physicalCauchyShift_synthesis
+  physicalCauchyShift_intertwines
+  physicalCauchyShift_feature
+  physicalCauchyShift_norm_le
+  physicalCauchyShift_opNorm_le_one
+  physicalCauchyShift_zero
+  physicalCauchyShift_add
+  physicalCauchyShift_eq_pow
+  backwardShift_preserves_physicalRange
+  laguerreHead
+  laguerreHead_idempotent
+  laguerreHead_isSelfAdjoint
+  laguerreHead_tendsto
+  laguerreHead_residual_energy_tendsto_zero
+  backwardShift_tendsto_zero
+  physicalCauchyShift_tendsto_zero
+end CarrySelfAdjointOperator.NativeLaguerre

@@ -1,0 +1,307 @@
+{
+  "base_commit": "46f98fe3a37ce21bb7015af15285be5b061b5031",
+  "code_commit": "43950ea35260fbb4317105d8e32721484cf3c262",
+  "host": "llm",
+  "new_public_roots": 104,
+  "new_public_theorems": 72,
+  "new_definitions": 29,
+  "new_abbreviations": 2,
+  "new_instances": 1,
+  "preserved_public_roots": 405,
+  "preserved_modules": 41,
+  "accepted_foundations": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "groups": [
+    {
+      "name": "new-104",
+      "commands": [
+        "bash scripts/audit_cauchy_laguerre_isometry.sh .lake/laguerre-new-104"
+      ],
+      "started_at": "2026-10-13T23:49:54Z",
+      "finished_at": "2026-10-13T23:56:44Z",
+      "toolchain": "Lean (version 4.32.0, x86_64-unknown-linux-gnu, commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)\nLake version 5.0.0-src+8c9756b (Lean version 4.32.0)",
+      "root_build_jobs": 10179,
+      "foundational_audits": [
+        {
+          "module": "NativeCauchyHardyStep",
+          "public_roots": 8,
+          "type_body_dependency_closure": 5378
+        },
+        {
+          "module": "NativeCauchyLaguerreColumns",
+          "public_roots": 9,
+          "type_body_dependency_closure": 5046
+        },
+        {
+          "module": "NativeCauchyLaguerreHeadTail",
+          "public_roots": 15,
+          "type_body_dependency_closure": 5531
+        },
+        {
+          "module": "NativeCauchyLaguerreIsometry",
+          "public_roots": 19,
+          "type_body_dependency_closure": 5400
+        },
+        {
+          "module": "NativeCauchyLaguerreLedgers",
+          "public_roots": 13,
+          "type_body_dependency_closure": 7242
+        },
+        {
+          "module": "NativeCauchyLaguerreShift",
+          "public_roots": 20,
+          "type_body_dependency_closure": 5687
+        },
+        {
+          "module": "NativeCauchyLaguerreSources",
+          "public_roots": 20,
+          "type_body_dependency_closure": 5695
+        }
+      ],
+      "result": "pass"
+    },
+    {
+      "name": "preserved-405",
+      "commands": [
+        "bash scripts/audit_gamma_cauchy_transport.sh .lake/laguerre-preserved-405"
+      ],
+      "started_at": "2026-10-13T23:47:26Z",
+      "finished_at": "2026-10-14T00:03:12Z",
+      "toolchain": "Lean (version 4.32.0, x86_64-unknown-linux-gnu, commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)\nLake version 5.0.0-src+8c9756b (Lean version 4.32.0)",
+      "root_build_jobs": 10179,
+      "foundational_audits": [
+        {
+          "module": "NativeGammaC9Analytic",
+          "public_roots": 10,
+          "type_body_dependency_closure": 4614
+        },
+        {
+          "module": "NativeGammaC9Density",
+          "public_roots": 7,
+          "type_body_dependency_closure": 4614
+        },
+        {
+          "module": "NativeGammaC9EnergyBound",
+          "public_roots": 9,
+          "type_body_dependency_closure": 6213
+        },
+        {
+          "module": "NativeGammaC9Exterior",
+          "public_roots": 13,
+          "type_body_dependency_closure": 6112
+        },
+        {
+          "module": "NativeGammaCameraAdjoint",
+          "public_roots": 7,
+          "type_body_dependency_closure": 4797
+        },
+        {
+          "module": "NativeGammaCameraComplexLinear",
+          "public_roots": 15,
+          "type_body_dependency_closure": 5778
+        },
+        {
+          "module": "NativeGammaCanonicalExteriorWitness",
+          "public_roots": 9,
+          "type_body_dependency_closure": 6212
+        },
+        {
+          "module": "NativeGammaCanonicalSource",
+          "public_roots": 11,
+          "type_body_dependency_closure": 6148
+        },
+        {
+          "module": "NativeGammaCauchyIntegral",
+          "public_roots": 12,
+          "type_body_dependency_closure": 5663
+        },
+        {
+          "module": "NativeGammaCenteredDerivative",
+          "public_roots": 11,
+          "type_body_dependency_closure": 5072
+        },
+        {
+          "module": "NativeGammaCollisionMaterialLedger",
+          "public_roots": 7,
+          "type_body_dependency_closure": 6876
+        },
+        {
+          "module": "NativeGammaComplexLinearState",
+          "public_roots": 6,
+          "type_body_dependency_closure": 5141
+        },
+        {
+          "module": "NativeGammaConjugateCollisionIdentity",
+          "public_roots": 7,
+          "type_body_dependency_closure": 5963
+        },
+        {
+          "module": "NativeGammaConjugateCollisionObstruction",
+          "public_roots": 11,
+          "type_body_dependency_closure": 5789
+        },
+        {
+          "module": "NativeGammaCoupledCompletionObstruction",
+          "public_roots": 7,
+          "type_body_dependency_closure": 5171
+        },
+        {
+          "module": "NativeGammaExteriorGramPositivity",
+          "public_roots": 5,
+          "type_body_dependency_closure": 6087
+        },
+        {
+          "module": "NativeGammaMaterialCameraLift",
+          "public_roots": 16,
+          "type_body_dependency_closure": 2118
+        },
+        {
+          "module": "NativeGammaMaterialCrossings",
+          "public_roots": 18,
+          "type_body_dependency_closure": 6820
+        },
+        {
+          "module": "NativeGammaMaterialDecoder",
+          "public_roots": 10,
+          "type_body_dependency_closure": 2321
+        },
+        {
+          "module": "NativeGammaMaterialGraphDefect",
+          "public_roots": 9,
+          "type_body_dependency_closure": 6807
+        },
+        {
+          "module": "NativeGammaMaterialHeadTailLedger",
+          "public_roots": 9,
+          "type_body_dependency_closure": 6862
+        },
+        {
+          "module": "NativeGammaMaterialMetric",
+          "public_roots": 15,
+          "type_body_dependency_closure": 4331
+        },
+        {
+          "module": "NativeGammaMaterialPolynomialProvenance",
+          "public_roots": 3,
+          "type_body_dependency_closure": 1908
+        },
+        {
+          "module": "NativeGammaMaterialTransport",
+          "public_roots": 11,
+          "type_body_dependency_closure": 6032
+        },
+        {
+          "module": "NativeGammaMismatchLedger",
+          "public_roots": 11,
+          "type_body_dependency_closure": 6848
+        },
+        {
+          "module": "NativeGammaMixedMaterialBalance",
+          "public_roots": 16,
+          "type_body_dependency_closure": 6831
+        },
+        {
+          "module": "NativeGammaMixedMismatchReduction",
+          "public_roots": 7,
+          "type_body_dependency_closure": 6898
+        },
+        {
+          "module": "NativeGammaMixedMultiplierOrthogonality",
+          "public_roots": 6,
+          "type_body_dependency_closure": 5151
+        },
+        {
+          "module": "NativeGammaMixedOrthogonality",
+          "public_roots": 7,
+          "type_body_dependency_closure": 5369
+        },
+        {
+          "module": "NativeGammaMixedProfiles",
+          "public_roots": 9,
+          "type_body_dependency_closure": 2880
+        },
+        {
+          "module": "NativeGammaMixedResolventCapstone",
+          "public_roots": 5,
+          "type_body_dependency_closure": 6944
+        },
+        {
+          "module": "NativeGammaMixedResponse",
+          "public_roots": 9,
+          "type_body_dependency_closure": 6135
+        },
+        {
+          "module": "NativeGammaMixedSource",
+          "public_roots": 16,
+          "type_body_dependency_closure": 3748
+        },
+        {
+          "module": "NativeGammaMixedVariance",
+          "public_roots": 9,
+          "type_body_dependency_closure": 6164
+        },
+        {
+          "module": "NativeGammaNaimarkComplexProjection",
+          "public_roots": 17,
+          "type_body_dependency_closure": 5656
+        },
+        {
+          "module": "NativeGammaNaimarkHaloEscape",
+          "public_roots": 12,
+          "type_body_dependency_closure": 6104
+        },
+        {
+          "module": "NativeGammaObservableTransportCapstone",
+          "public_roots": 6,
+          "type_body_dependency_closure": 7134
+        },
+        {
+          "module": "NativeGammaOrientationObstruction",
+          "public_roots": 4,
+          "type_body_dependency_closure": 6842
+        },
+        {
+          "module": "NativeGammaResolventMatrix",
+          "public_roots": 11,
+          "type_body_dependency_closure": 6096
+        },
+        {
+          "module": "NativeGammaSixCameraProjection",
+          "public_roots": 14,
+          "type_body_dependency_closure": 4116
+        },
+        {
+          "module": "NativeGammaThreeSectorResolvent",
+          "public_roots": 8,
+          "type_body_dependency_closure": 6087
+        }
+      ],
+      "result": "pass"
+    }
+  ],
+  "lake_manifest_sha256": "822866313e377adcb9c6249680ed67ceb47682af1bb0cd3cc5203554786bcfeb",
+  "untracked_c2_preserved": true,
+  "external_ci": {
+    "classification": "inconclusive_external_ci",
+    "code_commit": "43950ea35260fbb4317105d8e32721484cf3c262",
+    "runs": [
+      {
+        "id": 38487281592,
+        "conclusion": "startup_failure",
+        "status": "completed",
+        "jobs": [],
+        "url": "https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38487281592"
+      },
+      {
+        "id": 38487274935,
+        "conclusion": "startup_failure",
+        "status": "completed",
+        "jobs": [],
+        "url": "https://github.com/thiagomassensini/carry-self-adjoint-operator/actions/runs/38487274935"
+      }
+    ]
+  }
+}

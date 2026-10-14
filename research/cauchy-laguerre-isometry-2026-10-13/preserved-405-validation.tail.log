@@ -1,0 +1,88 @@
+NativeGammaC9Analytic-kernel.log
+Physical sewing public roots: 10; type/body dependency closure: 4614; foundational guard passed
+NativeGammaC9Density-kernel.log
+Physical sewing public roots: 7; type/body dependency closure: 4614; foundational guard passed
+NativeGammaC9EnergyBound-kernel.log
+Physical sewing public roots: 9; type/body dependency closure: 6213; foundational guard passed
+NativeGammaC9Exterior-kernel.log
+Physical sewing public roots: 13; type/body dependency closure: 6112; foundational guard passed
+NativeGammaCameraAdjoint-kernel.log
+Physical sewing public roots: 7; type/body dependency closure: 4797; foundational guard passed
+NativeGammaCameraComplexLinear-kernel.log
+Physical sewing public roots: 15; type/body dependency closure: 5778; foundational guard passed
+NativeGammaCanonicalExteriorWitness-kernel.log
+Physical sewing public roots: 9; type/body dependency closure: 6212; foundational guard passed
+NativeGammaCanonicalSource-kernel.log
+Physical sewing public roots: 11; type/body dependency closure: 6148; foundational guard passed
+NativeGammaCauchyIntegral-kernel.log
+Physical sewing public roots: 12; type/body dependency closure: 5663; foundational guard passed
+NativeGammaCenteredDerivative-kernel.log
+Physical sewing public roots: 11; type/body dependency closure: 5072; foundational guard passed
+NativeGammaCollisionMaterialLedger-kernel.log
+Physical sewing public roots: 7; type/body dependency closure: 6876; foundational guard passed
+NativeGammaComplexLinearState-kernel.log
+Physical sewing public roots: 6; type/body dependency closure: 5141; foundational guard passed
+NativeGammaConjugateCollisionIdentity-kernel.log
+Physical sewing public roots: 7; type/body dependency closure: 5963; foundational guard passed
+NativeGammaConjugateCollisionObstruction-kernel.log
+Physical sewing public roots: 11; type/body dependency closure: 5789; foundational guard passed
+NativeGammaCoupledCompletionObstruction-kernel.log
+Physical sewing public roots: 7; type/body dependency closure: 5171; foundational guard passed
+NativeGammaExteriorGramPositivity-kernel.log
+Physical sewing public roots: 5; type/body dependency closure: 6087; foundational guard passed
+NativeGammaMaterialCameraLift-kernel.log
+Physical sewing public roots: 16; type/body dependency closure: 2118; foundational guard passed
+NativeGammaMaterialCrossings-kernel.log
+Physical sewing public roots: 18; type/body dependency closure: 6820; foundational guard passed
+NativeGammaMaterialDecoder-kernel.log
+Physical sewing public roots: 10; type/body dependency closure: 2321; foundational guard passed
+NativeGammaMaterialGraphDefect-kernel.log
+Physical sewing public roots: 9; type/body dependency closure: 6807; foundational guard passed
+NativeGammaMaterialHeadTailLedger-kernel.log
+Physical sewing public roots: 9; type/body dependency closure: 6862; foundational guard passed
+NativeGammaMaterialMetric-kernel.log
+Physical sewing public roots: 15; type/body dependency closure: 4331; foundational guard passed
+NativeGammaMaterialPolynomialProvenance-kernel.log
+Physical sewing public roots: 3; type/body dependency closure: 1908; foundational guard passed
+NativeGammaMaterialTransport-kernel.log
+Physical sewing public roots: 11; type/body dependency closure: 6032; foundational guard passed
+NativeGammaMismatchLedger-kernel.log
+Physical sewing public roots: 11; type/body dependency closure: 6848; foundational guard passed
+NativeGammaMixedMaterialBalance-kernel.log
+Physical sewing public roots: 16; type/body dependency closure: 6831; foundational guard passed
+NativeGammaMixedMismatchReduction-kernel.log
+Physical sewing public roots: 7; type/body dependency closure: 6898; foundational guard passed
+NativeGammaMixedMultiplierOrthogonality-kernel.log
+Physical sewing public roots: 6; type/body dependency closure: 5151; foundational guard passed
+NativeGammaMixedOrthogonality-kernel.log
+Physical sewing public roots: 7; type/body dependency closure: 5369; foundational guard passed
+NativeGammaMixedProfiles-kernel.log
+Physical sewing public roots: 9; type/body dependency closure: 2880; foundational guard passed
+NativeGammaMixedResolventCapstone-kernel.log
+Physical sewing public roots: 5; type/body dependency closure: 6944; foundational guard passed
+NativeGammaMixedResponse-kernel.log
+Physical sewing public roots: 9; type/body dependency closure: 6135; foundational guard passed
+NativeGammaMixedSource-kernel.log
+Physical sewing public roots: 16; type/body dependency closure: 3748; foundational guard passed
+NativeGammaMixedVariance-kernel.log
+Physical sewing public roots: 9; type/body dependency closure: 6164; foundational guard passed
+NativeGammaNaimarkComplexProjection-kernel.log
+Physical sewing public roots: 17; type/body dependency closure: 5656; foundational guard passed
+NativeGammaNaimarkHaloEscape-kernel.log
+Physical sewing public roots: 12; type/body dependency closure: 6104; foundational guard passed
+NativeGammaObservableTransportCapstone-kernel.log
+Physical sewing public roots: 6; type/body dependency closure: 7134; foundational guard passed
+NativeGammaOrientationObstruction-kernel.log
+Physical sewing public roots: 4; type/body dependency closure: 6842; foundational guard passed
+NativeGammaResolventMatrix-kernel.log
+Physical sewing public roots: 11; type/body dependency closure: 6096; foundational guard passed
+NativeGammaSixCameraProjection-kernel.log
+Physical sewing public roots: 14; type/body dependency closure: 4116; foundational guard passed
+NativeGammaThreeSectorResolvent-kernel.log
+Physical sewing public roots: 8; type/body dependency closure: 6087; foundational guard passed
+ Classical.choice,
+ Quot.sound]
+Build completed successfully (10179 jobs).
+ Quot.sound]
+Build completed successfully (8903 jobs).
+kernel audit passed

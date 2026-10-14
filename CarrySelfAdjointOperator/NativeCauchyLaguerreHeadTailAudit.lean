@@ -1,0 +1,54 @@
+import CarrySelfAdjointOperator.NativeCauchyLaguerreHeadTail
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+set_option maxHeartbeats 0
+namespace CarrySelfAdjointOperator.NativeLaguerre
+
+#check laguerreHead_inner
+#print axioms laguerreHead_inner
+#check physicalCauchy_head_tail_inner
+#print axioms physicalCauchy_head_tail_inner
+#check PhysicalHeadTailSpace
+#print axioms PhysicalHeadTailSpace
+#check physicalHeadTailLinear
+#print axioms physicalHeadTailLinear
+#check physicalHeadTailLinear_inner
+#print axioms physicalHeadTailLinear_inner
+#check physicalHeadTailIsometry
+#print axioms physicalHeadTailIsometry
+#check physicalCauchy_head_tail_energy
+#print axioms physicalCauchy_head_tail_energy
+#check laguerreHead_refines
+#print axioms laguerreHead_refines
+#check physicalHeadTail_refinement
+#print axioms physicalHeadTail_refinement
+#check physicalFiniteSynthesis
+#print axioms physicalFiniteSynthesis
+#check physicalFiniteSynthesis_coe
+#print axioms physicalFiniteSynthesis_coe
+#check physicalFiniteSynthesis_injective
+#print axioms physicalFiniteSynthesis_injective
+#check physicalFiniteHead
+#print axioms physicalFiniteHead
+#check shortHead_full_physical_tail
+#print axioms shortHead_full_physical_tail
+#check physicalCauchyShift_tail_opNorm_eq_one
+#print axioms physicalCauchyShift_tail_opNorm_eq_one
+
+#audit_physical_sewing
+  laguerreHead_inner
+  physicalCauchy_head_tail_inner
+  PhysicalHeadTailSpace
+  physicalHeadTailLinear
+  physicalHeadTailLinear_inner
+  physicalHeadTailIsometry
+  physicalCauchy_head_tail_energy
+  laguerreHead_refines
+  physicalHeadTail_refinement
+  physicalFiniteSynthesis
+  physicalFiniteSynthesis_coe
+  physicalFiniteSynthesis_injective
+  physicalFiniteHead
+  shortHead_full_physical_tail
+  physicalCauchyShift_tail_opNorm_eq_one
+end CarrySelfAdjointOperator.NativeLaguerre
