@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "recorded_at_utc": "2026-10-14T05:25:22.040033+00:00",
+  "host": "llm",
+  "base_commit": "0321d4eb3b79926f0de725ddc5a36fbe4dfafd69",
+  "api_roots": 27,
+  "definitions": 6,
+  "theorems": 21,
+  "dependency_closure": 7294,
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "checks": {
+    "source_direct_E_warning": "PASS",
+    "focused_audit_wfail": "PASS (9825 jobs)",
+    "root_wfail": "PASS (10182 jobs)",
+    "global_audit_wfail": "PASS (10319 jobs)",
+    "static_audit": "PASS"
+  },
+  "source_sha256": {
+    "CarrySelfAdjointOperator/CompletedNativeChiralReturnEnergyPort.lean": "663ee33697f0444ffdd7a71bbf5a5d282a07a0ac27af1853e6fe87249e08cd0e",
+    "CarrySelfAdjointOperator/CompletedNativeChiralReturnEnergyPortAudit.lean": "388700a4f80745398708e25b30e0394f642b0f08bf1e82552cf2b4b0ef5bb22d",
+    "CarrySelfAdjointOperator.lean": "9d8c11cb21e5f40adff572652bb62250efe1515e285a80daec32c876ca855470",
+    "CarrySelfAdjointOperator/Audit.lean": "da43860d687907d9d01adabc23763d08efcdc45f808c8cc7f959df0512df865a",
+    "docs/chiral-return-energy-port.md": "41ccdd4cd480ed817db663760215ec7a667c7aa60d7fcb0576e6705531d688eb",
+    "README.md": "ea65b483d90f8087e37184585b21dc45694599b31774aa93668cd0ad14a66e5b"
+  },
+  "preserved_sha256": {
+    "CarrySelfAdjointOperator/C2OddTfvdTransport.lean": "5bfe06e8d15432c4d6cab6719dc22a0376019243f3e896329ea9ab9dd7458cb0",
+    "CarrySelfAdjointOperator/C2OddTfvdTransportAudit.lean": "b6f05d0241058885da362b5cb20d3968d704a667da3ffc443714a69f3564623c",
+    "lake-manifest.json": "822866313e377adcb9c6249680ed67ceb47682af1bb0cd3cc5203554786bcfeb"
+  },
+  "unconditional_scope": {
+    "sources": 7,
+    "radial_parameter": "eventually as k tends to infinity, all seven source coefficients simultaneously",
+    "exact_kernel": "49 entries on a single seven-point radial grid",
+    "jet_orders": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "even_block": "4x4 with h_(i+j)",
+    "odd_block": "3x3 with h_(i+j+1)",
+    "mixed_block": "retained at finite step; converges to zero",
+    "zeroth_mass": "squared energy-port norm converges to native h0"
+  },
+  "general_N": "Port defined from source return; positive Gram law requires actual return contractivity. The finite-order limit theorem retains that hypothesis.",
+  "new_metric_or_fitted_amplitude": false,
+  "target_moments_define_port": false,
+  "seven_source_sign_proof": "Reused from existing CompletedNativeChiralReturnSevenSampleStorage; not claimed as new sign theorem.",
+  "not_established": [
+    "all-order source contractivity",
+    "global two-variable positive kernel",
+    "vector convergence/coherence across all cutoffs",
+    "self-adjoint height-operator identification",
+    "infinite Jacobi resolvent convergence"
+  ],
+  "new_numerical_campaign": false,
+  "legacy_per_module_suite_rerun": false
+}

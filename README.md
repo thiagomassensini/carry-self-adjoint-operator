@@ -2227,3 +2227,7 @@ A ponte do resolvente quadrático para o kernel Green agora retém dois resíduo
 ### Respostas físicas concretas e obstrução do porto no centro
 
 `NativePhysicalSourceResponses` constrói `(I-z²M_u)⁻¹` no L² original para `|z|<1`, aplica-o aos três canais completados e prova os limites dos setores de resposta e energia, conservando os cruzamentos. O readout próprio dessa candidata não é identificado com o Weyl nativo: o porto de valor completado direto falha já em `h₀`, independentemente de mudar apenas o operador. A construção das respostas espectrais nativas continua aberta. Veja [a tentativa, a cota exata e seu no-go específico](docs/physical-source-responses.md).
+
+### Porto de energia do retorno completo — sete fontes
+
+`CompletedNativeChiralReturnEnergyPort` constrói o canal positivo a partir de `I-T* T`, usando o retorno original e a norma Cauchy herdada. O controle já provado de sete fontes fornece, eventualmente, um Gram vetorial exatamente igual ao kernel canônico na grade radial; seus jets de ordens 0 a 6 recuperam o bloco canônico de momentos no limite, incluindo `h₀`. A extensão a dimensões arbitrárias, a coerência vetorial global e o operador espectral das alturas continuam abertos. Veja [a construção e seu alcance](docs/chiral-return-energy-port.md).
