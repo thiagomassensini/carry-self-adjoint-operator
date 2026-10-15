@@ -1,0 +1,123 @@
+{
+  "date": "2026-10-14 America/Sao_Paulo",
+  "repositories": [
+    {
+      "repo": "carry-self-adjoint-operator",
+      "path": "/home/thlinux/carry-self-adjoint-operator",
+      "head": "486fb5184d7a52d6054edf3c9837d7d76d7aca47",
+      "branch": "main",
+      "remote": "https://github.com/thiagomassensini/carry-self-adjoint-operator",
+      "dirty_entries": 2,
+      "lean_tracked": 1576
+    },
+    {
+      "repo": "geometry-of-numbers",
+      "path": "/home/thlinux/geometry-of-numbers",
+      "head": "e1084b43533255b399b82dc307b536d7dfdca07f",
+      "branch": "main",
+      "remote": "https://github.com/thiagomassensini/geometry-of-numbers",
+      "dirty_entries": 0,
+      "lean_tracked": 181
+    },
+    {
+      "repo": "carry-geometry",
+      "path": "/home/thlinux/carry-geometry",
+      "head": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+      "branch": "main",
+      "remote": "https://github.com/thiagomassensini/carry-geometry",
+      "dirty_entries": 0,
+      "lean_tracked": 9
+    },
+    {
+      "repo": "primos",
+      "path": "/home/thlinux/primos",
+      "head": "8c4b7fdf65a49d1d0febe8193d56e2cfb2191260",
+      "branch": "agent/release-v0.63.0-c3-carrier-gate",
+      "remote": "https://github.com/thiagomassensini/primos",
+      "dirty_entries": 2,
+      "lean_tracked": 250
+    },
+    {
+      "repo": "momentos",
+      "path": "/home/thlinux/momentos",
+      "head": "a54f267365d5d8c965376734b17b10ae89ed3f74",
+      "branch": "main",
+      "remote": "https://github.com/thiagomassensini/momentos",
+      "dirty_entries": 1,
+      "lean_tracked": 737
+    },
+    {
+      "repo": "Teoria_De_Defeitos",
+      "path": "/home/thlinux/Teoria_De_Defeitos",
+      "head": "898eceb32e68fd4b9a2724f87633789563bb21ad",
+      "branch": "main",
+      "remote": "https://github.com/thiagomassensini/teoria_dos_defeitos",
+      "dirty_entries": 0,
+      "lean_tracked": 0
+    },
+    {
+      "repo": "native-carry-spectral-weyl",
+      "path": "/home/thlinux/native-carry-spectral-weyl",
+      "head": "871217099a069083791738578b2e44005b31986e",
+      "branch": "agent/relational-divisibility-gram",
+      "remote": "https://github.com/thiagomassensini/native-carry-spectral-weyl",
+      "dirty_entries": 0,
+      "lean_tracked": 71
+    },
+    {
+      "repo": "green-frame-theorem-limit",
+      "path": "/home/thlinux/green-frame-theorem-limit",
+      "head": "12445c08087fa0c5fc5b2350f3455e09bc6b8b42",
+      "branch": "main",
+      "remote": "https://github.com/thiagomassensini/green-frame-theorem",
+      "dirty_entries": 0,
+      "lean_tracked": 95
+    },
+    {
+      "repo": "finite-native-carry-operator",
+      "path": "/home/thlinux/finite-native-carry-operator",
+      "head": "00e9d6beb17226545abf5ddf90bbfede6c7146b0",
+      "branch": "main",
+      "remote": "https://github.com/thiagomassensini/finite-native-carry-operator",
+      "dirty_entries": 0,
+      "lean_tracked": 5
+    },
+    {
+      "repo": "native-carry-c3-crosswalk",
+      "path": "/home/thlinux/native-carry-c3-crosswalk",
+      "head": "d9e9e3a7469cb2a95ad3a07d08d0c1a860377ec0",
+      "branch": "agent/reflected-pair-exact-identity",
+      "remote": "https://github.com/thiagomassensini/native-carry-c3-crosswalk",
+      "dirty_entries": 0,
+      "lean_tracked": 33
+    },
+    {
+      "repo": "genuine-zero-uniform-atlas-energy",
+      "path": "/home/thlinux/genuine-zero-uniform-atlas-energy",
+      "head": "3d2031c96c90d9cd5afd002e9820d89aca3edd32",
+      "branch": "main",
+      "remote": "https://github.com/thiagomassensini/genuine-zero-uniform-atlas-energy",
+      "dirty_entries": 0,
+      "lean_tracked": 19
+    },
+    {
+      "repo": "genuine-zeta-rh-transfer",
+      "path": "/home/thlinux/genuine-zeta-rh-transfer",
+      "head": "1f889aa5dca72e43fbb1315ccbe0890c88e52b6e",
+      "branch": "main",
+      "remote": "https://github.com/thiagomassensini/genuine-riemann-zeta-transfer",
+      "dirty_entries": 0,
+      "lean_tracked": 3
+    },
+    {
+      "repo": "formalizacao_C2",
+      "path": "/home/thlinux/formalizacao_C2",
+      "head": "dc35555879e3c0f188508c729c4a0ea31be246fb",
+      "branch": "main",
+      "remote": "https://github.com/thiagomassensini/lean",
+      "dirty_entries": 295,
+      "lean_tracked": 143
+    }
+  ],
+  "scope": "Metadata inventory plus selected source review; not an audit of every theorem in every repository"
+}

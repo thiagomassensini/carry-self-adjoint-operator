@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-14",
+  "base": "486fb5184d7a52d6054edf3c9837d7d76d7aca47",
+  "dependency_pins_unchanged": true,
+  "pins": [
+    {
+      "lake_name": "CPFormal",
+      "repository": "primos",
+      "consumed_revision": "65d50f6db1208708e109982ba97e1d51d3039956",
+      "standalone_head": "8c4b7fdf65a49d1d0febe8193d56e2cfb2191260"
+    },
+    {
+      "lake_name": "geometry-of-numbers",
+      "repository": "geometry-of-numbers",
+      "consumed_revision": "d7cc54f5c485320f1fada33118e9e6101488819a",
+      "standalone_head": "e1084b43533255b399b82dc307b536d7dfdca07f"
+    },
+    {
+      "lake_name": "GreenFrame",
+      "repository": "green-frame-theorem-limit",
+      "consumed_revision": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa",
+      "standalone_head": "12445c08087fa0c5fc5b2350f3455e09bc6b8b42"
+    },
+    {
+      "lake_name": "NativeCarrySpectralWeyl",
+      "repository": "native-carry-spectral-weyl",
+      "consumed_revision": "298d83c9351e308a5213b9f5ac32e44087f98a9f",
+      "standalone_head": "871217099a069083791738578b2e44005b31986e"
+    },
+    {
+      "lake_name": "NativeCarryC3Crosswalk",
+      "repository": "native-carry-c3-crosswalk",
+      "consumed_revision": "150cfc7fb08da96bf8117f15869cc2b819d593c2",
+      "standalone_head": "d9e9e3a7469cb2a95ad3a07d08d0c1a860377ec0"
+    },
+    {
+      "lake_name": "CarryGeometry",
+      "repository": "carry-geometry",
+      "consumed_revision": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4",
+      "standalone_head": "1f85b8c3ab5ded27a0782956e1ada0dd8a1b6fd4"
+    }
+  ],
+  "checks": [
+    {
+      "repository": "carry-self-adjoint-operator",
+      "targets": [
+        "CarrySelfAdjointOperator.GeometricPrimeCarryReuseAudit"
+      ],
+      "wfail": true,
+      "exit_code": 0,
+      "jobs": 9848,
+      "log": "/tmp/reuse-consumed-pins-audit.log",
+      "guards": [
+        {
+          "roots": 4,
+          "closure": 2824
+        },
+        {
+          "roots": 8,
+          "closure": 6089
+        }
+      ]
+    },
+    {
+      "repository": "carry-self-adjoint-operator",
+      "targets": [
+        "CarrySelfAdjointOperator.GeometricPrimeCarryReuseAudit",
+        "CarrySelfAdjointOperator",
+        "CarrySelfAdjointOperator.Audit"
+      ],
+      "wfail": true,
+      "exit_code": 0,
+      "jobs": 10352,
+      "log": "/tmp/reuse-root-audit.log"
+    },
+    {
+      "repository": "geometry-of-numbers",
+      "targets": [
+        "GeometryOfNumbers.Analysis.BaseTwoCompletedBoundaryHilbertAudit",
+        "GeometryOfNumbers.Analysis.CanonicalGreenMomentJetSeamAudit",
+        "GeometryOfNumbers.Analysis.CompleteVerticalObservationGramAudit",
+        "GeometryOfNumbers.Analysis.BaseTwoRawL2ReadoutNonclosableAudit"
+      ],
+      "wfail": true,
+      "exit_code": 0,
+      "jobs": 8818,
+      "log": "/tmp/reuse-geometry-audit.log"
+    },
+    {
+      "repository": "primos",
+      "targets": [
+        "CPFormal.Analytic.CpNativeGprePrimeCarryDefectFormAudit",
+        "CPFormal.Analytic.CpNativeGpreCorrectedWedgeTowerGluingAudit",
+        "CPFormal.Analytic.CpNativeGpreFiniteGreenBulkRieszEnergyAudit"
+      ],
+      "wfail": true,
+      "exit_code": 0,
+      "jobs": 3618,
+      "log": "/tmp/reuse-primos-audit.log"
+    }
+  ],
+  "result": {
+    "existing_structural_contraction": "11/12",
+    "complement_budget": "1/12",
+    "canonical_source_pairing_identified": false,
+    "all_order_native_positivity_proved": false,
+    "dependency_bump": false
+  }
+}
