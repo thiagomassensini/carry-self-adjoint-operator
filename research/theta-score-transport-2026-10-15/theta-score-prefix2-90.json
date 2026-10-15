@@ -1,0 +1,26 @@
+{
+  "status": "EXPLORATORY_NOT_INTERVAL_NOT_LEAN",
+  "dps": 90,
+  "modes": 10,
+  "prefix_modes": 2,
+  "cutoff": 3,
+  "source": "unchanged source moment recurrence; thetaTail moments converted before use",
+  "rows": [
+    {
+      "sector": 1,
+      "n": 6,
+      "source_R": "6.9491185704023418487238061888017333e-44",
+      "transport_margin": "2.0152443854166791361299037947525027e-42",
+      "prefix_mode_score_with_full_weight_plus_square": "2.0152449734968083222826463216890961e-42",
+      "signed_modal_correction": "-5.880801291861527425269365934085369e-49",
+      "exact_absolute_modal_error": "5.954708325578414445754475861878562e-49",
+      "Etheta_full_weight_error": "5.9547083264918386711133284756722018e-49",
+      "exact_error_over_margin": "0.00000029548318648942409319161710240351425",
+      "Etheta_error_over_margin": "0.00000029548318653474982301222095707360546",
+      "geometric_error_over_margin": "0.0000003918210454798520132072158839954388",
+      "geometric_lower_bound": "2.0152441838816463309175913268409614e-42",
+      "relative_identity_error": "2.7608617832081415376522247131066341e-54",
+      "lower_bound": "2.0152443780259756730987792103562485e-42"
+    }
+  ]
+}
