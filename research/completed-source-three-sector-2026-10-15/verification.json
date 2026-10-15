@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-15",
+  "host": "llm",
+  "base_commit": "a7c9d03b1b006b2396ab7da624fac63490a2a645",
+  "task_branch": "agent/completed-source-three-sectors",
+  "source_module": "CarrySelfAdjointOperator/CompletedNativeSourceThreeSectorSewing.lean",
+  "audit_module": "CarrySelfAdjointOperator/CompletedNativeSourceThreeSectorSewingAudit.lean",
+  "public_declarations": [
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeNaimarkObserved",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeNaimarkHalo",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeNaimarkGlobal_roundtrip",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeNaimarkGlobalEscape_port",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeNaimarkGlobalEscape_orthogonal",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeNaimarkThreeSector_inner",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeNaimarkThreeSector_norm_sq",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCameraTwoSector_norm_sq",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCompletedAmbientResponse_eq_port",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCompletedAmbientResponse_globalEscape_zero",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCompletedResolvedCorrection_globalEscape",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCompletedGlobalEscape_fourTerms_zero",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCompletedAmbientResponse_twoSector_inner",
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCompletedWronskianDefect_eq_twoSectorBoundary",
+    "CarrySelfAdjointOperator.ChiralReturn.polarizedSourceBalance_eq_threeSectorGamma_add_rawBalance",
+    "CarrySelfAdjointOperator.ChiralReturn.storage_re_eq_threeSectorGammaBudget",
+    "CarrySelfAdjointOperator.ChiralReturn.storage_nonnegative_iff_threeSectorGammaBudget",
+    "CarrySelfAdjointOperator.ChiralReturn.rawGammaBalance_sub_globalEscapeGram",
+    "CarrySelfAdjointOperator.ChiralReturn.rawGammaBalance_sub_globalEscape_eq_coisometricBudget",
+    "CarrySelfAdjointOperator.ChiralReturn.storage_re_eq_completedCameraTwoSectorBudget",
+    "CarrySelfAdjointOperator.ChiralReturn.threeSectorGammaBudget_eventually"
+  ],
+  "public_root_count": 21,
+  "dependency_closure_count": 7146,
+  "allowed_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "checks": [
+    {
+      "command": "lake build --wfail CarrySelfAdjointOperator.CompletedNativeSourceThreeSectorSewingAudit",
+      "exit_code": 0,
+      "reported_jobs": 9711,
+      "log": "targeted-audit.log.gz"
+    },
+    {
+      "command": "lake build --wfail CarrySelfAdjointOperator CarrySelfAdjointOperator.Audit",
+      "exit_code": 0,
+      "reported_jobs": 10384,
+      "log": "root-global-build.log.gz"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0
+    },
+    {
+      "check": "no sorry/admit/new axiom/unsafe tokens in the two new Lean files",
+      "passed": true
+    }
+  ],
+  "preserved_sha256": {
+    "CarrySelfAdjointOperator/C2OddTfvdTransport.lean": "5bfe06e8d15432c4d6cab6719dc22a0376019243f3e896329ea9ab9dd7458cb0",
+    "CarrySelfAdjointOperator/C2OddTfvdTransportAudit.lean": "b6f05d0241058885da362b5cb20d3968d704a667da3ffc443714a69f3564623c",
+    "lake-manifest.json": "822866313e377adcb9c6249680ed67ceb47682af1bb0cd3cc5203554786bcfeb"
+  },
+  "source_sha256": {
+    "CompletedNativeSourceThreeSectorSewing.lean": "524c3fb227b6eea6f2133ca3654cf17bdc28c67b91b8f280a738a02cf36ac247",
+    "CompletedNativeSourceThreeSectorSewingAudit.lean": "88bc0583093f0081cd1d5e331abf8d14b07ba44d74701b57e4a19110ba730eb3"
+  },
+  "scope": {
+    "new_results": "Three-sector polarized identity on arbitrary ambient vectors; completed-response and resolved-correction escape cancellation; direct two-variable completed Wronskian comparison; arbitrary finite source synthesis budgets and exact signed correction transport.",
+    "positivity_assumed": false,
+    "all_order_positivity_proved": false,
+    "moment_gram_identification_without_residual_proved": false,
+    "N_threshold": "For each fixed finite N, actual source regularity supplies an eventual k threshold uniform in coefficients and internal radii. No threshold uniform in N is claimed.",
+    "center_calibration": "The divided Green central limit and h0 identification are not supplied by this three-sector theorem; the original separation and four-channel defect are retained."
+  },
+  "isolation": {
+    "worktree": "/home/thlinux/carry-completed-source-three-sectors",
+    "shared_ignored_build_cache": true,
+    "shared_dependency_cache": true,
+    "dependency_pins_modified": false,
+    "preexisting_worktree_sources_modified": false
+  }
+}
