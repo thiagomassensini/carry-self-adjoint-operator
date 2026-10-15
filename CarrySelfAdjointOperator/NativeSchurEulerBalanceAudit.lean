@@ -1,0 +1,65 @@
+import CarrySelfAdjointOperator.NativeSchurEulerFirstOdd
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+namespace CarrySelfAdjointOperator
+
+#print axioms nativeThetaEulerPolynomial
+#print axioms nativeThetaEulerSeries
+#print axioms nativeThetaEulerNumeratorSeries
+#print axioms nativeThetaEulerSeries_eq_valve
+#print axioms nativeThetaEulerNumeratorSeries_eq
+#print axioms nativeThetaEulerSeries_source_equation
+#print axioms nativeThetaEulerPolynomial_eq
+#print axioms nativeThetaEulerPolynomial_integral
+#print axioms sourceMomentConvolution
+#print axioms sourceMomentConvolutionLeg
+#print axioms sourceMomentConvolution_split_one
+#print axioms sourceMomentConvolution_split_zero
+#print axioms sourceMomentConvolution_critical_even
+#print axioms sourceMomentConvolution_critical_odd
+#print axioms sourceMomentCritical_weighted_degree
+#print axioms nativeThetaQuadratic_euler_integral
+#print axioms nativeSchurCriticalCoefficients_orthogonal
+#print axioms nativeSchurEulerPolynomial
+#print axioms nativeSchurCriticalReadout
+#print axioms nativeSchurEuler_odd_balance
+#print axioms nativeSchurEuler_even_balance
+#print axioms nativeSchurEuler_odd_lower_bound
+#print axioms nativeSchurEuler_odd_square_nonneg
+#print axioms nativeSchurEuler_odd_mass_balance
+#print axioms nativeSchurEuler_odd_pos_iff_mass_balance
+#print axioms nativeSchurTheta_first_odd_moment_polynomial
+#print axioms nativeSchurEuler_first_odd_eval
+#print axioms nativeSchurEuler_first_odd_integral
+
+#audit_physical_sewing
+  nativeThetaEulerPolynomial
+  nativeThetaEulerSeries
+  nativeThetaEulerNumeratorSeries
+  nativeThetaEulerSeries_eq_valve
+  nativeThetaEulerNumeratorSeries_eq
+  nativeThetaEulerSeries_source_equation
+  nativeThetaEulerPolynomial_eq
+  nativeThetaEulerPolynomial_integral
+  sourceMomentConvolution
+  sourceMomentConvolutionLeg
+  sourceMomentConvolution_split_one
+  sourceMomentConvolution_split_zero
+  sourceMomentConvolution_critical_even
+  sourceMomentConvolution_critical_odd
+  sourceMomentCritical_weighted_degree
+  nativeThetaQuadratic_euler_integral
+  nativeSchurCriticalCoefficients_orthogonal
+  nativeSchurEulerPolynomial
+  nativeSchurCriticalReadout
+  nativeSchurEuler_odd_balance
+  nativeSchurEuler_even_balance
+  nativeSchurEuler_odd_lower_bound
+  nativeSchurEuler_odd_square_nonneg
+  nativeSchurEuler_odd_mass_balance
+  nativeSchurEuler_odd_pos_iff_mass_balance
+  nativeSchurTheta_first_odd_moment_polynomial
+  nativeSchurEuler_first_odd_eval
+  nativeSchurEuler_first_odd_integral
+
+end CarrySelfAdjointOperator

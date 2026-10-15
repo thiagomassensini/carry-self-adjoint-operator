@@ -1,0 +1,56 @@
+Validation on llm, base f216103f2c67fa2bd4593943883ded47be4d0410
+Command: lake build --wfail CarrySelfAdjointOperator.NativeSchurEulerBalanceAudit
+Command: lake build --wfail
+Raw final-builds.log SHA256 76d2fb4cbe6fcd685eef2a4d6b1acdd39d86b47ad41f38a3c55b5f5653963c82
+
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:6:0: 'CarrySelfAdjointOperator.nativeThetaEulerPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:7:0: 'CarrySelfAdjointOperator.nativeThetaEulerSeries' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:8:0: 'CarrySelfAdjointOperator.nativeThetaEulerNumeratorSeries' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:9:0: 'CarrySelfAdjointOperator.nativeThetaEulerSeries_eq_valve' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:10:0: 'CarrySelfAdjointOperator.nativeThetaEulerNumeratorSeries_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:11:0: 'CarrySelfAdjointOperator.nativeThetaEulerSeries_source_equation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:12:0: 'CarrySelfAdjointOperator.nativeThetaEulerPolynomial_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:13:0: 'CarrySelfAdjointOperator.nativeThetaEulerPolynomial_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:14:0: 'CarrySelfAdjointOperator.sourceMomentConvolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:15:0: 'CarrySelfAdjointOperator.sourceMomentConvolutionLeg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:16:0: 'CarrySelfAdjointOperator.sourceMomentConvolution_split_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:17:0: 'CarrySelfAdjointOperator.sourceMomentConvolution_split_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:18:0: 'CarrySelfAdjointOperator.sourceMomentConvolution_critical_even' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:19:0: 'CarrySelfAdjointOperator.sourceMomentConvolution_critical_odd' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:20:0: 'CarrySelfAdjointOperator.sourceMomentCritical_weighted_degree' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:21:0: 'CarrySelfAdjointOperator.nativeThetaQuadratic_euler_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:22:0: 'CarrySelfAdjointOperator.nativeSchurCriticalCoefficients_orthogonal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:23:0: 'CarrySelfAdjointOperator.nativeSchurEulerPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:24:0: 'CarrySelfAdjointOperator.nativeSchurCriticalReadout' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:25:0: 'CarrySelfAdjointOperator.nativeSchurEuler_odd_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:26:0: 'CarrySelfAdjointOperator.nativeSchurEuler_even_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:27:0: 'CarrySelfAdjointOperator.nativeSchurEuler_odd_lower_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:28:0: 'CarrySelfAdjointOperator.nativeSchurEuler_odd_square_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:29:0: 'CarrySelfAdjointOperator.nativeSchurEuler_odd_mass_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:30:0: 'CarrySelfAdjointOperator.nativeSchurEuler_odd_pos_iff_mass_balance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:31:0: 'CarrySelfAdjointOperator.nativeSchurTheta_first_odd_moment_polynomial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:32:0: 'CarrySelfAdjointOperator.nativeSchurEuler_first_odd_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:33:0: 'CarrySelfAdjointOperator.nativeSchurEuler_first_odd_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeSchurEulerBalanceAudit.lean:35:0: Physical sewing public roots: 28; type/body dependency closure: 5842; foundational guard passed
+Build completed successfully (9840 jobs).
+Build completed successfully (10213 jobs).
