@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-14 America/Sao_Paulo",
+  "host": "llm",
+  "base": "8f791152e9c0f354b3aa399f0e0c3de5c24db1ec",
+  "consumed_cpformal_pin": "65d50f6db1208708e109982ba97e1d51d3039956",
+  "consumed_geometry_pin": "d7cc54f5c485320f1fada33118e9e6101488819a",
+  "boundary_probe_geometry_head": "e1084b43533255b399b82dc307b536d7dfdca07f",
+  "dependency_pins_changed": false,
+  "checks": [
+    {
+      "log": "source-covariant-build.log",
+      "exit_code": 0,
+      "jobs": 9964,
+      "printed_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "sha256": "7a047e06bef58488c9f357f60964b861a3ea7662d2757dd292bd822056656a9e"
+    },
+    {
+      "log": "source-kernel-root-audit.log",
+      "exit_code": 0,
+      "jobs": 10356,
+      "printed_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "sha256": "13c393b0d4c35a5b7a52dddd102a168c847987c11dc0fd1ad9a3859c7f3ecc15"
+    },
+    {
+      "log": "boundary-kernel-probe.log",
+      "exit_code": 0,
+      "jobs": null,
+      "printed_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "sha256": "05136f8998a2302cc6b43fe5b97dee861442e875c94723435a5f631b1e823aba"
+    }
+  ],
+  "public_root_guard": {
+    "roots": 35,
+    "type_body_closure": 5365,
+    "allowed_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "results": {
+    "central_required_norm_squared": "<=12*m0<3/4",
+    "unit_state_excess": ">1/48",
+    "completion_connection_retained": true,
+    "normalized_boundary_state_norm_squared": 1,
+    "source_coordinate_tangent_norm_squared": "4*m0^2<m0",
+    "all_order_native_energy_defect_identity": true,
+    "geometric_moment_vector_family_constructed": false,
+    "canonical_complement_pairing_proved": false,
+    "all_order_native_positivity_proved": false
+  },
+  "commands": [
+    "cd /home/thlinux/carry-source-kernel-calibration && lake build --wfail CarrySelfAdjointOperator.NativeSourceCovariantBoundaryState",
+    "cd /home/thlinux/carry-source-kernel-calibration && lake build --wfail CarrySelfAdjointOperator.NativeSourceKernelCalibrationAudit CarrySelfAdjointOperator CarrySelfAdjointOperator.Audit",
+    "cd /home/thlinux/geometry-of-numbers && lake env lean /tmp/BoundaryKernelProbe.lean"
+  ]
+}
