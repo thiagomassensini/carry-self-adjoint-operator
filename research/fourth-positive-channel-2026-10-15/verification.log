@@ -1,0 +1,125 @@
+Validation on llm, base 6275d8fa066743436b50c2ebba1355f38f82eca1
+
+Raw audit.log SHA256 938ab4efd2bf4233336ed6d4ae1a416b6ccba5f6c107a3fdd6649f0acdeb2191
+info: CarrySelfAdjointOperator/ExactCutoffCameraGram.lean:283:0: 'NativeCarryC3Crosswalk.literalFiniteCameraGram_eq_linear_add_residue' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ExactCutoffCameraGram.lean:284:0: 'NativeCarryC3Crosswalk.normalizedLiteralFiniteCameraGram_eq_periodicGram_add_residue_div' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ExactCutoffCameraGram.lean:285:0: 'NativeCarryC3Crosswalk.tendsto_normalizedLiteralFiniteCameraGram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/ExactCutoffCameraGram.lean:286:0: 'NativeCarryC3Crosswalk.tendsto_normalizedLiteralSixCameraGram' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:7:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedResponse_taylor_four' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:8:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedResponse_taylor_five' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:9:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondReducedResponse_taylor_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:10:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondReducedResponse_taylor_three' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:11:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeMoment_one_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:12:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeMoment_first_discriminant_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:13:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeMoment_shifted_discriminant_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:14:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.deriv_chainAxis_two_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:15:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chainResponse_three_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:16:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chainResponse_three_hasDerivAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:17:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chainScale_three_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:18:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chainScale_three_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:19:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chainAxis_three_zero_eq_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:20:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chainAxis_three_analyticAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:21:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chainResponse_four_analyticAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:22:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chain_first_four_centers' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:23:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chain_first_four_real_scales' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:24:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chain_first_four_scales_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:25:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chain_first_four_regular_local' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:26:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chain_four_positive_channels_local' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:27:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeKernel_four_positive_channels_local' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:28:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chain_four_channel_finite_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:29:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceMomentSchur_singleton' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:30:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeSourceSchur_shifted_one_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:31:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeSourceSchurRemainder_shifted_one_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:32:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeSourceSchurRemainder_shifted_one_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:33:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeSchurThetaIntegral_shifted_one_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:34:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeSchurThetaMasses_shifted_one_dominance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:35:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeSchurThetaMasses_shifted_one_strict' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:36:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeSchurThetaPolynomial_shifted_one_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:37:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chainScale_three_eq_theta_integral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:38:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.chainScale_three_theta_factor_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:39:0: 'CarrySelfAdjointOperator.nativeSourceBoundary_all_pos_iff_thetaMassDominance' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:40:0: 'CarrySelfAdjointOperator.nativeSchurThetaPolynomial_odd_density_eventually_neg' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:41:0: 'CarrySelfAdjointOperator.nativeThetaPolynomialSeries_eq_projectiveValve' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourceFourthPositiveChannelAudit.lean:43:0: Physical sewing public roots: 35; type/body dependency closure: 6859; foundational guard passed
+Build completed successfully (9980 jobs).
+
+Raw global.log SHA256 7bd7669a631c736f305b96028009a4d1647db60970390eb1dca374a252d9f7ba
+Build completed successfully (10209 jobs).

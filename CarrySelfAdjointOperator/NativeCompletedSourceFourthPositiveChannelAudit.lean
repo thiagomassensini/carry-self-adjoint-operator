@@ -1,0 +1,80 @@
+import CarrySelfAdjointOperator.NativeCompletedSourceFourthThetaScale
+import CarrySelfAdjointOperator.NativeSourceThetaProjectiveValve
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+namespace CarrySelfAdjointOperator.SourcePositiveReduction
+
+#print axioms reducedResponse_taylor_four
+#print axioms reducedResponse_taylor_five
+#print axioms secondReducedResponse_taylor_two
+#print axioms secondReducedResponse_taylor_three
+#print axioms nativeMoment_one_pos
+#print axioms nativeMoment_first_discriminant_pos
+#print axioms nativeMoment_shifted_discriminant_pos
+#print axioms deriv_chainAxis_two_zero
+#print axioms chainResponse_three_zero
+#print axioms chainResponse_three_hasDerivAt_zero
+#print axioms chainScale_three_eq
+#print axioms chainScale_three_pos
+#print axioms chainAxis_three_zero_eq_scale
+#print axioms chainAxis_three_analyticAt_zero
+#print axioms chainResponse_four_analyticAt_zero
+#print axioms chain_first_four_centers
+#print axioms chain_first_four_real_scales
+#print axioms chain_first_four_scales_pos
+#print axioms chain_first_four_regular_local
+#print axioms chain_four_positive_channels_local
+#print axioms nativeKernel_four_positive_channels_local
+#print axioms chain_four_channel_finite_energy
+#print axioms sourceMomentSchur_singleton
+#print axioms nativeSourceSchur_shifted_one_eq
+#print axioms nativeSourceSchurRemainder_shifted_one_eq
+#print axioms nativeSourceSchurRemainder_shifted_one_pos
+#print axioms nativeSchurThetaIntegral_shifted_one_pos
+#print axioms nativeSchurThetaMasses_shifted_one_dominance
+#print axioms nativeSchurThetaMasses_shifted_one_strict
+#print axioms nativeSchurThetaPolynomial_shifted_one_top
+#print axioms chainScale_three_eq_theta_integral
+#print axioms chainScale_three_theta_factor_pos
+#print axioms CarrySelfAdjointOperator.nativeSourceBoundary_all_pos_iff_thetaMassDominance
+#print axioms CarrySelfAdjointOperator.nativeSchurThetaPolynomial_odd_density_eventually_neg
+#print axioms CarrySelfAdjointOperator.nativeThetaPolynomialSeries_eq_projectiveValve
+
+#audit_physical_sewing
+  reducedResponse_taylor_four
+  reducedResponse_taylor_five
+  secondReducedResponse_taylor_two
+  secondReducedResponse_taylor_three
+  nativeMoment_one_pos
+  nativeMoment_first_discriminant_pos
+  nativeMoment_shifted_discriminant_pos
+  deriv_chainAxis_two_zero
+  chainResponse_three_zero
+  chainResponse_three_hasDerivAt_zero
+  chainScale_three_eq
+  chainScale_three_pos
+  chainAxis_three_zero_eq_scale
+  chainAxis_three_analyticAt_zero
+  chainResponse_four_analyticAt_zero
+  chain_first_four_centers
+  chain_first_four_real_scales
+  chain_first_four_scales_pos
+  chain_first_four_regular_local
+  chain_four_positive_channels_local
+  nativeKernel_four_positive_channels_local
+  chain_four_channel_finite_energy
+  sourceMomentSchur_singleton
+  nativeSourceSchur_shifted_one_eq
+  nativeSourceSchurRemainder_shifted_one_eq
+  nativeSourceSchurRemainder_shifted_one_pos
+  nativeSchurThetaIntegral_shifted_one_pos
+  nativeSchurThetaMasses_shifted_one_dominance
+  nativeSchurThetaMasses_shifted_one_strict
+  nativeSchurThetaPolynomial_shifted_one_top
+  chainScale_three_eq_theta_integral
+  chainScale_three_theta_factor_pos
+  CarrySelfAdjointOperator.nativeSourceBoundary_all_pos_iff_thetaMassDominance
+  CarrySelfAdjointOperator.nativeSchurThetaPolynomial_odd_density_eventually_neg
+  CarrySelfAdjointOperator.nativeThetaPolynomialSeries_eq_projectiveValve
+
+end CarrySelfAdjointOperator.SourcePositiveReduction
