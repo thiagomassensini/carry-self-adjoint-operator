@@ -1,0 +1,13 @@
+[
+  "CarrySelfAdjointOperator.GammaMaterialSewing.nativeNaimarkThreeSector_inner",
+  "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCompletedGlobalEscape_fourTerms_zero",
+  "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCompletedWronskianDefect_eq_twoSectorBoundary",
+  "CarrySelfAdjointOperator.not_completedNativeGreenWeylReducedHeightCertificate",
+  "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_zero_even_zero",
+  "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_zero_odd_zero",
+  "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_one_even_zero",
+  "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_odd_zero_odd_zero",
+  "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_evenZero_ne_zero",
+  "CarrySelfAdjointOperator.CompletedNativeRealHPCarrierCertificate.toReducedMaximalSelfAdjointHeightData",
+  "LinearPMap.complexification_adjoint_eq_realAdjoint"
+]

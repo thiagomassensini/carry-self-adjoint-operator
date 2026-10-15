@@ -1,0 +1,19 @@
+'GeometryOfNumbers.Foundation.foundational_half_scaling_capstone' does not depend on any axioms
+'GeometryOfNumbers.Analysis.completeVerticalObservabilityGram_not_hankel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GeometryOfNumbers.Analysis.completeVerticalObservationJet_linearIndependent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GeometryOfNumbers.Analysis.BaseTwoCompletion.criticalMaterialGradient_deriv_eq_diagonalClock_add_residual' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GeometryOfNumbers.Analysis.BaseTwoCompletion.baseTwoRawL2Readout_not_closable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GeometryOfNumbers.Analysis.CanonicalGreenMomentSeam.greenParseval_iteratedDeriv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GeometryOfNumbers.Analysis.CanonicalGreenMomentSeam.baseTwoCanonicalGreenFirstColumnResidual_eq_material' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
