@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-15",
+  "host": "llm",
+  "repository": "/home/thlinux/carry-self-adjoint-operator",
+  "base_commit": "735e3a55f150fe62fc942ab2fabc1a9f1adcf511",
+  "branch": "codex/native-source-positive-reduction-2026-10-15",
+  "status": "kernel_checked_partial_positive_realization",
+  "construction": "two source-derived positive channels plus the exact weighted second-reduced kernel",
+  "scope": {
+    "kernel": "local at zero; divided identity requires w != conj(z)",
+    "finite_inputs": "all N and all complex coefficients on regular separated source points",
+    "central_removable_value": "norm of positivePair(0) squared = m0",
+    "first_odd_jet": "norm of derivative of the second scalar channel at zero squared = m1"
+  },
+  "open": [
+    "sign/control of secondReducedKernel",
+    "all-order positive realization of the entire native kernel",
+    "all-stage positive source scales",
+    "infinite height/Jacobi operator or resolvent identification"
+  ],
+  "checks": {
+    "targeted_audit": {
+      "command": "lake build --wfail CarrySelfAdjointOperator.NativeCompletedSourcePositiveReductionAudit",
+      "success": true,
+      "jobs": 9974
+    },
+    "root_and_global_audit": {
+      "command": "lake build --wfail CarrySelfAdjointOperator CarrySelfAdjointOperator.Audit",
+      "success": true,
+      "jobs": 10364
+    },
+    "axioms": {
+      "public_roots": 61,
+      "type_body_dependency_closure": 6304,
+      "allowed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "guard_passed": true
+    },
+    "admitted_obligations_in_new_sources": false
+  },
+  "preserved_files": {
+    "CarrySelfAdjointOperator/C2OddTfvdTransport.lean": "5bfe06e8d15432c4d6cab6719dc22a0376019243f3e896329ea9ab9dd7458cb0",
+    "CarrySelfAdjointOperator/C2OddTfvdTransportAudit.lean": "b6f05d0241058885da362b5cb20d3968d704a667da3ffc443714a69f3564623c",
+    "lake-manifest.json": "822866313e377adcb9c6249680ed67ceb47682af1bb0cd3cc5203554786bcfeb"
+  }
+}
