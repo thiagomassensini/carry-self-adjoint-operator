@@ -1,0 +1,732 @@
+{
+  "base": "bde8af97a34923563965128b7748e8ac088d7d9b",
+  "date": "2026-10-15",
+  "host": "llm",
+  "root_build_command": "lake build --wfail CarrySelfAdjointOperator CarrySelfAdjointOperator.Audit",
+  "focused_command": "lake build --wfail CarrySelfAdjointOperator.RealFirstSourceTransportAudit",
+  "upstream_requested_command": "lake build --wfail GeometryOfNumbers.Analysis.RealCriticalDepthState GeometryOfNumbers.Analysis.C2FiberRealDynamics GeometryOfNumbers.Analysis.RealCarryTfvd CPFormal.Analytic.CpNativeCarryRealPlaneComplexPackaging CPFormal.Analytic.CpNativeCarryComplexOperatorSameAsReal",
+  "geometry_snapshot": "e1084b43533255b399b82dc307b536d7dfdca07f",
+  "geometry_pin": "d7cc54f5c485320f1fada33118e9e6101488819a",
+  "cpformal_consulted_main": "e2a723b4ec3e645539de0b9ca881951d93259cda",
+  "cpformal_pin": "65d50f6db1208708e109982ba97e1d51d3039956",
+  "builds": [
+    {
+      "log": "existing-upstream-build.log.gz",
+      "jobs": 3171,
+      "exit_code": 0
+    },
+    {
+      "log": "attachment-upstream-build.log.gz",
+      "jobs": 8779,
+      "exit_code": 0
+    },
+    {
+      "log": "final-modules-build.log.gz",
+      "jobs": 9916,
+      "exit_code": 0
+    },
+    {
+      "log": "targeted-audit.log.gz",
+      "jobs": 9920,
+      "exit_code": 0
+    },
+    {
+      "log": "root-build.log.gz",
+      "jobs": 10389,
+      "exit_code": 0
+    }
+  ],
+  "new_roots": 67,
+  "closure": 7510,
+  "guard": "passed",
+  "regression_roots": 11,
+  "axioms": {
+    "CarrySelfAdjointOperator.RealQuadrature.J": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.J_fst": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.J_snd": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.J_squared": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.J_inner": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.J_skew": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.J_norm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.lift": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.lift_fst": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.lift_snd": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.lift_J": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.lift_isometry_pairings": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.doubleDomain": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.J_mem_doubleDomain_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.doubleDomainFst": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.doubleDomainSnd": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.double": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.domainJ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.double_domainJ": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.double_realAdjoint_pairing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.rotation": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.inner_J_self": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.rotation_inner": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.rotation_norm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.rotation_J": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.materialPhase": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.materialPhase_norm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.phaseClock": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.phaseClock_J": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.phaseClock_squared": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.phaseClock_second_head_pairing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.phaseClock_second_head_nonpositive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.phaseClock_edge_connection": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.materialLogClock_edge_connection": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.materialLogClock_first_edge_not_diagonal": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.pack": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.unpack": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.pack_unpack": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.unpack_pack": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.pack_norm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.pack_inner": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.pack_J": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.pack_inner_of_rotation_intertwining": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.pack_lift": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.pack_double_domain_iff": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealQuadrature.pack_double_action": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.realNaimarkThreeSector_inner": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.observed": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.halo": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.escape": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.quadratureThreeSector_metric": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.quadratureThreeSector_rotationForm": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.quadratureThreeSector_pack_inner": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.pr105_full_pairing_comparison": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.pack_escape": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.response": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.response_escape_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.response_eq_gamma_add_correction": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.resolvedCorrection_escape": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.resolvedCorrection_escape_four_crosses": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.nativeDefect_real_components": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.primeContractionLinear": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.towerComplement": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.towerComplement_eq_original_quadratures": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.towerComplement_coercive": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.towerComplement_pack_pairing": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.RealFirstNative.towerComplement_central_calibration": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeNaimarkThreeSector_inner": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCompletedGlobalEscape_fourTerms_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.GammaMaterialSewing.nativeCompletedWronskianDefect_eq_twoSectorBoundary": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.not_completedNativeGreenWeylReducedHeightCertificate": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_zero_even_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_zero_odd_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_even_one_even_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_odd_zero_odd_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.nativeC3SeededClockTfvdSixSourceCenterLegDefect_evenZero_ne_zero": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "CarrySelfAdjointOperator.CompletedNativeRealHPCarrierCertificate.toReducedMaximalSelfAdjointHeightData": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "LinearPMap.complexification_adjoint_eq_realAdjoint": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "proof_sha256": {
+    "RealQuadratureDomainTransport.lean": "bf87bbf180cece4f470852999c51f2df4e55912528b97d91c440270cac6d8853",
+    "RealMaterialPhaseConnection.lean": "13be945e90230a25fd4b3d8ef34c8ad51822f4c11c593df046a52c1867a4cddf",
+    "NativeRealFirstQuadratureNaturality.lean": "2954374e411b750d61c3bbb832a85e39835ea7ba71166a43ba3ba123880bc768",
+    "NativeRealComplementTransport.lean": "ee9a4a2f70a0d84c6cdcfaf7d8be2838e25bb3435afdb9f79f491d21e3f11f21",
+    "RealFirstSourceTransportAudit.lean": "47237f935bae8a548de9db59e43c7c203060035684aa2e7ce571d6c7e0b24ac2"
+  },
+  "source_snapshots": [
+    {
+      "label": "geometry-main",
+      "repo": "/home/thlinux/geometry-of-numbers",
+      "rev": "e1084b43533255b399b82dc307b536d7dfdca07f",
+      "path": "GeometryOfNumbers/Analysis/RealCriticalDepthState.lean",
+      "exit_code": 0,
+      "sha256": "d221c4f976ee4c6848021e38e04b77792ec678a1486dcc8b6555db48d5f6491a"
+    },
+    {
+      "label": "geometry-main",
+      "repo": "/home/thlinux/geometry-of-numbers",
+      "rev": "e1084b43533255b399b82dc307b536d7dfdca07f",
+      "path": "GeometryOfNumbers/Analysis/C2FiberRealDynamics.lean",
+      "exit_code": 0,
+      "sha256": "60abcd61a664c1b8f0180a03bab92e4382e93dc417505fb76216901c7a270233"
+    },
+    {
+      "label": "geometry-main",
+      "repo": "/home/thlinux/geometry-of-numbers",
+      "rev": "e1084b43533255b399b82dc307b536d7dfdca07f",
+      "path": "GeometryOfNumbers/Analysis/RealCarryTfvd.lean",
+      "exit_code": 0,
+      "sha256": "40f40703c5085c94cdb72dbd90002e57c365a16568b320febb1cef01978ba6bb"
+    },
+    {
+      "label": "geometry-pin",
+      "repo": "/home/thlinux/geometry-of-numbers",
+      "rev": "d7cc54f5c485320f1fada33118e9e6101488819a",
+      "path": "GeometryOfNumbers/Analysis/RealCriticalDepthState.lean",
+      "exit_code": 0,
+      "sha256": "d221c4f976ee4c6848021e38e04b77792ec678a1486dcc8b6555db48d5f6491a"
+    },
+    {
+      "label": "geometry-pin",
+      "repo": "/home/thlinux/geometry-of-numbers",
+      "rev": "d7cc54f5c485320f1fada33118e9e6101488819a",
+      "path": "GeometryOfNumbers/Analysis/C2FiberRealDynamics.lean",
+      "exit_code": 0,
+      "sha256": "60abcd61a664c1b8f0180a03bab92e4382e93dc417505fb76216901c7a270233"
+    },
+    {
+      "label": "geometry-pin",
+      "repo": "/home/thlinux/geometry-of-numbers",
+      "rev": "d7cc54f5c485320f1fada33118e9e6101488819a",
+      "path": "GeometryOfNumbers/Analysis/RealCarryTfvd.lean",
+      "exit_code": 0,
+      "sha256": "40f40703c5085c94cdb72dbd90002e57c365a16568b320febb1cef01978ba6bb"
+    },
+    {
+      "label": "primos-main",
+      "repo": "/home/thlinux/primos",
+      "rev": "e2a723b4ec3e645539de0b9ca881951d93259cda",
+      "path": "CPFormal/Analytic/CpNativeCarryRealPlaneComplexPackaging.lean",
+      "exit_code": 0,
+      "sha256": "4d5927ced40621df0e87002ce1242c139fd43bf264a3b6d1a88b4c2cbfb45ffe"
+    },
+    {
+      "label": "primos-main",
+      "repo": "/home/thlinux/primos",
+      "rev": "e2a723b4ec3e645539de0b9ca881951d93259cda",
+      "path": "CPFormal/Analytic/CpNativeCarryComplexOperatorSameAsReal.lean",
+      "exit_code": 0,
+      "sha256": "a08ce2a16e7060870a0aaddb453af6058956d119956cedd8665889a23d7e70b2"
+    },
+    {
+      "label": "primos-pin",
+      "repo": "/home/thlinux/primos",
+      "rev": "65d50f6db1208708e109982ba97e1d51d3039956",
+      "path": "CPFormal/Analytic/CpNativeCarryRealPlaneComplexPackaging.lean",
+      "exit_code": 0,
+      "sha256": "4d5927ced40621df0e87002ce1242c139fd43bf264a3b6d1a88b4c2cbfb45ffe"
+    },
+    {
+      "label": "primos-pin",
+      "repo": "/home/thlinux/primos",
+      "rev": "65d50f6db1208708e109982ba97e1d51d3039956",
+      "path": "CPFormal/Analytic/CpNativeCarryComplexOperatorSameAsReal.lean",
+      "exit_code": 0,
+      "sha256": "a08ce2a16e7060870a0aaddb453af6058956d119956cedd8665889a23d7e70b2"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/NativeGammaNaimarkComplexProjection.lean",
+      "exit_code": 0,
+      "sha256": "77d6811f9cd85047654a5b3433f363f5a0d4c25c880559ee9d75af152fdc6155"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/NativeGammaNaimarkHaloEscape.lean",
+      "exit_code": 0,
+      "sha256": "26a787addcc51f5bd7283999863dfafb2e8ebb883fc87683197a325d27a2f5b4"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/NativeGammaSixCameraProjection.lean",
+      "exit_code": 0,
+      "sha256": "1345ba7252fd29c89978d5df8a94f49f72e9d70a00fea5cb9b8d3c2739e03c75"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/CompletedNativeSourceThreeSectorSewing.lean",
+      "exit_code": 0,
+      "sha256": "524c3fb227b6eea6f2133ca3654cf17bdc28c67b91b8f280a738a02cf36ac247"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/CompletedNativeChiralReturnGammaCorrectionCancellation.lean",
+      "exit_code": 0,
+      "sha256": "e2681e0ad47b736a11fc5672e9cff7a9f8db3b8389f83bf73dede95a995d89e1"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/RealLinearPMapReciprocalBlock.lean",
+      "exit_code": 0,
+      "sha256": "eb4ad7e709238e228bbd15acd202f30bbe24d20160c70ac6cc1ca5c6c1fa43a0"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/RealLinearPMapKernelReduction.lean",
+      "exit_code": 0,
+      "sha256": "63df739d5944101dfac985692f7220415a6cabe31ef1fb98452c46f102b0d368"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/GreenJetReciprocalSignedHeightOperator.lean",
+      "exit_code": 0,
+      "sha256": "acc457e52982f2b554a478855f7233d2a0d0b980649466935dec1b6135fab756"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/CompletedNativeGreenWeylHeight.lean",
+      "exit_code": 0,
+      "sha256": "e301ff487a43ab415bc5806c2a6ed99ac83ba55133181cf526bfbced215707b9"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/RealLinearPMapComplexification.lean",
+      "exit_code": 0,
+      "sha256": "72fb2d9d4b6370786db34a5b497b839ed8584a164edbd73cec446049fcd8efcd"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/RealLinearPMapAdjoint.lean",
+      "exit_code": 0,
+      "sha256": "a4503207d243e4a3850eba2631e28dc2e12ada4fd834794e546639b78305878e"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/RealLinearPMapAdjointSquare.lean",
+      "exit_code": 0,
+      "sha256": "ffda2a62e4310e65c0a1b569f5d01b8105d653e9601f230495795b13e6faf1eb"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/ComplexifiedGreenJetSignedHeightOperator.lean",
+      "exit_code": 0,
+      "sha256": "f2929c2bc39fbf11eb268d50bb3e9da5be79cb7d8a82d0452a80b07ca0edade8"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/GreenJetEnergyFactor.lean",
+      "exit_code": 0,
+      "sha256": "656630189d99f463ccce2c91b98207584a0443571adb2fe93dca364dcdf1e745"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/GreenJetMaximalAdjointSquare.lean",
+      "exit_code": 0,
+      "sha256": "f53543da02c6ccb31a8637012a9a3a3f629e885eac4726fabd4de657387b768d"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/CompletedNativeGreenMomentTransport.lean",
+      "exit_code": 128,
+      "sha256": null
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/CompletedNativeCorrectedChiralClockMomentKernel.lean",
+      "exit_code": 0,
+      "sha256": "797a4c024ecccb4d201b07d2f71da19740f2f450cf0de0fd13f70a1f9a934d58"
+    },
+    {
+      "label": "carry",
+      "repo": "/home/thlinux/carry-self-adjoint-operator",
+      "rev": "bde8af97a34923563965128b7748e8ac088d7d9b",
+      "path": "CarrySelfAdjointOperator/CompletedNativeCorrectedClockBoundaryGate.lean",
+      "exit_code": 0,
+      "sha256": "48bb98618cf63ef6aaef095e2f5cea454c979e33229e4e0c41281463a0897205"
+    },
+    {
+      "label": "geometry-doc",
+      "repo": "/home/thlinux/geometry-of-numbers",
+      "rev": "e1084b43533255b399b82dc307b536d7dfdca07f",
+      "path": "docs/R2_TFVD_GREEN_VALVE_ROUTE.md",
+      "exit_code": 0,
+      "sha256": "6faa835d600c8893764b102da765cc20b4e099bdb9749991f1019927ee96912a"
+    },
+    {
+      "label": "geometry-doc",
+      "repo": "/home/thlinux/geometry-of-numbers",
+      "rev": "e1084b43533255b399b82dc307b536d7dfdca07f",
+      "path": "docs/FORMALIZATION_PLAN.md",
+      "exit_code": 0,
+      "sha256": "8e6beda87c16e14476077bf4f55263ac71da8aa627ebaa0e537990d4207b6658"
+    },
+    {
+      "label": "geometry-doc",
+      "repo": "/home/thlinux/geometry-of-numbers",
+      "rev": "e1084b43533255b399b82dc307b536d7dfdca07f",
+      "path": "docs/SOURCE_PROVENANCE.md",
+      "exit_code": 0,
+      "sha256": "7ccabedb433fa891de9bfb34330f30d0f675de98d06028575e61a7df824e15dd"
+    }
+  ],
+  "attachment_sources": [
+    {
+      "path": "GeometryOfNumbers/Foundation/FoundationalHalfScalingCapstone.lean",
+      "sha256": "516c940e762acefa72c6a570c84d53a9e10e64c6d5a42dd47085a009a95b3249",
+      "identical_to_pin": true
+    },
+    {
+      "path": "GeometryOfNumbers/Analysis/CompleteVerticalObservationGram.lean",
+      "sha256": "7be753f04875aac6cdc135010656ff839532fdd0f91863b3327f340dd9db4279",
+      "identical_to_pin": false
+    },
+    {
+      "path": "GeometryOfNumbers/Analysis/BaseTwoCompletedBoundaryDynamics.lean",
+      "sha256": "61c5c3d7ba8bf43efef57b5f872f7c06fb7dbbc0cb8b3db45682a0d1b459256b",
+      "identical_to_pin": false
+    },
+    {
+      "path": "GeometryOfNumbers/Analysis/BaseTwoRawL2ReadoutNonclosable.lean",
+      "sha256": "d3ac7806b6309909a292b5c802fa3796b2166cb32996b326323dd595cf38b9ba",
+      "identical_to_pin": false
+    },
+    {
+      "path": "GeometryOfNumbers/Analysis/CanonicalGreenMomentJetSeam.lean",
+      "sha256": "77a5b83b55e022a790f2d650404e458d4d699e4483c5de84d4c20daacd382296",
+      "identical_to_pin": false
+    }
+  ],
+  "unchanged_manifest_sha256": "822866313e377adcb9c6249680ed67ceb47682af1bb0cd3cc5203554786bcfeb",
+  "preserved_user_files": {
+    "CarrySelfAdjointOperator/C2OddTfvdTransport.lean": "5bfe06e8d15432c4d6cab6719dc22a0376019243f3e896329ea9ab9dd7458cb0",
+    "CarrySelfAdjointOperator/C2OddTfvdTransportAudit.lean": "b6f05d0241058885da362b5cb20d3968d704a667da3ffc443714a69f3564623c"
+  },
+  "limitations": [
+    "No physical source family realizing the complementary moment kernel was constructed.",
+    "Native response in quadrature naturality module is unpacked from the existing complex response.",
+    "Three-sector comparison is the total pairing, not all individual camera projection formulas.",
+    "No new calibration or general positivity result.",
+    "Material coordinate derivatives are not promoted to strong Hilbert derivatives.",
+    "Canonical source, metric, Gram, weights, pins and PR105 formulas unchanged."
+  ]
+}
