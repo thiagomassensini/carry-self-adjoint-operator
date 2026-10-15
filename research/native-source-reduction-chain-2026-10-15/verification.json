@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-15",
+  "host": "llm",
+  "repository": "/home/thlinux/carry-self-adjoint-operator",
+  "base_commit": "a51f94e7ea61b2384c9b0808f9c3799fc4ddaf33",
+  "task_branch": "codex/native-positive-channel-chain-2026-10-15",
+  "status": "kernel_checked_finite_chain_identity_and_third_positive_source_channel",
+  "proved_unconditionally": [
+    "definition of one source-derived response chain independent of truncation depth",
+    "literal agreement of its first two channels with PR #98",
+    "third scale equals m0*(m0*m2-m1^2)/m1^2 and is strictly positive by the existing source-integral discriminant",
+    "three positive source channels with the full next residual on a source-supplied neighborhood",
+    "analyticity of the next response at zero"
+  ],
+  "proved_with_explicit_finite_stage_conditions": [
+    "kernel decomposition at every finite depth",
+    "full finite input synthesis as a sum of channel norm squares plus the unchanged residual",
+    "reciprocal reduction and reconstruction at each regular positive-scale stage",
+    "exact residual weight factor z^n times the product of source axes"
+  ],
+  "open": [
+    "positive source scales at every stage",
+    "all-depth source regularity and a common domain",
+    "infinite channel summability and passage to the residual limit",
+    "complete all-order native positivity",
+    "self-adjoint height/resolvent identification"
+  ],
+  "checks": {
+    "targeted_audit": {
+      "command": "/home/thlinux/.elan/bin/lake build --wfail CarrySelfAdjointOperator.NativeCompletedSourceReductionChainAudit",
+      "success": true,
+      "jobs": 9976
+    },
+    "root_and_global_audit": {
+      "command": "/home/thlinux/.elan/bin/lake build --wfail CarrySelfAdjointOperator CarrySelfAdjointOperator.Audit",
+      "success": true,
+      "jobs": 10367
+    },
+    "axioms": {
+      "public_roots": 47,
+      "type_body_dependency_closure": 6304,
+      "allowed": [
+        "propext",
+        "Classical.choice",
+        "Quot.sound"
+      ],
+      "guard_passed": true
+    },
+    "no_sorry_admit_new_axioms": true
+  },
+  "preserved_files": {
+    "CarrySelfAdjointOperator/C2OddTfvdTransport.lean": "5bfe06e8d15432c4d6cab6719dc22a0376019243f3e896329ea9ab9dd7458cb0",
+    "CarrySelfAdjointOperator/C2OddTfvdTransportAudit.lean": "b6f05d0241058885da362b5cb20d3968d704a667da3ffc443714a69f3564623c",
+    "lake-manifest.json": "822866313e377adcb9c6249680ed67ceb47682af1bb0cd3cc5203554786bcfeb"
+  },
+  "source_sha256": {
+    "NativeCompletedSourceReductionChain.lean": "102cf2a10b439e6e1746a6601415d5a71a6b42cb1d43a1c2820bb274dbf9856b",
+    "NativeCompletedSourceThirdPositiveChannel.lean": "a7aae5c6297925cfc51f06ab336849187b095eca79a92dcd4fc45ea7df8691f2",
+    "NativeCompletedSourceReductionChainAudit.lean": "ff6e2036626b2a5ced3fbb60bcf7dcb6f157420d3d21bad6cc60e7c13f8bfc41"
+  }
+}

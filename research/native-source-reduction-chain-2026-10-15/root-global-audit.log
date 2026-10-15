@@ -1,0 +1,7 @@
+Command: lake build --wfail CarrySelfAdjointOperator CarrySelfAdjointOperator.Audit
+Outcome: success
+Raw log SHA256: 3b4604f48ca6ff00f5ae134d010a30e892b6bd7440849a1d1f1044437c3b3f06
+Excerpt: new public-declaration audit and build outcome; existing replay diagnostics omitted.
+
+info: CarrySelfAdjointOperator/NativeCompletedSourceReductionChainAudit.lean:54:0: Physical sewing public roots: 47; type/body dependency closure: 6304; foundational guard passed
+Build completed successfully (10367 jobs).
