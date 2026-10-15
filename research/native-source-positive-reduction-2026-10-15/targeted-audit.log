@@ -1,0 +1,186 @@
+Command: lake build --wfail CarrySelfAdjointOperator.NativeCompletedSourcePositiveReductionAudit
+Outcome: success
+Raw log SHA256: f943183786580f0d4c4888839d9e706b4b2ba4f7d362f33b269dbba92498939a
+Excerpt: new public-declaration audit and build outcome; existing replay diagnostics omitted.
+
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:6:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceResponse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:7:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceAxis' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:8:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceResponse_analyticAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:9:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceResponse_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:10:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceAxis_eq_dslope' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:11:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceAxis_analyticAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:12:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceScale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:13:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceAxis_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:14:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceScale_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:15:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceScale_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:16:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceAxis_zero_eq_scale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:17:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceResponse_eq_mul_axis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:18:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.positiveFeature' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:19:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.positiveFeature_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:20:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.positiveFeature_inner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:21:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.positiveFeature_center_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:22:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedResponse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:23:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedResponse_source_equation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:24:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedResponse_analyticAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:25:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceAxis_eventually_ne_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:26:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:27:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:28:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceKernel_numerator_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:29:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceKernel_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:30:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.positiveFeature_center_row' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:31:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceKernel_finite_energy_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:32:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceResponse_eventuallyEq_native' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:33:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceScale_eq_rawCurvature' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:34:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceResponse_taylor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:35:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.deriv_sourceAxis_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:36:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedResponse_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:37:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.deriv_second_sourceAxis_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:38:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedResponse_hasDerivAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:39:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedSourceScale' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:40:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedSourceScale_eq' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:41:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedSourceScale_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:42:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceResponse_reconstruction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:43:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceKernel_eq_native_local' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:44:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondAxis' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:45:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondAxis_analyticAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:46:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondAxis_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:47:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedResponse_eq_mul_secondAxis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:48:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondReducedResponse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:49:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondReducedResponse_source_equation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:50:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondReducedResponse_analyticAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:51:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondPositiveFeature' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:52:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondPositiveFeature_inner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:53:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondPositiveFeature_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:54:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondChannel_hasDerivAt_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:55:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondChannel_firstJet_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:56:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.secondReducedKernel' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:57:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.reducedKernel_split' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:58:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.positivePair' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:59:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.residualAmplitude' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:60:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.residualAmplitude_quadratic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:61:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.positivePair_inner' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:62:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceKernel_two_positive_channels' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:63:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.positivePair_center_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:64:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceKernel_two_channel_finite_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:65:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.sourceKernel_energy_on_positive_nullspace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:66:0: 'CarrySelfAdjointOperator.SourcePositiveReduction.nativeKernel_two_positive_channels_local' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: CarrySelfAdjointOperator/NativeCompletedSourcePositiveReductionAudit.lean:68:0: Physical sewing public roots: 61; type/body dependency closure: 6304; foundational guard passed
+Build completed successfully (9974 jobs).
