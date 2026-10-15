@@ -1,3 +1,4 @@
+import CarrySelfAdjointOperator.GeometricPrimeCarryReuseAudit
 import CarrySelfAdjointOperator.NativeSourceThetaGreenValveAudit
 import CarrySelfAdjointOperator.NativeSourceSchurThetaAudit
 import CarrySelfAdjointOperator.NativeSourceAllOrderSchurAudit
