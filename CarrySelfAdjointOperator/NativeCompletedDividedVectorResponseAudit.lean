@@ -1,0 +1,67 @@
+import CarrySelfAdjointOperator.NativeCompletedVectorGreenReadout
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+namespace CarrySelfAdjointOperator.DividedVectorResponse
+
+#print axioms sourceVector
+#print axioms sourceVector_analyticAt_zero
+#print axioms sourceVector_readout
+#print axioms response
+#print axioms response_off_diagonal
+#print axioms response_diagonal
+#print axioms response_source_equation
+#print axioms response_continuousAt_center
+#print axioms response_readout
+#print axioms response_readout_local
+#print axioms response_center_readout
+#print axioms polarizedResponse
+#print axioms polarizedResponse_readout_local
+#print axioms coefficientVector
+#print axioms coefficientVector_readout
+#print axioms coefficientVector_finite_readout
+#print axioms sourceVector_hasSum
+#print axioms response_axis_hasSum
+#print axioms responsePrefix
+#print axioms responsePrefix_ordered_crosses
+#print axioms responsePrefix_source_equation
+#print axioms response_axis_prefix_tendsto
+#print axioms responsePrefix_off_diagonal_tendsto
+#print axioms completedValueNormalizedGreen_eq_response_numerator
+#print axioms polarizedResponse_green_readout_local
+#print axioms polarizedResponse_completion_connection_local
+#print axioms coefficientVector_parity_readout
+#print axioms parityEnergyVector
+#print axioms parityEnergyVector_readout
+
+#audit_physical_sewing
+  sourceVector
+  sourceVector_analyticAt_zero
+  sourceVector_readout
+  response
+  response_off_diagonal
+  response_diagonal
+  response_source_equation
+  response_continuousAt_center
+  response_readout
+  response_readout_local
+  response_center_readout
+  polarizedResponse
+  polarizedResponse_readout_local
+  coefficientVector
+  coefficientVector_readout
+  coefficientVector_finite_readout
+  sourceVector_hasSum
+  response_axis_hasSum
+  responsePrefix
+  responsePrefix_ordered_crosses
+  responsePrefix_source_equation
+  response_axis_prefix_tendsto
+  responsePrefix_off_diagonal_tendsto
+  completedValueNormalizedGreen_eq_response_numerator
+  polarizedResponse_green_readout_local
+  polarizedResponse_completion_connection_local
+  coefficientVector_parity_readout
+  parityEnergyVector
+  parityEnergyVector_readout
+
+end CarrySelfAdjointOperator.DividedVectorResponse

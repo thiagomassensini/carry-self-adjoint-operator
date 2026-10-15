@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-15 America/Sao_Paulo",
+  "host": "llm",
+  "base": "e2ea3d26115e4e912d4352061f21ba567fae3496",
+  "dependencies_unchanged": true,
+  "source_carrier": "CompletedPrimeDepthJetCarrier",
+  "readout": "primeDepthNormalizedResponseVectorReadout",
+  "checks": [
+    {
+      "log": "divided-vector-build.log",
+      "exit_code": 0,
+      "wfail": true,
+      "jobs": 9762,
+      "printed_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "sha256": "39ed793844bbf6947c5888ee0f42ab62fcea0049e442d175e557ab4f59701fa8"
+    },
+    {
+      "log": "divided-series-build.log",
+      "exit_code": 0,
+      "wfail": true,
+      "jobs": 9763,
+      "printed_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "sha256": "fb5cdebde7ceab35011ccf8710a3268ee60925852ddd71d00337316c08fd6501"
+    },
+    {
+      "log": "divided-vector-root-audit.log",
+      "exit_code": 0,
+      "wfail": true,
+      "jobs": 10360,
+      "printed_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "sha256": "e453cb3cd6fa64194973513f3c371e9636dbfaf53b63edbc70b17ba7fee30de6"
+    }
+  ],
+  "public_root_guard": {
+    "roots": 29,
+    "type_body_closure": 6284
+  },
+  "proved": {
+    "source_vector_analytic_near_center": true,
+    "two_point_vector_response_constructed": true,
+    "canonical_scalar_dslope_readout": true,
+    "central_readout_is_m0": true,
+    "two_variable_green_readout_with_original_normalization": true,
+    "completion_connection_retained": true,
+    "strong_prefix_convergence_off_diagonal": true,
+    "strong_axis_prefix_convergence_including_origin": true,
+    "all_order_coefficient_readout": true,
+    "arbitrary_dimension_crossed_source_energy_readout": true
+  },
+  "not_proved": {
+    "full_interior_causal_hilbert_lift_of_this_response": true,
+    "positive_gram_realization": true,
+    "prime_carry_complement_realization": true,
+    "all_order_native_positivity": true,
+    "global_height_resolvent_convergence": true,
+    "moving_diagonal_prefix_convergence": true
+  },
+  "commands": [
+    "lake build --wfail CarrySelfAdjointOperator.NativeCompletedDividedVectorResponse",
+    "lake build --wfail CarrySelfAdjointOperator.NativeCompletedDividedVectorSeries",
+    "lake build --wfail CarrySelfAdjointOperator.NativeCompletedDividedVectorResponseAudit CarrySelfAdjointOperator CarrySelfAdjointOperator.Audit"
+  ]
+}
