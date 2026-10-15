@@ -1,0 +1,56 @@
+{
+  "status": "EXPLORATORY_MPMATH_NOT_INTERVAL_CERTIFICATE",
+  "dps": 80,
+  "theta_modes": 12,
+  "cutoff": 3,
+  "raw_theta_moments": "thetaTail even-moment midpoints; converted by exact source Green formula to characteristic coefficients",
+  "rows": [
+    {
+      "n": 0,
+      "s": 1,
+      "R": "0.00001847927148397563527364392290419265055007",
+      "square_channel": "0.0005307666152492232981086710117877898536441",
+      "derivative_positive_mass": "0.00007647792193376805411147724362567235427925",
+      "derivative_negative_mass": "0.0005333274512470888111255725637966916057231",
+      "negative_over_square": "1.00482478724978409507884684031",
+      "relative_balance_error": "1.39279235e-80",
+      "simple_square_bound_passes": false,
+      "positive_derivative_roots_u": [
+        "0.2632773810000716950439457"
+      ]
+    },
+    {
+      "n": 1,
+      "s": 1,
+      "R": "0.0000000000516275178016809521336670156145961024052",
+      "square_channel": "0.000000002734130625549430926692059917494430173004",
+      "derivative_positive_mass": "0.00000001083603312346245364931067167392330971446",
+      "derivative_negative_mass": "0.00000001315714360659843695893339546650097106823",
+      "negative_over_square": "4.81218544704844650549478515595",
+      "relative_balance_error": "1.013862593e-78",
+      "simple_square_bound_passes": false,
+      "positive_derivative_roots_u": [
+        "0.1420210127336603041060394",
+        "0.3491145912286652090431228",
+        "0.584303695582398611205019"
+      ]
+    },
+    {
+      "n": 2,
+      "s": 1,
+      "R": "4.017618755211310063476093650605719989962e-17",
+      "square_channel": "3.14956879781659376295073833534498608765e-15",
+      "derivative_positive_mass": "1.366086705453410587963046355567809236694e-13",
+      "derivative_negative_mass": "1.392761250925322953516382426540532233582e-13",
+      "negative_over_square": "44.2206962391436057300431792608",
+      "relative_balance_error": "5.308267821e-76",
+      "simple_square_bound_passes": false,
+      "positive_derivative_roots_u": [
+        "0.1578660850185579480748498",
+        "0.3573167948680900744399885",
+        "0.5526312491315157879668493",
+        "0.755435655668572846962037"
+      ]
+    }
+  ]
+}
