@@ -1,0 +1,81 @@
+import CarrySelfAdjointOperator.NativePrimeCarryKernelCalibration
+import CarrySelfAdjointOperator.NativeSourceNormalizedKernelConnection
+import CarrySelfAdjointOperator.NativeSourceCovariantBoundaryState
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+namespace CarrySelfAdjointOperator.SourceKernelCalibration
+
+#print axioms complementKernel
+#print axioms complementKernel_self
+#print axioms complementKernel_coercive
+#print axioms central_calibration_norm_bound
+#print axioms central_discrepancy_gt_one_fortyeighth
+#print axioms raw_unit_state_isometric_transport_noGo
+#print axioms complementKernel_synthesis
+#print axioms momentKernelDiscrepancy
+#print axioms native_energy_eq_complement_sub_discrepancy
+#print axioms native_energy_lower_bound_with_discrepancy
+#print axioms readoutNormalizedState
+#print axioms readoutNormalizedState_smul
+#print axioms readoutNormalizedGram_dressing_invariant
+#print axioms completionConnection
+#print axioms undressedValueNormalizedGreen
+#print axioms completedValueNormalizedGreen
+#print axioms valueNormalizedGreen_discrepancy
+#print axioms valueNormalizedGreen_connection
+#print axioms valueNormalizedGreen_center_discrepancy_ne_zero
+#print axioms completionConnection_center_skew_ne_zero
+#print axioms dividedGreen_connection_correction
+#print axioms nativeConnection
+#print axioms completedConnection
+#print axioms completedConnectionState
+#print axioms completedConnection_eq_sum
+#print axioms completedConnectionState_eq_normalized_pair
+#print axioms completedConnectionState_polarized_gram
+#print axioms completedConnection_zero
+#print axioms native_completion_connections_center_cancel
+#print axioms completedConnectionState_center_norm_sq
+#print axioms completedConnectionState_isometric_transport_noGo
+#print axioms completedConnectionTangent
+#print axioms completedConnection_hasDerivAt_center
+#print axioms completedConnectionTangent_norm_sq
+#print axioms completedConnectionTangent_isometric_transport_noGo
+
+#audit_physical_sewing
+  complementKernel
+  complementKernel_self
+  complementKernel_coercive
+  central_calibration_norm_bound
+  central_discrepancy_gt_one_fortyeighth
+  raw_unit_state_isometric_transport_noGo
+  complementKernel_synthesis
+  momentKernelDiscrepancy
+  native_energy_eq_complement_sub_discrepancy
+  native_energy_lower_bound_with_discrepancy
+  readoutNormalizedState
+  readoutNormalizedState_smul
+  readoutNormalizedGram_dressing_invariant
+  completionConnection
+  undressedValueNormalizedGreen
+  completedValueNormalizedGreen
+  valueNormalizedGreen_discrepancy
+  valueNormalizedGreen_connection
+  valueNormalizedGreen_center_discrepancy_ne_zero
+  completionConnection_center_skew_ne_zero
+  dividedGreen_connection_correction
+  nativeConnection
+  completedConnection
+  completedConnectionState
+  completedConnection_eq_sum
+  completedConnectionState_eq_normalized_pair
+  completedConnectionState_polarized_gram
+  completedConnection_zero
+  native_completion_connections_center_cancel
+  completedConnectionState_center_norm_sq
+  completedConnectionState_isometric_transport_noGo
+  completedConnectionTangent
+  completedConnection_hasDerivAt_center
+  completedConnectionTangent_norm_sq
+  completedConnectionTangent_isometric_transport_noGo
+
+end CarrySelfAdjointOperator.SourceKernelCalibration
