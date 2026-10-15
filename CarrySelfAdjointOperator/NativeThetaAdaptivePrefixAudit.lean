@@ -1,0 +1,73 @@
+import CarrySelfAdjointOperator.NativeThetaPrincipalDensityObstruction
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+namespace CarrySelfAdjointOperator
+
+#print axioms nativeThetaPrefixWeight
+#print axioms nativeThetaPrefixNumerator
+#print axioms nativeThetaPrefixScore
+#print axioms nativeThetaPrefixWeight_pos
+#print axioms nativeThetaModeParameter_mono
+#print axioms nativeThetaModeScore_mono
+#print axioms nativeThetaPrefixScore_first_le
+#print axioms nativeThetaPrefixScore_le_tailMode
+#print axioms nativeThetaModeScore_density_summable
+#print axioms nativeThetaModeScore_density_tsum
+#print axioms nativeThetaPrefixRemainderDensity
+#print axioms nativeThetaPrefixRemainderDensity_nonneg
+#print axioms nativeThetaPrefixRemainderDensity_eq
+#print axioms nativeThetaPrefixScore_le_full
+#print axioms nativeThetaPrefixScore_increment
+#print axioms nativeThetaPrefixScore_mono_step
+#print axioms nativeThetaPrefixScore_tendsto
+#print axioms nativeThetaAdaptiveModeCount
+#print axioms nativeThetaAdaptiveModeCount_pos
+#print axioms nativeThetaCoefficientMass
+#print axioms nativeThetaCoefficientMass_nonneg
+#print axioms nativeThetaCoefficientMass_pos_of_coeff
+#print axioms nativeThetaPolynomial_eval_bound
+#print axioms nativeSchurThetaCoefficientMass_pos
+#print axioms nativeThetaAdaptiveTarget
+#print axioms nativeThetaAdaptiveBudget
+#print axioms nativeSchurThetaAdaptiveTarget_pos
+#print axioms nativeThetaAdaptiveBudget_le_half_target
+#print axioms nativeThetaFirstModeScore_ge_self
+#print axioms nativeThetaPrefixScore_ge_self
+#print axioms nativeThetaOddPrincipal_eventually_neg
+#print axioms nativeThetaOddPrincipal_not_pointwise_nonneg
+
+#audit_physical_sewing
+  nativeThetaPrefixWeight
+  nativeThetaPrefixNumerator
+  nativeThetaPrefixScore
+  nativeThetaPrefixWeight_pos
+  nativeThetaModeParameter_mono
+  nativeThetaModeScore_mono
+  nativeThetaPrefixScore_first_le
+  nativeThetaPrefixScore_le_tailMode
+  nativeThetaModeScore_density_summable
+  nativeThetaModeScore_density_tsum
+  nativeThetaPrefixRemainderDensity
+  nativeThetaPrefixRemainderDensity_nonneg
+  nativeThetaPrefixRemainderDensity_eq
+  nativeThetaPrefixScore_le_full
+  nativeThetaPrefixScore_increment
+  nativeThetaPrefixScore_mono_step
+  nativeThetaPrefixScore_tendsto
+  nativeThetaAdaptiveModeCount
+  nativeThetaAdaptiveModeCount_pos
+  nativeThetaCoefficientMass
+  nativeThetaCoefficientMass_nonneg
+  nativeThetaCoefficientMass_pos_of_coeff
+  nativeThetaPolynomial_eval_bound
+  nativeSchurThetaCoefficientMass_pos
+  nativeThetaAdaptiveTarget
+  nativeThetaAdaptiveBudget
+  nativeSchurThetaAdaptiveTarget_pos
+  nativeThetaAdaptiveBudget_le_half_target
+  nativeThetaFirstModeScore_ge_self
+  nativeThetaPrefixScore_ge_self
+  nativeThetaOddPrincipal_eventually_neg
+  nativeThetaOddPrincipal_not_pointwise_nonneg
+
+end CarrySelfAdjointOperator
