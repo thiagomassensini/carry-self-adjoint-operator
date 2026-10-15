@@ -1,0 +1,101 @@
+import CarrySelfAdjointOperator.NativeThetaModeScore
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+namespace CarrySelfAdjointOperator
+
+#print axioms XiThetaScore.atom
+#print axioms XiThetaScore.atom_nonneg
+#print axioms XiThetaScore.atom_summable
+#print axioms XiThetaScore.atom_hasDerivAt
+#print axioms XiThetaScore.atomSum
+#print axioms XiThetaScore.atomSum_hasDerivAt
+#print axioms XiThetaScore.decayCoefficient
+#print axioms XiThetaScore.decayCoefficient_summable
+#print axioms XiThetaScore.atom_decay
+#print axioms XiThetaScore.atomSum_decay
+#print axioms completedNativeXiCosineKernel_eq_atomSum
+#print axioms completedNativeXiCosineKernelFirst
+#print axioms completedNativeXiCosineKernel_hasDerivAt
+#print axioms completedNativeXiCosineKernelFirst_decay
+#print axioms nativeThetaScore
+#print axioms completedNativeXiCosineKernelFirst_continuous
+#print axioms integrableOn_polynomial_mul_kernelFirst
+#print axioms nativeThetaScore_density
+#print axioms integrableOn_nativeThetaScore_density
+#print axioms nativeThetaScoreIntegral
+#print axioms polynomial_mul_nativeXiKernel_tendsto_zero
+#print axioms nativeXiPolynomialIntegral_euler_score
+#print axioms nativeSchurScore_odd_balance
+#print axioms nativeSchurScore_even_balance
+#print axioms nativeThetaModeParameter
+#print axioms nativeThetaModeWeight
+#print axioms nativeThetaModeFirst
+#print axioms nativeThetaModeSlope
+#print axioms nativeThetaModeScore
+#print axioms nativeThetaModeWeight_eq
+#print axioms nativeThetaModeWeight_pos
+#print axioms nativeThetaModeWeight_hasDerivAt
+#print axioms nativeThetaModeScore_mul_weight
+#print axioms nativeThetaModeSlope_mono
+#print axioms nativeThetaModeSlope_difference_le
+#print axioms nativeThetaModeParameter_first_le
+#print axioms nativeThetaModeScore_first_le
+#print axioms nativeThetaModeWeight_summable
+#print axioms nativeThetaModeFirst_summable
+#print axioms nativeThetaModeWeight_tsum
+#print axioms nativeThetaModeFirst_tsum
+#print axioms nativeThetaScoreRemainderDensity
+#print axioms nativeThetaScoreRemainderDensity_summable
+#print axioms nativeThetaScoreRemainderDensity_nonneg
+#print axioms nativeThetaScoreRemainderDensity_eq
+#print axioms nativeThetaScore_firstMode_lower_bound
+
+#audit_physical_sewing
+  XiThetaScore.atom
+  XiThetaScore.atom_nonneg
+  XiThetaScore.atom_summable
+  XiThetaScore.atom_hasDerivAt
+  XiThetaScore.atomSum
+  XiThetaScore.atomSum_hasDerivAt
+  XiThetaScore.decayCoefficient
+  XiThetaScore.decayCoefficient_summable
+  XiThetaScore.atom_decay
+  XiThetaScore.atomSum_decay
+  completedNativeXiCosineKernel_eq_atomSum
+  completedNativeXiCosineKernelFirst
+  completedNativeXiCosineKernel_hasDerivAt
+  completedNativeXiCosineKernelFirst_decay
+  nativeThetaScore
+  completedNativeXiCosineKernelFirst_continuous
+  integrableOn_polynomial_mul_kernelFirst
+  nativeThetaScore_density
+  integrableOn_nativeThetaScore_density
+  nativeThetaScoreIntegral
+  polynomial_mul_nativeXiKernel_tendsto_zero
+  nativeXiPolynomialIntegral_euler_score
+  nativeSchurScore_odd_balance
+  nativeSchurScore_even_balance
+  nativeThetaModeParameter
+  nativeThetaModeWeight
+  nativeThetaModeFirst
+  nativeThetaModeSlope
+  nativeThetaModeScore
+  nativeThetaModeWeight_eq
+  nativeThetaModeWeight_pos
+  nativeThetaModeWeight_hasDerivAt
+  nativeThetaModeScore_mul_weight
+  nativeThetaModeSlope_mono
+  nativeThetaModeSlope_difference_le
+  nativeThetaModeParameter_first_le
+  nativeThetaModeScore_first_le
+  nativeThetaModeWeight_summable
+  nativeThetaModeFirst_summable
+  nativeThetaModeWeight_tsum
+  nativeThetaModeFirst_tsum
+  nativeThetaScoreRemainderDensity
+  nativeThetaScoreRemainderDensity_summable
+  nativeThetaScoreRemainderDensity_nonneg
+  nativeThetaScoreRemainderDensity_eq
+  nativeThetaScore_firstMode_lower_bound
+
+end CarrySelfAdjointOperator
