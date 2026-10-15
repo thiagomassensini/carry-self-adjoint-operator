@@ -1,0 +1,74 @@
+import CarrySelfAdjointOperator.NativeThetaValveCentralKernel
+import CarrySelfAdjointOperator.NativeThetaCofactorSignGate
+import CarrySelfAdjointOperator.NativePhysicalSewingAuditSupport
+
+namespace CarrySelfAdjointOperator
+
+#print axioms nativeSourcePrefixDet
+#print axioms nativeSourceCofactorVector
+#print axioms nativeSourceCofactorThetaPolynomial
+#print axioms nativeSourceBorderedScalar
+#print axioms nativeSourcePrefixDet_ne_zero
+#print axioms nativeSourceCofactorVector_eq_scaled
+#print axioms nativeThetaQuadraticPolynomial_smul
+#print axioms nativeSourceCofactorThetaPolynomial_eq_scaled
+#print axioms nativeSourceCofactorThetaPolynomial_integral
+#print axioms nativeSourceBorderedScalar_eq
+#print axioms nativeSourceCofactorThetaPolynomial_integral_bordered
+#print axioms nativeThetaCoefficientMass_smul
+#print axioms nativeThetaAdaptiveTarget_smul
+#print axioms nativeSourceCofactorTarget_eq_scaled
+#print axioms nativeSourceCofactorTarget_pos
+#print axioms nativeSourceCofactor_margin_iff
+#print axioms nativeValveMassCoefficient
+#print axioms nativeValveMassCoefficient_zero
+#print axioms nativeValveMassCoefficient_recurrence
+#print axioms nativeValveMassCoefficient_one
+#print axioms nativeValveMassCoefficient_two
+#print axioms nativeValveMass_second_hankel_minor
+#print axioms nativeCharacteristicCoefficient_two_pos
+#print axioms nativeValveMass_second_hankel_minor_neg
+#print axioms nativeValveMass_second_toeplitz_minor_pos
+#print axioms nativeValveMass_hankel_two_not_posSemidef
+#print axioms nativeThetaMomentPolynomial_coeff_two_valve
+#print axioms nativeSchurThetaPolynomial_coeff_two_valve
+#print axioms NativeThetaCofactorSign
+#print axioms nativeSourceCofactor_pos_implies_schur_pos
+#print axioms nativeThetaCofactorSign_iff_stieltjes
+#print axioms completedNative_zero_im_eq_zero_of_thetaCofactorSign
+
+#audit_physical_sewing
+  nativeSourcePrefixDet
+  nativeSourceCofactorVector
+  nativeSourceCofactorThetaPolynomial
+  nativeSourceBorderedScalar
+  nativeSourcePrefixDet_ne_zero
+  nativeSourceCofactorVector_eq_scaled
+  nativeThetaQuadraticPolynomial_smul
+  nativeSourceCofactorThetaPolynomial_eq_scaled
+  nativeSourceCofactorThetaPolynomial_integral
+  nativeSourceBorderedScalar_eq
+  nativeSourceCofactorThetaPolynomial_integral_bordered
+  nativeThetaCoefficientMass_smul
+  nativeThetaAdaptiveTarget_smul
+  nativeSourceCofactorTarget_eq_scaled
+  nativeSourceCofactorTarget_pos
+  nativeSourceCofactor_margin_iff
+  nativeValveMassCoefficient
+  nativeValveMassCoefficient_zero
+  nativeValveMassCoefficient_recurrence
+  nativeValveMassCoefficient_one
+  nativeValveMassCoefficient_two
+  nativeValveMass_second_hankel_minor
+  nativeCharacteristicCoefficient_two_pos
+  nativeValveMass_second_hankel_minor_neg
+  nativeValveMass_second_toeplitz_minor_pos
+  nativeValveMass_hankel_two_not_posSemidef
+  nativeThetaMomentPolynomial_coeff_two_valve
+  nativeSchurThetaPolynomial_coeff_two_valve
+  NativeThetaCofactorSign
+  nativeSourceCofactor_pos_implies_schur_pos
+  nativeThetaCofactorSign_iff_stieltjes
+  completedNative_zero_im_eq_zero_of_thetaCofactorSign
+
+end CarrySelfAdjointOperator
