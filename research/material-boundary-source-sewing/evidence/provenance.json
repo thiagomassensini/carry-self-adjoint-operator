@@ -1,0 +1,56 @@
+{
+  "operator": {
+    "path": "/home/thlinux/carry-self-adjoint-operator",
+    "head": "045369f6dedcb2e75e9aefed1d12c9f73b9a2532",
+    "branch": "agent/material-boundary-source-sewing",
+    "status": "?? CarrySelfAdjointOperator/C2OddTfvdTransport.lean\n?? CarrySelfAdjointOperator/C2OddTfvdTransportAudit.lean\n?? CarrySelfAdjointOperator/NativeMaterialBoundaryRegressions.lean\n?? CarrySelfAdjointOperator/NativeMaterialBoundarySourceTransport.lean\n?? CarrySelfAdjointOperator/NativeMaterialCameraBoundary.lean\n?? research/material-boundary-source-sewing/",
+    "base": "045369f6dedcb2e75e9aefed1d12c9f73b9a2532"
+  },
+  "native": {
+    "path": "/home/thlinux/native-carry-spectral-weyl",
+    "head": "871217099a069083791738578b2e44005b31986e",
+    "branch": "agent/relational-divisibility-gram",
+    "status": ""
+  },
+  "green": {
+    "path": "/home/thlinux/green-frame-theorem-limit",
+    "head": "12445c08087fa0c5fc5b2350f3455e09bc6b8b42",
+    "branch": "main",
+    "status": ""
+  },
+  "geometry": {
+    "path": "/home/thlinux/geometry-of-numbers",
+    "head": "da58f044c1c75bd828951bfb41614a6e7b8b465e",
+    "branch": "agent/seventh-even-centered-source",
+    "status": ""
+  },
+  "protected_hashes": {
+    "lean-toolchain": "2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e",
+    "lakefile.toml": "da6810c80e802304db8919b0bd7cf7e42611444ed6deef564854e7fa15e7a6fe",
+    "lake-manifest.json": "822866313e377adcb9c6249680ed67ceb47682af1bb0cd3cc5203554786bcfeb",
+    "CarrySelfAdjointOperator/C2OddTfvdTransport.lean": "5bfe06e8d15432c4d6cab6719dc22a0376019243f3e896329ea9ab9dd7458cb0",
+    "CarrySelfAdjointOperator/C2OddTfvdTransportAudit.lean": "b6f05d0241058885da362b5cb20d3968d704a667da3ffc443714a69f3564623c"
+  },
+  "effective_packages": {
+    "NativeCarrySpectralWeyl": {
+      "path": "/home/thlinux/carry-c2-source-raw-green/.lake/packages/NativeCarrySpectralWeyl",
+      "head": "298d83c9351e308a5213b9f5ac32e44087f98a9f"
+    },
+    "GreenFrame": {
+      "path": "/home/thlinux/carry-c2-source-raw-green/.lake/packages/GreenFrame",
+      "head": "cd2d838bee67ad23f869a02f8ed9f0a0feb926fa"
+    },
+    "geometry-of-numbers": {
+      "path": "/home/thlinux/carry-self-adjoint-operator/.lake/packages/geometry-of-numbers",
+      "head": "d7cc54f5c485320f1fada33118e9e6101488819a"
+    },
+    "CPFormal": {
+      "path": "/home/thlinux/carry-c2-source-raw-green/.lake/packages/CPFormal",
+      "head": "65d50f6db1208708e109982ba97e1d51d3039956"
+    },
+    "NativeCarryC3Crosswalk": {
+      "path": "/home/thlinux/carry-c2-source-raw-green/.lake/packages/NativeCarryC3Crosswalk",
+      "head": "150cfc7fb08da96bf8117f15869cc2b819d593c2"
+    }
+  }
+}

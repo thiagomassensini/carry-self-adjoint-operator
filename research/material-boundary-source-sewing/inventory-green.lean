@@ -1,0 +1,12 @@
+import GreenFrame.Concrete.Analysis.ConcreteSplitBounds
+import GreenFrame.Concrete.Analysis.FrameOperator
+import GreenFrame.Concrete.Arithmetic.PositionalDepth
+
+#check GreenFrame.Concrete.carryCameraWeight_finsum_eq_one
+#print axioms GreenFrame.Concrete.carryCameraWeight_finsum_eq_one
+#check GreenFrame.Concrete.concreteAnalysisOperator_norm_sq_bounds
+#print axioms GreenFrame.Concrete.concreteAnalysisOperator_norm_sq_bounds
+#check GreenFrame.Concrete.frameOperator_strictlyPositive
+#print axioms GreenFrame.Concrete.frameOperator_strictlyPositive
+#check GreenFrame.Concrete.concreteAnalysisOperator_norm_sq_eq_seedResidual_add_green
+#print axioms GreenFrame.Concrete.concreteAnalysisOperator_norm_sq_eq_seedResidual_add_green

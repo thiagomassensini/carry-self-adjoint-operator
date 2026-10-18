@@ -1,0 +1,281 @@
+{
+  "base": "045369f6dedcb2e75e9aefed1d12c9f73b9a2532",
+  "head_at_validation": "045369f6dedcb2e75e9aefed1d12c9f73b9a2532",
+  "public_roots": 43,
+  "commands": [
+    {
+      "name": "provenance",
+      "command": [
+        "python3",
+        "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/verify_provenance.py"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 0.09052768297260627
+    },
+    {
+      "name": "registry",
+      "command": [
+        "python3",
+        "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/check_registry.py"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 0.5592073599691503
+    },
+    {
+      "name": "native-pr15-build",
+      "command": [
+        "lake",
+        "build",
+        "--wfail",
+        "NativeCarrySpectralWeyl.Finite.RelationalDivisibilityGram"
+      ],
+      "cwd": "/home/thlinux/native-carry-spectral-weyl",
+      "exit_code": 0,
+      "seconds": 2.4618308300268836
+    },
+    {
+      "name": "inventory-native",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/inventory-native.lean"
+      ],
+      "cwd": "/home/thlinux/native-carry-spectral-weyl",
+      "exit_code": 0,
+      "seconds": 4.532943319994956
+    },
+    {
+      "name": "inventory-green",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/inventory-green.lean"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 7.574227906996384
+    },
+    {
+      "name": "inventory-geometry",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/inventory-geometry.lean"
+      ],
+      "cwd": "/home/thlinux/geometry-of-numbers",
+      "exit_code": 0,
+      "seconds": 7.129812266968656
+    },
+    {
+      "name": "inventory-operator",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/inventory-operator.lean"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 8.064638633979484
+    },
+    {
+      "name": "research-build",
+      "command": [
+        "lake",
+        "build",
+        "--wfail",
+        "CarrySelfAdjointOperator.NativeMaterialCameraBoundary",
+        "CarrySelfAdjointOperator.NativeMaterialBoundarySourceTransport",
+        "CarrySelfAdjointOperator.NativeMaterialBoundaryRegressions",
+        "CarrySelfAdjointOperator.NativeMaterialBoundarySewingAudit"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 22.42505041405093
+    },
+    {
+      "name": "research-kernel",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "CarrySelfAdjointOperator/NativeMaterialBoundarySewingAudit.lean"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 8.800574134977069
+    },
+    {
+      "name": "prior-registry-material_camera_jet",
+      "command": [
+        "python3",
+        "scripts/check_material_camera_jet_registry.py"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 0.039210382965393364
+    },
+    {
+      "name": "prior-registry-material_chiral_canary",
+      "command": [
+        "python3",
+        "scripts/check_material_chiral_canary_registry.py"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 0.03629168000770733
+    },
+    {
+      "name": "prior-registry-log_gap_connection",
+      "command": [
+        "python3",
+        "scripts/check_log_gap_connection_registry.py"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 0.03698759601684287
+    },
+    {
+      "name": "prior-registry-first_edge_source",
+      "command": [
+        "python3",
+        "scripts/check_first_edge_source_registry.py"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 0.035956162959337234
+    },
+    {
+      "name": "prior-registry-native_cauchy_ports",
+      "command": [
+        "python3",
+        "scripts/check_native_cauchy_ports_registry.py"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 0.036029729002621025
+    },
+    {
+      "name": "prior-registry-cauchy_laguerre_isometry",
+      "command": [
+        "python3",
+        "scripts/check_cauchy_laguerre_isometry_registry.py"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 0.05836345098214224
+    },
+    {
+      "name": "root-build",
+      "command": [
+        "lake",
+        "build",
+        "--wfail"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 13.941874200012535
+    },
+    {
+      "name": "root-audit-build",
+      "command": [
+        "lake",
+        "build",
+        "--wfail",
+        "CarrySelfAdjointOperator.Audit"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 19.37023101298837
+    },
+    {
+      "name": "root-audit-kernel",
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "CarrySelfAdjointOperator/Audit.lean"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 11.38700886402512
+    },
+    {
+      "name": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 0.006895374972373247
+    },
+    {
+      "name": "final-provenance",
+      "command": [
+        "python3",
+        "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/verify_provenance.py"
+      ],
+      "cwd": "/home/thlinux/carry-self-adjoint-operator",
+      "exit_code": 0,
+      "seconds": 0.08880237699486315
+    }
+  ],
+  "source_sha256": {
+    "CarrySelfAdjointOperator.lean": "437f4d65a32fd2ffa55757091671404e40ff9d385fbf156d6f3ab752390b921d",
+    "CarrySelfAdjointOperator/Audit.lean": "5ef9914f5bee3a63d5a962bb5ca45b96f6d427311da8b4f26e181c24a8df3cb9",
+    "audit/theorem-registry.json": "effe1782a3190f25a4a971a6310b43c2073e15fa96aa12cddb27b7847cebc731",
+    "audit/material-boundary-sewing-registry.json": "4e32c722b73577b53d37c271a71d70a25f3780a6e372803acecfd6b1cca56776",
+    "CarrySelfAdjointOperator/NativeMaterialBoundaryRegressions.lean": "cf26dda68e8dc36bbd443168d873b0217e099e31e2cf568babbd06963b1f07a5",
+    "CarrySelfAdjointOperator/NativeMaterialBoundarySewingAudit.lean": "b5c487362bd9b01c4498133fe621ec1352994a08cd3f00b227c81c4333df75ef",
+    "CarrySelfAdjointOperator/NativeMaterialBoundarySourceTransport.lean": "c3550da1fca245a19ecddd43c0bb3f18a7ae333a2998c53e9e379652255ed2c0",
+    "CarrySelfAdjointOperator/NativeMaterialCameraBoundary.lean": "2ff46a6f7437891091dd37609e8cf65b7f53f602671a7d365f01faeade823d59",
+    "research/material-boundary-source-sewing/GOAL.md": "e8f153f982f3cb0851667cf903e0f4012a8befc4c8150eef3cca8d886faabc29",
+    "research/material-boundary-source-sewing/INVENTORY.md": "42ca34045687ee2e36eeaee2786b6dc56b48b086498575a5ecfa1843da315646",
+    "research/material-boundary-source-sewing/REPORT.md": "e396912b0ef8bd2053de8c757c2c90eab323eddef979c8fabb4cf64acae9a1c2",
+    "research/material-boundary-source-sewing/check_registry.py": "05cb75a27e9bbe8fc3153b3fbd4e62605ea85a61b890dbb7498a8ec365b16216",
+    "research/material-boundary-source-sewing/inventory-geometry.lean": "1dab4c7f934503875ae1302d3f6622581027aa33bef89a27b079b27b2ee0a2e1",
+    "research/material-boundary-source-sewing/inventory-green.lean": "f9d6f2f2447fadb71dff5593b0e2e87e92afbb95c26d1571562e87cf47dfdf39",
+    "research/material-boundary-source-sewing/inventory-native.lean": "3913b4eabf8b89598522251922e26b684660e24f264a0cbcec397e9fa1a147b5",
+    "research/material-boundary-source-sewing/inventory-operator.lean": "87bff72966a46e33398071c7f174eb7497ea15a3afd2df35e385abbe4aa11e79",
+    "research/material-boundary-source-sewing/validate.py": "ea19f314a92b7d6f39b7ac4c9cf66250b8c0f9436eaff9b40fb51f0db93d06b5",
+    "research/material-boundary-source-sewing/verify_evidence.py": "e501d89813f02fa1e8ad8a85c778c257f9e4b2deb10e51347be7149d822862f6",
+    "research/material-boundary-source-sewing/verify_provenance.py": "5f7acbc421d34ab67fdaed21b2f9d9d8d50ae00397a5311cfa8847c31b58d0c1"
+  },
+  "evidence_sha256": {
+    "commands.json": "5140f99087aab7caf382bb165271222156dd6ce881bc82c221a6004cf63b5d0e",
+    "diff-check.log.gz": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+    "final-provenance.log.gz": "8eb22078abed6c2769c5703d6507b753c66b5592de68ba61843bb333b228c30d",
+    "green-checkout-cache-miss.log.gz": "f77dc5d6bb7c2d4e051a63b7070096a8bbd232af248c2b7562acc0af6ccb69cc",
+    "green-source-comparison.json": "58c189c31d707981e6cf3f838f2c7b3c67eae3c2f980b46f653c5e9948de9fc8",
+    "historical-raw-static.log.gz": "d173a46d03c9832b8ae21c96fcbfef94c2da617b448ab5f8827df5eb473096d2",
+    "inventory-geometry.log.gz": "959b879cbb2e896e26b0efc0fc2423d4e0490ac8095880114b5b1b776a0d5e85",
+    "inventory-green.log.gz": "001d1f9e0cb412299e0b07e98903783c80f9755a05a1a3f187ba4a72854bd9e5",
+    "inventory-native.log.gz": "c257b4510876dbcdc847f5abd3528a22176d439a750c5ff578483a3063baf820",
+    "inventory-operator.log.gz": "41e1d384208ea388e67fadcdad8d58a1c0842da675d61fd35178a6084f3fae16",
+    "native-pr15-build.log.gz": "42c4a12d685b89548fe4a980b29f6d87eb51678cde72c47123db3c4d76a64d4d",
+    "native-pr15.json": "3fd5aaf9bc281f860af9a5d40779b499f353689ee133106d4eac9da56c4242e5",
+    "prior-registry-cauchy_laguerre_isometry.log.gz": "d6af420dea5a22fd93609c6be3276790ca36fcaa3ea88167aca1cbc3745f252e",
+    "prior-registry-first_edge_source.log.gz": "331b21f2e730032d99b073f68c82ba57a267cce562de1a60d18774c3b2cfeaea",
+    "prior-registry-log_gap_connection.log.gz": "8ed091fa38fa1523164a38c3bd77fe4378670e246ae15d4d7994626df35ef118",
+    "prior-registry-material_camera_jet.log.gz": "37bbeb038cc5aed10a842f312f83b5826f5c6a5349b4c4e2d13c2c797a5766ef",
+    "prior-registry-material_chiral_canary.log.gz": "3d0c48c8e8e4e2854de250cb943a8ea496b8f0967a7e1c5a50df1dd37bc70c10",
+    "prior-registry-native_cauchy_ports.log.gz": "97b11b05840c9e1c707839fa3ff5bb8f7fe7d701f7787d341b0c215665a26c7c",
+    "provenance.json": "40de3559ed263726af00fec5fb91b584a26acdacca1c4ea351174c0f45cdf439",
+    "provenance.log.gz": "8eb22078abed6c2769c5703d6507b753c66b5592de68ba61843bb333b228c30d",
+    "registry.log.gz": "51b4ba50e6ada9e0028ccdac14a1b736a18963abead81979feacec6a5619ec3a",
+    "research-build.log.gz": "cdcebd2edeafeb0abc617488385a14a3bfc70db32622bf6891f4e186ca8f11d6",
+    "research-kernel.log.gz": "bf59bbcdac6f6fba6ee1636a9608ebc414694e6f3f453f6e2a64b0da8094cefb",
+    "root-audit-build.log.gz": "698a2a3c083fbfbf3b4ec425aca87a7d091c00a36c48186d526d1806df33c7d6",
+    "root-audit-kernel.log.gz": "c5c37bd542078616b0d3dd831bf751aff4d32d51c0c062994303732852b6b179",
+    "root-build.log.gz": "a4de442e201aff793eaef1b4d9d0bb7c283e65594a73bb27108c76a9767db7af"
+  },
+  "historical_static_scanner": "raw script has three pre-existing comment false positives; unchanged baseline checked by registry.py",
+  "status": "PASS: universal physical border identity and localized antipodal obstruction; full positivity bridge OPEN"
+}

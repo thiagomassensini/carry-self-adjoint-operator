@@ -1,0 +1,192 @@
+{
+  "modules": [
+    {
+      "module": "NativeMaterialCameraBoundary",
+      "declarations": [
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.unitBorderStencil"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.unitBorderStencil_apply"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.cameraCoreStencil"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.cameraBorderStencil"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.not_dvd_in_translated_interval"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.half_dvd_even_mul"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.finiteCoefficient_border_one"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.finiteCoefficient_at_zero"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.finiteStencil_eq_core_add_border"
+        }
+      ]
+    },
+    {
+      "module": "NativeMaterialBoundarySourceTransport",
+      "declarations": [
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.coreMaterialJet"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.borderMaterialJet"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.materialCameraJet_core_border"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.materialCameraTemporalJet_core_border"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.cameraMaterialFamily"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.coreMaterialFamily"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.borderMaterialFamily"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.cameraMaterialFamily_core_border"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.completedMaterialTransport"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.completedMaterialTransport_source_chart"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.completedMaterialTransport_camera_family"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.completed_camera_two_inputs"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.originalMaterialSource_core_border"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.originalCamera_source_input_core_border"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.originalMaterialSource_border_columns"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.cameraPieceStencil"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.physicalGreenPiece"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.physicalGreenPiece_synthesis"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.originalCamera_four_vector_channels"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.completedStencilFamily"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.cameraFourChannels"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.cameraFourChannels_synthesis"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.completedStencilFamily_signed_sixteen_sectors"
+        }
+      ]
+    },
+    {
+      "module": "NativeMaterialBoundaryRegressions",
+      "declarations": [
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.c2_border_regression"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.c3_border_regression"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.c4_border_regression"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.c5_border_regression"
+        },
+        {
+          "kind": "def",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.unitMaterialSamples"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.first_mixed_material_border_cross"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.first_mixed_material_border_cross_ne_zero"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.even_antipodal_source_difference"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.radial_cauchy_column_ne_zero"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.original_completed_column_ne_zero"
+        },
+        {
+          "kind": "theorem",
+          "qualified": "CarrySelfAdjointOperator.MaterialBoundarySewing.c4_antipodal_source_error_eventually_ne_zero"
+        }
+      ]
+    }
+  ],
+  "public_roots": 43
+}
