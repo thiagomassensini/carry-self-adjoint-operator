@@ -59,12 +59,12 @@ def generate_block(root: Path, block: int, out_dir: Path) -> dict:
         "",
     ]
 
-    for j, num, den, q, left_ep, right_ep in rows:
+        for j, num, den, q, left_ep, right_ep in rows:
         out.append(
             f"""theorem theta16_floor_cell_{j:03d} :
     ({q} : ℝ) / 1000000000000000000 ≤
       (({j} : ℝ)/512)^2 *
-        (∫ x in ({left_ep}:ℝ)..({right_ep}:ℝ), x^14*thetaFirstMode x) := by
+                (∫ x in ((({j} : ℝ)/512))..(((({j}+1 : ℕ) : ℝ)/512)), x^14*thetaFirstMode x) := by
   have h := (thetaFourteenth_cell_bounds_14_{j:03d}).1
   have hs := mul_le_mul_of_nonneg_left h
     (show (0 : ℝ) ≤ (({j} : ℝ)/512)^2 by positivity)
@@ -73,12 +73,18 @@ def generate_block(root: Path, block: int, out_dir: Path) -> dict:
         (({j} : ℝ)/512)^2 *
           ({num}/{den} : ℝ) := by
     norm_num
+    have hleft :
+            ({left_ep} : ℝ) = (({j} : ℝ)/512) := by
+        norm_num
+    have hright :
+            ({right_ep} : ℝ) = (((( {j}+1 : ℕ) : ℝ)/512)) := by
+        norm_num
   have ht :
       (({j} : ℝ)/512)^2 *
         ({num}/{den} : ℝ) ≤
       (({j} : ℝ)/512)^2 *
-        (∫ x in ({left_ep}:ℝ)..({right_ep}:ℝ), x^14*thetaFirstMode x) := by
-    simpa using hs
+                (∫ x in ((({j} : ℝ)/512))..(((({j}+1 : ℕ) : ℝ)/512)), x^14*thetaFirstMode x) := by
+        simpa [hleft, hright] using hs
   exact hn.trans ht
 """
         )
