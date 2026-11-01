@@ -5,9 +5,9 @@ For each block b in 00..17:
 - reads CarrySelfAdjointOperator/ThetaFourteenthSourceCertificateData/Cells14_{b}.lean
 - extracts theorem headers thetaFourteenth_cell_bounds_14_jjj
 - computes q_j = floor(j^2 * num * 10^18 / (512^2 * den))
-- writes scratch_local/Theta16FloorBlock{b}.lean with 32 Lean theorems
+- writes Theta16FloorBlock{b}.lean with 32 Lean theorems
 
-Also writes a JSON report to scratch_local/theta16_floor_generation_report.json.
+Also writes a JSON report to <output-dir>/theta16_floor_generation_report.json.
 """
 
 from __future__ import annotations
@@ -59,12 +59,12 @@ def generate_block(root: Path, block: int, out_dir: Path) -> dict:
         "",
     ]
 
-        for j, num, den, q, left_ep, right_ep in rows:
+    for j, num, den, q, left_ep, right_ep in rows:
         out.append(
             f"""theorem theta16_floor_cell_{j:03d} :
     ({q} : ℝ) / 1000000000000000000 ≤
       (({j} : ℝ)/512)^2 *
-                (∫ x in ((({j} : ℝ)/512))..(((({j}+1 : ℕ) : ℝ)/512)), x^14*thetaFirstMode x) := by
+        (∫ x in ((({j} : ℝ)/512))..(((({j}+1 : ℕ) : ℝ)/512)), x^14*thetaFirstMode x) := by
   have h := (thetaFourteenth_cell_bounds_14_{j:03d}).1
   have hs := mul_le_mul_of_nonneg_left h
     (show (0 : ℝ) ≤ (({j} : ℝ)/512)^2 by positivity)
@@ -73,18 +73,18 @@ def generate_block(root: Path, block: int, out_dir: Path) -> dict:
         (({j} : ℝ)/512)^2 *
           ({num}/{den} : ℝ) := by
     norm_num
-    have hleft :
-            ({left_ep} : ℝ) = (({j} : ℝ)/512) := by
-        norm_num
-    have hright :
-            ({right_ep} : ℝ) = (((( {j}+1 : ℕ) : ℝ)/512)) := by
-        norm_num
+  have hleft :
+      ({left_ep} : ℝ) = (({j} : ℝ)/512) := by
+    norm_num
+  have hright :
+      ({right_ep} : ℝ) = (((( {j}+1 : ℕ) : ℝ)/512)) := by
+    norm_num
   have ht :
       (({j} : ℝ)/512)^2 *
         ({num}/{den} : ℝ) ≤
       (({j} : ℝ)/512)^2 *
-                (∫ x in ((({j} : ℝ)/512))..(((({j}+1 : ℕ) : ℝ)/512)), x^14*thetaFirstMode x) := by
-        simpa [hleft, hright] using hs
+        (∫ x in ((({j} : ℝ)/512))..(((({j}+1 : ℕ) : ℝ)/512)), x^14*thetaFirstMode x) := by
+    simpa [hleft, hright] using hs
   exact hn.trans ht
 """
         )
@@ -130,6 +130,11 @@ def main() -> None:
         help="Repository root (default: current directory)",
     )
     parser.add_argument(
+        "--output-dir",
+        default="scratch_local",
+        help="Directory where generated block files and report are written",
+    )
+    parser.add_argument(
         "--compile",
         action="store_true",
         help="Compile all generated block files with lake env lean",
@@ -137,7 +142,7 @@ def main() -> None:
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
-    out_dir = root / "scratch_local"
+    out_dir = root / args.output_dir
     out_dir.mkdir(exist_ok=True)
 
     generated_files = []
