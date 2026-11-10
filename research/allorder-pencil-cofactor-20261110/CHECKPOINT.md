@@ -1,10 +1,33 @@
 # CHECKPOINT — ALL-ORDER PENCIL/COFACTOR
 
 ## Estado
-Checkpoint atual: Missão C — auditoria da recorrência entre massas
-Status: PARTIAL (checkpoint 4 e gates all-order ainda abertos; checkpoint 5 e Missões A–B GREEN)
+Checkpoint atual: prioridades 2–3 — characteristic ceiling all-order e pontes fonte/Hankel 4×4
+Status: PARTIAL (Toda division-free geral e gates de sinal deslocados/all-order ainda abertos; novas pontes centrais 4×4 compiladas)
 
 Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: as duas famílias de dominância Euler/theta implicam positividade das torres nativas `s=0,1` em toda dimensão; `c₀>0` é obtido do teorema CSA `completedNativeRealEvenCharacteristicCoefficient_zero_ge_third`. Um lema por paridade estende o resultado a todo shift por submatrizes principais. As Missões A e B estão GREEN: `c₀>0` é interno aos corolários condicionais e ambos os gates de massa em `n=2` foram provados por certificados fonte-first independentes. A Missão C está concluída como auditoria parcial: a comparação de incrementos `2→3` foi formalizada e reduz exatamente aos restos `R_{0,3}>0` e `R_{1,3}>0`, ainda abertos. Isso não estabelece positividade all-order.
+
+## Atualização auditada — 2026-11-10
+
+### Teoremas desta etapa (`PROVADO_LEAN`)
+
+- `CarrySelfAdjointOperator.nativeSourceSchurRemainder_eq_characteristic_gap`, `nativeSource_schur_eq_characteristic_recurrence`, `nativeSource_schur_pos_iff_characteristic_ceiling`, `nativeSourceCentralSchur_pos_iff_characteristic_ceiling`, `nativeSourceShiftedSchur_pos_iff_characteristic_ceiling` em [NativeAllOrderCharacteristicCeiling.lean](../../CarrySelfAdjointOperator/NativeAllOrderCharacteristicCeiling.lean). Valem para todo `s,n`, sem `PosDef` ou `IsUnit`; a expressão `sourceMomentSchur` usa a inversa total de Lean, e sob `IsUnit` é o complemento de Schur usual. O teto é explícito e a equivalência usa o resultado fonte-first `c₀≥1/3`; não prova que a cota é satisfeita.
+- `CarrySelfAdjointOperator.nativeSourceSevenEvenDiscriminant_eq_sixteen_hankelDet`, `nativeSourceEightOddDiscriminant_eq_sixteen_shifted_hankelDet`, `nativeSourceCentral_hankelDet_four_pos`, `nativeSourceShifted_hankelDet_four_pos_iff_characteristic_ceiling` em [NativeAllOrderFiniteDiscriminantBridge.lean](../../CarrySelfAdjointOperator/NativeAllOrderFiniteDiscriminantBridge.lean). A central 4×4 é positiva pelo certificado source-first de ordem 14. A deslocada 4×4 tem sinal equivalente à cota ainda aberta de `c₈`.
+
+### Compilação e auditoria
+
+- Compilação direta do módulo characteristic ceiling: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeAllOrderCharacteristicCeiling.lean` — exit code 0.
+- Compilação direta da ponte 4×4: comando análogo para `NativeAllOrderFiniteDiscriminantBridge.lean` — exit code 0, sem warnings.
+- `NativeAllOrderCharacteristicCeilingAudit.lean` e `NativeAllOrderFiniteDiscriminantBridgeAudit.lean` compilaram. `#print axioms` em todos os nove teoremas listados imprimiu somente `[propext, Classical.choice, Quot.sound]`.
+- `lake build --wfail CarrySelfAdjointOperator.NativeAllOrderCharacteristicCeiling` foi interrompido por `SIGINT` após cerca de 13 minutos, enquanto reconstruía certificados theta transitivos de ordens 12 e 14 e antes de alcançar o módulo-alvo. Não conta como build verde; a compilação Lean focada acima terminou. O build completo não foi executado.
+- Testes exatos de pesquisa da branch Momentos SHA `eeac8c13581e026df409886751a9368ff05d488d`: 63 casos racionais do pencil/cofator/energia/Toda para dimensões 0–6, shifts 0–2 passaram; o no-go da cabeça finita passou em 18 casos `Fraction`; o controle Fourier positivo confirmou o menor negativo exato `-1274953/268240896000`. São `TESTADO_EXATO`, não provas all-order.
+- Regressão exata local `test_allorder_exact_regressions.py`: 126 casos `Fraction` (seis sequências, dimensões 0–6, shifts 0–2) passaram para pencil/cofator, vetor crítico, energia, ortogonalidade e Toda, incluindo pivôs negativos e singulares. São `TESTADO_EXATO`, não substituem os teoremas Lean.
+- Reexecução focada: compilação dentro do worktree falha por ausência dos `.olean` legados naquele cache isolado; a compilação repetida a partir do checkout principal, com `--root` no worktree, terminou com exit code 0 para os dois módulos novos e seus dois arquivos de `#print axioms`. O checkout principal não teve alterações versionadas.
+
+### Obrigação ainda aberta
+
+- A identidade Toda para sequência arbitrária segue compilada apenas para `n=1`; sua versão division-free para todo `n≥1` não foi concluída.
+- O menor gate source-first da próxima ordem continua `nativeThetaNegativeMass (nativeSchurEulerPolynomial 0 3) < nativeThetaPositiveMass (nativeSchurEulerPolynomial 0 3)` e, na torre deslocada, `nativeThetaNegativeMass (nativeSchurEulerPolynomial 1 3) < 2*c₀*(nativeSchurCriticalReadout 1 3)^2 + nativeThetaPositiveMass (nativeSchurEulerPolynomial 1 3)`. Nenhuma das duas foi provada aqui. A cota de característica de `c₈` é uma obrigação equivalente para o discriminante deslocado 4×4, não um certificado dessa desigualdade.
+- Não há positividade universal, representação Gram completada, ou uso de zeros como entrada.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`

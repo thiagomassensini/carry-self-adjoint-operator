@@ -1,0 +1,10 @@
+import CarrySelfAdjointOperator.NativeAllOrderFiniteDiscriminantBridge
+
+namespace CarrySelfAdjointOperator
+
+#print axioms nativeSourceSevenEvenDiscriminant_eq_sixteen_hankelDet
+#print axioms nativeSourceEightOddDiscriminant_eq_sixteen_shifted_hankelDet
+#print axioms nativeSourceCentral_hankelDet_four_pos
+#print axioms nativeSourceShifted_hankelDet_four_pos_iff_characteristic_ceiling
+
+end CarrySelfAdjointOperator
