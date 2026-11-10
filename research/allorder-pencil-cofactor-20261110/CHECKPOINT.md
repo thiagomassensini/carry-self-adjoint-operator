@@ -10,8 +10,8 @@ O inventário foi concluído e commitado. No checkpoint 1, os polinômios do pen
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: `6954b71` (base da branch; o commit parcial do checkpoint 1 será registrado logo após a auditoria)
-Último commit: `research: initialize all-order pencil/cofactor formalization checkpoint`
+Commit SHA: `e35cd83`
+Último commit: `research: scaffold all-order Hankel pencil polynomial module`
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
