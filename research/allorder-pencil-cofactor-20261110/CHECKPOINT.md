@@ -10,8 +10,8 @@ Os checkpoints 0–3 estão GREEN. No checkpoint 4, foi compilado o caso base de
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: será registrado após o commit parcial do checkpoint 4; checkpoint 3: `6a08ef23cbe193c91a8520fe07e011fb4f8780b2`.
-Último commit: `research: record green theta bridge checkpoint`.
+Commit SHA: `f0bd511688b6011590af48c8531e00f32ea72787` (checkpoint 4 parcial); checkpoint 3: `6a08ef23cbe193c91a8520fe07e011fb4f8780b2`.
+Último commit: `feat(lean): add first Hankel Toda base case`.
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
