@@ -1,10 +1,10 @@
 # CHECKPOINT — ALL-ORDER PENCIL/COFACTOR
 
 ## Estado
-Checkpoint atual: 6 — auditoria da desigualdade de massa aberta
+Checkpoint atual: Missões A–C — controle do coeficiente e análise Euler em ordem 2
 Status: PARTIAL (checkpoints 4 e 6; checkpoint 5 GREEN)
 
-Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: assumidas `c₀>0` e as duas famílias de dominância Euler/theta explicitamente exibidas, as torres nativas `s=0,1` são PosDef em toda dimensão; um lema por paridade estende isso a todo shift por submatrizes principais. O checkpoint 6 está PARTIAL: a equivalência exata do gate par foi formalizada, mas as desigualdades integradas permanecem abertas. Os módulos de massas e Green confirmam que não se pode substituir a dominância por positividade pontual.
+Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: as duas famílias de dominância Euler/theta implicam positividade das torres nativas `s=0,1` em toda dimensão; `c₀>0` é obtido do teorema CSA `completedNativeRealEvenCharacteristicCoefficient_zero_ge_third`. Um lema por paridade estende o resultado a todo shift por submatrizes principais. O checkpoint 6 está PARTIAL: a equivalência exata do gate par foi formalizada, mas as desigualdades integradas permanecem abertas. Os módulos de massas e Green confirmam que não se pode substituir a dominância por positividade pontual.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
@@ -20,6 +20,12 @@ Dependências: manifest preservado; Mathlib `81a5d257c8e410db227a6665ed08f64fea0
 Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar dependências pinadas, `.lake/packages` nesta worktree usa a cache de pacotes já existente no checkout principal; os clones inicialmente obtidos foram preservados em `.lake/packages.initial-local` (fora do Git). Um `lake build CarrySelfAdjointOperator.NativeThetaCofactorMargin` foi interrompido em 9300/9844 tarefas por incluir dezenas de certificados de quadratura de alto grau; não houve erro reportado nesse build. A compilação isolada do módulo novo usou o `.olean` já existente da margem, cujo fonte não mudou desde o commit `28d57ad` de 15/10.
 
 ## Teoremas concluídos
+
+- Nome completo: `CarrySelfAdjointOperator.nativeSource_even_odd_towers_posDef_of_euler_mass_gates`, `CarrySelfAdjointOperator.nativeSource_all_shift_windows_posDef_of_euler_mass_gates`.
+- Arquivo: [NativeHankelPencilConditionalPositivity.lean](../../CarrySelfAdjointOperator/NativeHankelPencilConditionalPositivity.lean).
+- Hipóteses: continuam **CONDICIONAIS** às duas famílias de dominância das massas. A hipótese externa `0 < c₀` foi retirada; os teoremas agora obtêm esse sinal de `completedNativeRealEvenCharacteristicCoefficient_zero_ge_third`.
+- Comando de compilação: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilConditionalPositivity.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
+- Resultado: exit code 0. `#print axioms` para ambos os teoremas e o lema do coeficiente constante imprime somente `[propext, Classical.choice, Quot.sound]`; ver [NativeHankelPencilConditionalPositivityAudit.lean](../../CarrySelfAdjointOperator/NativeHankelPencilConditionalPositivityAudit.lean).
 
 - Nome completo: `CarrySelfAdjointOperator.sourceMomentMatrix`, `sourceMomentCoupling`, `sourceMomentSchur`.
 - Arquivo: [NativeSourceAllOrderSchur.lean](../../CarrySelfAdjointOperator/NativeSourceAllOrderSchur.lean), linhas 13–22.
@@ -119,6 +125,16 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 
 ## Teoremas ainda abertos
 
+- Nome: ambos os balanços Euler em `n=2`, com sinais efetivos das integrais assinadas.
+- Enunciado: estabelecer os gates par e ímpar em dimensão 3 a partir das identidades theta/source e controles integrados, sem hipótese `PosDef` da janela 3×3.
+- Obstáculo: a igualdade de balanço, mesmo com o quadrado ímpar, não compara por si só as massas positiva e negativa da densidade Euler.
+- Próxima tentativa: usar os discriminantes 2×2 fonte-first apenas para justificar `IsUnit` do prefixo; calcular a decomposição assinada exata do integrando Euler para `n=2` e procurar um limite integrado certificado.
+
+- Nome: recorrência de dominância entre ordens consecutivas das massas Euler.
+- Enunciado: comparar massas positivas/negativas em `n` e `n+1`, incluindo convolução cancelada e termos Green de fronteira.
+- Obstáculo: ortogonalidade elimina termos lineares assinados, mas não fornece ainda controle das partes positiva e negativa separadamente.
+- Próxima tentativa: explicitar a primeira desigualdade intermediária necessária e todos os termos de correção de fronteira.
+
 - Nome: identidade de Toda/Desnanot–Jacobi geral.
 - Enunciado: `τ_{s,n}τ_{s+2,n}−τ_{s+1,n}²=τ_{s,n+1}τ_{s+2,n−1}`, para todo `m : ℕ → ℝ`, `s` e `n≥1`.
 - Obstáculo: Mathlib não contém um lema geral correspondente nos módulos pesquisados; `Matrix.det_fromBlocks₁₁` e `det_fromBlocks₂₂` em `Mathlib/LinearAlgebra/Matrix/SchurComplement.lean` requerem `[Invertible A]`/`[Invertible D]`. Usá-los exigiria hipótese adicional e não satisfaria a identidade division-free.
@@ -137,6 +153,7 @@ Foram usados zeros como entrada?: não.
 Há risco de circularidade?: sim, se `nativeThetaCofactorSign_iff_stieltjes` for usado para alegar prova do sinal cofactorial, ou se o balanço Euler for usado sem demonstrar a dominância das massas assinadas.
 
 ## Próxima ação exata
-1. Retomar o lema division-free de Desnanot–Jacobi; o caso `n=1` já compila.
-2. Investigar cancelamento/dominância integrada das massas Euler, preservando a parcela negativa.
-3. Manter como condicional a positividade das duas torres até que as desigualdades de massa sejam provadas diretamente da fonte.
+1. Concluir a análise assinada dos balanços `n=2` usando `nativeMoment_first_discriminant_pos` e `nativeMoment_shifted_discriminant_pos` somente para a invertibilidade dos prefixos 2×2.
+2. Testar se a decomposição integrada em `n=2` produz uma comparação que recorra a `n+1`; registrar a primeira desigualdade sem prova e os termos exatos caso falhe.
+3. Manter a positividade das torres explicitamente condicional às duas famílias de gates para todo `n`.
+4. Tratar a identidade Toda geral em frente separada.
