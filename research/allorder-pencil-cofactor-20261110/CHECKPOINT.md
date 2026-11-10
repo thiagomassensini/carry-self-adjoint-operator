@@ -4,7 +4,7 @@
 Checkpoint atual: 6 — auditoria da desigualdade de massa aberta
 Status: PARTIAL (checkpoints 4 e 6; checkpoint 5 GREEN)
 
-Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: assumidas `c₀>0` e as duas famílias de dominância Euler/theta explicitamente exibidas, as torres nativas `s=0,1` são PosDef em toda dimensão. O checkpoint 6 está PARTIAL: a equivalência exata do gate par foi formalizada, mas as desigualdades integradas permanecem abertas. Os módulos de massas e Green confirmam que não se pode substituir a dominância por positividade pontual.
+Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: assumidas `c₀>0` e as duas famílias de dominância Euler/theta explicitamente exibidas, as torres nativas `s=0,1` são PosDef em toda dimensão; um lema por paridade estende isso a todo shift por submatrizes principais. O checkpoint 6 está PARTIAL: a equivalência exata do gate par foi formalizada, mas as desigualdades integradas permanecem abertas. Os módulos de massas e Green confirmam que não se pode substituir a dominância por positividade pontual.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
@@ -98,6 +98,12 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 - Hipóteses: **CONDICIONAL** a `IsUnit (sourceMomentMatrix m 0 n)`, necessária pelo balanço Euler par existente. Caracteriza a positividade do resto par pela dominância da massa positiva sobre a negativa para o polinômio Euler par.
 - Comando de compilação: o mesmo comando focado de `NativeHankelPencilConditionalPositivity.lean` acima.
 - Resultado: exit code 0, sem lacunas.
+
+- Nome completo: `CarrySelfAdjointOperator.nativeSource_all_shift_windows_posDef_of_twoTowers`, `nativeSource_all_shift_windows_posDef_of_euler_mass_gates`.
+- Arquivo: [NativeHankelPencilConditionalPositivity.lean](../../CarrySelfAdjointOperator/NativeHankelPencilConditionalPositivity.lean).
+- Hipóteses: o primeiro teorema assume PosDef das torres `s=0,1` em toda dimensão; o segundo assume **CONDICIONALMENTE** `c₀>0` e os dois gates de massa explícitos, e conclui PosDef para todo shift `s` e dimensão `n`.
+- Comando de compilação: o mesmo comando focado de `NativeHankelPencilConditionalPositivity.lean` acima.
+- Resultado: exit code 0, sem warnings ou lacunas.
 
 - Nome completo: `CarrySelfAdjointOperator.arbitraryHankelWindowDet`, `arbitraryHankelToda_one`.
 - Arquivo: [NativeHankelPencilToda.lean](../../CarrySelfAdjointOperator/NativeHankelPencilToda.lean).

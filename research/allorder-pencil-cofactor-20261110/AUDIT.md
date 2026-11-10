@@ -21,7 +21,7 @@
 | Identidade algébrica provada nesta branch | `nativeSourceCofactorThetaPolynomial_integral_eq_prefixDet_mul_succ`: a integral original é `c₀τ_{s,n}τ_{s,n+1}`, sem hipótese de sinal. |
 | Teorema condicional novo | `nativeSourceCofactorThetaPolynomial_integral_pos_iff_nextPrefixDet_pos` requer explicitamente `0<c₀` e `0<τ_{s,n}`; não prova `0<I_{s,n}`. |
 | Identidade algébrica parcial desta branch | `arbitraryHankelToda_one` verifica a identidade de Toda apenas em `n=1`, para sequência arbitrária. Não implica a fórmula para todo `n`. |
-| Teorema condicional novo | `nativeSource_even_odd_towers_posDef_of_euler_mass_gates`: as duas torres são PosDef all-order sob `c₀>0` e as dominâncias de massas explícitas. As dominâncias são hipóteses, não resultados. |
+| Teorema condicional novo | `nativeSource_even_odd_towers_posDef_of_euler_mass_gates` dá as duas torres sob `c₀>0` e dominâncias explícitas; `nativeSource_all_shift_windows_posDef_of_euler_mass_gates` estende por submatrizes principais a todo shift. As dominâncias continuam como hipóteses. |
 | Teorema condicional novo | `nativeSchurEuler_even_pos_iff_mass_balance` caracteriza o gate par sob `IsUnit` do prefixo. No setor ímpar, `nativeSchurEuler_odd_pos_iff_mass_balance` existente foi reutilizado. |
 | Teorema Lean existente com hipótese explícita | Critério Schur de extensão positiva e balanços Euler para prefixos invertíveis. |
 | Teorema condicional | Equivalência entre o sinal do pivô ímpar e a dominância das massas, sob `IsUnit`. |

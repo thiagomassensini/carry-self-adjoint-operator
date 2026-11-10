@@ -74,5 +74,51 @@ theorem nativeSchurEuler_even_pos_iff_mass_balance (n : ℕ)
     nativeSchurEuler_even_balance n hA,
     nativeXiPolynomialIntegral_eq_masses, sub_pos]
 
+/-- Every shifted source window is a principal submatrix of one of the two
+initial towers, with the shift parity selecting the tower. -/
+theorem nativeSource_all_shift_windows_posDef_of_twoTowers
+    (hTowers : ∀ N, (sourceMomentMatrix m 0 N).PosDef ∧
+      (sourceMomentMatrix m 1 N).PosDef) (s n : ℕ) :
+    (sourceMomentMatrix m s n).PosDef := by
+  obtain hEven | hOdd := Nat.mod_two_eq_zero_or_one s
+  · let a := s / 2
+    have hs : s = 2*a := by dsimp [a]; omega
+    have hwindow : sourceMomentMatrix m s n =
+        (sourceMomentMatrix m 0 (a+n)).submatrix
+          (Fin.natAddEmb a) (Fin.natAddEmb a) := by
+      ext i j
+      simp [sourceMomentMatrix, Fin.natAddEmb, Fin.natAdd]
+      congr 1
+      omega
+    rw [hwindow]
+    exact (hTowers (a+n)).1.submatrix (Fin.natAddEmb a).injective
+  · let a := s / 2
+    have hs : s = 2*a+1 := by dsimp [a]; omega
+    have hwindow : sourceMomentMatrix m s n =
+        (sourceMomentMatrix m 1 (a+n)).submatrix
+          (Fin.natAddEmb a) (Fin.natAddEmb a) := by
+      ext i j
+      simp [sourceMomentMatrix, Fin.natAddEmb, Fin.natAdd]
+      congr 1
+      omega
+    rw [hwindow]
+    exact (hTowers (a+n)).2.submatrix (Fin.natAddEmb a).injective
+
+/-- The explicit Euler/theta mass gates imply positivity of every shifted
+source Hankel window, conditionally through the two initial towers. -/
+theorem nativeSource_all_shift_windows_posDef_of_euler_mass_gates
+    (hc₀ : 0 < c₀)
+    (hEven : ∀ n,
+      nativeThetaNegativeMass (nativeSchurEulerPolynomial 0 n) <
+        nativeThetaPositiveMass (nativeSchurEulerPolynomial 0 n))
+    (hOdd : ∀ n,
+      nativeThetaNegativeMass (nativeSchurEulerPolynomial 1 n) <
+        2*c₀*(nativeSchurCriticalReadout 1 n)^2 +
+          nativeThetaPositiveMass (nativeSchurEulerPolynomial 1 n)) :
+    ∀ s n, (sourceMomentMatrix m s n).PosDef := by
+  intro s n
+  exact nativeSource_all_shift_windows_posDef_of_twoTowers
+    (nativeSource_even_odd_towers_posDef_of_euler_mass_gates hc₀ hEven hOdd) s n
+
 end
 end CarrySelfAdjointOperator
