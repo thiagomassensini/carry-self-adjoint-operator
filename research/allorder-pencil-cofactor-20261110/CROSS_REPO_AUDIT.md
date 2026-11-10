@@ -17,7 +17,9 @@ of Primos and Geometry-of-Numbers were older and dirty, so the fetched remote
 
 The coefficient ceiling and 4×4 bridges are recorded at CSA commit
 `0974fe6dde468da822a35b6489b3d8135cd6618d`; the order-three source gate is
-recorded at `939aa3aacb8154a740c81d3e3648fe3b3473db9f` on the same branch.
+recorded at `939aa3aacb8154a740c81d3e3648fe3b3473db9f`; the reproducible
+numeric diagnostic and refreshed research log are at
+`80e1f6208065237f1fcaa9c83bd0db71981d8cd4` on the same branch.
 
 The public GitHub page for Momentos PR #2 returned 404 in the browser, but the
 requested research branch was reachable through the configured Git remote.

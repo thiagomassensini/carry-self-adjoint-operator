@@ -36,9 +36,9 @@ Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o c
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA do último checkpoint matemático: `939aa3aacb8154a740c81d3e3648fe3b3473db9f`.
-Commits desta continuação: Missão A `48365a0e3cb509d20ca7353a07cb9ec49e694878`; Missão B `2c6892866e586cd703fe37d328d46907ed282782`; auditoria de incrementos `c2adb35d10082f70f280d661590c4ac96a5662fc`; teto/ponte 4×4 `0974fe6dde468da822a35b6489b3d8135cd6618d`; gate par de ordem 3 `939aa3aacb8154a740c81d3e3648fe3b3473db9f`.
-Último commit matemático/auditado: `feat(lean): prove central Euler mass gate at order three` (`939aa3aacb8154a740c81d3e3648fe3b3473db9f`).
+Commit SHA do último checkpoint matemático: `80e1f6208065237f1fcaa9c83bd0db71981d8cd4`.
+Commits desta continuação: Missão A `48365a0e3cb509d20ca7353a07cb9ec49e694878`; Missão B `2c6892866e586cd703fe37d328d46907ed282782`; auditoria de incrementos `c2adb35d10082f70f280d661590c4ac96a5662fc`; teto/ponte 4×4 `0974fe6dde468da822a35b6489b3d8135cd6618d`; gate par de ordem 3 `939aa3aacb8154a740c81d3e3648fe3b3473db9f`; sondagem numérica reprodutível `80e1f6208065237f1fcaa9c83bd0db71981d8cd4`.
+Último commit matemático/auditado: `research: record order-three gate and numeric c8 probe` (`80e1f6208065237f1fcaa9c83bd0db71981d8cd4`).
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
