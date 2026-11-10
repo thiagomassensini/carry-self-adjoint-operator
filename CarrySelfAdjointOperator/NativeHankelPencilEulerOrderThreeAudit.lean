@@ -1,0 +1,9 @@
+import CarrySelfAdjointOperator.NativeHankelPencilEulerOrderThree
+
+namespace CarrySelfAdjointOperator
+
+#print axioms nativeSourceEuler_even_remainder_three_pos
+#print axioms nativeSchurEuler_even_orderThree_mass_gate
+#print axioms nativeSchurEuler_odd_orderThree_mass_gate_iff_characteristic_ceiling
+
+end CarrySelfAdjointOperator
