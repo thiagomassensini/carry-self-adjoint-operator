@@ -4,7 +4,7 @@
 Checkpoint atual: Missão C — auditoria da recorrência entre massas
 Status: PARTIAL (checkpoint 4 e gates all-order ainda abertos; checkpoint 5 e Missões A–B GREEN)
 
-Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: as duas famílias de dominância Euler/theta implicam positividade das torres nativas `s=0,1` em toda dimensão; `c₀>0` é obtido do teorema CSA `completedNativeRealEvenCharacteristicCoefficient_zero_ge_third`. Um lema por paridade estende o resultado a todo shift por submatrizes principais. O checkpoint 6 está PARTIAL: a equivalência exata do gate par foi formalizada, mas as desigualdades integradas permanecem abertas. Os módulos de massas e Green confirmam que não se pode substituir a dominância por positividade pontual.
+Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: as duas famílias de dominância Euler/theta implicam positividade das torres nativas `s=0,1` em toda dimensão; `c₀>0` é obtido do teorema CSA `completedNativeRealEvenCharacteristicCoefficient_zero_ge_third`. Um lema por paridade estende o resultado a todo shift por submatrizes principais. As Missões A e B estão GREEN: `c₀>0` é interno aos corolários condicionais e ambos os gates de massa em `n=2` foram provados por certificados fonte-first independentes. A Missão C está concluída como auditoria parcial: a comparação de incrementos `2→3` foi formalizada e reduz exatamente aos restos `R_{0,3}>0` e `R_{1,3}>0`, ainda abertos. Isso não estabelece positividade all-order.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
@@ -32,6 +32,12 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 - Hipóteses: nenhuma nos teoremas finais. Os dois prefixos de dimensão 2 tornam-se `IsUnit` pelos discriminantes fonte-first existentes; os determinantes 3×3 positivos vêm dos certificados de fronteira fonte-first de ordem 10 e 12. Não há hipótese `PosDef` de matriz 3×3.
 - Comando de compilação: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilEulerOrderTwo.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
 - Resultado: exit code 0. `#print axioms` nas identidades, nos gates, nos balanços e nos dois certificados fonte-first imprimiu somente `[propext, Classical.choice, Quot.sound]`; ver [NativeHankelPencilEulerOrderTwoAudit.lean](../../CarrySelfAdjointOperator/NativeHankelPencilEulerOrderTwoAudit.lean).
+
+- Nome completo: `CarrySelfAdjointOperator.nativeSchurEulerPolynomial_integral_eq_green`, `nativeSchurEuler_even_massDeficit_eq_neg_remainder`, `nativeSchurEuler_odd_massDeficit_eq_neg_remainder`, `nativeSchurEuler_even_massDeficit_increment_two_to_three`, `nativeSchurEuler_odd_massDeficit_increment_two_to_three`, `nativeSchurEuler_even_increment_gate_iff_orderThree_remainder_pos`, `nativeSchurEuler_odd_increment_gate_iff_orderThree_remainder_pos`.
+- Arquivo: [NativeHankelPencilEulerMassRecurrenceAudit.lean](../../CarrySelfAdjointOperator/NativeHankelPencilEulerMassRecurrenceAudit.lean).
+- Hipóteses: as identidades de déficit valem com a hipótese `IsUnit` exigida pelos balanços Euler; no passo `2 → 3`, a invertibilidade dos prefixos de dimensão 3 é obtida dos determinantes positivos provados no checkpoint anterior. Não se assume PosDef 4×4 nem a positividade do novo resto.
+- Comando de compilação: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilEulerMassRecurrenceAudit.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
+- Resultado: exit code 0. `#print axioms` em todas as identidades novas imprime apenas `[propext, Classical.choice, Quot.sound]`.
 
 - Nome completo: `CarrySelfAdjointOperator.sourceMomentMatrix`, `sourceMomentCoupling`, `sourceMomentSchur`.
 - Arquivo: [NativeSourceAllOrderSchur.lean](../../CarrySelfAdjointOperator/NativeSourceAllOrderSchur.lean), linhas 13–22.
@@ -131,15 +137,10 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 
 ## Teoremas ainda abertos
 
-- Nome: ambos os balanços Euler em `n=2`, com sinais efetivos das integrais assinadas.
-- Enunciado: estabelecer os gates par e ímpar em dimensão 3 a partir das identidades theta/source e controles integrados, sem hipótese `PosDef` da janela 3×3.
-- Obstáculo: a igualdade de balanço, mesmo com o quadrado ímpar, não compara por si só as massas positiva e negativa da densidade Euler.
-- Próxima tentativa: usar os discriminantes 2×2 fonte-first apenas para justificar `IsUnit` do prefixo; calcular a decomposição assinada exata do integrando Euler para `n=2` e procurar um limite integrado certificado.
-
-- Nome: recorrência de dominância entre ordens consecutivas das massas Euler.
-- Enunciado: comparar massas positivas/negativas em `n` e `n+1`, incluindo convolução cancelada e termos Green de fronteira.
-- Obstáculo: ortogonalidade elimina termos lineares assinados, mas não fornece ainda controle das partes positiva e negativa separadamente.
-- Próxima tentativa: explicitar a primeira desigualdade intermediária necessária e todos os termos de correção de fronteira.
+- Nome: próximo passo Euler `n=3`, depois dos gates `n=2`.
+- Enunciado: provar `M⁻_{0,3}<M⁺_{0,3}` e `M⁻_{1,3}<2c₀T₃²+M⁺_{1,3}`.
+- Primeira comparação de incrementos sem prova, em termos exatos: no setor par, `(M⁻_{0,3}-M⁻_{0,2})-(M⁺_{0,3}-M⁺_{0,2}) < 10 R_{0,2}`; no ímpar, `(M⁻_{1,3}-M⁻_{1,2})-(M⁺_{1,3}-M⁺_{1,2})-2c₀(T₃²-T₂²) < 12 R_{1,2}`. Lean prova que cada comparação é equivalente, respetivamente, a `0<R_{0,3}` ou `0<R_{1,3}`. Logo a identidade de incremento não fecha o próximo sinal.
+- Próxima tentativa: procurar um novo controle de fonte que prove o resto de ordem 3; não inferir o sinal apenas dos gates de ordem 2 nem dos incrementos assinados.
 
 - Nome: gates Euler/theta para `n≥3`.
 - Enunciado: provar as duas dominâncias de massas em todas as dimensões.
@@ -164,8 +165,7 @@ Foram usados zeros como entrada?: não.
 Há risco de circularidade?: sim, se `nativeThetaCofactorSign_iff_stieltjes` for usado para alegar prova do sinal cofactorial, ou se o balanço Euler for usado sem demonstrar a dominância das massas assinadas.
 
 ## Próxima ação exata
-1. Derivar dos balanços compilados os termos assinados exatos que precisariam ser comparados entre as ordens `n` e `n+1`.
-2. Testar uma comparação de massas consecutivas usando ortogonalidade, convolução cancelada e a fórmula Green completa.
-3. Registrar a primeira desigualdade sem prova se esses termos não dominarem.
-4. Manter a positividade das torres condicional aos gates não provados para `n≥3`.
-5. Tratar a identidade Toda geral em frente separada.
+1. Procurar um certificado fonte-first para os restos `R_{0,3}` e `R_{1,3}`; as comparações de massa obtidas até aqui reduzem exatamente a esses sinais.
+2. Inspecionar a ponte das faces de fronteira fonte de ordem 14 e 16 para os determinantes Hankel 4×4; nenhuma ponte foi provada neste checkpoint.
+3. Manter a positividade all-order condicional aos gates restantes.
+4. Tratar a identidade Toda geral em frente separada.
