@@ -22,6 +22,7 @@
 | Teorema condicional novo | `nativeSourceCofactorThetaPolynomial_integral_pos_iff_nextPrefixDet_pos` requer explicitamente `0<c₀` e `0<τ_{s,n}`; não prova `0<I_{s,n}`. |
 | Identidade algébrica parcial desta branch | `arbitraryHankelToda_one` verifica a identidade de Toda apenas em `n=1`, para sequência arbitrária. Não implica a fórmula para todo `n`. |
 | Teorema condicional novo | `nativeSource_even_odd_towers_posDef_of_euler_mass_gates`: as duas torres são PosDef all-order sob `c₀>0` e as dominâncias de massas explícitas. As dominâncias são hipóteses, não resultados. |
+| Teorema condicional novo | `nativeSchurEuler_even_pos_iff_mass_balance` caracteriza o gate par sob `IsUnit` do prefixo. No setor ímpar, `nativeSchurEuler_odd_pos_iff_mass_balance` existente foi reutilizado. |
 | Teorema Lean existente com hipótese explícita | Critério Schur de extensão positiva e balanços Euler para prefixos invertíveis. |
 | Teorema condicional | Equivalência entre o sinal do pivô ímpar e a dominância das massas, sob `IsUnit`. |
 | Hipótese analítica da fonte | Uma desigualdade que domine a massa theta negativa pela massa positiva (e pelo quadrado ímpar sobrevivente). |
@@ -47,5 +48,9 @@
 - `NativeHankelPencilThetaBridge.lean` compila contra o módulo do checkpoint 2; a identidade integral usa o teorema bordeado original e a equivalência de sinal permanece condicional. O teorema `nativeThetaCofactorSign_iff_stieltjes` não foi reescrito.
 - A identidade division-free de Toda para `n≥1` permanece aberta. A busca local de `Desnanot`, `Dodgson`, `Jacobi`, `condensation`, `minor` e `det_submatrix` não encontrou uma identidade geral apropriada. O lema de bloco `Matrix.det_fromBlocks₁₁` usa `[Invertible A]`, logo não foi usado como substituto.
 - A composição condicional das massas com `nativeSchurEuler_even_balance`, `nativeSchurEuler_odd_pos_iff_mass_balance`, `sourceMomentMatrix_succ_posDef_iff` e indução foi compilada. Ela não usa Stieltjes como hipótese e não estabelece os gates das massas.
+- `nativeSchurThetaPolynomial_odd_negativeMass_pos` prova que a massa negativa está presente em toda ordem ímpar; `nativeThetaMasses_first_odd` prova dominância apenas no primeiro caso ímpar. Não há passagem nesses resultados para a dominância geral dos polinômios Euler.
+- `nativeThetaOddPrincipal_not_pointwise_nonneg` refuta a não negatividade pontual da densidade principal ímpar considerada, mas seu próprio módulo diz que isso não determina o sinal da integral.
+- `nativeXiPolynomialIntegral_eq_thetaGreen_integral` mantém os dois termos centrais; `nativeSchurThetaPolynomial_center_traces` os zera apenas para os Schur polinômios. A densidade Green ainda tem termos de sinal negativo (`nativeSchurThetaGreenPolynomial_even_coeff_top_neg` e `nativeSchurThetaGreenPolynomial_first_even_negative`). Isso impede inferir as desigualdades a partir do sinal ponto a ponto.
+- Estado de pesquisa: nenhuma prova de `M⁺_{0,n}>M⁻_{0,n}` ou `M⁺_{1,n}+2c₀T_n²>M⁻_{1,n}` para todo `n`; nenhuma hipótese equivalente foi adicionada ao contexto como axioma.
 - A compilação focada terminou com exit code 0. Lean imprimiu apenas uma sugestão de reescrita por `ring_nf`; isso não foi erro nem lacuna. Não foi alegada compilação do grafo completo de Lake, cujo build anterior foi interrompido por custo.
 - Os dois documentos de pesquisa pedidos foram lidos da branch remota `research/sigma-pade-dimension-depth-20261104` do repositório `momentos`. Ambos dizem explicitamente que a síntese é algébrica/em papel e não anuncia novo build Lean nem prova de dominância all-order.

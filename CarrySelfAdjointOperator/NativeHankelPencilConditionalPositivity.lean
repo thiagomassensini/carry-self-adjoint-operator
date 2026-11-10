@@ -62,5 +62,17 @@ theorem nativeSource_even_odd_towers_posDef_of_euler_mass_gates
           exact (mul_pos_iff_of_pos_left hc₀).mp hRemainder
         exact (sourceMomentMatrix_succ_posDef_iff m 1 n hA).mpr hPivot
 
+/-- Exact even-sector formulation of the remaining Euler mass gate, under the
+same invertibility hypothesis required by the existing balance identity. -/
+theorem nativeSchurEuler_even_pos_iff_mass_balance (n : ℕ)
+    (hA : IsUnit (sourceMomentMatrix m 0 n)) :
+    0 < nativeSourceSchurRemainder 0 n ↔
+      nativeThetaNegativeMass (nativeSchurEulerPolynomial 0 n) <
+        nativeThetaPositiveMass (nativeSchurEulerPolynomial 0 n) := by
+  have hFactor : 0 < ((4*n+2 : ℕ) : ℝ) := by positivity
+  rw [← mul_pos_iff_of_pos_left hFactor,
+    nativeSchurEuler_even_balance n hA,
+    nativeXiPolynomialIntegral_eq_masses, sub_pos]
+
 end
 end CarrySelfAdjointOperator

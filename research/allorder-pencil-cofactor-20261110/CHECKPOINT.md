@@ -1,17 +1,17 @@
 # CHECKPOINT — ALL-ORDER PENCIL/COFACTOR
 
 ## Estado
-Checkpoint atual: 5 — composição condicional Schur/Euler
-Status: GREEN (checkpoint 4 segue PARTIAL)
+Checkpoint atual: 6 — auditoria da desigualdade de massa aberta
+Status: PARTIAL (checkpoints 4 e 6; checkpoint 5 GREEN)
 
-Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: assumidas `c₀>0` e as duas famílias de dominância Euler/theta explicitamente exibidas, as torres nativas `s=0,1` são PosDef em toda dimensão. As desigualdades de massa não foram provadas.
+Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: assumidas `c₀>0` e as duas famílias de dominância Euler/theta explicitamente exibidas, as torres nativas `s=0,1` são PosDef em toda dimensão. O checkpoint 6 está PARTIAL: a equivalência exata do gate par foi formalizada, mas as desigualdades integradas permanecem abertas. Os módulos de massas e Green confirmam que não se pode substituir a dominância por positividade pontual.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: `79599ab3b5a2e34ad6ae6a2c50797a5a8ea1ecd6` (checkpoint 5); checkpoint 4 parcial: `f0bd511688b6011590af48c8531e00f32ea72787`.
-Último commit: `feat(lean): assemble conditional all-order positivity from Euler theta mass gates`.
+Commit SHA: será registrado após o commit parcial do checkpoint 6; checkpoint 5: `79599ab3b5a2e34ad6ae6a2c50797a5a8ea1ecd6`; checkpoint 4 parcial: `f0bd511688b6011590af48c8531e00f32ea72787`.
+Último commit: `research: record conditional all-order gate composition`.
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
@@ -93,6 +93,12 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 - Comando de compilação: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilThetaBridge.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
 - Resultado: exit code 0, sem warnings ou lacunas.
 
+- Nome completo: `CarrySelfAdjointOperator.nativeSchurEuler_even_pos_iff_mass_balance`.
+- Arquivo: [NativeHankelPencilConditionalPositivity.lean](../../CarrySelfAdjointOperator/NativeHankelPencilConditionalPositivity.lean).
+- Hipóteses: **CONDICIONAL** a `IsUnit (sourceMomentMatrix m 0 n)`, necessária pelo balanço Euler par existente. Caracteriza a positividade do resto par pela dominância da massa positiva sobre a negativa para o polinômio Euler par.
+- Comando de compilação: o mesmo comando focado de `NativeHankelPencilConditionalPositivity.lean` acima.
+- Resultado: exit code 0, sem lacunas.
+
 - Nome completo: `CarrySelfAdjointOperator.arbitraryHankelWindowDet`, `arbitraryHankelToda_one`.
 - Arquivo: [NativeHankelPencilToda.lean](../../CarrySelfAdjointOperator/NativeHankelPencilToda.lean).
 - Hipóteses: `arbitraryHankelToda_one` vale para toda sequência `m : ℕ → ℝ` e todo shift `s`; é apenas o caso `n=1`, não o passo all-order.
@@ -114,8 +120,8 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 
 - Nome: desigualdades de dominância das massas Euler/theta.
 - Enunciado: provar para todo `n` `M⁺_{0,n}>M⁻_{0,n}` e `M⁺_{1,n}+2c₀T_n²>M⁻_{1,n}` diretamente da fonte completada.
-- Obstáculo: as densidades Green/theta têm regiões negativas; balanço Euler preserva as partes assinadas e não implica a dominância.
-- Próxima tentativa: continuar a pesquisa analítica nos termos de fronteira, cancelamentos e massa integrada; não assumir Stieltjes nem Gram positivo.
+- Obstáculo: `nativeSchurThetaPolynomial_odd_negativeMass_pos` prova massa negativa estritamente positiva em toda ordem ímpar. `nativeThetaOddPrincipal_not_pointwise_nonneg` exclui uma rota de positividade pontual para aquela densidade. A transferência Green mantém os traços centrais explicitamente e, mesmo após seu cancelamento para os polinômios Schur, `nativeSchurThetaGreenPolynomial_even_coeff_top_neg`/`nativeSchurThetaGreenPolynomial_first_even_negative` exibem sinal negativo na densidade transportada. Nenhum desses fatos controla a diferença das integrais.
+- Próxima tentativa: buscar cancelamento ou dominância integrada quantitativa na fonte original, incluindo termos arquimedianos/de fronteira; não descartar a massa negativa nem assumir Stieltjes/Gram positivo.
 
 ## Auditoria lógica
 Há sorry/admit?: nenhum introduzido nos arquivos novos.
@@ -126,5 +132,5 @@ Há risco de circularidade?: sim, se `nativeThetaCofactorSign_iff_stieltjes` for
 
 ## Próxima ação exata
 1. Retomar o lema division-free de Desnanot–Jacobi; o caso `n=1` já compila.
-2. Investigar diretamente as duas desigualdades de dominância de massas, preservando as parcelas assinadas.
-3. Não inferir positividade global das identidades algébricas ou do corolário condicional.
+2. Investigar cancelamento/dominância integrada das massas Euler, preservando a parcela negativa.
+3. Manter como condicional a positividade das duas torres até que as desigualdades de massa sejam provadas diretamente da fonte.
