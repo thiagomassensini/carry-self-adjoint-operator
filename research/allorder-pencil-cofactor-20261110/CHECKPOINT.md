@@ -10,8 +10,8 @@ Os checkpoints 0–3 estão concluídos. Para quaisquer `s n`, a integral theta 
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: será registrado após o commit validado do checkpoint 3; checkpoint 2: `221c6f9d2144baa2f5fdcd4f1e5f4d89d4a072bc`.
-Último commit: `research: record green critical-vector energy checkpoint`.
+Commit SHA: `6a08ef23cbe193c91a8520fe07e011fb4f8780b2` (checkpoint 3); checkpoint 2: `221c6f9d2144baa2f5fdcd4f1e5f4d89d4a072bc`.
+Último commit: `feat(lean): connect arbitrary-order pencil energy to completed theta integral`.
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
