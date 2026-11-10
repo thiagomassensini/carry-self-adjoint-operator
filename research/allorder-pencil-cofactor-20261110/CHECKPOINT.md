@@ -1,8 +1,8 @@
 # CHECKPOINT — ALL-ORDER PENCIL/COFACTOR
 
 ## Estado
-Checkpoint atual: Missões A–C — controle do coeficiente e análise Euler em ordem 2
-Status: PARTIAL (checkpoints 4 e 6; checkpoint 5 GREEN)
+Checkpoint atual: Missão C — auditoria da recorrência entre massas
+Status: PARTIAL (checkpoint 4 e gates all-order ainda abertos; checkpoint 5 e Missões A–B GREEN)
 
 Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: as duas famílias de dominância Euler/theta implicam positividade das torres nativas `s=0,1` em toda dimensão; `c₀>0` é obtido do teorema CSA `completedNativeRealEvenCharacteristicCoefficient_zero_ge_third`. Um lema por paridade estende o resultado a todo shift por submatrizes principais. O checkpoint 6 está PARTIAL: a equivalência exata do gate par foi formalizada, mas as desigualdades integradas permanecem abertas. Os módulos de massas e Green confirmam que não se pode substituir a dominância por positividade pontual.
 
@@ -26,6 +26,12 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 - Hipóteses: continuam **CONDICIONAIS** às duas famílias de dominância das massas. A hipótese externa `0 < c₀` foi retirada; os teoremas agora obtêm esse sinal de `completedNativeRealEvenCharacteristicCoefficient_zero_ge_third`.
 - Comando de compilação: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilConditionalPositivity.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
 - Resultado: exit code 0. `#print axioms` para ambos os teoremas e o lema do coeficiente constante imprime somente `[propext, Classical.choice, Quot.sound]`; ver [NativeHankelPencilConditionalPositivityAudit.lean](../../CarrySelfAdjointOperator/NativeHankelPencilConditionalPositivityAudit.lean).
+
+- Nome completo: `CarrySelfAdjointOperator.nativeSourceFiveEvenDiscriminant_eq_eight_hankelDet`, `nativeSourceSixOddDiscriminant_eq_eight_shifted_hankelDet`, `nativeSchurEuler_even_orderTwo_mass_balance`, `nativeSchurEuler_odd_orderTwo_mass_balance`, `nativeSchurEuler_even_orderTwo_mass_gate`, `nativeSchurEuler_odd_orderTwo_mass_gate`.
+- Arquivo: [NativeHankelPencilEulerOrderTwo.lean](../../CarrySelfAdjointOperator/NativeHankelPencilEulerOrderTwo.lean).
+- Hipóteses: nenhuma nos teoremas finais. Os dois prefixos de dimensão 2 tornam-se `IsUnit` pelos discriminantes fonte-first existentes; os determinantes 3×3 positivos vêm dos certificados de fronteira fonte-first de ordem 10 e 12. Não há hipótese `PosDef` de matriz 3×3.
+- Comando de compilação: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilEulerOrderTwo.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
+- Resultado: exit code 0. `#print axioms` nas identidades, nos gates, nos balanços e nos dois certificados fonte-first imprimiu somente `[propext, Classical.choice, Quot.sound]`; ver [NativeHankelPencilEulerOrderTwoAudit.lean](../../CarrySelfAdjointOperator/NativeHankelPencilEulerOrderTwoAudit.lean).
 
 - Nome completo: `CarrySelfAdjointOperator.sourceMomentMatrix`, `sourceMomentCoupling`, `sourceMomentSchur`.
 - Arquivo: [NativeSourceAllOrderSchur.lean](../../CarrySelfAdjointOperator/NativeSourceAllOrderSchur.lean), linhas 13–22.
@@ -135,6 +141,11 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 - Obstáculo: ortogonalidade elimina termos lineares assinados, mas não fornece ainda controle das partes positiva e negativa separadamente.
 - Próxima tentativa: explicitar a primeira desigualdade intermediária necessária e todos os termos de correção de fronteira.
 
+- Nome: gates Euler/theta para `n≥3`.
+- Enunciado: provar as duas dominâncias de massas em todas as dimensões.
+- Obstáculo: os certificados fonte-first identificados nesta etapa fecham somente os determinantes de dimensão 3 (passo Euler `n=2`); não há comparação all-order das partes positiva e negativa.
+- Próxima tentativa: procurar uma desigualdade de transporte entre ordens consecutivas sem descartar a massa negativa.
+
 - Nome: identidade de Toda/Desnanot–Jacobi geral.
 - Enunciado: `τ_{s,n}τ_{s+2,n}−τ_{s+1,n}²=τ_{s,n+1}τ_{s+2,n−1}`, para todo `m : ℕ → ℝ`, `s` e `n≥1`.
 - Obstáculo: Mathlib não contém um lema geral correspondente nos módulos pesquisados; `Matrix.det_fromBlocks₁₁` e `det_fromBlocks₂₂` em `Mathlib/LinearAlgebra/Matrix/SchurComplement.lean` requerem `[Invertible A]`/`[Invertible D]`. Usá-los exigiria hipótese adicional e não satisfaria a identidade division-free.
@@ -153,7 +164,8 @@ Foram usados zeros como entrada?: não.
 Há risco de circularidade?: sim, se `nativeThetaCofactorSign_iff_stieltjes` for usado para alegar prova do sinal cofactorial, ou se o balanço Euler for usado sem demonstrar a dominância das massas assinadas.
 
 ## Próxima ação exata
-1. Concluir a análise assinada dos balanços `n=2` usando `nativeMoment_first_discriminant_pos` e `nativeMoment_shifted_discriminant_pos` somente para a invertibilidade dos prefixos 2×2.
-2. Testar se a decomposição integrada em `n=2` produz uma comparação que recorra a `n+1`; registrar a primeira desigualdade sem prova e os termos exatos caso falhe.
-3. Manter a positividade das torres explicitamente condicional às duas famílias de gates para todo `n`.
-4. Tratar a identidade Toda geral em frente separada.
+1. Derivar dos balanços compilados os termos assinados exatos que precisariam ser comparados entre as ordens `n` e `n+1`.
+2. Testar uma comparação de massas consecutivas usando ortogonalidade, convolução cancelada e a fórmula Green completa.
+3. Registrar a primeira desigualdade sem prova se esses termos não dominarem.
+4. Manter a positividade das torres condicional aos gates não provados para `n≥3`.
+5. Tratar a identidade Toda geral em frente separada.

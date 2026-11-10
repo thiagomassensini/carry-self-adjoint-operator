@@ -5,5 +5,5 @@
 - [ ] CHECKPOINT 4 (frente separada): provar o lema genérico de Desnanot–Jacobi sem inversibilidade; especializar a Hankel. A base `n=1` já compila.
 - [x] CHECKPOINT 5: compor com a indução Schur/Euler existente; o corolário é explicitamente condicional às massas.
 - [x] MISSÃO A: obter `c₀>0` internamente pelo teorema CSA; axiomas auditados.
-- [ ] MISSÃO B: auditar os dois balanços Euler em `n=2` sem assumir positividade definida 3×3 e tentar uma desigualdade integrada efetiva.
-- [ ] MISSÃO C: testar recorrência das comparações de massas em `n`; documentar a primeira desigualdade exata sem prova e seus termos.
+- [x] MISSÃO B: fechar os dois gates Euler em `n=2` com os certificados fonte-first de ordem 10/12, sem assumir `PosDef` 3×3.
+- [ ] MISSÃO C: testar uma recorrência das comparações de massas em `n`; documentar a primeira desigualdade exata sem prova e seus termos.
