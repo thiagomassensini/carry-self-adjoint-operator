@@ -10,8 +10,8 @@ O inventário do checkpoint 0 foi concluído e commitado. O checkpoint 1 está f
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: será registrado após o commit validado do checkpoint 1.
-Último commit: `research: record partial arbitrary-order pencil checkpoint`
+Commit SHA: `f9ed20f399fb9369a077b0e7eeac4aed9e425de2` (checkpoint 1).
+Último commit: `feat(lean): identify arbitrary-order Hankel pencil with source cofactor polynomial`
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
