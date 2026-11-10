@@ -20,6 +20,9 @@ The coefficient ceiling and 4×4 bridges are recorded at CSA commit
 recorded at `939aa3aacb8154a740c81d3e3648fe3b3473db9f`; the reproducible
 numeric diagnostic and refreshed research log are at
 `80e1f6208065237f1fcaa9c83bd0db71981d8cd4` on the same branch.
+The consolidation notebook and its focused regression update were pushed to
+the Momentos PR #2 branch at `52b396d160a4d0030500195ea951080333e94ed9` and
+`51d7ec76611ef18d20000895f1b885100654f934`.
 
 The public GitHub page for Momentos PR #2 returned 404 in the browser, but the
 requested research branch was reachable through the configured Git remote.
