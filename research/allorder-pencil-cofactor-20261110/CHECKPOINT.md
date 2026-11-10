@@ -10,8 +10,8 @@ Os checkpoints 0–2 estão concluídos. Para quaisquer `s n`, o determinante do
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: será registrado após o commit validado do checkpoint 2; checkpoint 1: `f9ed20f399fb9369a077b0e7eeac4aed9e425de2`.
-Último commit: `research: record green all-order pencil checkpoint`.
+Commit SHA: `221c6f9d2144baa2f5fdcd4f1e5f4d89d4a072bc` (checkpoint 2); checkpoint 1: `f9ed20f399fb9369a077b0e7eeac4aed9e425de2`.
+Último commit: `feat(lean): prove cofactor critical-vector energy at arbitrary dimension`.
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
