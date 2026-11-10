@@ -84,3 +84,16 @@
 - `NativeHankelPencilEulerOrderThreeAudit.lean` imprime para os três teoremas apenas `[propext, Classical.choice, Quot.sound]`. Os dois módulos foram compilados focadamente com exit code 0.
 - Assim, a comparação de incrementos do setor par em `2→3` pode ser fechada a partir do novo resto positivo; a comparação ímpar continua exatamente reduzida a `R_{1,3}>0`. Isso não dá uma recorrência para ordens posteriores.
 - Diagnóstico numérico exploratório, classificado exclusivamente como `TESTADO_NUMERICO`: o script reproduzível `probe_shifted_c8_ceiling_numeric.py` faz extração Cauchy/DFT da característica real-height `Xi(1/2+it)` com `mpmath`, usando `(N,r)=(128,1.5)` e `(256,2)`. Dá `c₈≈2.09976980814952875×10⁻¹⁹`, teto `≈2.09978821567271976×10⁻¹⁹` e margem `≈1.840752319100597×10⁻²⁴` em ambos os refinamentos. Não usa zeros; não é certificado intervalar nem prova Lean. O majorante absoluto já provado para `c₈`, `|c₈|≤1/(35·25⁷)≈4.681142857×10⁻¹²`, é cerca de 22 milhões de vezes maior que o próprio teto numérico, então esse majorante grosseiro não entrega a comparação.
+
+## Regressões fonte reutilizadas — 2026-11-10
+
+Compilação focada (`lake env lean --root=<worktree> <arquivo>`, executada a partir do checkout principal com a cache CSA) terminou com exit code 0 para:
+
+- H6/K6 e limites theta: `CompletedNativeSixthOrderThetaPositivityAudit.lean`, `CompletedNativeShiftedHankelEighthGateAudit.lean`;
+- fonte/calibração: `NativeSourceKernelCalibrationAudit.lean`;
+- massas/resíduo Schur: `NativeSourceSchurThetaAudit.lean`;
+- Green: `CompletedNativeTfvdGreenShiftedHankelFactorizationAudit.lean` e `GreenWronskianHankelBridge.lean`;
+- Hankel e momentos característicos: `CompletedNativeTenthOrderHankelGateAudit.lean`, `CompletedNativeTenthOrderHankelMomentFormAudit.lean`;
+- câmera/TFVD: `C2LiteralCameraAllOrderJetCrosswalkAudit.lean`, `CompletedNativeCameraTfvdGreenFrameDefectCrosswalkAudit.lean`.
+
+Os arquivos `...Audit.lean` acima executam guardas/`#print axioms`; as declarações listadas dependem somente de `[propext, Classical.choice, Quot.sound]`. Essa execução confere os regressions focados solicitados; não equivale ao build integral de Lake, que continua interrompido antes do alvo por custo de reconstrução.
