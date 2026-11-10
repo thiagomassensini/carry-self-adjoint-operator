@@ -1,10 +1,10 @@
 # CHECKPOINT — ALL-ORDER PENCIL/COFACTOR
 
 ## Estado
-Checkpoint atual: prioridades 2–3 — characteristic ceiling all-order e pontes fonte/Hankel 4×4
-Status: PARTIAL (Toda division-free geral e gates de sinal deslocados/all-order ainda abertos; novas pontes centrais 4×4 compiladas)
+Checkpoint atual: prioridade 3 — gates Euler de ordem 3 após as pontes fonte/Hankel 4×4
+Status: PARTIAL (o gate par `n=3` foi provado; o ímpar reduz ao teto de `c₈`, ainda aberto; Toda geral e gates all-order permanecem abertos)
 
-Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: as duas famílias de dominância Euler/theta implicam positividade das torres nativas `s=0,1` em toda dimensão; `c₀>0` é obtido do teorema CSA `completedNativeRealEvenCharacteristicCoefficient_zero_ge_third`. Um lema por paridade estende o resultado a todo shift por submatrizes principais. As Missões A e B estão GREEN: `c₀>0` é interno aos corolários condicionais e ambos os gates de massa em `n=2` foram provados por certificados fonte-first independentes. A Missão C está concluída como auditoria parcial: a comparação de incrementos `2→3` foi formalizada e reduz exatamente aos restos `R_{0,3}>0` e `R_{1,3}>0`, ainda abertos. Isso não estabelece positividade all-order.
+Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: as duas famílias de dominância Euler/theta implicam positividade das torres nativas `s=0,1` em toda dimensão; `c₀>0` é obtido do teorema CSA `completedNativeRealEvenCharacteristicCoefficient_zero_ge_third`. Um lema por paridade estende o resultado a todo shift por submatrizes principais. As Missões A e B estão GREEN; os dois gates de massa em `n=2` vieram de certificados fonte-first. A auditoria inicial da Missão C reduziu os incrementos `2→3` a `R_{0,3}>0` e `R_{1,3}>0`; desde então, `R_{0,3}>0` e o gate par de massa em `n=3` foram provados pela face fonte de ordem 14. `R_{1,3}>0`, equivalente ao teto de `c₈`, continua aberto. Isso não estabelece positividade all-order.
 
 ## Atualização auditada — 2026-11-10
 
@@ -12,30 +12,33 @@ Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o c
 
 - `CarrySelfAdjointOperator.nativeSourceSchurRemainder_eq_characteristic_gap`, `nativeSource_schur_eq_characteristic_recurrence`, `nativeSource_schur_pos_iff_characteristic_ceiling`, `nativeSourceCentralSchur_pos_iff_characteristic_ceiling`, `nativeSourceShiftedSchur_pos_iff_characteristic_ceiling` em [NativeAllOrderCharacteristicCeiling.lean](../../CarrySelfAdjointOperator/NativeAllOrderCharacteristicCeiling.lean). Valem para todo `s,n`, sem `PosDef` ou `IsUnit`; a expressão `sourceMomentSchur` usa a inversa total de Lean, e sob `IsUnit` é o complemento de Schur usual. O teto é explícito e a equivalência usa o resultado fonte-first `c₀≥1/3`; não prova que a cota é satisfeita.
 - `CarrySelfAdjointOperator.nativeSourceSevenEvenDiscriminant_eq_sixteen_hankelDet`, `nativeSourceEightOddDiscriminant_eq_sixteen_shifted_hankelDet`, `nativeSourceCentral_hankelDet_four_pos`, `nativeSourceShifted_hankelDet_four_pos_iff_characteristic_ceiling` em [NativeAllOrderFiniteDiscriminantBridge.lean](../../CarrySelfAdjointOperator/NativeAllOrderFiniteDiscriminantBridge.lean). A central 4×4 é positiva pelo certificado source-first de ordem 14. A deslocada 4×4 tem sinal equivalente à cota ainda aberta de `c₈`.
+- `CarrySelfAdjointOperator.nativeSourceEuler_even_remainder_three_pos`, `nativeSchurEuler_even_orderThree_mass_gate` e `nativeSchurEuler_odd_orderThree_mass_gate_iff_characteristic_ceiling` em [NativeHankelPencilEulerOrderThree.lean](../../CarrySelfAdjointOperator/NativeHankelPencilEulerOrderThree.lean). O gate par de massa em `n=3` decorre do determinante central fonte-first de ordem 14, do prefixo 3×3 invertível e do balanço Euler. Não se assume `PosDef(G₀,₄)`. O gate ímpar de `n=3` é equivalente a `c₈ < nativeSourceCharacteristicCeiling 1 3`; não foi provado.
 
 ### Compilação e auditoria
 
 - Compilação direta do módulo characteristic ceiling: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeAllOrderCharacteristicCeiling.lean` — exit code 0.
 - Compilação direta da ponte 4×4: comando análogo para `NativeAllOrderFiniteDiscriminantBridge.lean` — exit code 0, sem warnings.
 - `NativeAllOrderCharacteristicCeilingAudit.lean` e `NativeAllOrderFiniteDiscriminantBridgeAudit.lean` compilaram. `#print axioms` em todos os nove teoremas listados imprimiu somente `[propext, Classical.choice, Quot.sound]`.
+- `NativeHankelPencilEulerOrderThree.lean` e `NativeHankelPencilEulerOrderThreeAudit.lean` compilaram; os três teoremas novos imprimem somente `[propext, Classical.choice, Quot.sound]`.
 - `lake build --wfail CarrySelfAdjointOperator.NativeAllOrderCharacteristicCeiling` foi interrompido por `SIGINT` após cerca de 13 minutos, enquanto reconstruía certificados theta transitivos de ordens 12 e 14 e antes de alcançar o módulo-alvo. Não conta como build verde; a compilação Lean focada acima terminou. O build completo não foi executado.
 - Testes exatos de pesquisa da branch Momentos SHA `eeac8c13581e026df409886751a9368ff05d488d`: 63 casos racionais do pencil/cofator/energia/Toda para dimensões 0–6, shifts 0–2 passaram; o no-go da cabeça finita passou em 18 casos `Fraction`; o controle Fourier positivo confirmou o menor negativo exato `-1274953/268240896000`. São `TESTADO_EXATO`, não provas all-order.
 - Regressão exata local `test_allorder_exact_regressions.py`: 126 casos `Fraction` (seis sequências, dimensões 0–6, shifts 0–2) passaram para pencil/cofator, vetor crítico, energia, ortogonalidade e Toda, incluindo pivôs negativos e singulares. São `TESTADO_EXATO`, não substituem os teoremas Lean.
-- Reexecução focada: compilação dentro do worktree falha por ausência dos `.olean` legados naquele cache isolado; a compilação repetida a partir do checkout principal, com `--root` no worktree, terminou com exit code 0 para os dois módulos novos e seus dois arquivos de `#print axioms`. O checkout principal não teve alterações versionadas.
+- `probe_shifted_c8_ceiling_numeric.py` repetiu a extração Cauchy/DFT em duas resoluções sem zeros: o teto shifted ficou `1.8407523191×10⁻²⁴` acima de `c₈`. É somente `TESTADO_NUMERICO`, sem aritmética intervalar; o majorante theta atual de `|c₈|` não certifica essa margem.
+- Reexecução focada: compilação dentro do worktree falha por ausência dos `.olean` legados naquele cache isolado; a compilação repetida a partir do checkout principal, com `--root` no worktree, terminou com exit code 0 para os três módulos novos desta continuação e seus três arquivos de `#print axioms`. O checkout principal não teve alterações versionadas.
 
 ### Obrigação ainda aberta
 
 - A identidade Toda para sequência arbitrária segue compilada apenas para `n=1`; sua versão division-free para todo `n≥1` não foi concluída.
-- O menor gate source-first da próxima ordem continua `nativeThetaNegativeMass (nativeSchurEulerPolynomial 0 3) < nativeThetaPositiveMass (nativeSchurEulerPolynomial 0 3)` e, na torre deslocada, `nativeThetaNegativeMass (nativeSchurEulerPolynomial 1 3) < 2*c₀*(nativeSchurCriticalReadout 1 3)^2 + nativeThetaPositiveMass (nativeSchurEulerPolynomial 1 3)`. Nenhuma das duas foi provada aqui. A cota de característica de `c₈` é uma obrigação equivalente para o discriminante deslocado 4×4, não um certificado dessa desigualdade.
+- O gate par de massa em `n=3` agora está provado por `nativeSchurEuler_even_orderThree_mass_gate`. O menor gate de sinal ainda aberto é o ímpar em `n=3`, equivalente a `c₈ < nativeSourceCharacteristicCeiling 1 3`; não há certificado para ele nem para as ordens seguintes.
 - Não há positividade universal, representação Gram completada, ou uso de zeros como entrada.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA do último checkpoint matemático: `0974fe6dde468da822a35b6489b3d8135cd6618d`.
-Commits desta continuação: Missão A `48365a0e3cb509d20ca7353a07cb9ec49e694878`; Missão B `2c6892866e586cd703fe37d328d46907ed282782`; Missão C `c2adb35d10082f70f280d661590c4ac96a5662fc`.
-Último commit matemático/auditado: `feat(lean): add characteristic ceiling and 4x4 source bridges` (`0974fe6dde468da822a35b6489b3d8135cd6618d`).
+Commit SHA do último checkpoint matemático: `939aa3aacb8154a740c81d3e3648fe3b3473db9f`.
+Commits desta continuação: Missão A `48365a0e3cb509d20ca7353a07cb9ec49e694878`; Missão B `2c6892866e586cd703fe37d328d46907ed282782`; auditoria de incrementos `c2adb35d10082f70f280d661590c4ac96a5662fc`; teto/ponte 4×4 `0974fe6dde468da822a35b6489b3d8135cd6618d`; gate par de ordem 3 `939aa3aacb8154a740c81d3e3648fe3b3473db9f`.
+Último commit matemático/auditado: `feat(lean): prove central Euler mass gate at order three` (`939aa3aacb8154a740c81d3e3648fe3b3473db9f`).
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
@@ -189,7 +192,7 @@ Foram usados zeros como entrada?: não.
 Há risco de circularidade?: sim, se `nativeThetaCofactorSign_iff_stieltjes` for usado para alegar prova do sinal cofactorial, ou se o balanço Euler for usado sem demonstrar a dominância das massas assinadas.
 
 ## Próxima ação exata
-1. Procurar um certificado fonte-first para os restos `R_{0,3}` e `R_{1,3}`; as comparações de massa obtidas até aqui reduzem exatamente a esses sinais.
-2. Investigar se o ceiling existente prova `c₈ < nativeSourceEightCharacteristicCeiling`; a ponte com `det(G_{1,4})` está provada, mas seu sinal permanece aberto.
+1. Provar ou refutar por estimativa fonte-first `c₈ < nativeSourceCharacteristicCeiling 1 3`, equivalente ao gate ímpar de massa em `n=3`.
+2. Após `n=3`, procurar um controle quantitativo independente para os gates positivos/negativos nas ordens subsequentes; não extrapolar pelo balanço assinado.
 3. Manter a positividade all-order condicional aos gates restantes.
 4. Tratar a identidade Toda geral em frente separada.

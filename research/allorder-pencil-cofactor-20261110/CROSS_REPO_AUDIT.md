@@ -15,8 +15,9 @@ of Primos and Geometry-of-Numbers were older and dirty, so the fetched remote
 | CSA research worktree | `eb4077b55fa8086af154e2ae94a0a7cdaae80387` | Clean at audit start on `agent/allorder-pencil-cofactor-euler-20261110` |
 | CSA remote research branch before this continuation | `6135f447039db503b0252d0a814b2b698b19ce54` | `ls-remote`; prior local commits are ahead, not force-pushed |
 
-The audited additions in this continuation are recorded at CSA commit
-`0974fe6dde468da822a35b6489b3d8135cd6618d` on the same research branch.
+The coefficient ceiling and 4×4 bridges are recorded at CSA commit
+`0974fe6dde468da822a35b6489b3d8135cd6618d`; the order-three source gate is
+recorded at `939aa3aacb8154a740c81d3e3648fe3b3473db9f` on the same branch.
 
 The public GitHub page for Momentos PR #2 returned 404 in the browser, but the
 requested research branch was reachable through the configured Git remote.
@@ -134,10 +135,13 @@ Current state distinction:
 - `PROVADO_LEAN`: the all-order characteristic-ceiling equivalence is now
   compiled and audited for every `s,n`; the source discriminants are linked
   to both 4×4 Hankel determinants with exact factor 16. The central 4×4
-  determinant is positive by the existing source certificate.
+  determinant is positive by the existing source certificate. The resulting
+  even Euler mass gate at `n=3` is also proved without assuming 4×4 `PosDef`.
 - `PARTIAL`: Toda is compiled only at `n=1`; the general division-free
   Desnanot–Jacobi step is open. The shifted 4×4 determinant is equivalent to
-  the explicit strict `c₈` ceiling, whose truth is not established.
+  the explicit strict `c₈` ceiling, whose truth is not established. The odd
+  Euler mass gate at `n=3` is equivalent to the general ceiling
+  `c₈ < nativeSourceCharacteristicCeiling 1 3`.
 - `ABERTO`: general source mass dominance; no completed Green-Wronskian Gram
   representation; the next shifted tower sign remains open.
 
@@ -166,11 +170,19 @@ Tests rerun from this branch SHA:
   shifts `s=0..2`; it checks polynomial pencil/cofactor values, vector energy,
   orthogonality, and Toda. This remains finite regression evidence only.
 
-The two new Lean modules and their `#print axioms` audit files were recompiled
+The three new Lean modules and their `#print axioms` audit files were recompiled
 with focused `lake env lean` commands from the existing CSA build cache, using
-the research worktree as `--root`; all four returned exit code 0. Running from
+the research worktree as `--root`; all six returned exit code 0. Running from
 the isolated worktree itself first failed only because that worktree lacks the
 legacy `.olean` cache. The complete Lake build remains unverified.
+
+The subsequent order-three source gate is recorded at CSA commit
+`939aa3aacb8154a740c81d3e3648fe3b3473db9f`. It proves the central even mass
+gate and reduces the next odd mass gate exactly to the `c₈` ceiling. A
+non-rigorous direct-characteristic Cauchy/DFT diagnostic at 80 decimal digits,
+with two radii/sample counts, gives margin about `1.8407523191e-24`; it is not
+an interval certificate or Lean theorem. The existing absolute coefficient
+bound for `c₈` is about `4.68e-12`, far too coarse to certify that margin.
 
 No source definition, dependency pin, or moment definition was changed by this
 audit.
