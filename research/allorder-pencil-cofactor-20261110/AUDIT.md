@@ -21,6 +21,7 @@
 | Identidade algébrica provada nesta branch | `nativeSourceCofactorThetaPolynomial_integral_eq_prefixDet_mul_succ`: a integral original é `c₀τ_{s,n}τ_{s,n+1}`, sem hipótese de sinal. |
 | Teorema condicional novo | `nativeSourceCofactorThetaPolynomial_integral_pos_iff_nextPrefixDet_pos` requer explicitamente `0<c₀` e `0<τ_{s,n}`; não prova `0<I_{s,n}`. |
 | Identidade algébrica parcial desta branch | `arbitraryHankelToda_one` verifica a identidade de Toda apenas em `n=1`, para sequência arbitrária. Não implica a fórmula para todo `n`. |
+| Teorema condicional novo | `nativeSource_even_odd_towers_posDef_of_euler_mass_gates`: as duas torres são PosDef all-order sob `c₀>0` e as dominâncias de massas explícitas. As dominâncias são hipóteses, não resultados. |
 | Teorema Lean existente com hipótese explícita | Critério Schur de extensão positiva e balanços Euler para prefixos invertíveis. |
 | Teorema condicional | Equivalência entre o sinal do pivô ímpar e a dominância das massas, sob `IsUnit`. |
 | Hipótese analítica da fonte | Uma desigualdade que domine a massa theta negativa pela massa positiva (e pelo quadrado ímpar sobrevivente). |
@@ -45,5 +46,6 @@
 - `nativeSourcePrefixDet_succ_eq_borderedScalar`, `nativeSourceHankelCriticalVector_mul` e `nativeSourceHankelCriticalVector_energy` também compilam para todo `s,n`, sem inversa, positividade ou condição de posto.
 - `NativeHankelPencilThetaBridge.lean` compila contra o módulo do checkpoint 2; a identidade integral usa o teorema bordeado original e a equivalência de sinal permanece condicional. O teorema `nativeThetaCofactorSign_iff_stieltjes` não foi reescrito.
 - A identidade division-free de Toda para `n≥1` permanece aberta. A busca local de `Desnanot`, `Dodgson`, `Jacobi`, `condensation`, `minor` e `det_submatrix` não encontrou uma identidade geral apropriada. O lema de bloco `Matrix.det_fromBlocks₁₁` usa `[Invertible A]`, logo não foi usado como substituto.
+- A composição condicional das massas com `nativeSchurEuler_even_balance`, `nativeSchurEuler_odd_pos_iff_mass_balance`, `sourceMomentMatrix_succ_posDef_iff` e indução foi compilada. Ela não usa Stieltjes como hipótese e não estabelece os gates das massas.
 - A compilação focada terminou com exit code 0. Lean imprimiu apenas uma sugestão de reescrita por `ring_nf`; isso não foi erro nem lacuna. Não foi alegada compilação do grafo completo de Lake, cujo build anterior foi interrompido por custo.
 - Os dois documentos de pesquisa pedidos foram lidos da branch remota `research/sigma-pade-dimension-depth-20261104` do repositório `momentos`. Ambos dizem explicitamente que a síntese é algébrica/em papel e não anuncia novo build Lean nem prova de dominância all-order.

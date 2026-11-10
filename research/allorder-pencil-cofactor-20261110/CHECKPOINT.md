@@ -1,17 +1,17 @@
 # CHECKPOINT — ALL-ORDER PENCIL/COFACTOR
 
 ## Estado
-Checkpoint atual: 4 — identidade de Toda
-Status: PARTIAL
+Checkpoint atual: 5 — composição condicional Schur/Euler
+Status: GREEN (checkpoint 4 segue PARTIAL)
 
-Os checkpoints 0–3 estão GREEN. No checkpoint 4, foi compilado o caso base de Toda `n=1` para uma sequência real arbitrária. O passo division-free para `n` geral continua aberto. A busca nas identidades de determinantes de Mathlib encontrou expansão de Laplace, adjugata e complementos de Schur, mas não o lema geral de Desnanot–Jacobi; os lemas de Schur por blocos requerem invertibilidade.
+Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o caso base de Toda `n=1`, mas o passo division-free geral está aberto. O checkpoint 5 está GREEN como teorema **CONDICIONAL**: assumidas `c₀>0` e as duas famílias de dominância Euler/theta explicitamente exibidas, as torres nativas `s=0,1` são PosDef em toda dimensão. As desigualdades de massa não foram provadas.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: `f0bd511688b6011590af48c8531e00f32ea72787` (checkpoint 4 parcial); checkpoint 3: `6a08ef23cbe193c91a8520fe07e011fb4f8780b2`.
-Último commit: `feat(lean): add first Hankel Toda base case`.
+Commit SHA: será registrado após o commit validado do checkpoint 5; checkpoint 4 parcial: `f0bd511688b6011590af48c8531e00f32ea72787`.
+Último commit: `research: record partial Hankel Toda checkpoint`.
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
@@ -99,12 +99,23 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 - Comando de compilação: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilToda.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
 - Resultado: exit code 0; Lean imprimiu uma sugestão informativa `ring_nf`. Nenhuma lacuna foi usada.
 
+- Nome completo: `CarrySelfAdjointOperator.nativeSource_even_odd_towers_posDef_of_euler_mass_gates`.
+- Arquivo: [NativeHankelPencilConditionalPositivity.lean](../../CarrySelfAdjointOperator/NativeHankelPencilConditionalPositivity.lean).
+- Hipóteses: **CONDICIONAL** a `0<c₀`, `M⁻_{0,n}<M⁺_{0,n}` e `M⁻_{1,n}<2c₀T_n²+M⁺_{1,n}` para todo `n`. Conclui PosDef das duas torres de origem para todo `n`; não conclui as hipóteses de massa.
+- Comando de compilação: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilConditionalPositivity.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
+- Resultado: exit code 0, sem warnings ou lacunas.
+
 ## Teoremas ainda abertos
 
 - Nome: identidade de Toda/Desnanot–Jacobi geral.
 - Enunciado: `τ_{s,n}τ_{s+2,n}−τ_{s+1,n}²=τ_{s,n+1}τ_{s+2,n−1}`, para todo `m : ℕ → ℝ`, `s` e `n≥1`.
 - Obstáculo: Mathlib não contém um lema geral correspondente nos módulos pesquisados; `Matrix.det_fromBlocks₁₁` e `det_fromBlocks₂₂` em `Mathlib/LinearAlgebra/Matrix/SchurComplement.lean` requerem `[Invertible A]`/`[Invertible D]`. Usá-los exigiria hipótese adicional e não satisfaria a identidade division-free.
 - Próxima tentativa: provar o lema genérico de Desnanot–Jacobi diretamente a partir da multilinearidade/expansão de determinantes, sem assumir que o bloco central é invertível; então especializar os menores à sequência Hankel.
+
+- Nome: desigualdades de dominância das massas Euler/theta.
+- Enunciado: provar para todo `n` `M⁺_{0,n}>M⁻_{0,n}` e `M⁺_{1,n}+2c₀T_n²>M⁻_{1,n}` diretamente da fonte completada.
+- Obstáculo: as densidades Green/theta têm regiões negativas; balanço Euler preserva as partes assinadas e não implica a dominância.
+- Próxima tentativa: continuar a pesquisa analítica nos termos de fronteira, cancelamentos e massa integrada; não assumir Stieltjes nem Gram positivo.
 
 ## Auditoria lógica
 Há sorry/admit?: nenhum introduzido nos arquivos novos.
@@ -114,6 +125,6 @@ Foram usados zeros como entrada?: não.
 Há risco de circularidade?: sim, se `nativeThetaCofactorSign_iff_stieltjes` for usado para alegar prova do sinal cofactorial, ou se o balanço Euler for usado sem demonstrar a dominância das massas assinadas.
 
 ## Próxima ação exata
-1. Retomar a prova division-free do lema genérico de Desnanot–Jacobi; o caso `n=1` já compila.
-2. Especializar a identidade genérica a menores Hankel e conectar ao bridge theta já compilado.
-3. Preservar como aberta a dominância de massas theta/Euler; nenhuma identidade algébrica ou equivalência condicional prova essas desigualdades.
+1. Retomar o lema division-free de Desnanot–Jacobi; o caso `n=1` já compila.
+2. Investigar diretamente as duas desigualdades de dominância de massas, preservando as parcelas assinadas.
+3. Não inferir positividade global das identidades algébricas ou do corolário condicional.
