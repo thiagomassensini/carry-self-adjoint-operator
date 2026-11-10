@@ -2,16 +2,16 @@
 
 ## Estado
 Checkpoint atual: 1 — polinômio do pencil para todo `n`
-Status: PARTIAL
+Status: GREEN
 
-O inventário foi concluído e commitado. No checkpoint 1, os polinômios do pencil e da direção de cofatores foram definidos; o caso `n = 0` compila. A identidade para dimensões positivas segue aberta.
+O inventário do checkpoint 0 foi concluído e commitado. O checkpoint 1 está fechado: o determinante do pencil dos momentos canônicos coincide com o polinômio da direção de cofatores para quaisquer `s n`, sem hipótese de posto, inversibilidade ou positividade. A prova usa expansão de Laplace, adjugata e uma transformação triangular das colunas.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: `e35cd83`
-Último commit: `research: scaffold all-order Hankel pencil polynomial module`
+Commit SHA: será registrado após o commit validado do checkpoint 1.
+Último commit: `research: record partial arbitrary-order pencil checkpoint`
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
@@ -75,18 +75,18 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 - Comando de compilação: não executado neste checkpoint.
 - Resultado: equivalência condicional; a dominância não é provada.
 
-- Nome completo: `CarrySelfAdjointOperator.nativeSourceHankelPencil`, `nativeSourceHankelPencilPolynomial`, `nativeSourceCofactorPolynomial`, `nativeSourceHankelPencilPolynomial_zero`.
+- Nome completo: `CarrySelfAdjointOperator.nativeSourceHankelPencil`, `nativeSourceHankelPencilPolynomial`, `nativeSourceCofactorPolynomial`, `lastRowZeroExtension_adjugate_lastColumn`, `lastRowZeroExtension_adjugate_last`, `nativeSourceAugmentedZeroMatrix_adjugate_lastColumn`, `nativeSourceAugmentedZeroPolynomialMatrix_adjugate_lastColumn`, `nativeSourceBorderedPolynomialMatrix_det`, `sourceHankelColumnDifferenceMatrix_det`, `nativeSourceBordered_mul_columnDifference_minor`, `nativeSourceHankelPencilPolynomial_eq_cofactor`, `nativeSourceHankelPencilPolynomial_zero`.
 - Arquivo: [NativeHankelPencilCofactor.lean](../../CarrySelfAdjointOperator/NativeHankelPencilCofactor.lean), linhas 18–31.
-- Hipóteses: definições para quaisquer `s n`; o lema provado cobre `n = 0` e não assume positividade.
+- Hipóteses: definições e teoremas para quaisquer `s n`; o teorema principal vale também para `n = 0` e prefixos singulares. Não assume positividade nem usa inversa.
 - Comando de compilação: `lake env lean /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilCofactor.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
-- Resultado: exit code 0, sem warnings após remover um argumento `simp` não usado.
+- Resultado: exit code 0. Lean imprimiu uma sugestão de normalização `ring_nf`; não houve erro de elaboração e nenhuma declaração ficou sem prova.
 
 ## Teoremas ainda abertos
 
-- Nome: identidade do pencil por coefatores `P_{s,n}=C_{s,n}`.
-- Enunciado: formalizar em `ℝ[X]`, para quaisquer `s n`, o determinante do pencil dos momentos canônicos igual ao polinômio da direção de cofatores, inclusive com prefixo singular.
-- Obstáculo: falta ligar os menores da matriz bordeada aos componentes `-adj(G)b` sem pressupor invertibilidade; o determinante do pencil e a expansão de Laplace requerem essa identidade de cofatores.
-- Próxima tentativa: formalizar primeiro o determinante da matriz bordeada por expansão da última linha e a fórmula de Cramer `Matrix.cramer_eq_adjugate_mulVec`; em paralelo usar transformação triangular das colunas para obter `det(XG-K)`.
+- Nome: vetor crítico e energia `G_{s,n+1}v_{s,n}` e `vᵀGv=τ_{s,n}τ_{s,n+1}`.
+- Enunciado: para todo `s n`, provar que o produto é zero nas primeiras `n` coordenadas e `τ_{s,n+1}` na última; deduzir a energia.
+- Obstáculo: ainda falta identificar a última componente com o determinante da matriz Hankel bordada de ordem `n+1`.
+- Próxima tentativa: reutilizar `nativeSourceBorderedScalar` e as identidades de adjugata/determinante já demonstradas para a extensão de linha zero.
 
 ## Auditoria lógica
 Há sorry/admit?: nenhum introduzido nos arquivos novos.
@@ -96,6 +96,6 @@ Foram usados zeros como entrada?: não.
 Há risco de circularidade?: sim, se `nativeThetaCofactorSign_iff_stieltjes` for usado para alegar prova do sinal cofactorial, ou se o balanço Euler for usado sem demonstrar a dominância das massas assinadas.
 
 ## Próxima ação exata
-1. Provar a fórmula de determinante bordeado em termos de `nativeSourceCofactorVector`, inclusive para prefixos singulares.
-2. Provar a transformação triangular do bordered matrix para o pencil `XG-K`.
-3. Compilar o módulo isoladamente, auditar lacunas e registrar o resultado antes de seguir.
+1. Provar a identidade vetorial e de energia sem inversa, inclusive em `n = 0`.
+2. Compilar o módulo focado e registrar checkpoint 2 antes de conectar a integral theta.
+3. Preservar as desigualdades de massa como obrigação aberta; as identidades algébricas não implicam seus sinais.

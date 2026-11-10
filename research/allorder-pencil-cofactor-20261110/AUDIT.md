@@ -13,9 +13,10 @@
 
 ## Categorias de resultado
 
-| Categoria | Estado no início desta branch |
+| Categoria | Estado atual |
 |---|---|
 | Identidade algébrica provada no código existente | Cofatores, escalar bordeado e integral cofactor theta (`nativeSourceCofactorThetaPolynomial_integral_bordered`). |
+| Identidade algébrica provada nesta branch | `nativeSourceHankelPencilPolynomial_eq_cofactor`: `det(XG-K)` igual ao polinômio da direção de cofatores para todo `s,n`, sem hipótese de inversibilidade ou sinal. A transformação triangular tem determinante 1; a prova é division-free. |
 | Teorema Lean existente com hipótese explícita | Critério Schur de extensão positiva e balanços Euler para prefixos invertíveis. |
 | Teorema condicional | Equivalência entre o sinal do pivô ímpar e a dominância das massas, sob `IsUnit`. |
 | Hipótese analítica da fonte | Uma desigualdade que domine a massa theta negativa pela massa positiva (e pelo quadrado ímpar sobrevivente). |
@@ -36,5 +37,6 @@
 - Lean fixado em `leanprover/lean4:v4.32.0`; Lake e todas as revisões do manifest foram lidos.
 - Uma primeira resolução foi interrompida durante a obtenção de pacotes. Os clones resultantes foram preservados; `.lake/packages` da worktree foi apontado para a cache existente do checkout principal, com as revisões do manifest mantidas. `lake env lean --version` passou depois disso.
 - O build da dependência `NativeThetaCofactorMargin` no checkout isolado começou a recompilar um grafo amplo com certificados theta (interrompido em 9300/9844 tarefas, sem erro relatado). Para compilar o módulo novo, foi usado `lake env lean` do checkout principal com o arquivo de fonte na worktree; o `.olean` da margem corresponde ao último commit sem alteração do respetivo fonte. Resultado: exit code 0, sem warnings.
-- A identidade geral do pencil ainda não foi provada; somente o caso `n=0` do módulo novo foi compilado.
+- `nativeSourceHankelPencilPolynomial_eq_cofactor` foi compilado no módulo focado para todos os `s,n`; seu enunciado não assume `IsUnit`, `PosDef` ou qualquer sinal. O caso `n=0` está incluído no teorema geral.
+- A compilação focada terminou com exit code 0. Lean imprimiu apenas uma sugestão de reescrita por `ring_nf`; isso não foi erro nem lacuna. Não foi alegada compilação do grafo completo de Lake, cujo build anterior foi interrompido por custo.
 - Os dois documentos de pesquisa pedidos foram lidos da branch remota `research/sigma-pade-dimension-depth-20261104` do repositório `momentos`. Ambos dizem explicitamente que a síntese é algébrica/em papel e não anuncia novo build Lean nem prova de dominância all-order.
