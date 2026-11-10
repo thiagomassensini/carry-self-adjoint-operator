@@ -1,17 +1,17 @@
 # CHECKPOINT — ALL-ORDER PENCIL/COFACTOR
 
 ## Estado
-Checkpoint atual: 1 — polinômio do pencil para todo `n`
+Checkpoint atual: 2 — energia da direção crítica
 Status: GREEN
 
-O inventário do checkpoint 0 foi concluído e commitado. O checkpoint 1 está fechado: o determinante do pencil dos momentos canônicos coincide com o polinômio da direção de cofatores para quaisquer `s n`, sem hipótese de posto, inversibilidade ou positividade. A prova usa expansão de Laplace, adjugata e uma transformação triangular das colunas.
+Os checkpoints 0–2 estão concluídos. Para quaisquer `s n`, o determinante do pencil coincide com o polinômio cofactorial, e o vetor crítico multiplicado pela próxima janela de Hankel produz zeros nas primeiras `n` coordenadas e `τ_{s,n+1}` na última. A energia é `τ_{s,n}τ_{s,n+1}`. Essas identidades são division-free e não assumem posto, inversibilidade ou positividade.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: `f9ed20f399fb9369a077b0e7eeac4aed9e425de2` (checkpoint 1).
-Último commit: `feat(lean): identify arbitrary-order Hankel pencil with source cofactor polynomial`
+Commit SHA: será registrado após o commit validado do checkpoint 2; checkpoint 1: `f9ed20f399fb9369a077b0e7eeac4aed9e425de2`.
+Último commit: `research: record green all-order pencil checkpoint`.
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
@@ -81,12 +81,18 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 - Comando de compilação: `lake env lean /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilCofactor.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
 - Resultado: exit code 0. Lean imprimiu uma sugestão de normalização `ring_nf`; não houve erro de elaboração e nenhuma declaração ficou sem prova.
 
+- Nome completo: `CarrySelfAdjointOperator.nativeSourceHankelBorderedMatrix`, `nativeSourceHankelBorderedMatrix_eq`, `nativeSourceHankelBorderedMatrix_lastRow`, `nativeSourceHankelBorderedMatrix_det_eq_adjugateDot`, `nativeSourcePrefixDet_succ_eq_borderedScalar`, `nativeSourceHankelCriticalVector_mul`, `nativeSourceHankelCriticalVector_energy`.
+- Arquivo: [NativeHankelPencilCofactor.lean](../../CarrySelfAdjointOperator/NativeHankelPencilCofactor.lean), após a identidade do pencil.
+- Hipóteses: quaisquer `s n`; sem `IsUnit`, `PosDef`, hipótese de sinal ou inversa. `nativeSourcePrefixDet_succ_eq_borderedScalar` identifica o escalar bordeado existente com o próximo determinante; o vetor produto tem as coordenadas `Fin.snoc (fun _ => 0) τ_{s,n+1}`.
+- Comando de compilação: `lake env lean /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilCofactor.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
+- Resultado: exit code 0; nenhuma lacuna no módulo. Lean imprimiu uma sugestão informativa `ring_nf` originada por um passo `ring`.
+
 ## Teoremas ainda abertos
 
-- Nome: vetor crítico e energia `G_{s,n+1}v_{s,n}` e `vᵀGv=τ_{s,n}τ_{s,n+1}`.
-- Enunciado: para todo `s n`, provar que o produto é zero nas primeiras `n` coordenadas e `τ_{s,n+1}` na última; deduzir a energia.
-- Obstáculo: ainda falta identificar a última componente com o determinante da matriz Hankel bordada de ordem `n+1`.
-- Próxima tentativa: reutilizar `nativeSourceBorderedScalar` e as identidades de adjugata/determinante já demonstradas para a extensão de linha zero.
+- Nome: ponte com a integral theta e identidade de Toda.
+- Enunciado: compor `nativeSourceCofactorThetaPolynomial_integral_bordered` com a energia para obter `I_{s,n}=c₀τ_{s,n}τ_{s,n+1}`, depois provar Desnanot–Jacobi para uma sequência arbitrária.
+- Obstáculo: os dois resultados ainda não foram formalizados neste módulo; a identidade de sinal só será condicional a `c₀>0` e `τ_{s,n}>0`.
+- Próxima tentativa: criar um módulo bridge que importe `NativeThetaCofactorSignGate`, e em paralelo localizar o lema division-free de Desnanot–Jacobi em Mathlib.
 
 ## Auditoria lógica
 Há sorry/admit?: nenhum introduzido nos arquivos novos.
@@ -96,6 +102,6 @@ Foram usados zeros como entrada?: não.
 Há risco de circularidade?: sim, se `nativeThetaCofactorSign_iff_stieltjes` for usado para alegar prova do sinal cofactorial, ou se o balanço Euler for usado sem demonstrar a dominância das massas assinadas.
 
 ## Próxima ação exata
-1. Provar a identidade vetorial e de energia sem inversa, inclusive em `n = 0`.
-2. Compilar o módulo focado e registrar checkpoint 2 antes de conectar a integral theta.
-3. Preservar as desigualdades de massa como obrigação aberta; as identidades algébricas não implicam seus sinais.
+1. Provar a ponte `I_{s,n}=c₀τ_{s,n}τ_{s,n+1}` usando a integral theta bordeada existente.
+2. Registrar apenas a equivalência condicional de sinais; não inferir positividade da integral a partir dela.
+3. Formalizar Toda para uma sequência arbitrária, sem hipóteses de sinal ou não nulidade.

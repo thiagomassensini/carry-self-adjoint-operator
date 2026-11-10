@@ -17,6 +17,7 @@
 |---|---|
 | Identidade algébrica provada no código existente | Cofatores, escalar bordeado e integral cofactor theta (`nativeSourceCofactorThetaPolynomial_integral_bordered`). |
 | Identidade algébrica provada nesta branch | `nativeSourceHankelPencilPolynomial_eq_cofactor`: `det(XG-K)` igual ao polinômio da direção de cofatores para todo `s,n`, sem hipótese de inversibilidade ou sinal. A transformação triangular tem determinante 1; a prova é division-free. |
+| Identidade algébrica provada nesta branch | `nativeSourceHankelCriticalVector_mul` e `nativeSourceHankelCriticalVector_energy`: a janela seguinte aplicada ao vetor crítico dá `(0,…,0,τ_{s,n+1})`, com energia `τ_{s,n}τ_{s,n+1}` para todo `s,n`. |
 | Teorema Lean existente com hipótese explícita | Critério Schur de extensão positiva e balanços Euler para prefixos invertíveis. |
 | Teorema condicional | Equivalência entre o sinal do pivô ímpar e a dominância das massas, sob `IsUnit`. |
 | Hipótese analítica da fonte | Uma desigualdade que domine a massa theta negativa pela massa positiva (e pelo quadrado ímpar sobrevivente). |
@@ -38,5 +39,6 @@
 - Uma primeira resolução foi interrompida durante a obtenção de pacotes. Os clones resultantes foram preservados; `.lake/packages` da worktree foi apontado para a cache existente do checkout principal, com as revisões do manifest mantidas. `lake env lean --version` passou depois disso.
 - O build da dependência `NativeThetaCofactorMargin` no checkout isolado começou a recompilar um grafo amplo com certificados theta (interrompido em 9300/9844 tarefas, sem erro relatado). Para compilar o módulo novo, foi usado `lake env lean` do checkout principal com o arquivo de fonte na worktree; o `.olean` da margem corresponde ao último commit sem alteração do respetivo fonte. Resultado: exit code 0, sem warnings.
 - `nativeSourceHankelPencilPolynomial_eq_cofactor` foi compilado no módulo focado para todos os `s,n`; seu enunciado não assume `IsUnit`, `PosDef` ou qualquer sinal. O caso `n=0` está incluído no teorema geral.
+- `nativeSourcePrefixDet_succ_eq_borderedScalar`, `nativeSourceHankelCriticalVector_mul` e `nativeSourceHankelCriticalVector_energy` também compilam para todo `s,n`, sem inversa, positividade ou condição de posto.
 - A compilação focada terminou com exit code 0. Lean imprimiu apenas uma sugestão de reescrita por `ring_nf`; isso não foi erro nem lacuna. Não foi alegada compilação do grafo completo de Lake, cujo build anterior foi interrompido por custo.
 - Os dois documentos de pesquisa pedidos foram lidos da branch remota `research/sigma-pade-dimension-depth-20261104` do repositório `momentos`. Ambos dizem explicitamente que a síntese é algébrica/em papel e não anuncia novo build Lean nem prova de dominância all-order.

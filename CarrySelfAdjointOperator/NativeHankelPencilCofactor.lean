@@ -276,6 +276,143 @@ theorem nativeSourceHankelPencilPolynomial_eq_cofactor (s n : ℕ) :
     _ = B.det := hdetTransform
     _ = nativeSourceCofactorPolynomial s n := nativeSourceBorderedPolynomialMatrix_det s n
 
+/-- The next Hankel window, displayed as the bordered extension of the prefix. -/
+def nativeSourceHankelBorderedMatrix (s n : ℕ) :
+    Matrix (Fin (n + 1)) (Fin (n + 1)) ℝ :=
+  (nativeSourceAugmentedZeroMatrix s n).updateRow (Fin.last n)
+    (fun j => Fin.lastCases (m (2*n+s)) (fun i => sourceMomentCoupling m s n i) j)
+
+theorem nativeSourceHankelBorderedMatrix_eq (s n : ℕ) :
+    nativeSourceHankelBorderedMatrix s n = sourceMomentMatrix m s (n + 1) := by
+  ext i j
+  refine Fin.lastCases ?_ (fun i => ?_) i
+  · refine Fin.lastCases ?_ (fun j => ?_) j
+    · simp [nativeSourceHankelBorderedMatrix, nativeSourceAugmentedZeroMatrix,
+        sourceMomentMatrix]
+      congr 1
+      omega
+    · simp [nativeSourceHankelBorderedMatrix, nativeSourceAugmentedZeroMatrix,
+        sourceMomentMatrix, sourceMomentCoupling]
+      congr 1
+      omega
+  · refine Fin.lastCases ?_ (fun j => ?_) j
+    · simp [nativeSourceHankelBorderedMatrix, nativeSourceAugmentedZeroMatrix,
+        lastRowZeroExtension, sourceMomentMatrix, sourceMomentCoupling, add_comm]
+    · simp [nativeSourceHankelBorderedMatrix, nativeSourceAugmentedZeroMatrix,
+        lastRowZeroExtension, sourceMomentMatrix]
+
+theorem nativeSourceHankelBorderedMatrix_lastRow (s n : ℕ) :
+    (fun j : Fin (n + 1) => nativeSourceHankelBorderedMatrix s n (Fin.last n) j) =
+      Fin.snoc (sourceMomentCoupling m s n) (m (2*n+s)) := by
+  ext j
+  refine Fin.lastCases ?_ (fun j => ?_) j
+  · simp [nativeSourceHankelBorderedMatrix, Matrix.updateRow_apply]
+  · simp [nativeSourceHankelBorderedMatrix, Matrix.updateRow_apply]
+
+theorem nativeSourceHankelBorderedMatrix_det_eq_adjugateDot (s n : ℕ) :
+    (nativeSourceHankelBorderedMatrix s n).det =
+      (fun j : Fin (n + 1) => nativeSourceHankelBorderedMatrix s n (Fin.last n) j) ⬝ᵥ
+        (fun j => (nativeSourceAugmentedZeroMatrix s n).adjugate j (Fin.last n)) := by
+  let A := nativeSourceAugmentedZeroMatrix s n
+  let B := nativeSourceHankelBorderedMatrix s n
+  have hminor (j : Fin (n + 1)) :
+      B.submatrix (Fin.last n).succAbove j.succAbove =
+        A.submatrix (Fin.last n).succAbove j.succAbove := by
+    ext i k
+    simp [B, A, nativeSourceHankelBorderedMatrix, Matrix.updateRow_apply,
+      Fin.succAbove_last]
+  rw [Matrix.det_succ_row B (Fin.last n)]
+  apply Finset.sum_congr rfl
+  intro j hj
+  have hadj := Matrix.adjugate_fin_succ_eq_det_submatrix A j (Fin.last n)
+  calc
+    (-1 : ℝ) ^ ((↑(Fin.last n) + ↑j : ℕ)) * B (Fin.last n) j *
+        (B.submatrix (Fin.last n).succAbove j.succAbove).det =
+      B (Fin.last n) j * A.adjugate j (Fin.last n) := by
+        rw [hminor j]
+        calc
+          (-1 : ℝ) ^ ((↑(Fin.last n) + ↑j : ℕ)) * B (Fin.last n) j *
+              (A.submatrix (Fin.last n).succAbove j.succAbove).det =
+            B (Fin.last n) j *
+              ((-1 : ℝ) ^ ((↑(Fin.last n) + ↑j : ℕ)) *
+                (A.submatrix (Fin.last n).succAbove j.succAbove).det) := by ring
+          _ = B (Fin.last n) j * A.adjugate j (Fin.last n) := by rw [← hadj]
+
+/-- The scalar bordered cofactor is exactly the next Hankel determinant. -/
+theorem nativeSourcePrefixDet_succ_eq_borderedScalar (s n : ℕ) :
+    nativeSourcePrefixDet s (n + 1) = nativeSourceBorderedScalar s n := by
+  calc
+    nativeSourcePrefixDet s (n + 1) = (nativeSourceHankelBorderedMatrix s n).det := by
+      unfold nativeSourcePrefixDet
+      rw [← nativeSourceHankelBorderedMatrix_eq]
+    _ = (fun j : Fin (n + 1) => nativeSourceHankelBorderedMatrix s n (Fin.last n) j) ⬝ᵥ
+        (fun j => (nativeSourceAugmentedZeroMatrix s n).adjugate j (Fin.last n)) :=
+      nativeSourceHankelBorderedMatrix_det_eq_adjugateDot s n
+    _ = (Fin.snoc (sourceMomentCoupling m s n) (m (2*n+s))) ⬝ᵥ
+        nativeSourceCofactorVector s n := by
+      rw [nativeSourceHankelBorderedMatrix_lastRow,
+        nativeSourceAugmentedZeroMatrix_adjugate_lastColumn]
+    _ = nativeSourceBorderedScalar s n := by
+      simp [nativeSourceBorderedScalar, nativeSourcePrefixDet,
+        nativeSourceCofactorVector, Fin.snoc, Matrix.mulVec, dotProduct,
+        Fin.sum_univ_castSucc]
+      ring
+
+/-- Multiplying the critical cofactor vector by the next Hankel window
+annihilates its first `n` entries and leaves the next prefix determinant. -/
+theorem nativeSourceHankelCriticalVector_mul (s n : ℕ) :
+    sourceMomentMatrix m s (n + 1) *ᵥ nativeSourceCofactorVector s n =
+      Fin.snoc (fun _ : Fin n => (0 : ℝ)) (nativeSourcePrefixDet s (n + 1)) := by
+  let G := sourceMomentMatrix m s n
+  let b := sourceMomentCoupling m s n
+  let D := nativeSourcePrefixDet s n
+  let u := G.adjugate *ᵥ b
+  have hmul : G *ᵥ u = D • b := by
+    dsimp [u, D, G, b, nativeSourcePrefixDet]
+    rw [Matrix.mulVec_mulVec, Matrix.mul_adjugate,
+      Matrix.smul_mulVec, Matrix.one_mulVec]
+  have htop (i : Fin n) :
+      (sourceMomentMatrix m s (n + 1) *ᵥ nativeSourceCofactorVector s n) i.castSucc = 0 := by
+    have hrow :
+        (sourceMomentMatrix m s (n + 1) *ᵥ nativeSourceCofactorVector s n) i.castSucc =
+          (G *ᵥ (-u)) i + b i * D := by
+      simp [Matrix.mulVec, dotProduct, Fin.sum_univ_castSucc,
+        sourceMomentMatrix, sourceMomentCoupling,
+        nativeSourceCofactorVector, Fin.snoc, G, b, D, u]
+    rw [hrow, Matrix.mulVec_neg, hmul]
+    simp only [Pi.neg_apply, Pi.smul_apply, smul_eq_mul, neg_add_eq_sub]
+    ring
+  have hrow :
+      (fun j : Fin (n + 1) => sourceMomentMatrix m s (n + 1) (Fin.last n) j) =
+        Fin.snoc b (m (2*n+s)) := by
+    rw [← nativeSourceHankelBorderedMatrix_eq s n]
+    exact nativeSourceHankelBorderedMatrix_lastRow s n
+  have hlast :
+      (sourceMomentMatrix m s (n + 1) *ᵥ nativeSourceCofactorVector s n) (Fin.last n) =
+        nativeSourcePrefixDet s (n + 1) := by
+    rw [nativeSourcePrefixDet_succ_eq_borderedScalar]
+    change (fun j : Fin (n + 1) => sourceMomentMatrix m s (n + 1) (Fin.last n) j) ⬝ᵥ
+      nativeSourceCofactorVector s n = nativeSourceBorderedScalar s n
+    rw [hrow]
+    simp [b, nativeSourceBorderedScalar, nativeSourcePrefixDet,
+      nativeSourceCofactorVector, Fin.snoc, Matrix.mulVec, dotProduct,
+      Fin.sum_univ_castSucc]
+    ring
+  ext i
+  refine Fin.lastCases ?_ (fun i => ?_) i
+  · simpa using hlast
+  · simpa using htop i
+
+/-- The quadratic energy of the critical direction is the product of two
+consecutive prefix determinants; no positivity is involved. -/
+theorem nativeSourceHankelCriticalVector_energy (s n : ℕ) :
+    nativeSourceCofactorVector s n ⬝ᵥ
+        (sourceMomentMatrix m s (n + 1) *ᵥ nativeSourceCofactorVector s n) =
+      nativeSourcePrefixDet s n * nativeSourcePrefixDet s (n + 1) := by
+  rw [nativeSourceHankelCriticalVector_mul]
+  simp [nativeSourceCofactorVector, nativeSourcePrefixDet,
+    Fin.snoc, dotProduct, Fin.sum_univ_castSucc]
+
 theorem nativeSourceHankelPencilPolynomial_zero (s : ℕ) :
     nativeSourceHankelPencilPolynomial s 0 = nativeSourceCofactorPolynomial s 0 := by
   simp [nativeSourceHankelPencilPolynomial,
