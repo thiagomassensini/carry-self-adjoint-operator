@@ -15,6 +15,9 @@ of Primos and Geometry-of-Numbers were older and dirty, so the fetched remote
 | CSA research worktree | `eb4077b55fa8086af154e2ae94a0a7cdaae80387` | Clean at audit start on `agent/allorder-pencil-cofactor-euler-20261110` |
 | CSA remote research branch before this continuation | `6135f447039db503b0252d0a814b2b698b19ce54` | `ls-remote`; prior local commits are ahead, not force-pushed |
 
+The audited additions in this continuation are recorded at CSA commit
+`0974fe6dde468da822a35b6489b3d8135cd6618d` on the same research branch.
+
 The public GitHub page for Momentos PR #2 returned 404 in the browser, but the
 requested research branch was reachable through the configured Git remote.
 The contents below are therefore attributed to the fetched branch SHA, not to
