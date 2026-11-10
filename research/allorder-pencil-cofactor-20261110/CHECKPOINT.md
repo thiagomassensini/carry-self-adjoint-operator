@@ -1,23 +1,23 @@
 # CHECKPOINT — ALL-ORDER PENCIL/COFACTOR
 
 ## Estado
-Checkpoint atual: 0 — reconhecimento e inventário
-Status: GREEN
+Checkpoint atual: 1 — polinômio do pencil para todo `n`
+Status: PARTIAL
 
-O inventário foi concluído sem edição matemática. A árvore principal tinha alterações preexistentes; o trabalho foi isolado em uma worktree limpa.
+O inventário foi concluído e commitado. No checkpoint 1, os polinômios do pencil e da direção de cofatores foram definidos; o caso `n = 0` compila. A identidade para dimensões positivas segue aberta.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: `8f15ec7`
-Último commit: `wip: NativePolynomialNumerators — definition added, theorems need non-sorry proofs`
+Commit SHA: `6954b71` (base da branch; o commit parcial do checkpoint 1 será registrado logo após a auditoria)
+Último commit: `research: initialize all-order pencil/cofactor formalization checkpoint`
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
 Lake: `5.0.0-src+8c9756b`.
 Dependências: manifest preservado; Mathlib `81a5d257c8e410db227a6665ed08f64fea08e997`, `geometry-of-numbers` `d7cc54f5c485320f1fada33118e9e6101488819a`, `NativeCarryC3Crosswalk` `150cfc7fb08da96bf8117f15869cc2b819d593c2`; nenhuma dependência foi atualizada.
-Ambiente de build: a consulta `lake env lean --version` falhou ao resolver `.lake/packages/importGraph` (`could not resolve 'HEAD' to a commit`). O Lean executável direto funciona. Isso precisa ser corrigido de modo local e não destrutivo antes da compilação focada.
+Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar dependências pinadas, `.lake/packages` nesta worktree usa a cache de pacotes já existente no checkout principal; os clones inicialmente obtidos foram preservados em `.lake/packages.initial-local` (fora do Git). Um `lake build CarrySelfAdjointOperator.NativeThetaCofactorMargin` foi interrompido em 9300/9844 tarefas por incluir dezenas de certificados de quadratura de alto grau; não houve erro reportado nesse build. A compilação isolada do módulo novo usou o `.olean` já existente da margem, cujo fonte não mudou desde o commit `28d57ad` de 15/10.
 
 ## Teoremas concluídos
 
@@ -75,21 +75,27 @@ Ambiente de build: a consulta `lake env lean --version` falhou ao resolver `.lak
 - Comando de compilação: não executado neste checkpoint.
 - Resultado: equivalência condicional; a dominância não é provada.
 
+- Nome completo: `CarrySelfAdjointOperator.nativeSourceHankelPencil`, `nativeSourceHankelPencilPolynomial`, `nativeSourceCofactorPolynomial`, `nativeSourceHankelPencilPolynomial_zero`.
+- Arquivo: [NativeHankelPencilCofactor.lean](../../CarrySelfAdjointOperator/NativeHankelPencilCofactor.lean), linhas 18–31.
+- Hipóteses: definições para quaisquer `s n`; o lema provado cobre `n = 0` e não assume positividade.
+- Comando de compilação: `lake env lean /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilCofactor.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
+- Resultado: exit code 0, sem warnings após remover um argumento `simp` não usado.
+
 ## Teoremas ainda abertos
 
 - Nome: identidade do pencil por coefatores `P_{s,n}=C_{s,n}`.
 - Enunciado: formalizar em `ℝ[X]`, para quaisquer `s n`, o determinante do pencil dos momentos canônicos igual ao polinômio da direção de cofatores, inclusive com prefixo singular.
-- Obstáculo: nenhum teorema equivalente foi encontrado entre os módulos do inventário; ainda é necessário escolher as ferramentas Mathlib de determinante polinomial.
-- Próxima tentativa: novo módulo `NativeHankelPencilCofactor.lean`, começando pela matriz bordeada e expansão de Laplace.
+- Obstáculo: falta ligar os menores da matriz bordeada aos componentes `-adj(G)b` sem pressupor invertibilidade; o determinante do pencil e a expansão de Laplace requerem essa identidade de cofatores.
+- Próxima tentativa: formalizar primeiro o determinante da matriz bordeada por expansão da última linha e a fórmula de Cramer `Matrix.cramer_eq_adjugate_mulVec`; em paralelo usar transformação triangular das colunas para obter `det(XG-K)`.
 
 ## Auditoria lógica
-Há sorry/admit?: nenhum introduzido; nenhum arquivo foi editado ainda.
+Há sorry/admit?: nenhum introduzido nos arquivos novos.
 Há axiomas novos?: não.
 Foi assumida positividade?: não para as identidades algébricas inventariadas; os teoremas de Schur/Euler acima declaram suas hipóteses explicitamente.
 Foram usados zeros como entrada?: não.
 Há risco de circularidade?: sim, se `nativeThetaCofactorSign_iff_stieltjes` for usado para alegar prova do sinal cofactorial, ou se o balanço Euler for usado sem demonstrar a dominância das massas assinadas.
 
 ## Próxima ação exata
-1. Corrigir/evitar a checkout local incompleta de `importGraph` sem atualizar `lake-manifest.json` nem qualquer dependência.
-2. Criar `NativeHankelPencilCofactor.lean` e provar a identidade do pencil por determinante bordeado.
+1. Provar a fórmula de determinante bordeado em termos de `nativeSourceCofactorVector`, inclusive para prefixos singulares.
+2. Provar a transformação triangular do bordered matrix para o pencil `XG-K`.
 3. Compilar o módulo isoladamente, auditar lacunas e registrar o resultado antes de seguir.

@@ -34,5 +34,7 @@
 
 - Repositório correto e branch nova confirmados; alterações já existentes no checkout principal ficaram fora da worktree.
 - Lean fixado em `leanprover/lean4:v4.32.0`; Lake e todas as revisões do manifest foram lidos.
-- `lake env lean --version` encontrou um checkout incompleto de `.lake/packages/importGraph`; não atualizar dependências. A compilação focada do próximo checkpoint depende de uma restauração local segura ou de reutilizar uma cache íntegra já disponível.
+- Uma primeira resolução foi interrompida durante a obtenção de pacotes. Os clones resultantes foram preservados; `.lake/packages` da worktree foi apontado para a cache existente do checkout principal, com as revisões do manifest mantidas. `lake env lean --version` passou depois disso.
+- O build da dependência `NativeThetaCofactorMargin` no checkout isolado começou a recompilar um grafo amplo com certificados theta (interrompido em 9300/9844 tarefas, sem erro relatado). Para compilar o módulo novo, foi usado `lake env lean` do checkout principal com o arquivo de fonte na worktree; o `.olean` da margem corresponde ao último commit sem alteração do respetivo fonte. Resultado: exit code 0, sem warnings.
+- A identidade geral do pencil ainda não foi provada; somente o caso `n=0` do módulo novo foi compilado.
 - Os dois documentos de pesquisa pedidos foram lidos da branch remota `research/sigma-pade-dimension-depth-20261104` do repositório `momentos`. Ambos dizem explicitamente que a síntese é algébrica/em papel e não anuncia novo build Lean nem prova de dominância all-order.
