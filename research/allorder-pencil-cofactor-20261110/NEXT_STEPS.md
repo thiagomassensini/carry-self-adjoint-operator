@@ -1,8 +1,7 @@
 # Próximas etapas
 
-- [x] CHECKPOINT 1: provar a fórmula division-free do determinante bordeado com a direção `-adj(G)b`, inclusive prefixos singulares.
-- [x] CHECKPOINT 1: provar que a transformação triangular do bordered matrix dá `det(XG-K)` e fechar a igualdade dos polinômios.
-- [x] CHECKPOINT 2: deduzir `G_{s,n+1} v_{s,n} = (0,…,0,τ_{s,n+1})` e a identidade de energia, sem inversa.
+- [x] CHECKPOINTS 1–2: provar o pencil-cofactor e a energia do vetor crítico para dimensão arbitrária, sem inversa.
 - [x] CHECKPOINT 3: compor a energia com a integral bordeada e registrar apenas a equivalência condicional de sinais.
-- [ ] CHECKPOINT 4: formalizar Desnanot–Jacobi/Toda para sequências arbitrárias e conectar à integral theta.
-- [ ] CHECKPOINT 5–6: reaproveitar a indução condicional existente e deixar as desigualdades de massa como obrigação aberta até haver prova não circular.
+- [ ] CHECKPOINT 4: provar o lema genérico de Desnanot–Jacobi sem inversibilidade; especializar a Hankel. A base `n=1` já compila.
+- [ ] CHECKPOINT 5: compor com a indução Schur/Euler existente, mantendo hipóteses de sinal/invertibilidade explícitas.
+- [ ] CHECKPOINT 6: investigar dominância integrada das massas; manter em aberto até haver prova diretamente da fonte e não circular.
