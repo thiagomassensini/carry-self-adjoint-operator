@@ -1,17 +1,17 @@
 # CHECKPOINT — ALL-ORDER PENCIL/COFACTOR
 
 ## Estado
-Checkpoint atual: 2 — energia da direção crítica
+Checkpoint atual: 3 — ponte pencil/energia/integral theta
 Status: GREEN
 
-Os checkpoints 0–2 estão concluídos. Para quaisquer `s n`, o determinante do pencil coincide com o polinômio cofactorial, e o vetor crítico multiplicado pela próxima janela de Hankel produz zeros nas primeiras `n` coordenadas e `τ_{s,n+1}` na última. A energia é `τ_{s,n}τ_{s,n+1}`. Essas identidades são division-free e não assumem posto, inversibilidade ou positividade.
+Os checkpoints 0–3 estão concluídos. Para quaisquer `s n`, a integral theta cofactorial é exatamente `c₀ τ_{s,n} τ_{s,n+1}`. Também está compilada a equivalência **CONDICIONAL** de sinais sob `c₀>0` e `τ_{s,n}>0`; ela não fornece a positividade da integral. O teorema antigo `nativeThetaCofactorSign_iff_stieltjes` foi mantido como resultado existente e não duplicado.
 
 ## Git
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: `221c6f9d2144baa2f5fdcd4f1e5f4d89d4a072bc` (checkpoint 2); checkpoint 1: `f9ed20f399fb9369a077b0e7eeac4aed9e425de2`.
-Último commit: `feat(lean): prove cofactor critical-vector energy at arbitrary dimension`.
+Commit SHA: será registrado após o commit validado do checkpoint 3; checkpoint 2: `221c6f9d2144baa2f5fdcd4f1e5f4d89d4a072bc`.
+Último commit: `research: record green critical-vector energy checkpoint`.
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
@@ -87,12 +87,18 @@ Ambiente de build: `lake env lean --version` funciona. Para evitar recompilar de
 - Comando de compilação: `lake env lean /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilCofactor.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
 - Resultado: exit code 0; nenhuma lacuna no módulo. Lean imprimiu uma sugestão informativa `ring_nf` originada por um passo `ring`.
 
+- Nome completo: `CarrySelfAdjointOperator.nativeSourceCofactorThetaPolynomial_integral_eq_prefixDet_mul_succ`, `nativeSourceCofactorThetaPolynomial_integral_pos_iff_nextPrefixDet_pos`.
+- Arquivo: [NativeHankelPencilThetaBridge.lean](../../CarrySelfAdjointOperator/NativeHankelPencilThetaBridge.lean).
+- Hipóteses: a identidade integrada vale para todo `s n` sem hipótese de sinal; a equivalência é **CONDICIONAL** a `0<c₀` e `0<τ_{s,n}`.
+- Comando de compilação: `lake env lean --root=/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110 /home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110/CarrySelfAdjointOperator/NativeHankelPencilThetaBridge.lean`, executado a partir de `/home/thlinux/carry-self-adjoint-operator`.
+- Resultado: exit code 0, sem warnings ou lacunas.
+
 ## Teoremas ainda abertos
 
-- Nome: ponte com a integral theta e identidade de Toda.
-- Enunciado: compor `nativeSourceCofactorThetaPolynomial_integral_bordered` com a energia para obter `I_{s,n}=c₀τ_{s,n}τ_{s,n+1}`, depois provar Desnanot–Jacobi para uma sequência arbitrária.
-- Obstáculo: os dois resultados ainda não foram formalizados neste módulo; a identidade de sinal só será condicional a `c₀>0` e `τ_{s,n}>0`.
-- Próxima tentativa: criar um módulo bridge que importe `NativeThetaCofactorSignGate`, e em paralelo localizar o lema division-free de Desnanot–Jacobi em Mathlib.
+- Nome: identidade de Toda/Desnanot–Jacobi para uma sequência arbitrária.
+- Enunciado: `τ_{s,n}τ_{s+2,n}−τ_{s+1,n}²=τ_{s,n+1}τ_{s+2,n−1}`, para `n≥1`.
+- Obstáculo: a identidade de menores ainda não foi localizada/composta para as janelas de Hankel.
+- Próxima tentativa: localizar o lema division-free de Desnanot–Jacobi em Mathlib e provar a identidade para sequência arbitrária, sem sinais.
 
 ## Auditoria lógica
 Há sorry/admit?: nenhum introduzido nos arquivos novos.
@@ -102,6 +108,6 @@ Foram usados zeros como entrada?: não.
 Há risco de circularidade?: sim, se `nativeThetaCofactorSign_iff_stieltjes` for usado para alegar prova do sinal cofactorial, ou se o balanço Euler for usado sem demonstrar a dominância das massas assinadas.
 
 ## Próxima ação exata
-1. Provar a ponte `I_{s,n}=c₀τ_{s,n}τ_{s,n+1}` usando a integral theta bordeada existente.
-2. Registrar apenas a equivalência condicional de sinais; não inferir positividade da integral a partir dela.
-3. Formalizar Toda para uma sequência arbitrária, sem hipóteses de sinal ou não nulidade.
+1. Formalizar Toda/Desnanot–Jacobi para uma sequência arbitrária e shifts `s,n` com `n≥1`.
+2. Compor Toda com a ponte theta mantendo explícitas todas as condições de sinal.
+3. Preservar como aberta a dominância de massas theta/Euler; nenhuma equivalência condicional prova essas desigualdades.
