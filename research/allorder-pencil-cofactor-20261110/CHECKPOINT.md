@@ -10,8 +10,8 @@ Os checkpoints 0–3 estão GREEN. O checkpoint 4 permanece PARTIAL: compila o c
 Repositório: `/home/thlinux/carry-self-adjoint-operator`
 Worktree de trabalho: `/home/thlinux/worktrees/agent-allorder-pencil-cofactor-20261110`
 Branch: `agent/allorder-pencil-cofactor-euler-20261110`
-Commit SHA: será registrado após o commit validado do checkpoint 5; checkpoint 4 parcial: `f0bd511688b6011590af48c8531e00f32ea72787`.
-Último commit: `research: record partial Hankel Toda checkpoint`.
+Commit SHA: `79599ab3b5a2e34ad6ae6a2c50797a5a8ea1ecd6` (checkpoint 5); checkpoint 4 parcial: `f0bd511688b6011590af48c8531e00f32ea72787`.
+Último commit: `feat(lean): assemble conditional all-order positivity from Euler theta mass gates`.
 
 ## Ambiente
 Lean: `leanprover/lean4:v4.32.0`; `lean --version` confirma commit `8c9756b28d64dab099da31a4c09229a9e6a2ef35`.
