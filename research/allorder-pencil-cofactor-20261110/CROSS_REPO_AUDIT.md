@@ -191,3 +191,24 @@ bound for `c₈` is about `4.68e-12`, far too coarse to certify that margin.
 
 No source definition, dependency pin, or moment definition was changed by this
 audit.
+
+## Remote snapshot refresh — 2026-11-10
+
+`git ls-remote` reconfirmed that the source snapshots previously inspected are
+still the current refs: Primos `main` at
+`e2a723b4ec3e645539de0b9ca881951d93259cda` (PR #47 merged) and
+Geometry-of-Numbers `main` at
+`8f5631a7808ad7c73491b558a894566e1d39899c` (PR #41 merged). The Momentos
+research branch for PR #2 now points to
+`e63a711e6ca3ed1e9872e517fbad1c1d9c09b5f2`; it adds the order-16 floor
+countermodel audit to the consolidation notebook. The CSA branch points to
+`90b0eb32a278320a787e86200efcd3dec639d5a5`, with code commit
+`020296d` for the rational countermodel and its proposed floor threshold.
+
+GitHub CLI reports CSA PR #109 OPEN/draft at head
+`90b0eb32a278320a787e86200efcd3dec639d5a5`, and Momentos PR #2 OPEN (not
+draft) at head `e63a711e6ca3ed1e9872e517fbad1c1d9c09b5f2`. The public browser
+view for Momentos PR #2 returned 404 in this environment; its branch and PR
+metadata were instead checked through the configured Git remote and GitHub
+CLI. Neither the 576-cell order-16 aggregate nor its connection to the actual
+theta-tail moment is claimed as compiled by this refresh.
