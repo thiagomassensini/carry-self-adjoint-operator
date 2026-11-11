@@ -97,3 +97,20 @@ Compilação focada (`lake env lean --root=<worktree> <arquivo>`, executada a pa
 - câmera/TFVD: `C2LiteralCameraAllOrderJetCrosswalkAudit.lean`, `CompletedNativeCameraTfvdGreenFrameDefectCrosswalkAudit.lean`.
 
 Os arquivos `...Audit.lean` acima executam guardas/`#print axioms`; as declarações listadas dependem somente de `[propext, Classical.choice, Quot.sound]`. Essa execução confere os regressions focados solicitados; não equivale ao build integral de Lake, que continua interrompido antes do alvo por custo de reconstrução.
+
+## Piso theta de ordem 16 e obstrução da caixa deslocada
+
+### Categorias da evidência
+
+- `PROVADO_LEAN`: `thetaBoxEighthCandidate_ge_theta16_floor_target` e `thetaBoxEighthCandidate_order16_floor_countermodel` provam aritmeticamente que a candidata racional já formalizada satisfaz o limite inferior proposto `7675700000/10^18`, todos os dados antigos do box, a recorrência logarítmica finita, positividade dos momentos e Gram brutas correspondentes, e ainda possui direção negativa para a forma de resposta ímpar.
+- `TESTADO_EXATO`: a diferença candidata menos o limiar é exatamente `114697358544125403/5000000000000000000000000000 > 0` (≈`2.29394717088×10⁻¹¹`).
+- `ABERTO`: provar e compilar `theta16_floor_sum_lower_target` a partir das 576 células e provar sua conexão com `completedNativeThetaTailMoment 16`. O arquivo fonte `ThetaSixteenthFloorCertificateData/Aggregator.lean` declara a soma local, mas a tentativa focada de compilá-lo nesta sessão foi interrompida por custo depois de cinco minutos (`SIGINT`, código 130); esse resultado não foi contado como verificação.
+- `ABERTO`: o contraexemplo é uma sequência racional abstrata, não a fonte theta real. Ele demonstra somente que o limiar escalar de ordem 16, somado ao box antigo e às condições listadas, não basta para deduzir a positividade do response Hankel deslocado.
+
+### Auditoria Lean
+
+Os dois teoremas novos estão em `NativeThetaSixteenthFloorCountermodel.lean`; `NativeThetaSixteenthFloorCountermodelAudit.lean` executa `#print axioms`, que retorna somente `[propext, Classical.choice, Quot.sound]` para ambos. A compilação focada de cada arquivo terminou com exit code 0 usando Lean `v4.32.0` e as dependências pinadas existentes. Os novos arquivos não contêm `sorry`, `admit` ou declarações `axiom`.
+
+### Escopo que não foi provado
+
+O teorema `theta16_floor_sum_lower_target` não foi usado por esses resultados. Assim, não se afirma nesta atualização que o momento theta real de ordem 16 é pelo menos `7675700000/10^18`, nem que essa cota decorre do agregado no estado compilado da branch. Mesmo quando estabelecida, a cota candidata isolada não exclui a sequência racional com testemunha negativa. Ela também não prova nem refuta o sinal da fonte completada.

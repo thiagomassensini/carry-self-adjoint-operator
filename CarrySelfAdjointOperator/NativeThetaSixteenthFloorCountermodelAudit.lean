@@ -1,0 +1,4 @@
+import CarrySelfAdjointOperator.NativeThetaSixteenthFloorCountermodel
+
+#print axioms CarrySelfAdjointOperator.thetaBoxEighthCandidate_ge_theta16_floor_target
+#print axioms CarrySelfAdjointOperator.thetaBoxEighthCandidate_order16_floor_countermodel

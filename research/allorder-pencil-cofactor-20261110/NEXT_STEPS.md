@@ -10,4 +10,8 @@
 - [x] MISSÃO A: obter `c₀>0` internamente pelo teorema CSA; axiomas auditados.
 - [x] MISSÃO B: fechar os dois gates Euler em `n=2` com os certificados fonte-first de ordem 10/12, sem assumir `PosDef` 3×3.
 - [x] MISSÃO C: auditar os incrementos de massa entre `n=2` e `n=3`; o resto par `R_{0,3}` agora é positivo pela face fonte de ordem 14, enquanto o ímpar permanece equivalente ao teto de `c₈`.
-- [ ] Provar por estimativa fonte-first o gate ímpar `n=3`, `c₈ < nativeSourceCharacteristicCeiling 1 3`; correlacionar explicitamente esse teto genérico ao teto de fronteira `nativeSourceEightCharacteristicCeiling` e, depois, buscar os gates das ordens seguintes.
+- [ ] Compilar de forma focada `ThetaSixteenthFloorCertificateData.Aggregator` e ligar sua soma das 576 células a `completedNativeThetaTailMoment 16`; a tentativa anterior foi interrompida após cinco minutos sem erro de elaboração.
+- [ ] Provar por estimativa fonte-first o gate ímpar `n=3`, `c₈ < nativeSourceCharacteristicCeiling 1 3`; o novo contraexemplo mostra que o limiar inferior escalar `7675700000/10^18`, combinado apenas com o box de ordem 14, não basta.
+- [ ] Tentar uma comparação division-free de Desnanot–Jacobi para toda sequência, sem usar `Invertible`/`PosDef`; a base `n=1` continua compilada.
+- [ ] Identificar uma desigualdade de fonte independente que controle as massas positivas e negativas para ordens consecutivas; manter integralmente os termos Green de fronteira e o resíduo negativo.
+- [ ] Auditar se uma realização Green–Wronskian completada decorre do carrier C2 corrigido; não definir o carrier como raiz formal do kernel a provar.
