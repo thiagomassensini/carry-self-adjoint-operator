@@ -1,0 +1,9 @@
+import CarrySelfAdjointOperator.CompletedNativeHardyGreen
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalCompletedNativeLogDerivativeMoment_noFiniteMomentRelation_of_infinitePositiveRealNativeZeros
+#print axioms completedNativeRealHPCarrierCertificate_of_infinitePositiveRealNativeZeros
+#print axioms hankelPair_posDef_of_infinitePositiveRealNativeZeros
+
+end CarrySelfAdjointOperator
