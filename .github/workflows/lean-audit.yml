@@ -12,6 +12,7 @@ permissions:
 
 env:
   AUDITED_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+  BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before || '' }}
 
 concurrency:
   group: carry-self-adjoint-operator-${{ github.event_name }}-${{ github.event.pull_request.number || github.sha }}
@@ -69,5 +70,5 @@ jobs:
           use-github-cache: false
           use-mathlib-cache: true
 
-      - name: Run complete kernel audit
-        run: bash scripts/audit.sh
+      - name: Audit changed Lean scope
+        run: bash scripts/audit_changed_lean.sh "$BASE_SHA" "$AUDITED_SHA"
