@@ -1,0 +1,20 @@
+import CarrySelfAdjointOperator.CompletedNativeC2CentralLegEnergyLimit
+
+namespace CarrySelfAdjointOperator
+
+#check nativeSourceC2CentralLeg_gamma_gap_error
+#print axioms nativeSourceC2CentralLeg_gamma_gap_error
+
+#check nativeSourceC2CentralLeg_energy_error_bound
+#print axioms nativeSourceC2CentralLeg_energy_error_bound
+
+#check nativeSourceC2CentralLeg_energy_eventually_uniform
+#print axioms nativeSourceC2CentralLeg_energy_eventually_uniform
+
+#check nativeSourceC2CentralLeg_eventually_margin_of_boundary_margin
+#print axioms nativeSourceC2CentralLeg_eventually_margin_of_boundary_margin
+
+#check nativeSourceC2CentralLeg_eventually_margin_of_boundary_pos
+#print axioms nativeSourceC2CentralLeg_eventually_margin_of_boundary_pos
+
+end CarrySelfAdjointOperator
