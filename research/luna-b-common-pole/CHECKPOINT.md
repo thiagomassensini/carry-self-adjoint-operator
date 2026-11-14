@@ -1,6 +1,6 @@
 # Luna B checkpoint
 
-- Fase: B1, B2 e B3 concluídas; validação final passou; PR draft a abrir.
+- Fase: B1, B2 e B3 concluídas; validação Lean local passou; PR #114 aberta em draft.
 - Repositório/branch: `carry-self-adjoint-operator`, `agent/luna-b-common-pole-20261114`.
 - Worktree isolada: `/home/thlinux/worktrees/csa-common-pole-20261114`.
 - SHA-base usado: `045369f6dedcb2e75e9aefed1d12c9f73b9a2532` (`origin/main`).
@@ -16,4 +16,6 @@
 - Busca por `sorry`, `admit` e declarações `axiom` nos módulos novos: vazia.
 - Nenhum sinal/positividade foi afirmado; nenhum zero espectral/representação é usado no cross identity.
 - O prolongamento removível de `q` em `s=1` não foi formalizado; não é necessário no germe `s=1/2`.
-- Próximo passo exato: abrir a PR draft contra `main`, sem merge.
+- Check GitHub `Exact-checkout Lean theorem audit` falhou: auditor estático acusa três palavras em comentários que já estão no `origin/main`; busca na base reproduz as mesmas três ocorrências, nenhum arquivo Lean novo é acusado.
+- Estado PR: https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/114, aberta, draft, mergeable, sem merge; o check acima mantém `mergeStateStatus=UNSTABLE`.
+- Próximo passo exato: corrigir na base o falso positivo do `scripts/static_audit.sh` e reexecutar o workflow; isso fica fora do escopo desta PR, cujo pedido exige draft sem merge.

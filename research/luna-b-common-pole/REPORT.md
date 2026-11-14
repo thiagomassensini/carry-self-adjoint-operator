@@ -86,6 +86,10 @@ O script `scripts/validate-luna-b-common-pole.py` compila explicitamente os cinc
 
 Execução concluída com sucesso: `validated 5 Lean modules; 26 axiom reports use only accepted foundations`. Cada declaração auditada depende somente de `propext`, `Classical.choice` e `Quot.sound`. Os canários em `CommonPoleRegression.lean` verificam `p(0)=-2`, `p(1)=8`, o bloco unidimensional e a identidade multiplicada na diagonal. Os novos módulos de pesquisa são compilados explicitamente pelo script; o build raiz não foi usado como substituto dessa validação.
 
+A verificação GitHub `Exact-checkout Lean theorem audit` da PR #114 falhou em `scripts/static_audit.sh`. A auditoria estática global encontra três palavras em comentários de arquivos já presentes em `origin/main`: `axiom` em `CompletedNativeChiralReturnLeakageControl.lean` e `NativeSourceAllOrderSchur.lean`, e `admit` em `NativeMomentPrefixNoBootstrap.lean`. A mesma busca em `origin/main` retorna exatamente essas três ocorrências; os cinco módulos Lean desta PR não contêm nenhum dos tokens verificados. Portanto, esta falha reproduz-se na base e não indica escape de confiança introduzido por esta mudança. O check ainda aparece como falho no GitHub; o script compartilhado não foi alterado neste trabalho.
+
 ## I. Próxima obrigação mínima
 
 Para avançar de identidade estrutural a uma margem de sinal C2, obter uma caixa independente para o restante do canal reduzido `R_a-R_q`, preservando sua correlação com o bracket completo `B_M`.
+
+Estado de entrega: PR #114 está aberta em draft contra `main`, sem merge. A compilação/auditoria Lean específica passou; o único check reportado pelo GitHub está bloqueado pelas três correspondências preexistentes acima.
