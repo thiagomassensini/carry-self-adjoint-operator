@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Find Lean trust-escape tokens in code while ignoring comments and strings."""
+"""Find Lean trust-escape tokens while ignoring line and block comments."""
 
 from pathlib import Path
 import re
@@ -8,6 +8,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parent.parent
 TOKEN_PATTERN = re.compile(r"(^|[^A-Za-z])(sorry|admit|axiom|unsafe)([^A-Za-z]|$)")
+CHAR_LITERAL = re.compile(r"'(?:\\(?:u\{[0-9A-Fa-f]+\}|.)|[^'\\\r\n])'")
 
 
 def _blank_non_newlines(chars: list[str], start: int, end: int) -> None:
@@ -16,8 +17,8 @@ def _blank_non_newlines(chars: list[str], start: int, end: int) -> None:
             chars[index] = " "
 
 
-def strip_comments_and_strings(source: str) -> str:
-    """Mask Lean line/nested block comments and string contents, preserving lines."""
+def strip_comments(source: str) -> str:
+    """Mask Lean line/nested block comments, preserving strings and line numbers."""
     chars = list(source)
     index = 0
     depth = 0
@@ -50,16 +51,11 @@ def strip_comments_and_strings(source: str) -> str:
 
         if in_string:
             if source[index] == "\\":
-                end = min(index + 2, len(source))
-                _blank_non_newlines(chars, index, end)
-                index = end
+                index = min(index + 2, len(source))
             elif source[index] == '"':
-                chars[index] = " "
                 in_string = False
                 index += 1
             else:
-                if source[index] not in "\r\n":
-                    chars[index] = " "
                 index += 1
             continue
 
@@ -71,8 +67,9 @@ def strip_comments_and_strings(source: str) -> str:
             _blank_non_newlines(chars, index, index + 2)
             depth = 1
             index += 2
+        elif source[index] == "'" and (char_match := CHAR_LITERAL.match(source, index)):
+            index = char_match.end()
         elif source[index] == '"':
-            chars[index] = " "
             in_string = True
             index += 1
         else:
@@ -93,7 +90,7 @@ def main() -> int:
     findings = 0
     for path in lean_files():
         source = path.read_text(encoding="utf-8")
-        code = strip_comments_and_strings(source)
+        code = strip_comments(source)
         for match in TOKEN_PATTERN.finditer(code):
             line = code.count("\n", 0, match.start()) + 1
             print(f"{path.relative_to(ROOT)}:{line}: trust escape token {match.group(2)}")
@@ -101,7 +98,7 @@ def main() -> int:
 
     if findings:
         return 1
-    print("Lean trust-escape scan passed (comments and strings ignored)")
+    print("Lean trust-escape scan passed (comments ignored)")
     return 0
 
 
