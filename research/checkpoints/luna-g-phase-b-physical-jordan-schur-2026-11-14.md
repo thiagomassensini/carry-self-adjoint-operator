@@ -80,7 +80,7 @@ A nova identidade da direção crítica torna explícita a mesma obrigação em 
 ## Validação
 
 - Módulo novo e auditoria compilados com warnings como erros.
-- `lake build --wfail` da raiz concluído com sucesso (10,241 jobs antes da última extensão apenas algébrica da auditoria; os módulos atualizados foram reconstruídos depois).
+- `lake build --wfail` da raiz, executado após a versão final dos teoremas e da auditoria, concluído com sucesso (10,241 jobs).
 - Auditoria transitiva das seis declarações novas: apenas `[propext, Classical.choice, Quot.sound]`.
 - Nenhum `sorry`, `admit` ou axioma foi adicionado.
 
