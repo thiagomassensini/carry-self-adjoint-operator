@@ -61,21 +61,47 @@ dressing is the original completion divided by the C2 factor. It exports
 `c2FiniteSourceGammaWronskian_split_with_legs`.
 
 The latter states `WΓ − W = (WΓ − W₀) − (W − W₀)` and replaces the second
-parenthesis with the proved two-leg formula. The first parenthesis remains an
-explicit residual. The precise missing comparison for a future proof is, for
-the same cutoff and nonreal heights:
+parenthesis with the proved two-leg formula. Keep the first parenthesis
+`WΓ − W₀` as an explicit residual. It is not a universal equality target:
+the interval control below rules out setting it to zero for the stated
+diagonal point and every cutoff at least eight. No theorem equating `WΓ` and
+`W₀` is claimed. The infinite-germ transport is also open: it needs local
+convergence and justified derivative exchange for the finite C2 chart and
+the `J`, `d`, and `E` sequences. The finite specialization does not assume
+those facts.
+
+### Interval control of the diagonal proxy (not a Lean theorem)
+
+The reproducible script `verificar_gamma_central.py` in
+`PACOTE_REVISAO_GAMMA_CENTRAL_2026-11-14` (SHA-256
+`f15200f338a10ea6734afbc5e258a16cc88b75d23a59b3c1897fa7e766d24fd0`) checks
+`s = 2/5` (`z = i/10`) and cutoff `M = 8` with an explicit digamma-series
+tail at 50 and 80 digits. The 80-digit intervals certify
 
 ```text
-canonicalCompletedC3PolarizedGammaBoundaryReadout z w hz hw =
-  c2CentralPolarizedWronskian
-    (fun x => c2FiniteChartHeightCharacteristic cutoff x)
-    (fun x => c2FiniteChartHeightCentralCompanion cutoff x) z w
+-1/20 < ℓ < 0
+-760/10^6 < d₈ − ℓ V₈ < -759/10^6
+E₈ > 0
+J₈ − ℓ V₈ > 0
 ```
 
-This comparison has not been proved, and no theorem equating `WΓ` and `W₀` is
-claimed. The infinite-germ transport is also open: it needs local convergence
-and justified derivative exchange for the finite C2 chart and the `J`, `d`,
-and `E` sequences. The finite specialization does not assume those facts.
+Here `ℓ = L_s/L`, `V₈` is the finite C2 value chart, `d₈` its central jet,
+`E₈ = J₈ − d₈` the two-leg correction, and `J₈` the full jet. At this point
+`L` is real and nonzero and `V₈ > 0`, so the prefactor in the diagonal
+formula is positive:
+`Im W₀ = 2 L² V₈ (d₈ − ℓ V₈) < 0`, while the original Gamma readout satisfies
+`Im WΓ = 2 Im(z) ‖Γ(z)‖² ≥ 0`. The script also certifies that
+`d_M − ℓ V_M` strictly decreases for `M ≥ 8`, so the central diagonal remains
+negative at every later finite cutoff. These are interval/numeric-source
+results, not Lean declarations or axioms. They disprove the literal
+Gamma-to-central equality at this diagonal point; they do not disprove the
+conditional envelope in A or all-order positivity.
+
+The E bridge proceeds by synthesizing the existing finite central and leg
+companions in the original source Cauchy carrier and bounding the omitted tail.
+It does not identify `WΓ` with `W₀`. The E1/E2 checkpoint and conditional
+E3/E4 transport are recorded in
+`research/checkpoints/LUNA_E_CARRIER_CHECKPOINT_2026-11-14.md`.
 
 ## Integration checkpoint — relation to prompts A, B, and C
 
