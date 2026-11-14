@@ -60,23 +60,29 @@ O novo módulo `CompletedNativeC2CentralLegEnergyLimit.lean` prova:
 
 ## Certificados finitos e dependências
 
-Os certificados existentes no Geometry of Numbers provam energia original
-positiva em dimensão 8 (`n=4`) e 12 (`n=6`) via H6/K6 e suas seções
-principais, respectivamente (PRs #148, #323, #327 e #329). O grafo de imports
-é acíclico apenas se o transporte genérico permanecer no repositório
-self-adjoint e a instanciação dos certificados ficar downstream no Geometry
-of Numbers. A instanciação do transporte C2 nesses certificados ainda será
-entregue em uma costura separada; não se registra positividade C2 finita antes
-da compilação dessa costura.
+Os certificados existentes no Geometry of Numbers provam o par canônico
+H6/K6 positivo a partir da fonte original (PRs #148, #323, #327 e #329).
+Downstream PR [#331](https://github.com/thiagomassensini/geometry-of-numbers/pull/331)
+restringe esse par pelas inclusões principais exatas `Fin.castLE` para cada
+`n ≤ 6`, transporta o sinal pelo split original par/ímpar da energia e aplica
+o teorema genérico de margem acima. Seu resultado compilado dá, para cada
+`1 ≤ n ≤ 6`, uma constante `δ_n > 0` e positividade radial eventual do
+readout C2 centro + pernas no corte exato `M(n,k)`. A constante pode depender
+de `n`; as dimensões cobertas são 2, 4, 6, 8, 10 e 12.
+
+O grafo de imports permanece acíclico: o transporte genérico fica no
+repositório self-adjoint e a instanciação dos certificados fica downstream no
+Geometry of Numbers. PR #331 é baseado em `main` desse repositório e depende
+explicitamente do PR #118; foi compilado contra o commit `a90e84a` do PR #118.
 
 ## Hipóteses e limites
 
 O resultado geral de transporte requer o sinal da energia finita somente para
 deduzir sinal positivo de `Q`. Ele não afirma positividade de Hankel
 incondicional nem oculta a hipótese `InfinitePositiveRealNativeZeros` em
-consumidores de positividade estrita. A hipótese de sinal centro + pernas
-continua sendo a obrigação geral de E4; o erro da cauda C2 não é mais uma
-hipótese.
+consumidores de positividade estrita. O sinal centro + pernas está agora
+certificado nas ordens 1–6 por PR #331; a obrigação geral de E4 permanece
+aberta para `n ≥ 7`. O erro da cauda C2 não é mais uma hipótese.
 
 Nenhuma nova suposição de convergência, novo axioma, `sorry` ou `admit` foi
 introduzido. Os pesos e estados do carrier original, os cruzamentos e a
