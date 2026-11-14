@@ -16,6 +16,9 @@
 - Auditoria: 9 declarações; somente `propext`, `Classical.choice` e `Quot.sound`.
 - Limitação do ambiente: o `.lake` isolado inicial esgotou disco; removi apenas esse cache gerado e reutilizei o cache já existente do mesmo manifest.
 - Validação reproduzível: `scripts/validate-luna-a-psd-hardy.py` passou integralmente.
-- Ainda aberto: revisão final do diff, consolidar o relatório e abrir PR draft contra `codex/hardy-pade-c3`.
-- Próximo passo exato: revisar arquivos novos e commitar relatório/script/checkpoint final.
+- PR #111: aberta como draft contra `codex/hardy-pade-c3`; o SHA inicial do draft é `f0a7666bbda27780367bbc971e72848232944c68`.
+- Estado: prompt A entregue; não foi feito merge.
+- Validação final após a implementação: `python3 scripts/validate-luna-a-psd-hardy.py` passou; axiomas fundacionais permitidos.
+- Ainda aberto: prova de existência do envelope e, se necessário, a premissa dos zeros reais positivos fornecida ao critério Hardy.
+- Próximo passo matemático exato: derivar o envelope superior assinado do defeito Gamma para uma ordem fixa, uniforme em todos os vetores de fronteira.
 - Resultado de sinal: nenhum sinal incondicional da fonte foi demonstrado.

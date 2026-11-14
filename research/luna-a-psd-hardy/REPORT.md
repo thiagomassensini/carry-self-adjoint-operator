@@ -72,6 +72,8 @@ Comandos executados durante esta fase:
 
 `#print axioms` foi executado transitivamente para A1, A2, A3 e as interfaces reutilizadas de Hardy, split e Gamma. Todas as declarações listaram apenas `propext`, `Classical.choice` e `Quot.sound`. Não há `sorry`, `admit`, `native_decide` ou novos axiomas nos módulos criados.
 
+Commits da implementação: `4883deea9dc4ab560c3f41735af5103ea240e8f8` (A1), `0a9381fbabe4170893ed164b02a94780862fdb4a` (checkpoint A1), `db8ff2d19bb63b9a981434e93d099c83bf8970ba` (A2/A3 + auditoria), `e677f2a0ed7ca5ee2bbb48172b033ade2e266ddd` (checkpoint A2/A3) e `f0a7666bbda27780367bbc971e72848232944c68` (relatório/script). A PR draft é [#111](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/111), aberta contra a branch-base da PR #110.
+
 Limitação do ambiente: a worktree nova inicialmente clonou dependências até esgotar o espaço disponível. Esse cache recém-criado foi removido e a validação reutilizou o cache existente do mesmo manifest. A árvore de trabalho WIP original permaneceu intacta.
 
 ## I. Próximo passo mínimo
