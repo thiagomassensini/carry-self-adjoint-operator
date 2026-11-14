@@ -77,6 +77,46 @@ claimed. The infinite-germ transport is also open: it needs local convergence
 and justified derivative exchange for the finite C2 chart and the `J`, `d`,
 and `E` sequences. The finite specialization does not assume those facts.
 
+## Integration checkpoint — relation to prompts A, B, and C
+
+The four prompt results fit into one source-to-sign proof architecture, with
+the remaining analytic estimate kept explicit:
+
+- **B (common-pole cancellation)** fixes the exact cancellation and factor-2
+  normalization before taking Taylor jets. Its identities are algebraic and
+  do not establish a sign for the remaining source.
+- **C (radial first correction)** identifies the finite first radial
+  correction with a symmetric matrix of rank at most two and gives the exact
+  seven-sample adapter. This is finite-order control; it does not assert
+  convergence for arbitrary coefficients or control the quadratic remainder.
+- **D (this checkpoint)** decomposes the finite C2 correction into its two
+  leg increments and leaves the Gamma-versus-central comparison as an
+  explicit residual. Infinite-germ transport remains open.
+- **A (Hardy gate)** proves that an assumed eventual Gamma correction
+  envelope yields nonnegative original boundary energy, and combines that
+  energy sign with the Hardy nonrecurrence hypothesis to obtain strict
+  positivity of both Hankel towers.
+
+The precise bridge still missing is the envelope in
+`HasNativeSourceGammaCorrectionEnvelope`: for each fixed order `n`, there
+must be an `ε : ℕ → ℝ` tending to zero such that, eventually in the radial
+index `k`,
+`nativeSourceGammaCorrectionGap n k x ≤ ε k * ‖x‖^2` for every input `x`.
+Prompts B, C, and D expose exact cancellation, finite radial structure, and
+finite leg/Gamma residuals that may guide estimates for this gap, but none of
+their theorems proves that envelope. Likewise, `InfinitePositiveRealNativeZeros`
+remains an explicit hypothesis of A. Thus the combined result is a conditional
+route to all-order strict Hankel positivity, not an unconditional positivity
+claim; the two analytic inputs above remain open.
+
+Other scope boundaries remain unchanged: B does not prove the removable
+extension of `q = Q/(s-1)` at `s = 1`; C does not prove convergence or an
+analytic remainder bound for arbitrary `β`; and D does not prove the stated
+finite Gamma-to-central comparison or the local convergence and derivative
+exchange needed for infinite-germ transport. The four prompts therefore
+complete exact finite identities and a conditional positivity gate while
+leaving these analytic bridges explicit.
+
 ## Build and axiom audit
 
 The following completed successfully (9555 Lake jobs):
