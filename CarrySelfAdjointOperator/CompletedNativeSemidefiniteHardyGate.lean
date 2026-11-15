@@ -1,6 +1,7 @@
 import CarrySelfAdjointOperator.AllPrefixPSDNonrecurrence
 import CarrySelfAdjointOperator.CompletedNativeChiralBoundaryParityCoordinates
 import CarrySelfAdjointOperator.CompletedNativeHardyAnalytic
+import CarrySelfAdjointOperator.CompletedNativeEntireComparison
 import CarrySelfAdjointOperator.CompletedNativeChiralJetStorageTransport
 import Mathlib.Tactic
 
@@ -156,6 +157,63 @@ theorem canonicalHankelPair_posDef_of_nativeSourceBoundary_nonneg
     rw [← heq]
     exact h
 
+/-- The same PSD-to-PD gate with only the original source-energy sign
+assumption. Unconditional moment nonrecurrence follows from the Gamma
+logarithmic derivative at the positive even integers. -/
+theorem canonicalHankelPair_posDef_of_nativeSourceBoundary_nonneg_of_harmonicNonrecurrence
+    (hEnergy : ∀ n (x : Fin (2*n) → ℂ),
+      0 ≤ nativeSourceFiniteBoundaryEnergy (2*n) x) :
+    (∀ n, (hankelGram canonicalCompletedNativeLogDerivativeMoment n).PosDef) ∧
+    (∀ n, (shiftedHankel canonicalCompletedNativeLogDerivativeMoment n).PosDef) := by
+  have hno : NoFiniteMomentRelation canonicalCompletedNativeLogDerivativeMoment :=
+    canonicalCompletedNativeLogDerivativeMoment_noFiniteMomentRelation
+  have hno0 : NoFiniteMomentRelationAt canonicalCompletedNativeLogDerivativeMoment 0 := by
+    simpa [NoFiniteMomentRelation, NoFiniteMomentRelationAt] using hno
+  have hno1 : NoFiniteMomentRelationAt canonicalCompletedNativeLogDerivativeMoment 1 :=
+    noFiniteMomentRelationAt_of_noFiniteMomentRelation hno 1
+  have hpsd0 := canonicalHankel_posSemidef_of_nativeSourceBoundary_nonneg hEnergy
+  have hpsd1 := canonicalShiftedHankel_posSemidef_of_nativeSourceBoundary_nonneg hEnergy
+  constructor
+  · intro n
+    have hp := momentHankelPrefix_posDef_of_all_posSemidef_of_noFiniteMomentRelationAt
+      canonicalCompletedNativeLogDerivativeMoment 0
+      (fun N => by
+        have h := hpsd0 N
+        have heq : momentHankelPrefix canonicalCompletedNativeLogDerivativeMoment 0 N =
+            hankelGram canonicalCompletedNativeLogDerivativeMoment N := by
+          ext i j
+          simp [momentHankelPrefix, hankelGram]
+        rw [← heq] at h
+        exact h)
+      hno0
+    have h := hp n
+    have heq : momentHankelPrefix canonicalCompletedNativeLogDerivativeMoment 0 n =
+        hankelGram canonicalCompletedNativeLogDerivativeMoment n := by
+      ext i j
+      simp [momentHankelPrefix, hankelGram]
+    rw [← heq]
+    exact h
+  · intro n
+    have hp := momentHankelPrefix_posDef_of_all_posSemidef_of_noFiniteMomentRelationAt
+      canonicalCompletedNativeLogDerivativeMoment 1
+      (fun N => by
+        have h := hpsd1 N
+        have heq : momentHankelPrefix canonicalCompletedNativeLogDerivativeMoment 1 N =
+            shiftedHankel canonicalCompletedNativeLogDerivativeMoment N := by
+          ext i j
+          simp [momentHankelPrefix, shiftedHankel, Nat.add_assoc,
+            Nat.add_left_comm, Nat.add_comm]
+        rw [← heq] at h
+        exact h)
+      hno1
+    have h := hp n
+    have heq : momentHankelPrefix canonicalCompletedNativeLogDerivativeMoment 1 n =
+        shiftedHankel canonicalCompletedNativeLogDerivativeMoment n := by
+      ext i j
+      simp [momentHankelPrefix, shiftedHankel, Nat.add_assoc,
+        Nat.add_left_comm, Nat.add_comm]
+    rw [← heq]
+    exact h
 /-- The exact signed Gamma correction gap in the original geometric chart.
 It is `rawGammaBalance.im - ‖gammaSourceSynthesis‖²`; no scalar source or
 completion factor is changed. -/
@@ -230,6 +288,16 @@ theorem canonicalHankelPair_posDef_of_gammaCorrectionEnvelope
     (∀ n, (hankelGram canonicalCompletedNativeLogDerivativeMoment n).PosDef) ∧
     (∀ n, (shiftedHankel canonicalCompletedNativeLogDerivativeMoment n).PosDef) := by
   apply canonicalHankelPair_posDef_of_nativeSourceBoundary_nonneg hzeros
+  intro n x
+  exact nativeSourceFiniteBoundaryEnergy_nonneg_of_gammaCorrectionEnvelope henv n x
+
+/-- Gamma-correction envelopes imply strict positivity using the unconditional
+harmonic nonrecurrence theorem; the envelope is still an explicit premise. -/
+theorem canonicalHankelPair_posDef_of_gammaCorrectionEnvelope_of_harmonicNonrecurrence
+    (henv : HasNativeSourceGammaCorrectionEnvelope) :
+    (∀ n, (hankelGram canonicalCompletedNativeLogDerivativeMoment n).PosDef) ∧
+    (∀ n, (shiftedHankel canonicalCompletedNativeLogDerivativeMoment n).PosDef) := by
+  apply canonicalHankelPair_posDef_of_nativeSourceBoundary_nonneg_of_harmonicNonrecurrence
   intro n x
   exact nativeSourceFiniteBoundaryEnergy_nonneg_of_gammaCorrectionEnvelope henv n x
 
