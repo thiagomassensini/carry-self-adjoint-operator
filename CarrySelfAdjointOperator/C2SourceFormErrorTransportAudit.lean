@@ -1,0 +1,8 @@
+import CarrySelfAdjointOperator.C2SourceFormErrorTransport
+
+#check CarrySelfAdjointOperator.complexSourceMomentForm
+#check CarrySelfAdjointOperator.complexSourceMomentForm_error_lower
+#check CarrySelfAdjointOperator.complexSourceMomentForm_ofReal
+
+#print axioms CarrySelfAdjointOperator.complexSourceMomentForm_error_lower
+#print axioms CarrySelfAdjointOperator.complexSourceMomentForm_ofReal
