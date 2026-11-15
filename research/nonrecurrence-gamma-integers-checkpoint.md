@@ -6,6 +6,8 @@
 - Base: `c999ce41ccdec0ff194e7969bf1f7f329d374d3a`.
 - Branch: `codex/nonrecurrence-gamma-integers-20261114`.
 - Worktree: `/home/thlinux/worktrees/carry-nonrecurrence-gamma-20261114`.
+- Implementation commit: `1e64d2b1322624e6da0f2126eb1f2d0d409af4f9`.
+- Pull request: https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/120 (base `main`).
 - O checkout original não foi alterado; suas mudanças anteriores continuam presentes.
 
 ## Resultado matemático formalizado
@@ -64,7 +66,7 @@ como hipótese de sinal. Ela usa a não recorrência harmônica para ambos os sh
 
 ## Verificação e axiomas
 
-`lake build --wfail CarrySelfAdjointOperator.CompletedNativeNonrecurrenceUnconditionalAudit` concluiu com sucesso (9.634 jobs), incluindo `CompletedNativeEntireComparison`, o gate e a auditoria. O output de `#print axioms` dos teoremas centrais lista somente `propext`, `Classical.choice` e `Quot.sound`. O checkpoint será atualizado com o SHA do commit e o link do PR após a publicação.
+`lake build --wfail CarrySelfAdjointOperator.CompletedNativeNonrecurrenceUnconditionalAudit` concluiu com sucesso (9.634 jobs), incluindo `CompletedNativeEntireComparison`, o gate e a auditoria. O output de `#print axioms` dos teoremas centrais lista somente `propext`, `Classical.choice` e `Quot.sound`. O commit de implementação foi publicado e o PR #120 está aberto contra `main`; não houve merge.
 
 Não foram adicionados axiomas, `sorry` ou `admit` nos arquivos da entrega. A declaração explícita de positividade é mais forte do que a não anulação estritamente necessária na contradição e atende ao enunciado aritmético do prompt.
 
