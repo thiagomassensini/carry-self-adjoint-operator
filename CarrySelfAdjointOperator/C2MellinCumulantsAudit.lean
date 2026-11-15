@@ -1,0 +1,29 @@
+import CarrySelfAdjointOperator.C2MellinFormalCumulants
+import CarrySelfAdjointOperator.CompletedNativeTfvdWronskianMoments
+import CarrySelfAdjointOperator.NativeBoundaryArchimedeanDressingSeparation
+
+namespace CarrySelfAdjointOperator
+
+#print axioms nativeC2MellinOmega0_eq_exp_sinh
+#print axioms nativeC2MellinOmega0_pos
+#print axioms nativeC2MellinOmega0_le_exp_neg
+#print axioms nativeC2MellinDensity_pos
+#print axioms nativeC2MellinDensity_le_two_exp_neg
+#print axioms nativeC2MellinHead_add_tail_eq_density
+#print axioms nativeC2MellinTailDensity_nonneg
+#print axioms nativeC2MellinHeadDensity_pos
+#print axioms nativeC2Mellin_exponential_mellin
+#print axioms nativeC2MellinNormalizedMoment_zero
+#print axioms nativeC2MellinRelativeXi_eq_mass_mul_logMeanDifference
+#print axioms nativeC2Mellin_commonGamma_cancels
+#print axioms nativeC2MellinMixtureVariance_eq_components
+#print axioms nativeC2MellinMixtureVariance_sub_headVariance
+#print axioms nativeC2MellinMixture_betweenMeans_nonneg
+#print axioms nativeC2FormalCumulant_recurrence
+#print axioms nativeC2FormalCumulant_recurrence_range
+
+#print axioms canonicalC3BracketTfvdMoment_eq_canonical
+
+#print axioms completedNativeLogDerivative_eq_native_add_archimedean
+
+end CarrySelfAdjointOperator
