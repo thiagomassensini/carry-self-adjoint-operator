@@ -5,6 +5,8 @@
 - Base de referência: `c999ce41ccdec0ff194e7969bf1f7f329d374d3a` (`origin/main`).
 - PR #117 conferida: head `87e448a6c2fdd35b61cc3f6ff824bef9dc1b4b88`, branch `codex/luna-f-exact-tail-2026-11-14`; a base indicada acima é ancestral desse head.
 - A branch desta tarefa é `luna/a-cauda-relativa-20261115`, empilhada sobre o head da #117 para consumir as declarações da cauda exata.
+- HEAD Lean publicado e validado: `3364591cf0e60f79a72d1017ea1874f73d825ea3`.
+- PR de revisão (aberta, sem merge): [#122](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/122), base `codex/luna-f-exact-tail-2026-11-14`.
 - A PR #120 não foi necessária: nenhum consumidor final foi fechado.
 - Não há `AGENTS.md` no repositório nem diretório da worktree; o arquivo global do Codex estava vazio.
 
