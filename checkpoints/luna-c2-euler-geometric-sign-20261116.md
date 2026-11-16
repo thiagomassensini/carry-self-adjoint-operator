@@ -55,6 +55,10 @@ adds:
 results. It reports only `propext`, `Classical.choice`, and `Quot.sound`.
 No `sorry`, `admit`, or new axiom was added.
 
+The CSV calculation is reproducible with
+`scripts/probe_c2_schur_csv_excerpt.py` (SHA-256
+`508d99ca0726a6950aeca82b066c5d0bf4bd0b17569cdd5410efc6a2a7b823fd`).
+
 ## What the sign attempt found
 
 - Odd sector: the open estimate is precisely
@@ -108,6 +112,9 @@ from `n=4` to `n=6`. The identity itself gives
 `qₙ = 1 - (4n+4)p₁,ₙ/(2ρₙ²)`, so `qₙ < 1` is equivalent to the odd pivot sign;
 this observation is not an independent proof of that sign.
 
+Command:
+`python3 scripts/probe_c2_schur_csv_excerpt.py /home/thlinux/momentos/investigations/jacobi_polynomial_moments_20261024/c2_momentos_16_excerpt.csv`
+
 Arithmetic at 70/90/110/120 decimal digits changed the computed nonzero
 quantities by at most `6.2e-58`, `1.1e-77`, and `2.7e-98` across successive
 precision pairs. The largest infinity-norm condition estimate was about
@@ -123,7 +130,7 @@ balance residual for the supplied decimals was about `5.4e-108`.
 - Axiom checker: four reports, all with only standard Lean axioms.
 - `python3 scripts/scan_lean_trust_escapes.py` — passed.
 - `git diff --check` — passed.
-- Numerical script was an inline `mpmath` diagnostic over the provided CSV; it did not write to the repository or recalculate heights.
+- `python3 scripts/probe_c2_schur_csv_excerpt.py <provided CSV>` — passed; it does not recalculate heights.
 
 ## First remaining gap and next lemma
 
