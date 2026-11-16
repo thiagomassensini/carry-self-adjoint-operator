@@ -1,4 +1,5 @@
 import CarrySelfAdjointOperator.NativeSourceSchurEulerGeometricSignProbe
+import CarrySelfAdjointOperator.NativePoleAtomCriticalEvaluation
 
 namespace CarrySelfAdjointOperator
 
@@ -6,5 +7,10 @@ namespace CarrySelfAdjointOperator
 #print axioms nativeSchurEulerPolynomial_green_integral
 #print axioms nativeSchurEuler_odd_green_balance
 #print axioms nativeSchurEuler_even_green_balance
+#print axioms nativePoleFactorProduct_geometricConvolution
+#print axioms nativePoleFactorConvolutionMatrix_mul_atom
+#print axioms nativePoleCriticalPairing_eq_polynomialEvaluation
+#print axioms nativePoleCritical_evenCorrection_eq
+#print axioms nativePoleCritical_oddCorrection_eq
 
 end CarrySelfAdjointOperator

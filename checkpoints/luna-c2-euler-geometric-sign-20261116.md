@@ -55,6 +55,45 @@ adds:
 results. It reports only `propext`, `Classical.choice`, and `Quot.sound`.
 No `sorry`, `admit`, or new axiom was added.
 
+## Pole-atom convolution and critical evaluation
+
+The follow-up comparison used the merged [geometry-of-numbers PR #70](https://github.com/thiagomassensini/geometry-of-numbers/pull/70)
+and its generic [Bézout product rule](https://github.com/thiagomassensini/geometry-of-numbers/blob/main/research/c3-tilt-prime/BezoutSourceProduct.lean),
+alongside the C2 pole factorization and Hankel atom already present in
+`CompletedNativePoleAtomHankelPerturbation.lean`.
+
+`CarrySelfAdjointOperator/NativePoleAtomCriticalEvaluation.lean` now proves:
+
+- `nativePoleFactorProduct_geometricConvolution`: if the coefficients of
+  `C_pre` are `a`, multiplication by `Φ(u)=1+4u` gives coefficients
+  `aₙ + 4aₙ₋₁`; convolution with `(-4)^j` recovers `aₙ` at every order.
+- `nativePoleFactorConvolutionMatrix_mul_atom`:
+  `T_N(Φ C_pre) * v_N = a[0:N]`, with `v_N[j]=(-4)^j`.
+- `nativePoleCriticalPairing_eq_polynomialEvaluation`: under the explicit
+  transport hypothesis `T_N(Φ C_pre)ᵀ y = c₀ x`, the source coefficient
+  pairing is exactly `c₀ * Σ_j xⱼ(-4)^j = c₀ Pₓ(-4)`.
+- `nativePoleCritical_evenCorrection_eq` and
+  `nativePoleCritical_oddCorrection_eq`: the product-rule corrections
+  contract respectively to `-4 c₀² Pₓ(-4)²` and
+  `+16 c₀² Pₓ(-4)²`.
+
+These lemmas are algebraic and make no pivot or kernel sign assumption. The
+normalization is `ξ(u)=Φ(u) C_pre(u)` with `C_pre=-Λ/8`, from the existing
+`completedNativeOperatorCharacteristic_eq_poleFactor_mul_raw`; if the
+coefficient vector is instead taken from unscaled `Λ`, the Bézout kernel
+correction carries the additional factor `1/64`.
+
+Scope limit: the new module proves the finite identities for a generic
+pre-factor coefficient sequence and states critical transport as a hypothesis.
+It does not yet extract the Taylor coefficients of the actual raw `Λ`
+characteristic into this sequence, nor import the separate GoN source-kernel
+and TFVD implementation into this C2 repository. The exact function
+factorization and moment atom are proved locally, but that coefficient/physical
+transport crosswalk remains the next formal obligation. The numeric CSV gives
+`Pₓ(-4) ≈ -4.00160885567459714` for the first nontrivial even critical vector,
+while its Euler readout is zero; this is a diagnostic confirming the two
+functionals differ, not a certified sign input.
+
 The CSV calculation is reproducible with
 `scripts/probe_c2_schur_csv_excerpt.py` (SHA-256
 `508d99ca0726a6950aeca82b066c5d0bf4bd0b17569cdd5410efc6a2a7b823fd`).
@@ -127,7 +166,9 @@ balance residual for the supplied decimals was about `5.4e-108`.
 
 - `lake build --wfail CarrySelfAdjointOperator.NativeSourceSchurEulerGeometricSignProbeAudit` — passed (9,839 jobs including replayed dependencies).
 - Direct `lake env lean -DwarningAsError=true` compilation of the probe and audit — passed.
-- Axiom checker: four reports, all with only standard Lean axioms.
+- Direct `lake env lean -DwarningAsError=true CarrySelfAdjointOperator/NativePoleAtomCriticalEvaluation.lean` — passed.
+- `lake build --wfail CarrySelfAdjointOperator.NativeSourceSchurEulerGeometricSignProbeAudit` — passed after the extension (9,841 jobs).
+- Axiom checker: nine reports, all with only standard Lean axioms.
 - `python3 scripts/scan_lean_trust_escapes.py` — passed.
 - `git diff --check` — passed.
 - `python3 scripts/probe_c2_schur_csv_excerpt.py <provided CSV>` — passed; it does not recalculate heights.
