@@ -1,6 +1,8 @@
 import CarrySelfAdjointOperator.NativePoleAtomCriticalEvaluation
 import CarrySelfAdjointOperator.NativeSourceAllOrderSchur
 import Mathlib.Tactic
+import Mathlib.LinearAlgebra.QuadraticForm.Signature
+import Mathlib.LinearAlgebra.Dual.Lemmas
 
 /-!
 # Schur pivots under the C2 pole-atom update
@@ -871,6 +873,467 @@ theorem canonicalOddRawPrefix_has_negative_direction
     A w i₀ (canonicalCompletedNativeLogDerivativeMoment 1)
     hA hdiag hcoord h₁pos h₁lt
   simpa [A, w, hraw] using hnegative
+
+/-- Append one coordinate to a vector in the same block ordering used by the
+bordered Hankel matrix. -/
+def nativePoleAppendVector {n : ℕ} (v : Fin n → ℝ) (t : ℝ) :
+    Fin n ⊕ Unit → ℝ := Sum.elim v (fun _ => t)
+
+/-- Inverse-quadratic update under a one-coordinate symmetric bordering.
+In block coordinates, the new inverse mass is the old mass plus the square of
+the residual critical readout divided by the new Schur pivot. The two block
+matrices are assumed invertible; no sign of the pivot is assumed. -/
+theorem nativePoleInverseQuadratic_bordering_update {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (b v : Fin n → ℝ) (d t : ℝ)
+    (hA : IsUnit A) (hAsymm : A.transpose = A)
+    (hM : IsUnit (nativePoleBorderedMatrix A b d)) :
+    dotProduct (nativePoleAppendVector v t)
+      ((nativePoleBorderedMatrix A b d)⁻¹ *ᵥ nativePoleAppendVector v t) =
+      dotProduct v (A⁻¹ *ᵥ v) +
+        (t - dotProduct b (A⁻¹ *ᵥ v)) ^ 2 /
+          (d - dotProduct b (A⁻¹ *ᵥ b)) := by
+  let p := d - dotProduct b (A⁻¹ *ᵥ b)
+  let q := t - dotProduct b (A⁻¹ *ᵥ v)
+  let u := A⁻¹ *ᵥ v
+  let z := A⁻¹ *ᵥ b
+  let y : Fin n ⊕ Unit → ℝ := Sum.elim (u - (q / p) • z) (fun _ => q / p)
+  let M := nativePoleBorderedMatrix A b d
+  let B : Matrix (Fin n) Unit ℝ := Matrix.replicateCol Unit b
+  let C : Matrix Unit (Fin n) ℝ := Matrix.replicateRow Unit b
+  let D : Matrix Unit Unit ℝ := fun _ _ => d
+  let S : Matrix Unit Unit ℝ := fun _ _ => p
+  letI := hA.invertible
+  letI := hM.invertible
+  have hAsymmInv : A⁻¹.transpose = A⁻¹ := by
+    rw [Matrix.transpose_nonsing_inv, hAsymm]
+  have hMdef : M = Matrix.fromBlocks A B C D := by rfl
+  have hMunit : IsUnit (Matrix.fromBlocks A B C D) := by
+    rw [← hMdef]
+    exact hM
+  have hschurUnit : IsUnit (D - C * ⅟A * B) :=
+    (Matrix.isUnit_fromBlocks_iff_of_invertible₁₁).mp hMunit
+  have hprod : C * A⁻¹ * B =
+      (fun _ _ : Unit => dotProduct b (A⁻¹ *ᵥ b)) := by
+    rw [Matrix.mul_assoc]
+    ext i j
+    simp [C, B, Matrix.mul_apply, Matrix.replicateRow, Matrix.replicateCol,
+      Matrix.mulVec, dotProduct]
+  have hschurEq : D - C * ⅟A * B = S := by
+    rw [Matrix.invOf_eq_nonsing_inv A]
+    ext i j
+    simp [D, S, hprod, p]
+  have hSunit : IsUnit S := by
+    rw [← hschurEq]
+    exact hschurUnit
+  have hdetUnit : IsUnit S.det := (Matrix.isUnit_iff_isUnit_det S).mp hSunit
+  have hp : p ≠ 0 := by
+    intro hp0
+    have hzero : S.det = 0 := by simp [S, hp0]
+    exact (isUnit_iff_ne_zero.mp hdetUnit) hzero
+  have hAu : A *ᵥ u = v := by
+    dsimp [u]
+    rw [Matrix.mulVec_mulVec, Matrix.mul_inv_of_invertible, Matrix.one_mulVec]
+  have hAb : A *ᵥ z = b := by
+    dsimp [z]
+    rw [Matrix.mulVec_mulVec, Matrix.mul_inv_of_invertible, Matrix.one_mulVec]
+  have hcross : dotProduct v z = dotProduct b u := by
+    calc
+      dotProduct v z = dotProduct b (A⁻¹.transpose *ᵥ v) :=
+        (Matrix.dotProduct_transpose_mulVec A⁻¹ b v).symm
+      _ = dotProduct b u := by rw [hAsymmInv]
+  have htopFormula (i : Fin n) :
+      (M *ᵥ y) (Sum.inl i) =
+        (A *ᵥ (u - (q/p) • z)) i + (q/p) * b i := by
+    change (∑ j : Fin n ⊕ Unit, M (Sum.inl i) j * y j) = _
+    rw [Fintype.sum_sum_type]
+    simp [M, nativePoleBorderedMatrix, Matrix.fromBlocks_apply₁₁,
+      Matrix.fromBlocks_apply₁₂, Matrix.replicateCol, y, Matrix.mulVec, dotProduct]
+    ring
+  have htop : ∀ i : Fin n, (M *ᵥ y) (Sum.inl i) = v i := by
+    intro i
+    rw [htopFormula]
+    rw [Matrix.mulVec_sub, Matrix.mulVec_smul, hAu, hAb]
+    simp only [Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
+    dsimp [q]
+    ring
+  have hbottomFormula : (M *ᵥ y) (Sum.inr ()) =
+      dotProduct b (u - (q/p) • z) + d * (q/p) := by
+    change (∑ j : Fin n ⊕ Unit, M (Sum.inr ()) j * y j) = _
+    rw [Fintype.sum_sum_type]
+    simp [M, nativePoleBorderedMatrix, Matrix.fromBlocks_apply₂₁,
+      Matrix.fromBlocks_apply₂₂, Matrix.replicateRow, y, dotProduct]
+  have hbottom : (M *ᵥ y) (Sum.inr ()) = t := by
+    rw [hbottomFormula]
+    calc
+      _ = dotProduct b u + (q/p) * (d - dotProduct b z) := by
+        rw [dotProduct_sub, dotProduct_smul]
+        simp only [smul_eq_mul]
+        ring
+      _ = dotProduct b u + q := by
+        rw [show d - dotProduct b z = p by rfl]
+        have hp' : p ≠ 0 := by simpa [p] using hp
+        field_simp [hp']
+      _ = t := by dsimp [q]; ring
+  have hsolve : M *ᵥ y = nativePoleAppendVector v t := by
+    funext i
+    cases i with
+    | inl i => simpa [nativePoleAppendVector] using htop i
+    | inr i => cases i; simpa [nativePoleAppendVector] using hbottom
+  have hinv : M⁻¹ *ᵥ nativePoleAppendVector v t = y := by
+    calc
+      M⁻¹ *ᵥ nativePoleAppendVector v t = M⁻¹ *ᵥ (M *ᵥ y) := by rw [hsolve]
+      _ = (M⁻¹ * M) *ᵥ y := by rw [Matrix.mulVec_mulVec]
+      _ = y := by rw [Matrix.inv_mul_of_invertible, Matrix.one_mulVec]
+  rw [hinv]
+  have hdot : dotProduct (nativePoleAppendVector v t) y =
+      dotProduct v (u - (q/p) • z) + t * (q/p) := by
+    simp [nativePoleAppendVector, y, dotProduct, Fintype.sum_sum_type]
+  rw [hdot, dotProduct_sub, dotProduct_smul]
+  simp only [smul_eq_mul]
+  rw [hcross]
+  calc
+    _ = dotProduct v u + (q/p) * (t - dotProduct b u) := by ring
+    _ = dotProduct v u + q ^ 2 / p := by
+      dsimp [q]
+      have hp' : p ≠ 0 := by simpa [p] using hp
+      field_simp [hp']
+      ring
+
+/-- The source Hankel prefix extension, written in the `Fin n ⊕ Unit` block
+ordering used by bordered Schur identities. This is the one-step block form of
+the ordinary `(n+1) × (n+1)` source Hankel matrix. -/
+def sourceMomentBorderedExtension (m : ℕ → ℝ) (s n : ℕ) :
+    Matrix (Fin n ⊕ Unit) (Fin n ⊕ Unit) ℝ :=
+  nativePoleBorderedMatrix (sourceMomentMatrix m s n)
+    (sourceMomentCoupling m s n) (m (2*n+s))
+
+/-- Pole-atom inverse mass of the bordered source extension. It is the
+block-coordinate version of `γ_{s,n+1}`. -/
+def sourceMomentPoleAtomBlockMass (m : ℕ → ℝ) (s n : ℕ) : ℝ :=
+  dotProduct (nativePoleAppendVector (poleAtomVector n) ((-4 : ℝ)^n))
+    ((sourceMomentBorderedExtension m s n)⁻¹ *ᵥ
+      nativePoleAppendVector (poleAtomVector n) ((-4 : ℝ)^n))
+
+/-- One-step source Hankel recurrence for the pole-atom inverse mass. The
+increment is the square of the already-defined critical polynomial evaluation
+at `-4`, divided by the new source Schur pivot. The bordered extension is
+stated in sum-index coordinates; identifying it with the standard `Fin (n+1)`
+indexing is only a permutation reindexing. -/
+theorem sourceMomentPoleAtomBlockMass_succ
+    (m : ℕ → ℝ) (s n : ℕ)
+    (hA : IsUnit (sourceMomentMatrix m s n))
+    (hM : IsUnit (sourceMomentBorderedExtension m s n)) :
+    sourceMomentPoleAtomBlockMass m s n =
+      dotProduct (poleAtomVector n)
+        ((sourceMomentMatrix m s n)⁻¹ *ᵥ poleAtomVector n) +
+        nativePoleCriticalEvaluation
+          ((sourceMomentMatrix m s n)⁻¹ *ᵥ sourceMomentCoupling m s n) ^ 2 /
+          sourceMomentSchur m s n := by
+  let A := sourceMomentMatrix m s n
+  let b := sourceMomentCoupling m s n
+  let v := poleAtomVector n
+  let t := (-4 : ℝ)^n
+  have hAsymm : A.transpose = A := by
+    ext i j
+    simp [A, sourceMomentMatrix, add_comm]
+  letI := hA.invertible
+  have hcross : dotProduct b (A⁻¹ *ᵥ v) = dotProduct v (A⁻¹ *ᵥ b) := by
+    calc
+      dotProduct b (A⁻¹ *ᵥ v) = dotProduct b (A⁻¹.transpose *ᵥ v) := by
+        rw [Matrix.transpose_nonsing_inv, hAsymm]
+      _ = dotProduct v (A⁻¹ *ᵥ b) := Matrix.dotProduct_transpose_mulVec A⁻¹ b v
+  have hcritical : t - dotProduct b (A⁻¹ *ᵥ v) =
+      nativePoleCriticalEvaluation (A⁻¹ *ᵥ b) := by
+    rw [hcross]
+    simpa [t, v] using
+      (nativePoleCriticalPolynomialEvaluation (A⁻¹ *ᵥ b)).symm
+  have h := nativePoleInverseQuadratic_bordering_update A b v
+    (m (2*n+s)) t hA hAsymm hM
+  rw [hcritical] at h
+  simpa [sourceMomentPoleAtomBlockMass, sourceMomentBorderedExtension,
+    A, b, v, t, sourceMomentSchur] using h
+
+/-- The rank-one update denominator obeys the same bordered evolution law.
+This is a scalar corollary of the inverse-quadratic recurrence. -/
+theorem nativePoleDenominator_bordering_update {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (b v : Fin n → ℝ) (d t α : ℝ)
+    (hA : IsUnit A) (hAsymm : A.transpose = A)
+    (hM : IsUnit (nativePoleBorderedMatrix A b d)) :
+    1 + α * dotProduct (nativePoleAppendVector v t)
+        ((nativePoleBorderedMatrix A b d)⁻¹ *ᵥ nativePoleAppendVector v t) =
+      (1 + α * dotProduct v (A⁻¹ *ᵥ v)) +
+        α * (t - dotProduct b (A⁻¹ *ᵥ v)) ^ 2 /
+          (d - dotProduct b (A⁻¹ *ᵥ b)) := by
+  rw [nativePoleInverseQuadratic_bordering_update A b v d t hA hAsymm hM]
+  ring
+
+/-- Scalar pivot form of the denominator-ratio law. The matrix recurrence
+reduces this identity to a cancellation of its common pivot/evaluation terms. -/
+theorem nativePoleSchurPivot_denominatorRatio (p α e δ : ℝ)
+    (hp : p ≠ 0) (hδ : δ ≠ 0) :
+    p + α * e ^ 2 / δ = p * (δ + α * e ^ 2 / p) / δ := by
+  field_simp [hp, hδ]
+
+/-- In the source block coordinates, the atom denominator advances by the
+same critical square over the new canonical Schur pivot. -/
+theorem sourceMomentPoleAtomBlockDenominator_succ
+    (m : ℕ → ℝ) (s n : ℕ) (α : ℝ)
+    (hA : IsUnit (sourceMomentMatrix m s n))
+    (hM : IsUnit (sourceMomentBorderedExtension m s n)) :
+    1 + α * sourceMomentPoleAtomBlockMass m s n =
+      (1 + α * dotProduct (poleAtomVector n)
+        ((sourceMomentMatrix m s n)⁻¹ *ᵥ poleAtomVector n)) +
+        α * nativePoleCriticalEvaluation
+          ((sourceMomentMatrix m s n)⁻¹ *ᵥ sourceMomentCoupling m s n) ^ 2 /
+          sourceMomentSchur m s n := by
+  rw [sourceMomentPoleAtomBlockMass_succ m s n hA hM]
+  ring
+
+/-- Ratio form of the raw-versus-canonical Schur pivot law. The next atom
+ denominator is the block-coordinate `n+1` denominator from the source
+ recurrence. This is conditional on the two relevant prefixes being
+ invertible and on the canonical pivot and current denominator being nonzero. -/
+theorem canonicalRawSourceMomentSchur_blockDenominatorRatio
+    (s n : ℕ)
+    (hA : IsUnit
+      (sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment s n))
+    (hM : IsUnit (sourceMomentBorderedExtension
+      canonicalCompletedNativeLogDerivativeMoment s n))
+    (hδ : 1 + nativePoleSectorMass s * dotProduct (poleAtomVector n)
+        ((sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment s n)⁻¹ *ᵥ
+          poleAtomVector n) ≠ 0)
+    (hp : sourceMomentSchur canonicalCompletedNativeLogDerivativeMoment s n ≠ 0) :
+    sourceMomentSchur completedRawLogDerivativeMoment s n =
+      sourceMomentSchur canonicalCompletedNativeLogDerivativeMoment s n *
+        (1 + nativePoleSectorMass s * sourceMomentPoleAtomBlockMass
+          canonicalCompletedNativeLogDerivativeMoment s n) /
+        (1 + nativePoleSectorMass s * dotProduct (poleAtomVector n)
+          ((sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment s n)⁻¹ *ᵥ
+            poleAtomVector n)) := by
+  let m := canonicalCompletedNativeLogDerivativeMoment
+  let A := sourceMomentMatrix m s n
+  let b := sourceMomentCoupling m s n
+  let v := poleAtomVector n
+  let α := nativePoleSectorMass s
+  let p := sourceMomentSchur m s n
+  let δ := 1 + α * dotProduct v (A⁻¹ *ᵥ v)
+  let e := nativePoleCriticalEvaluation (A⁻¹ *ᵥ b)
+  have hδ' : δ ≠ 0 := by simpa [δ, α, A, v, m] using hδ
+  have hraw := canonicalRawSourceMomentSchur_update_criticalPolynomial s n hA hδ
+  have hdenRec := sourceMomentPoleAtomBlockDenominator_succ m s n α hA hM
+  have hδnext : 1 + α * sourceMomentPoleAtomBlockMass m s n =
+      δ + α * e^2 / p := by
+    simpa [δ, α, A, b, v, p, e, m] using hdenRec
+  have hratio := nativePoleSchurPivot_denominatorRatio p α e δ hp hδ'
+  calc
+    sourceMomentSchur completedRawLogDerivativeMoment s n = p + α * e^2 / δ := by
+      simpa [p, α, δ, e, A, b, v, m] using hraw
+    _ = p * (δ + α * e^2 / p) / δ := hratio
+    _ = p * (1 + α * sourceMomentPoleAtomBlockMass m s n) / δ := by
+      rw [hδnext]
+    _ = sourceMomentSchur canonicalCompletedNativeLogDerivativeMoment s n *
+        (1 + nativePoleSectorMass s * sourceMomentPoleAtomBlockMass
+          canonicalCompletedNativeLogDerivativeMoment s n) /
+        (1 + nativePoleSectorMass s * dotProduct (poleAtomVector n)
+          ((sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment s n)⁻¹ *ᵥ
+            poleAtomVector n)) := by
+      simp [p, α, δ, m, A, v]
+
+/-- Conditional exact inertia of the odd rank-one downdate. If the base matrix
+is positive definite and the rank-one denominator is negative, its quadratic
+form has signature `(n - 1, 1, 0)`: `n-1` positive directions, one negative
+direction, and zero radical dimension. -/
+theorem nativePoleOddDowndate_exactInertia {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ)
+    (w : Fin n → ℝ) (hA : A.PosDef) (hw : w ≠ 0)
+    (hδ : 1 - 16 * dotProduct w (A⁻¹ *ᵥ w) < 0) :
+    let B := A - 16 • outerSq w
+    let Q := B.toQuadraticForm'
+    sigPos Q = n - 1 ∧ sigNeg Q = 1 ∧
+      Module.finrank ℝ Q.radical = 0 := by
+  let B := A - 16 • outerSq w
+  let Q := B.toQuadraticForm'
+  let f : Module.Dual ℝ (Fin n → ℝ) := dotProductBilin ℝ ℝ w
+  let E := LinearMap.ker f
+  let z : Fin n → ℝ := A⁻¹ *ᵥ w
+  let L : Submodule ℝ (Fin n → ℝ) := ℝ ∙ z
+  have hn : 0 < n := by
+    by_contra h
+    have hn0 : n = 0 := Nat.eq_zero_of_not_pos h
+    subst n
+    apply hw
+    funext i
+    exact Fin.elim0 i
+  have hf : f ≠ 0 := by
+    obtain ⟨i, hi⟩ : ∃ i, w i ≠ 0 := by
+      by_contra h
+      apply hw
+      funext i
+      by_contra hi
+      exact h ⟨i, hi⟩
+    intro hz
+    have hv := congrArg (fun g : Module.Dual ℝ (Fin n → ℝ) => g (Pi.single i (1 : ℝ))) hz
+    have hwi : w i = 0 := by
+      simpa [f, dotProductBilin] using hv
+    exact hi hwi
+  have hdimE : Module.finrank ℝ E = n - 1 := by
+    have hh := Module.Dual.finrank_ker_add_one_of_ne_zero hf
+    have hhh : Module.finrank ℝ E + 1 = n := by
+      simpa only [Module.finrank_fin_fun] using hh
+    omega
+  have hQeval (x : Fin n → ℝ) : Q x = dotProduct x (B *ᵥ x) := by
+    change (((Matrix.toLinearMap₂' ℝ) B) x) x = _
+    rw [Matrix.toLinearMap₂'_apply']
+  have hγ : 0 < dotProduct w z := by
+    have hAi : A⁻¹.PosDef := hA.inv
+    exact hAi.dotProduct_mulVec_pos hw
+  letI := hA.isUnit.invertible
+  have hAz : A *ᵥ z = w := by
+    dsimp [z]
+    rw [Matrix.mulVec_mulVec, Matrix.mul_inv_of_invertible, Matrix.one_mulVec]
+  have houterz : outerSq w *ᵥ z = (dotProduct w z) • w := by
+    ext i
+    change (∑ j : Fin n, w i * w j * z j) = (∑ j : Fin n, w j * z j) * w i
+    calc
+      _ = ∑ j : Fin n, w i * (w j * z j) := by
+        apply Finset.sum_congr rfl
+        intro j hj
+        ring
+      _ = w i * ∑ j : Fin n, w j * z j := by rw [Finset.mul_sum]
+      _ = _ := by ring
+  have hBz : B *ᵥ z = (1 - 16 * dotProduct w z) • w := by
+    dsimp [B]
+    rw [Matrix.sub_mulVec, Matrix.smul_mulVec, hAz, houterz]
+    ext i
+    simp only [Pi.sub_apply, Pi.smul_apply, smul_eq_mul]
+    ring
+  have hzw : dotProduct z w = dotProduct w z := dotProduct_comm _ _
+  have hδ' : 1 - 16 * dotProduct w z < 0 := by simpa [z] using hδ
+  have hQz : Q z < 0 := by
+    rw [hQeval, hBz, dotProduct_smul, hzw]
+    exact mul_neg_of_neg_of_pos hδ' hγ
+  have hz : z ≠ 0 := by
+    intro hh
+    rw [hh] at hγ
+    simp at hγ
+  have hEpos : (Q.restrict E).PosDef := by
+    intro x hx
+    rw [QuadraticMap.restrict_apply]
+    rw [hQeval]
+    have hxval : (x : Fin n → ℝ) ≠ 0 := by
+      intro he
+      apply hx
+      exact Subtype.ext he
+    have hxker : dotProduct w (x : Fin n → ℝ) = 0 := by
+      have hxmem : (x : Fin n → ℝ) ∈ LinearMap.ker f := x.property
+      change dotProduct w (x : Fin n → ℝ) = 0 at hxmem
+      exact hxmem
+    have hout : outerSq w *ᵥ (x : Fin n → ℝ) = 0 := by
+      ext i
+      change (∑ j : Fin n, w i * w j * (x : Fin n → ℝ) j) = 0
+      calc
+        _ = w i * ∑ j : Fin n, w j * (x : Fin n → ℝ) j := by
+          rw [Finset.mul_sum]
+          apply Finset.sum_congr rfl
+          intro j hj
+          ring
+        _ = 0 := by
+          have hsum : ∑ j : Fin n, w j * (x : Fin n → ℝ) j = 0 := by
+            simpa [dotProduct] using hxker
+          rw [hsum]
+          ring
+    have hmul : B *ᵥ (x : Fin n → ℝ) = A *ᵥ (x : Fin n → ℝ) := by
+      dsimp [B]
+      rw [Matrix.sub_mulVec, Matrix.smul_mulVec, hout]
+      simp
+    rw [hmul]
+    exact hA.dotProduct_mulVec_pos hxval
+  have hdimL : Module.finrank ℝ L = 1 := by
+    exact finrank_span_singleton hz
+  have hLneg : ((-Q).restrict L).PosDef := by
+    intro y hy
+    obtain ⟨c, hc⟩ := Submodule.mem_span_singleton.mp y.property
+    rw [QuadraticMap.restrict_apply]
+    have hcne : c ≠ 0 := by
+      intro hc0
+      apply hy
+      apply Subtype.ext
+      rw [← hc, hc0]
+      simp
+    change 0 < -Q (y : Fin n → ℝ)
+    rw [← hc]
+    have hQcs : Q (c • z) = c^2 * Q z := by
+      rw [Q.map_smul]
+      simp [smul_eq_mul, pow_two]
+    rw [hQcs]
+    have hcSq : 0 < c^2 := sq_pos_of_ne_zero hcne
+    nlinarith
+  have hnonposL : ∀ x ∈ L, Q x ≤ 0 := by
+    intro x hx
+    obtain ⟨c, rfl⟩ := Submodule.mem_span_singleton.mp hx
+    rw [Q.map_smul]
+    simp only [smul_eq_mul]
+    nlinarith [sq_nonneg c, hQz]
+  have hnonposE : ∀ x ∈ E, (-Q) x ≤ 0 := by
+    intro x hx
+    by_cases hzero : x = 0
+    · simp [hzero]
+    · have hpos : 0 < Q.restrict E ⟨x, hx⟩ := hEpos ⟨x, hx⟩ (by
+        intro he
+        apply hzero
+        exact congrArg Subtype.val he)
+      simpa [QuadraticMap.restrict_apply] using (neg_nonpos.mpr (le_of_lt hpos))
+  have hposLower : n - 1 ≤ sigPos Q := by
+    have hh := le_sigPos_of_posDef Q hEpos
+    rw [hdimE] at hh
+    exact hh
+  have hposUpper : sigPos Q ≤ n - 1 := by
+    have hh := QuadraticForm.sigPos_add_finrank_le_of_nonpos hnonposL
+    rw [hdimL, Module.finrank_fin_fun] at hh
+    omega
+  have hnegLower : 1 ≤ sigNeg Q := by
+    have hh := le_sigNeg_of_negDef Q hLneg
+    rw [hdimL] at hh
+    exact hh
+  have hnegUpper : sigNeg Q ≤ 1 := by
+    have hh := QuadraticForm.sigPos_add_finrank_le_of_nonpos hnonposE
+    rw [sigPos_neg, Module.finrank_fin_fun, hdimE] at hh
+    omega
+  have hpos : sigPos Q = n - 1 := Nat.le_antisymm hposUpper hposLower
+  have hneg : sigNeg Q = 1 := Nat.le_antisymm hnegUpper hnegLower
+  have hrad := QuadraticForm.sigPos_add_sigNeg_add_radical (Q := Q)
+  rw [hpos, hneg, Module.finrank_fin_fun] at hrad
+  have hradzero : Module.finrank ℝ Q.radical = 0 := by omega
+  exact ⟨hpos, hneg, hradzero⟩
+
+/-- Canonical odd Hankel specialization of the exact inertia statement. The
+conclusion remains conditional on positive definiteness of the canonical
+prefix and `0 < h₁ < 16`; it is not an all-order proof of either premise. -/
+theorem canonicalOddRawPrefix_exactInertia_of_posDefPrefix
+    (n : ℕ) (hn : 0 < n)
+    (hA : (sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment 1 n).PosDef)
+    (h₁pos : 0 < canonicalCompletedNativeLogDerivativeMoment 1)
+    (h₁lt : canonicalCompletedNativeLogDerivativeMoment 1 < 16) :
+    let Q := (sourceMomentMatrix completedRawLogDerivativeMoment 1 n).toQuadraticForm'
+    sigPos Q = n - 1 ∧ sigNeg Q = 1 ∧ Module.finrank ℝ Q.radical = 0 := by
+  let A := sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment 1 n
+  let w := poleAtomVector n
+  have hdelta := canonicalOddPoleDenominator_negative_of_posDefPrefix
+    n hn hA h₁pos h₁lt
+  have hw : w ≠ 0 := by
+    intro hz
+    have h0 := congrFun hz ⟨0, hn⟩
+    simp [w, poleAtomVector] at h0
+  have hraw : sourceMomentMatrix completedRawLogDerivativeMoment 1 n =
+      A - 16 • outerSq w := by
+    ext i j
+    simp [A, w, sourceMomentMatrix, completedRawLogDerivativeMoment,
+      poleAtomVector, outerSq, Nat.add_assoc]
+    ring
+  simpa [A, w, hraw] using
+    nativePoleOddDowndate_exactInertia A w hA hw hdelta
+
+
+
 
 end
 

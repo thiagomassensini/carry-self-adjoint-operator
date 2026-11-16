@@ -30,5 +30,13 @@ namespace CarrySelfAdjointOperator
 #print axioms canonicalOddPoleDenominator_negative_of_posDefPrefix
 #print axioms nativePoleOddPrefix_negativeDirection_of_posDef
 #print axioms canonicalOddRawPrefix_has_negative_direction
+#print axioms nativePoleInverseQuadratic_bordering_update
+#print axioms sourceMomentPoleAtomBlockMass_succ
+#print axioms nativePoleDenominator_bordering_update
+#print axioms sourceMomentPoleAtomBlockDenominator_succ
+#print axioms nativePoleSchurPivot_denominatorRatio
+#print axioms canonicalRawSourceMomentSchur_blockDenominatorRatio
+#print axioms nativePoleOddDowndate_exactInertia
+#print axioms canonicalOddRawPrefix_exactInertia_of_posDefPrefix
 
 end CarrySelfAdjointOperator
