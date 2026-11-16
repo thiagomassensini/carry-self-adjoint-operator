@@ -192,18 +192,59 @@ private theorem hardyTaylorCoefficient_constMonomial_mul_response
       simp [hmn, hsumZero]
   exact hsum
 
-private def hardyConvolutionCoefficient
+def hardyConvolutionCoefficient
     (moments : ℕ → ℝ) (s : Finset ℕ) (a : ℕ → ℝ) (d k : ℕ) : ℂ :=
   ∑ i ∈ s, if d - i ≤ k then
     (a i : ℂ) * (moments (k - (d - i)) : ℂ) else 0
 
-private def hardyDenominatorPolynomial
+def hardyConvolutionCoefficientReal
+    (moments : ℕ → ℝ) (s : Finset ℕ) (a : ℕ → ℝ) (d k : ℕ) : ℝ :=
+  ∑ i ∈ s, if d - i ≤ k then
+    a i * moments (k - (d - i)) else 0
+
+theorem hardyConvolutionCoefficient_eq_ofReal
+    (moments : ℕ → ℝ) (s : Finset ℕ) (a : ℕ → ℝ) (d k : ℕ) :
+    hardyConvolutionCoefficient moments s a d k =
+      (hardyConvolutionCoefficientReal moments s a d k : ℂ) := by
+  unfold hardyConvolutionCoefficient hardyConvolutionCoefficientReal
+  rw [Complex.ofReal_sum]
+  apply Finset.sum_congr rfl
+  intro i hi
+  by_cases h : d - i ≤ k
+  · simp [h, Complex.ofReal_mul]
+  · simp [h]
+
+def hardyDenominatorPolynomial
     (s : Finset ℕ) (a : ℕ → ℝ) (d : ℕ) : Polynomial ℂ :=
   ∑ i ∈ s, Polynomial.C (a i : ℂ) * Polynomial.X ^ (d - i)
 
-private def hardyNumeratorPolynomial
+def hardyDenominatorPolynomialReal
+    (s : Finset ℕ) (a : ℕ → ℝ) (d : ℕ) : Polynomial ℝ :=
+  ∑ i ∈ s, Polynomial.C (a i) * Polynomial.X ^ (d - i)
+
+theorem hardyDenominatorPolynomial_eq_map
+    (s : Finset ℕ) (a : ℕ → ℝ) (d : ℕ) :
+    hardyDenominatorPolynomial s a d =
+      Polynomial.map (algebraMap ℝ ℂ) (hardyDenominatorPolynomialReal s a d) := by
+  simp [hardyDenominatorPolynomial, hardyDenominatorPolynomialReal,
+    Polynomial.map_sum, Polynomial.map_mul, Polynomial.map_C,
+    Polynomial.map_pow, Polynomial.map_X]
+
+def hardyNumeratorPolynomial
     (q : ℕ → ℂ) (d : ℕ) : Polynomial ℂ :=
   ∑ k ∈ Finset.range d, Polynomial.C (q k) * Polynomial.X ^ k
+
+def hardyNumeratorPolynomialReal
+    (q : ℕ → ℝ) (d : ℕ) : Polynomial ℝ :=
+  ∑ k ∈ Finset.range d, Polynomial.C (q k) * Polynomial.X ^ k
+
+theorem hardyNumeratorPolynomial_eq_map
+    (q : ℕ → ℝ) (d : ℕ) :
+    hardyNumeratorPolynomial (fun k => (q k : ℂ)) d =
+      Polynomial.map (algebraMap ℝ ℂ) (hardyNumeratorPolynomialReal q d) := by
+  simp [hardyNumeratorPolynomial, hardyNumeratorPolynomialReal,
+    Polynomial.map_sum, Polynomial.map_mul, Polynomial.map_C,
+    Polynomial.map_pow, Polynomial.map_X]
 
 private def hardyLocalResponseResidual
     (D A : Polynomial ℂ) (z : ℂ) : ℂ :=
@@ -651,6 +692,120 @@ private theorem hardyAnalyticResidual_eq_zero_of_moment_relation
   exact (hardyAnalyticResidual_analyticOnNhd D A).eqOn_zero_of_preconnected_of_eventuallyEq_zero
     isPreconnected_completedNativeHeightDomain
     zero_mem_completedNativeHeightDomain hevent
+
+/-- A nontrivial finite relation among the canonical native moments yields
+nonzero polynomial data and the corresponding differential residual for the
+original completed characteristic near the centered height.  This public
+interface packages the private Hardy coefficient construction without
+exposing its auxiliary definitions. -/
+theorem exists_completedNativeHardyResidual_of_moment_relation
+    (s : Finset ℕ) (a : ℕ → ℝ)
+    (haNonzero : ∃ i, i ∈ s ∧ a i ≠ 0)
+    (hrel : ∀ j : ℕ,
+      ∑ i ∈ s, a i * canonicalCompletedNativeLogDerivativeMoment (i + j) = 0) :
+    ∃ D A : Polynomial ℂ, D ≠ 0 ∧
+      (fun z : ℂ => D.eval (z ^ 2) * deriv completedNativeOperatorCharacteristic z +
+        (2 : ℂ) * z * A.eval (z ^ 2) * completedNativeOperatorCharacteristic z) =ᶠ[𝓝 0]
+        fun _ => 0 := by
+  have hsne : s.Nonempty := by
+    obtain ⟨i, hi, hai⟩ := haNonzero
+    exact ⟨i, hi⟩
+  let d := s.max' hsne
+  have hd : ∀ j, j ∈ s → j ≤ d := by
+    intro j hj
+    exact s.le_max' j hj
+  let D := hardyDenominatorPolynomial s a d
+  let A := hardyNumeratorPolynomial
+    (hardyConvolutionCoefficient canonicalCompletedNativeLogDerivativeMoment s a d) d
+  have hD : D ≠ 0 := by
+    exact hardyDenominatorPolynomial_ne_zero s a d hd haNonzero
+  have hidentity : Set.EqOn (hardyAnalyticResidual D A) 0
+      completedNativeHeightDomain := by
+    simpa [D, A] using hardyAnalyticResidual_eq_zero_of_moment_relation
+      s a d hrel hd
+  have hlocal : hardyAnalyticResidual D A =ᶠ[𝓝 0] fun _ => 0 := by
+    have hopen : IsOpen completedNativeHeightDomain := isOpen_completedNativeHeightDomain
+    have hmem : completedNativeHeightDomain ∈ 𝓝 (0 : ℂ) := hopen.mem_nhds
+      zero_mem_completedNativeHeightDomain
+    filter_upwards [hmem] with z hz
+    exact hidentity hz
+  refine ⟨D, A, hD, ?_⟩
+  filter_upwards [hlocal] with z hz
+  simp only [hardyAnalyticResidual] at hz
+  linear_combination -hz
+
+/-- The Hardy coefficient construction can be kept over the reals: its
+polynomial coefficients are the original real relation coefficients and
+real moment convolutions. -/
+theorem exists_completedNativeHardyResidual_real_coefficients_of_moment_relation
+    (s : Finset ℕ) (a : ℕ → ℝ)
+    (haNonzero : ∃ i, i ∈ s ∧ a i ≠ 0)
+    (hrel : ∀ j : ℕ,
+      ∑ i ∈ s, a i * canonicalCompletedNativeLogDerivativeMoment (i + j) = 0) :
+    ∃ D A : Polynomial ℝ, D ≠ 0 ∧
+      (fun z : ℂ =>
+        (Polynomial.map (algebraMap ℝ ℂ) D).eval (z ^ 2) *
+            deriv completedNativeOperatorCharacteristic z +
+          (2 : ℂ) * z * (Polynomial.map (algebraMap ℝ ℂ) A).eval (z ^ 2) *
+            completedNativeOperatorCharacteristic z) =ᶠ[𝓝 0] fun _ => 0 := by
+  have hsne : s.Nonempty := by
+    obtain ⟨i, hi, hai⟩ := haNonzero
+    exact ⟨i, hi⟩
+  let d := s.max' hsne
+  have hd : ∀ j, j ∈ s → j ≤ d := by
+    intro j hj
+    exact s.le_max' j hj
+  let DR := hardyDenominatorPolynomialReal s a d
+  let qR := hardyConvolutionCoefficientReal
+    canonicalCompletedNativeLogDerivativeMoment s a d
+  let AR := hardyNumeratorPolynomialReal qR d
+  let DC := hardyDenominatorPolynomial s a d
+  let AC := hardyNumeratorPolynomial
+    (hardyConvolutionCoefficient canonicalCompletedNativeLogDerivativeMoment s a d) d
+  have hDC : DC ≠ 0 :=
+    hardyDenominatorPolynomial_ne_zero s a d hd haNonzero
+  have hmapD : Polynomial.map (algebraMap ℝ ℂ) DR = DC := by
+    change Polynomial.map (algebraMap ℝ ℂ)
+        (hardyDenominatorPolynomialReal s a d) =
+      hardyDenominatorPolynomial s a d
+    exact (hardyDenominatorPolynomial_eq_map s a d).symm
+  have hDR : DR ≠ 0 := by
+    intro hzero
+    apply hDC
+    rw [← hmapD, hzero]
+    simp
+  have hmapA : Polynomial.map (algebraMap ℝ ℂ) AR = AC := by
+    calc
+      Polynomial.map (algebraMap ℝ ℂ) AR =
+          hardyNumeratorPolynomial (fun k => (qR k : ℂ)) d := by
+        change Polynomial.map (algebraMap ℝ ℂ)
+            (hardyNumeratorPolynomialReal qR d) = _
+        exact (hardyNumeratorPolynomial_eq_map qR d).symm
+      _ = AC := by
+        change hardyNumeratorPolynomial (fun k => (qR k : ℂ)) d =
+          hardyNumeratorPolynomial
+            (hardyConvolutionCoefficient canonicalCompletedNativeLogDerivativeMoment
+              s a d) d
+        congr 1
+        funext k
+        exact (hardyConvolutionCoefficient_eq_ofReal
+          canonicalCompletedNativeLogDerivativeMoment s a d k).symm
+  have hidentity : Set.EqOn (hardyAnalyticResidual DC AC) 0
+      completedNativeHeightDomain := by
+    simpa [DC, AC] using hardyAnalyticResidual_eq_zero_of_moment_relation
+      s a d hrel hd
+  have hlocal : hardyAnalyticResidual DC AC =ᶠ[𝓝 0] fun _ => 0 := by
+    filter_upwards [isOpen_completedNativeHeightDomain.mem_nhds
+      zero_mem_completedNativeHeightDomain] with z hz
+    exact hidentity hz
+  refine ⟨DR, AR, hDR, ?_⟩
+  filter_upwards [hlocal] with z hz
+  have hz' : -DC.eval (z ^ 2) * deriv completedNativeOperatorCharacteristic z -
+      (2 : ℂ) * z * AC.eval (z ^ 2) *
+        completedNativeOperatorCharacteristic z = 0 := by
+    simpa [hardyAnalyticResidual] using hz
+  rw [hmapD, hmapA]
+  linear_combination -hz'
 
 /-- User-supplied hypothesis of infinitely many positive real zeros of the
 native characteristic. -/
