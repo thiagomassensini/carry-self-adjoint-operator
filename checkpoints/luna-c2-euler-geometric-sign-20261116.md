@@ -1,9 +1,12 @@
 # Luna checkpoint — C2 geometric Schur Euler balances
 
-Date: 2026-11-16  
-Repository: `thiagomassensini/carry-self-adjoint-operator`  
-Branch: `luna/c2-euler-geometric-sign-20261116`  
-Base: `origin/main` at `f1df607ee46dc9a7127fc9b3cd1aa3bcdc574aa4`  
+Date: 2026-11-16
+
+Repository: `thiagomassensini/carry-self-adjoint-operator`
+
+Branch: `luna/c2-euler-geometric-sign-20261116`
+
+Base: `origin/main` at `f1df607ee46dc9a7127fc9b3cd1aa3bcdc574aa4`
 Implementation commit: `f806bb2deafd9f15b1e64993a226121cfb2056ae`
 
 PR: [#125](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/125) (draft).
@@ -71,8 +74,9 @@ No `sorry`, `admit`, or new axiom was added.
 
 ## CSV experiment (diagnostic only)
 
-Input: `momentos/investigations/jacobi_polynomial_moments_20261024/c2_momentos_16_excerpt.csv`  
-SHA-256: `2485addf2d0d470869db3ff393979624e60c16455ee4ec880feece3edfa7fcb8`  
+Input: `momentos/investigations/jacobi_polynomial_moments_20261024/c2_momentos_16_excerpt.csv`
+
+SHA-256: `2485addf2d0d470869db3ff393979624e60c16455ee4ec880feece3edfa7fcb8`
 Used `h₀,…,h₁₅` as supplied; no height computation was run.
 
 For each `s,n`, `p = h₂ₙ₊ₛ - bᵀA⁻¹b` was computed from the CSV. The Euler integral
