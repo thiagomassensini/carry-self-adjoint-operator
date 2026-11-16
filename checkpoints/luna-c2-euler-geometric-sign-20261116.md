@@ -184,3 +184,90 @@ a proof by pointwise positivity of the existing even Green density. A useful
 next source lemma would have to bound these signed integrals from the C2
 depth/bracket decomposition while retaining their cross-cancellation; no such
 bound is included here.
+
+## Follow-up — exact pivot change under the pole atom
+
+The subsequent analysis formalizes the correction to the Schur pivot itself,
+including the fact that the prefix inverse changes. For a symmetric invertible
+prefix `A`, old coupling `b`, atom prefix `w`, last atom coefficient `t`, and
+`δ = 1 + α wᵀA⁻¹w ≠ 0`, the new pivot satisfies
+
+```text
+p_updated = p_old + α (t - wᵀA⁻¹b)^2 / δ.
+```
+
+The denominator condition also proves the updated prefix is invertible by an
+explicit Sherman–Morrison inverse and determinant argument. No positivity or
+pivot-sign hypothesis is used. The numerator is the evaluation at `-4` of the
+old monic critical direction `(-A⁻¹b,1)`.
+
+New module: `CarrySelfAdjointOperator/NativePoleAtomSchurUpdate.lean`.
+Important declarations:
+
+- `nativePoleRankOneUpdate_isUnit` — nonzero denominator implies the updated
+  symmetric rank-one prefix is invertible.
+- `nativePoleSchurRankOneUpdate` — generic fractional-square pivot identity.
+- `sourceMomentSchur_add_nativePoleAtom` — source Hankel specialization for
+  every shift `s`, with atom mass `4(-4)^s` and the updated coupling.
+- `nativePoleCriticalPolynomialEvaluation` — identifies the numerator with the
+  polynomial evaluation of the old critical direction at `-4`.
+- `canonicalRawSourceMomentSchur_update_criticalPolynomial` — specializes to
+  the existing canonical completed moments and the existing raw `Lambda`
+  moments. The `s=0` and `s=1` corollaries expose the masses `+4` and `-16`.
+
+The conditions are explicit for this matrix argument: the old prefix is a
+unit, it is symmetric, and `δ` is nonzero. For Hankel prefixes symmetry is
+definitional. No all-order positivity, positive definiteness, positive pivot,
+Green-integral sign, or positive Gram premise is used. This identity accounts
+for the prefix correction that is missed by contracting the atom against a
+fixed vector. It does not estimate the canonical Euler–Green integral and does
+not close the remaining source-sign question.
+
+### Numerical check of the pivot update
+
+The CSV diagnostic now also computes the raw pivot directly and from the
+fractional formula, plus the atom denominator and the old critical polynomial
+evaluation. At `n=1`, using only the supplied decimal moments at 120-digit
+mpmath precision:
+
+| sector | canonical pivot | raw pivot, direct | correction | denominator | `P(-4)` | relative formula residual |
+|---|---:|---:|---:|---:|---:|---:|
+| even (`s=0`) | `8.4368584101341518e-8` | `0.36785260731239055` | `0.36785252294380645` | `174.1227522993991` | `-4.00160885567459714` | `2.11e-120` |
+| odd (`s=1`) | `1.0385306763847226e-10` | `0.00059591702753351622` | `0.00059591692368044858` | `-430423.56830131567` | `-4.00387850013647296` | `4.04e-116` |
+
+The odd sector illustrates why the sign of `α=-16` alone does not determine
+the correction: its denominator is also negative here, so this decimal
+correction is positive. Both old prefix condition estimates are `1` at this
+one-dimensional order. The tiny algebraic residual measures agreement of two
+calculations on the same finite decimal input; it is not a rounding interval
+or a certificate about the exact moments. These values do not imply a
+general-order pivot sign.
+
+Reproducible command:
+
+```sh
+python3 scripts/probe_c2_schur_csv_excerpt.py \
+  /home/thlinux/momentos/investigations/jacobi_polynomial_moments_20261024/c2_momentos_16_excerpt.csv \
+  --dps 70 90 110 120
+```
+
+For the updated script, the reported maximum relative changes across those
+precision pairs are `9.06e-21`, `3.53e-40`, and `6.22e-62` for the tracked
+pivots and formula calculations. The input file SHA-256 remains
+`2485addf2d0d470869db3ff393979624e60c16455ee4ec880feece3edfa7fcb8`.
+
+### Follow-up validation and publication
+
+- `lake env lean -DwarningAsError=true CarrySelfAdjointOperator/NativePoleAtomSchurUpdate.lean` — passed.
+- `lake build --wfail CarrySelfAdjointOperator.NativeSourceSchurEulerGeometricSignProbeAudit` — passed (9,842 jobs).
+- The audit now prints the axioms for the new matrix and C2 pivot theorems; each reports only `propext`, `Classical.choice`, and `Quot.sound`.
+- `python3 scripts/scan_lean_trust_escapes.py` — passed; no `sorry`, `admit`, or new axiom.
+- `git diff --check` — passed.
+
+Follow-up implementation commit: `ae5ef0cfec157d2d5ca8a5f0343d34da8455456b`.
+It is pushed to `luna/c2-euler-geometric-sign-20261116` and updates draft PR
+[#125](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/125).
+The checkpoint publication update is committed immediately after this feature
+commit. The remaining mathematical gap is unchanged: a noncircular geometric
+estimate for the signed canonical Euler–Green integral, especially direct
+positivity control in the even sector.
