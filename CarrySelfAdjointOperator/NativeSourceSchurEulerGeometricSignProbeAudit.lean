@@ -21,5 +21,12 @@ namespace CarrySelfAdjointOperator
 #print axioms canonicalRawSourceMomentSchur_update_criticalPolynomial
 #print axioms canonicalRawSourceMomentSchur_even_update
 #print axioms canonicalRawSourceMomentSchur_odd_update
+#print axioms nativePoleBorderedDet_noDivision
+#print axioms nativePoleBorderedDet_singularPrefix
+#print axioms nativePoleBorderedMatrix_isUnit_of_singularPrefix
+#print axioms nativePoleOddDelta_negative_of_lower_bound
+#print axioms nativePoleInverseQuadratic_lowerBound
+#print axioms nativePoleOddDelta_negative_of_posDefPrefix
+#print axioms canonicalOddPoleDenominator_negative_of_posDefPrefix
 
 end CarrySelfAdjointOperator

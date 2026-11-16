@@ -482,6 +482,333 @@ theorem canonicalRawSourceMomentSchur_odd_update
   norm_num [nativePoleSectorMass]
   ring_nf
 
+/-- Border a square matrix by one scalar coordinate. -/
+def nativePoleBorderedMatrix {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (b : Fin n → ℝ) (d : ℝ) :
+    Matrix (Fin n ⊕ Unit) (Fin n ⊕ Unit) ℝ :=
+  Matrix.fromBlocks A (Matrix.replicateCol Unit b)
+    (Matrix.replicateRow Unit b) (fun _ _ => d)
+
+/-- Rank-one border atom on `Fin n ⊕ Unit`. -/
+def nativePoleBorderedAtomMatrix {n : ℕ} (w : Fin n → ℝ) (t : ℝ) :
+    Matrix (Fin n ⊕ Unit) (Fin n ⊕ Unit) ℝ :=
+  Matrix.of fun i j => Sum.elim w (fun _ : Unit => t) i * Sum.elim w (fun _ : Unit => t) j
+
+/-- Three-column factor for the border and pole-atom update over the invertible
+base `diag(A,1)`. -/
+def nativePoleBorderedDetLeft {n : ℕ} (b w : Fin n → ℝ) (t : ℝ) :
+    Matrix (Fin n ⊕ Unit) (Fin 3) ℝ := fun i j =>
+  match i with
+  | Sum.inl k => if j = 0 then w k else if j = 1 then b k else 0
+  | Sum.inr _ => if j = 0 then t else if j = 2 then 1 else 0
+
+/-- Three-row factor paired with `nativePoleBorderedDetLeft`. -/
+def nativePoleBorderedDetRight {n : ℕ}
+    (b w : Fin n → ℝ) (d t α : ℝ) :
+    Matrix (Fin 3) (Fin n ⊕ Unit) ℝ := fun i j =>
+  if i = 0 then
+    match j with
+    | Sum.inl k => α * w k
+    | Sum.inr _ => α * t
+  else if i = 1 then
+    match j with
+    | Sum.inl _ => 0
+    | Sum.inr _ => 1
+  else
+    match j with
+    | Sum.inl k => b k
+    | Sum.inr _ => d - 1
+
+private theorem nativePoleBorderedMatrix_rankThree_decomp {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (b w : Fin n → ℝ) (d t α : ℝ) :
+    nativePoleBorderedMatrix A b d +
+        α • nativePoleBorderedAtomMatrix w t =
+      Matrix.fromBlocks A 0 0 (1 : Matrix Unit Unit ℝ) +
+        nativePoleBorderedDetLeft b w t * nativePoleBorderedDetRight b w d t α := by
+  ext i j
+  cases i with
+  | inl i =>
+      cases j with
+      | inl j =>
+          simp [nativePoleBorderedMatrix, nativePoleBorderedDetLeft,
+            nativePoleBorderedDetRight, Matrix.mul_apply,
+            nativePoleBorderedAtomMatrix, Sum.elim, Fin.sum_univ_three]
+          ring
+      | inr j =>
+          simp [nativePoleBorderedMatrix, nativePoleBorderedDetLeft,
+            nativePoleBorderedDetRight, Matrix.mul_apply,
+            nativePoleBorderedAtomMatrix, Sum.elim, Fin.sum_univ_three]
+          ring
+  | inr i =>
+      cases j with
+      | inl j =>
+          simp [nativePoleBorderedMatrix, nativePoleBorderedDetLeft,
+            nativePoleBorderedDetRight, Matrix.mul_apply,
+            nativePoleBorderedAtomMatrix, Sum.elim, Fin.sum_univ_three]
+          ring
+      | inr j =>
+          simp [nativePoleBorderedMatrix, nativePoleBorderedDetLeft,
+            nativePoleBorderedDetRight, Matrix.mul_apply,
+            nativePoleBorderedAtomMatrix, Sum.elim, Fin.sum_univ_three]
+          ring
+
+private theorem nativePoleTransposeMulVec_sum {n : ℕ}
+    (M : Matrix (Fin n) (Fin n) ℝ) (x y : Fin n → ℝ) :
+    (∑ i, (∑ j, y j * M j i) * x i) = dotProduct y (M *ᵥ x) := by
+  calc
+    (∑ i, (∑ j, y j * M j i) * x i) =
+        dotProduct x (M.transpose *ᵥ y) := by
+          calc
+            _ = ∑ i, ∑ j, x i * (M j i * y j) := by
+              apply Finset.sum_congr rfl
+              intro i hi
+              rw [Finset.sum_mul]
+              apply Finset.sum_congr rfl
+              intro j hj
+              ring
+            _ = dotProduct x (M.transpose *ᵥ y) := by
+              simp only [dotProduct, Matrix.mulVec, Matrix.transpose_apply]
+              calc
+                _ = ∑ i, x i * ∑ j, M j i * y j := by
+                  apply Finset.sum_congr rfl
+                  intro i hi
+                  exact (Finset.mul_sum _ _ _).symm
+                _ = _ := rfl
+    _ = dotProduct y (M *ᵥ x) := Matrix.dotProduct_transpose_mulVec M x y
+
+private theorem nativePoleTransposeMulVec_scaled_sum {n : ℕ} (a : ℝ)
+    (M : Matrix (Fin n) (Fin n) ℝ) (x y : Fin n → ℝ) :
+    (∑ i, (∑ j, a * y j * M j i) * x i) = a * dotProduct y (M *ᵥ x) := by
+  calc
+    (∑ i, (∑ j, a * y j * M j i) * x i) =
+        ∑ i, a * ((∑ j, y j * M j i) * x i) := by
+          apply Finset.sum_congr rfl
+          intro i hi
+          calc
+            (∑ j, a * y j * M j i) * x i =
+                (a * (∑ j, y j * M j i)) * x i := by
+                  congr 1
+                  calc
+                    _ = ∑ j, a * (y j * M j i) := by
+                      apply Finset.sum_congr rfl
+                      intro j hj
+                      ring
+                    _ = a * ∑ j, y j * M j i := (Finset.mul_sum _ _ _).symm
+            _ = a * ((∑ j, y j * M j i) * x i) := by ring
+    _ = a * ∑ i, (∑ j, y j * M j i) * x i := (Finset.mul_sum _ _ _).symm
+    _ = a * dotProduct y (M *ᵥ x) := by rw [nativePoleTransposeMulVec_sum]
+
+/-- Division-free determinant identity for a bordered rank-one update. It
+remains valid when the updated prefix is singular (`δ = 0`): only the original
+prefix `A` must be invertible. -/
+theorem nativePoleBorderedDet_noDivision {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (b w : Fin n → ℝ)
+    (d t α : ℝ) (hA : IsUnit A) (hAsymm : A.transpose = A) :
+    (nativePoleBorderedMatrix A b d + α • nativePoleBorderedAtomMatrix w t).det =
+      A.det *
+        ((1 + α * dotProduct w (A⁻¹ *ᵥ w)) *
+            (d - dotProduct b (A⁻¹ *ᵥ b)) +
+          α * (t - dotProduct w (A⁻¹ *ᵥ b)) ^ 2) := by
+  let D : Matrix (Fin n ⊕ Unit) (Fin n ⊕ Unit) ℝ :=
+    Matrix.fromBlocks A 0 0 (1 : Matrix Unit Unit ℝ)
+  let U := nativePoleBorderedDetLeft b w t
+  let V := nativePoleBorderedDetRight b w d t α
+  let γ := dotProduct w (A⁻¹ *ᵥ w)
+  let β := dotProduct w (A⁻¹ *ᵥ b)
+  let η := dotProduct b (A⁻¹ *ᵥ b)
+  let K : Matrix (Fin 3) (Fin 3) ℝ :=
+    !![1 + α * (γ + t^2), α * β, α * t;
+       t, 1, 1;
+       β + (d - 1) * t, η, d]
+  letI := hA.invertible
+  have hInvSymm : A⁻¹.transpose = A⁻¹ := by
+    rw [Matrix.transpose_nonsing_inv, hAsymm]
+  have hCross : dotProduct b (A⁻¹ *ᵥ w) = β := by
+    calc
+      dotProduct b (A⁻¹ *ᵥ w) =
+          dotProduct w (A⁻¹.transpose *ᵥ b) :=
+        (Matrix.dotProduct_transpose_mulVec A⁻¹ w b).symm
+      _ = β := by simp [β, hInvSymm]
+  have hDdet : D.det = A.det := by
+    simp [D]
+  have hDunit : IsUnit D :=
+    (Matrix.isUnit_iff_isUnit_det D).mpr (by
+      rw [hDdet]
+      exact (Matrix.isUnit_iff_isUnit_det A).mp hA)
+  have hDdetUnit : IsUnit D.det :=
+    (Matrix.isUnit_iff_isUnit_det D).mp hDunit
+  have hDinv : D⁻¹ = Matrix.fromBlocks A⁻¹ 0 0 (1 : Matrix Unit Unit ℝ) := by
+    letI := hDunit.invertible
+    letI : Invertible (1 : Matrix Unit Unit ℝ) := IsUnit.invertible isUnit_one
+    change (Matrix.fromBlocks A 0 0 (1 : Matrix Unit Unit ℝ))⁻¹ = _
+    rw [← Matrix.invOf_eq_nonsing_inv, Matrix.invOf_fromBlocks_zero₂₁_eq]
+    simp
+  have hdecomp := nativePoleBorderedMatrix_rankThree_decomp A b w d t α
+  have hK : 1 + V * D⁻¹ * U = K := by
+    ext i j
+    fin_cases i <;> fin_cases j
+    all_goals
+      simp [K, U, V, D, hDinv, γ, β, η, hCross, Matrix.mul_apply,
+        nativePoleBorderedDetLeft, nativePoleBorderedDetRight,
+        nativePoleTransposeMulVec_scaled_sum, nativePoleTransposeMulVec_sum,
+        Matrix.fromBlocks_apply₁₁, Matrix.fromBlocks_apply₁₂,
+        Matrix.fromBlocks_apply₂₁, Matrix.fromBlocks_apply₂₂]
+    all_goals ring
+  calc
+    _ = (D + U * V).det := by rw [hdecomp]
+    _ = D.det * (1 + V * D⁻¹ * U).det := Matrix.det_add_mul U V hDdetUnit
+    _ = A.det * ((1 + α * γ) * (d - η) + α * (t - β)^2) := by
+      rw [hDdet, hK, Matrix.det_fin_three]
+      change
+        A.det * ((1 + α * (γ + t ^ 2)) * 1 * d -
+            (1 + α * (γ + t ^ 2)) * 1 * η -
+            α * β * t * d + α * β * 1 * (β + (d - 1) * t) +
+            α * t * t * η - α * t * 1 * (β + (d - 1) * t)) = _
+      ring
+
+/-- At the singular-prefix value `δ = 0`, the full bordered determinant is
+the rank-one cross term, with no division by `δ`. -/
+theorem nativePoleBorderedDet_singularPrefix {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (b w : Fin n → ℝ)
+    (d t α : ℝ) (hA : IsUnit A) (hAsymm : A.transpose = A)
+    (hδ : 1 + α * dotProduct w (A⁻¹ *ᵥ w) = 0) :
+    (nativePoleBorderedMatrix A b d + α • nativePoleBorderedAtomMatrix w t).det =
+      A.det * (α * (t - dotProduct w (A⁻¹ *ᵥ b)) ^ 2) := by
+  rw [nativePoleBorderedDet_noDivision A b w d t α hA hAsymm, hδ]
+  ring
+
+/-- A singular updated prefix does not force the full bordered block to be
+singular: at `δ = 0`, nonzero atom mass and nonzero critical evaluation make
+the complete block invertible. -/
+theorem nativePoleBorderedMatrix_isUnit_of_singularPrefix
+    {n : ℕ} (A : Matrix (Fin n) (Fin n) ℝ) (b w : Fin n → ℝ)
+    (d t α : ℝ) (hA : IsUnit A) (hAsymm : A.transpose = A)
+    (hδ : 1 + α * dotProduct w (A⁻¹ *ᵥ w) = 0)
+    (hα : α ≠ 0) (hcritical : t - dotProduct w (A⁻¹ *ᵥ b) ≠ 0) :
+    IsUnit (nativePoleBorderedMatrix A b d + α • nativePoleBorderedAtomMatrix w t) := by
+  apply (Matrix.isUnit_iff_isUnit_det _).2
+  apply (isUnit_iff_ne_zero).2
+  rw [nativePoleBorderedDet_singularPrefix A b w d t α hA hAsymm hδ]
+  have hdetA : A.det ≠ 0 := by
+    intro hz
+    have hunit : IsUnit A.det := (Matrix.isUnit_iff_isUnit_det A).mp hA
+    simp [hz] at hunit
+  exact mul_ne_zero hdetA (mul_ne_zero hα (pow_ne_zero 2 hcritical))
+
+private theorem nativePoleDotProduct_sub_left {ι : Type*} [Fintype ι]
+    (u v w : ι → ℝ) : dotProduct (u - v) w = dotProduct u w - dotProduct v w := by
+  calc
+    dotProduct (u - v) w = dotProduct w (u - v) := dotProduct_comm _ _
+    _ = dotProduct w u - dotProduct w v := dotProduct_sub _ _ _
+    _ = dotProduct u w - dotProduct v w := by
+      rw [dotProduct_comm w u, dotProduct_comm w v]
+
+private theorem nativePoleDotProduct_smul_left {ι : Type*} [Fintype ι]
+    (c : ℝ) (u v : ι → ℝ) : dotProduct (c • u) v = c * dotProduct u v := by
+  calc
+    dotProduct (c • u) v = dotProduct v (c • u) := dotProduct_comm _ _
+    _ = c * dotProduct v u := by rw [dotProduct_smul]; simp
+    _ = c * dotProduct u v := by rw [dotProduct_comm v u]
+
+/-- In any positive-definite source prefix, a unit coordinate of the atom
+forces its inverse quadratic mass to dominate the reciprocal diagonal entry.
+This is the conditional matrix inequality behind the odd-sector signature test. -/
+theorem nativePoleInverseQuadratic_lowerBound {ι : Type*} [Fintype ι] [DecidableEq ι]
+    (A : Matrix ι ι ℝ) (w : ι → ℝ) (i : ι) (a : ℝ)
+    (hA : A.PosDef) (ha : A i i = a) (hw : w i = 1) (haPos : 0 < a) :
+    1 / a ≤ dotProduct w (A⁻¹ *ᵥ w) := by
+  letI := hA.isUnit.invertible
+  have hAi : A⁻¹.PosDef := hA.inv
+  have hdet : IsUnit A.det := (Matrix.isUnit_iff_isUnit_det A).mp hA.isUnit
+  have hInvA : A⁻¹ * A = 1 := Matrix.nonsing_inv_mul A hdet
+  have hAsymm : A.transpose = A := by simpa using hA.isHermitian.eq
+  have hInvSymm : A⁻¹.transpose = A⁻¹ := by
+    rw [Matrix.transpose_nonsing_inv, hAsymm]
+  let e : ι → ℝ := Pi.single i 1
+  let z : ι → ℝ := A *ᵥ e
+  let v : ι → ℝ := w - (1 / a) • z
+  have hAinvZ : A⁻¹ *ᵥ z = e := by
+    dsimp [z]
+    rw [Matrix.mulVec_mulVec, hInvA, Matrix.one_mulVec]
+  have hwe : dotProduct w e = 1 := by
+    change dotProduct w (Pi.single i 1) = 1
+    rw [dotProduct_single]
+    simp [hw]
+  have hze : dotProduct z e = a := by
+    change dotProduct (A *ᵥ Pi.single i 1) (Pi.single i 1) = a
+    rw [dotProduct_single]
+    simp [Matrix.mulVec_single, Matrix.col_apply, ha]
+  have hcross : dotProduct z (A⁻¹ *ᵥ w) = 1 := by
+    calc
+      dotProduct z (A⁻¹ *ᵥ w) = dotProduct w (A⁻¹.transpose *ᵥ z) :=
+        (Matrix.dotProduct_transpose_mulVec A⁻¹ w z).symm
+      _ = dotProduct w e := by rw [hInvSymm, hAinvZ]
+      _ = 1 := hwe
+  have hquad : dotProduct v (A⁻¹ *ᵥ v) =
+      dotProduct w (A⁻¹ *ᵥ w) - 1 / a := by
+    change dotProduct (w - (1 / a) • z)
+      (A⁻¹ *ᵥ (w - (1 / a) • z)) = _
+    rw [Matrix.mulVec_sub, Matrix.mulVec_smul, hAinvZ]
+    rw [nativePoleDotProduct_sub_left, dotProduct_sub,
+      nativePoleDotProduct_smul_left, dotProduct_sub, dotProduct_smul]
+    simp [hwe, hze, hcross]
+    field_simp [ne_of_gt haPos]
+    all_goals simp
+  have hnonneg : 0 ≤ dotProduct v (A⁻¹ *ᵥ v) := by
+    by_cases hv : v = 0
+    · simp [hv]
+    · exact le_of_lt (hAi.dotProduct_mulVec_pos hv)
+  rw [hquad] at hnonneg
+  linarith
+
+/-- Conditional odd-sector signature test. The source-level estimate
+`1/h₁ ≤ wᵀ A⁻¹ w` together with `0 < h₁ < 16` forces the pole-atom update
+denominator negative. The lower bound itself is a separate geometric obligation. -/
+theorem nativePoleOddDelta_negative_of_lower_bound
+    {h₁ q : ℝ} (h₁pos : 0 < h₁) (h₁lt : h₁ < 16)
+    (hbound : 1 / h₁ ≤ q) : 1 - 16 * q < 0 := by
+  have hrecip : (1 : ℝ) / 16 < 1 / h₁ :=
+    (one_div_lt_one_div (by norm_num) h₁pos).2 h₁lt
+  have hq : (1 : ℝ) / 16 < q := lt_of_lt_of_le hrecip hbound
+  nlinarith
+
+/-- Combining positive definiteness of a canonical prefix with the unit first
+coordinate of the pole atom makes the odd rank-one denominator strictly
+negative whenever the first diagonal moment lies in `(0,16)`. This detects the
+signature change of the raw prefix, without asserting a sign for the canonical
+Schur pivot. -/
+theorem nativePoleOddDelta_negative_of_posDefPrefix {ι : Type*}
+    [Fintype ι] [DecidableEq ι] (A : Matrix ι ι ℝ) (w : ι → ℝ)
+    (i : ι) (h₁ : ℝ) (hA : A.PosDef) (hdiag : A i i = h₁)
+    (hunitCoord : w i = 1) (h₁pos : 0 < h₁) (h₁lt : h₁ < 16) :
+    1 - 16 * dotProduct w (A⁻¹ *ᵥ w) < 0 := by
+  apply nativePoleOddDelta_negative_of_lower_bound h₁pos h₁lt
+  exact nativePoleInverseQuadratic_lowerBound A w i h₁ hA hdiag hunitCoord h₁pos
+
+/-- Odd canonical-source specialization: for every nonempty prefix, positive
+definiteness and `0 < h₁ < 16` force the raw pole-atom update denominator to
+be negative. This is a conditional signature statement; it assumes no Schur
+pivot sign and does not assert all-order canonical positivity. -/
+theorem canonicalOddPoleDenominator_negative_of_posDefPrefix
+    (n : ℕ) (hn : 0 < n)
+    (hA : (sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment 1 n).PosDef)
+    (h₁pos : 0 < canonicalCompletedNativeLogDerivativeMoment 1)
+    (h₁lt : canonicalCompletedNativeLogDerivativeMoment 1 < 16) :
+    1 - 16 * dotProduct (poleAtomVector n)
+      ((sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment 1 n)⁻¹ *ᵥ
+        poleAtomVector n) < 0 := by
+  let i₀ : Fin n := ⟨0, hn⟩
+  have hdiag :
+      sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment 1 n i₀ i₀ =
+        canonicalCompletedNativeLogDerivativeMoment 1 := by
+    simp [sourceMomentMatrix, i₀]
+  have hcoord : poleAtomVector n i₀ = 1 := by
+    simp [poleAtomVector, i₀]
+  exact nativePoleOddDelta_negative_of_posDefPrefix
+    (sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment 1 n)
+    (poleAtomVector n) i₀ (canonicalCompletedNativeLogDerivativeMoment 1)
+    hA hdiag hcoord h₁pos h₁lt
+
 end
 
 end CarrySelfAdjointOperator
