@@ -809,6 +809,69 @@ theorem canonicalOddPoleDenominator_negative_of_posDefPrefix
     (poleAtomVector n) i₀ (canonicalCompletedNativeLogDerivativeMoment 1)
     hA hdiag hcoord h₁pos h₁lt
 
+/-- A positive-definite prefix with a unit atom coordinate and diagonal entry
+in `(0,16)` has a negative direction after the odd mass-`16` rank-one
+downdate. The witness is `A⁻¹w`; no exact inertia count is claimed. -/
+theorem nativePoleOddPrefix_negativeDirection_of_posDef {n : ℕ}
+    (A : Matrix (Fin n) (Fin n) ℝ) (w : Fin n → ℝ) (i : Fin n) (h₁ : ℝ)
+    (hA : A.PosDef) (hdiag : A i i = h₁) (hunitCoord : w i = 1)
+    (h₁pos : 0 < h₁) (h₁lt : h₁ < 16) :
+    dotProduct (A⁻¹ *ᵥ w)
+      ((A - 16 • outerSq w) *ᵥ (A⁻¹ *ᵥ w)) < 0 := by
+  letI := hA.isUnit.invertible
+  let x := A⁻¹ *ᵥ w
+  let q := dotProduct w x
+  have hqbound : 1 / h₁ ≤ q := by
+    exact nativePoleInverseQuadratic_lowerBound A w i h₁ hA hdiag hunitCoord h₁pos
+  have hqpos : 0 < q := lt_of_lt_of_le (one_div_pos.mpr h₁pos) hqbound
+  have hdelta : 1 - 16 * q < 0 :=
+    nativePoleOddDelta_negative_of_lower_bound h₁pos h₁lt hqbound
+  have hAx : A *ᵥ x = w := by
+    dsimp [x]
+    rw [Matrix.mulVec_mulVec, Matrix.mul_inv_of_invertible, Matrix.one_mulVec]
+  have hxw : dotProduct x w = q := by
+    dsimp [q, x]
+    rw [dotProduct_comm]
+  have hquad : dotProduct x ((A - 16 • outerSq w) *ᵥ x) = q - 16 * q^2 := by
+    rw [Matrix.sub_mulVec, Matrix.smul_mulVec, nativePoleOuterSq_mulVec, hAx]
+    rw [dotProduct_sub, dotProduct_smul, dotProduct_smul]
+    simp [q, x, hxw, smul_eq_mul]
+    ring
+  rw [hquad]
+  have hprod : q * (1 - 16 * q) < 0 := mul_neg_of_pos_of_neg hqpos hdelta
+  nlinarith
+
+/-- Under the same hypotheses, the raw odd prefix has an explicit negative
+quadratic direction, namely the canonical inverse image of the pole atom.
+This proves at least one negative direction for the rank-one downdate; it does
+not assert the full inertia count. -/
+theorem canonicalOddRawPrefix_has_negative_direction
+    (n : ℕ) (hn : 0 < n)
+    (hA : (sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment 1 n).PosDef)
+    (h₁pos : 0 < canonicalCompletedNativeLogDerivativeMoment 1)
+    (h₁lt : canonicalCompletedNativeLogDerivativeMoment 1 < 16) :
+    let A := sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment 1 n
+    let w := poleAtomVector n
+    dotProduct (A⁻¹ *ᵥ w)
+      (sourceMomentMatrix completedRawLogDerivativeMoment 1 n *ᵥ (A⁻¹ *ᵥ w)) < 0 := by
+  let A := sourceMomentMatrix canonicalCompletedNativeLogDerivativeMoment 1 n
+  let w := poleAtomVector n
+  let i₀ : Fin n := ⟨0, hn⟩
+  have hdiag : A i₀ i₀ = canonicalCompletedNativeLogDerivativeMoment 1 := by
+    simp [A, sourceMomentMatrix, i₀]
+  have hcoord : w i₀ = 1 := by simp [w, poleAtomVector, i₀]
+  have hraw :
+      sourceMomentMatrix completedRawLogDerivativeMoment 1 n =
+        A - 16 • outerSq w := by
+    ext i j
+    simp [A, w, sourceMomentMatrix, completedRawLogDerivativeMoment,
+      poleAtomVector, outerSq, Nat.add_assoc]
+    ring
+  have hnegative := nativePoleOddPrefix_negativeDirection_of_posDef
+    A w i₀ (canonicalCompletedNativeLogDerivativeMoment 1)
+    hA hdiag hcoord h₁pos h₁lt
+  simpa [A, w, hraw] using hnegative
+
 end
 
 end CarrySelfAdjointOperator

@@ -28,5 +28,7 @@ namespace CarrySelfAdjointOperator
 #print axioms nativePoleInverseQuadratic_lowerBound
 #print axioms nativePoleOddDelta_negative_of_posDefPrefix
 #print axioms canonicalOddPoleDenominator_negative_of_posDefPrefix
+#print axioms nativePoleOddPrefix_negativeDirection_of_posDef
+#print axioms canonicalOddRawPrefix_has_negative_direction
 
 end CarrySelfAdjointOperator
