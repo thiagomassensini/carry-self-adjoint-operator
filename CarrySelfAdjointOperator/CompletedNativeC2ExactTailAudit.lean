@@ -1,0 +1,28 @@
+import CarrySelfAdjointOperator.CompletedNativeC2ExactTailConvergence
+
+/-!
+# Axiom audit for the Luna F exact C2 tail transport
+
+These declarations expose the transitive axiom dependencies of the central
+exact-tail, carrier convergence, diagonal-cutoff, and E4 transport results.
+-/
+
+namespace CarrySelfAdjointOperator
+
+#print axioms canonicalC2Geometry_finiteHead_add_exactTail_eq_factor_mul_nativeScalar
+#print axioms canonicalC2Geometry_completedPackagedNativeJet_eq_head_add_exactTail
+#print axioms NativeCarrySpectralWeyl.Camera.finiteBracketCharacteristic_tendsto
+#print axioms deriv_finiteBracketCharacteristic_tendsto
+#print axioms c2FiniteChartHeightCharacteristic_eq_dressing_mul_originalHead
+#print axioms completedNativeC2Characteristic_sub_finite_eq_completion_mul_exactTail
+#print axioms completedNativeC2Companion_sub_finite_eq_expanded_exactTail
+#print axioms nativeSourceC2ValueTail_eq_nodeSynthesis
+#print axioms nativeSourceC2CompanionTail_eq_nodeSynthesis
+#print axioms nativeSourceC2ValueTail_uniform_on_unit_ball
+#print axioms nativeSourceC2CompanionTail_uniform_on_unit_ball
+#print axioms nativeSourceC2TailError_le_sensitivity_bound
+#print axioms nativeSourceC2TailErrorSensitivityBound_tendsto_zero
+#print axioms nativeSourceC2TailError_eventually_bounded_by_budget
+#print axioms nativeSourceC2ChosenCutoffSign_implies_legTailBounds
+
+end CarrySelfAdjointOperator
