@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.NativeSourceSchurEulerGeometricSignProbe
 import CarrySelfAdjointOperator.NativePoleAtomCriticalEvaluation
+import CarrySelfAdjointOperator.NativePoleAtomSchurUpdate
 
 namespace CarrySelfAdjointOperator
 
@@ -12,5 +13,13 @@ namespace CarrySelfAdjointOperator
 #print axioms nativePoleCriticalPairing_eq_polynomialEvaluation
 #print axioms nativePoleCritical_evenCorrection_eq
 #print axioms nativePoleCritical_oddCorrection_eq
+#print axioms nativePoleRankOneUpdate_isUnit
+#print axioms nativePoleSchurRankOneUpdate
+#print axioms sourceMomentSchur_add_nativePoleAtom
+#print axioms nativePoleCriticalPolynomialEvaluation
+#print axioms canonicalRawSourceMomentSchur_update
+#print axioms canonicalRawSourceMomentSchur_update_criticalPolynomial
+#print axioms canonicalRawSourceMomentSchur_even_update
+#print axioms canonicalRawSourceMomentSchur_odd_update
 
 end CarrySelfAdjointOperator

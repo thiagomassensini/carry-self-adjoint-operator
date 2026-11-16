@@ -20,6 +20,7 @@ from mpmath import mp
 def compute(dps: int, raw_moments: list[str]) -> dict[tuple[int, int], dict[str, mp.mpf]]:
     mp.dps = dps
     h = [mp.mpf(value) for value in raw_moments]
+    raw_h = [h[k] + 4 * (-4) ** k for k in range(len(h))]
     result: dict[tuple[int, int], dict[str, mp.mpf]] = {}
 
     for s in (0, 1):
@@ -28,6 +29,9 @@ def compute(dps: int, raw_moments: list[str]) -> dict[tuple[int, int], dict[str,
                 v = [mp.mpf(1)]
                 pivot = h[s]
                 condition = mp.mpf(1)
+                atom_quadratic = mp.mpf(0)
+                pole_evaluation = mp.mpf(1)
+                denominator = mp.mpf(1)
             else:
                 old = mp.matrix([[h[i + j + s] for j in range(n)] for i in range(n)])
                 coupling = mp.matrix([h[i + n + s] for i in range(n)])
@@ -35,6 +39,26 @@ def compute(dps: int, raw_moments: list[str]) -> dict[tuple[int, int], dict[str,
                 v = [-solved[i] for i in range(n)] + [mp.mpf(1)]
                 pivot = h[2 * n + s] - sum(coupling[i] * solved[i] for i in range(n))
                 condition = mp.norm(old, p=mp.inf) * mp.norm(old**-1, p=mp.inf)
+
+                atom = mp.matrix([(-4) ** i for i in range(n)])
+                atom_solved = mp.lu_solve(old, atom)
+                atom_quadratic = sum(atom[i] * atom_solved[i] for i in range(n))
+                pole_evaluation = (-4) ** n - sum(atom[i] * solved[i] for i in range(n))
+                denominator = 1 + 4 * (-4) ** s * atom_quadratic
+
+            atom_mass = 4 * (-4) ** s
+            raw_from_formula = pivot + atom_mass * pole_evaluation**2 / denominator
+            if n == 0:
+                raw_direct = raw_h[s]
+                raw_condition = mp.mpf(1)
+            else:
+                raw_old = mp.matrix([[raw_h[i + j + s] for j in range(n)] for i in range(n)])
+                raw_coupling = mp.matrix([raw_h[i + n + s] for i in range(n)])
+                raw_solved = mp.lu_solve(raw_old, raw_coupling)
+                raw_direct = raw_h[2 * n + s] - sum(
+                    raw_coupling[i] * raw_solved[i] for i in range(n)
+                )
+                raw_condition = mp.norm(raw_old, p=mp.inf) * mp.norm(raw_old**-1, p=mp.inf)
 
             rho = sum(v[i] * h[i] for i in range(n + 1))
 
@@ -59,6 +83,13 @@ def compute(dps: int, raw_moments: list[str]) -> dict[tuple[int, int], dict[str,
                 "condition_inf": condition,
                 "q": q,
                 "relative_balance_residual": abs(residual) / scale,
+                "pole_evaluation": pole_evaluation,
+                "atom_denominator": denominator,
+                "raw_p_direct": raw_direct,
+                "raw_p_sherman_morrison": raw_from_formula,
+                "raw_condition_inf": raw_condition,
+                "raw_formula_relative_residual": abs(raw_direct - raw_from_formula)
+                / max(abs(raw_direct), abs(raw_from_formula), mp.mpf("1e-100")),
             }
     return result
 
@@ -87,7 +118,9 @@ def main() -> None:
         left, right = runs[dps_left], runs[dps_right]
         for key in left:
             s, _n = key
-            fields = ["p", "I_over_c0"] + (["rho", "q"] if s == 1 else [])
+            fields = ["p", "I_over_c0", "raw_p_direct", "raw_p_sherman_morrison"] + (
+                ["rho", "q"] if s == 1 else []
+            )
             changes.extend(relative_change(left[key][field], right[key][field]) for field in fields)
         stability.append(
             {
@@ -106,6 +139,14 @@ def main() -> None:
             row[f"I{s}_over_c0"] = mp.nstr(values["I_over_c0"], 14)
             row[f"condition{s}_inf"] = mp.nstr(values["condition_inf"], 8)
             row[f"relative_balance_residual{s}"] = mp.nstr(values["relative_balance_residual"], 8)
+            row[f"raw_p_direct{s}"] = mp.nstr(values["raw_p_direct"], 14)
+            row[f"raw_p_sherman_morrison{s}"] = mp.nstr(values["raw_p_sherman_morrison"], 14)
+            row[f"atom_denominator{s}"] = mp.nstr(values["atom_denominator"], 14)
+            row[f"pole_evaluation{s}"] = mp.nstr(values["pole_evaluation"], 14)
+            row[f"raw_condition{s}_inf"] = mp.nstr(values["raw_condition_inf"], 8)
+            row[f"raw_formula_relative_residual{s}"] = mp.nstr(
+                values["raw_formula_relative_residual"], 8
+            )
             if s == 1:
                 row["rho1"] = mp.nstr(values["rho"], 14)
                 row["q1"] = mp.nstr(values["q"], 14) if values["q"] is not None else None
