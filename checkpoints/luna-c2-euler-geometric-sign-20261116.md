@@ -441,5 +441,5 @@ ratio theorems depend only on `propext`, `Classical.choice`, and `Quot.sound`.
 Focused Lean compilation, the audit build (9,842 jobs), the trust-escape scan,
 and `git diff --check` passed. Implementation commit `96e5c18`
 (`Formalize pole atom inertia and denominator recurrence`) contains the module
-and audit changes and is being published on the existing branch. PR #125
+and audit changes and is published on the existing branch. PR #125
 remains draft and unmerged.
