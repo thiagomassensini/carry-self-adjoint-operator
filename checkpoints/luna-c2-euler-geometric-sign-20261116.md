@@ -369,3 +369,77 @@ Commit `ddfb24e` is included in branch
 is updated with the explicit witness result. The current sign gap remains the
 signed canonical Euler–Green integral, with separate obligations in the even
 and odd sectors.
+
+## Follow-up — full conditional inertia and one-step denominator law
+
+The latest Lean extension formalizes both consequences proposed in the
+follow-up analysis. It is algebraic and conditional throughout; it adds no
+all-order positivity premise or conclusion.
+
+### Exact odd downdate inertia
+
+`nativePoleOddDowndate_exactInertia` proves, for a positive-definite real
+matrix `A` and a nonzero vector `w`, that if
+
+```text
+δ = 1 - 16 * wᵀ A⁻¹ w < 0,
+```
+
+then the quadratic form of `A - 16 wwᵀ` has
+
+```text
+sigPos = n - 1,  sigNeg = 1,  finrank(radical) = 0.
+```
+
+Thus the conditional inertia is exactly `(n-1, 1, 0)`, using Mathlib's
+quadratic-form signature and radical. `canonicalOddRawPrefix_exactInertia_of_posDefPrefix`
+specializes this to the raw odd source prefix under the same conditions as
+the denominator lemma: canonical odd prefix positive definite and
+`0 < h₁ < 16`. The negative direction previously recorded is therefore
+strengthened to a complete conditional count. It still does not prove the
+canonical prefix positive definite in arbitrary order.
+
+### Inverse-mass and denominator recurrence
+
+`nativePoleInverseQuadratic_bordering_update` proves the block extension law
+for invertible symmetric `A` and an invertible bordered block:
+
+```text
+v'ᵀ M⁻¹ v' = vᵀ A⁻¹ v
+               + (t - bᵀ A⁻¹ v)² / (d - bᵀ A⁻¹ b),
+```
+
+where `M = [[A,b],[bᵀ,d]]` and `v'=(v,t)`. The hypotheses make both
+prefixes invertible; no pivot sign is assumed. `sourceMomentPoleAtomBlockMass_succ`
+specializes this to the source Hankel data and rewrites the residual as the
+existing critical-polynomial evaluation at `-4`. The left side is explicitly
+the block-coordinate mass on `Fin n ⊕ Unit`; a Lean proof identifying it with
+the conventional `Fin (n+1)` mass via permutation reindexing remains to be
+added. The scalar denominator evolution is recorded in
+`sourceMomentPoleAtomBlockDenominator_succ`.
+
+`nativePoleSchurPivot_denominatorRatio` proves the division-safe scalar
+algebra behind the ratio form. `canonicalRawSourceMomentSchur_blockDenominatorRatio`
+combines it with the source recurrence and the already formalized atom pivot
+update, expressing the raw pivot as the canonical pivot times the ratio of
+successive block-coordinate denominators. Its explicit hypotheses require
+the old canonical prefix and its bordered extension to be invertible, as well
+as a nonzero canonical pivot and current denominator.
+
+### Scope and remaining work
+
+The inertia result counts exactly one negative direction for the raw odd
+prefix only under the stated canonical positive-definiteness and `h₁` bounds.
+The recurrence currently lives in the natural bordered block indexing; the
+standard `Fin (n+1)` reindex transport is the next small algebraic lemma. The
+new recurrences do not estimate the signed Euler–Green integrals. The even
+sector still needs direct source control, and the odd sector still needs a
+non-circular bound on its integrated negative mass.
+
+The audit now prints 34 declarations. The new signature, recurrence, and
+ratio theorems depend only on `propext`, `Classical.choice`, and `Quot.sound`.
+Focused Lean compilation, the audit build (9,842 jobs), the trust-escape scan,
+and `git diff --check` passed. Implementation commit `96e5c18`
+(`Formalize pole atom inertia and denominator recurrence`) contains the module
+and audit changes and is being published on the existing branch. PR #125
+remains draft and unmerged.
