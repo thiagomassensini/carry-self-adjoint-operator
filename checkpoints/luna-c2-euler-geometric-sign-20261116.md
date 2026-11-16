@@ -330,3 +330,42 @@ Feature commit `6dfbfcb` is pushed to branch
 [#125](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/125)
 has been updated with the new identities and conditional signature result.
 This checkpoint update is in commit `7f2a0dabac07e68bfc2fd5a5d8758e49b3ef5094`.
+
+## Follow-up — explicit negative direction for the raw odd prefix
+
+Implementation commit: `ddfb24e` (`Expose negative direction in raw odd prefix`).
+
+The conditional inverse-quadratic bound can be pushed one step further.
+`nativePoleOddPrefix_negativeDirection_of_posDef` proves that if `A` is
+positive definite, `wᵢ=1`, and `0<Aᵢᵢ<16`, then the odd downdate
+`A - 16 wwᵀ` has negative quadratic value on the explicit witness `A⁻¹w`.
+`canonicalOddRawPrefix_has_negative_direction` specializes that witness and
+inequality to every finite odd raw source prefix under the same positive-
+definite canonical-prefix hypothesis. This proves at least one negative
+direction of the raw odd prefix in that conditional regime. It does not count
+all negative eigenvalues or prove the canonical prefix positive definite at
+arbitrary order.
+
+This result gives a formal signature obstruction for the artificial pole
+atom: where the canonical prefix is positive definite and `h₁<16`, the raw
+odd prefix cannot remain positive definite. It is compatible with the
+positive raw bordered pivots in the decimal experiment because a negative
+direction can already be present in the old prefix; the bordered extension
+can still have a positive determinant ratio at the next step. It does not
+estimate the canonical Euler–Green integral and does not close either tower's
+all-order sign obligation.
+
+### Validation and publication
+
+- `lake env lean -DwarningAsError=true CarrySelfAdjointOperator/NativePoleAtomSchurUpdate.lean` — passed.
+- `lake build --wfail CarrySelfAdjointOperator.NativeSourceSchurEulerGeometricSignProbeAudit` — passed (9,842 jobs).
+- The audit prints 26 declarations, each using only `propext`,
+  `Classical.choice`, and `Quot.sound`.
+- `python3 scripts/scan_lean_trust_escapes.py` and `git diff --check` — passed.
+
+Commit `ddfb24e` is included in branch
+`luna/c2-euler-geometric-sign-20261116`; draft PR
+[#125](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/125)
+is updated with the explicit witness result. The current sign gap remains the
+signed canonical Euler–Green integral, with separate obligations in the even
+and odd sectors.
