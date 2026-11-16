@@ -1,0 +1,10 @@
+import CarrySelfAdjointOperator.NativeSourceSchurEulerGeometricSignProbe
+
+namespace CarrySelfAdjointOperator
+
+#print axioms nativeSchurCriticalReadout_even_eq_zero
+#print axioms nativeSchurEulerPolynomial_green_integral
+#print axioms nativeSchurEuler_odd_green_balance
+#print axioms nativeSchurEuler_even_green_balance
+
+end CarrySelfAdjointOperator
