@@ -325,6 +325,8 @@ and its signed integral needs separate source control.
 - `python3 scripts/scan_lean_trust_escapes.py` — passed.
 - `git diff --check` — passed.
 
-Feature commit `6dfbfcb` will be pushed to branch
-`luna/c2-euler-geometric-sign-20261116` and added to the existing draft PR
-[#125](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/125).
+Feature commit `6dfbfcb` is pushed to branch
+`luna/c2-euler-geometric-sign-20261116`; draft PR
+[#125](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/125)
+has been updated with the new identities and conditional signature result.
+This checkpoint update is in commit `7f2a0dabac07e68bfc2fd5a5d8758e49b3ef5094`.
