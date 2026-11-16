@@ -271,3 +271,60 @@ The checkpoint publication update is committed immediately after this feature
 commit. The remaining mathematical gap is unchanged: a noncircular geometric
 estimate for the signed canonical Euler–Green integral, especially direct
 positivity control in the even sector.
+
+## Follow-up — division-free bordered determinant and odd denominator sign
+
+Feature commit: `6dfbfcb` (`Prove division-free pole atom bordered determinant`).
+
+`nativePoleBorderedDet_noDivision` proves, for arbitrary finite dimension and
+only an invertible symmetric base prefix `A`,
+
+```text
+det [[A + αwwᵀ, b + αtw], [bᵀ + αtwᵀ, d + αt²]]
+  = det(A) * ((1 + α wᵀA⁻¹w) * (d - bᵀA⁻¹b)
+              + α * (t - wᵀA⁻¹b)²).
+```
+
+The proof factors the full bordered update as a rank-three update of
+`diag(A,1)` and applies the matrix determinant lemma to that always-invertible
+base. The result never divides by the updated-prefix denominator
+`δ = 1 + α wᵀA⁻¹w`, so it also covers `δ = 0`.
+
+Two corollaries make the singular-prefix case explicit:
+
+- `nativePoleBorderedDet_singularPrefix`: when `δ = 0`, the full determinant
+  is `det(A) * α * (t - wᵀA⁻¹b)²`.
+- `nativePoleBorderedMatrix_isUnit_of_singularPrefix`: if additionally
+  `α ≠ 0` and the critical evaluation `t - wᵀA⁻¹b ≠ 0`, the complete bordered
+  block remains invertible although its updated prefix is singular.
+
+The conditional signature calculation is now formalized from positive
+definiteness rather than leaving the inverse-quadratic lower bound as an
+assumption. `nativePoleInverseQuadratic_lowerBound` proves for any positive
+definite finite matrix, and any atom vector with `wᵢ = 1`,
+`1/Aᵢᵢ ≤ wᵀA⁻¹w` by completing a square in the positive form of `A⁻¹`.
+`canonicalOddPoleDenominator_negative_of_posDefPrefix` specializes this to
+the odd canonical source Hankel: for every nonempty prefix, if that prefix is
+positive definite and `0 < h₁ < 16`, then `1 - 16 wᵀA⁻¹w < 0` for the pole
+atom. This is conditional on prefix positive definiteness; it does not prove
+that premise at arbitrary order, any canonical pivot sign, or an exact count
+of negative eigenvalues/inertia for the updated prefix.
+
+The first Green/sign obligation remains open. These results isolate the
+artificial pole atom's determinant and denominator effects; they do not bound
+either signed Euler–Green integral and they do not show that the odd square
+dominates its negative integral. The even sector still has no Euler square,
+and its signed integral needs separate source control.
+
+### Validation of this follow-up
+
+- `lake env lean CarrySelfAdjointOperator/NativePoleAtomSchurUpdate.lean` — passed.
+- `lake build --wfail CarrySelfAdjointOperator.NativeSourceSchurEulerGeometricSignProbeAudit` — passed (9,842 jobs).
+- The audit prints the determinant/sign declarations; each depends only on
+  `propext`, `Classical.choice`, and `Quot.sound`.
+- `python3 scripts/scan_lean_trust_escapes.py` — passed.
+- `git diff --check` — passed.
+
+Feature commit `6dfbfcb` will be pushed to branch
+`luna/c2-euler-geometric-sign-20261116` and added to the existing draft PR
+[#125](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/125).
