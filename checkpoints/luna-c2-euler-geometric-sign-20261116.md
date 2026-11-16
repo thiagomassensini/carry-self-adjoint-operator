@@ -4,7 +4,9 @@ Date: 2026-11-16
 Repository: `thiagomassensini/carry-self-adjoint-operator`  
 Branch: `luna/c2-euler-geometric-sign-20261116`  
 Base: `origin/main` at `f1df607ee46dc9a7127fc9b3cd1aa3bcdc574aa4`  
-PR: draft URL to be added after publication.
+Implementation commit: `f806bb2deafd9f15b1e64993a226121cfb2056ae`
+
+PR: [#125](https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/125) (draft).
 
 ## Provenance and scope
 
