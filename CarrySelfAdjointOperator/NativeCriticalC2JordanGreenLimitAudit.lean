@@ -1,0 +1,17 @@
+import CarrySelfAdjointOperator.NativeCriticalC2JordanGreenLimit
+
+namespace CarrySelfAdjointOperator
+
+#check nativeCriticalC2JordanGreenLimit
+#print axioms nativeCriticalC2JordanGreenLimit
+
+#check nativeCriticalGreenPositive_of_extendedPrefix_posDef
+#print axioms nativeCriticalGreenPositive_of_extendedPrefix_posDef
+
+#check nativeSchurEuler_even_integral_pos_of_extendedPrefix_posDef
+#print axioms nativeSchurEuler_even_integral_pos_of_extendedPrefix_posDef
+
+#check nativeSchurEuler_odd_compensation_of_extendedPrefix_posDef
+#print axioms nativeSchurEuler_odd_compensation_of_extendedPrefix_posDef
+
+end CarrySelfAdjointOperator
