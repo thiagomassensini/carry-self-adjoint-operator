@@ -73,11 +73,21 @@ It then applies dominated convergence to the finite-head integrands with majoran
 
 The limiting density is kept in the original seed-plus-hyperbolic-cell form. The pre-existing `nativeC2MellinOmega0_eq_exp_sinh` is the exact bridge to the repository's rational density spelling; it was not imported into this focused module because that import pulled in the broad completion/Green and theta-certificate dependency tree. No moments, camera, seed, or completion factor were redefined.
 
+`CarrySelfAdjointOperator/C2MellinLogMomentDerivative.lean` proves the next local analytic step. It defines the real logarithmic Mellin integrands and moments from the same positive geometric density and establishes
+
+```lean
+nativeC2MellinGeometricSourceIntegral_hasDerivAt_half
+```
+
+This says that the source integral is differentiable at `s = 1/2` and its derivative is exactly `nativeC2MellinGeometricLogMoment 1 (1/2)`. The proof uses `|log x| ≤ 8 * (x^(1/8) + x^(-1/8))`, the density bound `density x ≤ 2 * exp(-x)`, and a four-term Gamma-integrable envelope uniformly for `3/8 < s < 5/8`. The pointwise derivative is proved before applying Mathlib's local dominated differentiation theorem. This result concerns the geometric source integral only; it does not identify the derivative with the completed characteristic or a canonical completed moment.
+
 ## Axiom audit
 
 `CarrySelfAdjointOperator/C2MellinComplexBridgeAudit.lean` prints axioms for the rate, bracket, aligned-cell, finite geometric-sum, closed-head, and finite-head integral theorems. Each reports only Lean's standard `propext`, `Classical.choice`, and `Quot.sound`; no project axiom, `sorry`, or `admit` was added.
 
 `CarrySelfAdjointOperator/C2MellinInfiniteLimitAudit.lean` audits the two new convergence and source-identification theorems; both report only the same standard Lean axioms.
+
+`CarrySelfAdjointOperator/C2MellinLogMomentDerivativeAudit.lean` audits `nativeC2MellinGeometricSourceIntegral_hasDerivAt_half`; it reports only `propext`, `Classical.choice`, and `Quot.sound`.
 
 ## Independent numerical probe in `~/temporario`
 
@@ -93,7 +103,7 @@ The reproduced values are:
 
 The script reports `kappa₂ = 4.83805578680312816884`, `kappa₄ = 97.20735995167402326358`, `kappa₆ = 7690.62711228175281616`, and the canonical `2 × 2` Hankel determinant `1.94933555481914221474e-9`. Its independent reference differences are about `5.2e-55`, `6.7e-51`, and `2.5e-47` for `h0`–`h2` respectively. These are reproducible high-precision quadrature diagnostics, not interval certificates. The exact toy transform `(3 + cos t)/4` also gives `h1 = -1/192`, demonstrating that positivity of a measure alone does not force positivity of the associated logarithmic-derivative coefficients.
 
-These numerical results do not prove differentiation under the Mellin integral or any all-order canonical Hankel sign. The infinite source identification is now a separate Lean theorem for the hyperbolic geometric density.
+These numerical results do not prove higher-order differentiation under the Mellin integral or any all-order canonical Hankel sign. The source identity and its first derivative at `s=1/2` are separate Lean theorems for the hyperbolic geometric density.
 
 ## Validation run
 
@@ -103,6 +113,8 @@ These numerical results do not prove differentiation under the Mellin integral o
 - `lake env lean -DwarningAsError=true CarrySelfAdjointOperator/C2MellinInfiniteLimit.lean` — passed without warnings.
 - `lake build CarrySelfAdjointOperator.C2MellinInfiniteLimit` — passed.
 - `lake build CarrySelfAdjointOperator.C2MellinInfiniteLimitAudit` — passed; the new limit and source-identification declarations have only standard axioms.
+- `lake build --wfail CarrySelfAdjointOperator.C2MellinLogMomentDerivative` — passed; proves the first derivative under the Mellin integral at `s=1/2`.
+- `lake build --wfail CarrySelfAdjointOperator.C2MellinLogMomentDerivativeAudit` — passed; the derivative theorem has only standard Lean axioms.
 - `python3 ~/temporario/c2_mellin_cumulantes_probe.py` — completed at the script's configured 55 decimal digits and reproduced the table above.
 - `git diff --check` — to rerun before the continuation commit.
 
@@ -110,17 +122,18 @@ An initial attempt to import `C2MellinPositiveDensity` directly started a 9,641-
 
 ## First remaining gap
 
-The limit `M → ∞` under the integral is now proved for every fixed complex `s` with `Re(s)>0`. The next concrete obligation is differentiation under that integral for logarithmic Mellin moments. For each fixed logarithmic order `r`, establish compact-parameter domination for
+The limit `M → ∞` under the integral is proved for every fixed complex `s` with `Re(s)>0`, and the first real derivative of the source integral is proved at `s=1/2`. The next concrete obligation is higher-order differentiation under that integral. For each fixed logarithmic order `r`, establish compact-parameter domination for
 
 ```text
 x^(sigma-1) * |log x|^r * (exp(-x) + omega0(x)),
 ```
 
-uniformly for `sigma` in compact subintervals of `(0,∞)`. Then identify derivatives of the source Mellin transform with the source log-moments/cumulants. The camera and completion derivatives still need to be combined with those source derivatives to recover the canonical moments. No cumulant identity with the completed moments and no canonical moment sign are claimed here.
+uniformly for `sigma` in compact subintervals of `(0,∞)`. Then identify higher derivatives with source log-moments and cumulants. The camera and completion derivatives still need to be combined with those source derivatives to recover the canonical moments. In particular, the current first-derivative result does not supply the second and higher derivatives needed for the cumulant expressions in the numerical probe. No cumulant identity with the completed moments and no canonical moment sign are claimed here.
 
 ## Publication
 
 - Code commit SHA: `09a6603` (`Prove finite C2 complex Mellin head identity`).
 - DCT continuation commit SHA: `9b69656` (`Prove infinite C2 Mellin source limit by dominated convergence`).
+- First-derivative continuation: pending publication in this turn.
 - Draft PR URL: https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/127
 - Published branch: `luna/c2-mellin-complex-bridge-20261117`.

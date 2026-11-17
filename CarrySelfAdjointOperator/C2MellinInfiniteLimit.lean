@@ -23,7 +23,7 @@ def nativeC2MellinGeometricDensity (x : ℝ) : ℝ :=
 def nativeC2MellinComplexGeometricSourceIntegrand (s : ℂ) (x : ℝ) : ℂ :=
   (x : ℂ) ^ (s - 1) * (nativeC2MellinGeometricDensity x : ℂ)
 
-private theorem nativeC2MellinGeometricOmega0_eq_q_form {x : ℝ} (hx : 0 < x) :
+theorem nativeC2MellinGeometricOmega0_eq_q_form {x : ℝ} (hx : 0 < x) :
     nativeC2MellinGeometricOmega0 x =
       let q := Real.exp (-x)
       q ^ 3 * (1 - q) / ((1 + q) * (1 + q ^ 2)) := by
@@ -61,7 +61,7 @@ private theorem nativeC2MellinGeometricOmega0_eq_q_form {x : ℝ} (hx : 0 < x) :
   field_simp [ne_of_gt hq0, ne_of_gt hden]
   ring
 
-private theorem nativeC2MellinGeometricOmega0_pos {x : ℝ} (hx : 0 < x) :
+theorem nativeC2MellinGeometricOmega0_pos {x : ℝ} (hx : 0 < x) :
     0 < nativeC2MellinGeometricOmega0 x := by
   rw [nativeC2MellinGeometricOmega0_eq_q_form hx]
   dsimp
@@ -69,7 +69,7 @@ private theorem nativeC2MellinGeometricOmega0_pos {x : ℝ} (hx : 0 < x) :
   have hq1 : Real.exp (-x) < 1 := Real.exp_lt_one_iff.mpr (by linarith)
   positivity
 
-private theorem nativeC2MellinGeometricOmega0_le_exp_neg {x : ℝ} (hx : 0 < x) :
+theorem nativeC2MellinGeometricOmega0_le_exp_neg {x : ℝ} (hx : 0 < x) :
     nativeC2MellinGeometricOmega0 x ≤ Real.exp (-x) := by
   rw [nativeC2MellinGeometricOmega0_eq_q_form hx]
   dsimp
@@ -90,7 +90,7 @@ private theorem nativeC2MellinGeometricOmega0_le_exp_neg {x : ℝ} (hx : 0 < x) 
     simpa only [mul_one] using mul_le_mul_of_nonneg_left hden hq0.le
   exact hnum.trans hmul
 
-private theorem nativeC2MellinGeometricDensity_le_two_exp_neg {x : ℝ}
+theorem nativeC2MellinGeometricDensity_le_two_exp_neg {x : ℝ}
     (hx : 0 < x) :
     nativeC2MellinGeometricDensity x ≤ 2 * Real.exp (-x) := by
   unfold nativeC2MellinGeometricDensity
