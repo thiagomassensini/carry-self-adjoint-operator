@@ -155,5 +155,6 @@ uniformly for `sigma` in compact subintervals of `(0,∞)`. Then formally expres
 - DCT continuation commit SHA: `9b69656` (`Prove infinite C2 Mellin source limit by dominated convergence`).
 - First-derivative continuation commit SHA: `c260098f780e8847513acb0e7488bc15a38cee41` (`Prove first C2 Mellin source derivative at half`).
 - Second-derivative continuation commit SHA: `43338936be2d91b83ea2d24a085f8611e49c47df` (`Prove second C2 Mellin source derivative at half`).
+- Rational/geometric density crosswalk and iterated derivative orders 1–2 commit SHA: `10639fb` (`Crosswalk C2 Mellin densities and derivatives`).
 - Draft PR URL: https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/127
 - Published branch: `luna/c2-mellin-complex-bridge-20261117`.
