@@ -1,0 +1,24 @@
+{
+  "scanner_exit_code": 1,
+  "status": "BASELINE COMMENT MATCHES ONLY; SCANNER DID NOT PASS",
+  "hits": [
+    {
+      "path": "CarrySelfAdjointOperator/NativeMomentPrefixNoBootstrap.lean",
+      "line": 84,
+      "unchanged_from_base": true,
+      "text": "/-- For every finite cutoff, the prefix and sharp all-order decay data admit"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/NativeSourceAllOrderSchur.lean",
+      "line": 6,
+      "unchanged_from_base": true,
+      "text": "as an axiom or proved by the coefficient majorant. -/"
+    },
+    {
+      "path": "CarrySelfAdjointOperator/CompletedNativeChiralReturnLeakageControl.lean",
+      "line": 10,
+      "unchanged_from_base": true,
+      "text": "assumed as a new axiom or claimed proved here. Relative channel dominance is"
+    }
+  ]
+}

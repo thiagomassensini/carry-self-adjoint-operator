@@ -1426,6 +1426,16 @@
     {"qualified": "CarrySelfAdjointOperator.NativeCauchyPorts.clockedBracket_derivative_one"},
     {"qualified": "CarrySelfAdjointOperator.NativeCauchyPorts.clockedBracket_logCoordinate_defect"},
     {"qualified": "CarrySelfAdjointOperator.NativeCauchyPorts.firstNativeBracket_clock_realRepresentative"},
-    {"qualified": "CarrySelfAdjointOperator.NativeCauchyPorts.firstNativeBracket_clock_no_boundaryZero_profile"}
+    {"qualified": "CarrySelfAdjointOperator.NativeCauchyPorts.firstNativeBracket_clock_no_boundaryZero_profile"},
+    {"qualified": "CarrySelfAdjointOperator.CriticalBranchNativeAudit.convolutionDefect_eq_moment_errors"},
+    {"qualified": "CarrySelfAdjointOperator.CriticalBranchNativeAudit.convolutionDefect_zero_eq_mass_error"},
+    {"qualified": "CarrySelfAdjointOperator.CriticalBranchNativeAudit.unit_source_zero_defect_gt"},
+    {"qualified": "CarrySelfAdjointOperator.CriticalBranchNativeAudit.unit_source_zero_defect_pos"},
+    {"qualified": "CarrySelfAdjointOperator.CriticalBranchNativeAudit.raw_critical_branch_zero_defect_pos"},
+    {"qualified": "CarrySelfAdjointOperator.CriticalBranchNativeAudit.raw_global_physical_branch_zero_defect_pos"},
+    {"qualified": "CarrySelfAdjointOperator.CriticalBranchNativeAudit.raw_global_physical_branch_not_native"},
+    {"qualified": "CarrySelfAdjointOperator.CriticalBranchNativeAudit.raw_green_input_zero_defect_pos"},
+    {"qualified": "CarrySelfAdjointOperator.CriticalBranchNativeAudit.native_boundary_two"},
+    {"qualified": "CarrySelfAdjointOperator.CriticalBranchNativeAudit.raw_distinct_cores_even_cross_not_native"}
   ]
 }
