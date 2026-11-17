@@ -1,5 +1,6 @@
 import CarrySelfAdjointOperator.C2MellinInfiniteLimit
 import Mathlib.Analysis.Calculus.ParametricIntegral
+import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
 
 open Set MeasureTheory Filter
 open scoped Topology
@@ -423,35 +424,34 @@ private theorem nativeC2MellinGeometricLogIntegrand_zero_norm_bound
       Real.rpow_nonneg hx.le (-(1 / 4 : ℝ)), Real.rpow_nonneg hx.le (-(1 / 2 : ℝ)),
       Real.exp_pos (-x)]
 
-/-- The first logarithmic Mellin moment is the derivative of the positive C2
-geometric source integral at the critical real parameter. The proof uses a
-uniform Gamma-integrable envelope on `3/8 < s < 5/8`; it does not identify this
-derivative with a derivative of the completed characteristic. -/
-theorem nativeC2MellinGeometricSourceIntegral_hasDerivAt_half :
+/-- The source Mellin integral is differentiable throughout the compact parameter
+window `3/8 < s < 5/8`, with derivative equal to its first logarithmic
+moment. This neighborhood identity is needed to identify its second
+iterated derivative at the critical parameter. -/
+theorem nativeC2MellinGeometricSourceIntegral_hasDerivAt
+    {s : ℝ} (hs : s ∈ Set.Ioo (3 / 8 : ℝ) (5 / 8)) :
     HasDerivAt nativeC2MellinGeometricSourceIntegral
-      (nativeC2MellinGeometricLogMoment 1 (1 / 2 : ℝ)) (1 / 2 : ℝ) := by
+      (nativeC2MellinGeometricLogMoment 1 s) s := by
   let μ : Measure ℝ := volume.restrict (Ioi 0)
   let S : Set ℝ := Ioo (3 / 8 : ℝ) (5 / 8)
-  have hS : S ∈ 𝓝 (1 / 2 : ℝ) := by
-    apply Ioo_mem_nhds
-    <;> norm_num
+  have hS : S ∈ 𝓝 s := Ioo_mem_nhds hs.1 hs.2
   have hmajor := nativeC2Mellin_log_majorant_integrable
   have hmeas0 : AEStronglyMeasurable
-      (nativeC2MellinGeometricLogIntegrand 0 (1 / 2 : ℝ)) μ := by
-    simpa [μ] using nativeC2MellinGeometricLogIntegrand_aestronglyMeasurable 0 (1 / 2 : ℝ)
+      (nativeC2MellinGeometricLogIntegrand 0 s) μ := by
+    simpa [μ] using nativeC2MellinGeometricLogIntegrand_aestronglyMeasurable 0 s
   have hmeas1 : AEStronglyMeasurable
-      (nativeC2MellinGeometricLogIntegrand 1 (1 / 2 : ℝ)) μ := by
-    simpa [μ] using nativeC2MellinGeometricLogIntegrand_aestronglyMeasurable 1 (1 / 2 : ℝ)
+      (nativeC2MellinGeometricLogIntegrand 1 s) μ := by
+    simpa [μ] using nativeC2MellinGeometricLogIntegrand_aestronglyMeasurable 1 s
   have hbound0 : ∀ᵐ x ∂μ,
-      ‖nativeC2MellinGeometricLogIntegrand 0 (1 / 2 : ℝ) x‖ ≤
+      ‖nativeC2MellinGeometricLogIntegrand 0 s x‖ ≤
         16 * (Real.exp (-x) *
           (x ^ (-(3 / 4 : ℝ)) + x ^ (-(1 / 4 : ℝ)) +
             x ^ (-(1 / 2 : ℝ)) + 1)) := by
     filter_upwards [self_mem_ae_restrict measurableSet_Ioi] with x hx
     simpa [Real.norm_eq_abs] using
-      nativeC2MellinGeometricLogIntegrand_zero_norm_bound hx (by norm_num)
+      nativeC2MellinGeometricLogIntegrand_zero_norm_bound hx hs
   have hFint : Integrable
-      (nativeC2MellinGeometricLogIntegrand 0 (1 / 2 : ℝ)) μ :=
+      (nativeC2MellinGeometricLogIntegrand 0 s) μ :=
     hmajor.mono' hmeas0 hbound0
   have hderivbound : ∀ᵐ x ∂μ, ∀ s ∈ S,
       ‖nativeC2MellinGeometricLogIntegrand 1 s x‖ ≤
@@ -470,7 +470,7 @@ theorem nativeC2MellinGeometricSourceIntegral_hasDerivAt_half :
     exact nativeC2MellinGeometricLogIntegrand_hasDerivAt 0 hx
   have hparam := hasDerivAt_integral_of_dominated_loc_of_deriv_le
     (F := fun s x => nativeC2MellinGeometricLogIntegrand 0 s x)
-    (x₀ := (1 / 2 : ℝ)) (s := S) (bound := fun x =>
+    (x₀ := s) (s := S) (bound := fun x =>
       16 * (Real.exp (-x) *
         (x ^ (-(3 / 4 : ℝ)) + x ^ (-(1 / 4 : ℝ)) +
           x ^ (-(1 / 2 : ℝ)) + 1))) hS
@@ -480,9 +480,15 @@ theorem nativeC2MellinGeometricSourceIntegral_hasDerivAt_half :
     (fun s : ℝ => ∫ x in Ioi (0 : ℝ),
       nativeC2MellinGeometricLogIntegrand 0 s x)
     (∫ x in Ioi (0 : ℝ),
-      nativeC2MellinGeometricLogIntegrand 1 (1 / 2 : ℝ) x) (1 / 2 : ℝ)
+      nativeC2MellinGeometricLogIntegrand 1 s x) s
   simpa [μ, nativeC2MellinGeometricLogIntegrand, pow_succ, mul_assoc,
     mul_left_comm, mul_comm] using hparam.2
+
+/-- Critical-parameter specialization of the neighborhood differentiation theorem. -/
+theorem nativeC2MellinGeometricSourceIntegral_hasDerivAt_half :
+    HasDerivAt nativeC2MellinGeometricSourceIntegral
+      (nativeC2MellinGeometricLogMoment 1 (1 / 2 : ℝ)) (1 / 2 : ℝ) := by
+  exact nativeC2MellinGeometricSourceIntegral_hasDerivAt (by norm_num)
 
 /-- The second logarithmic Mellin moment is the derivative of the first source
 log-moment at `s = 1/2`. This supplies the source second moment (and hence the
@@ -543,6 +549,35 @@ theorem nativeC2MellinGeometricLogMoment_one_hasDerivAt_half :
       nativeC2MellinGeometricLogIntegrand 2 (1 / 2 : ℝ) x) (1 / 2 : ℝ)
   simpa [μ, nativeC2MellinGeometricLogIntegrand, pow_succ, mul_assoc,
     mul_left_comm, mul_comm] using hparam.2
+
+/-- The first iterated derivative of the geometric Mellin source is its first
+logarithmic moment at the critical parameter. -/
+theorem nativeC2MellinGeometricSourceIntegral_iteratedDeriv_one_half :
+    iteratedDeriv 1 nativeC2MellinGeometricSourceIntegral (1 / 2 : ℝ) =
+      nativeC2MellinGeometricLogMoment 1 (1 / 2 : ℝ) := by
+  rw [iteratedDeriv_one]
+  exact (nativeC2MellinGeometricSourceIntegral_hasDerivAt (by norm_num)).deriv
+
+/-- The second iterated derivative requires the first-derivative identity in a
+neighborhood; the uniform parameter theorem supplies that identity and hence
+identifies the second derivative with the second log-moment. -/
+theorem nativeC2MellinGeometricSourceIntegral_iteratedDeriv_two_half :
+    iteratedDeriv 2 nativeC2MellinGeometricSourceIntegral (1 / 2 : ℝ) =
+      nativeC2MellinGeometricLogMoment 2 (1 / 2 : ℝ) := by
+  have hS : Set.Ioo (3 / 8 : ℝ) (5 / 8) ∈ 𝓝 (1 / 2 : ℝ) := by
+    apply Ioo_mem_nhds
+    <;> norm_num
+  have hEq : (fun t : ℝ => deriv nativeC2MellinGeometricSourceIntegral t) =ᶠ[𝓝 (1 / 2 : ℝ)]
+      (fun t : ℝ => nativeC2MellinGeometricLogMoment 1 t) := by
+    filter_upwards [hS] with t ht
+    exact (nativeC2MellinGeometricSourceIntegral_hasDerivAt ht).deriv
+  have hM1 := nativeC2MellinGeometricLogMoment_one_hasDerivAt_half
+  have hM1' : HasDerivAt (fun t : ℝ => deriv nativeC2MellinGeometricSourceIntegral t)
+      (nativeC2MellinGeometricLogMoment 2 (1 / 2 : ℝ)) (1 / 2 : ℝ) :=
+    hM1.congr_of_eventuallyEq hEq
+  have hderiv := hM1'.deriv
+  rw [show (2 : ℕ) = 1 + 1 by norm_num, iteratedDeriv_succ, iteratedDeriv_one]
+  exact hderiv
 
 end
 

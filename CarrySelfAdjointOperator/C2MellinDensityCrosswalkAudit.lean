@@ -1,0 +1,10 @@
+import CarrySelfAdjointOperator.C2MellinDensityCrosswalk
+
+/-! Kernel audit for the rational-to-geometric Mellin density crosswalk and
+the transferred first two derivative identities. -/
+
+#print axioms CarrySelfAdjointOperator.nativeC2MellinDensity_eq_geometricDensity
+#print axioms CarrySelfAdjointOperator.nativeC2MellinSourceIntegral_eq_geometricSourceIntegral
+#print axioms CarrySelfAdjointOperator.nativeC2MellinLogMoment_eq_geometricLogMoment
+#print axioms CarrySelfAdjointOperator.nativeC2MellinIteratedDerivative_one_half
+#print axioms CarrySelfAdjointOperator.nativeC2MellinIteratedDerivative_two_half
