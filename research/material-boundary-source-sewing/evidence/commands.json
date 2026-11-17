@@ -1,0 +1,225 @@
+[
+  {
+    "name": "provenance",
+    "command": [
+      "python3",
+      "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/verify_provenance.py"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 0.09052768297260627
+  },
+  {
+    "name": "registry",
+    "command": [
+      "python3",
+      "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/check_registry.py"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 0.5592073599691503
+  },
+  {
+    "name": "native-pr15-build",
+    "command": [
+      "lake",
+      "build",
+      "--wfail",
+      "NativeCarrySpectralWeyl.Finite.RelationalDivisibilityGram"
+    ],
+    "cwd": "/home/thlinux/native-carry-spectral-weyl",
+    "exit_code": 0,
+    "seconds": 2.4618308300268836
+  },
+  {
+    "name": "inventory-native",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/inventory-native.lean"
+    ],
+    "cwd": "/home/thlinux/native-carry-spectral-weyl",
+    "exit_code": 0,
+    "seconds": 4.532943319994956
+  },
+  {
+    "name": "inventory-green",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/inventory-green.lean"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 7.574227906996384
+  },
+  {
+    "name": "inventory-geometry",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/inventory-geometry.lean"
+    ],
+    "cwd": "/home/thlinux/geometry-of-numbers",
+    "exit_code": 0,
+    "seconds": 7.129812266968656
+  },
+  {
+    "name": "inventory-operator",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/inventory-operator.lean"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 8.064638633979484
+  },
+  {
+    "name": "research-build",
+    "command": [
+      "lake",
+      "build",
+      "--wfail",
+      "CarrySelfAdjointOperator.NativeMaterialCameraBoundary",
+      "CarrySelfAdjointOperator.NativeMaterialBoundarySourceTransport",
+      "CarrySelfAdjointOperator.NativeMaterialBoundaryRegressions",
+      "CarrySelfAdjointOperator.NativeMaterialBoundarySewingAudit"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 22.42505041405093
+  },
+  {
+    "name": "research-kernel",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "CarrySelfAdjointOperator/NativeMaterialBoundarySewingAudit.lean"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 8.800574134977069
+  },
+  {
+    "name": "prior-registry-material_camera_jet",
+    "command": [
+      "python3",
+      "scripts/check_material_camera_jet_registry.py"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 0.039210382965393364
+  },
+  {
+    "name": "prior-registry-material_chiral_canary",
+    "command": [
+      "python3",
+      "scripts/check_material_chiral_canary_registry.py"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 0.03629168000770733
+  },
+  {
+    "name": "prior-registry-log_gap_connection",
+    "command": [
+      "python3",
+      "scripts/check_log_gap_connection_registry.py"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 0.03698759601684287
+  },
+  {
+    "name": "prior-registry-first_edge_source",
+    "command": [
+      "python3",
+      "scripts/check_first_edge_source_registry.py"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 0.035956162959337234
+  },
+  {
+    "name": "prior-registry-native_cauchy_ports",
+    "command": [
+      "python3",
+      "scripts/check_native_cauchy_ports_registry.py"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 0.036029729002621025
+  },
+  {
+    "name": "prior-registry-cauchy_laguerre_isometry",
+    "command": [
+      "python3",
+      "scripts/check_cauchy_laguerre_isometry_registry.py"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 0.05836345098214224
+  },
+  {
+    "name": "root-build",
+    "command": [
+      "lake",
+      "build",
+      "--wfail"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 13.941874200012535
+  },
+  {
+    "name": "root-audit-build",
+    "command": [
+      "lake",
+      "build",
+      "--wfail",
+      "CarrySelfAdjointOperator.Audit"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 19.37023101298837
+  },
+  {
+    "name": "root-audit-kernel",
+    "command": [
+      "lake",
+      "env",
+      "lean",
+      "CarrySelfAdjointOperator/Audit.lean"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 11.38700886402512
+  },
+  {
+    "name": "diff-check",
+    "command": [
+      "git",
+      "diff",
+      "--check"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 0.006895374972373247
+  },
+  {
+    "name": "final-provenance",
+    "command": [
+      "python3",
+      "/home/thlinux/carry-self-adjoint-operator/research/material-boundary-source-sewing/verify_provenance.py"
+    ],
+    "cwd": "/home/thlinux/carry-self-adjoint-operator",
+    "exit_code": 0,
+    "seconds": 0.08880237699486315
+  }
+]

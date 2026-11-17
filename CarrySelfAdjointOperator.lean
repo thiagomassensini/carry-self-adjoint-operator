@@ -1,3 +1,4 @@
+import CarrySelfAdjointOperator.NativeMaterialBoundaryRegressions
 import CarrySelfAdjointOperator.RealQuadratureDomainTransport
 import CarrySelfAdjointOperator.RealMaterialPhaseConnection
 import CarrySelfAdjointOperator.NativeRealFirstQuadratureNaturality
