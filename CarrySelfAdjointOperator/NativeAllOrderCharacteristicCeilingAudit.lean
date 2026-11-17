@@ -1,0 +1,11 @@
+import CarrySelfAdjointOperator.NativeAllOrderCharacteristicCeiling
+
+namespace CarrySelfAdjointOperator
+
+#print axioms nativeSourceSchurRemainder_eq_characteristic_gap
+#print axioms nativeSource_schur_eq_characteristic_recurrence
+#print axioms nativeSource_schur_pos_iff_characteristic_ceiling
+#print axioms nativeSourceCentralSchur_pos_iff_characteristic_ceiling
+#print axioms nativeSourceShiftedSchur_pos_iff_characteristic_ceiling
+
+end CarrySelfAdjointOperator

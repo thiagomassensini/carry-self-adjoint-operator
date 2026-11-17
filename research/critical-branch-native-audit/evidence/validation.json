@@ -1,0 +1,84 @@
+{
+  "repository": "carry-self-adjoint-operator",
+  "checks": [
+    {
+      "label": "source-check",
+      "command": [
+        "/usr/bin/python3",
+        "/home/thlinux/carry-self-adjoint-operator/research/critical-branch-native-audit/check_sources.py"
+      ],
+      "started_utc": "2026-10-18T09:55:21.270536+00:00",
+      "exit_code": 0,
+      "log": "source-check.log.gz",
+      "sha256": "95c925e4c0c2c8c596b17dc702c0f8a6774505b8a58c1ce61333f0312e8888c2",
+      "uncompressed_sha256": "def592a96c7b481fd75b156b972c7defaefc0510ade146c70384425fcef70549"
+    },
+    {
+      "label": "focused",
+      "command": [
+        "lake",
+        "build",
+        "--wfail",
+        "CarrySelfAdjointOperator.CriticalBranchNativeObstructions",
+        "CarrySelfAdjointOperator.CriticalBranchNativeAudit"
+      ],
+      "started_utc": "2026-10-18T09:55:21.349988+00:00",
+      "exit_code": 0,
+      "log": "focused.log.gz",
+      "sha256": "0e8f67073b4dff4bd760979d75080ef73dda938f3fbc7e6ed75b1b530efdc02c",
+      "uncompressed_sha256": "5d677a61728f0a028e4b1cea8e413c3a5e8ea94918ac23663fde1172f49524ac"
+    },
+    {
+      "label": "root",
+      "command": [
+        "lake",
+        "build",
+        "--wfail"
+      ],
+      "started_utc": "2026-10-18T09:55:46.176291+00:00",
+      "exit_code": 0,
+      "log": "root.log.gz",
+      "sha256": "308b7a235429d28aa20e564413c442194503107123d75276f5d33b2e2257b038",
+      "uncompressed_sha256": "57fe802ab77f9301c24abd89a7f544fcd305fc3169b20ba03219e6b5d1df8f18"
+    },
+    {
+      "label": "audit-root",
+      "command": [
+        "lake",
+        "build",
+        "--wfail",
+        "CarrySelfAdjointOperator.Audit"
+      ],
+      "started_utc": "2026-10-18T09:55:59.982285+00:00",
+      "exit_code": 0,
+      "log": "audit-root.log.gz",
+      "sha256": "72d02b4fdd4efa50f45c786ba5b0d4764e74fbbf5675cf445786fd3afd90a144",
+      "uncompressed_sha256": "3b4b1f7fa16f1ef71947c441c012618c8db6c69448a5a02094ed96b7f01b8056"
+    },
+    {
+      "label": "physical-registry",
+      "command": [
+        "/usr/bin/python3",
+        "scripts/check_physical_sewing_registry.py"
+      ],
+      "started_utc": "2026-10-18T09:56:20.257284+00:00",
+      "exit_code": 0,
+      "log": "physical-registry.log.gz",
+      "sha256": "1a0f0d1c5df42afa204a263911ee80118b4fa9499060dd62b59738b162f589a9",
+      "uncompressed_sha256": "9f5192636b4b55886d5513d63970baf5b97b804c48a6d54c01250268c5f3bee9"
+    },
+    {
+      "label": "diff-check",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "started_utc": "2026-10-18T09:56:20.321305+00:00",
+      "exit_code": 0,
+      "log": "diff-check.log.gz",
+      "sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "uncompressed_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

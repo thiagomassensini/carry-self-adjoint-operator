@@ -1,0 +1,9 @@
+import CarrySelfAdjointOperator.NativeHankelPencilConditionalPositivity
+
+/-! Audit of the conditional all-order assembly and its source coefficient input. -/
+
+open CarrySelfAdjointOperator
+
+#print axioms nativeSource_even_odd_towers_posDef_of_euler_mass_gates
+#print axioms nativeSource_all_shift_windows_posDef_of_euler_mass_gates
+#print axioms completedNativeRealEvenCharacteristicCoefficient_zero_ge_third

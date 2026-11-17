@@ -1,0 +1,16 @@
+import CarrySelfAdjointOperator.NativeHankelPencilEulerOrderTwo
+
+/-! Axiom audit for the finite-order Euler mass gates. -/
+
+open CarrySelfAdjointOperator
+
+#print axioms nativeSourceFiveEvenDiscriminant_eq_eight_hankelDet
+#print axioms nativeSourceSixOddDiscriminant_eq_eight_shifted_hankelDet
+#print axioms nativeSourceEuler_even_prefix_two_isUnit
+#print axioms nativeSourceEuler_odd_prefix_two_isUnit
+#print axioms nativeSchurEuler_even_orderTwo_mass_balance
+#print axioms nativeSchurEuler_odd_orderTwo_mass_balance
+#print axioms nativeSchurEuler_even_orderTwo_mass_gate
+#print axioms nativeSchurEuler_odd_orderTwo_mass_gate
+#print axioms nativeSourceFiveEvenDiscriminant_pos
+#print axioms nativeSourceSixOddDiscriminant_pos
