@@ -73,13 +73,14 @@ It then applies dominated convergence to the finite-head integrands with majoran
 
 The limiting density is kept in the original seed-plus-hyperbolic-cell form. The pre-existing `nativeC2MellinOmega0_eq_exp_sinh` is the exact bridge to the repository's rational density spelling; it was not imported into this focused module because that import pulled in the broad completion/Green and theta-certificate dependency tree. No moments, camera, seed, or completion factor were redefined.
 
-`CarrySelfAdjointOperator/C2MellinLogMomentDerivative.lean` proves the next local analytic step. It defines the real logarithmic Mellin integrands and moments from the same positive geometric density and establishes
+`CarrySelfAdjointOperator/C2MellinLogMomentDerivative.lean` proves two local analytic steps. It defines the real logarithmic Mellin integrands and moments from the same positive geometric density and establishes
 
 ```lean
 nativeC2MellinGeometricSourceIntegral_hasDerivAt_half
+nativeC2MellinGeometricLogMoment_one_hasDerivAt_half
 ```
 
-This says that the source integral is differentiable at `s = 1/2` and its derivative is exactly `nativeC2MellinGeometricLogMoment 1 (1/2)`. The proof uses `|log x| ≤ 8 * (x^(1/8) + x^(-1/8))`, the density bound `density x ≤ 2 * exp(-x)`, and a four-term Gamma-integrable envelope uniformly for `3/8 < s < 5/8`. The pointwise derivative is proved before applying Mathlib's local dominated differentiation theorem. This result concerns the geometric source integral only; it does not identify the derivative with the completed characteristic or a canonical completed moment.
+The first theorem says that the source integral is differentiable at `s = 1/2` and its derivative is exactly `nativeC2MellinGeometricLogMoment 1 (1/2)`. The second says that this first log-moment is differentiable there and its derivative is `nativeC2MellinGeometricLogMoment 2 (1/2)`. For the first step, the proof uses `|log x| ≤ 8 * (x^(1/8) + x^(-1/8))`, the density bound `density x ≤ 2 * exp(-x)`, and a four-term Gamma-integrable envelope uniformly for `3/8 < s < 5/8`. For the second, it sharpens the logarithm envelope on each side of `x=1`, obtaining the two-term majorant `512 * exp(-x) * (x^(-7/8) + x^(-1/8))`. Each pointwise derivative is proved before applying Mathlib's local dominated differentiation theorem. These results concern the geometric source only; they do not identify its derivatives with those of the completed characteristic or canonical completed moments.
 
 ## Axiom audit
 
@@ -87,7 +88,7 @@ This says that the source integral is differentiable at `s = 1/2` and its deriva
 
 `CarrySelfAdjointOperator/C2MellinInfiniteLimitAudit.lean` audits the two new convergence and source-identification theorems; both report only the same standard Lean axioms.
 
-`CarrySelfAdjointOperator/C2MellinLogMomentDerivativeAudit.lean` audits `nativeC2MellinGeometricSourceIntegral_hasDerivAt_half`; it reports only `propext`, `Classical.choice`, and `Quot.sound`.
+`CarrySelfAdjointOperator/C2MellinLogMomentDerivativeAudit.lean` audits both derivative declarations; each reports only `propext`, `Classical.choice`, and `Quot.sound`.
 
 ## Independent numerical probe in `~/temporario`
 
@@ -114,7 +115,7 @@ These numerical results do not prove higher-order differentiation under the Mell
 - `lake build CarrySelfAdjointOperator.C2MellinInfiniteLimit` — passed.
 - `lake build CarrySelfAdjointOperator.C2MellinInfiniteLimitAudit` — passed; the new limit and source-identification declarations have only standard axioms.
 - `lake build --wfail CarrySelfAdjointOperator.C2MellinLogMomentDerivative` — passed; proves the first derivative under the Mellin integral at `s=1/2`.
-- `lake build --wfail CarrySelfAdjointOperator.C2MellinLogMomentDerivativeAudit` — passed; the derivative theorem has only standard Lean axioms.
+- `lake build --wfail CarrySelfAdjointOperator.C2MellinLogMomentDerivativeAudit` — passed; both derivative theorems have only standard Lean axioms.
 - `python3 ~/temporario/c2_mellin_cumulantes_probe.py` — completed at the script's configured 55 decimal digits and reproduced the table above.
 - `git diff --check` — to rerun before the continuation commit.
 
@@ -122,13 +123,13 @@ An initial attempt to import `C2MellinPositiveDensity` directly started a 9,641-
 
 ## First remaining gap
 
-The limit `M → ∞` under the integral is proved for every fixed complex `s` with `Re(s)>0`, and the first real derivative of the source integral is proved at `s=1/2`. The next concrete obligation is higher-order differentiation under that integral. For each fixed logarithmic order `r`, establish compact-parameter domination for
+The limit `M → ∞` under the integral is proved for every fixed complex `s` with `Re(s)>0`, and the first two real derivatives of the source integral are proved at `s=1/2`. The next concrete obligation is third and higher differentiation under that integral. For each fixed logarithmic order `r`, establish compact-parameter domination for
 
 ```text
 x^(sigma-1) * |log x|^r * (exp(-x) + omega0(x)),
 ```
 
-uniformly for `sigma` in compact subintervals of `(0,∞)`. Then identify higher derivatives with source log-moments and cumulants. The camera and completion derivatives still need to be combined with those source derivatives to recover the canonical moments. In particular, the current first-derivative result does not supply the second and higher derivatives needed for the cumulant expressions in the numerical probe. No cumulant identity with the completed moments and no canonical moment sign are claimed here.
+uniformly for `sigma` in compact subintervals of `(0,∞)`. Then formally express the source cumulants from these derivatives and combine them with the camera and completion derivatives to recover canonical moments. The current results supply source log-moments through order two, but do not yet formalize the cumulant conversion or the completion/camera combination. No cumulant identity with the completed moments and no canonical moment sign are claimed here.
 
 ## Publication
 

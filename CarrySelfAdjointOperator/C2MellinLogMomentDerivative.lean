@@ -190,6 +190,7 @@ private theorem nativeC2MellinGeometricLogIntegrand_norm_bound
             linarith
           · exact (Real.exp_pos (-x)).le
         · norm_num
+
   · have hpow : x ^ (s - 1) ≤ x ^ (-(3 / 8 : ℝ)) :=
       Real.rpow_le_rpow_of_exponent_le hx1 (by norm_num; linarith [hs.2])
     have hraw : x ^ (s - 1) * |Real.log x| *
@@ -234,6 +235,149 @@ private theorem nativeC2MellinGeometricLogIntegrand_norm_bound
             have h2 : 0 ≤ (1 : ℝ) := by norm_num
             linarith
           · exact (Real.exp_pos (-x)).le
+        · norm_num
+
+private theorem nativeC2Mellin_log2_majorant_integrable :
+    IntegrableOn
+      (fun x : ℝ => 512 * (Real.exp (-x) *
+        (x ^ (-(7 / 8 : ℝ)) + x ^ (-(1 / 8 : ℝ))))) (Ioi 0) := by
+  have h1 := Real.GammaIntegral_convergent (by norm_num : 0 < (1 / 8 : ℝ))
+  have h2 := Real.GammaIntegral_convergent (by norm_num : 0 < (7 / 8 : ℝ))
+  have h1' : IntegrableOn (fun x : ℝ => Real.exp (-x) * x ^ (-(7 / 8 : ℝ)))
+      (Ioi 0) := by
+    have heq : (1 / 8 : ℝ) - 1 = -(7 / 8 : ℝ) := by norm_num
+    simpa only [heq] using h1
+  have h2' : IntegrableOn (fun x : ℝ => Real.exp (-x) * x ^ (-(1 / 8 : ℝ)))
+      (Ioi 0) := by
+    have heq : (7 / 8 : ℝ) - 1 = -(1 / 8 : ℝ) := by norm_num
+    simpa only [heq] using h2
+  have hsum0 := h1'.add h2'
+  have hsum : IntegrableOn
+      (fun x : ℝ => Real.exp (-x) *
+        (x ^ (-(7 / 8 : ℝ)) + x ^ (-(1 / 8 : ℝ)))) (Ioi 0) := by
+    apply hsum0.congr_fun
+      (fun x hx => by dsimp; ring)
+      measurableSet_Ioi
+  exact hsum.const_mul 512
+
+private theorem nativeC2MellinGeometricLogIntegrand_two_norm_bound
+    {s x : ℝ} (hx : 0 < x)
+    (hs : s ∈ Set.Ioo (3 / 8 : ℝ) (5 / 8)) :
+    |nativeC2MellinGeometricLogIntegrand 2 s x| ≤
+      512 * (Real.exp (-x) *
+        (x ^ (-(7 / 8 : ℝ)) + x ^ (-(1 / 8 : ℝ)))) := by
+  have hdensity0 : 0 ≤ nativeC2MellinGeometricDensity x :=
+    (nativeC2MellinGeometricDensity_pos hx).le
+  have hdensityle : nativeC2MellinGeometricDensity x ≤ 2 * Real.exp (-x) :=
+    nativeC2MellinGeometricDensity_le_two_exp_neg hx
+  have hlog := nativeC2Mellin_abs_log_le_eighth_roots hx
+  have hpow0 : 0 ≤ x ^ (s - 1) := Real.rpow_nonneg hx.le _
+  rcases le_total x 1 with hx1 | hx1
+  · have hpow : x ^ (s - 1) ≤ x ^ (-(5 / 8 : ℝ)) :=
+      Real.rpow_le_rpow_of_exponent_ge hx hx1 (by norm_num; linarith [hs.1])
+    have hroot : x ^ (1 / 8 : ℝ) ≤ x ^ (-(1 / 8 : ℝ)) :=
+      Real.rpow_le_rpow_of_exponent_ge hx hx1 (by norm_num)
+    have hlog' : |Real.log x| ≤ 16 * x ^ (-(1 / 8 : ℝ)) := by
+      calc
+        |Real.log x| ≤ 8 * (x ^ (1 / 8 : ℝ) + x ^ (-(1 / 8 : ℝ))) := hlog
+        _ ≤ 8 * (2 * x ^ (-(1 / 8 : ℝ))) := by
+          apply mul_le_mul_of_nonneg_left
+          · linarith
+          · norm_num
+        _ = 16 * x ^ (-(1 / 8 : ℝ)) := by ring
+    have hlog0 : 0 ≤ |Real.log x| := abs_nonneg _
+    have hlogsq : |Real.log x| ^ 2 ≤ 256 * x ^ (-(1 / 4 : ℝ)) := by
+      calc
+        |Real.log x| ^ 2 = |Real.log x| * |Real.log x| := by ring
+        _ ≤ (16 * x ^ (-(1 / 8 : ℝ))) * (16 * x ^ (-(1 / 8 : ℝ))) :=
+          mul_self_le_mul_self hlog0 hlog'
+        _ = 256 * (x ^ (-(1 / 8 : ℝ)) * x ^ (-(1 / 8 : ℝ))) := by ring
+        _ = 256 * x ^ (-(1 / 4 : ℝ)) := by
+          rw [← Real.rpow_add hx]
+          congr 1
+          norm_num
+    have hraw : x ^ (s - 1) * |Real.log x| ^ 2 *
+        nativeC2MellinGeometricDensity x ≤
+        512 * (Real.exp (-x) * x ^ (-(7 / 8 : ℝ))) := by
+      calc
+        _ ≤ x ^ (-(5 / 8 : ℝ)) *
+            (256 * x ^ (-(1 / 4 : ℝ))) * (2 * Real.exp (-x)) := by
+              gcongr
+        _ = 512 * (Real.exp (-x) * x ^ (-(7 / 8 : ℝ))) := by
+          have hprod : x ^ (-(5 / 8 : ℝ)) * x ^ (-(1 / 4 : ℝ)) =
+              x ^ (-(7 / 8 : ℝ)) := by
+            rw [← Real.rpow_add hx]
+            congr 1
+            norm_num
+          calc
+            _ = 512 * (Real.exp (-x) *
+                (x ^ (-(5 / 8 : ℝ)) * x ^ (-(1 / 4 : ℝ)))) := by ring
+            _ = _ := by rw [hprod]
+    rw [nativeC2MellinGeometricLogIntegrand, abs_mul, abs_mul, abs_pow,
+      abs_of_nonneg hpow0, abs_of_nonneg hdensity0]
+    calc
+      x ^ (s - 1) * |Real.log x| ^ 2 * nativeC2MellinGeometricDensity x ≤
+          512 * (Real.exp (-x) * x ^ (-(7 / 8 : ℝ))) := hraw
+      _ = 512 * (Real.exp (-x) * x ^ (-(7 / 8 : ℝ))) := rfl
+      _ ≤ 512 * (Real.exp (-x) *
+          (x ^ (-(7 / 8 : ℝ)) + x ^ (-(1 / 8 : ℝ)))) := by
+        apply mul_le_mul_of_nonneg_left
+        · apply mul_le_mul_of_nonneg_left
+          · exact le_add_of_nonneg_right (Real.rpow_nonneg hx.le _)
+          · exact (Real.exp_pos (-x)).le
+        · norm_num
+  · have hpow : x ^ (s - 1) ≤ x ^ (-(3 / 8 : ℝ)) :=
+      Real.rpow_le_rpow_of_exponent_le hx1 (by norm_num; linarith [hs.2])
+    have hroot : x ^ (-(1 / 8 : ℝ)) ≤ x ^ (1 / 8 : ℝ) :=
+      Real.rpow_le_rpow_of_exponent_le hx1 (by norm_num)
+    have hlog' : |Real.log x| ≤ 16 * x ^ (1 / 8 : ℝ) := by
+      calc
+        |Real.log x| ≤ 8 * (x ^ (1 / 8 : ℝ) + x ^ (-(1 / 8 : ℝ))) := hlog
+        _ ≤ 8 * (2 * x ^ (1 / 8 : ℝ)) := by
+          apply mul_le_mul_of_nonneg_left
+          · linarith
+          · norm_num
+        _ = 16 * x ^ (1 / 8 : ℝ) := by ring
+    have hlog0 : 0 ≤ |Real.log x| := abs_nonneg _
+    have hlogsq : |Real.log x| ^ 2 ≤ 256 * x ^ (1 / 4 : ℝ) := by
+      calc
+        |Real.log x| ^ 2 = |Real.log x| * |Real.log x| := by ring
+        _ ≤ (16 * x ^ (1 / 8 : ℝ)) * (16 * x ^ (1 / 8 : ℝ)) :=
+          mul_self_le_mul_self hlog0 hlog'
+        _ = 256 * (x ^ (1 / 8 : ℝ) * x ^ (1 / 8 : ℝ)) := by ring
+        _ = 256 * x ^ (1 / 4 : ℝ) := by
+          rw [← Real.rpow_add hx]
+          congr 1
+          norm_num
+    have hraw : x ^ (s - 1) * |Real.log x| ^ 2 *
+        nativeC2MellinGeometricDensity x ≤
+        512 * (Real.exp (-x) * x ^ (-(1 / 8 : ℝ))) := by
+      calc
+        _ ≤ x ^ (-(3 / 8 : ℝ)) *
+            (256 * x ^ (1 / 4 : ℝ)) * (2 * Real.exp (-x)) := by
+              gcongr
+        _ = 512 * (Real.exp (-x) * x ^ (-(1 / 8 : ℝ))) := by
+          have hprod : x ^ (-(3 / 8 : ℝ)) * x ^ (1 / 4 : ℝ) =
+              x ^ (-(1 / 8 : ℝ)) := by
+            rw [← Real.rpow_add hx]
+            congr 1
+            norm_num
+          calc
+            _ = 512 * (Real.exp (-x) *
+                (x ^ (-(3 / 8 : ℝ)) * x ^ (1 / 4 : ℝ))) := by ring
+            _ = _ := by rw [hprod]
+    rw [nativeC2MellinGeometricLogIntegrand, abs_mul, abs_mul, abs_pow,
+      abs_of_nonneg hpow0, abs_of_nonneg hdensity0]
+    calc
+      x ^ (s - 1) * |Real.log x| ^ 2 * nativeC2MellinGeometricDensity x ≤
+          512 * (Real.exp (-x) * x ^ (-(1 / 8 : ℝ))) := hraw
+      _ = 512 * (Real.exp (-x) * x ^ (-(1 / 8 : ℝ))) := rfl
+      _ ≤ 512 * (Real.exp (-x) *
+          (x ^ (-(7 / 8 : ℝ)) + x ^ (-(1 / 8 : ℝ)))) := by
+        apply mul_le_mul_of_nonneg_left
+        · exact mul_le_mul_of_nonneg_left
+            (le_add_of_nonneg_left (Real.rpow_nonneg hx.le _))
+            (Real.exp_pos (-x)).le
         · norm_num
 
 private theorem nativeC2MellinGeometricLogIntegrand_zero_norm_bound
@@ -337,6 +481,66 @@ theorem nativeC2MellinGeometricSourceIntegral_hasDerivAt_half :
       nativeC2MellinGeometricLogIntegrand 0 s x)
     (∫ x in Ioi (0 : ℝ),
       nativeC2MellinGeometricLogIntegrand 1 (1 / 2 : ℝ) x) (1 / 2 : ℝ)
+  simpa [μ, nativeC2MellinGeometricLogIntegrand, pow_succ, mul_assoc,
+    mul_left_comm, mul_comm] using hparam.2
+
+/-- The second logarithmic Mellin moment is the derivative of the first source
+log-moment at `s = 1/2`. This supplies the source second moment (and hence the
+second derivative input for cumulant calculations), still before camera and
+completion factors are included. -/
+theorem nativeC2MellinGeometricLogMoment_one_hasDerivAt_half :
+    HasDerivAt (fun s : ℝ => nativeC2MellinGeometricLogMoment 1 s)
+      (nativeC2MellinGeometricLogMoment 2 (1 / 2 : ℝ)) (1 / 2 : ℝ) := by
+  let μ : Measure ℝ := volume.restrict (Ioi 0)
+  let S : Set ℝ := Ioo (3 / 8 : ℝ) (5 / 8)
+  have hS : S ∈ 𝓝 (1 / 2 : ℝ) := by
+    apply Ioo_mem_nhds
+    <;> norm_num
+  have hmajor1 := nativeC2Mellin_log_majorant_integrable
+  have hmajor2 := nativeC2Mellin_log2_majorant_integrable
+  have hmeas1 : AEStronglyMeasurable
+      (nativeC2MellinGeometricLogIntegrand 1 (1 / 2 : ℝ)) μ := by
+    simpa [μ] using nativeC2MellinGeometricLogIntegrand_aestronglyMeasurable 1 (1 / 2 : ℝ)
+  have hmeas2 : AEStronglyMeasurable
+      (nativeC2MellinGeometricLogIntegrand 2 (1 / 2 : ℝ)) μ := by
+    simpa [μ] using nativeC2MellinGeometricLogIntegrand_aestronglyMeasurable 2 (1 / 2 : ℝ)
+  have hbound1 : ∀ᵐ x ∂μ,
+      ‖nativeC2MellinGeometricLogIntegrand 1 (1 / 2 : ℝ) x‖ ≤
+        16 * (Real.exp (-x) *
+          (x ^ (-(3 / 4 : ℝ)) + x ^ (-(1 / 4 : ℝ)) +
+            x ^ (-(1 / 2 : ℝ)) + 1)) := by
+    filter_upwards [self_mem_ae_restrict measurableSet_Ioi] with x hx
+    simpa [Real.norm_eq_abs] using nativeC2MellinGeometricLogIntegrand_norm_bound
+      (x := x) hx (by norm_num)
+  have hFint : Integrable
+      (nativeC2MellinGeometricLogIntegrand 1 (1 / 2 : ℝ)) μ :=
+    hmajor1.mono' hmeas1 hbound1
+  have hderivbound : ∀ᵐ x ∂μ, ∀ s ∈ S,
+      ‖nativeC2MellinGeometricLogIntegrand 2 s x‖ ≤
+        512 * (Real.exp (-x) *
+          (x ^ (-(7 / 8 : ℝ)) + x ^ (-(1 / 8 : ℝ)))) := by
+    filter_upwards [self_mem_ae_restrict measurableSet_Ioi] with x hx
+    intro s hs
+    simpa [Real.norm_eq_abs] using nativeC2MellinGeometricLogIntegrand_two_norm_bound
+      (x := x) hx hs
+  have hdiff : ∀ᵐ x ∂μ, ∀ s ∈ S,
+      HasDerivAt (fun t : ℝ => nativeC2MellinGeometricLogIntegrand 1 t x)
+        (nativeC2MellinGeometricLogIntegrand 2 s x) s := by
+    filter_upwards [self_mem_ae_restrict measurableSet_Ioi] with x hx
+    intro s hs
+    exact nativeC2MellinGeometricLogIntegrand_hasDerivAt 1 hx
+  have hparam := hasDerivAt_integral_of_dominated_loc_of_deriv_le
+    (F := fun s x => nativeC2MellinGeometricLogIntegrand 1 s x)
+    (x₀ := (1 / 2 : ℝ)) (s := S) (bound := fun x =>
+      512 * (Real.exp (-x) *
+        (x ^ (-(7 / 8 : ℝ)) + x ^ (-(1 / 8 : ℝ))))) hS
+    (by filter_upwards [] with s; exact nativeC2MellinGeometricLogIntegrand_aestronglyMeasurable 1 s)
+    hFint hmeas2 hderivbound hmajor2 hdiff
+  change HasDerivAt
+    (fun s : ℝ => ∫ x in Ioi (0 : ℝ),
+      nativeC2MellinGeometricLogIntegrand 1 s x)
+    (∫ x in Ioi (0 : ℝ),
+      nativeC2MellinGeometricLogIntegrand 2 (1 / 2 : ℝ) x) (1 / 2 : ℝ)
   simpa [μ, nativeC2MellinGeometricLogIntegrand, pow_succ, mul_assoc,
     mul_left_comm, mul_comm] using hparam.2
 
