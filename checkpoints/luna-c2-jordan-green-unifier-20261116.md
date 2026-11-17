@@ -45,21 +45,34 @@ and Carry does not import Geometry of Numbers.
 
 - Carry focal source and audit compiled with `-DwarningAsError=true` against
   the existing #118/#119 Lean environment.
+- `#print axioms` on the four integration/sign roots showed only the standard
+  Lean axioms: `propext`, `Classical.choice`, and `Quot.sound`.
+- The integration module's `.olean` SHA-256 is
+  `e030eb52cf4bae0018014fb1128785b8d3847ab53f74e51e7a0f9cda4a2f2862` in
+  both this branch and the cached #125 validation worktree. The finite GoN
+  module had already compiled against that byte-identical artifact.
 - `bash research/canonical-native-boundary-transfer/compile_module.sh
   CanonicalBoundaryTransfer /home/thlinux/worktrees/luna-c2-euler-geometric-sign-20261116`
   passed for the GoN finite corollaries.
 - The corresponding GoN `Audit` module passed and printed only
   `propext`, `Classical.choice`, and `Quot.sound` for the new roots.
 - A clean `lake build --wfail
-  CarrySelfAdjointOperator.NativeCriticalC2JordanGreenLimitAudit` is running
-  in the Carry integration worktree; record its final result before
-  publication.
+  CarrySelfAdjointOperator.NativeCriticalC2JordanGreenLimitAudit` was started
+  in the new Carry worktree. It reached 9,309/9,852 transitive modules, where
+  much of the remaining work was generated theta certificate data; it was
+  stopped before completion because this broad clean rebuild was not needed
+  for the focal source result. The focal module and audit had already compiled
+  directly with `-DwarningAsError=true`.
+- The GoN repository's `scripts/audit-analysis.sh` was also started and reached
+  8,789/8,847 modules before its broad clean rebuild was stopped. This did not
+  report a source error. The changed GoN source and theorem audit had already
+  compiled using the available dependency cache.
 - PR #331 is open and unmerged. Its H6/K6 finite certificate is an explicit
   dependency; it proves no order-uniform or all-order estimate.
 
 ## Publication
 
-- Commit `9f0d2d979c532c3a5efe2ff64a4c2b88d58196ce` is published on branch
+- Commit `09af62025090d7a96336861b36622e911ecffc86` is published on branch
   `luna/c2-jordan-green-unifier-20261116`.
 - Draft PR #126: https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/126,
   based on the open #119 branch.
