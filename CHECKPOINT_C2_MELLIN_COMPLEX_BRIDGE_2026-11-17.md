@@ -121,6 +121,6 @@ uniformly for `sigma` in compact subintervals of `(0,∞)`. Then identify deriva
 ## Publication
 
 - Code commit SHA: `09a6603` (`Prove finite C2 complex Mellin head identity`).
-- DCT continuation commit SHA: pending.
+- DCT continuation commit SHA: `9b69656` (`Prove infinite C2 Mellin source limit by dominated convergence`).
 - Draft PR URL: https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/127
 - Published branch: `luna/c2-mellin-complex-bridge-20261117`.
