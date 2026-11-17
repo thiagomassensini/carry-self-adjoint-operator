@@ -1,4 +1,4 @@
-# Checkpoint — complex Mellin bridge for finite C2 heads
+# Checkpoint — complex Mellin bridge for the C2 source
 
 ## Repository state
 
@@ -7,7 +7,8 @@
 - Branch: `luna/c2-mellin-complex-bridge-20261117`
 - Base: `origin/main` at `f1df607ee46dc9a7127fc9b3cd1aa3bcdc574aa4`
 - Main checkout: left untouched; it already had user changes on another branch.
-- Commit and draft PR: to be filled in after publication.
+- Existing code commit: `09a6603`; current branch includes the DCT continuation below.
+- Draft PR: https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/127
 
 ## Results proved
 
@@ -58,9 +59,25 @@ Two finite-head results are now proved:
 
 The closed expression for the cell mass is the hyperbolic form already identified with `nativeC2MellinOmega0` by the existing `nativeC2MellinOmega0_eq_exp_sinh` theorem. This module imports the original bracket definitions directly and deliberately keeps the proof independent of the large completion/Green import tree.
 
+`CarrySelfAdjointOperator/C2MellinInfiniteLimit.lean` closes the next obligation for the geometric hyperbolic density without importing the large completion/Green dependency tree. It proves an explicit algebraic form and bound for
+
+```text
+omega₀(x) = exp(-4x) * 4*sinh(x/2)^2 / (1-exp(-4x)),
+0 < omega₀(x) ≤ exp(-x)  for x > 0.
+```
+
+It then applies dominated convergence to the finite-head integrands with majorant `2 * exp(-x) * x^(Re(s)-1)`, integrable by Euler's Gamma integral whenever `Re(s)>0`:
+
+- `nativeC2MellinComplexFiniteHeadIntegral_tendsto_source` proves convergence of the integrals to the integral of the infinite positive geometric source.
+- `nativeC2MellinComplexGeometricSourceIntegral_eq_gamma_bracketCharacteristic` identifies that infinite source integral exactly with `Complex.Gamma s * bracketCharacteristic 2 s`, using the existing convergence of the finite bracket characteristics.
+
+The limiting density is kept in the original seed-plus-hyperbolic-cell form. The pre-existing `nativeC2MellinOmega0_eq_exp_sinh` is the exact bridge to the repository's rational density spelling; it was not imported into this focused module because that import pulled in the broad completion/Green and theta-certificate dependency tree. No moments, camera, seed, or completion factor were redefined.
+
 ## Axiom audit
 
 `CarrySelfAdjointOperator/C2MellinComplexBridgeAudit.lean` prints axioms for the rate, bracket, aligned-cell, finite geometric-sum, closed-head, and finite-head integral theorems. Each reports only Lean's standard `propext`, `Classical.choice`, and `Quot.sound`; no project axiom, `sorry`, or `admit` was added.
+
+`CarrySelfAdjointOperator/C2MellinInfiniteLimitAudit.lean` audits the two new convergence and source-identification theorems; both report only the same standard Lean axioms.
 
 ## Independent numerical probe in `~/temporario`
 
@@ -76,32 +93,34 @@ The reproduced values are:
 
 The script reports `kappa₂ = 4.83805578680312816884`, `kappa₄ = 97.20735995167402326358`, `kappa₆ = 7690.62711228175281616`, and the canonical `2 × 2` Hankel determinant `1.94933555481914221474e-9`. Its independent reference differences are about `5.2e-55`, `6.7e-51`, and `2.5e-47` for `h0`–`h2` respectively. These are reproducible high-precision quadrature diagnostics, not interval certificates. The exact toy transform `(3 + cos t)/4` also gives `h1 = -1/192`, demonstrating that positivity of a measure alone does not force positivity of the associated logarithmic-derivative coefficients.
 
-These numerical results do not prove the infinite source identification, differentiation under the Mellin integral, or any all-order canonical Hankel sign. The finite Lean theorem above establishes only the cutoff identity.
+These numerical results do not prove differentiation under the Mellin integral or any all-order canonical Hankel sign. The infinite source identification is now a separate Lean theorem for the hyperbolic geometric density.
 
 ## Validation run
 
 - `lake env lean -DwarningAsError=true CarrySelfAdjointOperator/C2MellinComplexBridge.lean` — passed without warnings.
 - `lake build CarrySelfAdjointOperator.C2MellinComplexBridgeAudit` — passed; rebuilt the bridge and audit module and printed the axiom results above.
 - `lake build CarrySelfAdjointOperator.C2MellinComplexBridge` — passed (`3416 jobs`).
+- `lake env lean -DwarningAsError=true CarrySelfAdjointOperator/C2MellinInfiniteLimit.lean` — passed without warnings.
+- `lake build CarrySelfAdjointOperator.C2MellinInfiniteLimit` — passed.
+- `lake build CarrySelfAdjointOperator.C2MellinInfiniteLimitAudit` — passed; the new limit and source-identification declarations have only standard axioms.
 - `python3 ~/temporario/c2_mellin_cumulantes_probe.py` — completed at the script's configured 55 decimal digits and reproduced the table above.
-- `git diff --check` — passed before adding this checkpoint; rerun before commit.
+- `git diff --check` — to rerun before the continuation commit.
 
-An initial attempt to build the existing `C2MellinPositiveDensity` dependency tree from scratch pulled in thousands of large theta-certificate modules. That build was stopped; the new bridge instead imports the pinned native bracket module directly. The successful focal build above covers the new source and its audit, not the repository's full default target.
+An initial attempt to import `C2MellinPositiveDensity` directly started a 9,641-target dependency build with large theta-certificate modules; it was stopped at 9,162 targets. The focal proof instead imports the pinned native bracket module and derives the required hyperbolic-density majorant locally, avoiding that broad dependency. This is a focal build, not the repository's full default target.
 
 ## First remaining gap
 
-The finite-cutoff identity does **not** yet justify taking `M → ∞` inside the Mellin integral. The next concrete analytic lemma is an `L¹`/dominated-convergence bound for the positive cell tail on `Ioi 0`. A natural majorant is
+The limit `M → ∞` under the integral is now proved for every fixed complex `s` with `Re(s)>0`. The next concrete obligation is differentiation under that integral for logarithmic Mellin moments. For each fixed logarithmic order `r`, establish compact-parameter domination for
 
 ```text
-x^(sigma-1) * omega0(x) ≤ x^(sigma-1) * exp(-x),   sigma > 0,
+x^(sigma-1) * |log x|^r * (exp(-x) + omega0(x)),
 ```
 
-using the already-proved C2 density bound, followed by `hasSum_integral_of_dominated_convergence` for the original positive cells. This would connect the infinite Mellin source to `bracketCharacteristic 2 s` without changing the source or inserting an external measure.
-
-The differentiation-under-the-integral obligation remains open as well. For each fixed logarithmic order `r`, it needs a compact-`sigma` majorant involving `x^(sigma-1) * |log x|^r * omega0(x)`. No cumulant identity or canonical moment sign is claimed here. After the infinite transform, the completion/camera contribution still has to be combined with the source derivatives before drawing conclusions about the canonical `h_j`.
+uniformly for `sigma` in compact subintervals of `(0,∞)`. Then identify derivatives of the source Mellin transform with the source log-moments/cumulants. The camera and completion derivatives still need to be combined with those source derivatives to recover the canonical moments. No cumulant identity with the completed moments and no canonical moment sign are claimed here.
 
 ## Publication
 
 - Code commit SHA: `09a6603` (`Prove finite C2 complex Mellin head identity`).
+- DCT continuation commit SHA: pending.
 - Draft PR URL: https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/127
 - Published branch: `luna/c2-mellin-complex-bridge-20261117`.
