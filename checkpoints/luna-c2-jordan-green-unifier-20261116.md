@@ -57,6 +57,15 @@ and Carry does not import Geometry of Numbers.
 - PR #331 is open and unmerged. Its H6/K6 finite certificate is an explicit
   dependency; it proves no order-uniform or all-order estimate.
 
+## Publication
+
+- Commit `9f0d2d979c532c3a5efe2ff64a4c2b88d58196ce` is published on branch
+  `luna/c2-jordan-green-unifier-20261116`.
+- Draft PR #126: https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/126,
+  based on the open #119 branch.
+- The downstream finite certificate is on Geometry of Numbers draft PR #333,
+  based on #331: https://github.com/thiagomassensini/geometry-of-numbers/pull/333.
+
 ## Remaining gap
 
 The next unproved obligation is still a geometric source estimate that
