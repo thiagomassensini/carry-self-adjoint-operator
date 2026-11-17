@@ -102,5 +102,6 @@ The differentiation-under-the-integral obligation remains open as well. For each
 
 ## Publication
 
-- Commit SHA: pending.
-- Draft PR URL: pending.
+- Code commit SHA: `09a6603` (`Prove finite C2 complex Mellin head identity`).
+- Draft PR URL: https://github.com/thiagomassensini/carry-self-adjoint-operator/pull/127
+- Published branch: `luna/c2-mellin-complex-bridge-20261117`.
