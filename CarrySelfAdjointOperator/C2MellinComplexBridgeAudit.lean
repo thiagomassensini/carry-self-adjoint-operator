@@ -1,0 +1,10 @@
+import CarrySelfAdjointOperator.C2MellinComplexBridge
+
+/-! Kernel audit for the new finite C2 Mellin bridge. -/
+
+#print axioms CarrySelfAdjointOperator.nativeC2MellinComplexRateIntegral
+#print axioms CarrySelfAdjointOperator.nativeC2MellinComplexBracketIntegral
+#print axioms CarrySelfAdjointOperator.nativeC2MellinComplexPositiveCellIntegral
+#print axioms CarrySelfAdjointOperator.nativeC2MellinFinitePositiveCellSum_eq_geometric
+#print axioms CarrySelfAdjointOperator.nativeC2MellinComplexFiniteHeadIntegrand_eq_closed_form
+#print axioms CarrySelfAdjointOperator.nativeC2MellinComplexFiniteHeadIntegral
