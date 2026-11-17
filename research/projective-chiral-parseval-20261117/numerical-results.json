@@ -1,0 +1,52 @@
+{
+  "precision_dps": 130,
+  "identity": "K_ij=conj(amplitude_i)*amplitude_j*D_ij/2",
+  "status": "NUMERICAL, not certified or all-order",
+  "cases": [
+    {
+      "k": 12,
+      "n": 3,
+      "min_eigenvalue": "7.763118276294238414791173e-12",
+      "max_eigenvalue": "0.2733525547146633774364632",
+      "min_positive": true,
+      "max_congruence_error": "1.954766515e-130",
+      "max_abs_chiral_quotient": "0.99291601960486365"
+    },
+    {
+      "k": 32,
+      "n": 4,
+      "min_eigenvalue": "5.748850929132965490286034e-19",
+      "max_eigenvalue": "0.3671030820714901537214614",
+      "min_positive": true,
+      "max_congruence_error": "3.638331189e-130",
+      "max_abs_chiral_quotient": "0.997203315110775971"
+    },
+    {
+      "k": 64,
+      "n": 6,
+      "min_eigenvalue": "1.365230707841080308425231e-32",
+      "max_eigenvalue": "0.5517692109883579788906091",
+      "min_positive": true,
+      "max_congruence_error": "7.111123592e-130",
+      "max_abs_chiral_quotient": "0.998579164915015338"
+    },
+    {
+      "k": 80,
+      "n": 8,
+      "min_eigenvalue": "1.667027809376580980051243e-45",
+      "max_eigenvalue": "0.7355763955253893679176017",
+      "min_positive": true,
+      "max_congruence_error": "1.272535391e-129",
+      "max_abs_chiral_quotient": "0.998859663520014718"
+    },
+    {
+      "k": 100,
+      "n": 10,
+      "min_eigenvalue": "7.669342261349090692998389e-59",
+      "max_eigenvalue": "0.9195639493771228371318388",
+      "min_positive": true,
+      "max_congruence_error": "3.652419596e-130",
+      "max_abs_chiral_quotient": "0.999085369377981816"
+    }
+  ]
+}
