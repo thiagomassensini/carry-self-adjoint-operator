@@ -108,3 +108,39 @@ lake env lean -DwarningAsError=true research/source-schur-curvature-20261117/C2S
 lake env lean -DwarningAsError=true research/source-schur-curvature-20261117/SchurRelativeAmplification.lean
 python3 research/source-schur-curvature-20261117/probe_odd_selection.py 12000000
 ```
+
+## Adendo: controle relativo de fonte e fatoração exata da compensação assinada
+
+**Teorema novo em Lean** `RelativeSchurSourceTransfer.lean`: suponha `g` uma fonte de comparação cuja **matriz do prefixo antigo** seja positiva definida, e `m` a fonte a ser certificada, com
+`(1−δ) Q_g(x) ≤ Q_m(x)` para todos os vetores da matriz ampliada, onde `δ<1`. Então, sem hipótese de sinal de `sourceMomentSchur m s n`:
+```
+(1−δ) * sourceMomentSchur g s n ≤ sourceMomentSchur m s n.
+```
+A prova usa a direção crítica da fonte `m`, a identidade `sourceMomentSchur_critical_direction_total` e a complete-square de `g`. Se o pivô da fonte de comparação foi **independentemente** certificado positivo, a conclusão é positividade do pivô real. A versão `schur_lower_of_signed_relative_form_budget` aceita uma cota absoluta **relativa à energia da referência**, não uma cota absoluta de Parseval.
+
+**Aviso:** a existência de referência positiva e a comparação relativa **não estão provadas** em todas as ordens para o C2 físico; o teorema é um transporte fiel de um certificado QUE AINDA FALTA. Uma referência arbitrariamente construída de momentos positivos não é o transporte do bracket material.
+
+**Outra identidade exata** (adicionada em `SchurCurvatureGate.lean`): escrevendo
+`Eₙ = nativeSourceSchurRemainder 0 n`, `Oₙ = nativeSourceSchurRemainder 1 n`, `L0ₙ>0`, `L1ₙ<0` seus coeficientes líderes,
+```
+C0ₙ = Eₙ/L0ₙ,    C1ₙ = Oₙ/(-L1ₙ)
+Eₙ Eₙ₊₁ − Oₙ² =
+  (L1ₙ)² * [Roddₙ C0ₙ C0ₙ₊₁ − C1ₙ²].
+```
+Existe a fórmula correspondente para o centro par. Ambas são teoremas em Lean:
+`source_odd_curvature_eq_leading_mul_compensation`,
+`source_even_curvature_eq_leading_mul_compensation`.
+Os fatores `Roddₙ` e `Revenₙ` são EXATAMENTE os quocientes líderes já conhecidos, que tendem a 1 com defeito de ordem `1/n`.
+O novo teorema `native_boundary_pos_of_compensation_budget` prova a positividade de bordo de todas as ordens **condicionada** às duas desigualdades de curvatura nas compensações `C0,C1`, agora sem mascarar os termos inferiores.
+
+**Controle numérico:** `probe_compensation.py` recompõe os resíduos a partir de `canonical_h` e remove a lei conhecida `Rodd,Reven`. No bloco 64–126 o RMS original é `0.0359448`; o RMS do desequilíbrio restante `0.0356142`; o RMS do coeficiente líder sozinho é apenas `0.0110110`. O fenômeno de escala aproximadamente `2^(-j/2)` persiste na compensação assinada, não apenas nos fatoriais. Isto é observação finita, não um Parseval da fonte física.
+
+**Pontos de origem já formalizados:** `C2GeometryNativeSourceBridge.lean` fornece `canonicalC2Geometry_nativeTaylorReadout_eq_seed_add_fibreBrackets` e a identificação da coluna corrigida C2 com momentos de câmera; `NativeBracketTfvdGreenSameGeometry.lean` dá a identidade de mesma geometria de bracket/TFVD/Green para câmera 3. A passagem da fonte à integral assinada é `nativeSchurThetaPolynomial_integral`. `research/native-moment-orthogonalization-audit/SchurLogic.lean` do GoN contém `native_boundary_real_sector` (energia de bordo original = 4 vezes a forma quadrática canônica), *não uma nova energia positiva*.
+
+**Obstrução física que não pode ser descartada:** `research/native-cauchy-residual-return/ProjectionLoss.lean` do GoN prova `projection_loss_polarized` e `projection_loss_schur_tendsto`: projetar os canais de retorno pode perder um termo positivo de norma cujo limite normalizado NÃO se anula. Logo não se pode simplesmente substituir a energia original por uma soma de quadrados projetada.
+
+**Restante aberto e específico:**
+1. Construir a forma positiva de comparação a partir da fonte **material** (C2 → TFVD/Green e completamento, sem usar a positividade nativa por hipótese).
+2. Demonstrar a desigualdade de forma **uniformemente para todas as direções** (incluindo os termos de retorno) ou estimar diretamente a curvatura das integrais `C0,C1`. Uma cota Parseval absoluta ou um controle só da primeira coluna não basta.
+3. Certificar a cabeça difícil separadamente e então mostrar que o orçamento relativo da cauda é estritamente inferior ao pivô em escala correta.
+4. Só assim transportar o decaimento diádico da energia física para a ordem matricial; nenhuma identificação `j=floor(log₂ n) = k` foi provada.

@@ -500,6 +500,140 @@ theorem factorial_control_breaks_half_gate :
   rw [factorial_odd_zero, factorial_odd_one, factorial_even_one]
   norm_num
 
+/-! ## Exact top-symbol vs lower-order compensation factorization
+
+The normalized compensation is defined from the actual signed source Schur
+integral and the existing leading polynomial coefficient. No positivity
+assumption on the Schur remainder is introduced.
+
+The leading-symbol ratios are almost balanced automatically, but the
+compensation factors carry ALL lower-degree theta-mass cancellation.
+-/
+
+theorem evenLead_positive (n : ℕ) : 0 < evenLead n := by
+  rw [evenLead_eq]
+  positivity
+
+def evenCompensation (n : ℕ) : ℝ := evenR n / evenLead n
+def oddCompensation (n : ℕ) : ℝ := oddR n / (-oddLead n)
+
+theorem evenR_eq_top_mul_compensation (n : ℕ) :
+    evenR n = evenLead n * evenCompensation n := by
+  unfold evenCompensation
+  field_simp [(evenLead_positive n).ne']
+
+theorem oddR_eq_top_mul_compensation (n : ℕ) :
+    oddR n = (-oddLead n) * oddCompensation n := by
+  unfold oddCompensation
+  have h : oddLead n ≠ 0 := (oddLead_negative n).ne
+  field_simp [h]
+
+theorem oddTopRatio_mul_eq_topProduct (n : ℕ) :
+    (oddLead n)^2 * oddCenteredLeadingRatio n =
+      evenLead n * evenLead (n+1) := by
+  unfold oddCenteredLeadingRatio
+  have he := actual_top_odd_product_ratio n
+  have h : (2:ℝ)*((n+1:ℕ):ℝ)*((4*n+5:ℕ):ℝ) ≠ 0 := by positivity
+  field_simp [h]
+  nlinarith [he]
+
+theorem evenTopRatio_mul_eq_topProduct (n : ℕ) :
+    (evenLead (n+1))^2 * evenCenteredLeadingRatio (n+1) =
+      oddLead n * oddLead (n+1) := by
+  unfold evenCenteredLeadingRatio
+  have he := actual_top_even_product_ratio n
+  have h :
+      (((2*(n+1)+1:ℕ):ℝ)*((4*(n+1)+3:ℕ):ℝ)) ≠ 0 := by positivity
+  field_simp [h]
+  nlinarith [he]
+
+theorem source_odd_curvature_eq_leading_mul_compensation (n : ℕ) :
+    evenR n * evenR (n+1) - (oddR n)^2 =
+      (oddLead n)^2 *
+        (oddCenteredLeadingRatio n * evenCompensation n *
+          evenCompensation (n+1) - (oddCompensation n)^2) := by
+  rw [evenR_eq_top_mul_compensation n,
+    evenR_eq_top_mul_compensation (n+1),
+    oddR_eq_top_mul_compensation n]
+  calc
+    evenLead n * evenCompensation n *
+        (evenLead (n+1) * evenCompensation (n+1)) -
+        (-oddLead n * oddCompensation n)^2 =
+      (evenLead n * evenLead (n+1)) * evenCompensation n *
+        evenCompensation (n+1) -
+        (oddLead n)^2 * (oddCompensation n)^2 := by ring
+    _ = _ := by rw [← oddTopRatio_mul_eq_topProduct n]; ring
+
+theorem source_even_curvature_eq_leading_mul_compensation (n : ℕ) :
+    oddR n * oddR (n+1) - (evenR (n+1))^2 =
+      (evenLead (n+1))^2 *
+        (evenCenteredLeadingRatio (n+1) * oddCompensation n *
+          oddCompensation (n+1) - (evenCompensation (n+1))^2) := by
+  rw [oddR_eq_top_mul_compensation n,
+    oddR_eq_top_mul_compensation (n+1),
+    evenR_eq_top_mul_compensation (n+1)]
+  calc
+    -oddLead n * oddCompensation n *
+        (-oddLead (n+1) * oddCompensation (n+1)) -
+        (evenLead (n+1) * evenCompensation (n+1))^2 =
+      (oddLead n * oddLead (n+1)) * oddCompensation n *
+        oddCompensation (n+1) -
+        (evenLead (n+1))^2 * (evenCompensation (n+1))^2 := by ring
+    _ = _ := by rw [← evenTopRatio_mul_eq_topProduct n]; ring
+
+/-- Relative half-curvature of the complete native source follows directly
+from a budget on the source lower-degree *signed compensation factors*.
+No moment sign is assumed here. -/
+theorem source_odd_half_curvature_of_compensation_budget (n : ℕ)
+    (hbudget : |oddCenteredLeadingRatio n * evenCompensation n *
+          evenCompensation (n+1) - (oddCompensation n)^2| <
+        (oddCompensation n)^2/2) :
+    |evenR n * evenR (n+1) - (oddR n)^2| < (oddR n)^2/2 := by
+  rw [source_odd_curvature_eq_leading_mul_compensation,
+    oddR_eq_top_mul_compensation]
+  have hl : 0 < (oddLead n)^2 :=
+    sq_pos_of_ne_zero (oddLead_negative n).ne
+  rw [abs_mul, abs_of_pos hl]
+  have hh := mul_lt_mul_of_pos_left hbudget hl
+  nlinarith [hh]
+
+theorem source_even_half_curvature_of_compensation_budget (n : ℕ)
+    (hbudget : |evenCenteredLeadingRatio (n+1) * oddCompensation n *
+          oddCompensation (n+1) - (evenCompensation (n+1))^2| <
+        (evenCompensation (n+1))^2/2) :
+    |oddR n * oddR (n+1) - (evenR (n+1))^2| <
+      (evenR (n+1))^2/2 := by
+  rw [source_even_curvature_eq_leading_mul_compensation,
+    evenR_eq_top_mul_compensation]
+  have hl : 0 < (evenLead (n+1))^2 :=
+    sq_pos_of_ne_zero (evenLead_positive (n+1)).ne'
+  rw [abs_mul, abs_of_pos hl]
+  have hh := mul_lt_mul_of_pos_left hbudget hl
+  nlinarith [hh]
+
+/-- Exact internal reduction of the native completed source to signed mass
+compensation. The hypotheses remain UNSOLVED: no C2 material energy
+comparison or all-order sign has been proved here. -/
+theorem native_boundary_pos_of_compensation_budget
+    (hodd : ∀ n,
+      |oddCenteredLeadingRatio n * evenCompensation n *
+          evenCompensation (n+1) - (oddCompensation n)^2| <
+        (oddCompensation n)^2/2)
+    (heven : ∀ n,
+      |evenCenteredLeadingRatio (n+1) * oddCompensation n *
+          oddCompensation (n+1) - (evenCompensation (n+1))^2| <
+        (evenCompensation (n+1))^2/2) :
+    ∀ n : ℕ, 1 ≤ n → ∀ x : Fin (2*n) → ℂ, x ≠ 0 →
+      0 < nativeSourceFiniteBoundaryEnergy (2*n) x := by
+  apply native_boundary_pos_of_half_cross_curvature
+  · intro n
+    exact source_odd_half_curvature_of_compensation_budget n (hodd n)
+  · intro n
+    exact source_even_half_curvature_of_compensation_budget n (heven n)
+
+#print axioms native_boundary_pos_of_compensation_budget
+#print axioms source_odd_curvature_eq_leading_mul_compensation
+#print axioms source_even_curvature_eq_leading_mul_compensation
 #print axioms native_boundary_pos_of_one_sided_cross_curvature
 #print axioms native_boundary_pos_of_bounded_cross_curvature
 #print axioms native_boundary_pos_of_half_cross_curvature
