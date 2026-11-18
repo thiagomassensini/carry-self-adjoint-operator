@@ -144,3 +144,103 @@ O novo teorema `native_boundary_pos_of_compensation_budget` prova a positividade
 2. Demonstrar a desigualdade de forma **uniformemente para todas as direções** (incluindo os termos de retorno) ou estimar diretamente a curvatura das integrais `C0,C1`. Uma cota Parseval absoluta ou um controle só da primeira coluna não basta.
 3. Certificar a cabeça difícil separadamente e então mostrar que o orçamento relativo da cauda é estritamente inferior ao pivô em escala correta.
 4. Só assim transportar o decaimento diádico da energia física para a ordem matricial; nenhuma identificação `j=floor(log₂ n) = k` foi provada.
+
+## Orçamento físico crítico incidente–retorno (2026-11-17)
+
+**Arquivo Lean:** `PhysicalReturnBudget.lean`, compilado com `compile_physical.sh`, importando diretamente os `.olean` físicos existentes do GoN (`ProjectionLoss`, `SchurLimit`), com axiomas auditados. **Não produz positividade all-order incondicional.** Não há heights dos zeros como insumo.
+
+### Identidade exata, sem descartar o retorno de bordo
+
+Todos os vetores pertencem ao Cauchy carrier físico ORIGINAL:
+- `I=remainingIncident k N c` (incidente complementar);
+- `R=nativeOut k N c` (retorno original);
+- `H=returnedHead k N c=P_k R` (retorno projetado na fonte de bordo).
+
+`full_physical_balance_eq_original` prova, sem hipótese de sinal:
+
+```
+remainingPair(k,N;c,c).re = ||I||² − (||R−H||² + ||H||²)
+```
+
+O retorno H **não desaparece**; há identidade de Pitágoras física exata. Os dois canais têm custos separados, mas o termo H não pode ser apagado antes de estimar o sinal. Os teoremas `physical_relative_two_loss_budget` e `physical_margin_of_normalized_two_loss_budget` transportam um orçamento relativo **suposto** nas duas perdas até a forma original.
+
+Além disso `physical_critical_budget_same_cauchy` usa `residual_same_cauchy` (GoN) e mantém o MESMO Gram Cauchy e todos os cruzamentos:
+
+```
+Q_k(tailInput c) =
+   ||tailSynthesis k N (incidentCoordinates k N c)||²
+ − ||tailSynthesis k N (returnedCoordinates k N c)||²
+```
+
+Não existe Gram positivo postulado à parte, mudança silenciosa de métrica, nem supressão de componentes da fonte.
+
+### A falha rigorosa da contração uniformemente afastada de 1
+
+A partir dos teoremas já existentes `incidentCoefficient_tangent` e `returnedCoefficient_tangent`, provei:
+
+```
+lim_{k→∞} normSq(b_{k,i}(k+1)) / normSq(a_{k,i}(k+1)) = 1,
+i > 0.
+```
+
+`native_physical_basis_return_energy_ratio_tendsto_one` transporta isso às normas **dos próprios vetores físicos**:
+```
+lim_{k→∞} ||nativeOut k N (basis i)||²
+             / ||remainingIncident k N (basis i)||² = 1   (i>0).
+```
+
+`native_physical_return_not_uniformly_contractive` formaliza: para todo `ρ < 1`, EVENTUALMENTE
+```
+ρ ||remainingIncident(k,basis i)||² < ||nativeOut(k,basis i)||².
+```
+Portanto **não pode existir** um `ρ<1` fixo que controle todas as direções de base e toda a cauda radial, mesmo antes do acoplamento da sequência de jets. Isto **não** é uma impossibilidade de margens normalizadas menores por estados particulares.
+
+`feedbackDenominator_eq_deficit_sub_return` e `critical_incident_minus_return_exact` preservam o déficit original `d_k=1-|oneReturn(k)|²` e mostram que `a-b` tem cancelamento explícito. `critical_incident_minus_return_tangent_zero` prova que
+```
+(k+1)(a_{k,i}−b_{k,i}) → 0
+```
+para cada `i`. É a razão física da necessidade de derivadas/normalizações superiores.
+
+### Orçamento CORRETO: crítico e aditivo, não uma fração fixa
+
+Defina `d_k=oneDeficit k`. O teorema
+`physical_critical_additive_budget` prova que, se `d_k>0` e
+```
+||R_k−H_k||² + ||H_k||² + μ d_k <= ||I_k||²,
+```
+então
+```
+μ <= remainingPair(k,N;c,c).re / d_k.
+```
+Este é um certificado comparável à escala de Schur, que ainda requer prova da **inequação física** para estados concretos; a identidade sozinha não fornece margem μ>0.
+
+`physicalJetSignedBudget_normalized_tendsto_firstSchur` transporta a mesma energia física normalizada, com a entrada do jet original `nativeSourceChiralJetInput`, ao limite:
+```
+2 * Re[canonicalBoundaryPair(x,x) −
+     conj(canonicalBoundaryPair(head,x))*
+     canonicalBoundaryPair(head,x)/h₀].
+```
+A equivalência é a primeira deflação (eliminação da cabeça), NÃO a matriz Hankel reduzida até ordem arbitrária.
+
+`canonical_firstSchur_pos_of_physical_critical_budget` prova a implicação concreta:
+uma **sobra eventual μ>0** desse orçamento para determinado jet `x`
+implica margem **positiva na primeira forma Schur canônica**.
+O teorema usa os vetores originais, a identidade física exata e o transporte `jet_remaining_schur_tendsto`; não importa resultados de altura ou medidas positivas ajustadas.
+
+### Estado e próximo alvo
+
+- **PROVADO:** identidade física com retorno completo; coordenadas Cauchy isométricas; limites tangentes, ausência de contração fixa; orçamento aditivo condicional; passagem condicional para primeiro Schur.
+- **ABERTO:** demonstrar uma sobra `μ>0` na escala `d_k` para os jets críticos de ordens relevantes. A entrada `x=headBoundary` tem primeira forma Schur zero, portanto NÃO se pode exigir μ>0 uniformemente para qualquer vetor. Deve-se trabalhar no espaço residual ou em direções críticas não nulas.
+- **ABERTO:** transportar o orçamento para 2º, 3º, ..., n-ésimo Schur com todas as projeções/retornos e cotas de condicionamento relativo, não somente uma deflação.
+- **ABERTO:** demonstrar o elo quantitativo que conecta as camadas C2 com peso `2^-j` à norma física dos estados do jet em profundidade matricial `n`.
+- **VÍNCULO C2 PROVADO ANTERIORMENTE:** `C2GeometryNativeSourceBridge.lean` identifica o readout Taylor por seed+fibre brackets e a coluna de momentos corrigida após fator da câmera; esse conteúdo não prova o gap físico all-order.
+- **LACUNA CONHECIDA:** `HasCorrectedNativeSeededClockBoundaryTransport` em `canonicalC2Geometry_seededClockGreenMomentKernel_of_correctedTransport` continua uma condição de calibração material, não um teorema de realização incondicional.
+
+### Reproduzir validação física na VM
+
+```bash
+D=/home/thlinux/worktrees/csa-source-schur-curvature-gate-20261117/research/source-schur-curvature-20261117
+"$D/compile_physical.sh" "$D/PhysicalReturnBudget.lean"
+```
+
+O compilador usa os `.olean` já gerados do projeto GoN e Mathlib na VM. Para reproduzir fora da VM é preciso reconstruir os módulos auxiliares pelo `compile_module.sh` original da frente `native-cauchy-residual-return`; não basta `lake env lean` no CSA isoladamente.
