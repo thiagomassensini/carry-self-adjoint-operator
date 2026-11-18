@@ -1,0 +1,6 @@
+'CarrySelfAdjointOperator.SchurRelativeAmplification.nearSingularSchur_relative_change_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SchurRelativeAmplification.relative_schur_not_controlled_by_absolute_diagonal_margin' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

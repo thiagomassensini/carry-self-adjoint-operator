@@ -71,3 +71,40 @@ python3 /home/thlinux/worktrees/csa-source-schur-curvature-gate-20261117/researc
 ```
 
 Não foi demonstrada positividade de Hankel em ordem arbitrária, nem qualquer consequência para a hipótese de Riemann. Nenhuma alteração em outras worktrees.
+
+## Adendo — distribuição de ímpares por característica e rota C2/L² (2026-11-17)
+
+**Correção de normalização:** a lei de contagem é uma massa `2⁻ᵏ` por ramo. Para ímpares agrupados pelo tipo efetivo `K_eff(n)=max(v₂(n−1),v₂(n+1))≥2`, existem **dois ramos**, logo a frequência entre ímpares é `P(K_eff=k)=2^(1−k)`. Assim, para `k=2,3,...`, aparecem `1/2,1/4,1/8,...`. Para o **centro de um par gêmeo** `c=p+1`, usamos uma variável diferente `v₂(c)≥1`; o modelo probabilístico é `2⁻ᵏ`, `k=1,2,...`. O fator `2^(-k/2)` é a escala de **amplitude/norma L²**, não a lei de contagem.
+
+**Teste reproduzível:** `probe_odd_selection.py [N]`, por padrão `N=12000000`; usa crivo de primos e classes originais de profundidade inteira, **sem alturas dos zeros**. Foram 6 milhões de ímpares (efeitos de borda), 5.211.939 compostos, 650.038 primos isolados (definição operacional: `p±2` não primos), 69.010 pares gêmeos com ambos no intervalo da amostra.
+
+| `K_eff` | Todos os ímpares | Compostos | Primos isolados | Primo inferior do par gêmeo |
+|---|---:|---:|---:|---:|
+| 2 | 50,0000% | 49,9993% | 50,0057% | 49,9464% |
+| 3 | 25,0000% | 24,9998% | 24,9632% | 25,2992% |
+| 4 | 12,5000% | 12,4993% | 12,5193% | 12,3475% |
+| 5 | 6,2500% | 6,2494% | 6,2630% | 6,2324% |
+
+A contagem dos gêmeos difere em uma unidade de outro protocolo da conversa (69.011 pares até `p+2 ≤ 12M`) porque o script de quatro subconjuntos seleciona só `p` em `odd<limit−1`; é **efeito de borda**, não divergência de algoritmo. Resultados para k fixo em recortes crescentes são observações finitas. Equidistribuição assintótica de gêmeos em classes diádicas não foi provada; não confundir com a teorema dos primos em progressões (primos *individuais*).
+
+**Identidade exata da seleção:** para `A` a característica, `D_k` a classe e `a=P(A)>0`,
+`P(D_k|A) = P(D_k)·P(A|D_k)/P(A)`. Portanto a distribuição condicional fica próxima da geométrica se e somente se a característica é aproximadamente não enviesada nas camadas, isto é `P(A|D_k)/P(A) ≈ 1`. Cauchy–Schwarz dá a cota universal
+`|P(D_k|A)−P(D_k)| ≤ sqrt(((1−a)/a)P(D_k)(1−P(D_k)))`.
+**Cuidado:** para propriedades raras, o coeficiente `sqrt((1−a)/a)` é grande; a cota não explica a precisão observada para gêmeos.
+
+**Formalizado em `C2SelectionL2.lean`:**
+- `finiteShellEnergy_le_card` e `finiteShellNormalizedEnergy_le_mass`: qualquer observável `f`, `|f|≤1` numa camada finita `D`, tem energia média ≤ massa da camada.
+- `finiteShellNormalizedEnergy_le_dyadic`, `finiteShellAmplitude_le_sqrtDyadic`: **sob uma cota de massa da camada** ≤ `2^(-k)`, sua amplitude `sqrt(energia)` é ≤ `sqrt(2^(-k))`.
+- `finiteShellCauchySchwarz`: ponte exata de produto interno via Cauchy–Schwarz, independente da primalidade.
+- Este arquivo é **um enunciado genérico L²**. A contagem da fonte C2 está no outro repositório (`CPFormal/Carry/C2OddCorePushforward.lean`) e **não é importada automaticamente** no CSA. Nenhuma realização física de Schur pelo indicador de profundidade foi assumida.
+
+**Obstrução formalizada em `SchurRelativeAmplification.lean`:** `nearSingularSchur_relative_change_one` mostra que matrizes `[[1,1],[1,1+eps]]` e `[[1,1],[1,1+2eps]]`, ambas positivas para `eps>0`, diferem apenas `eps` na diagonal, mas seu pivô de Schur dobra. `relative_schur_not_controlled_by_absolute_diagonal_margin` formaliza que isso ocorre com `eps` arbitrariamente pequeno. Consequência: uma cota absoluta de Parseval na fonte **não controla automaticamente** a curvatura **relativa** de Schur, principalmente quando o pivô é quase zero.
+
+**Próxima obrigação específica:** construir uma aplicação fiel a partir das camadas **materiais C2**, por TFVD e Parseval existentes, para as **formas quadráticas canônicas completadas** e demonstrar uma cota relativa, da forma `erro_n ≤ eps_n × pivot_n`, ou um orçamento alternativo para os produtos de três resíduos. Sem isso, a correspondência entre o índice de bloco `j=floor(log₂ n)` e profundidade material `k` é apenas heurística.
+
+Validação adicional:
+```bash
+lake env lean -DwarningAsError=true research/source-schur-curvature-20261117/C2SelectionL2.lean
+lake env lean -DwarningAsError=true research/source-schur-curvature-20261117/SchurRelativeAmplification.lean
+python3 research/source-schur-curvature-20261117/probe_odd_selection.py 12000000
+```
