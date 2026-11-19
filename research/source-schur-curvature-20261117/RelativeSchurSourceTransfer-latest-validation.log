@@ -1,0 +1,9 @@
+'CarrySelfAdjointOperator.RelativeSchurSourceTransfer.schur_lower_of_relative_form_comparison' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.RelativeSchurSourceTransfer.schur_lower_of_signed_relative_form_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.RelativeSchurSourceTransfer.native_remainder_pos_of_relative_source_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

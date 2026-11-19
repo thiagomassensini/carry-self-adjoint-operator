@@ -1,0 +1,27 @@
+'CarryCauchyResidual.canonical_firstSchur_pos_of_physical_critical_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarryCauchyResidual.physical_critical_budget_same_cauchy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarryCauchyResidual.physical_critical_additive_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarryCauchyResidual.physicalJetSignedBudget_normalized_tendsto_firstSchur' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarryCauchyResidual.critical_incident_minus_return_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarryCauchyResidual.critical_incident_minus_return_tangent_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarryCauchyResidual.native_physical_basis_return_energy_ratio_tendsto_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarryCauchyResidual.native_physical_return_not_uniformly_contractive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarryCauchyResidual.native_basis_return_incident_cross_energy' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarryCauchyResidual.full_physical_balance_eq_original' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarryCauchyResidual.physical_relative_two_loss_budget' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarryCauchyResidual.native_incident_return_tangent_equal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CarryCauchyResidual.native_return_over_incident_coeff_energy_tendsto_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

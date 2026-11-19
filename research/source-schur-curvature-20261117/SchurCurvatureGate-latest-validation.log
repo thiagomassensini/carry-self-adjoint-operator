@@ -1,0 +1,51 @@
+'CarrySelfAdjointOperator.SourceSchurCurvature.native_boundary_pos_of_compensation_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.source_odd_curvature_eq_leading_mul_compensation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.source_even_curvature_eq_leading_mul_compensation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.native_boundary_pos_of_one_sided_cross_curvature' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.native_boundary_pos_of_bounded_cross_curvature' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.native_boundary_pos_of_half_cross_curvature' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.native_radial_return_contractive_of_half_cross_curvature' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.oddR_eq_leadingMass_add_lowerIntegral' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.oddR_positive_requires_lower_compensation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.actual_top_odd_product_ratio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.actual_top_even_product_ratio' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.oddLeadingRatio_tendsto_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.evenLeadingRatio_tendsto_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.oddLeadingRatio_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.evenLeadingRatio_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.compact_uniform_control_breaks_half_gate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.SourceSchurCurvature.factorial_control_breaks_half_gate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
