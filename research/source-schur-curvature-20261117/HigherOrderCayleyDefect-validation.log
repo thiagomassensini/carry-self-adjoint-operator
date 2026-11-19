@@ -1,0 +1,27 @@
+'CarrySelfAdjointOperator.HigherOrderCayleyDefect.secondNullFifthCoefficientCandidate_pos_of_two_even_det' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.HigherOrderCayleyDefect.completed_h1_positive_from_native_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.HigherOrderCayleyDefect.native_actual_cubic_defect_coefficient_positive' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.HigherOrderCayleyDefect.native_actual_incident_return_cubic_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.HigherOrderCayleyDefect.cubic_difference_normalized_tendsto' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.HigherOrderCayleyDefect.cubic_difference_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.HigherOrderCayleyDefect.completed_reduced_response_deriv_eq_h1' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.HigherOrderCayleyDefect.native_chiral_eq_reduced_cayley_eventually' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'CarrySelfAdjointOperator.HigherOrderCayleyDefect.cayley_cubic_defect_cross_mul' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
