@@ -1,6 +1,6 @@
 # Native completed C3 source: the fifth Schur reduction
 
-**State (2026-11-20):** native analytic identity PROVED in Lean; fifth-channel positivity PROVED in Lean **under exactly the third-even-source-pivot sign** already source-certified in geometry-of-numbers PR #324; the PR theorem is NOT imported into this pinned CSA checkout. All-order sign and positivity of the surviving fifth Green residual are OPEN.
+**State (2026-11-20):** native analytic identity PROVED in Lean unconditionally. The third-even-source-pivot sign is now **formally imported from GoN PR #324** via an independent leaf module and yields an **unconditional fifth positive channel** in the completed native C3 readout. The fifth Green residual and all-order positivity remain OPEN. The standard CSA Lake package still pins an older GoN revision, so the research certificate is imported by a source-rebuilding validation script (not by pretending it belongs to GoN's default public library).
 
 ## Provenance (do not reverse)
 
@@ -8,7 +8,7 @@ Bracket / seed / centers / legs -> Dirichlet and Genuine -> native N -> completi
 
 The source is the already-formalized completed-native vector readout; **no moment-derived state is substituted**.
 
-## Six proof modules
+## Six original proof modules and the seventh integration module
 
 1. `NativeSchurJetConvolution20261120.lean`: normalized analytic Taylor Cauchy convolution; exact z and z² shifts.
 2. `SourceReductionParityStageFour20261120.lean`: native response's odd germ, oddness preserved across Schur reductions, fifth source zero at center; exact residual factor `chainWeight 5 z = z^5 * ∏_{j<5} chainAxis j z`.
@@ -38,7 +38,13 @@ theorem `C3CofactorChiral.c3_even_third_native_pivot_positive`.
 Its `nativeH` abbreviates `canonicalCompletedNativeLogDerivativeMoment`.
 The proof uses the original completed C3 source's rational interval enclosures, its cofactor / Bézout transport, and is Lean-certified in that project.
 
-**Integration gap:** This CSA Lake dependency currently pins geometry-of-numbers at `d7cc54f5c485320f1fada33118e9e6101488819a` and does not expose PR #324's research proof as an importable module. Therefore the sign enters as an **explicit theorem argument**, not as an unproved assumption or a transplanted axiom. Reconcile the proof and its original Lean dependencies in a separate integration update.
+**Integrated result:** `scratch_local/NativeC3EvenThirdCertificateImport20261120.lean` imports the actual `NativeEvenCertificate` research proof, not an axiom. It proves, with no additional inputs, `nativeC3_evenThirdSchur_pos`, `nativeC3_fifthChainScale_pos`, and `nativeC3_fivePositiveChannels_unconditional`.
+
+**Source pin:** GoN PR #324 merge `6c5c97b03925c398bf77a561d6e76b14563265e0`. The imported upstream `NativeEvenCertificate.lean` has Git blob `1a032f38c0efee639a039a17d8c3694ed815114a`. The dedicated validator also rebuilds the original `SourceSchurShift`, `SourceGate`, `CofactorTransport`, and `FiniteReferenceTable` modules from this same merge.
+
+**Build boundary:** The CSA Lake dependency still pins GoN at `d7cc54f5c485320f1fada33118e9e6101488819a`; this is intentionally unchanged. The signed theorem lives in GoN's **research tree**, outside GoN's normal library, and its research proof consumes already compiled CSA and GoN modules. The bridge is compiled as a *leaf* through `scripts/validate-native-fifth-pr324.sh`, preventing a Lake dependency cycle. The script requires the previously source-validated research prerequisite caches (from GoN's PR #324 `validate.sh`) plus GoN's main library build. It is not a hermetic build of every transitive dependency.
+
+**Axiom audit:** The freshly compiled upstream certificate and all three leaf CSA results report only `propext`, `Classical.choice`, `Quot.sound` under `#print axioms`; no `sorry` or `admit` is introduced.
 
 ## Scope and NO-GO
 
@@ -58,6 +64,12 @@ for f in NativeSchurJetConvolution20261120 SourceReductionParityStageFour2026112
 done
 ```
 
-The tests above were executed in the original VM checkout, all six returned exit code 0. The new branch/worktree preserves only the six proof modules and this README. Explicit `#print axioms` roots in the terminal modules report only `propext`, `Classical.choice`, `Quot.sound`. No `sorry` or `admit` was introduced.
+The original six-module checks each returned exit code 0. The full proof integration is reproducible from pinned upstream source blobs using:
 
-**Next:** (1) import the finite C3 sign certificate faithfully; (2) study the fifth residual (K_5) or the source-derived next Schur pivot, never set it to zero by convention.
+```bash
+bash scripts/validate-native-fifth-pr324.sh
+```
+
+On 2026-11-20 this command returned **`PR324_SOURCE_IMPORT_7_OF_7_PASSED`**, with warning-as-error compilation and only the standard Lean axioms. It rebuilds the five terminal GoN research modules, all six CSA construction modules, and the final seventh importing module, in a disposable temporary directory. The upstream prerequisite caches have their own original GoN source validation; this command documents but does not rebuild that entire transitive background.
+
+**Next:** study the complete fifth residual \(K_5\) or the source-derived next Schur pivot; **do not** infer all-order positivity, and do not set that residual to zero by convention.
