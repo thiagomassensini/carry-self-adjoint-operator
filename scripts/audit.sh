@@ -42,6 +42,10 @@ lake build --wfail CarrySelfAdjointOperator.ProjectiveValveMomentFrontierAudit
 # Check the constructed kernels and the exact native metric calibration.
 lake build --wfail CarrySelfAdjointOperator.KernelConstructionAudit
 
+# Check source-first local Hadamard jets, pole removal and camera universality.
+lake build --wfail CarrySelfAdjointOperator.LocalHadamardMomentBridgeAudit
+lake env lean CarrySelfAdjointOperator/LocalHadamardMomentBridgeAudit.lean
+
 # Check exact camera-to-moment universality before the operator audits.
 lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit
 

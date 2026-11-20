@@ -1,0 +1,17 @@
+import CarrySelfAdjointOperator.LocalHadamardMomentBridge
+
+/-! Trust audit for the source-first local Hadamard jet bridge.
+No root table, RH, or positive Gram enters these statements. -/
+
+#print axioms CarrySelfAdjointOperator.cameraLocalDeflatedCoefficient_eq_native
+#print axioms CarrySelfAdjointOperator.localLogDerivative_pole_removal
+#print axioms CarrySelfAdjointOperator.localLogDerivative_pole_removal_of_factor
+#print axioms CarrySelfAdjointOperator.localHeightResponse_pole_removal
+#print axioms CarrySelfAdjointOperator.localLogDerivativeCoefficients_recurrence
+#print axioms CarrySelfAdjointOperator.nativeLocalDeflatedCoefficient_zero
+#print axioms CarrySelfAdjointOperator.nativeLocalS6_eq_negative_fifth
+#print axioms CarrySelfAdjointOperator.nativeLocalS7_eq_sixth
+#print axioms CarrySelfAdjointOperator.cameraLocalHadamardMoment_eq_native
+#print axioms CarrySelfAdjointOperator.cameraGlobalAndLocalMoments_eq_native
+#print axioms CarrySelfAdjointOperator.cameraLocalS6_eq_native
+#print axioms CarrySelfAdjointOperator.cameraLocalS7_eq_native
