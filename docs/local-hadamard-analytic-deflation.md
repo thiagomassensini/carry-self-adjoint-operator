@@ -30,3 +30,11 @@ Validation:
 lake build --wfail CarrySelfAdjointOperator.LocalHadamardAnalyticDeflationAudit
 lake env lean CarrySelfAdjointOperator/LocalHadamardAnalyticDeflationAudit.lean
 ```
+
+## Follow-up: coefficient bridge closed
+
+The analytic-to-formal Taylor coefficient identification left open in this
+file is now proved in `LocalHadamardAnalyticCoefficient.lean`, including
+universality of the camera readout of every `S_m`. See
+[local-hadamard-analytic-coefficients.md](local-hadamard-analytic-coefficients.md).
+Certified spectral gap tails remain a separate obligation.

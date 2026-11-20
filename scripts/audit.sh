@@ -54,6 +54,10 @@ lake env lean CarrySelfAdjointOperator/LocalHadamardFormalSeriesBridgeAudit.lean
 lake build --wfail CarrySelfAdjointOperator.LocalHadamardAnalyticDeflationAudit
 lake env lean CarrySelfAdjointOperator/LocalHadamardAnalyticDeflationAudit.lean
 
+# Check all-order equality of analytic deflation coefficients and native local Hadamard jets.
+lake build --wfail CarrySelfAdjointOperator.LocalHadamardAnalyticCoefficientAudit
+lake env lean CarrySelfAdjointOperator/LocalHadamardAnalyticCoefficientAudit.lean
+
 # Check exact camera-to-moment universality before the operator audits.
 lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit
 
