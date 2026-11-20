@@ -1,0 +1,10 @@
+import CarrySelfAdjointOperator.LocalHadamardFormalSeriesBridge
+
+/-! Axiom audit for the formal-local Hadamard derivative bridge. -/
+
+#print axioms CarrySelfAdjointOperator.localLogResponseFormalSeries_mul_deflated
+#print axioms CarrySelfAdjointOperator.localLogResponseFormalSeries_eq_formal_log_derivative
+#print axioms CarrySelfAdjointOperator.nativeLocalLogResponseFormalSeries_mul
+#print axioms CarrySelfAdjointOperator.nativeLocalHadamardMoment_eq_formal_log_derivative_coeff
+#print axioms CarrySelfAdjointOperator.nativeLocalS6_eq_formal_log_derivative_coeff
+#print axioms CarrySelfAdjointOperator.nativeLocalS7_eq_formal_log_derivative_coeff

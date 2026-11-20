@@ -46,6 +46,14 @@ lake build --wfail CarrySelfAdjointOperator.KernelConstructionAudit
 lake build --wfail CarrySelfAdjointOperator.LocalHadamardMomentBridgeAudit
 lake env lean CarrySelfAdjointOperator/LocalHadamardMomentBridgeAudit.lean
 
+# Check formal logarithmic differentiation of the locally deflated completed jet.
+lake build --wfail CarrySelfAdjointOperator.LocalHadamardFormalSeriesBridgeAudit
+lake env lean CarrySelfAdjointOperator/LocalHadamardFormalSeriesBridgeAudit.lean
+
+# Check analytic removal of the simple zero of completed F.
+lake build --wfail CarrySelfAdjointOperator.LocalHadamardAnalyticDeflationAudit
+lake env lean CarrySelfAdjointOperator/LocalHadamardAnalyticDeflationAudit.lean
+
 # Check exact camera-to-moment universality before the operator audits.
 lake build --wfail CarrySelfAdjointOperator.CompletedNativeCameraUniversalityAudit
 
