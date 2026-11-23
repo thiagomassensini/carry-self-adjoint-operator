@@ -19,17 +19,23 @@ Os arquivos Lean ficam em `CarrySelfAdjointOperator/`.
   pela congruência de sinais e calcula os menores consecutivos
   $2\times2$ sob a identidade ponto a ponto. O menor inicial
   reaproveita o certificado theta do CSA.
+- `C2ClockQuadraticJet.lean` transporta os coeficientes da série
+  logarítmica por $u=-t^2$. A substituição insere zeros nos graus
+  ímpares e fornece o sinal e o fatorial dos cumulantes pares.
+- `C2ClockCanonicalCumulants.lean` cancela $1+2^{-s}$ no fator
+  original da câmera, aplica o completamento e liga o produto
+  local ao jato em $u=-t^2$. Instancia a equivalência de Hankel
+  com os cumulantes da própria fonte.
 
-O passo que fecha a identificação dos dois lados no Lean é ligar
-o produto na coordenada de Dirichlet ao jato par na coordenada de
-altura. Ele usa a carta nativa com cauda exata, a divisão pelo
-fator comum $1-2^{1-s}$, a correção arquimediana e a substituição
-$s=\tfrac12+iz$, $u=z^2$. Essa ligação completa ainda não é um
-teorema destes módulos. A positividade canônica em toda ordem
-continua sendo uma obrigação separada, mesmo depois da igualdade
-dos jatos.
+O teorema `c2ClockCorrectedCumulant_eq_canonical` estabelece
+$C_{2n+2}=2(-1)^n(2n+1)!\,h_n$ para todo $n$. A prova usa a
+carta nativa com cauda exata, o fator comum $1-2^{1-s}$, a
+correção arquimediana e a ponte par existente no CSA. Nenhuma
+entrada espectral de zeros ou hipótese de sinal é necessária.
+A positividade canônica em toda ordem segue como obrigação
+após a identificação dos jatos.
 
 O certificado theta para o menor inicial fornece uma comparação
-independente. A álgebra dos cumulantes por si só fornece a
-desigualdade equivalente, sem uma nova prova do seu sinal.
+independente. `c2ClockCorrectedCumulant_second_minor_pos`
+transfere o sinal já certificado para os cumulantes da fonte.
 [Certificado theta](https://github.com/thiagomassensini/carry-self-adjoint-operator/blob/1d058c1e008401e56d47246859869a69726bb9f3/CarrySelfAdjointOperator/CompletedNativeSixthOrderThetaPositivity.lean#L79)
